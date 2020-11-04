@@ -1,7 +1,6 @@
 <?php
 //session_start();
 
-
 class Boarding_post_Entity 
 {
     public $B_post_id;
@@ -27,7 +26,6 @@ class Boarding_post_Entity
        
     $this->B_post_id     = $B_post_id;
     $this->BOid          = $BOid;
-
     $this->category      = $category;
     $this->girlsBoys     = $girlsBoys;
     $this->person_count  = $person_count;
