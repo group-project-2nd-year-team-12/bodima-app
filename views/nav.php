@@ -1,7 +1,7 @@
 <div class="container" id="container">
         <div class="header">
             <div class="logo">
-                <h1><b style="color: black">B</b>odima<small style="font-size: 14px; color:black;">   Solution for many problem</small></h1>
+                <h1><b style="color: rgb(13, 13, 189)">B</b>odima<small style="font-size: 14px; color:rgb(13, 13, 189);">   Solution for many problem</small></h1>
             </div>
             <div class="sign">
                 <?php if(!isset($_SESSION['email'])){echo '<a href="../controller/logingController.php?click1">Sign In <i class="fa fa-sign-in-alt"></i></a>';}?>
@@ -33,7 +33,6 @@
                 <li class="nav_item "><a href="../views/about.php "><i class="fa fa-address-card"></i> About us</a></li>
                 <li class="nav_item "><a href="# "><i class="fa fa-address-book"></i> Contact Us</a></li>
             </ul>
-            
             <div class="slide-nav">
             <ul><?php if(isset($_SESSION['email'])){?> 
                     <li onclick="window.location='profilepage.php'">Profile</li>
@@ -56,8 +55,3 @@
                 </ul>
         </div>
         </div>
-        <div class="intro">
-                <div class="intro-icon">
-                    <h1>Hi</h1>
-                </div>
-            </div>
