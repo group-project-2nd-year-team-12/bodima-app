@@ -36,7 +36,10 @@ if(isset($_POST['submit']))
     //$Aamount=$_SESSION['result'];
     $Aamount=$_POST['Aamount'];
 
-    
+    //echo $Hnumber;
+    $id=$_SESSION['BOid'];
+    boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
+
 
 }
-?>
+?>S
