@@ -25,8 +25,18 @@ if(isset($_POST['submit']))
 
     $upload_to='../img/';
 
-   
+    move_uploaded_file($temp_name, $upload_to . $image_name);
 
+    $individual=$_POST['individual'];
+    $gender=$_POST['gender'];
+    $Pcount=$_POST['Pcount'];
+    $CPperson=$_POST['CPperson'];
+    $Keymoney=$_POST['Keymoney'];
+    $Lifespan=$_POST['Lifespan'];
+    //$Aamount=$_SESSION['result'];
+    $Aamount=$_POST['Aamount'];
+
+    
 
 }
 ?>
