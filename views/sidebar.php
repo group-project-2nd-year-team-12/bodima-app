@@ -1,3 +1,4 @@
+//side bar by anuki
 <!-- <div class="sidebar">
       <div class="profile_info">
         <img src="../resource/Images/a.jpg" class="profile_image" alt="">
