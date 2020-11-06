@@ -51,35 +51,7 @@
 				<!--<label for="">Boarding Images  </label><br>
 				<input type="file" name="Bimage{}" id="Bimage" multiple ><br><br>-->
 			
-				<h3 class="name">Avertisement Type</h3 >
-				<label class="radio">
-					<input type="radio" name="individual" id="individual" value="Individual"><span id="individual" >&nbsp; Individual</span>&nbsp;&nbsp;
-					<input type="radio" name="individual" id="RoomOrHome" value="RoomOrHome"><span id="RomeOrHome" >&nbsp; Rome Or Home</span>&nbsp;&nbsp;<br>
-				</label>
-				
-
-				<h3 class="name">Gender</h3 >
-				<label class="radio">
-					<input type="radio" name="gender" value="Male"> Male
-					<input type="radio" name="gender" value="Female"> Female <br>
-				</label>
-				
-
-				
-				<h3 class="name">Person Count</h3 >
-				<input type="number" name="Pcount" id="pcount" value="1" min="1" max="30" >
-
-				
-				<h3 class="name">Cost Per Person For Month</h3 >
-				<input type="text" name="CPperson" id="cpperson"  >
-
-				
-				<h3 class="name">KeyMoney</h3 >
-				<input type="text" name="Keymoney" id="Keymoney" >
-
-				<div class="group">
-				<h3 class="name">Avertisement Lifespan (Month)</h3 >
-				
+			
 			
 			</form>
 

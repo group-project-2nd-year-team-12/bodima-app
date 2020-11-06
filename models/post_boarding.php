@@ -13,7 +13,11 @@ class boarding{
         VALUES(null,'{$id}','{$individual}','{$gender}','{$Pcount}','{$CPperson}',' ','{$image_name}','{$Hnumber}','{$lane}','{$city}','{$district}','{$description}','fff','{$Lifespan}','{$Aamount}','ishan','{$Keymoney}')";
         $result=mysqli_query($connection,$query);
 
-      
+        if($result){
+            echo "Sucessfull";
+        }else{
+            echo "Unsucessfull";
+        }
     }
 }
 
