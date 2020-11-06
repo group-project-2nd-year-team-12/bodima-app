@@ -1,6 +1,5 @@
 <?php
 
-
 class Food_post_Entity 
 {
     public $F_post_id;
@@ -16,7 +15,6 @@ class Food_post_Entity
     public $post_amount;
     public $image;
     
-
     function __construct($F_post_id, $FSid, $ad_title, $description, $address, $location, $type, $rating, $ordering_time_deadline,$lifespan,$post_amount,$image) {
        
     $this->F_post_id     = $F_post_id;

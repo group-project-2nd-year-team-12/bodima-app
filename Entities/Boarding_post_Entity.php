@@ -1,6 +1,5 @@
 <?php
 //session_start();
-
 class Boarding_post_Entity 
 {
     public $B_post_id;

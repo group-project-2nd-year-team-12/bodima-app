@@ -1,7 +1,7 @@
-
 <?php
 require_once ('../models/reg_userIshan.php');
 require ("../models/BoardingPostModel.php");
+
 
 class BoardingPostController {
     
@@ -11,7 +11,7 @@ class BoardingPostController {
                     <div class='search-item'>
                         <h2>Please select a category:</h2> 
                         <select name = 'categories' >
-                            <option value = '%' >All</option>
+                            <option value = '%'  >All</option>
                             " . $this->CreateOptionValues($BoardingPostModel->GetBoardingCategories()) .
                         "</select>
                         <input type = 'submit' value = 'Search'>  
