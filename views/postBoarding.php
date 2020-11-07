@@ -51,8 +51,82 @@
 				<!--<label for="">Boarding Images  </label><br>
 				<input type="file" name="Bimage{}" id="Bimage" multiple ><br><br>-->
 			
+				<h3 class="name">Avertisement Type</h3 >
+				<label class="radio">
+					<input type="radio" name="individual" id="individual" value="Individual"><span id="individual" >&nbsp; Individual</span>&nbsp;&nbsp;
+					<input type="radio" name="individual" id="RoomOrHome" value="RoomOrHome"><span id="RomeOrHome" >&nbsp; Rome Or Home</span>&nbsp;&nbsp;<br>
+				</label>
+				
+
+				<h3 class="name">Gender</h3 >
+				<label class="radio">
+					<input type="radio" name="gender" value="Male"> Male
+					<input type="radio" name="gender" value="Female"> Female <br>
+				</label>
+				
+
+				
+				<h3 class="name">Person Count</h3 >
+				<input type="number" name="Pcount" id="pcount" value="1" min="1" max="30" >
+
+				
+				<h3 class="name">Cost Per Person For Month</h3 >
+				<input type="text" name="CPperson" id="cpperson"  >
+
+				
+				<h3 class="name">KeyMoney</h3 >
+				<input type="text" name="Keymoney" id="Keymoney" >
+
+				<div class="group">
+				<h3 class="name">Avertisement Lifespan (Month)</h3 >
+				
+				<input type="number" name="Lifespan" id="lifespan" value="1" min="1" max="" class="control prc" >
+				</div>
+				
+				<div class="group">
+				
+				<h3 class="name">Avertisement Amount :     Rs  </h3 >
+				<!-- <output  name="result" id="result"></output>   -->
+				<input type="text"  disabled  name="Aamount" id="Aamount"  ><br><br>
+				</div>
+					
+				<br>
+				<label for="">&nbsp; </label><br>
+				<input type="submit" name="submit" id="submit" value="Save"  ><br>	<br><br>
+					
+				
+				
 			
+
+				<script src="../resource/js jquery-3.5.1.min.js"></script>
+				<script>
+					$('.group').on('input','.prc',function(){
+						var totalsum =0;
+						$('.group .prc').each(function(){
+							var inputVal = $(this).val();
+							if($.isNumeric(inputVal)){
+								totalsum = parseFloat(inputVal)*100;
+							}
+
+						});
+						$('#Aamount').val(totalsum);
+						//$('#result').text(totalsum);
+						
+						//result=$_SESSION['totalsum']
+
+					});
+
+					$('form').submit(function(e){
+						$(':disabled').each(function(e){
+							$(this).removeAttr('disabled');
+						})
+
+					});
+				</script>
+
+
 			
+				
 			</form>
 
 		<div><!-- main -->
