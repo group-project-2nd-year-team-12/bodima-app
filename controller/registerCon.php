@@ -1,7 +1,6 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
         require_once ('../config/email.php');
-        session_start(); 
 ?>
 <?php
 
@@ -9,21 +8,33 @@
 if(isset($_POST['submit']))
 {
  $errors=array();            //create empty array
-        if(!isset($_POST['first_name']) || strlen(trim($_POST['first_name']))<1)   //check if the username and password has been entered
-                {
-                 $errors[]='*First name required';
-                }
-        if(!isset($_POST['last_name']) || strlen(trim($_POST['last_name']))<1)
-                {
-                 $errors[]='*Last name required';
-                }
-        if(!isset($_POST['nic']) || strlen(trim($_POST['nic']))<1)
+ $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
+ $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
+ $nic=mysqli_real_escape_string($connection,$_POST['nic']);
+ $email=mysqli_real_escape_string($connection,$_POST['email']);
+ $level=mysqli_real_escape_string($connection,$_POST['level']);
+
+        if(!isset($first_name) || strlen(trim($first_name))<1)   //check if the username and password has been entered
+        {
+                $errors[]='*First name required';
+        }
+        elseif(!preg_match(("/^([a-zA-Z']+)$/"), $first_name)){ // preg_match -> check regular expression
+                $errors[]='*Invalid first name ';
+        }
+        if(!isset($last_name) || strlen(trim($last_name))<1)
+        {
+                $errors[]='*Last name required';
+        } 
+        elseif(!preg_match(("/^([a-zA-Z']+)$/"), $last_name)){ // preg_match -> check regular expression
+                $errors[]='*Invalid Last name ';
+        }
+        if(!isset($nic) || strlen(trim($nic))<1)
                  {
                  $errors[]='*NIC  required';
                  }
 
         else    {
-                        if(strlen(trim($_POST['nic']))==12 || (strlen(trim($_POST['nic']))==10 && ($_POST['nic'][9]=='v' || $_POST['nic'][9]=='V')))
+                        if(strlen(trim($nic))==12 || (strlen(trim($nic))==10 && ($nic[9]=='v' || $nic[9]=='V')))
                         {
                               // 
                         }
@@ -31,40 +42,34 @@ if(isset($_POST['submit']))
                                 $errors[]="*NIC number is invalid";
                         }    
                 }
-        
-
-        if(!isset($_POST['email']) || strlen(trim($_POST['email']))<1)
+        if(!isset($email) || strlen(trim($email))<1)
                 {
                 $errors[]='*Email address required';
                }
-        elseif (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)) 
+        elseif (!filter_var($email,FILTER_VALIDATE_EMAIL)) 
                {
                    $errors[]='*Invalied email address ';
                } 
 
         if(empty($errors))
         {
-                $user_email=reg_user::checkUser($_POST['email'],$connection);
+                $user_email=reg_user::checkUser($email,$connection);
                 $email_arr=mysqli_fetch_assoc($user_email);  
                 if(empty($email_arr))
                 {
-                  $_SESSION['email']=$_POST['email'];
-                  $_SESSION['first_name']=$_POST['first_name'];
-                  $_SESSION['last_name']=$_POST['last_name'];
-                  $_SESSION['nic']=$_POST['nic'];
-                  $_SESSION['level']=$_POST['level'];
+             
 
-                if($_POST['level']=="boardings_owner")
+                if($level=="boardings_owner")
                 {
-                        header('Location:../views/boarding_owner_reg.php');
+                        header('Location:../views/boarding_owner_reg.php?email='.$email.'&first_name='.$first_name.'&last_name='.$last_name.'&nic='.$nic);
                 }
-                elseif($_POST['level']=="student")
+                elseif($level=="student")
                 {
-                        header('Location:../views/student_reg.php');
+                        header('Location:../views/student_reg.php?email='.$email.'&first_name='.$first_name.'&last_name='.$last_name.'&nic='.$nic);
                 }
-                elseif($_POST['level']=="food_supplier")
+                elseif($level=="food_supplier")
                 {
-                        header('Location:../views/food_supplier_reg.php');
+                        header('Location:../views/food_supplier_reg.php?email='.$email.'&first_name='.$first_name.'&last_name='.$last_name.'&nic='.$nic);
                 }
                 }
                 else{
@@ -83,6 +88,11 @@ if(isset($_POST['submit']))
 if(isset($_POST['register_student']))
         {
                 $errors=array();
+                $email=mysqli_real_escape_string($connection,$_POST['email']);
+                $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
+                $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
+                $nic=mysqli_real_escape_string($connection,$_POST['nic']);
+                $level=mysqli_real_escape_string($connection,$_POST['level']);
                 $password=mysqli_real_escape_string($connection,$_POST['password']);
                 $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']);
 
@@ -102,21 +112,8 @@ if(isset($_POST['register_student']))
               
                 if(empty($errors))
                 {
-
                         $token= bin2hex(random_bytes(50));
-                        $email=$_SESSION['email'];
-                        $first_name=$_SESSION['first_name'];
-                        $last_name=$_SESSION['last_name'];
-                        $nic=$_SESSION['nic'];
-                        $level=$_SESSION['level'];
                         $hash=sha1($password);
-                        unset($_SESSION['email']);
-                        unset($_SESSION['first_name']);
-                        unset($_SESSION['last_name']);
-                        unset($_SESSION['nic']);
-                        unset($_SESSION['level']);
-                        session_destroy();
-                        
                         reg_user::studentReg($email,$first_name,$last_name,$nic,$hash,$token,$connection);
                         sendRegUser($email,$token,$level);
                         header('Location:../views/emailVerify.php?email='.$email.'&token='.$token.'&level='.$level);  
@@ -131,10 +128,16 @@ if(isset($_POST['register_student']))
 if(isset($_POST['register']) )
 {
                 $errors=array();
+                $email=mysqli_real_escape_string($connection,$_POST['email']);
+                $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
+                $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
+                $nic=mysqli_real_escape_string($connection,$_POST['nic']);
+                $level=mysqli_real_escape_string($connection,$_POST['level']);
                 $password=mysqli_real_escape_string($connection,$_POST['password']);
                 $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']);
-                 $address=mysqli_real_escape_string($connection,$_POST['address']);
-                 $link=mysqli_real_escape_string($connection,$_POST['link']);
+                $address=mysqli_real_escape_string($connection,$_POST['address']);
+                $link=mysqli_real_escape_string($connection,$_POST['link']);
+                print_r($_POST);
 
                 if(!isset($address) || strlen(trim($address))<1)
                 {
@@ -162,21 +165,12 @@ if(isset($_POST['register']) )
                 {
 
                         $token= bin2hex(random_bytes(50));
-                        $email=$_SESSION['email'];
-                        $first_name=$_SESSION['first_name'];
-                        $last_name=$_SESSION['last_name'];
-                        $nic=$_SESSION['nic'];
-                        $level=$_SESSION['level'];
                         $hash=sha1($password);
-                        unset($_SESSION['email']);
-                        unset($_SESSION['first_name']);
-                        unset($_SESSION['last_name']);
-                        unset($_SESSION['nic']);
-                        unset($_SESSION['level']);
-                        session_destroy();
-                        reg_user::userReg($email,$first_name,$last_name,$nic,$hash,$token,$level,$address,$link,$connection);
-                        sendRegUser($email,$token,$level);
-                        header('Location:../views/emailVerify.php?email='.$email.'&token='.$token.'&level='.$level);  
+                       
+                        $result=reg_user::userReg($email,$first_name,$last_name,$nic,$hash,$token,$level,$address,$link,$connection);
+                     
+                                sendRegUser($email,$token,$level);
+                                header('Location:../views/emailVerify.php?email='.$email.'&token='.$token.'&level='.$level); 
 
                 }else{
                         if($level=='boardings_owner'){header('Location:../views/boardings_owner_reg.php?'.http_build_query(array('param'=>$errors)));}

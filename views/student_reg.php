@@ -42,7 +42,11 @@
                  <div class="agree"> I am agree with term and condition</div> 
                  
             </div>
-		   
+		   <input type="hidden" name="email" value="<?php echo $_GET['email']; ?>">
+		   <input type="hidden" name="first_name" value="<?php echo $_GET['first_name']; ?>">
+		   <input type="hidden" name="last_name" value="<?php echo $_GET['last_name']; ?>">
+		   <input type="hidden" name="nic" value="<?php echo $_GET['nic']; ?>">
+		   <input type="hidden" name="level" value="student">
 		   	<input id="register" type="submit" name="register_student" value="Register">
 		   </form>
 	</div>

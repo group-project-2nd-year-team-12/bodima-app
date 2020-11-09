@@ -25,7 +25,7 @@
                      Click on the link below to reset your password and get back into your account.
                      If it wasn’t you there is nothing to do nor worry about. You can keep on keeping on
                  </h4>
-                 <a style="background-color: black; color: white;padding :10px ;border:none ; border-redius:5px; font-size:16px" href="http://localhost/mvc/application1/application/controller/index.php?tokenPassword='.$tokenPass.'">Reset my password</a>
+                 <a style="background-color: black; color: white;padding :10px ;border:none ; border-redius:5px; font-size:16px" href="http://localhost/bodima-app/controller/index.php?tokenPassword='.$tokenPass.'">Reset my password</a>
      
              
          
@@ -105,7 +105,7 @@ a{
             <h3 style="text-align:left">HEY THERE !</h3>
             <h2><b>L</b>ast <b>S</b>tep <b>T</b>o <b>S</b>tart </h2>
             <p>We just need you to confirm your email address and finish setting new account we created just for you.</p>
-            <a href="http://localhost/mvc/application1/application/controller/registerCon.php?token='.$token.'&level='.$level.'&email='.$email.'">Click to confirm your email address <i class="fa fa-arrow-right"></i></a>
+            <a href="http://localhost/bodima-app/controller/registerCon.php?token='.$token.'&level='.$level.'&email='.$email.'">Click to confirm your email address <i class="fa fa-arrow-right"></i></a>
             
         </div>
     </div>

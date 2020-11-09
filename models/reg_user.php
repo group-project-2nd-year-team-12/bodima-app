@@ -11,7 +11,8 @@ class reg_user{
     public static function userReg($email,$first_name,$last_name,$nic,$password,$token,$level,$address,$link,$connection)
     {
         $query="INSERT INTO $level (email,first_name,last_name,NIC,password,token,address,location_link) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$link}')";
-        mysqli_query($connection,$query);
+        $result_set=mysqli_query($connection,$query);
+        return$result_set;
     }
 
 
