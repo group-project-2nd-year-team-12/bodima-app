@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<title>&#127829;Add Iteam </title>
-	<link href="../css/style.css" rel="stylesheet">
+	<link href="../resource/css/style.css" rel="stylesheet">
 
 	<style>
 
