@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+ *{
+     font-family:'Poppins',sans-serif ;
+     padding:0px;
+     margin: 0px;
+ }
+
+ 
+
+
+  .item-wrap{
+    box-shadow: 0 4px 8px 0 rgba(0.4, 0, 0, 0.5);
+    width: 80%;
+    background-color: #e6e6e6;
+    /*background-color: #222;*/
+    padding: 8px;
+}
+
+  .item-wrap h3{
+    border-bottom: 1px solid gray;
+    width: 80.5%;
+    padding-left: 10px;
+   margin-bottom: 2px;
+}
+
+.new-order h5{
+  font-size: 35px;
+  background: rgb(9,9,121);
+  margin-top: -50px;
+  margin-left: 16%;
+  margin-right: 100px;
+  color: white;
+  padding-left: 20px;
+  background: linear-gradient(148deg, rgba(9,9,121,0.7919621749408984) 0%, rgba(0,212,255,1) 100%);
+   border-bottom: 1px solid gray;
+   margin-bottom: 20px;
+}
+
+
+
+.status h4{
+  text-align: right;
+  background-color: #47d147;
+  padding:5%;
+  padding-right: 20%;
+
+}
+
+.status{
+  padding-top:8px;
+  padding-bottom: 8px;
+  padding-right: 5%;
+  padding-left:70%;
+}
+
+
+.cont{
+    margin: 5px;
+    display: flex;
+    margin-left: 10px;
+    /*justify-content: space-between;*/
+}
+
+
+.house_img img{
+  display: table-cell;
+  width: 15vw;
+  height: 11vw;
+}
+
+.holder{
+  display: table-cell;
+   /*background-color: black;*/
+   margin-left: 20px;
+  /*display: flex;*/
+    /*justify-content: space-between;*/
+}
+
+
+.holder p{
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    text-align: left;
+
+}
+
+.innnerhold{
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+  width: 90%;
+ text-align: left;
+ margin-left: 10px;
+
+}
+
+
+.but_pl{
+ 
+  padding-top: 10px;
+}
+
+
+.btn_1 {
+  background-color: #29CC05 ; 
+  color: white; 
+  border: 2px solid #4CAF50;
+  padding-left: 20px;
+  padding-right: 20px;
+   padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+.btn_1:hover{
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+.btn_2 {
+  background-color: red; 
+  color: white; 
+  border: 2px solid #ED3109;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+
+}
+
+.btn_2:hover{
+  background-color:#ED3109;
+  color: white;
+}
+
+
+
+
