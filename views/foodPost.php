@@ -73,7 +73,6 @@
 					
 				<br>
 				
-<<<<<<< HEAD
 				<label for="">&nbsp; </label><br>
 				<input type="submit" name="submit" id="submit" value="submit"  ><br>	<br><br>
 					
@@ -106,8 +105,6 @@
 				</script>
 
 
-=======
->>>>>>> 4b1dc16b9522d2d8bda28f1678b15c21b3797a19
 			
 				
 			</form>

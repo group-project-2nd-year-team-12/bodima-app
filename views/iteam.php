@@ -43,6 +43,30 @@ print_r($_FILES);
 				</label>
 				
 		
+				<h3 class="name">Lunch</h3 >
+				<label class="radio">
+					<input type="radio" name="lunch" id="lunch" value="1"><span id="lunch" >&nbsp; Yes</span>&nbsp;&nbsp;
+					<input type="radio" name="lunch" id="lunch" value="0"><span id="lunch" >&nbsp; No</span>&nbsp;&nbsp;<br>
+				</label>
+				
+		
+				<h3 class="name">Dinner</h3 >
+				<label class="radio">
+					<input type="radio" name="dinner" id="dinner" value="1"><span id="dinner" >&nbsp; Yes</span>&nbsp;&nbsp;
+					<input type="radio" name="dinner" id="dinner" value="0"><span id="dinner" >&nbsp; No</span>&nbsp;&nbsp;<br>
+				</label>
+						
+				
+
+				<label for="">&nbsp; </label><br>
+				<input type="submit" name="submit" id="submit" value="save"  ><br>
+
+
+				<label for="">&nbsp; </label><br>
+				<input type="submit" name="submit" id="submit" value="Add Iteam"  ><br>	<br><br>
+
+			
+				
 			</form>
 
 		<div><!-- main -->
