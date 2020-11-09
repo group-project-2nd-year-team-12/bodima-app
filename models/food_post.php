@@ -23,7 +23,22 @@ class foodSupplierPost{
 
 
 
-    
+    public static function addIteam($pName,$image_name,$breakfirst,$lunch,$dinner,$price,$connection){
+        //$hh=$resName;
+        //echo $hh;
+        //echo $individual;
+        //echo "dssssss";
+        
+        $query="INSERT INTO product (id,FSid,F_post_id,product_name,image,price,breakfast,lunch,dinner)
+        VALUES(null,1,4,'{$pName}','{$image_name}','{$price}','{$breakfirst}','{$lunch}','{$dinner}')";
+        $result=mysqli_query($connection,$query);
+        
+        if($result){
+            echo "Sucessfull";
+        }else{
+            echo "Unsucessfull";
+        }
+    }
 }
 
 ?>
