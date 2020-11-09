@@ -29,25 +29,26 @@ $fConut=$_GET['food_count'];
      <?php include 'slide-bar.php' ?>
       
         <div class="content">
+                            // dashboard card
            <div class="background">
            <h3>Dash Board</h3>
-            <div class="numbers">
-                <div class="num1">
-                    <h2>Users</h2>
-                    <h4><?php echo $userCount; ?></h4>
-                </div>
-                <div class="num2">
-                    <h2>Boarding Posts</h2>
-                    <h4><?php echo $bConut; ?></h4>
-                </div>
-                <div class="num3">
-                    <h2>Food posts</h2>
-                    <h4><?php echo $fConut; ?></h4>
-                </div>
-                <div class="num4">
-                    <h2>Complaint</h2>
-                    <h4><?php echo $userCount; ?></h4>
-                </div>
+                 <div class="numbers">
+                    <div class="num1">
+                        <h2>Users</h2>
+                        <h4><?php echo $userCount; ?></h4>
+                    </div>
+                    <div class="num2">
+                        <h2>Boarding Posts</h2>
+                        <h4><?php echo $bConut; ?></h4>
+                    </div>
+                    <div class="num3">
+                        <h2>Food posts</h2>
+                        <h4><?php echo $fConut; ?></h4>
+                    </div>
+                    <div class="num4">
+                        <h2>Complaint</h2>
+                        <h4><?php echo $userCount; ?></h4>
+                    </div>
                 </div>
             </div>
             <div class="charts">
@@ -60,6 +61,7 @@ $fConut=$_GET['food_count'];
                     <div id="chart2" style="width: 100%; height: 200px;"></div>
                 </div>
             </div>
+                              // Bar chart
             <div class="charts-2">
                  <div class="chart3">
                     <h3><i class="fa fa-chart-bar"></i> Boarding Requests</h3>
@@ -70,7 +72,7 @@ $fConut=$_GET['food_count'];
                     <div id="chart4" style="width: 100%; height: 100px;"></div>
                 </div>
                 <div class="chart3">
-                    <h3><i class="fa fa-chart-bar"></i> xxxxxxxx</h3>
+                    <h3><i class="fa fa-chart-bar"></i> Payments</h3>
                     <div id="chart5" style="width: 100%; height: 100px;"></div>
                 </div>
             </div>
