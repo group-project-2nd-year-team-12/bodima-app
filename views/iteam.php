@@ -9,10 +9,10 @@
 
 	</style>
 </head>
-<body>
+<body class="food">
  <?php
-print_r($_POST);
-print_r($_FILES);
+//print_r($_POST);
+//print_r($_FILES);
 ?>
 
 	<div class="postBoarding"><h1>Add Iteam</h1></div><!-- postBoarding -->
