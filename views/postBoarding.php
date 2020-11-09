@@ -9,7 +9,7 @@
 
 	</style>
 </head>
-<body>
+<body class=boarding>
 
 	<div class="postBoarding"><h1>Post On Your Site</h1></div><!-- postBoarding -->
 		<div class=main>

@@ -3,16 +3,16 @@
 <html lang="en">
 <head>
 	<title>&#127835; Post Food</title>
-	<link href="../css/style.css" rel="stylesheet">
+	<link href="../resource/css/style.css" rel="stylesheet">
 
 	<style>
 
 	</style>
 </head>
-<body>
+<body class="food">
 
 	<div class="postBoarding"><h1>Post On Your Site</h1></div><!-- postBoarding -->
-		<div class=main>
+		<div class="main">
 			<div class="second_name"><h2>Resturent Details</h2></div>
 			<form action="../controller/foodPostCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
 			

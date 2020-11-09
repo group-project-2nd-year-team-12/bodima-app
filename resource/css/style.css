@@ -3,8 +3,17 @@
     padding: 0;
 }
 
-body {
+body.boarding {
     background-image: url(../img/boardingPost.jpg);
+    margin-top: 60px;
+    background-position: center;
+    background-size: cover;
+    font-family: sans-serif;
+    margin-bottom: 40px;
+}
+
+body.food {
+    background-image: url(../img/foodPost.jpeg);
     margin-top: 60px;
     background-position: center;
     background-size: cover;
@@ -14,7 +23,7 @@ body {
 
 .postBoarding {
     width: 800px;
-    background-color: rgb(217, 217, 217, 0.9);
+    background-color: rgb(217, 217, 217, 0.95);
     margin: auto;
     color: #000000;
     padding: 10px 0px 10px 0px;
@@ -24,7 +33,7 @@ body {
 }
 
 .main {
-    background-color: rgb(217, 217, 217, 0.9);
+    background-color: rgb(217, 217, 217, 0.95);
     width: 800px;
     margin: auto;
     border-radius: 0px 0px 15px 15px;
