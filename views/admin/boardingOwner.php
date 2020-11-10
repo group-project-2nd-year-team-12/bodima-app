@@ -18,18 +18,19 @@ session_start(); ?>
     <div class="header">
             <div class="logo"><img src="../../resource/img/logo.svg" alt=""></div>
             <div class="sign">
-            <a href="../../index.php"><i style="padding-right:10px" class="fa fa-angle-double-right"></i></a>
-            <a href="../../controller/logoutController.php"><i style=" padding-right:30px" class="fa fa-sign-out-alt"></i></a>     </div>
+            <a href="../../index.php"><i style=" padding-right:10px" class="fa fa-angle-double-right"></i></a>
+            <a href="../../controller/logoutController.php"><i style=" padding-right:30px" class="fa fa-sign-out-alt"></i></a>
+            </div>
         </div>
         <div class="wrapper">
        <?php include 'slide-bar.php' ?>
       
         <div class="content">
             <div class="search">
-               <div class="title"><h3>Boarder</h3></div> 
-               <button onclick="window.location='boarder.php';" type="button">Show All</button>
+               <div class="title"><h3>Boarding Owner</h3></div> 
+               <button onclick="window.location='boardingOwner.php';" type="button">Show All</button>
                <div class="search-bar">
-                   <form action="../../views/admin/boarder.php" method="post">
+                   <form action="../../views/admin/boardingOwner.php" method="post">
                        <input name="word" type="text" placeholder="Search">
                        <button name="search" type="submit"><i class="fa fa-search fa-lg"></i></button>
                    </form>
@@ -38,7 +39,7 @@ session_start(); ?>
             <div class="table">
                 <table>
                     <tr>
-                        <th>B Id</td>
+                        <th>BO Id</td>
                         <th>First Name</td>
                         <th>Last Name</td>
                         <th>Email</td>
@@ -53,12 +54,12 @@ session_start(); ?>
                         $id=intval($_POST['word']);
                         $word.='%';
                         
-                        $result=adminModel::searchBoarder($id,$word,$connection);
+                        $result=adminModel::searchBoarding($id,$word,$connection);
                         while($row=mysqli_fetch_assoc($result)){
                             ?> 
                         <?php include 'pop.php' ?>
                           <tr>
-                              <td><?php echo $row['Bid']; ?></td>
+                              <td><?php echo $row['BOid']; ?></td>
                               <td><?php echo $row['first_name']; ?></td>
                               <td><?php echo $row['last_name']; ?></td>
                               <td><?php echo $row['email']; ?></td>
@@ -68,7 +69,8 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
-                              <td><?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                              <td>
+                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
                                   <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
                                   <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
@@ -76,13 +78,12 @@ session_start(); ?>
                           <?php
                          }
                     }
-                    else{ 
-                        $result=adminModel::userDetails('boarder',$connection);
+                    else{ $result=adminModel::userDetails('boardings_owner',$connection);
                     while($row=mysqli_fetch_assoc($result)){
                        ?> 
                    <?php include 'pop.php' ?>
                      <tr>
-                         <td><?php echo $row['Bid']; ?></td>
+                         <td><?php echo $row['BOid']; ?></td>
                          <td><?php echo $row['first_name']; ?></td>
                          <td><?php echo $row['last_name']; ?></td>
                          <td><?php echo $row['email']; ?></td>
@@ -92,7 +93,8 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
-                              <td><?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                              <td>
+                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
                                   <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
                                   <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
@@ -106,11 +108,11 @@ session_start(); ?>
         </div>
         </div>
     </div>
-   
+  
     <script src="../../resource/js/admin.js"></script>
     <script src="../../resource/js/jquery.js"></script>
     <script>
-          $('#1').click(title);
+           $('#1').click(title);
           $('#2').click(title);
           $('#3').click(title);
           $('#4').click(title);
@@ -130,7 +132,7 @@ session_start(); ?>
         }
         }
         }
-        function popBlock(id,email)
+          function popBlock(id,email)
         {
        
             document.querySelector('.block').style.display='block';

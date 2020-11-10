@@ -16,7 +16,7 @@ a{
     color: white;
 }
 .header{
-    /* position: fi; */
+    position: fixed;
     display: flex;
     justify-content: space-between;
     background-color: rgb(31, 31, 33);
@@ -26,12 +26,14 @@ a{
     
 }
 .nav{
-    /* position: fixed; */
+    position: fixed;
     display: block;
     width: 240px;
     background-color: rgb(37, 36, 40);
     color: white;
-    height: 100vh;
+    height: 91.7vh;
+    bottom: 0;
+    left: 0;
     /* padding: 10px 0; */
 }
 .nav ul {
@@ -150,21 +152,16 @@ a{
     /* margin: 30px; */
     /* background-color: rgb(104, 104, 104); */
     /* width: 100%; */
-    /* margin-left: 240px; */
+    margin-top: 50px;
+    margin-left: 240px;
     min-width: 1108px;
-    overflow: auto;
+    overflow: scroll;
+    min-height: 100vh;
 }
 
-/* .table table tr{
-    width: 1000px;
-    padding: 5px;
-} */
 
 .chart1{
     width: 100%;
-    
-   /* margin: 20px; */
-   /* border-radius: 5px; */
 }
 .numbers{
     width: 100%;
@@ -349,6 +346,10 @@ a{
     background-color: rgb(208, 218, 225);
     border-radius: 5px;
     box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.578);
+    pointer-events: auto;
+}
+.block:not(){
+    pointer-events: none;
 }
 
 .title1{
@@ -433,4 +434,21 @@ a{
 .report-box a{
     background-color: rgb(4, 111, 34);
     padding: 7px 50px;
+}
+
+.accept{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: 100;
+    padding: 2px;
+    border-radius: 3px;
+}
+.accept-not{
+    background-color: rgb(255, 255, 37);
+}
+.accept-apt{
+    background-color: rgb(34, 188, 13);
+}
+.accept-bld{
+    background-color: rgb(249, 54, 40);
 }

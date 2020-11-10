@@ -29,7 +29,7 @@ $fConut=$_GET['food_count'];
      <?php include 'slide-bar.php' ?>
       
         <div class="content">
-                            // dashboard card
+                             <!-- dashboard card -->
            <div class="background">
            <h3>Dash Board</h3>
                  <div class="numbers">
@@ -61,7 +61,7 @@ $fConut=$_GET['food_count'];
                     <div id="chart2" style="width: 100%; height: 200px;"></div>
                 </div>
             </div>
-                              // Bar chart
+                               <!-- Bar chart -->
             <div class="charts-2">
                  <div class="chart3">
                     <h3><i class="fa fa-chart-bar"></i> Boarding Requests</h3>
