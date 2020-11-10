@@ -1,7 +1,8 @@
 <div class="container" id="container">
         <div class="header">
             <div class="logo">
-                <h1><b style="color: rgb(13, 13, 189)">B</b>odima<small style="font-size: 14px; color:rgb(13, 13, 189);">   Solution for many problem</small></h1>
+                 <img src="../resource/img/logo.png" alt="">
+                <h1><small style="font-size: 14px; color:black;">   Solution for many problem</small></h1>
             </div>
             <div class="sign">
                 <?php if(!isset($_SESSION['email'])){echo '<a href="../controller/logingController.php?click1">Sign In <i class="fa fa-sign-in-alt"></i></a>';}?>
@@ -31,7 +32,7 @@
                 <li class="nav_item "><a href="boardings.php"><i class="fa fa-bed"></i> Boardings</a></li>
                 <li class="nav_item "><a href="foodposts.php"><i class="fas fa-hamburger"></i> Order Foods</a></li>
                 <li class="nav_item "><a href="../views/about.php "><i class="fa fa-address-card"></i> About us</a></li>
-                <li class="nav_item "><a href="# "><i class="fa fa-address-book"></i> Contact Us</a></li>
+                <li class="nav_item "><a href="../views/contact_us.php"><i class="fa fa-address-book"></i> Contact Us</a></li>
             </ul>
             <div class="slide-nav">
             <ul><?php if(isset($_SESSION['email'])){?> 
@@ -55,3 +56,5 @@
                 </ul>
         </div>
         </div>
+
+        <!-- <b style="color: rgb(13, 13, 189)">B</b>odima -->
