@@ -49,40 +49,48 @@
             if(mysqli_num_rows($result)==1)
             {
                 $record=mysqli_fetch_assoc($result);
-                $_SESSION['email']=$record['email'];
-                $_SESSION['level']=$record['level'];
-                $_SESSION['first_name']=$record['first_name'];
-                $_SESSION['last_name']=$record['last_name'];
-                $_SESSION['address']=$record['address'];
-                $ID=reg_user::getId($record['level'],$record['email'],$connection);
-                $user_id=mysqli_fetch_assoc($ID);
-                if($record['level']=="boarder")
-                {
-                        $_SESSION['Bid']=$user_id['Bid'];
+                if($record['user_accepted']==1){
+                        $_SESSION['email']=$record['email'];
+                        $_SESSION['level']=$record['level'];
+                        $_SESSION['first_name']=$record['first_name'];
+                        $_SESSION['last_name']=$record['last_name'];
+                        $_SESSION['address']=$record['address'];
+                        $ID=reg_user::getId($record['level'],$record['email'],$connection);
+                        $user_id=mysqli_fetch_assoc($ID);
+                        if($record['level']=="boarder")
+                        {
+                                $_SESSION['Bid']=$user_id['Bid'];
+                                header('Location:../index.php');
+                        }
+                        elseif($record['level']=="administrator")
+                        {
+                                $_SESSION['a_id']=$user_id['a_id'];
+                                header('Location:../index.php');
+                        }
+                        elseif($record['level']=="student")
+                        {
+                        $_SESSION['Reg_id']=$user_id['Reg_id'];
                         header('Location:../index.php');
-                }
-                elseif($record['level']=="administrator")
-                {
-                        $_SESSION['a_id']=$user_id['a_id'];
+                        }
+                        elseif($record['level']=="boardings_owner")
+                        {
+                                $_SESSION['BOid']=$user_id['BOid'];
+                                
+                                header('Location:../index.php');
+                        }
+                        elseif($record['level']=="food_supplier") 
+                        {
+                        $_SESSION['FSid']=$user_id['FSid'];
                         header('Location:../index.php');
-                }
-                elseif($record['level']=="student")
+                        }
+                }elseif($record['user_accepted']==2)
                 {
-                       $_SESSION['Reg_id']=$user_id['Reg_id'];
-                       header('Location:../index.php');
+                        header('Location:../views/blockPage.php');
                 }
-                elseif($record['level']=="boardings_owner")
+                elseif($record['user_accepted']==0)
                 {
-                        $_SESSION['BOid']=$user_id['BOid'];
-                        
-                        header('Location:../index.php');
+                        header('Location:../views/notConfirm.php');
                 }
-                elseif($record['level']=="food_supplier") 
-                {
-                       $_SESSION['FSid']=$user_id['FSid'];
-                       header('Location:../index.php');
-                }
-
                
             }
             else{

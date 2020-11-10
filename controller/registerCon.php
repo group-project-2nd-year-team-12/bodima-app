@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
         require_once ('../config/email.php');
+        session_start();
 ?>
 <?php
 
@@ -184,7 +185,6 @@ if(isset($_POST['resend']))
         sendRegUser($_POST['email'],$_POST['token'],$_POST['level']);
         header('Location:../views/emailVerify.php?resend&email='.$_POST['email'].'&token='.$_POST['token'].'&level='.$_POST['level']);  
 }
-
       // check email details and save database 
 if(isset($_GET['token']) && isset($_GET['email']) && isset($_GET['level']))
         {
