@@ -48,6 +48,8 @@ session_start(); ?>
                         <th>Is_accepted</th>
                         <th>Block user</th>
                     </tr>
+
+                    <!-- user search the word  -->
                     <?php if(isset($_POST['search']))
                     {
                         $word=$_POST['word'];
@@ -66,16 +68,21 @@ session_start(); ?>
                               <td><?php echo $row['email']; ?></td>
                               <td><?php echo $row['nic']; ?></td>
                               <td><?php echo $row['address']; ?></td>
-                              <td><?php if($row['user_accepted']==0)echo 'not accepted';
-                                        elseif($row['user_accepted']==1)echo 'accepted';
-                                        else  echo 'blocked';      
-                              ?></td>
-                              <td><a style="color: red; cursor: pointer;" onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"]?>);"'>Block</a></td>
+                              <td><?php if($row['user_accepted']==0){?> <div class="accept accept-not"><h4>Not confirm</h4></div> <?php }?>
+                                  <?php if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
+                                  <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
+                              </td>
+                              <td>
+                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                                  <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
+                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                              </td>
                           </tr>
                          
                           <?php
                          }
                     }
+                    //  user get all details about student
                     else{ $result=adminModel::userDetails('student',$connection);
                     while($row=mysqli_fetch_assoc($result)){        
                        ?> 
@@ -87,11 +94,14 @@ session_start(); ?>
                          <td><?php echo $row['email']; ?></td>
                          <td><?php echo $row['nic']; ?></td>
                          <td><?php echo $row['address']; ?></td>
-                         <td><?php if($row['user_accepted']==0)echo 'not accepted';
-                                        elseif($row['user_accepted']==1)echo 'accepted';
-                                        else  echo 'blocked';      
-                              ?></td>
-                         <td><a style="color: red; cursor: pointer;" onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a></td>
+                    <td><?php      if($row['user_accepted']==0){?> <div class="accept accept-not"><h4>Not confirm</h4></div> <?php }?>
+                        <?php      if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
+                        <?php      if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
+                    </td>
+                    <td><?php      if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                        <?php      if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
+                        <?php      if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                    </td>
                      </tr>
                      
                      <?php
@@ -108,13 +118,14 @@ session_start(); ?>
     <script src="../../resource/js/admin.js"></script>
     <script src="../../resource/js/jquery.js"></script>
     <script>
-              $('#1').click(title);
-          $('#2').click(title);
-          $('#3').click(title);
-          $('#4').click(title);
-          $('#5').click(title);
-          $('#6').click(title);
-        function title()
+          $('#1').click(tick); // title function
+          $('#2').click(tick);
+          $('#3').click(tick);
+          $('#4').click(tick);
+          $('#5').click(tick);
+          $('#6').click(tick);
+
+        function tick()
         { 
            
             if(this.checked)
@@ -128,6 +139,9 @@ session_start(); ?>
         }
         }
         }
+
+        // onclick function display function
+
         function popBlock(id,email,level)
         {
        
@@ -139,6 +153,8 @@ session_start(); ?>
             document.getElementById('level-save').value=level;
 
         }
+        // onclick display none function
+
         function popBack()
         {
             document.querySelector('.block').style.display='none';
