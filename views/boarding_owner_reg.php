@@ -51,7 +51,7 @@
 		    <input type="hidden" name="first_name" value="<?php echo $_GET['first_name'];?>">
 		    <input type="hidden" name="last_name" value="<?php echo $_GET['last_name'];?>">
 		    <input type="hidden" name="nic" value="<?php echo $_GET['nic'];?>">
-		    <input type="hidden" name="level" value="<?php echo "food_supplier";?>">
+		    <input type="hidden" name="level" value="<?php echo "boardings_owner";?>">
 		   	<input id="register" type="submit" name="register" value="Register">
 		   </form>
 	</div>
