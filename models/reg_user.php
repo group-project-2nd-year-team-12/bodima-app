@@ -40,11 +40,11 @@ class reg_user{
 
     public static function loging($email,$password,$connection)
     {
-        $query="SELECT level,email,first_name,last_name,address FROM  boarder WHERE email='$email' AND password='$password' 
-        UNION SELECT level,email,first_name,last_name,address FROM  boardings_owner WHERE email='$email' AND password='$password'AND user_accepted=1
-        UNION SELECT level,email,first_name,last_name,address FROM administrator  WHERE email='$email' AND password='$password'  
-        UNION SELECT level,email,first_name,last_name,address FROM food_supplier  WHERE email='$email' AND password='$password'AND user_accepted=1 
-        UNION SELECT level,email,first_name,last_name,address FROM student  WHERE email='$email' AND password='$password' AND user_accepted=1
+        $query="SELECT level,email,first_name,last_name,address,user_accepted FROM  boarder WHERE email='$email' AND password='$password' 
+        UNION SELECT level,email,first_name,last_name,address,user_accepted FROM  boardings_owner WHERE email='$email' AND password='$password'
+        UNION SELECT level,email,first_name,last_name,address,user_accepted FROM administrator  WHERE email='$email' AND password='$password'  
+        UNION SELECT level,email,first_name,last_name,address,user_accepted FROM food_supplier  WHERE email='$email' AND password='$password'
+        UNION SELECT level,email,first_name,last_name,address,user_accepted FROM student  WHERE email='$email' AND password='$password' 
         LIMIT 1 ";
         $result_set=mysqli_query($connection,$query);
         return  $result_set;
