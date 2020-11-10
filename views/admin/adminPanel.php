@@ -29,7 +29,7 @@ $fConut=$_GET['food_count'];
      <?php include 'slide-bar.php' ?>
       
         <div class="content">
-                            // dashboard card
+                             <!-- dashboard card -->
            <div class="background">
            <h3>Dash Board</h3>
                  <div class="numbers">
