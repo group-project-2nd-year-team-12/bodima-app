@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<title>&#127969; Post Boarding</title>
-	<link href="../resource/css/style.css" rel="stylesheet">
+	<link href="../resource/style.css" rel="stylesheet">
 
 	<style>
 
@@ -13,6 +13,21 @@
 
 	<div class="postBoarding"><h1>Post On Your Site</h1></div><!-- postBoarding -->
 		<div class=main>
+
+		<div class=error-post>
+			<?php
+			if(isset($_GET['param']))
+			{
+				$errors=$_GET['param'];
+				foreach($errors as $error)
+				{
+					echo '<p class="error"><b>'.$error.'</b></p>';
+				}
+			}
+			
+			?>
+		</div>
+	
 			<form action="../controller/postBoardingCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
 			<div id="name">
 
@@ -67,7 +82,7 @@
 
 				
 				<h3 class="name">Person Count</h3 >
-				<input type="number" name="Pcount" id="pcount" value="1" min="1" max="30" >
+				<input type="number"  name="Pcount" id="pcount" value="1"  >
 
 				
 				<h3 class="name">Cost Per Person For Month</h3 >
@@ -78,9 +93,9 @@
 				<input type="text" name="Keymoney" id="Keymoney" >
 
 				<div class="group">
-				<h3 class="name">Avertisement Lifespan (Month)</h3 >
+				<h3 class="name">Avertisement Lifespan (Days)</h3 >
 				
-				<input type="number" name="Lifespan" id="lifespan" value="1" min="1" max="" class="control prc" >
+				<input type="number"  name="Lifespan" id="lifespan" value="30"  class="control prc" >
 				</div>
 				
 				<div class="group">
