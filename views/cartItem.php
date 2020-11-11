@@ -65,31 +65,18 @@ disBtn();
 </script>
     
                                     <!-- header-bar -->
-<div class="cart-wrap">
-<h2 >Product Card</h2>
-  <div class="cart-icon">
+                                    <div class="cart-icon">
     <?php 
    
       if(isset($_SESSION['cart']))
       {
         $count=count($_SESSION['cart']);
-        echo '<a href="cartItem.php"><img  src="../resource/img/cart-plus-solid.svg" alt=""> Cart <span id="cart-count" class="count">'.$count.'</span></a>
+        echo '<a href="cartItem.php"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="count">'.$count.'</span></a>
         ';
       }
     ?>
    </div>
-   <div class="cart-icon">
-    <?php 
-   
-      if(isset($_SESSION['cart']))
-      {
-        $count=count($_SESSION['cart']);
-        echo '<a href="cartItem.php">Total <span id="cart-count" class="count">'.$count.'</span></a>
-        ';
-      }
-    ?>
-   </div>
-</div>
+
                                 <!-- product-cart and product order deatils -->
  <div class="grid-item">
  <div class="mycart">
@@ -155,6 +142,10 @@ $total=0;
             <h5>price (<?php echo $count ?>) item<span class="left-item">Rs <?php echo $total; ?></span></h5>
             <h5>delivery Charges <span style="color: green;" class="left-item">Free</span></h5>
             <h4>Amount payable<span class="left-item1">Rs <?php echo $total; ?></span> </h4>
+            <form action="#" method="post">
+                <h4>Enter delivery address :</h4>
+                <input type="text" placeholder="ex:310/delgasduwa/dodanduwa" name="address" value="<?php echo $_SESSION['address']; ?>">
+            </form>
             <button type="button" id="request" onclick="window.location='../controller/orderCon.php?click1';" class="btn6 request">Request </button>
         </div>
      </div>
