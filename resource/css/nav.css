@@ -9,10 +9,16 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(#647eeadd, #3e97e4dd);
+    /* background: linear-gradient(#647eeadd, #3e97e4dd); */
+}
+.logo{
+    display: flex;
 }
 .logo h1{
-    color: white;
+    color: rgb(35, 35, 35);
+}
+.logo img{
+    width: 90px;
 }
 a{
     text-decoration: none;
@@ -89,7 +95,7 @@ a{
 .nav_item a {
     color: rgb(193, 193, 178);
     text-decoration: none;
-    padding: 20px 25px;
+    padding: 20px 30px;
     transition: 0.3s ease-in;
     font-size: 18px;
 }
