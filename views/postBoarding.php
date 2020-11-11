@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
 	<title>&#127969; Post Boarding</title>
-	<link href="../css/style.css" rel="stylesheet">
+	<link href="../resource/style.css" rel="stylesheet">
 
 	<style>
 
 	</style>
 </head>
-<body>
+<body class="boarding">
 
 	<div class="postBoarding"><h1>Post On Your Site</h1></div><!-- postBoarding -->
 		<div class=main>
@@ -113,7 +113,7 @@
 				
 			
 
-				<script src="jquery-3.5.1.min.js"></script>
+				<script src="../resource/js/jquery-3.5.1.min.js"></script>
 				<script>
 					$('.group').on('input','.prc',function(){
 						var totalsum =0;
