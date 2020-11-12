@@ -44,16 +44,12 @@ $errors=array(); //create empty array
         $errors[]='*District cant use Special character';
     }
 
-<<<<<<< HEAD
     $location=$_POST['location'];
     if(empty($_POST['location']) || strlen(trim($_POST['location']))<1){
         $errors[]='*location is required';
     }elseif(!ctype_alpha($location)){
         $errors[]='*Location cant use Special character';
     }
-=======
-    $upload_to="../resource/Images/uploaded_boarding/";
->>>>>>> af37ad358483d93740a2ee0d144b3037692f5924
 
     
     if(!isset($_POST['individual'])){
@@ -82,7 +78,6 @@ $errors=array(); //create empty array
 
     if(empty($errors)){
 
-<<<<<<< HEAD
         $Hnumber=$_POST['Hnumber'];
         $lane=$_POST['lane'];
         $city=$_POST['city'];
@@ -95,7 +90,7 @@ $errors=array(); //create empty array
         $image_size=$_FILES['BCimage']['size'];
         $temp_name=$_FILES['BCimage']['tmp_name'];
     
-        $upload_to='../img/';
+        $upload_to="../resource/Images/uploaded_boarding/";
     
         move_uploaded_file($temp_name, $upload_to . $image_name);
     
@@ -110,14 +105,8 @@ $errors=array(); //create empty array
     
         //echo $Hnumber;
         $id=$_SESSION['BOid'];
-        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
+        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$upload_to,$connection);
         header('Location:../views/profilepage.php');
-=======
-    //echo $Hnumber;
-    $id=$_SESSION['BOid'];
-    echo $upload_to.$image_name;
-    boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$upload_to,$connection);
->>>>>>> af37ad358483d93740a2ee0d144b3037692f5924
 
     }else{
         header('Location:../views/postBoarding.php?'.http_build_query(array('param'=>$errors)));
