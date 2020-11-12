@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" href="../resource/css/home.css">  -->
     <link rel="stylesheet" href="../resource/css/sidebar.css">
     <link rel="stylesheet" href="../resource/css/nav.css">
-    <link rel="stylesheet" href="../resource/css/profilepage1.css">
+    <link rel="stylesheet" href="../resource/css/myads.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -42,6 +42,7 @@
 
 
 
+
 <?php
  $level=$_SESSION['level'];
  $first_name=$_SESSION['first_name'];
@@ -50,66 +51,42 @@
  $address=$_SESSION['address'];
 ?>
 
-<div class="content_template">
-<div class="content_container">
-  <!-- <div class="pro_inner">
-        <div class="title">
-              <div class="back_button">
-                <a href="profilepage.php">
-                <i class="far fa-arrow-alt-circle-left" style="font-size:48px; color:white;"></i></a>
-              </div>
-              <div class="title_name">
-              <?php echo ''.$first_name.' '.$last_name?>
-              </div>
+  <div class="content_template">
+    <div class="content_container">
+        <h2>My Advertisements</h2>
+        <div class="post_cont">
+        <?php echo '
+            <div class="table-responsive">
+                <table class="table table bordered">
+                  <tr>
+                      <th class="img_th" rowspan=6>
+                      <div class="inner_img">
+                      <img src="../resource/Images/uploaded_boarding/3.jpg" class="profile_image" alt="" >
+                      </div>
+                      </th>
+                      <th>No</th><td>1</td>
+                  </tr>
+                  <tr>
+                      <th>Address</th><td> Horana road, Mattegoda</td>
+                  </tr>
+                  <tr>
+                      <th>City</th><td>Mattegoda</td>
+                  </tr>
+                  <tr>
+                      <th>girls/boys</th><td>girls</td>
+                  </tr>
+                  <tr>
+                      <th>cost per person</th><td>5000</td>
+                  </tr>
+                  <tr>
+                      <th>description</th><td>Near to NIBM University</td>
+                      
+                  </tr>
+                </table>
+                <input type="button" name="deletepost" value="Delete">
+            </div>
+        ' ?>
         </div>
-      <form action="../controller/editprofile_control.php" method="post"> 
-        <div class="content">
-          <div class="x">
-            <div class="t_head">User type :</div>
-            <div class="t_def_form"><?php echo $level ?></div>
-          </div>
-
-          <div class="x">
-            <div class="t_head">First Name :</div>
-            <div class="t_def_form">
-              <input type="text" id="fname" name="first_name" value='<?php echo $first_name ?>'></div>
-          </div>
-
-          <div class="x">
-            <div class="t_head">Last Name :</div>
-            <div class="t_def_form">
-               <input type="text" id="lname" name="last_name" value='<?php echo $last_name ?>'>
-            </div>
-          </div>
-
-          <div class="x">
-            <div class="t_head">Address :</div>
-            <div class="t_def_form">
-              <textarea id="subject" name="address" placeholder='<?php echo $address ?>' style="height:50px"><?php echo $address ?></textarea>
-            </div>
-          </div>
-
-          <!-- <div class="x">
-            <div class="t_head">Email :</div>
-            <div class="t_def_form">
-              <input type="text" id="email" name="email" value="">
-            </div>
-          </div> -->
-
-          <div class="x">
-            <div class="t_head">Contact Number :</div>
-            <div class="t_def_form">
-              <input type="text" id="contactno" name="contactno" value="0773322110">
-            </div>
-          </div> 
-          <div class="editpro_btn">
-            <input type="submit" name="editprofile_btn" value="Save Changes" onclick="save_changes()">
-            <input type="reset" name="discard_btn" value="discard" onclick="discard()">
-            
-          </div>
-        </div>
-      </form> 
-      </div> -->
     </div>
   </div>
 
