@@ -28,7 +28,8 @@ if(isset($_POST['submit']))
         $image_size=$_FILES['BCimage']['size'];
         $temp_name=$_FILES['BCimage']['tmp_name'];
 
-        $upload_to='../img/';
+        $upload_to='../resource/Images/uploaded_foodpost/';
+        
 
         move_uploaded_file($temp_name, $upload_to . $image_name);
 
@@ -42,7 +43,7 @@ if(isset($_POST['submit']))
 
         //echo $Hnumber;
         $fid=$_SESSION['FSid'];
-        foodSupplierPost::foodPost($fid,$resName,$address,$location,$description,$image_name,$type,$otDeadline,$Lifespan,$Aamount,$connection);
+        foodSupplierPost::foodPost($fid,$resName,$address,$location,$description,$image_name,$type,$otDeadline,$Lifespan,$Aamount,$upload_to,$connection);
 //database post id 
         header('Location:../views/iteam.php');
 
@@ -63,7 +64,7 @@ if(isset($_POST['submit']))
                 $image_size=$_FILES['pimage']['size'];
                 $temp_name=$_FILES['pimage']['tmp_name'];
 
-                $upload_to='../img/';
+                $upload_to='../resource/Images/uploaded_foodpost/';
 
                 move_uploaded_file($temp_name, $upload_to . $image_name);
 
