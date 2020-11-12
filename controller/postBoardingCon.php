@@ -71,6 +71,30 @@ $errors=array(); //create empty array
         $errors[]='*Person Count must be less than or equal 30';
     }
 
+    $CPperson=$_POST['CPperson'];
+    if(empty($_POST['CPperson']) || strlen(trim($_POST['CPperson']))<1){
+        $errors[]='*Cost Per Person For Month is required';
+    }else if(!is_numeric($CPperson)) {
+        $errors[]='*Cost Per Person Data entered was not numeric';
+    }
+
+    $Keymoney=$_POST['Keymoney'];
+    if(empty($_POST['Keymoney']) || strlen(trim($_POST['Keymoney']))<1){
+        $errors[]='*Keymoney is required';
+    }else if(!is_numeric($Keymoney)) {
+        $errors[]='*Keymoney Data entered was not numeric';
+    }
+
+
+    $Lifespan=$_POST['Lifespan'];
+    //print_r($_POST['Pcount']);
+    
+    if(empty($Lifespan) || strlen(trim($Lifespan))<1){
+        $errors[]='*Lifespan is required';
+    }else if($Lifespan<30){
+        $errors[]='*Life must be greater than or equal 30';
+    } 
+
 
    
    
@@ -105,6 +129,7 @@ $errors=array(); //create empty array
     
         //echo $Hnumber;
         $id=$_SESSION['BOid'];
+        echo $upload_to.$image_name;
         boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$upload_to,$connection);
         header('Location:../views/profilepage.php');
 
