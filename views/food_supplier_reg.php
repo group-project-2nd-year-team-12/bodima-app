@@ -45,7 +45,8 @@
             <div class="check">
                  <input id="check" type="checkbox" name="check">
                  <div class="agree"> I am agree with term and condition</div> 
-                 
+				 1. This is a Web platform for finding boarding places.We do not assure you about your sensitive information(ex: creadit card details). Please create a payhere account before you making online payments.
+2. We will use your location information to provide you better experience. We do not store any searching information or location information in our platform.                 
             </div>
 		   <input type="hidden" name="email" value="<?php echo $_GET['email'];?>">
 		   <input type="hidden" name="first_name" value="<?php echo $_GET['first_name'];?>">

@@ -7,10 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat with Boarding Owner</title>
     <!-- <link rel="stylesheet" href="../resource/css/home.css">  -->
     <link rel="stylesheet" href="../resource/css/sidebar.css">
-    <link rel="stylesheet" href="../resource/css/profilepage1.css">
+    <link rel="stylesheet" href="../resource/css/chat_boarder.css">
     <link rel="stylesheet" href="../resource/css/nav.css">
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -38,64 +38,51 @@
                 
             </div>
         </div>
-  </a>
-</div>
-</div>
-</div>
+
+
 
 <?php require "sidebar.php"?>
-<?php 
-  $level=$_SESSION['level'];
-  $first_name=$_SESSION['first_name'];
-  $last_name=$_SESSION['last_name'];
-  $email=$_SESSION['email'];
-  $address=$_SESSION['address'];
 
 
-?>
 <div class="content_template">
-  <div class="content_container">
-    <div class="pro_inner">
-        <div class="title">
-        <?php echo ''.$first_name.' '.$last_name?>
+    <div class="content_container">
+        <!-- <div class="chat_window"> -->
+            <div class="chat_head">
+                    <img src="../resource/Images/profile_img2.jpg" alt="boarding owner">
+                    <h2>Rohani Wickramanayaka</h2>
+                    <h4>Boarding Owner</h4>
+                    <i class="fas fa-comment-alt"></i>
+                    <i class="fas fa-phone-alt"></i>
+                    <i class="fas fa-info-circle"></i>
+                
+            </div>
+            <div class="chat_body">
+                <div class="chat_mid">
 
-        </div>
-        <div class="content">
-          <div class="x">
-            <div class="t_head">User type :</div>
-            <div class="t_def"> <?php echo $level ?> </div>
-          </div>
+                    <!-- *****************incoming msg************************** -->
+                    <div class="incoming_div">
+                        <img src="../resource/Images/profile_img2.jpg" alt="boarding owner">
+                        <h4>First incoming massage is this</h4>
+                        <span>16:38 | 02 Oct</span>
+                    </div>
+                    <!-- ****************outgoing msg*************************** -->
+                    <div class="outgoing_div">
+                        <img src="../resource/Images/profile_img2.jpg" alt="boarding owner">
+                        <h4>First incoming massage is this</h4>
+                        <span>18:04 | 04 Oct</span>
+                    </div>
 
-          <div class="x">
-            <div class="t_head">First Name :</div>
-            <div class="t_def"><?php echo $first_name ?></div>
-          </div>
+                    <!-- ******************************************************* -->
+                </div>
+            </div>
+            <div class="chat_footer">
+                <input type="text" name="out_msg" value="Type here....">
+                <i class="fas fa-paper-plane"></i>
+            </div>
 
-          <div class="x">
-            <div class="t_head">Last Name :</div>
-            <div class="t_def"><?php echo $last_name ?></div>
-          </div>
-
-          <div class="x">
-            <div class="t_head">Address :</div>
-            <div class="t_def"><?php echo $address ?></div>
-          </div>
-
-          <div class="x">
-            <div class="t_head">Email :</div>
-            <div class="t_def"><?php echo $email ?></div>
-          </div>
-
-          <div class="x">
-            <div class="t_head">Contact Number :</div>
-            <div class="t_def">0773322110 </div>
-          </div>
-        </div>
-      </div>
+        <!-- </div> -->
     </div>
-  </div>
 </div>
-
 
 
 </body>

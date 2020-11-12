@@ -25,7 +25,19 @@
                     if($_SESSION['level']=='administrator'){echo '<a href="controller/adminPanelCon.php?admin"> Dash Board &nbsp</a>'; }
                     ?>
                     
-                    <div class="notification"><i class="fa fa-bell"></i></div>
+                    <div class="notification">
+                        <i class="fa fa-bell"></i>
+                        <div class="notification-box" >
+                            <ul>
+                                <li><i class="fas fa-times"></i></li>
+                                <a href="#"><li>You have notification</li></a>
+                                <a href="#"><li>You have notification</li></a>
+                                <a href="#"><li>You have notification</li></a>
+                                <a href="#"><li>You have notification</li></a>
+                                <a href="#"><li>You have notification</li></a>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="profile"><a href="views/profilepage.php"> <i  class="fa fa-user-circle"></a></i></div>
                 <?php
                     echo '<div class="user">Hi '.$_SESSION['first_name'].'</div>'; 

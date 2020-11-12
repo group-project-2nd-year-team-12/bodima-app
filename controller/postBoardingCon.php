@@ -23,7 +23,7 @@ if(isset($_POST['submit']))
     $image_size=$_FILES['BCimage']['size'];
     $temp_name=$_FILES['BCimage']['tmp_name'];
 
-    $upload_to='../img/';
+    $upload_to="../resource/Images/uploaded_boarding/";
 
     move_uploaded_file($temp_name, $upload_to . $image_name);
 
@@ -38,7 +38,8 @@ if(isset($_POST['submit']))
 
     //echo $Hnumber;
     $id=$_SESSION['BOid'];
-    boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
+    echo $upload_to.$image_name;
+    boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$upload_to,$connection);
 
 
 }
