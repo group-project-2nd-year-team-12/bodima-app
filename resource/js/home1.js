@@ -66,6 +66,8 @@ function scrollimg3(){
     }
 
 }
+
+// top bar fixed function
 function fixedTop(){
    var height=$('.header').height();
    $(window).scroll(function(){
@@ -81,6 +83,7 @@ function fixedTop(){
    });
 }
 
+// slide bar slide function
 document.querySelector('.burger').addEventListener('click',(e)=>
 {
     const slide=document.querySelector('.slide-nav');
@@ -115,3 +118,14 @@ window.addEventListener('scroll',scrollimg1);
 window.addEventListener('scroll',scrollimg3);
 
 
+// notification menu appler
+ const noti=document.querySelector('.fa-bell');
+ const noti_box=document.querySelector('.notification-box');
+ const noti_close=document.querySelector('.fa-times');
+ noti.addEventListener('click',(e)=>{
+    noti_box.style.display="block";
+ })
+
+ noti_close.addEventListener('click',(e)=>{
+    noti_box.style.display="none";
+ })
