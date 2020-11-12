@@ -16,40 +16,28 @@ $errors=array(); //create empty array
     $Hnumber=$_POST['Hnumber'];
     if(empty($_POST['Hnumber']) || strlen(trim($_POST['Hnumber']))<1){
         $errors[]='*Home Number is required';
-    }elseif(!ctype_alpha($Hnumber)){
-        $errors[]='*House Number cant use Special character';
     }
-
     
     $lane=$_POST['lane'];
     if(empty($_POST['lane']) || strlen(trim($_POST['lane']))<1){
         $errors[]='*Lane is required';
-    }elseif(!ctype_alpha($lane)){
-        $errors[]='*Lane cant use Special character';
     }
-
-    
+  
     $city=$_POST['city'];
     if(empty($_POST['city']) || strlen(trim($_POST['city']))<1){
         $errors[]='*City is required';
-    }elseif(!ctype_alpha($city)){
-        $errors[]='*City cant use Special character';
     }
 
     
     $district=$_POST['district'];
     if(empty($_POST['district']) || strlen(trim($_POST['district']))<1){
         $errors[]='*District is required';
-    }elseif(!ctype_alpha($district)){
-        $errors[]='*District cant use Special character';
     }
 
-    $location=$_POST['location'];
-    if(empty($_POST['location']) || strlen(trim($_POST['location']))<1){
-        $errors[]='*location is required';
-    }elseif(!ctype_alpha($location)){
-        $errors[]='*Location cant use Special character';
-    }
+   // $location=$_POST['location'];
+    //if(empty($_POST['location']) || strlen(trim($_POST['location']))<1){
+      //  $errors[]='*location is required';
+    //}
 
     
     if(!isset($_POST['individual'])){
