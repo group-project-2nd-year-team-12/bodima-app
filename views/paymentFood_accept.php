@@ -53,6 +53,7 @@
                   <li onclick="window.location='../index.php'">Home page</li>
                   <li onclick="window.location='paymentFood_pending.php'">Pending Orders</li>
                   <li onclick="window.location='paymentFood_accept.php'">Accepted Orders</li>
+                  <li onclick="window.location='paymentFood_receving.php'">Receiving Order</li>
                   <li onclick="window.location='paymentFood_history.php'">Order History</li>
                   <li onclick="window.location='foodposts.php'">New Order</li>
               </ul>

@@ -93,6 +93,14 @@
 .wait{
     background-color: #F7CB73;
 }
+.receiving{
+    background-color: rgb(100, 100, 199);
+}
+.fa-motorcycle{
+    color: #0900b0;
+    padding: 10px;
+
+}
 .fa-clock{
     color: #d5a23b;
     padding: 10px;

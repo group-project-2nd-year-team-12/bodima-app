@@ -1,6 +1,6 @@
 <?php 
  require_once ('../config/database.php');
- require_once ('../models/reg_user.php');
+ require_once ('../models/orderModel.php');
  require_once('../config/acceptReq.php');
     session_start ();
 ?>
@@ -20,7 +20,7 @@ if(isset($_POST['accept']))
    $total=$_POST['total'];
    $first_name=$_POST['first_name'];
    $last_name=$_POST['last_name'];
-   $result=reg_user::accept($order_id,$connection);
+   $result=orderModel::accept($order_id,$connection);
    // email order is accepted
    // echo $total;
    // print_r($_SESSION);

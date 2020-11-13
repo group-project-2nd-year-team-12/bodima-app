@@ -1,6 +1,6 @@
 <?php 
  require_once ('../config/database.php');
- require_once ('../models/reg_user.php');
+ require_once ('../models/orderModel.php');
     session_start ();
 ?>
 
@@ -31,7 +31,7 @@ $errors=array();
        $_SESSION['order_id']=$order_id;  
        foreach($products as $product)
        {
-        reg_user::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$connection);
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$connection);
        }
       //  $_SESSION['isdisable']=1;
       header('Location:../views/paymentFood_pending.php');
@@ -43,9 +43,19 @@ $errors=array();
 
 if(isset($_GET['orderDelete_id'])){
    $order_id=$_GET['orderDelete_id'];
-   $result=reg_user::requestOrderDelete($connection,$order_id);
+   $result=orderModel::requestOrderDelete($connection,$order_id);
    if($result){
       header('Location:../views/paymentFood_pending.php');
+   }
+   {
+      echo "Mysqli query failed";
+   }
+}
+if(isset($_GET['orderConfirm_id'])){
+   $order_id=$_GET['orderConfirm_id'];
+   $result=orderModel::requestOrderConfirm($connection,$order_id);
+   if($result){
+      header('Location:../views/paymentFood_history.php?success');
    }
    {
       echo "Mysqli query failed";
@@ -54,9 +64,9 @@ if(isset($_GET['orderDelete_id'])){
 
 if(isset($_GET['order_id'])){
    $order_id=$_GET['order_id'];
-   $result=reg_user::paymentOrder($connection,$order_id);
+   $result=orderModel::paymentOrder($connection,$order_id);
    if($result){
-      header('Location:../views/paymentFood_history.php');
+      header('Location:../views/paymentFood_receving.php');
    }
    {
       echo "Mysqli query failed";
