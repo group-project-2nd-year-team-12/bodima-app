@@ -158,7 +158,6 @@ div .back_button{
     
 .profile:hover + .hide {
   color: rgb(29, 28, 28);
-  align: center;
   display:block;
   background-color:rgb(255, 217, 0,0.7);
   width:180px;
@@ -171,3 +170,15 @@ div .back_button{
   
 }
 /* ********************************************************************** */
+
+.content_container h2{
+  background-color:#11e6c2;
+  margin-top:-86px;
+  margin-left:-30px;
+  padding:10px;
+  padding-left:40px ;
+  position: fixed;
+  width: 100%;
+
+  
+}

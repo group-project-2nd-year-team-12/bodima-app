@@ -75,7 +75,7 @@
                               </li>';      
 
                          echo '<li class="side_element">
-                                <a href="#"><i class="fas fa-comment"></i><span>Chat</span></a>
+                                <a href="chat_boardingOwner.php"><i class="fas fa-comment"></i><span>Chat</span></a>
                               </li>';
                               
                         echo '<li class="side_element">

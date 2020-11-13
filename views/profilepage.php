@@ -56,9 +56,12 @@
 
 
 ?>
+  
 <div class="content_template">
   <div class="content_container">
+  <h2>Profile</h2>
     <div class="pro_inner">
+    
         <div class="title">
         <?php echo ''.$first_name.' '.$last_name?>
 
