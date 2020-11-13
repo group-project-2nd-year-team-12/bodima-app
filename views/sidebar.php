@@ -17,6 +17,10 @@
                             echo '<div class="indicator" style="background-color: rgb(64,224,208);">
                             Boarding Owner
                           </div>';}
+                          elseif($_SESSION['level']=="administrator"){
+                            echo '<div class="indicator" style="background-color: rgb(64,224,208);">
+                            Administrator
+                          </div>';}
                           else{
                             echo '<div class="indicator" style="background-color: rgb(0,191,255);">
                             User
@@ -67,11 +71,11 @@
                                </li>';
                        
                          echo '<li class="side_element">
-                                <a href="views/foodposts.php"><i class="fas fa-users"></i><span>My Boarders</span></a>
+                                <a href="myboarders.php"><i class="fas fa-users"></i><span>My Boarders</span></a>
                               </li>';      
 
                          echo '<li class="side_element">
-                                <a href="#"><i class="fas fa-comment"></i><span>Chat</span></a>
+                                <a href="chat_boardingOwner.php"><i class="fas fa-comment"></i><span>Chat</span></a>
                               </li>';
                               
                         echo '<li class="side_element">

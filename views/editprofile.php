@@ -59,6 +59,7 @@
 
 <div class="content_template">
 <div class="content_container">
+  <h2>Edit Profile</h2>
   <div class="pro_inner">
         <div class="title">
               <div class="back_button">

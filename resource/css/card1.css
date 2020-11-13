@@ -157,9 +157,16 @@ body{
       /* padding-top: 80px; */
       margin: 30px;
   }
-  
+  .mycart{
+    padding:0 10px;
+    height: 700px;
+    background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
+    border-radius: 10px;
+  }
   .mycart h5{
       border-bottom: 1px solid gray;
+      width: 100%;
       font-size: 20px;
       font-weight: lighter;
       margin: 20px;
@@ -174,6 +181,17 @@ body{
   }
   .cart-item{
     display: flex;
+  }
+  .mycart-header{
+    display: flex;
+    align-items: center;
+  }
+  .mycart-header i{
+    color: rgba(36, 77, 40, 0.564);
+    cursor: pointer;
+  }
+  .mycart-header i:hover{
+    color: rgba(30, 30, 30, 0.722);
   }
 
   .cart-item button{
@@ -195,7 +213,7 @@ body{
   }
 
   .price-details{
-      height: 35%;
+      height: 55%;
       width: 60%;
       margin: 0 auto;
       margin-bottom: 20px;
