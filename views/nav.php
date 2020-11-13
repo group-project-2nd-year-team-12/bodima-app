@@ -59,6 +59,9 @@
                         <li onclick='window.location="ConBODealIshan.php"'>Confirm Deal </li>
                         <li onclick='window.location="TBOReqIshan.php"'>Request</li>
                    <?php } ?>
+                   <?php if($_SESSION['level']=='boardings_owner' || $_SESSION['level']=='boarder'){?>
+                    <li onclick='window.location="paymentFood_pending.php"'>My food Orders</li>
+                    <?php } ?>
                     <li onclick="window.location='../controller/logoutController.php'">Log out</li>
                 <?php } else{?>
                     <h4>Plase sign in first to system.</h4>

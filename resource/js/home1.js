@@ -66,6 +66,13 @@ function scrollimg3(){
     }
 
 }
+window.addEventListener('scroll',fixedTop);
+window.addEventListener('scroll',scrollApper2);
+window.addEventListener('scroll',scrollApper1);
+window.addEventListener('scroll',scrollApper3);
+window.addEventListener('scroll',scrollimg2);
+window.addEventListener('scroll',scrollimg1);
+window.addEventListener('scroll',scrollimg3);
 
 // top bar fixed function
 function fixedTop(){
@@ -109,13 +116,7 @@ document.querySelector('.burger').addEventListener('click',(e)=>
 
 
 
-window.addEventListener('scroll',fixedTop);
-window.addEventListener('scroll',scrollApper2);
-window.addEventListener('scroll',scrollApper1);
-window.addEventListener('scroll',scrollApper3);
-window.addEventListener('scroll',scrollimg2);
-window.addEventListener('scroll',scrollimg1);
-window.addEventListener('scroll',scrollimg3);
+
 
 
 // notification menu appler
