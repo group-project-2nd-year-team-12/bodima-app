@@ -17,6 +17,10 @@
                             echo '<div class="indicator" style="background-color: rgb(64,224,208);">
                             Boarding Owner
                           </div>';}
+                          elseif($_SESSION['level']=="administrator"){
+                            echo '<div class="indicator" style="background-color: rgb(64,224,208);">
+                            Administrator
+                          </div>';}
                           else{
                             echo '<div class="indicator" style="background-color: rgb(0,191,255);">
                             User

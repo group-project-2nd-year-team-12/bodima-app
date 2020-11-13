@@ -78,7 +78,8 @@ body {
 
 .boarder_table td{
     width:12%;
-    padding:auto;
+    padding-right:auto;
+    padding-left:10px ;
     align-content: center;
     
     

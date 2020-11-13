@@ -30,14 +30,17 @@
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
                     <div class="notification"><i class="fa fa-bell"></i></div>
-                    <div class="profile"><a href="../views/profilepage.php"> <i  class="fa fa-user-circle"></a></i></div>
+                    <!-- <div class="profile"><a href="../views/profilepage.php"> <i  class="fa fa-user-circle"></a></i></div>
+                    <div class="hide">Boarder</div> -->
+                  <?php require_once "indicator.php"?> 
                 <?php
                     echo '<div class="user">Hi '.$_SESSION['first_name'].'</div>'; 
                     echo '<a href="../controller/logoutController.php">Sign out <i  class="fa fa-sign-out"></i></a>';}
-                ?> 
-                
+                ?>
             </div>
+            
         </div>
+        
   </a>
 </div>
 </div>
