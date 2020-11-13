@@ -50,19 +50,21 @@
         <div class="content">
           <div class="payment-slide">
               <ul>
+                   <li onclick="window.location='../index.php'">Home page</li>
                   <li onclick="window.location='paymentFood_pending.php'">Pending Orders</li>
                   <li onclick="window.location='paymentFood_accept.php'">Accepted Orders</li>
                   <li onclick="window.location='paymentFood_history.php'">Order History</li>
+                  <li onclick="window.location='foodposts.php'">New Order</li>
               </ul>
           </div>          
        
         <div class="pending">
             <div class="title">
-                <h3>Pending order</h3>
+                <h3>Order history</h3>
                 <?php 
                 $email=$_SESSION['email'];
-                $ids_set=reg_user::getOrderById($connection,$email,0);
-                $order_pending=reg_user::getOrderAll($connection,$email,0);
+                $ids_set=reg_user::getOrderById($connection,$email,3);
+                $order_pending=reg_user::getOrderAll($connection,$email,3);
                 // print_r($order_pending);
                 // print_r($ids_set);
                 $ids=array();
@@ -70,27 +72,35 @@
                 {
                     $ids[]=$record['order_id'];
                 }
+                $data_rows=array();
+                $i=0;
+                while($record=mysqli_fetch_assoc($order_pending))
+                {
+                    $data_rows[$i]=$record;
+                    $i++;
+                }
                 $total='';
                 foreach($ids as $id){
-                while($row=mysqli_fetch_assoc($order_pending))
+                foreach($data_rows as $data_row)
                 {
-                        $total=$row['total'];
+                    if($data_row['order_id']==$id)
+                    {
+                        $total=$data_row['total'];
+                        // echo $total;
+                    }
                         
                 }
                 ?>
-                <div class="box">
-                    <div class="resend wait">
-                        <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is Pending</h4></div>
-                    </div>
+                <div class="box small">
                   <div class="details-box">
                     <div class="details">
-                            <h2>Order Id :<?php echo $id; ?></h2>
-                            <h4>Pay amount :<?php echo $total; ?></h4>
+                            <h2>Order Id : <span style="color:sienna;"><?php echo $id; ?></span> </h2>
+                            <h5>Payed amount :<?php echo $total; ?></h5>
+                            <h5>Order Date :2020 / 04 / 16</h5>
                         </div>
                         <div class="button-pay">
                             
-                            <h3>Please wait for food supplier confirm</h3>
+                            <h3>Order Details</h3>
                             
                         </div>
                   </div>
@@ -101,6 +111,20 @@
                 ?>
                
             </div>
+        </div>
+        <div class="more-details">
+                    <div class="more">
+                        <h2>Order Details</h2>
+                        <h3>Order Id : <span style="color: sienna;">1245685625</span></h3>
+                        <h4>Payed amout :123.15</h4>
+                        <h4>Order Date :2020 / 04 /21</h4>
+                        <h4>Order item :</h4>
+                        <ul>
+                            <li>1. rice</li>
+                            <li>2. kotthu</li>
+                            <li>3. fyed rice</li>
+                        </ul>
+                    </div>
         </div>
         </div>
     </div>

@@ -148,6 +148,16 @@ class reg_user{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function requestOrderDelete($connection,$order_id){
+        $query="Update food_request SET is_accepted=2 WHERE order_id='{$order_id}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function paymentOrder($connection,$order_id){
+        $query="Update food_request SET is_accepted=3 WHERE order_id='{$order_id}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 }
 
 

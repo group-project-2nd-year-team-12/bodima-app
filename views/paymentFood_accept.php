@@ -50,9 +50,11 @@
         <div class="content">
           <div class="payment-slide">
               <ul>
+                  <li onclick="window.location='../index.php'">Home page</li>
                   <li onclick="window.location='paymentFood_pending.php'">Pending Orders</li>
                   <li onclick="window.location='paymentFood_accept.php'">Accepted Orders</li>
                   <li onclick="window.location='paymentFood_history.php'">Order History</li>
+                  <li onclick="window.location='foodposts.php'">New Order</li>
               </ul>
           </div>          
         <div class="accept">
@@ -91,11 +93,11 @@
                 <div class="box">
                 <div class="resend">
                         <div class="right"><i class="fa fa-check fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is accepted</h4></div>
+                        <div class="letter"><h4>Your order is accepted <small >This order will cancel 2H 30M</small></h4></div>
                     </div>
                   <div class="details-box">
                          <div class="details">
-                            <h2>Order Id :<?php echo $id; ?></h2>
+                            <h2>Order Id :<span style="color:sienna;"><?php echo $id; ?></h2>
                             <h4>Pay amount :<?php echo $total; ?></h4>
                         </div>
                         <div class="button-pay">
@@ -104,10 +106,10 @@
                                 <button type="button" class="btn1"><i class="far fa-credit-card"></i> Pay Cash </button>
                                 <button class="btn2"><i class="fas fa-wallet"></i> Pay Card</button>
                                 <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
-                                <input type="hidden" name="return_url" value="http://localhost/mvc/application/views/sucsses.php"> 
+                                <input type="hidden" name="return_url" value="http://localhost/bodima-app-fork/bodima-app/controller/orderCon.php"> 
                                 <input type="hidden" name="cancel_url" value="http://localhost/mvc/application/views/sucsses.php">
                                 <input type="hidden" name="notify_url" value="http://localhost/mvc/application/config/payCon.php">  
-                                <input type="hidden" name="order_id" value="<?php echo "OrderNo".+time().rand(); ?>">
+                                <input type="hidden" name="order_id" value="<?php echo $id ?>">
                                 <input type="hidden" name="items" value="siri niwasa"><br>
                                 <input type="hidden" name="currency" value="LKR">
                                 <input type="hidden" name="amount" value="<?php echo $total; ?>">  
@@ -127,6 +129,20 @@
             }
                 ?>
             </div>
+        </div>
+        <div class="more-details">
+                    <div class="more">
+                        <h2>Order Details</h2>
+                        <h3>Order Id : <span style="color: sienna;">1245685625</span></h3>
+                        <h4>Payed amout :123.15</h4>
+                        <h4>Order Date :2020 / 04 /21</h4>
+                        <h4>Order item :</h4>
+                        <ul>
+                            <li>1. rice</li>
+                            <li>2. kotthu</li>
+                            <li>3. fyed rice</li>
+                        </ul>
+                    </div>
         </div>
         </div>
     </div>

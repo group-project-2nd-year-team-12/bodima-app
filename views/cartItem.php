@@ -22,7 +22,7 @@
    {
     //    echo $_SESSION['order_id'];
     $order_records=reg_user::getOrder($connection,$_SESSION['order_id']);
-    print_r($order_records);
+    // print_r($order_records);
     // $order_record=mysqli_fetch_assoc($order_records);
     // if($order_record['is_accepted']==1){
     //     $_SESSION['isdisable']=0;
@@ -111,9 +111,12 @@ $total=0;
             <h4>Amount payable<span class="left-item1">Rs <?php echo $total; ?></span> </h4>
             <form action="../controller/orderCon.php" method="post">
                 <h4>Enter delivery address :</h4>
-                <?php if(isset($_GET['error'])) echo "<h5 style='color:red'>*Please enter the delivery address</h5>"; ?>
+                <?php if(isset($_GET['errorAddress'])) echo "<h5 style='color:red'>*Please enter the delivery address</h5>"; ?>
                 <input type="hidden" name="Pid" value="<?php echo $_GET['Pid'];?>">
                 <input type="text" placeholder="ex:310/delgasduwa/dodanduwa" name="address"  ?>
+                <h4>Enter phone number :</h4>
+                <?php if(isset($_GET['errorPhone'])) echo "<h5 style='color:red'>*Please enter the delivery address</h5>"; ?>
+                <input type="text" placeholder="ex:07x xxx xxx xxxx" name="phone"  ?>
                 <button name="submit" type="submit" id="request" class="btn6 request">Request </button>
             </form>
            

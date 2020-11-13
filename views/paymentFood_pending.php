@@ -50,9 +50,11 @@
         <div class="content">
           <div class="payment-slide">
               <ul>
+                  <li onclick="window.location='../index.php'">Home page</li>
                   <li onclick="window.location='paymentFood_pending.php'">Pending Orders</li>
                   <li onclick="window.location='paymentFood_accept.php'">Accepted Orders</li>
                   <li onclick="window.location='paymentFood_history.php'">Order History</li>
+                  <li onclick="window.location='foodposts.php'">New Order</li>
               </ul>
           </div>          
        
@@ -90,26 +92,41 @@
                 <div class="box">
                     <div class="resend wait">
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is Pending. <small>Please wait for food supplier confirm</small></h4></div>
+                        <div class="letter"><h4>Your order is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>This order will cancel 2H 30M</small></h4></div>
                     </div>
                   <div class="details-box">
                     <div class="details">
-                            <h2>Order Id :<?php echo $id; ?></h2>
+                            <h2>Order Id :<span style="color:sienna;"><?php echo $id; ?></h2>
                             <h4>Pay amount :<?php echo $total; ?></h4>
                         </div>
                         <div class="button-pay">
                             
                             <h4>If you want cancel order. click the cancel order</h4>
-                            <button type="button" class="btn1 cancel"> Cancel Order</button>
+                            <button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id; ?>"' type="button" class="btn1 cancel"> Cancel Order</button>
                         </div>
                   </div>
                     
                 </div>
+               
                 <?php
             }
                 ?>
                
             </div>
+        </div>
+        <div class="more-details">
+                    <div class="more">
+                        <h2>Order Details</h2>
+                        <h3>Order Id : <span style="color: sienna;">1245685625</span></h3>
+                        <h4>Payed amout :123.15</h4>
+                        <h4>Order Date :2020 / 04 /21</h4>
+                        <h4>Order item :</h4>
+                        <ul>
+                            <li>1. rice</li>
+                            <li>2. kotthu</li>
+                            <li>3. fyed rice</li>
+                        </ul>
+                    </div>
         </div>
         </div>
     </div>

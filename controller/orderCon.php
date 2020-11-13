@@ -7,12 +7,16 @@
 <?php
 if(isset($_POST['submit']))
 {
-
+$errors=array();
    if(!isset($_POST['address']) || strlen(trim($_POST['address']))<1)
    {
-      $error="Enter the delivery address";
-      header('Location:../views/cartItem.php?error&Pid='.$_POST['Pid']);
-   }else{
+      $error['address']="errorAddress";
+   }
+   if(!isset($_POST['phone']) || strlen(trim($_POST['phone']))<1)
+   {
+      $error['phone']="errorPhone";
+   }
+   if(empty($error)){
    //  print_r($_SESSION);
     if(isset($_SESSION['cart']))
     {
@@ -32,8 +36,31 @@ if(isset($_POST['submit']))
       //  $_SESSION['isdisable']=1;
       header('Location:../views/paymentFood_pending.php');
    }
+}else{
+   header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&Pid='.$_POST['Pid']);
 }
 }
 
+if(isset($_GET['orderDelete_id'])){
+   $order_id=$_GET['orderDelete_id'];
+   $result=reg_user::requestOrderDelete($connection,$order_id);
+   if($result){
+      header('Location:../views/paymentFood_pending.php');
+   }
+   {
+      echo "Mysqli query failed";
+   }
+}
+
+if(isset($_GET['order_id'])){
+   $order_id=$_GET['order_id'];
+   $result=reg_user::paymentOrder($connection,$order_id);
+   if($result){
+      header('Location:../views/paymentFood_history.php');
+   }
+   {
+      echo "Mysqli query failed";
+   }
+}
 
 ?>
