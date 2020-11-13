@@ -67,7 +67,7 @@
                                </li>';
                        
                          echo '<li class="side_element">
-                                <a href="views/foodposts.php"><i class="fas fa-users"></i><span>My Boarders</span></a>
+                                <a href="myboarders.php"><i class="fas fa-users"></i><span>My Boarders</span></a>
                               </li>';      
 
                          echo '<li class="side_element">
