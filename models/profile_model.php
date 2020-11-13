@@ -19,6 +19,17 @@ class profile_model{
         $query="UPDATE {$level} SET address='{$address}' where email='{$email}'";
         return mysqli_query($connection,$query);
     }
+
+    public static function b_postListByPerson($BOid,$connection)
+    {
+        $query="SELECT * FROM boarding_post 
+                WHERE BOid=$BOid
+                ORDER BY B_post_id desc;";
+
+        mysqli_query($connection,$query);
+    }
+
+
 }
 
 
