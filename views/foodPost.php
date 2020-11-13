@@ -61,14 +61,14 @@
 				<div class="group">
 				<h3 class="name">Avertisement Lifespan (Month)</h3 >
 				
-				<input type="number" name="Lifespan" id="lifespan" value="1" min="1" max="" class="control prc" >
+				<input type="number" name="Lifespan" id="lifespan" value=30 class="control prc" >
 				</div>
 				
 				<div class="group">
 				
 				<h3 class="name">Avertisement Amount : Rs</h3 >
 				<!-- <output  name="result" id="result"></output> -->
-				<input type="text" disabled name="Aamount" id="Aamount"  ><br><br>
+				<input type="text" disabled name="Aamount" id="Aamount" value=3000  ><br><br>
 				</div>
 					
 				<br>
