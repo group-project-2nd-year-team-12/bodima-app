@@ -26,7 +26,8 @@ class profile_model{
                 WHERE BOid=$BOid
                 ORDER BY B_post_id desc;";
 
-        mysqli_query($connection,$query);
+
+       return mysqli_query($connection,$query);
     }
 
 
