@@ -14,28 +14,30 @@
 <body>
   <?php include 'nav.php' ?>
   <div class="cart-wrap">
-<h1>Rasika food delivery service</h1>
-  <h3>310/1 Delgasduwa , Dodanduwa </h3>
+<h1><?php echo $_GET['name']; ?></h1>
+  <h3><?php echo $_GET['address']; ?></h3>
   <h3>For breakfast,lunch and dinner delivery to your home.</h3>
   <div class="rate"><h4><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half"></i></h4></div>
 <img src="../resource/img/resturent.jpg" alt="">
   <div class="cart-icon">
     <?php 
+   
       if(isset($_SESSION['cart']))
       {
         $count=count($_SESSION['cart']);
-        echo '<a href="cartItem.php"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="count">'.$count.'</span></a>';
+        echo '<a href="cartItem.php?Pid='.$_GET["Pid"].'&name='.$_GET["name"].'&address='.$_GET["address"].'"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="count">'.$count.'</span></a>';
+       
       }else{
-        echo '<a href="cartItem.php"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="count">0</span></a>
-        ';
+        echo '<a href="#"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="count">0</span></a>';
       }
     ?>
    </div>
 </div>
 <?php 
-if(isset($_GET['id']))
+
+if(isset($_GET['Pid']))
 {
-  $fpid=$_GET['id'];
+  $fpid=$_GET['Pid'];
 ?>
   <div class="catogory">
     <div class="cato-header">
@@ -60,7 +62,10 @@ if(isset($_GET['id']))
                      <input type="hidden" name="quantity" value="1">
                      <input type="hidden" name="name" value="<?php echo $row['product_name'];?> ">
                      <input style="color: green;" type="hidden" name="price" value="<?php echo $row['price'];?>">
-                     <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>">
+                     <!-- <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>"> -->
+                     <input type="hidden" name="Pid" value="<?php echo $fpid;?>">
+                     <input type="hidden" name="name" value="<?php echo $_GET['name'];?>">
+                     <input type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <p><button class="cart-num" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
                  </div>
                </form>
@@ -95,7 +100,10 @@ if(isset($_GET['id']))
                      <input type="hidden" name="quantity" value="1">
                      <input type="hidden" name="name" value="<?php echo $row['product_name'];?> ">
                      <input style="color: green;" type="hidden" name="price" value="<?php echo $row['price'];?>">
-                     <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>">
+                     <!-- <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>"> -->
+                     <input type="hidden" name="Pid" value="<?php echo $fpid;?>">
+                     <input type="hidden" name="name" value="<?php echo $_GET['name'];?>">
+                     <input type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <p><button class="cart-num" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
                  </div>
                </form>
@@ -130,7 +138,10 @@ if(isset($_GET['id']))
                      <input type="hidden" name="quantity" value="1">
                      <input type="hidden" name="name" value="<?php echo $row['product_name'];?> ">
                      <input style="color: green;" type="hidden" name="price" value="<?php echo $row['price'];?>">
-                     <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>">
+                     <!-- <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>"> -->
+                     <input type="hidden" name="Pid" value="<?php echo $fpid;?>">
+                     <input type="hidden" name="name" value="<?php echo $_GET['name'];?>">
+                     <input type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <p><button class="cart-num" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
                  </div>
                </form>
