@@ -1,4 +1,8 @@
-<?php session_start();
+<?php 
+ require_once ('../config/database.php');
+ require_once ('../models/profile_model.php');
+
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -49,43 +53,51 @@
  $last_name=$_SESSION['last_name'];
  $email=$_SESSION['email'];
  $address=$_SESSION['address'];
+ $BOid=$_SESSION['BOid'];
+
+
 ?>
 
   <div class="content_template">
     <div class="content_container">
         <h2>My Advertisements</h2>
         <div class="post_cont">
-        <?php echo '
+
+        <?php
+         $result=profile_model::b_postListByPerson(4,$connection);
+        while($row=mysqli_fetch_assoc($result)){
+         
+         echo '
             <div class="table-responsive">
-                <table class="table table bordered">
-                  <tr>
+                  <table class="table table bordered">
+                    <tr>
                       <th class="img_th" rowspan=6>
                       <div class="inner_img">
-                      <img src="../resource/Images/uploaded_boarding/3.jpg" class="profile_image" alt="" >
+                      <img src="'.$row["image"].'" class="profile_image" alt="" >
                       </div>
                       </th>
-                      <th>No</th><td>1</td>
-                  </tr>
-                  <tr>
-                      <th>Address</th><td> Horana road, Mattegoda</td>
-                  </tr>
-                  <tr>
-                      <th>City</th><td>Mattegoda</td>
-                  </tr>
-                  <tr>
-                      <th>girls/boys</th><td>girls</td>
-                  </tr>
-                  <tr>
-                      <th>cost per person</th><td>5000</td>
-                  </tr>
-                  <tr>
-                      <th>description</th><td>Near to NIBM University</td>
-                      
-                  </tr>
-                </table>
-                <input type="button" name="deletepost" value="Delete">
-            </div>
-        ' ?>
+                      <th>No</th><td>'.$row["B_post_id"].'</td>
+                    </tr>
+                    <tr>
+                      <th>Address</th><td>'.$row["lane"].', '.$row["city"].'</td>
+                    </tr>
+                    <tr>
+                      <th>City</th><td>'.$row["city"].'</td>
+                    </tr>
+                    <tr>
+                      <th>girls/boys</th><td>'.$row["girlsBoys"].'</td>
+                    </tr>
+                    <tr>
+                      <th>cost per person</th><td>'.$row["cost_per_person"].'</td>
+                    </tr>
+                    <tr>
+                      <th>description</th><td>'.$row["description"].'</td>
+                    </tr>
+                  </table>
+            <input type="button" name="deletepost" value="Delete">
+            </div>'
+            
+           ; } ?>
         </div>
     </div>
   </div>

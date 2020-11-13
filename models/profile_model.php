@@ -24,8 +24,9 @@ class profile_model{
     {
         $query="SELECT * FROM boarding_post 
                 WHERE BOid=$BOid
-                ORDER BY B_post_id desc;"
-        return mysqli_query($connection,$query);
+                ORDER BY B_post_id desc;";
+
+        mysqli_query($connection,$query);
     }
 
 
