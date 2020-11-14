@@ -107,7 +107,7 @@
                                 <button type="button" class="btn1"><i class="far fa-credit-card"></i> Pay Cash </button>
                                 <button class="btn2"><i class="fas fa-wallet"></i> Pay Card</button>
                                 <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
-                                <input type="hidden" name="return_url" value="http://localhost/bodima-app/controller/orderCon.php"> 
+                                <input type="hidden" name="return_url" value="http://localhost/bodima-app-fork/bodima-app/controller/orderCon.php"> 
                                 <input type="hidden" name="cancel_url" value="http://localhost/mvc/application/views/sucsses.php">
                                 <input type="hidden" name="notify_url" value="http://localhost/mvc/application/config/payCon.php">  
                                 <input type="hidden" name="order_id" value="<?php echo $id ?>">

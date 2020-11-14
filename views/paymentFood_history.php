@@ -129,10 +129,28 @@
         </div>
         </div>
     </div>
+    <?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?>
     <div class="rating">
+    <form class="form-rate" action="" method="post">
         <h2>Rate for order !</h2>
-        <div class="rate"></div>
+        <div class="rate">
+            <input type="radio" name="rate" id="star1"><label for="star1"></label>
+            <input type="radio" name="rate" id="star2"><label for="star2"></label>
+            <input type="radio" name="rate" id="star3"><label for="star3"></label>
+            <input type="radio" name="rate" id="star4"><label for="star4"></label>
+            <input type="radio" name="rate" id="star5"><label for="star5"></label>
+        </div>
+        <h3>Unrate</h3>
+            <input type="text" placeholder="Title">
+            <textarea name="" id="" cols="5" rows="5" placeholder="Add commet"></textarea>
+            <div>
+                <button class="btn-rate" type="submit" >Submit</button>
+                <button class="btn-rate cancel-rate" type="button" >Cancel</button>
+            </div>
+        </form>
     </div>
+    <?php } ?>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/order.js"></script>
 </html>

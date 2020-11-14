@@ -55,7 +55,7 @@ if(isset($_GET['orderConfirm_id'])){
    $order_id=$_GET['orderConfirm_id'];
    $result=orderModel::requestOrderConfirm($connection,$order_id);
    if($result){
-      header('Location:../views/paymentFood_history.php?success');
+      header('Location:../views/paymentFood_history.php?success&order_id='.$order_id);
    }
    {
       echo "Mysqli query failed";
