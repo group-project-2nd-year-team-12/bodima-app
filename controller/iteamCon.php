@@ -15,6 +15,37 @@ $submit=$_POST['submit'];
 if(isset($_POST['submit']))
 {
 
+    $errors=array(); //create empty array
+
+    $pName=$_POST['pName'];
+    if(empty($_POST['pName']) || strlen(trim($_POST['pName']))<1){
+        $errors[]='*Product Name Name is required';
+    }
+
+    $price=$_POST['price'];
+    if(empty($_POST['price']) || strlen(trim($_POST['price']))<1){
+        $errors[]='*Price is required';
+    }else if(!is_numeric($price)) {
+        $errors[]='*Price Data entered was not numeric';
+    }
+
+    if(isset($_POST['breakfirst'])){
+        $breakfirst=1; 
+    }else{
+        $breakfirst=0; 
+    }
+
+    if(isset($_POST['lunch'])){
+        $lunch=1; 
+    }else{
+        $lunch=0; 
+    }
+
+    if(isset($_POST['dinner'])){
+        $dinner=1; 
+    }else{
+        $dinner=0; 
+    }
 
 
     if($submit=='save'){
@@ -32,12 +63,12 @@ if(isset($_POST['submit']))
         move_uploaded_file($temp_name, $upload_to . $image_name);
 
         $price=$_POST['price'];
-        $breakfirst=$_POST['breakfirst'];
+        //$breakfirst=$_POST['breakfirst'];
             
                 
-        $lunch=$_POST['lunch'];
+        //$lunch=$_POST['lunch'];
                 
-        $dinner=$_POST['dinner'];
+        //$dinner=$_POST['dinner'];
 
         //echo $Hnumber;
 
@@ -67,12 +98,12 @@ if(isset($_POST['submit']))
         move_uploaded_file($temp_name, $upload_to . $image_name);
 
         $price=$_POST['price'];
-        $breakfirst=$_POST['breakfirst'];
+        //$breakfirst=$_POST['breakfirst'];
             
                 
-        $lunch=$_POST['lunch'];
+        //$lunch=$_POST['lunch'];
                 
-        $dinner=$_POST['dinner'];
+        //$dinner=$_POST['dinner'];
 
         //echo $Hnumber;
 
