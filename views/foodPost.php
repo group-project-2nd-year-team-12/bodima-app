@@ -13,6 +13,21 @@
 
 	<div class="postBoarding"><h1>Post On Your Site</h1></div><!-- postBoarding -->
 		<div class="main">
+
+		<div class=error-post>
+			<?php
+			if(isset($_GET['param']))
+			{
+				$errors=$_GET['param'];
+				foreach($errors as $error)
+				{
+					echo '<p class="error"><b>'.$error.'</b></p>';
+				}
+			}
+			
+			?>
+		</div>
+
 			<div class="second_name"><h2>Resturent Details</h2></div>
 			<form action="../controller/foodPostCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
 			
@@ -80,7 +95,7 @@
 				
 			
 
-				<script src="jquery-3.5.1.min.js"></script>
+				<script src="../resource/js/jquery-3.5.1.min.js"></script>
 				<script>
 					$('.group').on('input','.prc',function(){
 						var totalsum =0;
