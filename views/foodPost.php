@@ -74,7 +74,7 @@
 			
 
 				<div class="group">
-				<h3 class="name">Avertisement Lifespan (Month)</h3 >
+				<h3 class="name">Avertisement Lifespan (Days)</h3 >
 				
 				<input type="number" name="Lifespan" id="lifespan" value=30 class="control prc" >
 				</div>
