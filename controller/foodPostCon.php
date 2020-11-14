@@ -10,13 +10,42 @@
 
 <?php
 
-$submit=$_POST['submit'];
 
-if(isset($_POST['submit']))
-{
+if(isset($_POST['submit'])){
+
+    $errors=array(); //create empty array
 
 
-    if($submit=='submit'){
+    $resName=$_POST['resName'];
+    if(empty($_POST['resName']) || strlen(trim($_POST['resName']))<1){
+        $errors[]='*Resturent Name is required';
+    }
+
+
+    $address=$_POST['address'];
+    if(empty($_POST['address']) || strlen(trim($_POST['address']))<1){
+        $errors[]='*Address is required';
+    }
+
+    if(!isset($_POST['type'])){
+        $errors[]='*No Type were checked';
+    }
+
+    if(!isset($_POST['otDeadline'])){
+        $errors[]='*No Ordering Time Deadline were checked';
+    }
+
+    $Lifespan=$_POST['Lifespan'];
+    //print_r($_POST['Pcount']);
+    
+    if(empty($Lifespan) || strlen(trim($Lifespan))<1){
+        $errors[]='*Lifespan is required';
+    }else if($Lifespan<30){
+        $errors[]='*Life must be greater than or equal 30';
+    } 
+
+    if(empty($errors)){
+
         $resName=$_POST['resName'];
         $address=$_POST['address'];
         $location=$_POST['location'];
@@ -50,81 +79,12 @@ if(isset($_POST['submit']))
         print_r($_POST);
 
         print_r($_FILES);
-
-    }elseif($submit=='save')
-    {
-
-
-
-                $pName=$_POST['pName'];
-                
-
-                $image_name=$_FILES['pimage']['name'];
-                $image_type=$_FILES['pimage']['type'];
-                $image_size=$_FILES['pimage']['size'];
-                $temp_name=$_FILES['pimage']['tmp_name'];
-
-                $upload_to='../resource/Images/uploaded_foodpost/';
-
-                move_uploaded_file($temp_name, $upload_to . $image_name);
-
-                $price=$_POST['price'];
-                $breakfirst=$_POST['breakfirst'];
-            
-                
-                $lunch=$_POST['lunch'];
-                
-                $dinner=$_POST['dinner'];
-
-                //echo $Hnumber;
-
-                foodSupplierPost::addIteam($pName,$image_name,$breakfirst,$lunch,$dinner,$price,$connection);
-
-
-                print_r($_POST);
-
-                print_r($_FILES);
-
-
-            }elseif($submit=='Add Iteam')
-            {
-
-
-                        
-                $pName=$_POST['pName'];
-                
-
-                $image_name=$_FILES['pimage']['name'];
-                $image_type=$_FILES['pimage']['type'];
-                $image_size=$_FILES['pimage']['size'];
-                $temp_name=$_FILES['pimage']['tmp_name'];
-
-                $upload_to='../img/';
-
-                move_uploaded_file($temp_name, $upload_to . $image_name);
-
-                $price=$_POST['price'];
-                $breakfirst=$_POST['breakfirst'];
-            
-                
-                $lunch=$_POST['lunch'];
-                
-                $dinner=$_POST['dinner'];
-
-                //echo $Hnumber;
-
-                foodSupplierPost::addIteam($pName,$image_name,$breakfirst,$lunch,$dinner,$price,$connection);
-
-
-
-                header('Location:../views/iteam.php');
-
-                print_r($_POST);
-
-                print_r($_FILES);
-
-            }
-                
-           
+        
+    }else{
+        header('Location:../views/foodPost.php?'.http_build_query(array('param'=>$errors)));
+    }
 }
+
+
+
 ?>
