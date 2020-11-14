@@ -31,5 +31,20 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function getPostFoodSupplier($connection,$FSid){
+        $query="SELECT F_post_id FROM food_post WHERE FSid=$FSid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function getOrderIDFoodSupplier($connection,$F_post_id){
+        $query="SELECT DISTINCT order_id FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=0";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 
+    public static function getOrderFoodSupplier($connection,$order_id){
+        $query="SELECT * FROM food_request WHERE order_id=$order_id AND is_accepted=0";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 }
