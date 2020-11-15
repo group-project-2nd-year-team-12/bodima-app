@@ -9,7 +9,7 @@ class foodSupplierPost{
         //echo "dssssss";
         
         $query="INSERT INTO food_post (F_post_id,FSid,ad_title,description,address,location,type,rating,orderingtimedeadline,lifespan,post_amount,image)
-        VALUES(null,'{$fid},'{$resName}','{$description}','{$address}','{$location}','{$type}',1,'{$otDeadline}','{$Lifespan}','{$Aamount}','{$upload_to}{$image_name}')";
+        VALUES(null,'{$fid}','{$resName}','{$description}','{$address}','{$location}','{$type}',1,'{$otDeadline}','{$Lifespan}','{$Aamount}','{$upload_to}{$image_name}')";
         $result=mysqli_query($connection,$query);
 
         if($result){

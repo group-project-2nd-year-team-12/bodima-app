@@ -18,10 +18,10 @@
     <div class="grid-items">
         <h3>About Us</h3>
         <ul>
-            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Anuki alwis</li>
-            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Ishan resmika</li>
-            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Ludo</li>
-            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Amal lakshan</li>
+            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Anuki Rlwis</li>
+            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Ishan Resmika</li>
+            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Nimasha Supunpraba</li>
+            <li><i style="color: blue;" class="fa fa-user fa-lg"> </i>  Amal Lakshan</li>
         </ul>
     </div>
 
