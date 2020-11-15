@@ -53,6 +53,7 @@
                    <li onclick="window.location='../index.php'">Home page</li>
                   <li onclick="window.location='paymentFood_pending.php'">Pending Orders</li>
                   <li onclick="window.location='paymentFood_accept.php'">Accepted Orders</li>
+                  <li onclick="window.location='paymentFood_receving.php'">Receiving Order</li>
                   <li onclick="window.location='paymentFood_history.php'">Order History</li>
                   <li onclick="window.location='foodposts.php'">New Order</li>
               </ul>
@@ -63,8 +64,8 @@
                 <h3>Order history</h3>
                 <?php 
                 $email=$_SESSION['email'];
-                $ids_set=reg_user::getOrderById($connection,$email,3);
-                $order_pending=reg_user::getOrderAll($connection,$email,3);
+                $ids_set=reg_user::getOrderById($connection,$email,4);
+                $order_pending=reg_user::getOrderAll($connection,$email,4);
                 // print_r($order_pending);
                 // print_r($ids_set);
                 $ids=array();
@@ -128,6 +129,28 @@
         </div>
         </div>
     </div>
+    <?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?>
+    <div class="rating">
+    <form class="form-rate" action="" method="post">
+        <h2>Rate for order !</h2>
+        <div class="rate">
+            <input type="radio" name="rate" id="star1"><label for="star1"></label>
+            <input type="radio" name="rate" id="star2"><label for="star2"></label>
+            <input type="radio" name="rate" id="star3"><label for="star3"></label>
+            <input type="radio" name="rate" id="star4"><label for="star4"></label>
+            <input type="radio" name="rate" id="star5"><label for="star5"></label>
+        </div>
+        <h3>Unrate</h3>
+            <input type="text" placeholder="Title">
+            <textarea name="" id="" cols="5" rows="5" placeholder="Add commet"></textarea>
+            <div>
+                <button class="btn-rate" type="submit" >Submit</button>
+                <button class="btn-rate cancel-rate" type="button" >Cancel</button>
+            </div>
+        </form>
+    </div>
+    <?php } ?>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/order.js"></script>
 </html>

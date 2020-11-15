@@ -119,7 +119,7 @@ $errors=array(); //create empty array
         $id=$_SESSION['BOid'];
         echo $upload_to.$image_name;
         boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$upload_to,$connection);
-        header('Location:../views/profilepage.php');
+        header('Location:../views/myads_boardingowner.php');
 
     }else{
         header('Location:../views/postBoarding.php?'.http_build_query(array('param'=>$errors)));

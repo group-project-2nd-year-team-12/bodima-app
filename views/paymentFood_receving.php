@@ -64,8 +64,8 @@
                 <h3>Pending order</h3>
                 <?php 
                 $email=$_SESSION['email'];
-                $ids_set=reg_user::getOrderById($connection,$email,0);
-                $order_pending=reg_user::getOrderAll($connection,$email,0);
+                $ids_set=reg_user::getOrderById($connection,$email,3);
+                $order_pending=reg_user::getOrderAll($connection,$email,3);
                 $ids=array();
                 while($record=mysqli_fetch_assoc($ids_set))
                 {
@@ -91,19 +91,19 @@
                 }
                 ?>
                 <div class="box">
-                    <div class="resend wait">
-                        <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>This order will cancel 2H 30M</small></h4></div>
+                    <div class="resend receiving">
+                        <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
+                        <div class="letter"><h4>Your order is delivering <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span></h4></div>
                     </div>
                   <div class="details-box">
                     <div class="details">
                             <h2>Order Id :<span style="color:sienna;"><?php echo $id; ?></h2>
-                            <h4>Pay amount :<?php echo $total; ?></h4>
+                            <h4>Payed amount :<?php echo $total; ?></h4>
                         </div>
                         <div class="button-pay">
                             
-                            <h4>If you want cancel order. click the cancel order</h4>
-                            <button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id; ?>"' type="button" class="btn1 cancel"> Cancel Order</button>
+                            <h4>If your  order is received. Please Confirm </h4>
+                            <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id; ?>"'  type="button" class="btn1 "> Confirm </button>
                         </div>
                   </div>
                     

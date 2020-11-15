@@ -61,7 +61,8 @@
 
 				
 				<h3 class="name">Boarding Cover Image</h3 >
-				<input type="file" name="BCimage" id="BCimage"><br>
+				<input type="file" name="BCimage" id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg ><br>
+				
 
 				<!--<label for="">Boarding Images  </label><br>
 				<input type="file" name="Bimage{}" id="Bimage" multiple ><br><br>-->
@@ -82,7 +83,7 @@
 
 				
 				<h3 class="name">Person Count</h3 >
-				<input type="number"  name="Pcount" id="pcount" value="1"  >
+				<input type="number"  name="Pcount" id="pcount" value=1  >
 
 				
 				<h3 class="name">Cost Per Person For Month</h3 >
@@ -95,14 +96,14 @@
 				<div class="group">
 				<h3 class="name">Avertisement Lifespan (Days)</h3 >
 				
-				<input type="number"  name="Lifespan" id="lifespan" value="30"  class="control prc" >
+				<input type="number"  name="Lifespan" id="lifespan" value=30  class="control prc" >
 				</div>
 				
 				<div class="group">
 				
 				<h3 class="name">Avertisement Amount :     Rs  </h3 >
 				<!-- <output  name="result" id="result"></output>   -->
-				<input type="text"  disabled  name="Aamount" id="Aamount"  ><br><br>
+				<input type="text"  disabled  name="Aamount" id="Aamount" value=3000 ><br><br>
 				</div>
 					
 				<br>
