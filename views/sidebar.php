@@ -95,7 +95,7 @@
                               </li>';
 
                         echo '<li class="side_element">
-                                <a href="#"><i class="fas fa-arrow-circle-left"></i><span>My Ads</span></a>
+                                <a href="myads_foodsupplier.php"><i class="fas fa-arrow-circle-left"></i><span>My Ads</span></a>
                                </li>';
 
                         echo '<li class="side_element">
