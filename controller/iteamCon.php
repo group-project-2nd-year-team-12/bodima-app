@@ -74,10 +74,10 @@ if(isset($_POST['submit']))
 
         foodSupplierPost::addIteam($pName,$image_name,$breakfirst,$lunch,$dinner,$price,$connection);
 
+        header('Location:../views/myads_foodsupplier.php');
+        // print_r($_POST);
 
-        print_r($_POST);
-
-        print_r($_FILES);
+        // print_r($_FILES);
 
 
     }elseif($submit=='Add Iteam')

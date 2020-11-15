@@ -30,7 +30,14 @@ class profile_model{
        return mysqli_query($connection,$query);
     }
 
+    public static function f_postListByPerson($FSid,$connection)
+    {
+        $query="SELECT * FROM food_post 
+                WHERE FSid=$FSid
+                ORDER BY F_post_id desc;";
 
+       return mysqli_query($connection,$query);
+    }
 }
 
 

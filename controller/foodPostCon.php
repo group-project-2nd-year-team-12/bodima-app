@@ -2,7 +2,7 @@
     
     require_once ('../config/database.php');
     require_once ('../models/food_post.php');
-    
+    session_start ();
 
    
 
@@ -72,6 +72,7 @@ if(isset($_POST['submit'])){
 
         //echo $Hnumber;
         $fid=$_SESSION['FSid'];
+        echo $fid;
         foodSupplierPost::foodPost($fid,$resName,$address,$location,$description,$image_name,$type,$otDeadline,$Lifespan,$Aamount,$upload_to,$connection);
 //database post id 
         header('Location:../views/iteam.php');
