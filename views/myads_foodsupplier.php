@@ -64,7 +64,7 @@ session_start();
         <div class="post_cont">
 
         <?php
-        echo $FSid;
+        // echo $FSid;
          $result=profile_model::f_postListByPerson($FSid,$connection);
 
         while($row=mysqli_fetch_assoc($result)){
