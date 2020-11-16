@@ -128,12 +128,33 @@
         </div>
         <div class="section3">
             <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
-            <div class="section3-header">
+        </div>
+        <div class="section4">
+            <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
+            <div class="section4-header">
                <div>
-                 <h2>Bodima</h2>
-                 <h4>To find , To post , To delivery</h4>
+                 <h2>Search Boarding</h2>
+                 <h3>Services</h3>
+                 <div class="component">
+                     <div class="keymoney">
+                        <h1>Key Money <b style="color: blue;">P</b>ayment</h1>
+                        <img src="resource/img/find.svg" alt="">
+                        <p>Finding a bodim place hard for you. We are giving </p>
+                     </div>
+                     <div class="free">
+                        <h1>Monthly <b style="color: blue;">P</b>ayment</h1>
+                        <img src="resource/img/post.svg" alt="">
+                     </div>
+                     <div class="order">
+                        
+                        <h1>Order <b style="color: blue;">F</b>ood</h1>
+                        <img src="resource/img/delivery.svg" alt="">
+                     </div>
+                 </div>
                </div>
             </div>
+        </div>
+        <div class="section5">
         </div>
         <?php include '../bodima-app/views/footer.php' ?>
 </div>

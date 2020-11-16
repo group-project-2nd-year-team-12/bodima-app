@@ -27,6 +27,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
 }
 .nav-fixed{
     /* padding: 0 20px 0 0; */
@@ -367,9 +368,9 @@ a{
 .section1 >img{
      position: fixed;
      z-index: -1;
-     height: 600px;
+     height: 100vh;
      width: 100%;
-     top: 50px;
+     top: 0px;
      filter: brightness(0.3);
      background-attachment: fixed;
      overflow-x: hidden;
@@ -411,7 +412,7 @@ a{
 }
 /* section2 header */
 .section2{
-    height: 80vh;
+    height: 100vh;
     width: 100%;
     /* background-image: url(../img/hostel-img3.jpg);
     background-size: cover;
@@ -494,23 +495,28 @@ a{
 
 /* section 3 style  */
 .section3{
-    height: 80vh;
+    height: 100vh;
     width: 100%;
-    background-image: url(../img/hostel-img2.jpg);
+    background-image: url(../img/find2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     /* background-color: rgb(55, 0, 255); */
 }
-.section3-header{
+.section4{
+    height: 100vh;
+    width: 100%;
+}
+.section4-header{
     display: flex;
     height: 100%;
+    width: 100%;
     justify-content: space-around;
-    padding-top: 100px;
+    padding-top: 25px;
     text-align: center;
-    /* background-color: white; */
+    background-color: white;
 }
-.section3-header h4{
+.section4-header h4{
     opacity:1;
     color: rgb(27, 27, 35);
     font-weight: normal;
@@ -519,10 +525,51 @@ a{
     transform: translateY(50px);
     transition: 2s ease;
 }
-.section3-header h2{
+.section4-header h2{
     opacity:1;
     color:  rgb(27, 27, 35);
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
+}
+.section4-header>div{
+    width: 100%;
+}
+/* section4 animation */
+.free {
+    transform: translateY(-60px);
+    opacity: 0;
+    transition: 1s all ease-out;
+}
+.free-apper{
+    transform: translateY(0px)!important;
+    opacity: 1;
+}
+.keymoney {
+    transform: translate(400px, -60px);
+    opacity: 0;
+    transition: 1s all ease-out;
+}
+.keymoney-apper{
+    transform: translate(0px, 0px)!important;
+    opacity: 1;
+}
+.order {
+    transform: translate(-400px, -60px);
+    opacity: 0;
+    transition: 1s all ease-out;
+}
+.order-apper{
+    transform: translate(0px, 0px)!important;
+    opacity: 1;
+}
+
+.section5{
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/post1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-color: rgb(55, 0, 255); */
 }
