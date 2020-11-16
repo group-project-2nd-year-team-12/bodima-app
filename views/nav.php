@@ -40,11 +40,11 @@
                             <div class="line3"></div>
                         </div>
                 </div>
-                <li class=" nav_item "><a href="../index.php"><i class=" fa fa-home"></i>Home</a></li>
-                <li class="nav_item "><a href="boardings.php"><i class="fa fa-bed"></i> Boardings</a></li>
-                <li class="nav_item "><a href="foodposts.php"><i class="fas fa-hamburger"></i> Order Foods</a></li>
-                <li class="nav_item "><a href="../views/about.php "><i class="fa fa-address-card"></i> About us</a></li>
-                <li class="nav_item "><a href="../views/contact_us.php"><i class="fa fa-address-book"></i> Contact Us</a></li>
+                <li class="nav_item " onclick="window.location='../index.php'"><i class=" fa fa-home"></i>Home</li>
+                <li class="nav_item " onclick="window.location='boardings.php'"><i class="fa fa-bed"></i> Boardings</li>
+                <li class="nav_item " onclick="window.location='foodposts.php'"><i class="fas fa-hamburger"></i> Order Foods</li>
+                <li class="nav_item " onclick="window.location='about.php'"><i class="fa fa-address-card"></i> About us</li>
+                <li class="nav_item " onclick="window.location='contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
             </ul>
             <div class="slide-nav">
             <ul><?php if(isset($_SESSION['email'])){?> 
