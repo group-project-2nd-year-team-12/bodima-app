@@ -96,6 +96,7 @@
                <div>
                  <h2>Welcome to Bodima</h2>
                  <h4>Accomadation management system</h4>
+                <?php if(!isset($_SESSION['email'])){ ?> <button>Register</button><?php } ?>
                  <h3></h3>
                  <!-- <h1>To Search, To Find, To delivery</h1> -->
                  <!-- <h1>To Find,To Search,To Delivery</h1> -->
@@ -111,16 +112,21 @@
                      <div class="find">
                         <h1>To <b style="color: blue;">F</b>ind</h1>
                         <img src="resource/img/find.svg" alt="">
-                        <p>Finding a bodim place hard for you. We are giving </p>
+                        <p>Finding a boarding place hard for you. We are giving easy way to you find a boarding place </p>
+                        <p style="color: blue;cursor:pointer">read more</p>
                      </div>
                      <div class="boarding">
                         <h1>To <b style="color: blue;">P</b>ost</h1>
                         <img src="resource/img/post.svg" alt="">
+                        <p>Have you boarding with 0 incomig ? You want to turn it to incoming source. That is the place you need . Place your ads here. </p>
+                        <p style="color: blue;cursor:pointer"> read more</p>
                      </div>
                      <div class="delivery">
                         
                         <h1>To <b style="color: blue;">D</b>elivery</h1>
                         <img src="resource/img/delivery.svg" alt="">
+                        <p> Have you resturent , Can you delivery orders for customer. Can you win customer trust. You can post our system</p>
+                        <p style="color: blue;cursor:pointer">read more</p>
                      </div>
                  </div>
                </div>
@@ -133,28 +139,86 @@
             <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
             <div class="section4-header">
                <div>
-                 <h2>Search Boarding</h2>
-                 <h3>Services</h3>
+                 <h2>SEARCH BOARDING</h2>
+                 <!-- <h3>Services</h3> -->
                  <div class="component">
                      <div class="keymoney">
                         <h1>Key Money <b style="color: blue;">P</b>ayment</h1>
-                        <img src="resource/img/find.svg" alt="">
-                        <p>Finding a bodim place hard for you. We are giving </p>
+                        <img src="resource/img/key.svg" alt="">
+                        <p>You can pay your key money in online . We provide that service for you. If you get a boarding place using this platform then you can use this feature </p>
                      </div>
                      <div class="free">
                         <h1>Monthly <b style="color: blue;">P</b>ayment</h1>
-                        <img src="resource/img/post.svg" alt="">
+                        <img src="resource/img/month.svg" alt="">
+                        <p>Also you can pay your month payment to boarding owner using this system. System will notified you in payment day. And you can see your payment history </p>
+                        <p></p>
                      </div>
                      <div class="order">
-                        
                         <h1>Order <b style="color: blue;">F</b>ood</h1>
-                        <img src="resource/img/delivery.svg" alt="">
+                        <img src="resource/img/order.svg" alt="">
+                        <p>Anuki <---------------</p>
                      </div>
                  </div>
                </div>
             </div>
         </div>
         <div class="section5">
+        </div>
+        <div class="section6">
+            <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
+            <div class="section6-header">
+               <div>
+                 <h2>POST YOUR PLACE</h2>
+                 <!-- <h3>Services</h3> -->
+                 <div class="component">
+                     <div class="post">
+                        <h1>Post <b style="color: blue;">A</b>ds</h1>
+                        <img src="resource/img/ads.svg" alt="">
+                        <p>You can pay your key money in online . We provide that service for you. If you get a boarding place using this platform then you can use this feature </p>
+                     </div>
+                     <div class="boarder">
+                        <h1>Boarder <b style="color: blue;">M</b>anage</h1>
+                        <img src="resource/img/manage.svg" alt="">
+                        <p>Also you can pay your month payment to boarding owner using this system. System will notified you in payment day. And you can see your payment history </p>
+                        <p></p>
+                     </div>
+                     <div class="order-b">
+                        <h1>Order <b style="color: blue;">F</b>ood</h1>
+                        <img src="resource/img/order.svg" alt="">
+                        <p>Anuki <---------------</p>
+                     </div>
+                 </div>
+               </div>
+            </div>
+        </div>
+        <div class="section7">
+        </div>
+        <div class="section8">
+            <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
+            <div class="section8-header">
+               <div>
+                 <h2>POST YOUR RESTURENT</h2>
+                 <!-- <h3>Services</h3> -->
+                 <div class="component">
+                     <div class="post-a">
+                        <h1>Post <b style="color: blue;">A</b>ds</h1>
+                        <img src="resource/img/ads.svg" alt="">
+                        <p>You can pay your key money in online . We provide that service for you. If you get a boarding place using this platform then you can use this feature </p>
+                     </div>
+                     <div class="get">
+                        <h1>Get <b style="color: blue;">O</b>rders</h1>
+                        <img src="resource/img/item.svg" alt="">
+                        <p>Also you can pay your month payment to boarding owner using this system. System will notified you in payment day. And you can see your payment history </p>
+                        <p></p>
+                     </div>
+                     <div class="grow">
+                        <h1>Grow Your <b style="color: blue;">B</b>usiness</h1>
+                        <img src="resource/img/grow.svg" alt="">
+                        <p>Anuki <---------------</p>
+                     </div>
+                 </div>
+               </div>
+            </div>
         </div>
         <?php include '../bodima-app/views/footer.php' ?>
 </div>
