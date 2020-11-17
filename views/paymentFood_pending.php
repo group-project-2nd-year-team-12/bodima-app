@@ -93,7 +93,7 @@
                 <div class="box">
                     <div class="resend wait">
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>This order will cancel 2H 30M</small></h4></div>
+                        <div class="letter"><h4>Your order is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small><b id="countdown"></b> This order will cancel </small></h4></div>
                     </div>
                   <div class="details-box">
                     <div class="details">
@@ -133,4 +133,5 @@
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="..resource/js/timing.js"></script>
 </html>

@@ -32,7 +32,7 @@
     <a href="index.php"><i class="fab fa-linkedin-in fa-2x"></i></a>
     <a href="index.php"><i class="fab fa-facebook-f fa-2x"></i></a>
     <a href="index.php"><i class="fab fa-twitter fa-2x"></i></a>
-    <a href="index.php"><i class="fab fa-whatsapp fa-2x"></i></a>
+<a href="index.php"><i class="fab fa-whatsapp fa-2x"></i></a>
    </div>
 </div>
 <div class="copyright">
