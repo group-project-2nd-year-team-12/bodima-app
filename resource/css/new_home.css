@@ -70,9 +70,10 @@ p{
     background-color: rgb(66, 69, 67);
     color: rgb(255, 255, 255);
 }
-.user{
+.user h4{
     padding-right: 10px;
-    color: #1a1a1a;
+    color:#fcc709;
+    font-weight: 400 !important;
     padding-left: 5px;
 }
 
@@ -446,7 +447,7 @@ span.fade{
     justify-content: space-around;
     padding-top: 25px;
     text-align: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 .section2-header h4{
     opacity:1;
@@ -459,7 +460,8 @@ span.fade{
 }
 .section2-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    /* color:  rgb(27, 27, 35); */
+    color: blue;
     font-family: 'Patrick Hand', cursive;
     font-size: 70px;
     transition: 2.5s ease;
@@ -550,7 +552,7 @@ span.fade{
 }
 .section4-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    color:  rgb(0, 0, 255);
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
@@ -617,7 +619,7 @@ span.fade{
 }
 .section6-header h4{
     opacity:1;
-    color: rgb(27, 27, 35);
+    color: rgb(0, 0, 255);
     font-weight: normal;
     font-size: 18px;
     transform: translateY(50px);
@@ -625,7 +627,7 @@ span.fade{
 }
 .section6-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    color:  rgb(0, 4, 255);
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
@@ -691,7 +693,7 @@ span.fade{
 }
 .section8-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    color:  rgb(0, 0, 255);
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;

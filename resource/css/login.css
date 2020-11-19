@@ -12,6 +12,7 @@ body {
      background-image: url('../img/login4.jpg');
     background-repeat: no-repeat;
     background-position: left bottom;
+    background-attachment: fixed;
    
 }
 .image {
@@ -40,7 +41,7 @@ body {
     text-align: center;
 }
 .para h1{
-    font-family: 'Patrick Hand', cursive;
+    /* font-family: 'Patrick Hand', cursive; */
     font-size: 50px;
     border-bottom: 2px solid black;
     color: rgb(22, 22, 23);
