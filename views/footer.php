@@ -3,7 +3,7 @@
 <div class="grid-container">
     <div class="grid-items">
     <h3>Project Bodima</h3>
-    <p>
+    <p style="color:  rgb(180, 180, 180) ;font-weight:400;font-size:16px">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi ab sed recusandae possimus adipisci nobis reiciendis dicta placeat? Eos.
     </p>
     </div>

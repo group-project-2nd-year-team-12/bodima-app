@@ -24,30 +24,21 @@ a{
     text-decoration: none;
     color: #fcc709;
 }
-.nav-fixed{
-    /* padding: 0 20px 0 0; */
-    background-color: rgb(255, 255, 255)!important; 
-    top: 0;
-    position: fixed ;
-    right: 0;
-    left: 0;
-    z-index: 100000;
-    transition: 0.9s;
-    border-top: 1px solid rgb(215, 215, 215);
-    /* border-bottom: 1px solid rgb(215, 215, 215); */
-}
+
 .nav{
-    position: sticky !important;
-    /* padding: 0 20px 0 0; */
+    position: sticky ;
+    top: 0;
     background-color: rgb(255, 255, 255);
     transition: 0.9s;
     z-index: 1;
     display: flex;
     z-index: 100000;
+    width: 100%;
     justify-content: space-between;
     border-top: 1px solid rgb(215, 215, 215);
-    /* border-bottom: 1px solid rgb(215, 215, 215); */
 }
+
+
 .sign{
     display: flex;
     align-items: center;
@@ -88,7 +79,7 @@ a{
     border-bottom: 2px solid rgb(255, 255, 255);
     font-weight: 500;
 }
-.nav_item:hover{
+.nav_item:hover,.nav_item:active{
  border-bottom: 2px solid black;
  color: rgb(0, 77, 255);
 }

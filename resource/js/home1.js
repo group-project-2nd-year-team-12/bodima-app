@@ -22,21 +22,19 @@ document.querySelector('.burger').addEventListener('click',(e)=>
     document.querySelector('.burger').classList.toggle('rot');
 })
 
-function fixedTop(){
+function slide(){
     var height=$('.header').height();
     $(window).scroll(function(){
         if($(this).scrollTop()> height){
-         $('.nav').addClass('nav-fixed');
          $('.slide-nav-animate').addClass('slide-nav-after');
  
         }else{
-         $('.nav').removeClass('nav-fixed');
          $('.slide-nav-animate').removeClass('slide-nav-after');
         //  console.log(height);
         }
     });
  }
- window.addEventListener('scroll',fixedTop);
+ window.addEventListener('scroll',slide);
 
 
 

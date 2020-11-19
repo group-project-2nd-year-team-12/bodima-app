@@ -1,4 +1,4 @@
-<div class="container" id="container">
+
         <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
@@ -77,6 +77,3 @@
                 <?php } ?>
                 </ul>
         </div>
-        </div>
-
-        <!-- <b style="color: rgb(13, 13, 189)">B</b>odima -->
