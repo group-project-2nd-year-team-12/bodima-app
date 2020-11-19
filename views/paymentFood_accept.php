@@ -94,7 +94,7 @@
                 <div class="box">
                 <div class="resend">
                         <div class="right"><i class="fa fa-check fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is accepted <small >This order will cancel 2H 30M</small></h4></div>
+                        <div class="letter"><h4>Your order is accepted <small ><b style="color: red;" id="countdown"></b> This order will cancel </small></h4></div>
                     </div>
                   <div class="details-box">
                          <div class="details">
@@ -149,4 +149,5 @@
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/timing.js"></script>
 </html>
