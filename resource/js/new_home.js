@@ -1,23 +1,47 @@
 window.addEventListener('load',(e)=>{
-    document.querySelector('.section1-header h2').style.opacity=1;
-    document.querySelector('.section1-header h4').classList.add('section1-apper');
-})
-
-function fixedTop(){
-    var height=$('.header').height();
-    $(window).scroll(function(){
-        if($(this).scrollTop()> height){
-         $('.nav').addClass('nav-fixed');
-         $('.slide-nav-animate').addClass('slide-nav-after');
- 
-        }else{
-         $('.nav').removeClass('nav-fixed');
-         $('.slide-nav-animate').removeClass('slide-nav-after');
-        //  console.log(height);
+    const text=document.querySelector('.section1-header h2');  // text tag eka gaththa 
+    const starText=text.textContent;       // eke thina 
+    const splitText=starText.split("");
+    // console.log(splitText);
+    text.textContent="";
+    for(let i=0;i<splitText.length;i++){
+        text.innerHTML+="<span>"+splitText[i]+"</span>";
+    }
+    let char =0;
+    let timer = setInterval(onTick,50);
+    function onTick(){
+        const span=text.querySelectorAll("span")[char];
+        span.classList.add("fade");
+        console.log(span);
+        char++;
+        if(char===splitText.length){
+            complete();
+            return;
         }
-    });
- }
- window.addEventListener('scroll',fixedTop);
+
+    }
+    function complete(){
+        clearInterval(timer);
+        timer=null;
+    }
+    document.querySelector('.section1-header h4').classList.add('section1-apper');
+});
+
+// function fixedTop(){
+//     var height=$('.header').height();
+//     $(window).scroll(function(){
+//         if($(this).scrollTop()> height){
+//          $('.nav').addClass('nav-fixed');
+//          $('.slide-nav-animate').addClass('slide-nav-after');
+ 
+//         }else{
+//          $('.nav').removeClass('nav-fixed');
+//          $('.slide-nav-animate').removeClass('slide-nav-after');
+//         //  console.log(height);
+//         }
+//     });
+//  }
+//  window.addEventListener('scroll',fixedTop);
 // window.addEventListener('scroll',(e)=>{
 //     const sec1=document.querySelector('.section1-header h4');
 // })
