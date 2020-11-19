@@ -23,14 +23,14 @@ class foodSupplierPost{
 
 
 
-    public static function addIteam($pName,$image_name,$breakfirst,$lunch,$dinner,$price,$connection){
+    public static function addIteam($fid,$foodPostId,$pName,$image_name,$upload_to,$breakfirst,$lunch,$dinner,$price,$connection){
         //$hh=$resName;
         //echo $hh;
         //echo $individual;
         //echo "dssssss";
         
         $query="INSERT INTO product (id,FSid,F_post_id,product_name,image,price,breakfast,lunch,dinner)
-        VALUES(null,1,4,'{$pName}','{$image_name}','{$price}','{$breakfirst}','{$lunch}','{$dinner}')";
+        VALUES(null,'{$fid}','{$foodPostId}','{$pName}','{$upload_to}{$image_name}','{$price}','{$breakfirst}','{$lunch}','{$dinner}')";
         $result=mysqli_query($connection,$query);
         
         if($result){
@@ -38,6 +38,25 @@ class foodSupplierPost{
         }else{
             echo "Unsucessfull";
         }
+    }
+
+
+    public static function getFoodPostId($FSid,$connection)
+    {
+        $query="SELECT F_post_id FROM food_post 
+                WHERE FSid=$FSid
+                ORDER BY F_post_id desc LIMIT 1;";
+
+
+       $result= mysqli_query($connection,$query);
+
+        if($result){
+            echo "Sucessfull";
+        }else{
+            echo "Unsucessfull";
+        }
+
+        return $result;
     }
 }
 
