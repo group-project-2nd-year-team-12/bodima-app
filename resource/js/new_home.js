@@ -3,21 +3,21 @@ window.addEventListener('load',(e)=>{
     document.querySelector('.section1-header h4').classList.add('section1-apper');
 })
 
-function fixedTop(){
-    var height=$('.header').height();
-    $(window).scroll(function(){
-        if($(this).scrollTop()> height){
-         $('.nav').addClass('nav-fixed');
-         $('.slide-nav-animate').addClass('slide-nav-after');
+// function fixedTop(){
+//     var height=$('.header').height();
+//     $(window).scroll(function(){
+//         if($(this).scrollTop()> height){
+//          $('.nav').addClass('nav-fixed');
+//          $('.slide-nav-animate').addClass('slide-nav-after');
  
-        }else{
-         $('.nav').removeClass('nav-fixed');
-         $('.slide-nav-animate').removeClass('slide-nav-after');
-        //  console.log(height);
-        }
-    });
- }
- window.addEventListener('scroll',fixedTop);
+//         }else{
+//          $('.nav').removeClass('nav-fixed');
+//          $('.slide-nav-animate').removeClass('slide-nav-after');
+//         //  console.log(height);
+//         }
+//     });
+//  }
+//  window.addEventListener('scroll',fixedTop);
 // window.addEventListener('scroll',(e)=>{
 //     const sec1=document.querySelector('.section1-header h4');
 // })

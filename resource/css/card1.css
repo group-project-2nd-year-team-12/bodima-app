@@ -12,18 +12,6 @@ body{
   background-position: fixed;
   overflow-x: hidden;
 }
-.nav{
-  background-color: rgba(48, 48, 48, 0.674);
-}
-.nav ul li:hover{
-  background-color: rgb(54, 63, 60);
-}
-.nav_item a{
-  color: rgb(2, 203, 116);
-}
-.header{
-  background-color: transparent;
-}
 .catogory{
   margin-top: 30px;
   padding: 0 30px;

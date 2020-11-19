@@ -23,20 +23,6 @@ body{
     /* background-color: tomato; */
 
 }
-.nav{
-    background: linear-gradient(to right,white,rgba(255, 255, 255, 0.633));
-}
-.nav_item:hover{
-    background-color: rgba(37, 38, 38, 0.694);
-}
-.nav_item a{
-    width: 100%;
-    color: black;
-}
-.nav_item a:hover{
-    background-color: transparent;
-    color: rgb(211, 211, 211);
-}
 .item-contact{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
