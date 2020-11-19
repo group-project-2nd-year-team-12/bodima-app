@@ -2,6 +2,7 @@
     
     require_once ('../config/database.php');
     require_once ('../models/food_post.php');
+    session_start();
     
 
    
@@ -72,7 +73,16 @@ if(isset($_POST['submit']))
 
         //echo $Hnumber;
 
-        foodSupplierPost::addIteam($pName,$image_name,$breakfirst,$lunch,$dinner,$price,$connection);
+        $fid=$_SESSION['FSid'];
+        echo $fid;
+        $result_set=foodSupplierPost::getFoodPostId($fid,$connection);
+        $result_food=mysqli_fetch_assoc($result_set);
+        $foodPostId=$result_food['F_post_id'];
+        echo $foodPostId;
+
+
+
+        foodSupplierPost::addIteam($fid,$foodPostId,$pName,$image_name,$upload_to,$breakfirst,$lunch,$dinner,$price,$connection);
 
         header('Location:../views/profilepage.php');
         // print_r($_POST);
@@ -85,7 +95,7 @@ if(isset($_POST['submit']))
 
 
                         
-        $pName=$_POST['pName'];
+        $pName=$_POST['../resource/Images/uploaded_foodpost/'];
                 
 
         $image_name=$_FILES['pimage']['name'];
@@ -107,7 +117,17 @@ if(isset($_POST['submit']))
 
         //echo $Hnumber;
 
-        foodSupplierPost::addIteam($pName,$image_name,$breakfirst,$lunch,$dinner,$price,$connection);
+        $fid=$_SESSION['FSid'];
+        echo $fid;
+        $result_set=foodSupplierPost::getFoodPostId($fid,$connection);
+        $result_food=mysqli_fetch_assoc($result_set);
+        $foodPostId=$result_food['F_post_id'];
+        echo $foodPostId;
+
+
+
+
+        foodSupplierPost::addIteam($fid,$foodPostId,$pName,$image_name,$upload_to,$breakfirst,$lunch,$dinner,$price,$connection);
 
 
 
