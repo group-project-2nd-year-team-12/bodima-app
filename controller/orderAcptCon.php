@@ -22,7 +22,7 @@ if(isset($_POST['accept']))
    $first_name=$_POST['first_name'];
    $last_name=$_POST['last_name'];
    $result=orderModel::accept($order_id,$connection);
-   sentAccept($email,$first_name,$address,$total);
+   // sentAccept($email,$first_name,$address,$total);
    header('Location:../views/orders.php');
 }
 ?>

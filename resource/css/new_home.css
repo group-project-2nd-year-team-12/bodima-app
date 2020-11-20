@@ -31,18 +31,7 @@ p{
     justify-content: space-between;
     align-items: center;
     background-color: white;
-}
-.nav-fixed{
-    /* padding: 0 20px 0 0; */
-    background-color: rgb(255, 255, 255)!important; 
-    top: 0;
-    position: fixed;
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    transition: 0.9s;
-    border-top: 1px solid rgb(215, 215, 215);
-    /* border-bottom: 1px solid rgb(215, 215, 215); */
+  
 }
 .nav{
     position: sticky;
@@ -50,7 +39,9 @@ p{
     background-color: rgb(255, 255, 255);
     transition: 0.9s;
     z-index: 1;
+    top: 0;
     display: flex;
+    z-index: 1000;
     justify-content: space-between;
     border-top: 1px solid rgb(215, 215, 215);
     /* border-bottom: 1px solid rgb(215, 215, 215); */
@@ -64,6 +55,7 @@ p{
     /* background-color:  rgb(205, 42, 42); */
 }
 .sign button{
+    font-family: 'Poppins', sans-serif;
     padding: 7px 10px;
     border: none;
     border-radius: 4px;
@@ -78,9 +70,10 @@ p{
     background-color: rgb(66, 69, 67);
     color: rgb(255, 255, 255);
 }
-.user{
+.user h4{
     padding-right: 10px;
-    color: #1a1a1a;
+    color:#fcc709;
+    font-weight: 400 !important;
     padding-left: 5px;
 }
 
@@ -192,12 +185,13 @@ p{
 }
 
 .nav-sign {
-    color: black !important;
+    color: rgb(255, 255, 255) !important;
     width: 80;
     border-radius: 20px;
-    background-color: white;
+    background-color: rgb(0, 0, 0);
     margin: 0 20px;
     cursor: pointer;
+    font-weight: normal;
 }
 
 .slide-nav h4{
@@ -320,7 +314,7 @@ p{
 .grid-items{
     width: 100%;
     padding: 10px;
-    color: rgb(221, 221, 221);
+    color: rgb(221, 221, 221) ;
 }
 .grid-items h3{
     color: white;
@@ -386,22 +380,34 @@ p{
     text-align: center;
 }
 .section1-header h2{
-    opacity:0;
+    /* opacity:0; */
     color: white;
     font-family: 'Patrick Hand', cursive;
     font-size: 70px;
     transition: 2.5s ease;
 }
+span.fade{
+    opacity: 1 !important;
+}
+.section1-header h2 span{
+    opacity: 0;
+    transition: all 1s ease;
+}
+
 .section1-header button{
     padding: 10px 30px;
     margin-top: 40px;
-    border: 1px solid rgb(255, 255, 255);
+    /* border: 1px solid rgb(255, 255, 255); */
+    border: none;
     outline: none;
     font-size: 18px;
     border-radius: 50px;
     cursor: pointer;
-    background-color: white;
+    color: white;
+    background-color: blue;
+    transition: 0.5s ;
 }
+
 .section1-apper{
     opacity:1!important;
     transform: translateY(0px)!important;
@@ -441,7 +447,7 @@ p{
     justify-content: space-around;
     padding-top: 25px;
     text-align: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 .section2-header h4{
     opacity:1;
@@ -454,7 +460,8 @@ p{
 }
 .section2-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    /* color:  rgb(27, 27, 35); */
+    color: blue;
     font-family: 'Patrick Hand', cursive;
     font-size: 70px;
     transition: 2.5s ease;
@@ -545,7 +552,7 @@ p{
 }
 .section4-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    color:  rgb(0, 0, 255);
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
@@ -612,7 +619,7 @@ p{
 }
 .section6-header h4{
     opacity:1;
-    color: rgb(27, 27, 35);
+    color: rgb(0, 0, 255);
     font-weight: normal;
     font-size: 18px;
     transform: translateY(50px);
@@ -620,7 +627,7 @@ p{
 }
 .section6-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    color:  rgb(0, 4, 255);
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
@@ -686,7 +693,7 @@ p{
 }
 .section8-header h2{
     opacity:1;
-    color:  rgb(27, 27, 35);
+    color:  rgb(0, 0, 255);
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
