@@ -1,57 +1,41 @@
 window.addEventListener('load',(e)=>{
-    const text=document.querySelector('.section1-header h2');  // text tag eka gaththa 
-    const starText=text.textContent;       // eke thina 
-    const splitText=starText.split("");
+    const text=document.querySelector('.section1-header h2');  // get text tag
+    const starText=text.textContent;           //only get sentence 
+    const splitText=starText.split("");   // split each letter w
     // console.log(splitText);
-    text.textContent="";
+    text.textContent="";  // text tag eka empty karanawa
     for(let i=0;i<splitText.length;i++){
-        text.innerHTML+="<span>"+splitText[i]+"</span>";
+        if(i%4==0)        // every letter put to span tag
+        text.innerHTML+="<span style='color:#0057e7'>"+splitText[i]+"</span>";
+        if(i%4==1)        // every letter put to span tag
+        text.innerHTML+="<span style='color:blueviolet'>"+splitText[i]+"</span>";
+        if(i%4==2)        // every letter put to span tag
+        text.innerHTML+="<span style='color:#ffa700'>"+splitText[i]+"</span>";
+        if(i%4==3)        // every letter put to span tag
+        text.innerHTML+="<span style='color:#008744'>"+splitText[i]+"</span>";
     }
     let char =0;
-    let timer = setInterval(onTick,50);
+    let timer = setInterval(onTick,50);  // set time 
     function onTick(){
-        const span=text.querySelectorAll("span")[char];
+        const span=text.querySelectorAll("span")[char];   // every span tag add class fade
         span.classList.add("fade");
         console.log(span);
         char++;
-        if(char===splitText.length){
+        if(char===splitText.length){         // after the every letter add 'fade' then terminate the process
             complete();
             return;
         }
 
     }
-    function complete(){
+    function complete(){        // time clear function
         clearInterval(timer);
         timer=null;
     }
-    document.querySelector('.section1-header h4').classList.add('section1-apper');
+    document.querySelector('.section1-header h4').classList.add('section1-apper');   
 });
 
-// function fixedTop(){
-//     var height=$('.header').height();
-//     $(window).scroll(function(){
-//         if($(this).scrollTop()> height){
-//          $('.nav').addClass('nav-fixed');
-//          $('.slide-nav-animate').addClass('slide-nav-after');
- 
-//         }else{
-//          $('.nav').removeClass('nav-fixed');
-//          $('.slide-nav-animate').removeClass('slide-nav-after');
-//         //  console.log(height);
-//         }
-//     });
-//  }
-//  window.addEventListener('scroll',fixedTop);
-// window.addEventListener('scroll',(e)=>{
-//     const sec1=document.querySelector('.section1-header h4');
-// })
-// $(document).ready(function() { 
 
-//     $("html").niceScroll();
 
-//   }
-
-// );
 function scrollimg1(){
     var introText=document.querySelector('.section2');
     var introPosition=introText.getBoundingClientRect().top;
