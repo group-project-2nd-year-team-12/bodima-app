@@ -1,4 +1,8 @@
-<?php session_start();?>
+<?php   require_once ('../config/database.php');
+        require_once ('../models/advertisement_model.php');
+        session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +20,7 @@
 <div class="page_boarding">
    
 <?php include 'nav.php' ?>
+
 
     <div class="box_outer">
         <div class="col-7 main">
@@ -77,12 +82,9 @@
                     </div>
             </div>
         </div>
+</div>
 
 
-
-
-
-    </div>
 <?php include 'footer.php' ?>
 </div>
 </body>
