@@ -74,9 +74,11 @@ body{
 }
 
 
-img{
+.inner_img img{
     
-    height:150px;
+    width: 220px; /* width of container */
+    height: 150px; /* height of container */
+    overflow: hidden;
 }
 
 .img_th{
