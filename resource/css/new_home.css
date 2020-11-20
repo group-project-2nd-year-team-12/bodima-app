@@ -4,7 +4,7 @@
 * {
     margin: 0;
     padding: 0;
-  
+    -webkit-font-smoothing:antialiased;
     /* overflow-x: hidden; */
     /* overflow-y: scroll; */
 }
@@ -30,20 +30,20 @@ p{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
   
 }
 .nav{
     position: sticky;
     /* padding: 0 20px 0 0; */
-    background-color: rgb(255, 255, 255);
     transition: 0.9s;
     z-index: 1;
     top: 0;
     display: flex;
     z-index: 1000;
     justify-content: space-between;
-    border-top: 1px solid rgb(215, 215, 215);
+    background-color: rgb(137, 43, 226);
+    /* border-top: 1px solid rgb(215, 215, 215); */
     /* border-bottom: 1px solid rgb(215, 215, 215); */
 }
 .sign{
@@ -71,24 +71,35 @@ p{
     color: rgb(255, 255, 255);
 }
 .user h4{
-    padding-right: 10px;
+    margin-right: 10px;
     color:#fcc709;
     font-weight: 400 !important;
-    padding-left: 5px;
+    margin-left: 5px;
 }
+
 
 .fa-user-circle{
     color:#313c36!important;
+    display: inline-block;
+    /* margin-right: 5px; */
+    /* padding: 8px; */
+    /* width: 8px; */
+    height: 8px;
 }
 .fa-user-circle:hover{
     color:#42574c!important;
+    background-color: rgb(230, 236, 236);
+    border-radius: 50px;
 }
 .notification{
     color: rgb(56, 60, 63);
-    padding-right:15px ;
+    margin-right:5px ;
+    padding: 8px;
 }
 .notification:hover{
     color: rgb(48, 47, 55);
+    background-color: rgb(230, 236, 236);
+    border-radius: 50px;
     cursor: pointer;
 }
 
@@ -107,13 +118,14 @@ p{
     padding: 20px 0;
     /* text-transform: uppercase; */
     transition: 0.3s all ease-in;
-    color: rgb(6, 6, 6);
-    border-bottom: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    /* border-bottom: 2px solid rgb(255, 255, 255); */
     font-weight: 500;
 }
 .nav_item:hover{
- border-bottom: 2px solid black;
- color: rgb(0, 77, 255);
+ /* border-bottom: 2px solid black; */
+ color: rgb(137, 43, 226);
+ background-color: rgb(255, 255, 255);
 }
 .notification-box {
     display: none;
@@ -207,7 +219,8 @@ p{
       top: 65px;
       width: 200px;
       height: 90vh;
-      background-color:  rgb(255, 255, 255);
+      bottom: 0;
+      background-color: blueviolet;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -222,7 +235,7 @@ p{
       left: 0;
       top: 65px;
       width: 200px;
-      height: 90vh;
+      height: 100vh;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -230,37 +243,39 @@ p{
       align-items: center;
       transition: 0.9s ;
       transform: translateX(0px);
-      border-right: 1px solid rgb(223, 214, 214);
       font-weight: 800;
   }
   
   
   .slide-nav ul li{
       padding: 30px 0;
-      color: rgb(7, 7, 7);
+      color: rgb(255, 255, 255);
       cursor: pointer;
       font-weight: 800;
       opacity: 0;
+      width: 150px;
   }
   .slide-nav-animate ul li{
       padding: 30px 0;
-      color: rgb(0, 0, 0);
-      transition: 0.5s;
+      color: rgb(255, 255, 255);
+      /* transition: 0.5s; */
       font-weight: 800;
       opacity: 0;
+      width: 150px;
   }
   .slide-nav-animate ul li:hover{
-      color: rgb(27, 46, 255);
+      color: blueviolet;
+      background-color: white;
       /* font-size: x-large; */
+      border-radius: 5px 25%;
       font-weight: 800;
-      padding: 30px 0;
   }
   
   .slide-nav-after{
       left: 0;
       top:65px;
       height: 100vh;
-      background-color:  rgb(255, 255, 255);
+      background-color: blueviolet;
       transition: 0.9s;
       z-index: 100000;
       font-weight: 800;
@@ -269,24 +284,30 @@ p{
   
   
   .burger{
-      background-color: rgb(255, 255, 255);
+      /* background-color: rgb(209, 57, 57); */
     display:inline-flex;
       /* width: 200px;    */
-      padding: 22px 88px;
+      margin: 22px 88px;
       /* margin: 0 86px; */
+      cursor: pointer;
+      /* padding: 5px; */
       
   }
   .burger >div >div{
       padding: 1.5px;
       margin-bottom: 4px;
-      background-color:rgb(0, 0, 0);
+      background-color:rgb(255, 255, 255);
+      border-radius: 5px;
       width: 20px;  
       transition: all 0.5s ease;
+      
+  }
+  .burger >div{
+      /* padding: 7px; */
+      border-radius: 50%;
+      border-collapse: collapse;
   }
   
-  .burger >div :hover{
-      background-color: white;
-  }
   .grid-container {
       width: 100%;
       overflow-x: hidden;
@@ -404,7 +425,7 @@ span.fade{
     border-radius: 50px;
     cursor: pointer;
     color: white;
-    background-color: blue;
+    background-color: #0e72ed;
     transition: 0.5s ;
 }
 
@@ -414,7 +435,7 @@ span.fade{
     transition: 0.4s ease;
 }
 .section1-header h4{
-    opacity:0;
+    /* opacity:0; */
     color: rgb(217, 217, 218);
     font-weight: normal;
     font-size: 18px;
