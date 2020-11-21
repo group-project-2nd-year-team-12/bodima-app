@@ -11,7 +11,15 @@
 </head>
 <body class="boarding">
 
-	<div class="postBoarding"><h1>Post On Your Site</h1></div><!-- postBoarding -->
+	<div class="sub-container" id="img-sub">
+				<div><img src="../resource/icons/boarder/boarding/Pay Rent.png" alt="logo" class="verticle-center" width=50 height=auto  /></div>
+		
+
+		<div class="postBoarding"><h1>Boarding Advertisement Form</h1></div><!-- postBoarding -->
+
+	</div>
+	
+
 		<div class=main>
 
 		<div class=error-post>
@@ -27,6 +35,10 @@
 			
 			?>
 		</div>
+
+
+
+			<div class="part1">
 	
 			<form action="../controller/postBoardingCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
 			<div id="name">
@@ -43,7 +55,7 @@
 
 				
 				<input class="city" type="text" name="city" id="city" >
-				<label class="cityLable" > City  </label>
+				<label class="cityLable" > City  </label><br>
 
 				
 				<input class="district" type="text" name="district" id="district"  >
@@ -57,32 +69,41 @@
 
 				<h3 class="name">Description </h3 >
 				<!--<input type="text" name="description" id="description" placeholder="Enter Description" ><br><br>-->
-				<textarea name="description" id="description" rows="5" cols="50"></textarea><br>
+				<textarea name="description" id="description" rows="3" cols="26"></textarea><br>
 
 				
-				<h3 class="name">Boarding Cover Image</h3 >
+				<h3 class="name">Boarding Cover Image</h3 ><br><br><br>
 				<input type="file" name="BCimage" id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg ><br>
 				
 
 				<!--<label for="">Boarding Images  </label><br>
 				<input type="file" name="Bimage{}" id="Bimage" multiple ><br><br>-->
+				
 			
-				<h3 class="name">Avertisement Type</h3 >
+				
+				</div>	
+
+			<div class="part2">
+
+
+			
+
+				<h3 class="name">Renting For Girls Or Boys</h3 >
+				<label class="radio">
+					<input type="radio" name="gender" value="Boys"> Boys
+					<input type="radio" name="gender" value="Girls"> Girls <br>
+				</label>
+			
+			<h3 class="name">Renting Options</h3 >
 				<label class="radio">
 					<input type="radio" name="individual" id="individual" value="Individual"><span id="individual" >&nbsp; Individual</span>&nbsp;&nbsp;
 					<input type="radio" name="individual" id="RoomOrHome" value="RoomOrHome"><span id="RomeOrHome" >&nbsp; Rome Or Home</span>&nbsp;&nbsp;<br>
 				</label>
 				
 
-				<h3 class="name">Gender</h3 >
-				<label class="radio">
-					<input type="radio" name="gender" value="Male"> Male
-					<input type="radio" name="gender" value="Female"> Female <br>
-				</label>
 				
-
-				
-				<h3 class="name">Person Count</h3 >
+			
+				<h3 class="name">Total Person Count</h3 >
 				<input type="number"  name="Pcount" id="pcount" value=1  >
 
 				
@@ -110,7 +131,7 @@
 				<label for="">&nbsp; </label><br>
 				<input type="submit" name="submit" id="submit" value="Save"  ><br>	<br><br>
 					
-				
+						
 				
 			
 
@@ -144,6 +165,8 @@
 			
 				
 			</form>
+
+			</div>
 
 		<div><!-- main -->
 </body>

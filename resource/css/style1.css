@@ -4,9 +4,7 @@
 }
 
 body.boarding {
-    /* background: rgb(2, 0, 36);
-    background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 0.8886905103838411) 26%, rgba(0, 138, 255, 0.7738445720084909) 100%); */
-    /* background-color: black; */
+    /*background: #0c0cb2; */
     background: rgb(9, 9, 121);
     background: linear-gradient(148deg, rgba(9, 9, 121, 0.8345623230666257) 0%, rgba(0, 212, 255, 0.8036634466621313) 100%);
     /* background-image: url(../img/boardingPost.jpg); */
@@ -30,9 +28,9 @@ body.food {
     width: 800px;
     /* margin-top: 1px; */
     /* background-color: rgb(217, 217, 217, 0.95); */
-    margin: auto;
-    color: black;
-    padding: 30px 0px 30px 0px;
+    /* margin: auto; */
+    color: rgb(252, 252, 252);
+    /* padding: 30px 0px 30px 0px; */
     text-align: center;
     border-radius: 15px 15px 0px 0px;
     font-size: 20px;
@@ -47,28 +45,31 @@ body.food {
 
 .main {
     background-color: white;
-    width: 1300px;
+    width: 1100px;
     margin: auto;
-    border-radius: 5px 5px 5px 5px;
-    /* border: 15px solid black; */
+    border-radius: 10px 10px 10px 10px;
+    /* border: 15px solid #06069e; */
     /* ////////////////// */
     height: auto;
     display: flex;
     margin: 0em auto;
     /* width: 50%; */
-    border: 15px solid black;
-    background-color: rgba(0, 0, 0, 0.50);
+    /* border: 15px solid black; */
+    background-color: rgb(253, 253, 253);
     background-size: cover;
+    background-image: none;
+    background-attachment: fixed;
     /* text-align: center; */
+    /* box-shadow: 1px 1px 15px 1px rgb(243, 243, 241); */
 }
 
 form {
-    padding: 100px;
+    padding: 0px;
 }
 
 #name {
     width: 100%;
-    height: 200px;
+    height: 250px;
     /* background-color: blue; */
 }
 
@@ -76,7 +77,7 @@ form {
     margin-left: 25px;
     margin-top: 25px;
     width: 220px;
-    color: white;
+    color: black;
     font-size: 15px;
     font-weight: 600;
     /* background-color: red; */
@@ -84,124 +85,129 @@ form {
 
 .hnumber {
     position: relative;
-    left: 250px;
+    width: 225px;
+    left: 150px;
     bottom: 30px;
-    line-height: 35px;
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    line-height: 35px;
+    border: 1.5px solid rgb(26, 155, 194);
     /* box-shadow: 9px 9px 16px #a3b1c699, -9px -9px 16px #ffffff80; */
 }
 
 .hLable {
     position: relative;
-    color: white;
+    color: black;
     text-transform: capitalize;
     font-size: 12px;
-    left: 24px;
+    left: -125px;
     top: 0px;
 }
 
 .lane {
     position: relative;
-    left: 250px;
+    left: 150px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 30px;
+    width: 225px;
 }
 
 .lLable {
     position: relative;
-    color: white;
+    color: black;
     text-transform: capitalize;
     font-size: 12px;
-    left: 24px;
+    left: -125px;
     top: 0px;
 }
 
 .city {
     position: relative;
-    left: 250px;
+    left: 150px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 30px;
+    width: 225px;
 }
 
 .cityLable {
     position: relative;
-    color: white;
+    color: black;
     text-transform: capitalize;
     font-size: 12px;
-    left: 24px;
+    left: -125px;
     top: 0px;
 }
 
 .district {
     position: relative;
-    left: 250px;
+    left: 150px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 30px;
+    width: 225px;
 }
 
 .lDis {
     position: relative;
-    color: white;
+    color: black;
     text-transform: capitalize;
     font-size: 12px;
-    left: 24px;
+    left: -125px;
     top: 0px;
 }
 
 #location {
     position: relative;
-    left: 250px;
+    left: 150px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 5px;
+    width: 225px;
 }
 
 #description {
     position: relative;
-    left: 250px;
+    left: 150px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 12px;
 }
 
-#BCimage {
-    position: relative;
-    left: 250px;
+input#BCimage {
+    left: 15px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
-    padding: 0 22px;
+    padding: 0px 22px;
     font-size: 15px;
-    border: 1px solid rgb(217, 217, 217, 0.9);
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 2px;
     border: none;
     box-shadow: none;
+    /* margin-left: 30px; */
 }
 
 .radio {
@@ -210,7 +216,8 @@ form {
     font-size: 15px;
     margin-left: 55px;
     margin-top: 15px;
-    color: white;
+    color: black;
+    /* border: 1.5px solid rgb(26, 155, 194); */
 }
 
 .radio input {
@@ -229,7 +236,7 @@ form {
     border-radius: 0px;
     padding: -1px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 9px;
     text-align: center;
     width: 40px;
@@ -243,8 +250,9 @@ form {
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 4px;
+    width: 225px;
 }
 
 #Keymoney {
@@ -255,8 +263,9 @@ form {
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 5px;
+    width: 225px;
 }
 
 #Aamount {
@@ -283,25 +292,27 @@ form {
     border-radius: 0px;
     padding: -1px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
+    border: 1.5px solid rgb(26, 155, 194);
     margin-top: 4px;
     text-align: center;
     width: 40px;
 }
 
 #submit {
-    width: 45%;
+    width: 70%;
+    height: 55px;
     padding: 15px 10px;
-    background: rgb(214, 214, 214);
-    border: 2px solid #121312;
-    border-radius: 25px;
-    color: #EB5758;
-    font-size: 15px;
+    background: rgb(9, 9, 121);
+    background: linear-gradient(148deg, rgba(9, 9, 121, 0.8345623230666257) 0%, rgba(0, 212, 255, 0.8036634466621313) 100%);
+    /* border: 2px solid #121312; */
+    border-radius: 5px;
+    color: black;
+    border: none;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
     box-shadow: -7px -7px 20px 0 #ffffffb3, 7px 7px 20px 0 #00000033;
-    margin-left: 200px;
+    margin-left: -20px;
 }
 
 #submit:hover {
@@ -409,8 +420,23 @@ input:hover {
 .sub-container {
     padding: 1em;
     width: 100%;
-    margin: 1em auto;
-    display: flex;
     align-items: center;
+    /* margin: 1em auto; */
+    display: flex;
+    box-sizing: border-box;
+    /* box-shadow: 1px 1px 10px 20px rgba(255, 255, 0, 0.705); */
     /* margin: 0px 50px 40px; */
+    justify-content: space-around;
+    padding: 20px 350px;
+}
+
+.part2 {
+    padding: 40px 40px 40px 40px;
+    /* margin-left: 10px; */
+    /* border-left: 1px solid blue; */
+}
+
+.part1 {
+    padding: 40px 40px 40px 40px;
+    /* margin-left: 10px; */
 }
