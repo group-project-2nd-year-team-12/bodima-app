@@ -20,16 +20,14 @@
                 <h1><small style="font-size: 14px; color:black;">   Solution for many problem</small></h1>
             </div>
             <div class="sign">
-                <?php if(!isset($_SESSION['email'])){echo '<a href="../controller/logingController.php?click1">Sign In <i class="fa fa-sign-in-alt"></i></a>';}?>
                 <?php if(isset($_SESSION['email'])){ 
-                    if($_SESSION['level']=='administrator'){echo '<a href="../controller/adminPanelCon.php?admin"> Dash Board &nbsp</a>'; }
                     ?>
 
                     <div class="notification">
                         <i class="fa fa-bell"></i>
                         <div class="notification-box" >
                             <ul>
-                                <li><i class="fas fa-times"></i></li>
+                                <li><i class="fas fa-times fa-2x"></i></li>
                                 <a href="#"><li>You have notification</li></a>
                                 <a href="#"><li>You have notification</li></a>
                                 <a href="#"><li>You have notification</li></a>
@@ -38,11 +36,11 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle"></a></i></div>
+                    <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
                 <?php
-                    echo '<div class="user">Hi '.$_SESSION['first_name'].'</div>'; 
-                    echo '<a href="../controller/logoutController.php">Sign out <i class="fa fa-sign-out-alt"></i></a>';}
-                ?> 
+                    echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; ?>
+                    <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
+                <?php } ?>
                 
             </div>
         </div>
@@ -131,7 +129,7 @@
                 ?>
             </div>
         </div>
-        <div class="more-details">
+        <!-- <div class="more-details">
                     <div class="more">
                         <h2>Order Details</h2>
                         <h3>Order Id : <span style="color: sienna;">1245685625</span></h3>
@@ -144,7 +142,7 @@
                             <li>3. fyed rice</li>
                         </ul>
                     </div>
-        </div>
+        </div> -->
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->

@@ -26,11 +26,11 @@ p{
 .header {
     /* border-top: 2px solid black; */
     padding-left: 20px;
-    padding-right: 20px;
+    /* padding-right: 20px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(255, 255, 255);
+    background:linear-gradient(to right,  rgb(22, 25, 73),rgb(39, 39, 107),rgb(48, 48, 121));
   
 }
 .nav{
@@ -49,10 +49,11 @@ p{
 .sign{
     display: flex;
     align-items: center;
-    padding: 5px 10px ;
-    border-radius: 5px;
+    padding: 2px 10px ;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     transition: 0.5s all ease-in;
-    /* background-color:  rgb(205, 42, 42); */
+    background-color:  rgb(255, 255, 255);
 }
 .sign button{
     font-family: 'Poppins', sans-serif;
@@ -94,7 +95,7 @@ p{
 .notification{
     color: rgb(56, 60, 63);
     margin-right:5px ;
-    padding: 8px;
+    /* padding: 8px; */
 }
 .notification:hover{
     color: rgb(48, 47, 55);
