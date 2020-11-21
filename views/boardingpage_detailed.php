@@ -1,4 +1,8 @@
-<?php session_start();?>
+<?php   require_once ('../config/database.php');
+        require_once ('../models/adertisement_model.php');
+        session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,26 +20,40 @@
 <div class="page_boarding">
    
 <?php include 'nav.php' ?>
+<?php
+$B_post_id=$_GET['id'];
+
+$boardingpost= advertisement_model::get_B_post_details_byId($B_post_id,$connection);
+$boardingpost_d=mysqli_fetch_assoc($boardingpost);
+// print_r($boardingpost_d);
+// echo " <br /><br />";
+
+$BOid=$boardingpost_d['BOid'];
+
+$boardingpost_owner=advertisement_model::get_B_post_owner_byId($BOid,$connection);
+$boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
+// print_r($boardingpost_owner_d);
+?>
 
     <div class="box_outer">
         <div class="col-7 main">
             <div class="inner_main">
-                <h2>GIRLS' BOARDING IN KOTTAWA</h2>
-                <span>posted by: Rohini Weerasinghe - Nov 19, 2020</span>
-                <img runat = 'server' src = '../resource/Images/uploaded_boarding/3.jpg' />
+                <h2><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h2>
+                <span>posted by: <?php echo $boardingpost_owner_d['first_name']?> <?php echo $boardingpost_owner_d['last_name']?> - Nov 19, 2020</span>
+                <img runat = 'server' src = '<?php echo $boardingpost_d['image']?>' />
                 <h4>Details</h4>
                 <hr />
                 <div class="details">
-                        <li>Category    : individual</li>
-                        <li>rent for    : girls</li>
-                        <li>Description : near to university of Moratuwa</li>
+                        <li>Category    : <?php echo $boardingpost_d['category']?></li>
+                        <li>rent for    : <?php echo $boardingpost_d['girlsBoys']?></li>
+                        <li>Description : <?php echo $boardingpost_d['description']?></li>
                 </div>
 
                 <h4>payment details</h4>
                 <hr />
                 <div class="details">
-                        <li>Monthly rental (per person)    : Rs. 6000</li>
-                        <li>keymoney    : Rs. 6000</li>
+                        <li>Monthly rental (per person)    : Rs. <?php echo $boardingpost_d['cost_per_person']?></li>
+                        <li>keymoney    : Rs. <?php echo $boardingpost_d['keymoney']?></li>
                         <li>extra details : food will not be provided<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         water and current bill will be included for rent</li>
@@ -45,12 +63,12 @@
         </div>
         <div class="col-5 right">
             <div class="inner_right">
-                <h2 class="price">Rs. 6,000</h2>
+                <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
                 <hr>
                     <div class="expandable">
                         <button class="collapsible">
                         <i class="fas fa-map-marked-alt"></i>
-                            44, Wijayawardhana Rd., Kottawa.</button>
+                        <span><?php echo $boardingpost_d['house_num']?></span>, <span><?php echo $boardingpost_d['lane']?></span>, <span><?php echo $boardingpost_d['city']?></span>.</button>
                         <div class="content">
                         
                         <div class="mapouter">
@@ -77,12 +95,9 @@
                     </div>
             </div>
         </div>
+</div>
 
 
-
-
-
-    </div>
 <?php include 'footer.php' ?>
 </div>
 </body>

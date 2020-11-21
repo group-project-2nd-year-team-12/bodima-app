@@ -94,7 +94,7 @@
             <img src="resource/img/hostel-img3.jpg" alt="">
             <div class="section1-header">
                <div>
-                 <h2>Welcome to Bodima</h2>
+                 <h2 >Welcome to Bodima</h2>
                  <h4>Accomadation management system</h4>
                 <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
                  <h3></h3>

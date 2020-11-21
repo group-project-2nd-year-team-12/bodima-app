@@ -16,6 +16,14 @@ body{
 }
 
 /* **************************************************************** */
+.box_outer{
+  background-color: rgba(238, 238, 238, 0.699);
+  width: 100%;
+  height: 1200px;
+  position: relative;
+  margin-bottom: auto;
+}
+
 * {
     box-sizing: border-box;
   }
@@ -48,13 +56,8 @@ body{
 /* *************************************************************** */
 
 
-.main{
-    /* background-color: yellow; */
-}
 
-.right{
-    /* background-color: green; */
-}
+
 
 .inner_main{
     background-color: rgb(252, 242, 225);
@@ -66,7 +69,7 @@ body{
 .inner_right{
     background-color:rgb(252, 242, 225);
     margin:30px;
-    margin-bottom: 700px;
+    /* margin-bottom: 700px; */
     padding:30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
 
@@ -84,6 +87,7 @@ body{
 
 .inner_main h2{
     padding-left:20px;
+    text-transform: uppercase;
 }
 
 .inner_main h4{
@@ -154,7 +158,6 @@ body{
 }
 
 .btn6request{
-    align: center;
     background-color: #4CAF50; /* Green */
     color:#4CAF50;
     padding:3px 10px 3px 10px;
@@ -180,7 +183,9 @@ textarea{
     
 }
 
-
+span{
+  text-transform: capitalize;
+}
 
 
 /* ********************************************* */

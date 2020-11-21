@@ -66,7 +66,7 @@ if(isset($_GET['Pid']))
                      <input type="hidden" name="Pid" value="<?php echo $fpid;?>">
                      <input type="hidden" name="name" value="<?php echo $_GET['name'];?>">
                      <input type="hidden" name="address" value="<?php echo $_GET['address'];?>">
-                     <p><button class="cart-num" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
+                     <p><button class="cart-num block1" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
                  </div>
                </form>
          </div>
@@ -104,7 +104,7 @@ if(isset($_GET['Pid']))
                      <input type="hidden" name="Pid" value="<?php echo $fpid;?>">
                      <input type="hidden" name="name" value="<?php echo $_GET['name'];?>">
                      <input type="hidden" name="address" value="<?php echo $_GET['address'];?>">
-                     <p><button class="cart-num" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
+                     <p><button class="cart-num block2" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
                  </div>
                </form>
          </div>
@@ -142,7 +142,7 @@ if(isset($_GET['Pid']))
                      <input type="hidden" name="Pid" value="<?php echo $fpid;?>">
                      <input type="hidden" name="name" value="<?php echo $_GET['name'];?>">
                      <input type="hidden" name="address" value="<?php echo $_GET['address'];?>">
-                     <p><button class="cart-num" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
+                     <p><button class="cart-num block3" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
                  </div>
                </form>
          </div>
