@@ -33,7 +33,8 @@ if(mysqli_num_rows($result) > 0)
 	while($row = mysqli_fetch_array($result))
 	{
 		$output .= '
-		<div class="table-responsive">
+		<a class="divtable" href="../controller/adertisement_control.php?id='.$row["B_post_id"].'">
+		<div class="table-responsive" >
 		<table class="table table bordered">
 			<tr>
 				<th class="img_th" rowspan=6>
@@ -60,6 +61,7 @@ if(mysqli_num_rows($result) > 0)
 			</tr>
 		</table>
 		</div>
+		</a>
 		';
 	}
 	echo $output;
