@@ -8,6 +8,8 @@ class live_search{
 		  	$query = "
 			SELECT * FROM `boarding_post` WHERE MATCH(`category`, `girlsBoys`,`image`, `house_num`, `lane`, `city`, `district`, `description`) against('{$qry}');";
 
+			echo $query;
+			die();
 			$result = mysqli_query($connection, $query);
 			return $result;
   	}
@@ -27,7 +29,9 @@ class live_search{
 			OR district LIKE '%".$search."%'
 			OR description LIKE '%".$search."%'
 			";
-			$result = mysqli_query($connect, $query);
+			
+
+			$result = mysqli_query($connection, $query);
 			return $result;
 
 	}
