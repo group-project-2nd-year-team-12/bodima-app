@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<title>&#127969; Post Boarding</title>
-	<link href="../resource/css/style.css" rel="stylesheet">
+	<link href="../resource/css/style1.css" rel="stylesheet">
 
 	<style>
 
