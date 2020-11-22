@@ -48,12 +48,12 @@
         <div class="content">
           <div class="payment-slide">
               <ul>
-                   <li onclick="window.location='../index.php'"><i class="fas fa-home"></i> Home page</li>
-                  <li onclick="window.location='paymentFood_pending.php'"><i class="far fa-clock "></i> Pending Orders</li>
-                  <li onclick="window.location='paymentFood_accept.php'"><i class="fa fa-check "></i> Accepted Orders</li>
-                  <li onclick="window.location='paymentFood_receving.php'"><i class="fas fa-motorcycle"></i> Receiving Order</li>
+                   <li  onclick="window.location='../index.php'"><i style="color: blueviolet;" class="fas fa-home"></i> Home page</li>
+                  <li onclick="window.location='paymentFood_pending.php'"><i style="color: #F7CB73;" class="fas fa-hourglass-half"></i> Pending Orders</li>
+                  <li onclick="window.location='paymentFood_accept.php'"><i style="color: green;" class="fas fa-clipboard-check"></i> Accepted Orders</li>
+                  <li onclick="window.location='paymentFood_receving.php'"><i style="color: blue;" class="fas fa-truck"></i> Receiving Order</li>
                   <li onclick="window.location='paymentFood_history.php'"><i class="fas fa-history"></i> Order History</li>
-                  <li onclick="window.location='foodposts.php'"><i class="fas fa-plus"></i> New Order</li>
+                  <li onclick="window.location='foodposts.php'"><i style="color: red;" class="fas fa-plus"></i> New Order</li>
               </ul>
           </div>          
        
@@ -85,7 +85,7 @@
                   <div class="details-box">
                     <div class="details">
                             <h2>Order Id : <span style="color:sienna;"><?php echo $id; ?></span> </h2>
-                            <h5>Payed amount :<?php echo $total; ?></h5>
+                           
                             <h4 class="order_item">Ordered Item :</h4>
                             <?php 
                                   foreach($data_rows as $data_row)
@@ -93,6 +93,10 @@
                                       if($data_row['order_id']==$id)
                                       {
                                           $total=$data_row['total'];
+                                          $time=$data_row['time'];
+                                          $deliveredTime=$data_row['deliveredTime'];
+                                          $restaurant=$data_row['restaurant'];
+                                          $method=$data_row['method'];
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
@@ -100,12 +104,14 @@
                                   }
                                   $i=1;
                             ?>
-                            <!-- <h5>Order Date :2020 / 04 / 16</h5> -->
+                            <h4>Payed amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
                         </div>
                         <div class="button-pay">
-                            
                             <h3>Order Details</h3>
-                            
+                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
+                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivered time : <span style="color: sienna;"><?php echo $deliveredTime ?></span> </h4>
+                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payment method : <span style="color: sienna;"><?php echo $method ?></span> </h4>
+                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
                         </div>
                   </div>
                     

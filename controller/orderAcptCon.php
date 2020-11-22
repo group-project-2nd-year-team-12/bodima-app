@@ -25,4 +25,10 @@ if(isset($_POST['accept']))
    // sentAccept($email,$first_name,$address,$total);
    header('Location:../views/orders.php');
 }
+if(isset($_POST['remove']))
+{
+   $order_id=$_POST['order_id'];
+   $result=orderModel::remove($order_id,$connection);
+   header('Location:../views/orders.php');
+}
 ?>

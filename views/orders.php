@@ -68,7 +68,7 @@
                     $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],0);
                     while($record=mysqli_fetch_assoc($getOrder_id))
                     {?>
-                     <form action="../controller/orderAcptCon.php" method="post">
+                     <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order">
                             <div class="resend">
                                     <div class="right"><i class="fa fa-check fa-2x"></i></div>
@@ -77,7 +77,7 @@
                             <div class="details-box">
                                     <div class="details">
                                         <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
-                                        <h4 class="order_item">Order item:</h4>
+                                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Order item:</h4>
                      <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                         while($result=mysqli_fetch_assoc($getOrder))
                         {
@@ -92,13 +92,13 @@
                            
                         }?>
             
-                                        <h4>Pay amount :<?php echo $total; ?></h4>
+                                        <h4>Pay amount :  <span style="color: red;"> RS <?php echo $total; ?></span></h4>
                                         
                                     </div>
                                 <div class="button-pay">
-                                <h4 class="order_item">Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
-                                <h4 class="order_item">Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
-                                <h4 class="order_item">Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
+                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
+                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
+                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
                                 <h3>Please accept the Order</h3>
                                 <input type="hidden" name='order_id' value="<?php echo $record['order_id']; ?>">
                                 <input type="hidden" name='total' value="<?php echo $total; ?>">
@@ -107,7 +107,7 @@
                                 <input type="hidden" name='first_name' value="<?php echo $first_name; ?>">
                                 <input type="hidden" name='last_name' value="<?php echo $last_name; ?>">
                                 <button class="btn-rate" name="accept" type="submit">Accept</button>
-                                <button class="cancel-rate" name="remove" type="submit">cancel</button>
+                                <button class="cancel-rate" name="remove"  type="submit">cancel</button>
                             </div>
                             </div>
                     
