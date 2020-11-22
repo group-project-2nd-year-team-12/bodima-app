@@ -17,7 +17,7 @@
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:black;">   Solution for many problem</small></h1>
+                <h1><small style="font-size: 14px; color:white;">   Solution for many problem</small></h1>
             </div>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
@@ -78,15 +78,7 @@
                 }
                 $total='';
                 foreach($ids as $id){
-                foreach($data_rows as $data_row)
-                {
-                    if($data_row['order_id']==$id)
-                    {
-                        $total=$data_row['total'];
-                        // echo $total;
-                    }
-                        
-                }
+
                 ?>
                 <div class="box">
                     <div class="resend receiving">
@@ -96,6 +88,20 @@
                   <div class="details-box">
                     <div class="details">
                             <h2>Order Id :<span style="color:sienna;"><?php echo $id; ?></h2>
+                            <h4 class="order_item">Order Item :</h4>
+                            <?php
+                                 foreach($data_rows as $data_row)
+                                 {
+                                     if($data_row['order_id']==$id)
+                                     {
+                                         $total=$data_row['total'];
+                                         echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
+                                         echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
+                                     }
+                                         
+                                 }
+                                 $i=1;
+                            ?>
                             <h4>Payed amount :<?php echo $total; ?></h4>
                         </div>
                         <div class="button-pay">

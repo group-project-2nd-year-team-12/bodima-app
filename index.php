@@ -97,7 +97,7 @@
                  <h2 >Welcome to Bodima</h2>
                  <h4>Accomadation management system</h4>
                 <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
-                 <h3></h3>
+                 <img  src="resource/img/home-home.png" alt="">
                  <!-- <h1>To Search, To Find, To delivery</h1> -->
                  <!-- <h1>To Find,To Search,To Delivery</h1> -->
                </div>

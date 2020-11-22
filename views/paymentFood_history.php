@@ -17,7 +17,7 @@
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:black;">   Solution for many problem</small></h1>
+                <h1><small style="font-size: 14px; color:white;">   Solution for many problem</small></h1>
             </div>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
@@ -48,12 +48,12 @@
         <div class="content">
           <div class="payment-slide">
               <ul>
-                   <li onclick="window.location='../index.php'">Home page</li>
-                  <li onclick="window.location='paymentFood_pending.php'">Pending Orders</li>
-                  <li onclick="window.location='paymentFood_accept.php'">Accepted Orders</li>
-                  <li onclick="window.location='paymentFood_receving.php'">Receiving Order</li>
-                  <li onclick="window.location='paymentFood_history.php'">Order History</li>
-                  <li onclick="window.location='foodposts.php'">New Order</li>
+                   <li onclick="window.location='../index.php'"><i class="fas fa-home"></i> Home page</li>
+                  <li onclick="window.location='paymentFood_pending.php'"><i class="far fa-clock "></i> Pending Orders</li>
+                  <li onclick="window.location='paymentFood_accept.php'"><i class="fa fa-check "></i> Accepted Orders</li>
+                  <li onclick="window.location='paymentFood_receving.php'"><i class="fas fa-motorcycle"></i> Receiving Order</li>
+                  <li onclick="window.location='paymentFood_history.php'"><i class="fas fa-history"></i> Order History</li>
+                  <li onclick="window.location='foodposts.php'"><i class="fas fa-plus"></i> New Order</li>
               </ul>
           </div>          
        
@@ -80,22 +80,27 @@
                 }
                 $total='';
                 foreach($ids as $id){
-                foreach($data_rows as $data_row)
-                {
-                    if($data_row['order_id']==$id)
-                    {
-                        $total=$data_row['total'];
-                        // echo $total;
-                    }
-                        
-                }
                 ?>
                 <div class="box small">
                   <div class="details-box">
                     <div class="details">
                             <h2>Order Id : <span style="color:sienna;"><?php echo $id; ?></span> </h2>
                             <h5>Payed amount :<?php echo $total; ?></h5>
-                            <h5>Order Date :2020 / 04 / 16</h5>
+                            <h4 class="order_item">Ordered Item :</h4>
+                            <?php 
+                                  foreach($data_rows as $data_row)
+                                  {
+                                      if($data_row['order_id']==$id)
+                                      {
+                                          $total=$data_row['total'];
+                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
+                                          echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
+                                      }
+                                          
+                                  }
+                                  $i=1;
+                            ?>
+                            <!-- <h5>Order Date :2020 / 04 / 16</h5> -->
                         </div>
                         <div class="button-pay">
                             
@@ -110,20 +115,6 @@
                 ?>
                
             </div>
-        </div>
-        <div class="more-details">
-                    <div class="more">
-                        <h2>Order Details</h2>
-                        <h3>Order Id : <span style="color: sienna;">1245685625</span></h3>
-                        <h4>Payed amout :123.15</h4>
-                        <h4>Order Date :2020 / 04 /21</h4>
-                        <h4>Order item :</h4>
-                        <ul>
-                            <li>1. rice</li>
-                            <li>2. kotthu</li>
-                            <li>3. fyed rice</li>
-                        </ul>
-                    </div>
         </div>
         </div>
     </div>
