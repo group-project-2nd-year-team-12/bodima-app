@@ -41,11 +41,11 @@ $errors=array(); //create empty array
 
     
     if(!isset($_POST['individual'])){
-        $errors['err5']='*No Avertisement Type were checked';
+        $errors['err5']='*Select one option';
     }
 
     if(!isset($_POST['gender'])){
-        $errors['err6']='*No Gender were checked';
+        $errors['err6']='*Select one option';
     }
     
     $Pcount=$_POST['Pcount'];
@@ -54,23 +54,23 @@ $errors=array(); //create empty array
     if(empty($Pcount) || strlen(trim($Pcount))<1){
         $errors['err7']='*Person Count is required';
     }else if($Pcount<=1){
-        $errors['err8']='*Person Count must be greater than or equal 1';
+        $errors['err8']='*Should be greater than  1';
     }else if($Pcount>=30){
-        $errors['err9']='*Person Count must be less than or equal 30';
+        $errors['err9']='*Should be less than 30';
     }
 
     $CPperson=$_POST['CPperson'];
     if(empty($_POST['CPperson']) || strlen(trim($_POST['CPperson']))<1){
         $errors['err10']='*Cost Per Person For Month is required';
     }else if(!is_numeric($CPperson)) {
-        $errors['err11']='*Cost Per Person Data entered was not numeric';
+        $errors['err11']='*Should be an integer';
     }
 
     $Keymoney=$_POST['Keymoney'];
     if(empty($_POST['Keymoney']) || strlen(trim($_POST['Keymoney']))<1){
         $errors['err12']='*Keymoney is required';
     }else if(!is_numeric($Keymoney)) {
-        $errors['err13']='*Keymoney Data entered was not numeric';
+        $errors['err13']='*Should be an integer';
     }
 
 
@@ -80,7 +80,7 @@ $errors=array(); //create empty array
     if(empty($Lifespan) || strlen(trim($Lifespan))<1){
         $errors['err14']='*Lifespan is required';
     }else if($Lifespan<30){
-        $errors['err15']='*Greater than or equal 30 days';
+        $errors['err15']='*Should be greater than 30 days';
     } 
 
 
