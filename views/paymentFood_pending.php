@@ -24,7 +24,7 @@
                     ?>
 
                     <div class="notification">
-                        <i class="fa fa-bell"></i>
+                        <i class="fa fa-bell fa-lg"></i>
                         <div class="notification-box" >
                             <ul>
                                 <li><i class="fas fa-times fa-2x"></i></li>
@@ -96,6 +96,7 @@
                                       if($data_row['order_id']==$id)
                                       {
                                           $total=$data_row['total'];
+                                          $time=$data_row['time'];
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
@@ -103,10 +104,12 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4>Pay amount :<?php echo $total; ?></h4>
+                            <h4>Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
                         </div>
                         <div class="button-pay">
-                            <h4>If you want cancel order. click the cancel order</h4>
+                            <h4 class="order_item">Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
+                            <h4 class="order_item">Resturent  : <span style="color: sienna;"><?php echo $time ?></span> </h4>
+                            <h4 style="margin-top: 20px;">If you want cancel order. click the cancel order</h4>
                             <button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id; ?>"' type="button" class="btn1 cancel"> Cancel Order</button>
                         </div>
                   </div>

@@ -208,6 +208,7 @@ a{
   display:inline-flex;
     /* width: 200px;    */
     padding: 22px 88px;
+    cursor: pointer;
     /* margin: 0 86px; */
     
 }
@@ -218,6 +219,7 @@ a{
     width: 20px;  
     border-radius: 20px;
     transition: all 0.5s ease;
+    
 }
 
 .burger >div :hover{

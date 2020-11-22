@@ -28,10 +28,14 @@ $errors=array();
        $products=$_SESSION['cart'];
        $order_id=time().mt_rand($email);
        $total=$_SESSION['total'];
+       $phone=$_POST['phone'];
+       $method=$_POST['method'];
+       date_default_timezone_set("Asia/Colombo");
+       $time=date("h:i:sa");
        $_SESSION['order_id']=$order_id;  
        foreach($products as $product)
        {
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$connection);
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$phone,$method,$time,$connection);
        }
       //  $_SESSION['isdisable']=1;
       header('Location:../views/paymentFood_pending.php');
