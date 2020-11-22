@@ -61,7 +61,7 @@
                     </div>
             <ul class="nav_bar">
                 <li class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i>Home</li>
-                <li class="nav_item " onclick="window.location='views/boardings.php'"><i class="fa fa-bed"></i> Boardings</li>
+                <li class="nav_item " onclick="window.location='views/boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
                 <li class="nav_item " onclick="window.location='views/foodposts.php'"><i class="fas fa-hamburger"></i> Order Foods</li>
                 <li class="nav_item " onclick="window.location='views/about.php'"><i class="fa fa-address-card"></i> About us</li>
                 <li class="nav_item " onclick="window.location='views/contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>

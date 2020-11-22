@@ -24,11 +24,11 @@
 				placeholder="Search by any key word" class="form-control" />
 			</div>
 
-			<div class="popup_signin">
+			<!-- <div class="popup_signin">
 				
 			<a href="../views/register.php">sign up here</a>
 			<span id="close">&times;</span>
-		</div>
+		</div> -->
 		
 			<div class="outer_result_block">
 				<div id="result"></div>
