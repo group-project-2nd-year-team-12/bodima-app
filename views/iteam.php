@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<title>&#127829;Add Iteam </title>
-	<link href="../resource/css/style.css" rel="stylesheet">
+	<link href="../resource/css/style3.css" rel="stylesheet">
 
 	<style>
 
@@ -15,7 +15,17 @@
 //print_r($_FILES);
 ?>
 
-	<div class="postBoarding"><h1>Add Iteam</h1></div><!-- postBoarding -->
+
+<div class="sub-container" id="img-sub">
+				<div><img src="../resource/icons/other/food icon/chicken.png"logo" class="verticle-center" width=50 height=auto  /></div>
+		
+
+		<div class="postBoarding"><h1>Add Iteam Form</h1></div><!-- postBoarding -->
+
+	</div>
+
+
+	
 		<div class=main>
 			<form action="../controller/iteamCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
 			
