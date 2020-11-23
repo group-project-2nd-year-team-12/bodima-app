@@ -60,11 +60,18 @@
                     <li>Chat</li>
                     <?php if($_SESSION['level']=='food_supplier'){?>
                         <li onclick='window.location="orders.php"'>Orders </li>
+                        
                        
                    <?php } ?>
                     <?php if($_SESSION['level']=='boardings_owner'){?>
                         <li onclick='window.location="ConBODealIshan.php"'>Confirm Deal </li>
                         <li onclick='window.location="TBOReqIshan.php"'>Request</li>
+                   <?php } ?>
+
+                   <?php if($_SESSION['level']=='student'){?>
+                      <li onclick='window.location="../views/pendingReqIshan.php"'>Boarding Request </li>
+                      <li onclick='window.location="../views/requests_list_A.php"'>PendinRequest </li>
+                      
                    <?php } ?>
                    <?php if($_SESSION['level']=='boardings_owner' || $_SESSION['level']=='boarder'){?>
                     <li onclick='window.location="paymentFood_pending.php"'>My food Orders</li>
