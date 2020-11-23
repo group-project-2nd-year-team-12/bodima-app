@@ -86,7 +86,7 @@
                     <div class="details">
                             <h2>Order Id : <span style="color:sienna;"><?php echo $id; ?></span> </h2>
                            
-                            <h4 class="order_item">Ordered Item :</h4>
+                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered Item :</h4>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
@@ -104,7 +104,7 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4>Payed amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
+                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payed amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
                         </div>
                         <div class="button-pay">
                             <h3>Order Details</h3>

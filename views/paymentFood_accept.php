@@ -110,9 +110,8 @@
                         <div class="button-pay ">
                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                            <h3>Select Payment Method</h3>
+                            <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter" ><i class="fas fa-dollar-sign"></i> Please pay your order !</h4>
                             <form class="form1" method="post" action="https://sandbox.payhere.lk/pay/checkout">
-                                <button type="button" ><i class="far fa-credit-card"></i> Pay Cash </button>
                                 <button><i class="fas fa-wallet"></i> Pay Card</button>
                                 <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
                                 <input type="hidden" name="return_url" value="http://localhost/bodima-app/controller/orderCon.php"> 

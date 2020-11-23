@@ -26,10 +26,10 @@ if(isset($_POST['accept']))
    {
       $result=orderModel::accept($order_id,1,$connection);
       sentAccept($email,$first_name,$address,$total);
-      header('Location:../views/deliveringOrder.php');
+      header('Location:../views/notPaymentOrder.php');
    }elseif($method=="cash")
    {
-      $result=orderModel::accept($order_id,2,$connection);
+      $result=orderModel::accept($order_id,3,$connection);
       header('Location:../views/deliveringOrder.php');
    }
    

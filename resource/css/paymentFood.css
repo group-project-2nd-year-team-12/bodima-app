@@ -78,7 +78,6 @@ body{
 .right{
     color: #40c057;
     width: 60px;
-   
 }
 .details-box{
     display: flex;
@@ -376,4 +375,11 @@ font-weight: bold;
 }
 .form1{
     height: 0px;
+}
+
+.card{
+    background-color: rgb(162, 162, 142)!important;
+}
+.fa-credit-card{
+    color:rgb(58, 58, 50) ;
 }

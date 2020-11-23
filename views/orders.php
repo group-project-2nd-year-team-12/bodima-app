@@ -17,15 +17,15 @@
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:white;">   Solution for many problem</small></h1>
+                <h1><small style="font-size: 14px; color:black;">   Solution for many problem</small></h1>
             </div>
             <div class="sign">
-                <?php if(!isset($_SESSION['email'])){echo '<a href="../controller/logingController.php?click1">Sign In <i class="fa fa-sign-in-alt"></i></a>';}?>
-                <?php if(isset($_SESSION['email'])){
+                <?php if(isset($_SESSION['email'])){ 
+                   
                     ?>
 
                     <div class="notification">
-                        <i class="fa fa-bell"></i>
+                        <i class="fa fa-bell fa-lg"></i>
                         <div class="notification-box" >
                             <ul>
                                 <li><i class="fas fa-times fa-2x"></i></li>
@@ -39,10 +39,9 @@
                     </div>
                     <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
                 <?php
-                    echo '<div class="user">Hi '.$_SESSION['first_name'].'</div>'; 
-                    echo '<a href="../controller/logoutController.php">Sign out <i class="fa fa-sign-out-alt"></i></a>';}
-                ?> 
-                
+                  echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; ?>
+                 <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
+                <?php } ?>
             </div>
         </div>
     <div class="container">
@@ -51,6 +50,7 @@
               <ul>
                   <li onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
                   <li onclick="window.location='orders.php'"><i class="fas fa-sort-amount-down-alt"></i> New Orders</li>
+                  <li onclick="window.location='notPaymentOrder.php'"><i  class="far fa-credit-card"></i> Card Payment</li>
                   <li onclick="window.location='deliveringOrder.php'"><i class="fas fa-truck"></i> Delivering Orders</li>
                   <li onclick="window.location='deliveredHistory.php'"><i class="fas fa-history"></i> Deliverd History</li>
                

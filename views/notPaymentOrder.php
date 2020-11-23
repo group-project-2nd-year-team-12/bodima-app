@@ -66,19 +66,19 @@
                 $F_post_id_set=array();
                 while($row=mysqli_fetch_assoc($F_post_id))
                 {
-                    $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],3);
+                    $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],1);
                     while($record=mysqli_fetch_assoc($getOrder_id))
                     {?>
                      <div class="box ">
-                            <div class="resend receiving">
-                                    <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Deliver this order </h4></div>
+                            <div class="resend card">
+                                    <div class="right"><i style="padding: 10px;" class="fas fa-credit-card fa-lg"></i></div>
+                                    <div class="letter"><h4>Customer not pay yet this order </h4></div>
                             </div>
                             <div class="details-box">
                                     <div class="details">
                                         <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
-                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
+                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],1);
                         while($result=mysqli_fetch_assoc($getOrder))
                         {
                             echo '<div class="product_item"><h5 class="item">'.$result['product_name'].'</h5>';
@@ -97,13 +97,11 @@
                                         
                                     </div>
                                 <div class="button-pay">
+                                    <h3>Order Details</h3>
                                 <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
                                 <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
                                 <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer will pay for this order in : <span style="color: red;"><?php echo $method; ?></span></h4>
-                                <h4  class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirmFS_id=<?php echo $order_id; ?>"'  type="button" class="btn1 "> Confirm </button>
-                            </div>
+                                     </div>
                             </div>
                     
                          </div>
