@@ -48,12 +48,12 @@
         <div class="content">
           <div class="payment-slide">
           <ul>
-                   <li  onclick="window.location='../index.php'"><i style="color: blueviolet;" class="fas fa-home"></i> Home page</li>
-                  <li onclick="window.location='paymentFood_pending.php'"><i style="color: #F7CB73;" class="fas fa-hourglass-half"></i> Pending Orders</li>
-                  <li onclick="window.location='paymentFood_accept.php'"><i style="color: green;" class="fas fa-clipboard-check"></i> Accepted Orders</li>
-                  <li onclick="window.location='paymentFood_receving.php'"><i style="color: blue;" class="fas fa-truck"></i> Receiving Order</li>
+                   <li  onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
+                  <li onclick="window.location='paymentFood_pending.php'"><i  class="fas fa-hourglass-half"></i> Pending Orders</li>
+                  <li onclick="window.location='paymentFood_accept.php'"><i  class="fas fa-clipboard-check"></i> Accepted Orders</li>
+                  <li onclick="window.location='paymentFood_receving.php'"><i  class="fas fa-truck"></i> Receiving Order</li>
                   <li onclick="window.location='paymentFood_history.php'"><i class="fas fa-history"></i> Order History</li>
-                  <li onclick="window.location='foodposts.php'"><i style="color: red;" class="fas fa-plus"></i> New Order</li>
+                  <li onclick="window.location='foodposts.php'"><i  class="fas fa-plus"></i> New Order</li>
               </ul>
           </div>          
        
