@@ -1,7 +1,7 @@
 <?php 
 
 class reg_userIshan{
-    //////////request
+	//////////request
   public static function getReq($connection,$student_email,$id){
         $query="SELECT * FROM request WHERE student_email='{$student_email}' AND B_post_id=$id";
         $result=mysqli_query($connection,$query);
@@ -9,9 +9,9 @@ class reg_userIshan{
     }
 ///insert request
    public static function insertReq($connection,$student_email,$BOid,$B_post_id,$message){
-    $query = "INSERT INTO request (request_id ,student_email,BOid,B_post_id,message,isAccept,date) VALUES (NULL,'{$student_email}',$BOid,$B_post_id, '{$message}',0, CURRENT_TIMESTAMP) ";
+   	$query = "INSERT INTO request (request_id ,student_email,BOid,B_post_id,message,isAccept,date) VALUES (NULL,'{$student_email}',$BOid,$B_post_id, '{$message}',0, CURRENT_TIMESTAMP) ";
 
-    $result=mysqli_query($connection,$query);
+   	$result=mysqli_query($connection,$query);
         return $result;
 
    }
