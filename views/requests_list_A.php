@@ -189,6 +189,39 @@
         </div>
         
 
+        <div class="new-order">
+    <h5 >boarding owner - New Boarder Added</h5> 
+            <!-- confirm deal for "rented payment done" customers -->
+</div>
+
+        <div class="box">
+                    <div class="resend wait" style="background-color: rgb(29, 236, 191);">
+                        <div class="right" ><i class="fas fa-user-check fa-2x"></i></div>
+                        <div class="letter"><h3 style="margin-top:35px;">Congratulations! You have a new boarder.<small> post number: 0016<br/>request no: 0034</small></h3></div>
+                    </div>
+                  <div class="details-box">
+                        <div class="details">
+                            <h2>Payment :<span style="color: rgb(6, 165, 131);">successful</h2><br/><br/>
+                            <!-- <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" > -->
+                            <h2>amount : <span style="color: rgb(6, 165, 131);">Rs. 6000</span></h2><br/>
+                            <h4>recieved at: <span style="color: rgb(6, 165, 131);">2020-11-24  14:05:33</span></h4>
+                            <h4>payment id:181034534</h4>
+                        </div>
+                        <div class="button-pay">
+                        <h2>New person has done Advance payment! </h2>
+                            <h4>Name: <span style="color: rgb(6, 165, 131);">Ishan Ediriweera</span><br/></h4>
+                            <h4>Gender: <span style="color: rgb(6, 165, 131);">Male</span><br/></h4>
+                            <h4>NIC: <span style="color: rgb(6, 165, 131);">975544332v</span><br/></h4>
+                            <h4>telephone no: <span style="color: rgb(6, 165, 131);">0771122334</span><br/></h4>
+                            <h4>University/working at: <span style="color: rgb(6, 165, 131);">University of Colombo</span><br/></h4>
+                            
+                            <br/><hr>
+                            <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;">click here</span> to view My boarders</h4><br/>
+                        </div>
+                  </div>
+        </div>
+        
+
 
 
 <?php include 'footer.php'?>
