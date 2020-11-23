@@ -81,7 +81,9 @@ $(document).ready(function(){
 $('th').css({"backgroundColor":"black",
         "color":"white"});
 </script>
-
+<script src="../resource/js/jquery.js"></script>
+<script src="../resource/js/home1.js"></script>
+<script src="../resource/js/new_home.js"></script>
 
 </body>
 </html>
