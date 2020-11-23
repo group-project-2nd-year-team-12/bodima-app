@@ -79,7 +79,7 @@
 				<label class="radio">
 					<input type="radio" name="type" id="shortTerm" value="Short Term"><span id="shortTerm" >&nbsp; <abbr title="Anukiiiiiiiiii">Short Term</abbr></span>&nbsp;&nbsp;
 					<input type="radio" name="type" id="longTerm" value="Long Term"><span id="longTerm" >&nbsp;<abbr title="Anukiiiiiiiiii">Long Term</abbr></span>&nbsp;&nbsp;<br>
-					<?php if(isset($errors['err3'])) echo "<div class='error_msg'>".$errors['err3']."</div>"; ?>
+					<?php if(isset($errors['err3'])) echo "<div class='error'>".$errors['err3']."</div>"; ?>
 				</label>
 				
 

@@ -81,11 +81,12 @@ form {
 
 .name {
     margin-left: 30px;
-    margin-top: 25px;
+    margin-top: 29px;
     width: 220px;
     color: black;
     font-size: 15px;
     font-weight: 600;
+    padding: -4px 0px 0px 0px;
     /* background-color: red; */
 }
 
@@ -279,7 +280,7 @@ div .error_msg {
     position: relative;
     width: 100%;
     left: 180px;
-    bottom: 0px;
+    bottom: 25px;
     border-radius: 0px;
     padding: 5px 5px 0px 0px;
     font-size: 15px;
@@ -303,7 +304,7 @@ div .error_msg {
     color: #cc0000;
     position: relative;
     width: 100%;
-    left: 250px;
+    left: 30px;
     bottom: 20px;
 }
 
