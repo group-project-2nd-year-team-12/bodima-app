@@ -158,6 +158,107 @@
         </div>
 
 
+<div class="new-order">
+    <h5 >boarding owner - New request</h5> 
+            <!-- Temporary request -->
+</div>
+
+        <div class="box">
+                    <div class="resend wait" style="background-color:  rgb(141, 243, 141);">
+                        <div class="right" ><i class="far fa-check-circle fa-2x"></i></div>
+                        <div class="letter"><h3>You have recieved a new request<small> this request will automatically cancel in <b id="countdown">15h 45m 36s</b></small></h3></div>
+                    </div>
+                  <div class="details-box">
+                        <div class="details">
+                            <h2>post Id :<span style="color:green;">00016</h2>
+                            <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" >
+                            <h4>Request Id:0040</h4>
+                            <h4>Nugegoda</h4>
+                        </div>
+                        <div class="button-pay">
+                        <h2>New Request Recieved</h2>
+                            <h4>arrived at:&nbsp;&nbsp; 2020-11-24 &nbsp;&nbsp; 08:12:34<br/><br/></h4>
+                            <h4>from : <span style="color:green;">anukidealwis@gmail.com</span></h2>
+                            <h4>massage : <span style="color:green;">None</span></h2>
+                            <br/><hr>
+                            <h4>to allow <span style="color:green; text-decoration:underline;">anuki</span> to get your boarding place, click 'Accept Request'</h4><br/>
+                            <button type="button" class="btn4 Accept_Request" style="background-color: rgb(3, 204, 3);" > Accept Request</button>
+                            <button type="button" class="btn1 cancel"> Cancel</button>
+                        </div>
+                  </div>
+        </div>
+        
+
+        <div class="new-order">
+    <h5 >boarding owner - New Boarder Added</h5> 
+            <!-- confirm deal for "rented payment done" customers -->
+</div>
+
+        <div class="box">
+                    <div class="resend wait" style="background-color: rgb(29, 236, 191);">
+                        <div class="right" ><i class="fas fa-user-check fa-2x"></i></div>
+                        <div class="letter"><h3 style="margin-top:35px;">Congratulations! You have a new boarder.<small> post number: 0016<br/>request no: 0034</small></h3></div>
+                    </div>
+                  <div class="details-box">
+                        <div class="details">
+                            <h2>Payment :<span style="color: rgb(6, 165, 131);">successful</h2><br/><br/>
+                            <!-- <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" > -->
+                            <h2>amount : <span style="color: rgb(6, 165, 131);">Rs. 6000</span></h2><br/>
+                            <h4>recieved at: <span style="color: rgb(6, 165, 131);">2020-11-24  14:05:33</span></h4>
+                            <h4>payment id:181034534</h4>
+                        </div>
+                        <div class="button-pay">
+                        <h2>New person has done Advance payment! </h2>
+                            <h4>Name: <span style="color: rgb(6, 165, 131);">Ishan Ediriweera</span><br/></h4>
+                            <h4>Gender: <span style="color: rgb(6, 165, 131);">Male</span><br/></h4>
+                            <h4>NIC: <span style="color: rgb(6, 165, 131);">975544332v</span><br/></h4>
+                            <h4>telephone no: <span style="color: rgb(6, 165, 131);">0771122334</span><br/></h4>
+                            <h4>University/working at: <span style="color: rgb(6, 165, 131);">University of Colombo</span><br/></h4>
+                            
+                            <br/><hr>
+                            <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;">click here</span> to view My boarders</h4><br/>
+                        </div>
+                  </div>
+        </div>
+
+
+<div class="new-order">
+    <h5 >boarding owner - Add as a new boarder</h5> 
+            <!-- confirm deal for "rented payment done" customers -->
+</div>
+
+        <div class="box">
+                    <div class="resend wait" style="background-color:rgb(1, 167, 233);">
+                        <div class="right" style="color:white;" ><i class="fas fa-user-plus fa-2x"></i></div>
+                        <div class="letter"><h3 style="margin-top:35px;">Add As a new Boarder<small> post number: 0016<br/>request no: 0034</small></h3></div>
+                    </div>
+                  <div class="details-box">
+                       
+                        <div class="button-pay" style="width:60%;">
+                        <h2>New person has manual Payment </h2>
+                            <h4>Name: <span style="color: rgb(6, 165, 131);">Ishan Ediriweera</span><br/></h4>
+                            <h4>Gender: <span style="color: rgb(6, 165, 131);">Male</span><br/></h4>
+                            <h4>NIC: <span style="color: rgb(6, 165, 131);">975544332v</span><br/></h4>
+                            <h4>telephone no: <span style="color: rgb(6, 165, 131);">0771122334</span><br/></h4>
+                            <h4>University/working at: <span style="color: rgb(6, 165, 131);">University of Colombo</span><br/></h4>
+                            
+                            <br/><hr>
+                            <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;">click here</span> to view My boarders</h4><br/>
+                        </div>
+
+                        <div class="details"  style="width:40%; border-right:none;border-left :1px solid; padding-top:20px; padding:15px;">
+
+                            <!-- <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" > -->
+                            <h2>amount : <span style="color: rgb(6, 165, 131);">Rs. 6000</span></h2><br/>
+                            
+                            <h4>If Your payment recieved, click below to add as a boarder.</h4>
+                            <button type="button" class="btn5 Accept_Request" style="background-color: rgb(3, 204, 3); margin-left:none; width:20vw;" ><i class="fas fa-hand-holding-usd"></i> Payment Recieved<br/>&<br/><i class="fas fa-user-plus"></i> Add to my boarders</button>
+                        </div>
+                  </div>
+        </div>
+         
+
+
 
 <?php include 'footer.php'?>
 </body>
