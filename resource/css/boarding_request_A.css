@@ -386,3 +386,7 @@ font-weight: bold;
 .b{
     color:rgb(168, 13, 13);
 }
+
+.Accept_Request{
+    background-color: rgb(3, 204, 3);
+}

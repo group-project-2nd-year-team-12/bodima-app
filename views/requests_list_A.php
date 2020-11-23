@@ -158,6 +158,38 @@
         </div>
 
 
+<div class="new-order">
+    <h5 >boarding owner - New request</h5> 
+            <!-- Temporary request -->
+</div>
+
+        <div class="box">
+                    <div class="resend wait" style="background-color:  rgb(141, 243, 141);">
+                        <div class="right" ><i class="far fa-check-circle fa-2x"></i></div>
+                        <div class="letter"><h3>You have recieved a new request<small> this request will automatically cancel in <b id="countdown">15h 45m 36s</b></small></h3></div>
+                    </div>
+                  <div class="details-box">
+                        <div class="details">
+                            <h2>post Id :<span style="color:green;">00016</h2>
+                            <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" >
+                            <h4>Request Id:0040</h4>
+                            <h4>Nugegoda</h4>
+                        </div>
+                        <div class="button-pay">
+                        <h2>New Request Recieved</h2>
+                            <h4>arrived at:&nbsp;&nbsp; 2020-11-24 &nbsp;&nbsp; 08:12:34<br/><br/></h4>
+                            <h4>from : <span style="color:green;">anukidealwis@gmail.com</span></h2>
+                            <h4>massage : <span style="color:green;">None</span></h2>
+                            <br/><hr>
+                            <h4>to allow <span style="color:green; text-decoration:underline;">anuki</span> to get your boarding place, click 'Accept Request'</h4><br/>
+                            <button type="button" class="btn4 Accept_Request" style="background-color: rgb(3, 204, 3);" > Accept Request</button>
+                            <button type="button" class="btn1 cancel"> Cancel</button>
+                        </div>
+                  </div>
+        </div>
+        
+
+
 
 <?php include 'footer.php'?>
 </body>
