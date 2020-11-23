@@ -24,7 +24,7 @@
                     ?>
 
                     <div class="notification">
-                        <i class="fa fa-bell"></i>
+                        <i class="fa fa-bell fa-lg"></i>
                         <div class="notification-box" >
                             <ul>
                                 <li><i class="fas fa-times fa-2x"></i></li>
@@ -59,7 +59,7 @@
        
         <div class="pending">
             <div class="title">
-                <h3>Pending order</h3>
+                <h3>Receiving Order</h3>
                 <?php 
                 $email=$_SESSION['email'];
                 $ids_set=reg_user::getOrderById($connection,$email,3);

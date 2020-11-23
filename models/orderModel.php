@@ -8,9 +8,9 @@ class orderModel{
         VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$product_name}','{$quantity}','{$total}','{$phone}','{$method}','{$time}','{$name}','{$order_id}') LIMIT 1";
          $result=mysqli_query($connection,$query);
     }
-    public static function accept($order_id,$connection)
+    public static function accept($order_id,$is_accepted,$connection)
     {
-       $query="UPDATE food_request SET is_accepted=1 WHERE order_id=$order_id ";
+       $query="UPDATE food_request SET is_accepted=$is_accepted WHERE order_id=$order_id ";
        $result_set=mysqli_query($connection,$query);
        return $result_set;
     }

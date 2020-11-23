@@ -24,7 +24,7 @@
                     ?>
 
                     <div class="notification">
-                        <i class="fa fa-bell"></i>
+                        <i class="fa fa-bell fa-lg"></i>
                         <div class="notification-box" >
                             <ul>
                                 <li><i class="fas fa-times fa-2x"></i></li>

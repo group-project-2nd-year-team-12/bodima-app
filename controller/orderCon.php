@@ -66,6 +66,18 @@ if(isset($_GET['orderConfirm_id'])){
       echo "Mysqli query failed";
    }
 }
+if(isset($_GET['orderConfirmFS_id'])){
+   $order_id=$_GET['orderConfirmFS_id'];
+   date_default_timezone_set("Asia/Colombo");
+    $deliveredTime=date("h:i:sa");
+   $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
+   if($result){
+      header('Location:../views/deliveredHistory.php');
+   }
+   {
+      echo "Mysqli query failed";
+   }
+}
 
 if(isset($_GET['order_id'])){
    $order_id=$_GET['order_id'];

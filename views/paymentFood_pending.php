@@ -105,12 +105,12 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4>Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
+                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
                         </div>
                         <div class="button-pay">
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                            <h4 style="margin-top: 5px;">If you want cancel order. click the cancel order</h4>
+                            <h4 class="order_item" style="margin-top: 5px;border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-window-close"></i> If you want cancel order. click the cancel order</h4>
                             <button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id; ?>"' type="button" class="btn1 cancel"> Cancel Order</button>
                         </div>
                   </div>

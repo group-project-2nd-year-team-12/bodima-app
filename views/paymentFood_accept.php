@@ -24,7 +24,7 @@
                     ?>
 
                     <div class="notification">
-                        <i class="fa fa-bell"></i>
+                        <i class="fa fa-bell fa-lg"></i>
                         <div class="notification-box" >
                             <ul>
                                 <li><i class="fas fa-times fa-2x"></i></li>
@@ -84,7 +84,7 @@
                 <div class="box">
                 <div class="resend">
                         <div class="right"><i class="fa fa-check fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is accepted <small ><b style="color: red;" id="countdown"></b> This order will cancel </small></h4></div>
+                        <div class="letter"><h4>Your order is accepted <small ><b style="color: red;" ></b> This order will cancel </small></h4></div>
                     </div>
                   <div class="details-box">
                          <div class="details">
@@ -105,7 +105,7 @@
                                    }
                                    $i=1;
                             ?>
-                            <h4>Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
+                            <h4 class="order_item">Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
                         </div>
                         <div class="button-pay ">
                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
