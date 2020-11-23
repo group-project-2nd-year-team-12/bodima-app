@@ -98,10 +98,17 @@ $errors=array(); //create empty array
         $description=$_POST['description'];
     
         $image_name=$_FILES['BCimage']['name'];
+        if(null==trim($image_name)){
+            echo "null";
+            $image_name="defaultbp1.jpg";
+        }else{
+            echo " have value";
+        }
+        
         $image_type=$_FILES['BCimage']['type'];
         $image_size=$_FILES['BCimage']['size'];
         $temp_name=$_FILES['BCimage']['tmp_name'];
-    
+        print_r($_FILES);
         $upload_to="../resource/Images/uploaded_boarding/";
     
         move_uploaded_file($temp_name, $upload_to . $image_name);
