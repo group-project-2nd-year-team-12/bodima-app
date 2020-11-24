@@ -36,6 +36,7 @@ require_once ('../config/database.php');
      <?php 
      $st_email=$_SESSION['email'];
      $result=reg_userIshan::selectStToBoarder($st_email,$connection);
+     
      $user=mysqli_fetch_assoc($result);
       $first_name=$user['first_name'];
             $last_name=$user['last_name'];

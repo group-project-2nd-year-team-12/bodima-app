@@ -18,9 +18,9 @@ if(isset($_POST['submit']))
         {
             $errors[]='*University Name is required';
         }
-        // elseif(!preg_match(("/^([a-zA-Z']+)$/"), $university_name)){ // preg_match -> check regular expression
-        //         $errors[]='*Invalid University name ';
-        // }
+        elseif(!preg_match(("/^[A-Za-z ]+$/"), $_POST['university_name'])){
+            $errors[]='*University Name is invalid';
+        }
 
 
         if(!isset($_POST['gender']))   
@@ -31,24 +31,47 @@ if(isset($_POST['submit']))
         {
             $errors[]='*Payment Method is required';
         }
-        //  elseif(!preg_match(("/^([a-zA-Z']+)$/"), $gender)){ // preg_match -> check regular expression
+        //  elseif(!preg_match(("/^[A-Za-z ]+$/"), $gender)){ // preg_match -> check regular expression
         //         $errors[]='*Invalid first name ';
         // }
-        if(!isset($_POST['telephone']) || strlen(trim($_POST['telephone']))<1)
-                {
-                 $errors[]='*Telephone Number is required';
-                }
+
+         if(!isset($_POST['nicImg']))   
+        {
+            $errors[]='*Insert your NIC Image';
+        }
+                
+
+      if((!isset($_POST['telephone']) || strlen(trim($_POST['telephone']))<1))
+       {
+          $errors[]='*Telephone Number is required ';
+       }elseif(!is_numeric($_POST['telephone']))
+       {
+          $errors[]="Invalid phone number";
+       }elseif (!(preg_match('/^[0-9]{10}+$/', $_POST['telephone']))) {
+         $errors[]="Invalid phone number";
+       }
+
+
+
         if(!isset($_POST['p_name']) || strlen(trim($_POST['p_name']))<1)
         {
                 $errors[]='*Parent Name is required';
+        } elseif (!(preg_match('/^[A-Za-z ]+$/', $_POST['p_name']))) {
+             $errors[]='*Invalid Parent Name ';
         }
         //  elseif(!preg_match(("/^([a-zA-Z']+)$/"), $p_name)){ // preg_match -> check regular expression
         //         $errors[]='*Invalid parent name ';
         // }
-        if(!isset($_POST['p_telephone']) || strlen(trim($_POST['p_telephone']))<1)
-                {
-                 $errors[]='*Parent Telephone Number is required';
-                }       
+        
+    if((!isset($_POST['p_telephone']) || strlen(trim($_POST['p_telephone']))<1))
+       {
+          $errors[]='*Telephone Number is required';
+       }elseif(!is_numeric($_POST['p_telephone']))
+       {
+          $errors[]="*Invalid telephone number";
+       }elseif (!(preg_match('/^[0-9]{10}+$/', $_POST['p_telephone']))) {
+         $errors[]="*Invalid phone number";
+       }
 
 
          // if(!isset($_POST['nicImg']) )

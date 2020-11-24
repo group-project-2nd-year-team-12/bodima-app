@@ -113,7 +113,7 @@
                             <h4>Post owner : <span style="color:#0900b0;"><?php echo $first_name."  ".$last_name; ?></span></h2>
                             <br/><br/><hr>
                             <h4>If you want to rent this boarding, click 'Pay and Reserve'</h4><br/>
-                            <button type="button" class="btn2 pay_and_reserve" onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?requestCAccept_id=<?php echo $request_id; ?>"'> Pay and Reserve</button>
+                            <button type="button" class="" onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?requestCAccept_id=<?php echo $request_id; ?>"'> Pay and Reserve</button>
 
 
                             <button type="button" class="btn1 cancel"   onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?requestDelete_id=<?php echo $request_id; ?>"'> Cancel</button>
