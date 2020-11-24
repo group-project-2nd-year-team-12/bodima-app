@@ -279,7 +279,7 @@ class reg_userIshan{
       ///////////select my Boarders
     public static function selectMyBordersBOPaynot($connection,$BOid){
 
-          $query="SELECT * FROM boarder,boarding_post,confirm_rent WHERE boarder.Bid=confirm_rent.Bid AND boarding_post.B_post_id=confirm_rent.B_post_id AND boarder.user_accepted=0 AND confirm_rent.is_paid=0 AND confirm_rent.BOid='{$BOid}' ";
+          $query="SELECT * FROM boarder,boarding_post,confirm_rent WHERE boarder.Bid=confirm_rent.Bid AND boarding_post.B_post_id=confirm_rent.B_post_id AND boarder.user_accepted=0 AND confirm_rent.is_paid=1 AND confirm_rent.BOid='{$BOid}' ";
             $result=mysqli_query($connection,$query);
             return $result;
 

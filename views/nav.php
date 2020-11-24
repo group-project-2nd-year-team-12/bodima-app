@@ -64,13 +64,13 @@
                        
                    <?php } ?>
                     <?php if($_SESSION['level']=='boardings_owner'){?>
-                        <li onclick='window.location="ConBODealIshan.php"'>Confirm Deal </li>
-                        <li onclick='window.location="TBOReqIshan.php"'>Request</li>
+                        <li onclick='window.location="../views/myBoardingReqIshan.php"'>My Requests</li>
+                       
                    <?php } ?>
 
                    <?php if($_SESSION['level']=='student'){?>
                       <li onclick='window.location="../views/pendingReqIshan.php"'>Boarding Request </li>
-                      <li onclick='window.location="../views/requests_list_A.php"'>PendinRequest </li>
+                      
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='boardings_owner' || $_SESSION['level']=='boarder'){?>
