@@ -89,7 +89,7 @@
 
 				
 				<h3 class="name">Boarding Cover Image</h3 ><br>
-				<input type="file" name="BCimage" id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg ><br>
+				<input type="file" name="BCimage" accept=".jpg, .png, .jpeg"  id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg ><br>
 				
 
 				<!--<label for="">Boarding Images  </label><br>

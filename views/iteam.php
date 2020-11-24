@@ -56,7 +56,7 @@
 				
 				
 				<h3 class="nameImage">Product Image</h3 >
-				<input type="file" name="pimage" id="pimage"><br>
+				<input type="file" name="pimage"  accept=".jpg, .png, .jpeg"  id="pimage"><br>
 
 
 				<h3 class="namePrice">Price</h3 >
