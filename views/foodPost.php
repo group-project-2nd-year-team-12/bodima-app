@@ -66,7 +66,7 @@
 
 				
 				<h3 class="nameImage">Resturent Cover Image</h3 >
-				<input type="file" name="BCimage" id="BCimage"><br>
+				<input type="file" name="BCimage" accept=".jpg, .png, .jpeg" id="BCimage"><br>
 
 				<!--<label for="">Boarding Images  </label><br>
 				<input type="file" name="Bimage{}" id="Bimage" multiple ><br><br>-->
