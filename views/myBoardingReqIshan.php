@@ -20,7 +20,7 @@
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:black;">   Solution for many problem</small></h1>
+                <h1><small style="font-size: 14px; color:black;">   Solution for many problems</small></h1>
             </div>
             <div class="sign">
                 <?php if(!isset($_SESSION['email'])){echo '<a href="../controller/logingController.php?click1">Sign In <i class="fa fa-sign-in-alt"></i></a>';}?>

@@ -16,7 +16,7 @@
         <div class="header">
             <div class="logo">
                 <img src="resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:white;font-weight:normal">   Solution for many problem</small></h1>
+                <h1><small style="font-size: 14px; color:white;font-weight:normal">   Solutions for many problems</small></h1>
             </div>
             <div class="sign">
                 
