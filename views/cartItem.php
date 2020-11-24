@@ -116,6 +116,7 @@ $total=0;
                 <input type="text" placeholder="ex:310/delgasduwa/dodanduwa" name="address"  ?>
                 <h4>Enter phone number :</h4>
                 <?php if(isset($_GET['errorPhone'])) echo "<h5 style='color:red'>*Please enter the phone number</h5>"; ?>
+                <?php if(isset($_GET['errorPhone1'])) echo "<h5 style='color:red'>*Please enter the valid phone number</h5>"; ?>
                 <input type="text" placeholder="ex:07x xxx xxx xxxx" name="phone"  ?>
                 <h4>Select the payment method :</h4>
                 <div class="payment_method">
