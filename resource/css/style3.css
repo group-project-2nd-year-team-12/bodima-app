@@ -13,6 +13,7 @@ body.food {
     background-size: cover;
     font-family: sans-serif;
     margin-bottom: 40px;
+    /* height: 100vh; */
 }
 
 .postBoarding {
@@ -36,7 +37,7 @@ body.food {
 
 .main {
     background-color: white;
-    width: 1000px;
+    width: 700px;
     margin: auto;
     border-radius: 10px 10px 10px 10px;
     /* border: 15px solid #06069e; */
@@ -54,46 +55,39 @@ body.food {
     /* box-shadow: 1px 1px 15px 1px rgb(243, 243, 241); */
 }
 
-form {
-    padding: 10px;
-}
 
-.second_name {
-    margin-left: 25px;
-    margin-top: 30px;
-    width: 220px;
-    color: black;
-    font-size: 15px;
-    font-weight: 600;
-    /* background-color: red; */
-}
-
-.part2 {
-    padding: 80px 20px 20px 90px;
-    /* margin-left: 10px; */
-    /* border-left: 1px solid blue; */
-}
-
-.part1 {
-    padding: 20px 20px 20px 20px;
-    /* margin-left: 10px; */
-}
+/* form {
+    padding: 0px;
+} */
 
 .name {
     margin-left: 30px;
-    margin-top: 29px;
+    margin-top: 50px;
     width: 220px;
     color: black;
     font-size: 15px;
     font-weight: 600;
-    padding: -4px 0px 0px 0px;
     /* background-color: red; */
 }
 
 .nameImage {
+    position: relative;
+    top: -20px;
     margin-left: 30px;
-    margin-top: 10px;
-    width: 220px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    /* background-color: red; */
+}
+
+.namePrice {
+    position: relative;
+    top: -70px;
+    margin-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     color: black;
     font-size: 15px;
     font-weight: 600;
@@ -102,7 +96,7 @@ form {
 
 #location {
     position: relative;
-    left: 175px;
+    left: 150px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
@@ -115,17 +109,17 @@ form {
 
 #description {
     position: relative;
-    left: 175px;
+    left: 150px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
     padding: 0 22px;
     font-size: 15px;
     border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 12px
+    margin-top: 12px;
 }
 
-#BCimage {
+input#BCimage {
     left: 350px;
     bottom: 30px;
     line-height: 35px;
@@ -140,51 +134,15 @@ form {
     /* margin-left: 130px; */
 }
 
-#address {
-    position: relative;
-    left: 175px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 10px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 2px;
-    width: 225px;
-}
-
-#resName {
-    position: relative;
-    left: 175px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 10px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 2px;
-    width: 225px;
-}
-
-#otDeadline {
-    position: relative;
-    left: 250px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 22px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 0px;
-}
-
 .radio {
+    position: relative;
+    bottom: 100px;
     display: inline-block;
     padding-right: 70px;
-    padding-bottom: 15px;
     margin-left: 55px;
     margin-top: 15px;
     color: black;
+    /* border: 1.5px solid rgb(26, 155, 194); */
 }
 
 .radio input {
@@ -226,8 +184,10 @@ form {
 }
 
 #submit {
-    width: 70%;
+    position: relative;
+    width: 50%;
     height: 55px;
+    bottom: 120px;
     padding: 15px 10px;
     background: rgb(9, 9, 121);
     background: linear-gradient(148deg, rgba(9, 9, 121, 0.8345623230666257) 0%, rgba(0, 212, 255, 0.8036634466621313) 100%);
@@ -239,7 +199,7 @@ form {
     text-transform: uppercase;
     letter-spacing: 2px;
     box-shadow: -7px -7px 20px 0 #ffffffb3, 7px 7px 20px 0 #00000033;
-    margin-left: 120px;
+    margin-left: 380px;
 }
 
 #submit:hover {
@@ -261,6 +221,60 @@ input:hover {
     color: brown;
 }
 
+#resName {
+    position: relative;
+    left: 250px;
+    bottom: 30px;
+    line-height: 35px;
+    border-radius: 0px;
+    padding: 0 22px;
+    font-size: 15px;
+    border: 1px solid#e0e5ec;
+    margin-top: 5px;
+}
+
+#pName {
+    position: relative;
+    left: 175px;
+    bottom: 30px;
+    line-height: 35px;
+    border-radius: 0px;
+    padding: 0 10px;
+    font-size: 15px;
+    border: 1.5px solid rgb(26, 155, 194);
+    margin-top: 2px;
+    width: 225px;
+}
+
+#pimage {
+    position: relative;
+    left: 25px;
+    bottom: 60px;
+    line-height: 35px;
+    border-radius: 0px;
+    padding: 0px 22px;
+    font-size: 15px;
+    border: 1.5px solid rgb(26, 155, 194);
+    margin-top: 0px;
+    border: none;
+    box-shadow: none;
+    margin-left: 50px;
+    /* margin-left: 130px; */
+}
+
+#price {
+    position: relative;
+    left: 175px;
+    bottom: 145px;
+    line-height: 35px;
+    border-radius: 0px;
+    padding: 0 10px;
+    font-size: 15px;
+    border: 1.5px solid rgb(26, 155, 194);
+    margin-top: 2px;
+    width: 225px;
+}
+
 .sub-container {
     padding: 1em;
     width: 100%;
@@ -271,16 +285,27 @@ input:hover {
     /* box-shadow: 1px 1px 10px 20px rgba(255, 255, 0, 0.705); */
     /* margin: 0px 50px 40px; */
     justify-content: space-around;
-    padding: 20px 400px;
+    padding: 20px 530px;
 }
 
-div .error_msg {
+.part2 {
+    padding: 40px 40px 40px 40px;
+    /* margin-left: 10px; */
+    /* border-left: 1px solid blue; */
+}
+
+.part1 {
+    padding: 40px 40px 40px 40px;
+    /* margin-left: 10px; */
+}
+
+.error_msg {
     color: #cc0000;
     margin-right: 100px;
     position: relative;
     width: 100%;
-    left: 180px;
-    bottom: 25px;
+    left: 150px;
+    bottom: 30px;
     border-radius: 0px;
     padding: 5px 5px 0px 0px;
     font-size: 15px;
@@ -304,21 +329,6 @@ div .error_msg {
     color: #cc0000;
     position: relative;
     width: 100%;
-    left: 30px;
+    left: 250px;
     bottom: 20px;
 }
-
-
-/* abbr {
-    position: relative;
-}
-
-abbr:hover::after {
-    position: absolute;
-    bottom: 100%;
-    left: 100%;
-    display: block;
-    padding: 1em;
-    background: yellow;
-    content: attr(title);
-} */

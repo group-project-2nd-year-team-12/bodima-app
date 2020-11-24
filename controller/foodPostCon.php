@@ -52,7 +52,15 @@ if(isset($_POST['submit'])){
     
         $description=$_POST['description'];
 
+        // $image_name=$_FILES['BCimage']['name'];
+
         $image_name=$_FILES['BCimage']['name'];
+        if(null==trim($image_name)){
+            echo "null";
+            $image_name="defaultfp1.png";
+        }else{
+            echo " have value";
+        }
         $image_type=$_FILES['BCimage']['type'];
         $image_size=$_FILES['BCimage']['size'];
         $temp_name=$_FILES['BCimage']['tmp_name'];
