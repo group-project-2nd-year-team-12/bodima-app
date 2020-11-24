@@ -76,20 +76,20 @@
                       <li onclick='window.location="views/orders.php"'>Orders </li>
                     <?php } ?>
                     <?php if($_SESSION['level']=='boardings_owner'){?>
-                      <li onclick='window.location="views/ConBODealIshan.php"'>Confirm Deal </li>
-                      <li onclick='window.location="views/TBOReqIshan.php"'>Request</li>
+                      
+                      
                       <li onclick='window.location="views/myBoardingReqIshan.php"'>My Requests</li>
-                      <li onclick='window.location="views/requests_list_A.php"'>PendinRequest </li>
+                      
                    <?php } ?>
                    <?php if($_SESSION['level']=='student'){?>
                       <li onclick='window.location="views/pendingReqIshan.php"'>Boarding Request </li>
-                      <li onclick='window.location="views/requests_list_A.php"'>PendinRequest </li>
+                      
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='boardings_owner' || $_SESSION['level']=='boarder'){?>
                     <li onclick='window.location="views/paymentFood_pending.php"'>My food Orders</li>
                     <?php } ?>
-                    <li onclick='window.location="views/TBOReqIshan.php"'>Log out</li>
+                    <li onclick='window.location="controller/logoutController.php"'>Log out</li>
                 <?php } else{?>
                     <h4>Plase sign in first to system.</h4>
                         <h3 class="nav-sign" onclick="window.location='views/user_loging.php'">Sign in </h3>

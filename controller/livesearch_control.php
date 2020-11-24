@@ -68,6 +68,7 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
-	echo 'Search with another keyword';
+	echo'';
+	// echo 'Search with another keyword';
 }
 ?>
