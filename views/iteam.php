@@ -93,13 +93,15 @@
 						
 				
 
-				<label for="">&nbsp; </label><br>
+				<div class="submit1">
 				<input type="submit" name="submit" id="submit" value="save"  >
+				</div>
+				
+<br>
 
-
-				<label for="">&nbsp; </label><br>
+				<div class="submit2">
 				<input type="submit" name="submit" id="submit" value="Add Iteam"  >
-
+				</div>
 			
 				
 			</form>
