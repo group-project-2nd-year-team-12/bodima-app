@@ -48,7 +48,7 @@
             <ul class="nav_bar">
                 <li class="nav_item " onclick="window.location='../index.php'"><i class=" fa fa-home"></i>Home</li>
                 <li class="nav_item " onclick="window.location='boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
-                <li class="nav_item " onclick="window.location='foodposts.php'"><i class="fas fa-hamburger"></i> Order Foods</li>
+                <li class="nav_item " onclick="window.location='foodposts.php'"><i class="fas fa-hamburger"></i> Order Food</li>
                 <li class="nav_item " onclick="window.location='about.php'"><i class="fa fa-address-card"></i> About us</li>
                 <li class="nav_item " onclick="window.location='contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
             </ul>

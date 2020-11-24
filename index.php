@@ -62,7 +62,7 @@
             <ul class="nav_bar">
                 <li class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i>Home</li>
                 <li class="nav_item " onclick="window.location='views/boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
-                <li class="nav_item " onclick="window.location='views/foodposts.php'"><i class="fas fa-hamburger"></i> Order Foods</li>
+                <li class="nav_item " onclick="window.location='views/foodposts.php'"><i class="fas fa-hamburger"></i> Order Food</li>
                 <li class="nav_item " onclick="window.location='views/about.php'"><i class="fa fa-address-card"></i> About us</li>
                 <li class="nav_item " onclick="window.location='views/contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
             </ul>
@@ -100,7 +100,7 @@
             <div class="section1-header">
                <div>
                  <h2 >Welcome to Bodima</h2>
-                 <h4>Accomadation management system</h4>
+                 <h4>Accomadation Management System</h4>
                 <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
                  <img  src="resource/img/home-home.png" alt="">
                  <!-- <h1>To Search, To Find, To delivery</h1> -->
@@ -123,7 +123,7 @@
                      <div class="boarding">
                         <h1>To <b style="color: blue;">P</b>ost</h1>
                         <img src="resource/img/post.svg" alt="">
-                        <p>Have you boarding with 0 incomig ? You want to turn it to incoming source. That is the place you need . Place your ads here. </p>
+                        <p>Have you boarding with 0 income ? You want to turn it to incoming source. That is the place you need . Place your ads here. </p>
                         <p style="color: blue;cursor:pointer"> read more</p>
                      </div>
                      <div class="delivery">
@@ -150,7 +150,7 @@
                      <div class="keymoney">
                         <h1>Key Money <b style="color: blue;">P</b>ayment</h1>
                         <img src="resource/img/key.svg" alt="">
-                        <p>You can pay your key money in online . We provide that service for you. If you get a boarding place using this platform then you can use this feature </p>
+                        <p>You can pay your key money online . We provide that service for you. If you get a boarding place using this platform then you can use this feature </p>
                      </div>
                      <div class="free">
                         <h1>Monthly <b style="color: blue;">P</b>ayment</h1>
@@ -161,7 +161,7 @@
                      <div class="order">
                         <h1>Order <b style="color: blue;">F</b>ood</h1>
                         <img src="resource/img/order.svg" alt="">
-                        <p>Anuki <---------------</p>
+                        <p>Is buying food is hard for you. Do you want to find food delivary. This is the best platform for you.</p>
                      </div>
                  </div>
                </div>
@@ -179,18 +179,18 @@
                      <div class="post">
                         <h1>Post <b style="color: blue;">A</b>ds</h1>
                         <img src="resource/img/ads.svg" alt="">
-                        <p>You can pay your key money in online . We provide that service for you. If you get a boarding place using this platform then you can use this feature </p>
+                        <p>Do you want to find customers. We provide that service for you. Post your place here and deal with customers online </p>
                      </div>
                      <div class="boarder">
                         <h1>Boarder <b style="color: blue;">M</b>anage</h1>
                         <img src="resource/img/manage.svg" alt="">
-                        <p>Also you can pay your month payment to boarding owner using this system. System will notified you in payment day. And you can see your payment history </p>
+                        <p>Are you thinking about easy way to manage your boarded people. This is the best solution. manage every details,payments via Bodima App. </p>
                         <p></p>
                      </div>
                      <div class="order-b">
                         <h1>Order <b style="color: blue;">F</b>ood</h1>
                         <img src="resource/img/order.svg" alt="">
-                        <p>Anuki <---------------</p>
+                        <p>Is buying food is hard for you. Do you want to find food delivary. This is the best platform fr you.</p>
                      </div>
                  </div>
                </div>
@@ -208,18 +208,18 @@
                      <div class="post-a">
                         <h1>Post <b style="color: blue;">A</b>ds</h1>
                         <img src="resource/img/ads.svg" alt="">
-                        <p>You can pay your key money in online . We provide that service for you. If you get a boarding place using this platform then you can use this feature </p>
+                        <p>Do you want to find customers for your food service. Post your food service here and deal with customers online </p>
                      </div>
                      <div class="get">
                         <h1>Get <b style="color: blue;">O</b>rders</h1>
                         <img src="resource/img/item.svg" alt="">
-                        <p>Also you can pay your month payment to boarding owner using this system. System will notified you in payment day. And you can see your payment history </p>
+                        <p>Take your orders online. It is okay to be a small business. this is your time to grow your customers online.</p>
                         <p></p>
                      </div>
                      <div class="grow">
                         <h1>Grow Your <b style="color: blue;">B</b>usiness</h1>
                         <img src="resource/img/grow.svg" alt="">
-                        <p>Anuki <---------------</p>
+                        <p>Earn with selling your home made food, Yes! your idea is not only a dream. Advertise and Start small.Grow your business with us</p>
                      </div>
                  </div>
                </div>
