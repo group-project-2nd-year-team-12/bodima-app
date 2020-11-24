@@ -60,6 +60,11 @@
               </ul>
           </div>  
            <div class="pending"> 
+
+            <div class="new-order">
+            <h2 >Rented Pay done</h2> 
+                    <!-- confirm deal for "rented payment done" customers -->
+            </div>
 <?php 
            $student_email=$_SESSION['email'];
             $result=reg_userIshan::selectRPayD($connection,$student_email);

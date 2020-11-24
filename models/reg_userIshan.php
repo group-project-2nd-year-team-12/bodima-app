@@ -92,6 +92,15 @@ class reg_userIshan{
         return $result;
      }
 
+     /////select new request  details in boarding owner page 
+      public static function selectnewRequest($BOid,$connection)
+     {
+       $query="SELECT * FROM request ,boarding_post,student WHERE request.B_post_id=boarding_post.B_post_id AND request.student_email=student.email AND request.isAccept=0 AND request.BOid='{$BOid}'";
+           
+        $result=$connection->query($query);
+        return $result;
+     }
+
      /////////delete pending request
      ///if isAccept=5,cancel request
      public static function PendingrequestDelete($connection,$request_id){
@@ -114,6 +123,15 @@ class reg_userIshan{
      public static function confirmDealAcc($request_id,$connection)
     {
         $query="UPDATE request SET  isAccept=3 WHERE request_id='{$request_id}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+
+     ////Boarding owner accept the  boarding  request
+     public static function confirmReqAccBO($request_id,$connection)
+    {
+        $query="UPDATE request SET  isAccept=1 WHERE request_id='{$request_id}' AND isAccept=0";
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -240,13 +258,45 @@ class reg_userIshan{
 
 
     ///////////select my Boarders
-    public static function selectMyBorders($connection){
+    public static function selectMyBorders($connection,$BOid){
 
-          $query="SELECT boarder.first_name,boarder.last_name,boarder.nic,boarding_post.house_num,boarding_post.lane,boarding_post.city,confirm_rent.B_post_id FROM boarder,boarding_post,confirm_rent WHERE boarder.Bid=confirm_rent.Bid AND boarding_post.B_post_id=confirm_rent.B_post_id AND boarder.user_accepted=1 AND confirm_rent.is_paid=1 ";
+          $query="SELECT boarder.first_name,boarder.last_name,boarder.nic,boarding_post.house_num,boarding_post.lane,boarding_post.city,confirm_rent.B_post_id FROM boarder,boarding_post,confirm_rent WHERE boarder.Bid=confirm_rent.Bid AND boarding_post.B_post_id=confirm_rent.B_post_id AND boarder.user_accepted=1 AND confirm_rent.is_paid=1 AND confirm_rent.BOid='{$BOid}' ";
             $result=mysqli_query($connection,$query);
             return $result;
 
     }
+
+    ///////////select my Boarders
+    public static function selectMyBordersBO($connection,$BOid){
+
+          $query="SELECT * FROM boarder,boarding_post,confirm_rent WHERE boarder.Bid=confirm_rent.Bid AND boarding_post.B_post_id=confirm_rent.B_post_id AND boarder.user_accepted=1 AND confirm_rent.is_paid=1 AND confirm_rent.BOid='{$BOid}' ";
+            $result=mysqli_query($connection,$query);
+            return $result;
+
+    }
+
+
+      ///////////select my Boarders
+    public static function selectMyBordersBOPaynot($connection,$BOid){
+
+          $query="SELECT * FROM boarder,boarding_post,confirm_rent WHERE boarder.Bid=confirm_rent.Bid AND boarding_post.B_post_id=confirm_rent.B_post_id AND boarder.user_accepted=0 AND confirm_rent.is_paid=0 AND confirm_rent.BOid='{$BOid}' ";
+            $result=mysqli_query($connection,$query);
+            return $result;
+
+    }
+
+
+    ///////////select my Boarders
+   /* public static function selectMyBordersDetails($connection,$BOid){
+
+          $query="SELECT * FROM boarder,confirm_rent,request WHERE boarder.Bid=confirm_rent.Bid AND confirm_rent.B_post_id=request.B_post_id AND boarder.user_accepted=1 AND confirm_rent.is_paid=1 AND confirm_rent.BOid='{$BOid}'";
+            $result=mysqli_query($connection,$query);
+            return $result;
+
+    }*/
+
+
+
                     
 
                    

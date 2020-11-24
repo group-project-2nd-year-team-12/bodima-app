@@ -70,9 +70,9 @@ session_start();
                    // $last_name=$_SESSION['last_name'];
                    //  $email=$_SESSION['email'];
                     // $address=$_SESSION['address'];
-                    // $BOid=$_SESSION['BOid'];
+                     $BOid=$_SESSION['BOid'];
 
-                    $result=reg_userIshan::selectMyBorders($connection);
+                    $result=reg_userIshan::selectMyBorders($connection,$BOid);
 
                      
                        $i=0;

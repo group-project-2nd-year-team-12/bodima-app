@@ -56,41 +56,48 @@
           <div class="payment-slide">
               <ul>
                   <li onclick="window.location='../index.php'">Home page</li>
-                  <li onclick="window.location='pendingReqIshan.php'">Pending Requests</li>
-                  <li onclick="window.location='acceptedReqIshan.php'">Accepted Requests</li>
-                  <li onclick="window.location='rentedPayIshan.php'">Rented (payment done)</li>
-                  <li onclick="window.location='rentedPayNotIshan.php'">Rented (payment Not done)</li>
-                  <li onclick="window.location='cancelReqIshan.php'">Canceled</li>
+                  <li onclick="window.location='myBoardingReqIshan.php'">New Requests</li>
+                  <li onclick="window.location='newBoarderAddIshan.php'">New Boarder Added</li>
+                  <li onclick="window.location='addAsBoarderIshanBO.php'">Add as a new Boarder</li>
+                 
               </ul>
           </div> 
 
-          <div class="pending"> 
 
-            <div class="new-order">
-            <h2 >Pending Request</h2> 
-                    <!-- confirm deal for "rented payment done" customers -->
-            </div>
+
+          <div class="pending"> 
+    <div class="new-order">
+    <h2 >New Boarder Added</h2> 
+            <!-- confirm deal for "rented payment done" customers -->
+    </div>
 
 
 
           <?php 
 
-          $student_email=$_SESSION['email'];
-          $result=reg_userIshan::selectPendingRequest($student_email,$connection);
+           $email=$_SESSION['email'];
+          $BOid=$_SESSION['BOid'];
+          $result=reg_userIshan::selectMyBordersBO($connection,$BOid);
           while ($user=mysqli_fetch_assoc($result)) {
-            $request_id=$user['request_id'];
-            $student_email=$user['student_email'];
+          // echo  $request_id=$user['request_id'];
+           // $student_email=$user['student_email'];
             $B_post_id=$user['B_post_id'];
-            $city=$user['city'];
-             $image=$user['image'];
+           
 
-              $first_name=$user['first_name'];
-          $last_name=$user['last_name'];
+             $first_name=$user['first_name'];
+         // $last_name=$user['last_name'];
+        //  $date=$user['date'];
+         // $message=$user['message'];
+$payment_date=$user['payment_date'];
          
-            
+          $keymoneyAmount=$user['keymoneyAmount'];
              
-         
-         
+         $rend_id=$user['rent_id'];
+         $gender=$user['gender'];
+         $rend_id=$user['rent_id'];
+         $nic=$user['NIC'];
+         $institute=$user['institute'];
+         $telephone=$user['telephone'];
 
           
              
@@ -98,27 +105,36 @@
 
 
            ?>
-               <div class="box">
-                    <div class="resend wait" >
-                        <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h3>Your Request is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small><b id="countdown">15h 45m 36s</b> This request will cancel </small></h3></div>
+            <div class="box">
+                    <div class="resend wait" style="background-color: rgb(29, 236, 191);">
+                        <div class="right" ><i class="fas fa-user-check fa-2x"></i></div>
+                        <div class="letter"><h3 style="margin-top:35px;">Congratulations! You have a new boarder.<small> post number: <?php echo $B_post_id; ?><br/>request no: </small></h3></div>
                     </div>
                   <div class="details-box">
                         <div class="details">
-                            <h2>Request Id :<span style="color:sienna;"><?php echo $request_id; ?></h2>
-                            <img src="<?php echo $image; ?>" class="post_image" alt="" >
-                            <h4>post Id :<?php echo $B_post_id; ?></h4>
-                            <h4><?php echo $city; ?></h4>
+                            <h2>Payment :<span style="color: rgb(6, 165, 131);">successful</h2><br/><br/>
+                            <!-- <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" > -->
+                            <h2>amount : <span style="color: rgb(6, 165, 131);"><?php echo $keymoneyAmount; ?></span></h2><br/>
+                            <h4>recieved at: <span style="color: rgb(6, 165, 131);"><?php echo $payment_date; ?></span></h4>
+                            <h4>payment id:<?php echo $rend_id; ?></h4>
                         </div>
                         <div class="button-pay">
-                            <h2>Your request has been sent succesfully<br/></h2>
-                            <h4>Post owner : <span style="color:sienna;"><?php echo $first_name."  ".$last_name; ?></span></h2>
-                            <br/><br/><hr>
-                            <h4>If you want cancel request. click the cancel request</h4>
-                            <button type="button" class="btn1 cancel"   onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?requestDelete_id=<?php echo $request_id; ?>"'> Cancel Request</button>
+                        <h2>New person has done Advance payment! </h2>
+                            <h4>Name: <span style="color: rgb(6, 165, 131);"><?php echo $first_name; ?></span><br/></h4>
+                            <h4>Gender: <span style="color: rgb(6, 165, 131);"><?php echo $gender; ?></span><br/></h4>
+                            <h4>NIC: <span style="color: rgb(6, 165, 131);"><?php echo $nic; ?></span><br/></h4>
+                            <h4>telephone no: <span style="color: rgb(6, 165, 131);"><?php echo $telephone; ?></span><br/></h4>
+                            <h4>University/working at: <span style="color: rgb(6, 165, 131);"><?php echo $institute; ?></span><br/></h4>
+                            
+                            <br/><hr>
+                            <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;"><a href="myboarders.php">click here</a></span> to view My boarders</h4><br/>
                         </div>
                   </div>
         </div>
+
+
+         
+               
            <?php 
             } ?>
 

@@ -61,6 +61,12 @@
           </div> 
 
        <div class="pending">   
+
+
+        <div class="new-order">
+        <h2 > Cancel Request</h2> 
+                <!-- confirm deal for "rented payment done" customers -->
+        </div>
          <?php 
            $student_email=$_SESSION['email'];
             $result=reg_userIshan::selectcancelReq($connection,$student_email);

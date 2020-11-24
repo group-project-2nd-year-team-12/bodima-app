@@ -62,6 +62,10 @@
           </div>  
 
           <div class="pending">
+        <div class="new-order">
+        <h2 > Accepted Request</h2> 
+                <!-- confirm deal for "rented payment done" customers -->
+        </div>
 
 
           <?php 
