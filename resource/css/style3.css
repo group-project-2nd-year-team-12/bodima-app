@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-body.boarding {
+body.food {
     /*background: #0c0cb2; */
     background: rgb(9, 9, 121);
     background: linear-gradient(148deg, rgba(9, 9, 121, 0.8345623230666257) 0%, rgba(0, 212, 255, 0.8036634466621313) 100%);
@@ -36,7 +36,7 @@ body.boarding {
 
 .main {
     background-color: white;
-    width: 1100px;
+    width: 800px;
     margin: auto;
     border-radius: 10px 10px 10px 10px;
     /* border: 15px solid #06069e; */
@@ -66,94 +66,6 @@ form {
     font-size: 15px;
     font-weight: 600;
     /* background-color: red; */
-}
-
-.hnumber {
-    position: relative;
-    width: 225px;
-    left: 150px;
-    bottom: 30px;
-    border-radius: 0px;
-    padding: 0 10px;
-    font-size: 15px;
-    line-height: 35px;
-    border: 1.5px solid rgb(26, 155, 194);
-    /* box-shadow: 9px 9px 16px #a3b1c699, -9px -9px 16px #ffffff80; */
-}
-
-.hLable {
-    position: relative;
-    color: black;
-    text-transform: capitalize;
-    font-size: 12px;
-    left: -125px;
-    top: 0px;
-}
-
-.lane {
-    position: relative;
-    left: 150px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 10px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 15px;
-    width: 225px;
-}
-
-.lLable {
-    position: relative;
-    color: black;
-    text-transform: capitalize;
-    font-size: 12px;
-    left: -125px;
-    top: 0px;
-}
-
-.city {
-    position: relative;
-    left: 150px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 10px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 15px;
-    width: 225px;
-}
-
-.cityLable {
-    position: relative;
-    color: black;
-    text-transform: capitalize;
-    font-size: 12px;
-    left: -125px;
-    top: 0px;
-}
-
-.district {
-    position: relative;
-    left: 150px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 10px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 15px;
-    width: 225px;
-}
-
-.lDis {
-    position: relative;
-    color: black;
-    text-transform: capitalize;
-    font-size: 12px;
-    left: -125px;
-    top: 0px;
 }
 
 #location {
@@ -214,46 +126,6 @@ input#BCimage {
     outline: none;
 }
 
-#pcount {
-    position: relative;
-    left: 250px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: -1px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 9px;
-    text-align: center;
-    width: 40px;
-}
-
-#cpperson {
-    position: relative;
-    left: 250px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 22px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 4px;
-    width: 225px;
-}
-
-#Keymoney {
-    position: relative;
-    left: 250px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 22px;
-    font-size: 15px;
-    border: 1.5px solid rgb(26, 155, 194);
-    margin-top: 5px;
-    width: 225px;
-}
-
 #Aamount {
     position: relative;
     left: 200px;
@@ -298,7 +170,7 @@ input#BCimage {
     text-transform: uppercase;
     letter-spacing: 2px;
     box-shadow: -7px -7px 20px 0 #ffffffb3, 7px 7px 20px 0 #00000033;
-    margin-left: 120px;
+    margin-left: 300px;
 }
 
 #submit:hover {
@@ -320,10 +192,6 @@ input:hover {
     color: brown;
 }
 
-.second_name {
-    margin-left: 20px;
-}
-
 #resName {
     position: relative;
     left: 250px;
@@ -336,92 +204,72 @@ input:hover {
     margin-top: 5px;
 }
 
-#address {
-    position: relative;
-    left: 250px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 22px;
-    font-size: 15px;
-    border: 1px solid#e0e5ec;
-    margin-top: 5px;
-}
-
-#otDeadline {
-    position: relative;
-    left: 250px;
-    bottom: 30px;
-    line-height: 35px;
-    border-radius: 0px;
-    padding: 0 22px;
-    font-size: 15px;
-    border: 1px solid#e0e5ec;
-    margin-top: 0px;
-}
-
 #pName {
     position: relative;
-    left: 250px;
+    left: 175px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
-    padding: 0 22px;
+    padding: 0 10px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
-    margin-top: 5px;
+    border: 1.5px solid rgb(26, 155, 194);
+    margin-top: 2px;
+    width: 225px;
 }
 
 #pimage {
-    position: relative;
-    left: 250px;
+    left: 350px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
-    padding: 0 22px;
+    padding: 0px 22px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
-    margin-top: 5px;
+    border: 1.5px solid rgb(26, 155, 194);
+    margin-top: 2px;
     border: none;
     box-shadow: none;
+    margin-left: 50px;
+    /* margin-left: 130px; */
 }
 
 #price {
     position: relative;
-    left: 250px;
+    left: 175px;
     bottom: 30px;
     line-height: 35px;
     border-radius: 0px;
-    padding: 0 22px;
+    padding: 0 10px;
     font-size: 15px;
-    border: 1px solid#e0e5ec;
-    margin-top: 5px;
+    border: 1.5px solid rgb(26, 155, 194);
+    margin-top: 2px;
+    width: 225px;
 }
 
+
+}
 .sub-container {
     padding: 1em;
     width: 100%;
     align-items: center;
     /* margin: 1em auto; */
+    
     display: flex;
     box-sizing: border-box;
     /* box-shadow: 1px 1px 10px 20px rgba(255, 255, 0, 0.705); */
     /* margin: 0px 50px 40px; */
+    
     justify-content: space-around;
     padding: 20px 350px;
 }
-
 .part2 {
     padding: 40px 40px 40px 40px;
     /* margin-left: 10px; */
     /* border-left: 1px solid blue; */
 }
-
 .part1 {
     padding: 40px 40px 40px 40px;
     /* margin-left: 10px; */
 }
-
 .error_msg {
     color: #cc0000;
     margin-right: 100px;
@@ -433,13 +281,11 @@ input:hover {
     padding: 5px 5px 0px 0px;
     font-size: 15px;
 }
-
 .error {
     color: #cc0000;
     width: 100%;
     padding: 5px 0px;
 }
-
 .error1 {
     color: #cc0000;
     position: relative;
@@ -447,7 +293,6 @@ input:hover {
     left: 30px;
     bottom: 20px;
 }
-
 .error2 {
     color: #cc0000;
     position: relative;
