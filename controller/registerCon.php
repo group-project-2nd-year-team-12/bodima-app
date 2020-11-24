@@ -29,7 +29,7 @@ if(isset($_POST['submit']))
         elseif(!preg_match(("/^([a-zA-Z']+)$/"), $last_name)){ // preg_match -> check regular expression
                 $errors[]='*Invalid Last name ';
         }
-        if(!isset($nic) || strlen(trim($nic))<1)
+        if(!isset($nic) || strlen(trim($nic))<1)   // check password 
                  {
                  $errors[]='*NIC  required';
                  }
@@ -37,7 +37,23 @@ if(isset($_POST['submit']))
         else    {
                         if(strlen(trim($nic))==12 || (strlen(trim($nic))==10 && ($nic[9]=='v' || $nic[9]=='V')))
                         {
-                              // 
+                                if(strlen(trim($nic))==10)
+                                {
+                                        $intPart=substr($nic,0,8);
+                                        if(!is_numeric($intPart))
+                                        {
+                                                $errors[]="*NIC number is invalid";
+                                        }
+                                }
+                               elseif(strlen(trim($nic))==12)
+                               {
+                                        $intPart=substr($nic,0,11);
+                                        if(!is_numeric($intPart))
+                                        {
+                                                $errors[]="*NIC number is invalid";
+                                        }  
+                               }
+                               
                         }
                         else{
                                 $errors[]="*NIC number is invalid";
