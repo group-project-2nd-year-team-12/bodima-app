@@ -25,7 +25,7 @@ if(isset($_POST['accept']))
    if($method=='card')
    {
       $result=orderModel::accept($order_id,1,$connection);
-      sentAccept($email,$first_name,$address,$total);
+      sentAccept( $order_id,$email,$first_name,$address,$total);
       header('Location:../views/notPaymentOrder.php');
    }elseif($method=="cash")
    {

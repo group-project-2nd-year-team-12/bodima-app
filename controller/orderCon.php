@@ -12,9 +12,12 @@ $errors=array();
    {
       $error['address']="errorAddress";
    }
-   if(!isset($_POST['phone']) || strlen(trim($_POST['phone']))<1)
+   if((!isset($_POST['phone']) || strlen(trim($_POST['phone']))<1) || strlen(trim($_POST['phone']))>10)
    {
       $error['phone']="errorPhone";
+   }elseif(!is_numeric($_POST['phone']))
+   {
+      $error['phone1']="errorPhone1";
    }
    if(empty($error)){
    //  print_r($_SESSION);
@@ -40,7 +43,7 @@ $errors=array();
       header('Location:../views/paymentFood_pending.php');
    }
 }else{
-   header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&Pid='.$_POST['Pid']);
+   header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&'.$error['phone1'].'&Pid='.$_POST['Pid']);
 }
 }
 
