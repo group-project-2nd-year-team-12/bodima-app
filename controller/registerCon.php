@@ -190,7 +190,7 @@ if(isset($_POST['register']) )
                                 header('Location:../views/emailVerify.php?email='.$email.'&token='.$token.'&level='.$level); 
 
                 }else{
-                        if($level=='boardings_owner'){header('Location:../views/boardings_owner_reg.php?'.http_build_query(array('param'=>$errors)));}
+                        if($level=='boardings_owner'){header('Location:../views/boarding_owner_reg.php?'.http_build_query(array('param'=>$errors)));}
                         else   header('Location:../views/food_supplier_reg.php?'.http_build_query(array('param'=>$errors)));
                 }
         
