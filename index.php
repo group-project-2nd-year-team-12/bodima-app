@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bodima-Accomadation Management System</title>
     <link rel="stylesheet" href="resource/css/new_home.css">
     <link rel="stylesheet" href="resource/css/all.css">
     </head>
