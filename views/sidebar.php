@@ -99,11 +99,11 @@
                                </li>';
 
                         echo '<li class="side_element">
-                                <a href="foodposts.php"><span class="material-icons">room_service</span><span>Orders</span></a>
+                                <a href="orders.php"><span class="material-icons">room_service</span><span>Orders</span></a>
                               </li>';
 
                         echo '<li class="side_element">
-                                <a href="#"><i class="fas fa-history"></i><span>Order History</span></a>
+                                <a href="deliveredHistory.php"><i class="fas fa-history"></i><span>Order History</span></a>
                               </li>';
 
                     }?>

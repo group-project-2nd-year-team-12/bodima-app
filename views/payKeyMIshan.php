@@ -15,9 +15,9 @@ require_once ('../config/database.php');
 </head>
 <body class="body2">
     <div class="container">
-    <div class="para">
+    <div class="para" style="align:center;">
             <h1><b>P</b>ay <b>K</b>ey Money</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga doloremque sunt nam ipsam nihil quo quidem asperiores quisquam pariatur expedita ducimus, voluptatem nisi, dignissimos recusandae. </p>
+            <center><p>Hurry up! you have just one step! <br/> <h3>CLICK PAYMENT <br/>and <br/>RESERVE Your boarding place NOW!</h3><br/> </p></center>
     </div>
     <div class="register">
     
@@ -92,7 +92,7 @@ require_once ('../config/database.php');
             <input type="hidden" name="address" value="No.1, Galle Road">
             <input type="hidden" name="city" value="Colombo">
             <input type="hidden" name="country" value="Sri Lanka"><br><br> 
-            <input type="submit" value="Buy Now" name="value"> 
+            <input type="submit" value="Pay & Reserve" name="value"> 
 
 
 

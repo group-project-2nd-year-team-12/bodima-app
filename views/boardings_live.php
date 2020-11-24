@@ -35,12 +35,14 @@
 			
 			</div>
 			<div class="right_bar">
-				right bar
+				<!-- right bar -->
 			</div>
 			<!-- <div style="clear:both"></div> -->
 		<!-- </div> -->
 		<div class="popup_signin">
-			<a href="../views/register.php">sign up here</a>
+			<a href="../views/register.php">
+			<!-- sign up here -->
+		</a>
 		</div>
 	</div>
 
