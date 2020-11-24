@@ -67,7 +67,7 @@
 
           <div class="pending"> 
     <div class="new-order">
-    <h2 > New request</h2> 
+    <h2 >Add as a new Boarder</h2> 
             <!-- confirm deal for "rented payment done" customers -->
     </div>
 
@@ -77,24 +77,27 @@
 
            $email=$_SESSION['email'];
           $BOid=$_SESSION['BOid'];
-          $result=reg_userIshan::selectnewRequest($BOid,$connection);
+          $result=reg_userIshan::selectMyBordersBOPaynot($connection,$BOid);
           while ($user=mysqli_fetch_assoc($result)) {
-            $request_id=$user['request_id'];
-            $student_email=$user['student_email'];
+           // $request_id=$user['request_id'];
+           // $student_email=$user['student_email'];
             $B_post_id=$user['B_post_id'];
-            $city=$user['city'];
-             $image=$user['image'];
+           
 
              $first_name=$user['first_name'];
-          $last_name=$user['last_name'];
-          $date=$user['date'];
-          $message=$user['message'];
-
+         // $last_name=$user['last_name'];
+        //  $date=$user['date'];
+         // $message=$user['message'];
+$payment_date=$user['payment_date'];
          
-            
+          $keymoneyAmount=$user['keymoneyAmount'];
              
-         
-         
+         $rend_id=$user['rent_id'];
+         $gender=$user['gender'];
+         $rend_id=$user['rent_id'];
+         $nic=$user['NIC'];
+         $institute=$user['institute'];
+         $telephone=$user['telephone'];
 
           
              
@@ -104,30 +107,39 @@
            ?>
 
 
+
             <div class="box">
-                    <div class="resend wait" style="background-color:  rgb(141, 243, 141);">
-                        <div class="right" ><i class="far fa-check-circle fa-2x"></i></div>
-                        <div class="letter"><h3>You have recieved a new request<small> this request will automatically cancel in <b id="countdown">15h 45m 36s</b></small></h3></div>
+                    <div class="resend wait" style="background-color:rgb(1, 167, 233);">
+                        <div class="right" style="color:white;" ><i class="fas fa-user-plus fa-2x"></i></div>
+                        <div class="letter"><h3 style="margin-top:35px;">Add As a new Boarder<small> post number: <?php echo $B_post_id; ?><br/></small></h3></div>
                     </div>
                   <div class="details-box">
-                        <div class="details">
-                            <h2>post Id :<span style="color:green;"><?php echo $B_post_id; ?></h2>
-                            <img src="<?php echo $image; ?>" class="post_image" alt="" >
-                            <h4>Request Id:<?php echo $request_id; ?></h4>
-                            <h4><?php echo $city; ?></h4>
-                        </div>
-                        <div class="button-pay">
-                        <h2>New Request Recieved</h2>
-                            <h4>arrived at:&nbsp;&nbsp; <?php echo $date; ?><br/><br/></h4>
-                            <h4>from : <span style="color:green;"><?php echo $student_email; ?></span></h4>
-                            <h4>massage : <span style="color:green;"><?php echo $message; ?></span></h2>
+                       
+                        <div class="button-pay" style="width:60%;">
+                        <h2>New person has manual Payment </h2>
+                            <h4>Name: <span style="color: rgb(6, 165, 131);"><?php echo $first_name; ?></span><br/></h4>
+                            <h4>Gender: <span style="color: rgb(6, 165, 131);"><?php echo $gender; ?></span><br/></h4>
+                            <h4>NIC: <span style="color: rgb(6, 165, 131);"><?php echo $nic; ?></span><br/></h4>
+                            <h4>telephone no: <span style="color: rgb(6, 165, 131);"><?php echo $telephone; ?></span><br/></h4>
+                            <h4>University/working at: <span style="color: rgb(6, 165, 131);"><?php echo $institute; ?></span><br/></h4>
+                            
                             <br/><hr>
-                            <h4>to allow <span style="color:green; text-decoration:underline;"><?php echo $first_name; ?></span> to get your boarding place, click 'Accept Request'</h4><br/>
-                            <button type="button" class="btn4 Accept_Request" style="background-color: rgb(3, 204, 3);"  onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?reqAccBOwner_id=<?php echo $request_id; ?>"' > Accept Request</button>
-                            <button type="button" class="btn1 cancel"   onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?requestDeleteBO_id=<?php echo $request_id; ?>"'> Cancel</button>
+                            <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;"><a href="myboarders.php">click here</a></span> to view My boarders</h4><br/>
+                        </div>
+
+                        <div class="details"  style="width:40%; border-right:none;border-left :1px solid; padding-top:20px; padding:15px;">
+
+                            <!-- <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" > -->
+                            <h2>amount : <span style="color: rgb(6, 165, 131);">Rs. 6000</span></h2><br/>
+                            
+                            <h4>If Your payment recieved, click below to add as a boarder.</h4>
+                            <button type="button" class="btn5 Accept_Request" style="background-color: rgb(3, 204, 3); margin-left:none; width:20vw;" onclick='if(confirm("Are you want to add this Boarder ?")) window.location="../controller/requestIshan.php?ConreqAccBOwner_id=<?php echo $request_id; ?>"'><i class="fas fa-hand-holding-usd"></i> Payment Recieved<br/>&<br/><i class="fas fa-user-plus"></i> Add to my boarders</button>
                         </div>
                   </div>
         </div>
+            
+
+         
                
            <?php 
             } ?>
