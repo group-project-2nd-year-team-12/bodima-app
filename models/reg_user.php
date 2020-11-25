@@ -128,13 +128,13 @@ class reg_user{
     }
 
     public static function getOrderAll($connection,$email,$isAccept){
-        $query="SELECT * FROM food_request WHERE is_accepted=$isAccept AND email='{$email}'";
+        $query="SELECT * FROM food_request WHERE is_accepted=$isAccept AND email='{$email}' ORDER BY order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }
 
     public static function getOrderById($connection,$email,$isAccept){
-        $query="SELECT DISTINCT  order_id FROM food_request WHERE is_accepted=$isAccept AND email='{$email}'";
+        $query="SELECT DISTINCT  order_id FROM food_request WHERE is_accepted=$isAccept AND email='{$email}' ORDER BY order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }
