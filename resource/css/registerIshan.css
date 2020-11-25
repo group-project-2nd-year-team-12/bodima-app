@@ -117,25 +117,19 @@ h1 {
     height: 50px;
 }
 
-.radiobox{
+.radio-box{
     display: flex;
     justify-content: space-around; 
+    align-items: center;
+   padding: 0 30px;
 }
 .radio1{
-     position: relative;
-    width: 150%;
-    border: 2px solid #3f3941;
-    padding: 4px 4px;
+    /* padding: 4px 4px; */
     display: flex;
     align-items: center;
-    cursor: pointer;
-    background-color: #242326;
-    border-radius: 5px;
-    color: white;
-    transition: 0.5s;
-
+    /* align-self: center; */
+    width: 30%;
 }
-
 
 
 .radio2 {
@@ -161,7 +155,7 @@ h1 {
     margin-right: 10px;
 }
 
-input[type="radio"]:checked+label {
+.radio2:checked+label {
     background-color:  #939393ff;
     color: rgb(255, 255, 255);
 }

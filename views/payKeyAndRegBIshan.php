@@ -40,18 +40,17 @@
 		   	<input type="text" name="telephone" placeholder="Enter Your Telephone Number.">
 
 		   	<p>Gender</p>
-		   	<div class="radiobox">
-		   		 <div class="radio">
-					<input type="radio" name="gender" value="Boy" checked="checked" id="3" >
-					<label class="radio1" for="3">Male</label>
+	   		<div class="radio-box">
+			   <div class="radio1">
+				   <input type="radio" name="gender" value="Boy" checked="checked" id="3" >
+					<label for="3">Male</label>
 				</div>
-				
-				<div class="radio">
+				<div class="radio1">
 					<input type="radio" name="gender" value="Girl" id="4">
-					<label class="radio1"for="4">Female</label>
+					<label for="4">Female</label>
 				</div>
+			   </div>
 		   		
-		   	</div>
 		   	
 
 		   	<p>Parent Name</p>
