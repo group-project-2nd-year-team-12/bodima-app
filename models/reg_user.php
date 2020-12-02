@@ -4,7 +4,7 @@ class reg_user{
     // student registration 
     public static function studentReg($email,$first_name,$last_name,$nic,$password,$token,$connection)
     {
-        $query="INSERT INTO student (email,first_name,last_name,nic,password,token) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}')";
+        $query="INSERT INTO student (email,first_name,last_name,NIC,password,token) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}')";
         mysqli_query($connection,$query);
     }
 
@@ -27,7 +27,14 @@ class reg_user{
          $result_set=mysqli_query($connection,$query);
          return  $result_set;
     }
-
+    public static function checkNic($nic,$connection)
+    {
+        $query="SELECT NIC FROM boardings_owner  WHERE NIC='{$nic}'
+         UNION SELECT NIC FROM food_supplier  WHERE NIC='{$nic}'
+         UNiON SELECT NIC FROM boarder  WHERE NIC='{$nic}' LIMIT 1";
+         $result_set=mysqli_query($connection,$query);
+         return  $result_set;
+    }
     // user accept
     public static function setApt($email,$level,$newtoken,$connection)
     {

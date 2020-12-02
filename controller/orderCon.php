@@ -12,10 +12,10 @@ $errors=array();
    {
       $error['address']="errorAddress";
    }
-   if((!isset($_POST['phone']) || strlen(trim($_POST['phone']))<1) || strlen(trim($_POST['phone']))>10)
+   if((!isset($_POST['phone']) || strlen(trim($_POST['phone']))<1) )
    {
       $error['phone']="errorPhone";
-   }elseif(!is_numeric($_POST['phone']))
+   }elseif(!is_numeric($_POST['phone']) || (strlen(trim($_POST['phone']))>10 || strlen(trim($_POST['phone']))!=10))
    {
       $error['phone1']="errorPhone1";
    }
