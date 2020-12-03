@@ -6,7 +6,7 @@
     
 }
 .header{
-  border-bottom: 1px solid #2f323a;
+  border-bottom: 3px solid #2f323a;
   position: fixed;
   width: 100%;
   box-sizing: border-box;
@@ -173,12 +173,13 @@ div .back_button{
 
 .content_container h2{
   background-color:#11e6c2;
-  margin-top:-86px;
+  /* margin-top:-86px; */
   margin-left:-30px;
   padding:10px;
   padding-left:40px ;
   position: fixed;
   width: 100%;
 
+  top:50px;
   
 }

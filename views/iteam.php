@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<title>&#127829;Add Iteam </title>
-	<link href="../resource/css/style.css" rel="stylesheet">
+	<link href="../resource/css/style3.css" rel="stylesheet">
 
 	<style>
 
@@ -15,60 +15,97 @@
 //print_r($_FILES);
 ?>
 
-	<div class="postBoarding"><h1>Add Iteam</h1></div><!-- postBoarding -->
-		<div class=main>
-			<form action="../controller/foodPostCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
+<div class=error-post>
+	<?php
+	if(isset($_GET['param']))
+	{
+		$errors=$_GET['param'];
+		
+		// foreach($errors as $error)
+		// {
+		// 	echo '<p class="error"><b>'.$error.'</b></p>';
+		// }
+		//print_r($errors);
+	}
+	
+	?>
+	</div>	
+		
+
+
+<div class="sub-container" id="img-sub">
+				<div><img src="../resource/icons/other/food icon/chicken.png"logo" class="verticle-center" width=50 height=auto  /></div>
+		
+
+		<div class="postBoarding"><h1>Add Iteam Form</h1></div><!-- postBoarding -->
+
+	</div>
+
+
+	
+		<div class="main">
+			<form action="../controller/iteamCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
 			
 
 				<!--<label for="">Address  </label><br>-->
 				<h3 class="name">Product Name </h3 >
 				
 				<input class="PName" type="text" name="pName" id="pName" >
+				<?php if(isset($errors['err1'])) echo "<div class='error'>".$errors['err1']."</div>"; ?>
 
 				
 				
-				<h3 class="name">Product Image</h3 >
-				<input type="file" name="pimage" id="pimage"><br>
+				<h3 class="nameImage">Product Image</h3 >
+				<input type="file" name="pimage"  accept=".jpg, .png, .jpeg"  id="pimage"><br>
 
 
-				<h3 class="name">Price</h3 >
+				<h3 class="namePrice">Price</h3 >
 				<input type="text" name="price" id="price" >
+				<?php   if(isset($errors['err2'])){
+							echo "<div class='error2'>".$errors['err2']."</div>"; 
+						}elseif(isset($errors['err3'])){
+							echo "<div class='error2'>".$errors['err3']."</div>"; 
+						}
+				?>
 
+			<br>
 			
-			
-				<h3 class="name">Breakfirst</h3 >
+				
 				<label class="radio">
-					<input type="radio" name="breakfirst" id="breakfirst" value="1"><span id="breakfirst" >&nbsp; Yes</span>&nbsp;&nbsp;
-					<input type="radio" name="breakfirst" id="breakfirst" value="0"><span id="breakfirst" >&nbsp; No</span>&nbsp;&nbsp;<br>
+					<input type="checkbox" name="breakfirst" id="breakfirst" value="1"><span id="breakfirst" >&nbsp;Breakfirst</span>&nbsp;&nbsp;
+					
 				</label>
 				
-		
-				<h3 class="name">Lunch</h3 >
+		<br>
+				
 				<label class="radio">
-					<input type="radio" name="lunch" id="lunch" value="1"><span id="lunch" >&nbsp; Yes</span>&nbsp;&nbsp;
-					<input type="radio" name="lunch" id="lunch" value="0"><span id="lunch" >&nbsp; No</span>&nbsp;&nbsp;<br>
+					<input type="checkbox" name="lunch" id="lunch" value="1"><span id="lunch" >&nbsp; Lunch</span>&nbsp;&nbsp;<br>
+					
 				</label>
 				
-		
-				<h3 class="name">Dinner</h3 >
+        <br>
+        
+				
 				<label class="radio">
-					<input type="radio" name="dinner" id="dinner" value="1"><span id="dinner" >&nbsp; Yes</span>&nbsp;&nbsp;
-					<input type="radio" name="dinner" id="dinner" value="0"><span id="dinner" >&nbsp; No</span>&nbsp;&nbsp;<br>
+					<input type="checkbox" name="dinner" id="dinner" value="1"><span id="dinner" >&nbsp;Dinner</span>&nbsp;&nbsp;<br>
+					
 				</label>
 						
 				
 
-				<label for="">&nbsp; </label><br>
-				<input type="submit" name="submit" id="submit" value="save"  ><br>
+				<div class="submit1">
+				<input type="submit" name="submit" id="submit" value="save"  >
+				</div>
+				
+<br>
 
-
-				<label for="">&nbsp; </label><br>
-				<input type="submit" name="submit" id="submit" value="Add Iteam"  ><br>	<br><br>
-
+				<div class="submit2">
+				<input type="submit" name="submit" id="submit" value="Add Iteam"  >
+				</div>
 			
 				
 			</form>
-
-		<div><!-- main -->
+</div>
+		
 </body>
 </html>

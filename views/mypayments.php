@@ -23,7 +23,7 @@
     	
     	<div class="header">
             <div class="logo">
-                <h1><b style="color: rgb(13, 13, 189)">B</b>odima<small style="font-size: 14px; color:rgb(13, 13, 189);">   Solution for many problem</small></h1>
+                <h1><b style="color: rgb(13, 13, 189)">B</b>odima<small style="font-size: 14px; color:rgb(13, 13, 189);">   Solution for many problems</small></h1>
             </div>
             <div class="sign">
                 <?php if(!isset($_SESSION['email'])){echo '<a href="controller/logingController.php?click1">Sign In <i class="fa fa-sign-in"></i></a>';}?>
@@ -78,11 +78,11 @@
                             </div>
                          </div>
                         </div>
-                    </div>
-                </form>
                     
-            </div>
+                </form>
+            </div>       
         </div>
+        
 
 
         <div class="pro_inner">
@@ -114,12 +114,11 @@
                             </div>
                          </div>
                         </div>
-                    </div>
-                </form>    
-            </div>
+                </form>   
+            </div> 
         </div>
-
-
+</div>
+</div>
 
 
 </div>

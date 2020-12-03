@@ -105,7 +105,7 @@ a{
             <h3 style="text-align:left">HEY THERE !</h3>
             <h2><b>L</b>ast <b>S</b>tep <b>T</b>o <b>S</b>tart </h2>
             <p>We just need you to confirm your email address and finish setting new account we created just for you.</p>
-            <a href="http://localhost/bodima-app/controller/registerCon.php?token='.$token.'&level='.$level.'&email='.$email.'">Click to confirm your email address <i class="fa fa-arrow-right"></i></a>
+            <a href="http://localhost:1234/bodima-app/controller/registerCon.php?token='.$token.'&level='.$level.'&email='.$email.'">Click to confirm your email address <i class="fa fa-arrow-right"></i></a>
             
         </div>
     </div>
