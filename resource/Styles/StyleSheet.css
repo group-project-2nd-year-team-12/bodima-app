@@ -1,6 +1,7 @@
 /* * {
   box-sizing: border-box;
 } */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 
 .row::after {
   content: "";
@@ -424,4 +425,28 @@ option{
   background-color:  #379;
   color: wheat;
   cursor: pointer;
+}
+
+.food-header{
+  height: 500px;
+}
+.food-header img{
+  /* height: 100%; */
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+.header-description{
+  /* background-color: red; */
+
+  align-items: center;
+}
+.header-description h1{
+  color: rgb(93, 0, 255);
+  font-family: 'Caveat', cursive;
+  font-size: 80px;
+}
+.header-description h3{
+  align-items: center;
 }

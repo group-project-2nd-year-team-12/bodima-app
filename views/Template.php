@@ -17,7 +17,7 @@ and open the template in the editor.
         
     </head>
     <body>
-      <?php include 'nav.php' ?>
+      <!-- <?php include 'nav.php' ?> -->
          
            <!--  <div class="header"> 
               <div class="row">
