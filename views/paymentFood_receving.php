@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/css/nav.css">
-    <link rel="stylesheet" href="../resource/css/footer.css">
+    <link rel="stylesheet" href="../resource/css/paymentFoodSlide.css">
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
@@ -46,16 +46,7 @@
         </div>
     <div class="container">
         <div class="content">
-          <div class="payment-slide">
-          <ul>
-                   <li  onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
-                  <li onclick="window.location='paymentFood_pending.php'"><i  class="fas fa-hourglass-half"></i> Pending Orders</li>
-                  <li onclick="window.location='paymentFood_accept.php'"><i  class="fas fa-clipboard-check"></i> Accepted Orders</li>
-                  <li onclick="window.location='paymentFood_receving.php'"><i  class="fas fa-truck"></i> Receiving Order</li>
-                  <li onclick="window.location='paymentFood_history.php'"><i class="fas fa-history"></i> Order History</li>
-                  <li onclick="window.location='foodposts.php'"><i  class="fas fa-plus"></i> New Order</li>
-              </ul>
-          </div>          
+          <?php include  'paymentFoodSlide.php';?>        
        
         <div class="pending">
             <div class="title">

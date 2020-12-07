@@ -428,7 +428,8 @@ option{
 }
 
 .food-header{
-  height: 500px;
+  height: 400px;
+
 }
 .food-header img{
   /* height: 100%; */
@@ -436,10 +437,14 @@ option{
   position: absolute;
   top: 0;
   z-index: -1;
+  filter:brightness(0.5)
 }
 .header-description{
-  /* background-color: red; */
-
+  background-color: rgba(0, 0, 0, 0.366);
+  width: 80%;
+  padding: 30px;
+  /* display: flex; */
+  margin: 200px auto;
   align-items: center;
 }
 .header-description h1{
@@ -448,5 +453,8 @@ option{
   font-size: 80px;
 }
 .header-description h3{
-  align-items: center;
+  font-family: 'Caveat', cursive;
+  color: white;
+  text-align: start;
+  font-size: 30px;
 }
