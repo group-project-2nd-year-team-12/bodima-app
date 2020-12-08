@@ -17,8 +17,11 @@
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
+                <h1><small style="font-size: 14px; color:white; font-weight:lighter">   Solution for many problems</small></h1>
+                
             </div>
+            <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
+            <h5>State : <span>Active</span></h5>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
@@ -55,6 +58,10 @@
                 $email=$_SESSION['email'];
                 $ids_set=reg_user::getOrderById($connection,$email,0);
                 $order_pending=reg_user::getOrderAll($connection,$email,0);
+                if($ids_set->num_rows==0)
+                {
+                    header('Location:mail.php');
+                }
                 $ids=array();
                 while($record=mysqli_fetch_assoc($ids_set))
                 {

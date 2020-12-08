@@ -17,6 +17,17 @@
                         </form>
                     </div>
                   </div>
-                  <h3>----------------OR---------------</h3>
+                  <div class="line"></div>
+                  <h3 class="line1">OR</h3>
+                  
+                  <div class="select-box">
+                  <h5>Select date disable order request</h5>
+                     <div class="date-block">
+                        <input id="1" type="date">
+                     </div>
+                      </form>
+                      <h6>@Bodima</h6>
+                  </div>
+                  
               </ul>
           </div> 
