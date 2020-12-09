@@ -1,6 +1,7 @@
 <?php 
  require_once ('../config/database.php');
  require_once ('../models/orderModel.php');
+ require_once ('../models/reg_user.php');
     session_start ();
 ?>
 
@@ -40,18 +41,48 @@ $errors=array();
        {
         orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$phone,$method,$time,$product['restaurant'],$connection);
        }
-      header('Location:../views/paymentFood_pending.php');
+      header('Location:orderCon.php?id=1');
    }
 }else{
    header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&'.$error['phone1'].'&Pid='.$_POST['Pid']);
 }
 }
 
+if(isset($_GET['id']))
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,0);
+   $order_pending=reg_user::getOrderAll($connection,$email,0);
+   if($ids_set->num_rows==0)
+   {
+      header('Location:../views/paymentFoodEmpty.php');
+   }
+   else
+   {
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');
+   }
+}
+
+
 if(isset($_GET['orderDelete_id'])){
    $order_id=$_GET['orderDelete_id'];
    $result=orderModel::requestOrderDelete($connection,$order_id);
    if($result){
-      header('Location:../views/paymentFood_pending.php');
+      header('Location:orderCon.php?id=1');
    }
    {
       echo "Mysqli query failed";
@@ -93,4 +124,17 @@ if(isset($_GET['order_id'])){
    }
 }
 
+
+// on aff button 
+
+if(isset($_GET['avail'])){
+   if(isset($_POST['isAvail']))
+   {
+      echo "checked";
+   }
+   else
+   {
+      echo "not";
+   }
+}
 ?>

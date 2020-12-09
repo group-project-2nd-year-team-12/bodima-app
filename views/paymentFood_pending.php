@@ -55,25 +55,9 @@
             <div class="title">
                 <h3>Pending order</h3>
                 <?php 
-                $email=$_SESSION['email'];
-                $ids_set=reg_user::getOrderById($connection,$email,0);
-                $order_pending=reg_user::getOrderAll($connection,$email,0);
-                if($ids_set->num_rows==0)
-                {
-                    header('Location:mail.php');
-                }
-                $ids=array();
-                while($record=mysqli_fetch_assoc($ids_set))
-                {
-                    $ids[]=$record['order_id'];
-                }
-                $data_rows=array();
-                $i=0;
-                while($record=mysqli_fetch_assoc($order_pending))
-                {
-                    $data_rows[$i]=$record;
-                    $i++;
-                }
+               $ids=unserialize($_GET['ids']);
+               $data_rows=unserialize($_GET['data_rows']);
+                
                 $total='';
                 $i=1;
                 foreach($ids as $id){

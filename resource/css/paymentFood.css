@@ -10,7 +10,7 @@
     background-color: rgb(233, 230, 239);
 }
 ::-webkit-scrollbar-thumb{
-    background-color: rgb(200, 137, 255);
+    background-color: #303237;
     border-radius: 25px;
 }
 body{
@@ -24,8 +24,11 @@ body{
 }
 .header{
     /* background-color:rgb(111, 116, 111); */
-    background: rgb(137, 43, 226);
-    border-bottom: 1px solid rgb(219, 185, 250);
+    background: #17181a;
+    border-bottom: 1px solid rgb(120, 120, 120);
+}
+.header >h5,.header >h2{
+    color: #f7f8f9;
 }
 .header >h5 >span{
     color: chartreuse;
@@ -45,7 +48,7 @@ body{
 }
 .pending{
     width: 80%;
-    /* background-color: rgb(74, 82, 80); */
+    background-color: rgb(151, 184, 176);
     height: 90vh;
     padding: 10px 20px;
     overflow-y: scroll;

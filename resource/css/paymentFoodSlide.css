@@ -1,25 +1,29 @@
 .payment-slide{
-    width: 250px;
+    width: 270px;
     height: 95vh;
-    background-color: rgb(137, 43, 226);
+    background-color: #17181a;
     border-right: 1px solid rgb(132, 132, 132);
     overflow-y: scroll !important;
 }
 
 .payment-slide ul li{
-    color: rgb(0, 0, 0);
+    color: #f7f8f9;
     padding: 25px 0;
-    margin-top: 5px;
-    background-color:  rgb(186, 112, 255);
-    font-size: 18px;
+    /* margin-top: 5px; */
+    border-bottom: 1px solid gray;
+    /* background-color:  #5d80b6; */
+    font-size: 16px;
     cursor: pointer;
+    font-weight: lighter;
     padding-left: 30px;
+    border-left: 3px solid #17181a;;
 }
 .payment-slide ul li:hover{
-  background-color: rgb(214, 210, 228);
+  color:  #5d80b6;
+  border-left: 3px solid #5d80b6;
 }
 .payment-slide ul li:focus{
-    background-color: rgb(0, 255, 8);
+    background-color: rgb(0, 199, 120);
 }
 .taggle{
     display: flex;
@@ -28,9 +32,12 @@
     align-items: center;
     position: relative;
 }
+.taggle h4{
+    color:  #f7f8f9;
+}
 .taggle >form >input{
-    width: 70px;
-    height: 30px;
+    width: 50px;
+    height: 20px;
     background-color: #8b9194;
     -webkit-appearance:none ;
     border-radius: 20px;
@@ -45,8 +52,8 @@
 .taggle >form >input::before{
     position: absolute;
     content: "";
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-color: #fff;
     border-radius: 50%;
     transform: scale(1,1);
@@ -54,34 +61,55 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .taggle >form >input:checked::before{
-    transform: translateX(40px);
+    transform: translateX(30px);
     z-index: 1;
 }
 .taggle label{
     position:absolute;
     color: #fff;
-    font-size: 16px;
+    font-size: 12px;
     pointer-events: none;
 }
 .onbtn{
-    transform: translate(-65px,2px);
+    transform: translate(-48px,2px);
 }
 .ofbtn{
-    transform: translate(-30px,2px);
+    transform: translate(-21px,2px);
 }
 .taggle-box{
     padding: 10px;
-
+}
+.taggle-box h5{
+      color:#f7f8f9;
+      font-weight: lighter;
 }
 
 .select-box{
     padding: 10px;
 }
+.select-box h5{
+    color: #f7f8f9;
+    font-weight: lighter;
+}
+ 
 .empty{
+    position: relative;
+    width: 80%;
+    height: 90vh;
+    padding: 10px 20px;
     background-image: url(../img/empty.svg);
     background-size: auto 300px;
     background-position: center;
     background-repeat: no-repeat;
+}
+.empty h1{
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    font-size: 40px;
+    /* transform: translate(50% 30%); */
+    color: rgb(179, 180, 184);
+    font-weight: lighter;
 }
 .date-block{
     display: flex;
@@ -100,15 +128,16 @@
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: rgb(218, 219, 227);
 }
 .line{
-    border-top: 3px dashed black;
+    border-top: 3px dashed rgb(222, 226, 228);
 }
 .line1{
     text-align: center;
     transform: translateY(-16px);
-    background-color: blueviolet;
+    background-color: #17181a;
     width: 30px;
     margin: 0 auto;
+    color: rgb(222, 226, 228);
 }
