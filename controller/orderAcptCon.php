@@ -11,7 +11,7 @@ if(isset($_GET['click']))
   header('Location:../views/orders.php');
 }
 
-
+// accept order
 if(isset($_POST['accept']))
 {
    
@@ -25,8 +25,8 @@ if(isset($_POST['accept']))
    if($method=='card')
    {
       $result=orderModel::accept($order_id,1,$connection);
-      sentAccept( $order_id,$email,$first_name,$address,$total);
-      header('Location:../views/notPaymentOrder.php');
+      // sentAccept( $order_id,$email,$first_name,$address,$total);
+      header('Location:orderConFood.php?id=2');
    }elseif($method=="cash")
    {
       $result=orderModel::accept($order_id,3,$connection);
@@ -35,10 +35,12 @@ if(isset($_POST['accept']))
    
 }
 
+// cancel order 
 if(isset($_POST['remove']))
 {
    $order_id=$_POST['order_id'];
    $result=orderModel::remove($order_id,$connection);
-   header('Location:../views/orders.php');
+   header('Location:orderConFood.php?id=1');
 }
+print_r($_POST);
 ?>

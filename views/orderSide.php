@@ -1,11 +1,11 @@
 <div class="payment-slide">
               <ul>
                   <li onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
-                  <li onclick="window.location='orders.php'"><i class="fas fa-sort-amount-down-alt"></i> New Orders</li>
-                  <li onclick="window.location='orderNotPayment.php'"><i  class="far fa-credit-card"></i> Card Payment</li>
-                  <li onclick="window.location='orderDelivery.php'"><i class="fas fa-truck"></i> Delivering Orders</li>
-                  <li onclick="window.location='orderHistory.php'"><i class="fas fa-history"></i> Deliverd History</li>
-                  <li onclick="window.location='orderSetting.php'" ><i class="fas fa-cog"></i> Settings</li>
+                  <li onclick="window.location='../controller/orderConFood.php?id=1'"><i class="fas fa-sort-amount-down-alt"></i> New Orders</li>
+                  <li onclick="window.location='../controller/orderConFood.php?id=2'"><i  class="far fa-credit-card"></i> Card Payment</li>
+                  <li onclick="window.location='../controller/orderConFood.php?id=3'"><i class="fas fa-truck"></i> Delivering Orders</li>
+                  <li onclick="window.location='../controller/orderConFood.php?id=4'"><i class="fas fa-history"></i> Deliverd History</li>
+                  <li onclick="window.location='../controller/orderConFood.php?id=5'" ><i class="fas fa-cog"></i> Settings</li>
                   <div class="taggle-box">
                       <h5>You have to issue get order or deliver order? You can disable the request some time period.</h5>
                     <div class="taggle">

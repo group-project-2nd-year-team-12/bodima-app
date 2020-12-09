@@ -50,14 +50,18 @@
     <div class="container">
         <div class="content">
         <?php include  'paymentFoodSlide.php';?> 
-       
+        <?php 
+            $ids=unserialize($_GET['ids']);
+            $data_rows=unserialize($_GET['data_rows']);
+            if(!empty($ids))
+            {
+        ?>            
         <div class="pending">
             <div class="title">
                 <h3>Pending order</h3>
                 <?php 
-               $ids=unserialize($_GET['ids']);
-               $data_rows=unserialize($_GET['data_rows']);
-                print_r($ids);
+               
+               
                 $total='';
                 $i=1;
                 foreach($ids as $id){
@@ -105,20 +109,16 @@
                
             </div>
         </div>
-        <!-- <div class="more-details">
-                    <div class="more">
-                        <h2>Order Details</h2>
-                        <h3>Order Id : <span style="color: sienna;">1245685625</span></h3>
-                        <h4>Payed amout :123.15</h4>
-                        <h4>Order Date :2020 / 04 /21</h4>
-                        <h4>Order item :</h4>
-                        <ul>
-                            <li>1. rice</li>
-                            <li>2. kotthu</li>
-                            <li>3. fyed rice</li>
-                        </ul>
-                    </div>
-        </div> -->
+       <?php 
+            }
+            else
+            {?>
+                <div class="empty">
+                <h1> Nothing to show here</h1>
+            </div>
+         <?php
+            }
+        ?>
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->

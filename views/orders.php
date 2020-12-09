@@ -54,13 +54,8 @@
             <div class="title">
                 <h3>New orders </h3>
                 <?php 
-                $FSid=$_SESSION['FSid'];
-                $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-                $F_post_id_set=array();
-                while($row=mysqli_fetch_assoc($F_post_id))
-                {
-                    $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],0);
-                    while($record=mysqli_fetch_assoc($getOrder_id))
+                $records=unserialize($_GET['record']);
+                    foreach($records as $record)
                     {?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order">
@@ -104,14 +99,14 @@
                                 <input type="hidden" name='last_name' value="<?php echo $last_name; ?>">
                                 <input type="hidden" name='method' value="<?php echo $method; ?>">
                                 <button class="btn-rate" name="accept" type="submit">Accept</button>
-                                <button class="cancel-rate" name="remove"  type="submit">cancel</button>
+                    <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                             </div>
                             </div>
                     
                          </div>
                      </form>
                 <?php    }
-                } ?>                
+                 ?>                
             </div>
         </div>
         </div>

@@ -48,18 +48,12 @@ $errors=array();
 }
 }
 
-
+// pending order details print 
 if(isset($_GET['id']) && $_GET['id']==1)
 {
    $email=$_SESSION['email'];
    $ids_set=reg_user::getOrderById($connection,$email,0);
    $order_pending=reg_user::getOrderAll($connection,$email,0);
-   // if($ids_set->num_rows==0)
-   // {
-   //    header('Location:../views/paymentFoodEmpty.php');
-   // }
-   // else
-   // {
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
@@ -77,17 +71,14 @@ if(isset($_GET['id']) && $_GET['id']==1)
       header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');
    
 }
+
+// Accepted order deatils
 if(isset($_GET['id']) && $_GET['id']==2)
 {
    $email=$_SESSION['email'];
    $ids_set=reg_user::getOrderById($connection,$email,1);
    $order_pending=reg_user::getOrderAll($connection,$email,1);
-   if($ids_set->num_rows==0)
-   {
-      header('Location:../views/paymentFoodEmpty.php');
-   }
-   else
-   {
+   
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
@@ -103,20 +94,15 @@ if(isset($_GET['id']) && $_GET['id']==2)
       $data1=serialize($ids);
       $data2=serialize($data_rows);
       header('Location:../views/paymentFood_accept.php?ids='.$data1.'&data_rows='.$data2.'');
-   }
+   
 }
-
+// Receiving order details
 if(isset($_GET['id']) && $_GET['id']==3)
 {
    $email=$_SESSION['email'];
    $ids_set=reg_user::getOrderById($connection,$email,3);
    $order_pending=reg_user::getOrderAll($connection,$email,3);
-   if($ids_set->num_rows==0)
-   {
-      header('Location:../views/paymentFoodEmpty.php');
-   }
-   else
-   {
+   
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
@@ -132,20 +118,15 @@ if(isset($_GET['id']) && $_GET['id']==3)
       $data1=serialize($ids);
       $data2=serialize($data_rows);
       header('Location:../views/paymentFood_receving.php?ids='.$data1.'&data_rows='.$data2.'');
-   }
+   
 }
-
+// order history details 
 if(isset($_GET['id']) && $_GET['id']==4)
 {
    $email=$_SESSION['email'];
    $ids_set=reg_user::getOrderById($connection,$email,4);
    $order_pending=reg_user::getOrderAll($connection,$email,4);
-   if($ids_set->num_rows==0)
-   {
-      header('Location:../views/paymentFoodEmpty.php');
-   }
-   else
-   {
+  
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
@@ -161,7 +142,7 @@ if(isset($_GET['id']) && $_GET['id']==4)
       $data1=serialize($ids);
       $data2=serialize($data_rows);
       header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
-   }
+    
 }
 
 

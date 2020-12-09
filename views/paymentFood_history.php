@@ -20,7 +20,7 @@
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
             <h2><i class="fas fa-tasks"></i> ORDER-REQUEST MANAGER</h2>
-           
+            <h5>State : <span>Active</span></h5>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
@@ -49,13 +49,17 @@
     <div class="container">
         <div class="content">
         <?php include  'paymentFoodSlide.php';?>           
-       
+       <?php
+            $ids=unserialize($_GET['ids']);
+            $data_rows=unserialize($_GET['data_rows']);
+            if(!empty($ids))
+            {
+       ?>
         <div class="pending">
             <div class="title">
                 <h3>Order history</h3>
                 <?php 
-                $ids=unserialize($_GET['ids']);
-                $data_rows=unserialize($_GET['data_rows']);
+              
                 $i=1;
                 $total='';
                 foreach($ids as $id){
@@ -101,6 +105,16 @@
                
             </div>
         </div>
+        <?php 
+            }
+            else
+            {?>
+                <div class="empty">
+                <h1> Nothing to show here</h1>
+            </div>
+         <?php
+            }
+        ?>
         </div>
     </div>
     <?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?>

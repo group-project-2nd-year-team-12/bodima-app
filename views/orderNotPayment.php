@@ -53,13 +53,8 @@
             <div class="title">
                 <h3>Delivering Orders </h3>
                 <?php 
-                $FSid=$_SESSION['FSid'];
-                $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-                $F_post_id_set=array();
-                while($row=mysqli_fetch_assoc($F_post_id))
-                {
-                    $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],1);
-                    while($record=mysqli_fetch_assoc($getOrder_id))
+                $records=unserialize($_GET['record']);
+                    foreach($records as $record)
                     {?>
                      <div class="box ">
                             <div class="resend card">
@@ -98,7 +93,7 @@
                     
                          </div>
                 <?php    }
-                } ?>                
+                 ?>                
             </div>
         </div>
         </div>
