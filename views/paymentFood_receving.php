@@ -73,7 +73,7 @@
                     <div class="details">
                             <h2>Order Id :<span style="color:sienna;"><?php echo $id; ?></h2>
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
-                            <?php
+                            <?php $i=1;
                                  foreach($data_rows as $data_row)
                                  {
                                      if($data_row['order_id']==$id)

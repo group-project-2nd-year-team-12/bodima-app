@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('history');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
@@ -48,12 +48,17 @@
         </div>
     <div class="container">
         <div class="content">
-        <?php include 'orderSide.php' ?>         
+        <?php include 'orderSide.php' ?> 
+        <?php 
+         $records=unserialize($_GET['record']);
+         if(!empty($records))
+         {
+         ?>     
         <div class="accept">
             <div class="title">
                 <h3>Delivered Orders </h3>
                 <?php 
-                $records=unserialize($_GET['record']);
+               
                     foreach($records as $record)
                     {?>
                      <div class="box ">
@@ -92,6 +97,12 @@
                  ?>                
             </div>
         </div>
+        <?php }
+        else{?>
+            <div class="empty">
+                <h1> Nothing to show here</h1>
+            </div>
+      <?php  }?>
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
