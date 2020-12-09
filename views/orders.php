@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/css/nav.css">
-    <link rel="stylesheet" href="../resource/css/footer.css">
+    <link rel="stylesheet" href="../resource/css/paymentFoodSlide.css">
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
@@ -17,8 +17,11 @@
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:black;">   Solution for many problems</small></h1>
+                <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
+                
             </div>
+            <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
+            <h5>State : <span>Active</span></h5>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                    
@@ -46,16 +49,7 @@
         </div>
     <div class="container">
         <div class="content">
-          <div class="payment-slide">
-              <ul>
-                  <li onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
-                  <li onclick="window.location='orders.php'"><i class="fas fa-sort-amount-down-alt"></i> New Orders</li>
-                  <li onclick="window.location='notPaymentOrder.php'"><i  class="far fa-credit-card"></i> Card Payment</li>
-                  <li onclick="window.location='deliveringOrder.php'"><i class="fas fa-truck"></i> Delivering Orders</li>
-                  <li onclick="window.location='deliveredHistory.php'"><i class="fas fa-history"></i> Deliverd History</li>
-               
-              </ul>
-          </div>          
+         <?php include 'orderSide.php' ?>         
         <div class="accept">
             <div class="title">
                 <h3>New orders </h3>
@@ -124,4 +118,5 @@
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/timing.js"></script>
 </html>

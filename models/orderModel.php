@@ -53,4 +53,9 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function isAvailable($connection,$fsid,$state){
+        $query="UPDATE food_post set is_available=$state WHERE FSid=$fsid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 }

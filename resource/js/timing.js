@@ -35,3 +35,9 @@ const li=document.querySelector('.payment-slide ul li');
 li.addEventListener('click',(e)=>{
     li.style.backgroundColor="red";
 })
+
+function checked(x)
+{
+    document.getElementById(x).style.color="#5d80b6";
+    document.getElementById(x).style.borderLeft="3px solid #5d80b6";
+}

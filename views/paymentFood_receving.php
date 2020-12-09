@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('receive');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
+            <h2><i class="fas fa-tasks"></i> ORDER-REQUEST MANAGER</h2>
+            
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
@@ -52,21 +54,7 @@
             <div class="title">
                 <h3>Receiving Order</h3>
                 <?php 
-                $email=$_SESSION['email'];
-                $ids_set=reg_user::getOrderById($connection,$email,3);
-                $order_pending=reg_user::getOrderAll($connection,$email,3);
-                $ids=array();
-                while($record=mysqli_fetch_assoc($ids_set))
-                {
-                    $ids[]=$record['order_id'];
-                }
-                $data_rows=array();
-                $i=0;
-                while($record=mysqli_fetch_assoc($order_pending))
-                {
-                    $data_rows[$i]=$record;
-                    $i++;
-                }
+               
                 $total='';
                 foreach($ids as $id){
 
@@ -131,4 +119,5 @@
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/timing.js"></script>
 </html>

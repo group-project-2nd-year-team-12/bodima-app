@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('pending');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
                 <h1><small style="font-size: 14px; color:white; font-weight:lighter">   Solution for many problems</small></h1>
                 
             </div>
-            <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
-            <h5>State : <span>Active</span></h5>
+            <h2><i class="fas fa-tasks"></i> ORDER-REQUEST MANAGER</h2>
+            
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
@@ -57,7 +57,7 @@
                 <?php 
                $ids=unserialize($_GET['ids']);
                $data_rows=unserialize($_GET['data_rows']);
-                
+                print_r($ids);
                 $total='';
                 $i=1;
                 foreach($ids as $id){
@@ -123,5 +123,5 @@
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
-<script src="..resource/js/timing.js"></script>
+<script src="../resource/js/timing.js"></script>
 </html>

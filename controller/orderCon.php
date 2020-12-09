@@ -48,11 +48,40 @@ $errors=array();
 }
 }
 
-if(isset($_GET['id']))
+
+if(isset($_GET['id']) && $_GET['id']==1)
 {
    $email=$_SESSION['email'];
    $ids_set=reg_user::getOrderById($connection,$email,0);
    $order_pending=reg_user::getOrderAll($connection,$email,0);
+   // if($ids_set->num_rows==0)
+   // {
+   //    header('Location:../views/paymentFoodEmpty.php');
+   // }
+   // else
+   // {
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');
+   
+}
+if(isset($_GET['id']) && $_GET['id']==2)
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,1);
+   $order_pending=reg_user::getOrderAll($connection,$email,1);
    if($ids_set->num_rows==0)
    {
       header('Location:../views/paymentFoodEmpty.php');
@@ -73,7 +102,65 @@ if(isset($_GET['id']))
       }
       $data1=serialize($ids);
       $data2=serialize($data_rows);
-      header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');
+      header('Location:../views/paymentFood_accept.php?ids='.$data1.'&data_rows='.$data2.'');
+   }
+}
+
+if(isset($_GET['id']) && $_GET['id']==3)
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,3);
+   $order_pending=reg_user::getOrderAll($connection,$email,3);
+   if($ids_set->num_rows==0)
+   {
+      header('Location:../views/paymentFoodEmpty.php');
+   }
+   else
+   {
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_receving.php?ids='.$data1.'&data_rows='.$data2.'');
+   }
+}
+
+if(isset($_GET['id']) && $_GET['id']==4)
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,4);
+   $order_pending=reg_user::getOrderAll($connection,$email,4);
+   if($ids_set->num_rows==0)
+   {
+      header('Location:../views/paymentFoodEmpty.php');
+   }
+   else
+   {
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
    }
 }
 
@@ -128,13 +215,16 @@ if(isset($_GET['order_id'])){
 // on aff button 
 
 if(isset($_GET['avail'])){
+   $fsid=$_SESSION['FSid'];
    if(isset($_POST['isAvail']))
    {
-      echo "checked";
+      $result=orderModel::isAvailable($connection,$fsid,1);
+      header('Location:../views/orders.php');
    }
    else
    {
-      echo "not";
+      $result=orderModel::isAvailable($connection,$fsid,0);
+      header('Location:../views/orders.php');
    }
 }
 ?>
