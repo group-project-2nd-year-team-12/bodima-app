@@ -77,4 +77,22 @@ if(isset($_GET['id']) && $_GET['id']==4)
  
     header('Location:../views/orderHistory.php?record='.$record.'&result='.$result.'');
 }
+
+if(isset($_GET['id']) && $_GET['id']==5)
+{
+    // $FSid=$_SESSION['FSid'];
+    // $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+    // $data1=array();
+    // while($row=mysqli_fetch_assoc($F_post_id))
+    // {
+    //     $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],4);
+    //     while($record=mysqli_fetch_assoc($getOrder_id))
+    //     {
+    //         $data1[]=$record;
+    //     }
+    // }
+    // $record=serialize($data1);
+ 
+    header('Location:../views/orderSetting.php');
+}
 ?>

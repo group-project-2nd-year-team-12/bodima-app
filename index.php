@@ -73,7 +73,7 @@
 
                     <li>Chat</li>
                     <?php  if($_SESSION['level']=='food_supplier'){?>
-                      <li onclick='window.location="views/orders.php"'>Orders </li>
+                      <li onclick='window.location="controller/orderConFood.php?id=1"'>Orders </li>
                     <?php } ?>
                     <?php if($_SESSION['level']=='boardings_owner'){?>
                       
@@ -87,7 +87,7 @@
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='boardings_owner' || $_SESSION['level']=='boarder'){?>
-                    <li onclick='window.location="controller/orderCOn.php?id=1"'>My food Orders</li>
+                    <li onclick='window.location="controller/orderCon.php?id=1"'>My food Orders</li>
                     <?php } ?>
                     <li onclick='window.location="controller/logoutController.php"'>Log out</li>
                 <?php } else{?>

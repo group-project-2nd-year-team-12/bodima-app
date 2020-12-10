@@ -32,9 +32,7 @@ function showRemaining() {
 timer = setInterval(showRemaining, 100);
 
 const li=document.querySelector('.payment-slide ul li');
-li.addEventListener('click',(e)=>{
-    li.style.backgroundColor="red";
-})
+
 
 function checked(x)
 {

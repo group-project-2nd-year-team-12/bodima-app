@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body  onload="checked('card-pay');">
+<body onload="checked('card');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
@@ -111,4 +111,5 @@
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/timing.js"></script>
 </html>

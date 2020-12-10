@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('deliver');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
@@ -50,7 +50,9 @@
     <div class="container">
         <div class="content">
          <?php include 'orderSide.php' ?>         
-        
+        <div class="setting">
+            
+        </div>
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
