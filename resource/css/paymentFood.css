@@ -99,6 +99,101 @@ body{
     margin-top: 15px;
     
 }
+/* food setting page css */
+.setting{
+    background-color: rgb(244, 244, 245);
+    /* overflow: scroll; */
+}
+.setting-box{
+    width: 45%;
+    margin: 40px 60px;
+}
+.setting-box h3{
+    margin:10px 0;
+}
+.option{
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid rgb(237, 228, 228);
+    /* padding:2px; */
+    /* color: rgb(120, 120, 120); */
+}
+.taggle{
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 10px; */
+    align-items: center;
+    position: relative;
+    padding:3px 30px;
+}
+.taggle h4{
+    color:  #f7f8f9;
+}
+.taggle >form{
+    display: flex;
+}
+.taggle >form >input{
+    width: 40px;
+    height: 20px;
+    background-color: #8b9194;
+    -webkit-appearance:none ;
+    border-radius: 20px;
+    outline: none;
+    transition: .4s;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.taggle >form >input:checked{
+    background-color: #1760ff;
+}
+.taggle >form >input::before{
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: scale(1,1);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.taggle >form >input:checked::before{
+    transform: translateX(20px);
+    z-index: 1;
+}
+.taggle label{
+    position:absolute;
+    color: #fff;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.taggle-box{
+    padding: 10px 10px 20px 10px;
+}
+.taggle-box h5{
+      color:#f7f8f9;
+      font-weight: lighter;
+}
+/* drop down unavailable date */
+.dropdown-1{
+    /* display: none; */
+    display: none;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
+#down{
+    cursor: pointer;
+}
+.list{
+    width: 200px;
+}
+.unavailable button{
+    border:none;
+    background:none;
+    outline:none;
+    cursor: pointer;
+}
 .button-pay{
     /* display: flex; */
     text-align: center;

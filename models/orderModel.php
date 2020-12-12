@@ -58,4 +58,25 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function unavailableDate($FSid,$date,$connection)
+    {
+    $query="INSERT INTO available_order(FSid,unavailable_date) 
+    VALUE($FSid,'{$date}')";
+    $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function getUnavailableDate($FSid,$connection)
+    {
+        $query="SELECT unavailable_date FROM available_order WHERE FSid=$FSid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function checkUnavailableDate($date,$connection)
+    {
+        $query="SELECT * FROM available_order WHERE unavailable_date='{$date}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 }
