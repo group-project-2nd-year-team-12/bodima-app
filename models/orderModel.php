@@ -53,11 +53,7 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
-    public static function isAvailable($connection,$fsid,$state){
-        $query="UPDATE food_post set is_available=$state WHERE FSid=$fsid";
-        $result=mysqli_query($connection,$query);
-        return $result;
-    }
+   
     public static function unavailableDate($FSid,$date,$connection)
     {
     $query="INSERT INTO available_order(FSid,unavailable_date) 
@@ -79,4 +75,16 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function deleteUnavailableDate($date,$connection)
+    {
+        $query="DELETE FROM available_order WHERE unavailable_date='{$date}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function checkAvailable($fsid,$connection){
+        $query="SELECT available FROM food_supplier WHERE FSid=$fsid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
 }

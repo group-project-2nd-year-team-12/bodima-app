@@ -100,16 +100,30 @@ body{
     
 }
 /* food setting page css */
+.settingOuter{
+    width: 100%;
+    overflow: scroll;
+}
 .setting{
     background-color: rgb(244, 244, 245);
     /* overflow: scroll; */
 }
 .setting-box{
-    width: 45%;
+    width: 550px;
     margin: 40px 60px;
+    overflow: auto;
 }
 .setting-box h3{
     margin:10px 0;
+}
+.error{
+    position: absolute;
+    box-sizing: border-box;
+    background-color: #ff9966;
+    width:45% ;
+    top: 49px;
+    padding:10px;
+    text-align: center;
 }
 .option{
     width: 100%;
@@ -471,3 +485,4 @@ font-weight: bold;
 /* .fa-credit-card{
     color:rgb(58, 58, 50) ;
 } */
+

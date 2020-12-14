@@ -50,7 +50,8 @@
         </div>
     <div class="container">
         <div class="content setting">
-         <?php include 'orderSide.php' ?> 
+         <?php include 'orderSide.php' ?>
+         <div class="settingOuter"> 
              <div class="setting-box"> 
             <?php
           
@@ -59,8 +60,8 @@
                     $error=unserialize($_GET['error']);
                    
                     ?>
-                    <div class="error">
-                       <h4><?php  print_r($error); ?></h4>
+                    <div id="error" class="error">
+                       <h4><?php  echo $error; ?></h4>
                     </div>
 
               <?php  }
@@ -73,8 +74,9 @@
                             <h5>Order Status </h5>
                             <h5 style="color: rgb(120, 120, 120);font-weight:normal">Availabled</h5>
                     </div>
-                        <form action="../controller/orderCon.php?avail" method="post">
-                            <input onchange="if(confirm('Are you sure disable this service ?'))this.form.submit();" type="checkbox" name="isAvail" value="true"  checked>
+                        <form id="formAvailable" action="../controller/orderCon.php?avail" method="post">
+                            
+                            <input id="available"  type="checkbox" name="isAvail" value="true" >
                         </form>
                     </div>
 
@@ -100,9 +102,9 @@
                             <h5>Unavailable Dates</h5>
                            <?php $dates=unserialize($_GET['date']);
                            foreach($dates as $date)
-                           {
-                            echo   '<h5 style="color:red">'.$date['unavailable_date'].'&nbsp;&nbsp;&nbsp; <i class="far fa-trash-alt" title="Delete"></i></h5>';
-                           }
+                           {?>
+                               <h5 style="color:red"><?php echo $date['unavailable_date'] ?>&nbsp;&nbsp;&nbsp; <i style="cursor:pointer" onclick="if(confirm('Do you want to delete this date ?')){window.location='../controller/orderConFood.php?delectDate=<?php echo $date['unavailable_date']; ?>'}" class="far fa-trash-alt" title="Delete"></i></h5>
+                      <?php     }
                            ?>
                         </div>
 
@@ -183,10 +185,12 @@
                     </div>
              </div>
             </div>
+            </div>
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/timing.js"></script>
+<script src="../resource/js/jquery.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
 </html>
