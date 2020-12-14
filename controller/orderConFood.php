@@ -145,7 +145,6 @@ if(isset($_GET['delectDate']))
 {
     $deleteDate=$_GET['delectDate'];
     $FSid=$_SESSION['FSid'];
-    echo $deleteDate;
     $result=orderModel::deleteUnavailableDate($deleteDate,$connection);
     $available=orderModel::checkAvailable( $FSid,$connection);
     $availableFetch=mysqli_fetch_assoc($available);
@@ -163,6 +162,45 @@ if(isset($_GET['delectDate']))
     else{
         echo "Query fails";
     }
+}
+
+if(isset($_GET['avail']))
+{
+    $FSid=$_SESSION['FSid'];
+    if(isset($_POST['isAvail']))
+    {
+        $available=$_POST['isAvail'];
+       
+        orderModel::available($FSid,1,$connection);
+        $available=orderModel::checkAvailable( $FSid,$connection);
+        $availableFetch=mysqli_fetch_assoc($available);
+        echo $FSid;
+        $result=orderModel::getUnavailableDate($FSid,$connection);
+        $date=array();
+        while($row=mysqli_fetch_assoc($result))
+        {
+            $date[]=$row;
+        }
+        $data=serialize($date);
+      header('Location:../views/orderSetting.php?date='.$data.'&available='.$availableFetch['available'].'');
+
+    }
+    else
+    {
+        orderModel::available($FSid,0,$connection);
+        $available=orderModel::checkAvailable( $FSid,$connection);
+        $availableFetch=mysqli_fetch_assoc($available);
+        $result=orderModel::getUnavailableDate($FSid,$connection);
+        $date=array();
+        while($row=mysqli_fetch_assoc($result))
+        {
+            $date[]=$row;
+        }
+        $data=serialize($date);
+      header('Location:../views/orderSetting.php?date='.$data.'&available='.$availableFetch['available'].'');
+    }
+    
+    
 }
 
 

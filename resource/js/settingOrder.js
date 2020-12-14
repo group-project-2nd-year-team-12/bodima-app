@@ -20,19 +20,24 @@ down.addEventListener('click',(e)=>{
 const search=window.location.search;
 const param=new URLSearchParams(search);
 const availble=param.get('available');
+const availWord=document.getElementById('availSpan');
 const availableCheck=document.getElementById('available');
 window.addEventListener('load',(e)=>{
     if(availble==0)
     {
         availableCheck.checked=false;
+        availWord.style.color='red';
+        availWord.innerHTML='Unavailable';
     }
     else if(availble==1)
     {
         availableCheck.checked=true;
+        availWord.style.color='#40c057';
+        
     }
     
 })
-const availWord=document.getElementById('')
+
 availableCheck.addEventListener('click',(e)=>{
     if(availableCheck.checked==false)
     {

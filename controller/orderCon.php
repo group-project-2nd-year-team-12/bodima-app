@@ -193,19 +193,4 @@ if(isset($_GET['order_id'])){
 }
 
 
-// on aff button 
-
-if(isset($_GET['avail'])){
-   $fsid=$_SESSION['FSid'];
-   if(isset($_POST['isAvail']))
-   {
-      $result=orderModel::isAvailable($connection,$fsid,1);
-      header('Location:../views/orders.php');
-   }
-   else
-   {
-      $result=orderModel::isAvailable($connection,$fsid,0);
-      header('Location:../views/orders.php');
-   }
-}
 ?>

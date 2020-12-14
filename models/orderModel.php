@@ -86,5 +86,10 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
-
+    public static function available($fsid,$state,$connection)
+    {
+        $query="UPDATE food_supplier SET  available=$state  WHERE FSid=$fsid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 }

@@ -21,7 +21,7 @@
                 
             </div>
             <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
-            <h5>State : <span>Active</span></h5>
+            <h5>State : <span id="availSpan">Available</span></h5>
             <div class="sign">
              
                 <?php if(isset($_SESSION['email'])){ 
@@ -74,7 +74,7 @@
                             <h5>Order Status </h5>
                             <h5 style="color: rgb(120, 120, 120);font-weight:normal">Availabled</h5>
                     </div>
-                        <form id="formAvailable" action="../controller/orderCon.php?avail" method="post">
+                        <form id="formAvailable" action="../controller/orderConFood.php?avail" method="post">
                             
                             <input id="available"  type="checkbox" name="isAvail" value="true" >
                         </form>
