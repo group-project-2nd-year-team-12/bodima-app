@@ -8,17 +8,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/css/nav.css">
-    <link rel="stylesheet" href="../resource/css/footer.css">
+    <link rel="stylesheet" href="../resource/css/paymentFoodSlide.css">
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('order');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:black;">   Solution for many problems</small></h1>
+                <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
+                
             </div>
+            <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
+            <h5>State : <span>Active</span></h5>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                    
@@ -46,27 +49,18 @@
         </div>
     <div class="container">
         <div class="content">
-          <div class="payment-slide">
-              <ul>
-                  <li onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
-                  <li onclick="window.location='orders.php'"><i class="fas fa-sort-amount-down-alt"></i> New Orders</li>
-                  <li onclick="window.location='notPaymentOrder.php'"><i  class="far fa-credit-card"></i> Card Payment</li>
-                  <li onclick="window.location='deliveringOrder.php'"><i class="fas fa-truck"></i> Delivering Orders</li>
-                  <li onclick="window.location='deliveredHistory.php'"><i class="fas fa-history"></i> Deliverd History</li>
-               
-              </ul>
-          </div>          
+         <?php include 'orderSide.php' ?>
+         <?php 
+         $records=unserialize($_GET['record']);
+         if(!empty($records))
+         {
+         ?>
         <div class="accept">
             <div class="title">
                 <h3>New orders </h3>
                 <?php 
-                $FSid=$_SESSION['FSid'];
-                $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-                $F_post_id_set=array();
-                while($row=mysqli_fetch_assoc($F_post_id))
-                {
-                    $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],0);
-                    while($record=mysqli_fetch_assoc($getOrder_id))
+                
+                    foreach($records as $record)
                     {?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order">
@@ -110,18 +104,25 @@
                                 <input type="hidden" name='last_name' value="<?php echo $last_name; ?>">
                                 <input type="hidden" name='method' value="<?php echo $method; ?>">
                                 <button class="btn-rate" name="accept" type="submit">Accept</button>
-                                <button class="cancel-rate" name="remove"  type="submit">cancel</button>
+                    <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                             </div>
                             </div>
                     
                          </div>
                      </form>
                 <?php    }
-                } ?>                
+                 ?>                
             </div>
         </div>
+        <?php }
+        else{?>
+            <div class="empty">
+                <h1> Nothing to show here</h1>
+            </div>
+      <?php  }?>
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/timing.js"></script>
 </html>
