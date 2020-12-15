@@ -14,6 +14,7 @@
     <title>Document</title>
 </head>
 <body onload="checked('pending');">
+
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
@@ -64,10 +65,12 @@
                
                 $total='';
                 $i=1;
+                $date=0;
                 foreach($ids as $id){
                   
                 ?>
-                <div class="box">
+                <div id="<?php echo $id ?>" class="box">
+                
                     <div class="resend wait">
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
                         <div class="letter"><h4>Your order is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small><b id="countdown"></b> This order will cancel </small></h4></div>
@@ -94,16 +97,24 @@
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
                         </div>
                         <div class="button-pay">
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
+                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span id="<?php echo $date ?>" style="color: sienna;" id="orderTime"><?php echo $time ?></span> </h4>
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
                             <h4 class="order_item" style="margin-top: 5px;border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-window-close"></i> If you want cancel order. click the cancel order</h4>
                             <button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id; ?>"' type="button" class="btn1 cancel"> Cancel Order</button>
                         </div>
                   </div>
-                    
+                    <script>
+                        var orderId= document.getElementById('<?php echo $order ?>');
+                        var date=document.getElementById('<?php echo $date ?>').innerHTML;
+                        var target = new Date("2020-01-01 " + date);
+                        var expireTime=target.setMinutes(target.getMinutes()+20);
+                        console.log(expireTime);
+                        console.log(target.toUTCString());
+                    </script>
                 </div>
                
                 <?php
+                $date+=2;
             }
                 ?>
                
@@ -121,7 +132,32 @@
         ?>
         </div>
     </div>
+   <?php 
+    if(isset($_GET['timeOut'])){?>
+    <div class="timeOut">
+        <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x"></i></div>
+        <div class="outImg"><img src="../resource/img/timeout.svg" alt=""></div>
+        <div class="outHeader">
+            <h1>Your Order time out </h1>
+            <h4>Your order timeout. Because food supplier not accept your order .Please try again or place order another resturent</h4>
+            <?php 
+            $timeOutDatas=unserialize($_GET['timeOut']); 
+              foreach($timeOutDatas as $timeOutData)
+              {
+                    $total=$timeOutDatas['total'];
+                    $time=$timeOutDatas['time'];
+                    $restaurant=$timeOutDatas['restaurant'];
+                    $id=$timeOutDatas['order_id'];
+             }
+        ?>
+            <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Id : <span style="color: sienna;" id="orderTime"><?php echo $id ?></span> </h4>
+            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;" id="orderTime"><?php echo $time ?></span> </h4>
+            <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
+        </div>
+    </div>
+ <?php }   ?>
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/timing.js"></script>
+<script src="../resource/js/settingOrder.js"></script>
 </html>

@@ -35,11 +35,13 @@ $errors=array();
        $phone=$_POST['phone'];
        $method=$_POST['method'];
        date_default_timezone_set("Asia/Colombo");
-       $time=date("h:i:sa");
+       $time=date('Y-m-d H:i:s');
+       $expireTime=date('Y-m-d H:i:s',strtotime('+20 minutes',strtotime($time)));
+       echo $expireTime;
        $_SESSION['order_id']=$order_id;  
        foreach($products as $product)
        {
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$phone,$method,$time,$product['restaurant'],$connection);
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
        }
       header('Location:orderCon.php?id=1');
    }
@@ -52,6 +54,9 @@ $errors=array();
 if(isset($_GET['id']) && $_GET['id']==1)
 {
    $email=$_SESSION['email'];
+   date_default_timezone_set("Asia/Colombo");
+   $date=date('Y-m-d H:i:s');
+   $nowTime=date_create($date);
    $ids_set=reg_user::getOrderById($connection,$email,0);
    $order_pending=reg_user::getOrderAll($connection,$email,0);
       $ids=array();
@@ -60,15 +65,31 @@ if(isset($_GET['id']) && $_GET['id']==1)
           $ids[]=$record['order_id'];
       }
       $data_rows=array();
+      $time_out=array();
       $i=0;
       while($record=mysqli_fetch_assoc($order_pending))
       {
-          $data_rows[$i]=$record;
+            $expireDate=date_create($record['expireTime']);
+            $diff= $expireDate->diff($nowTime);
+            if($diff->invert)
+            {
+               echo "not expireed";
+            }
+            else{
+               orderModel::deleteRequest($record['request_id'],$connection);
+               $time_out=$record;
+               $id=$record['order_id'];
+               break;
+            }
+          $data_rows[]=$record;
           $i++;
       }
       $data1=serialize($ids);
       $data2=serialize($data_rows);
-      header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');
+      $data3=serialize($time_out);
+
+      if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
+     else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
    
 }
 

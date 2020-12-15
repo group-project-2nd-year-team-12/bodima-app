@@ -58,16 +58,14 @@ availableCheck.addEventListener('click',(e)=>{
         }
     }
 })
-        
+ 
 
 
-// $(document).ready(function() {
-//     // console.log("hello");
-//     setTimeout(function() {
-//         $('#error').fadeOut('slow');
-//         $('#error').animate({transform:'translateY(100px)'});​
-//     }, 1000)
-// });
-// $('#error').fadeOut('slow');
+$(window).ready(function() {
+    setTimeout(function() {
+        window.location='../../controller/orderCon.php?id=1';
+    }, 10000)
+});
+$('#error').fadeOut('slow');
 
 
