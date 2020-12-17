@@ -17,11 +17,11 @@ down.addEventListener('click',(e)=>{
 })
 
 
-const search=window.location.search;
-const param=new URLSearchParams(search);
-const availble=param.get('available');
-const availWord=document.getElementById('availSpan');
-const availableCheck=document.getElementById('available');
+var search=window.location.search;
+var param=new URLSearchParams(search);
+var availble=param.get('available');
+var availWord=document.getElementById('availSpan');
+var availableCheck=document.getElementById('available');
 window.addEventListener('load',(e)=>{
     if(availble==0)
     {
@@ -35,6 +35,9 @@ window.addEventListener('load',(e)=>{
         availWord.style.color='#40c057';
         
     }
+    setTimeout(function() {
+        // window.location='../controller/orderCon.php?id=1';
+    }, 5000)
     
 })
 
@@ -60,12 +63,5 @@ availableCheck.addEventListener('click',(e)=>{
 })
  
 
-
-$(window).ready(function() {
-    setTimeout(function() {
-        window.location='../../controller/orderCon.php?id=1';
-    }, 10000)
-});
-$('#error').fadeOut('slow');
 
 

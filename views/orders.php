@@ -21,7 +21,7 @@
                 
             </div>
             <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
-            <h5>State : <span>Active</span></h5>
+            <h5>State : <span id="availSpan">Available</span></h5>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                    
@@ -125,4 +125,8 @@
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/timing.js"></script>
+<script src="../resource/js/jquery.js"></script>
+<script src="../resource/js/settingOrder.js"></script>
+<script src="../resource/js/newOrder.js"></script>
+<!-- <script src="../resource/js/reload.js"></script> -->
 </html>

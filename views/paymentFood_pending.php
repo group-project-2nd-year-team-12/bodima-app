@@ -160,4 +160,6 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
+<script src="../resource/js/jquery.js"></script>
+<script src="../resource/js/reload.js"></script>
 </html>
