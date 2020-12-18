@@ -8,17 +8,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/css/nav.css">
-    <link rel="stylesheet" href="../resource/css/footer.css">
+    <link rel="stylesheet" href="../resource/css/paymentFoodSlide.css">
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('accept');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
+            <h2><i class="fas fa-tasks"></i> ORDER-REQUEST MANAGER</h2>
+            
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
@@ -46,38 +48,20 @@
         </div>
     <div class="container">
         <div class="content">
-          <div class="payment-slide">
-          <ul>
-                   <li  onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
-                  <li onclick="window.location='paymentFood_pending.php'"><i  class="fas fa-hourglass-half"></i> Pending Orders</li>
-                  <li onclick="window.location='paymentFood_accept.php'"><i  class="fas fa-clipboard-check"></i> Accepted Orders</li>
-                  <li onclick="window.location='paymentFood_receving.php'"><i  class="fas fa-truck"></i> Receiving Order</li>
-                  <li onclick="window.location='paymentFood_history.php'"><i class="fas fa-history"></i> Order History</li>
-                  <li onclick="window.location='foodposts.php'"><i  class="fas fa-plus"></i> New Order</li>
-              </ul>
-          </div>          
+        <?php include  'paymentFoodSlide.php';?>  
+        <?php
+            $ids=unserialize($_GET['ids']);
+            $data_rows=unserialize($_GET['data_rows']);
+            if(!empty($ids))
+            {
+       ?>         
         <div class="accept">
             <div class="title">
                 <h3>Order accepted </h3>
-                <?php 
-                $email=$_SESSION['email'];
-                $ids_set=reg_user::getOrderById($connection,$email,1);
-                $order_pending=reg_user::getOrderAll($connection,$email,1);
-                // print_r($order_pending);
-                // print_r($ids_set);
-                $ids=array();
-                while($record=mysqli_fetch_assoc($ids_set))
-                {
-                    $ids[]=$record['order_id'];
-                }
-                $data_rows=array();
-                $i=0;
-                while($record=mysqli_fetch_assoc($order_pending))
-                {
-                    $data_rows[$i]=$record;
-                    $i++;
-                }
-                // $total='';
+               <?php
+                 $total='';
+                $ids=unserialize($_GET['ids']);
+                $data_rows=unserialize($_GET['data_rows']);
                 $i=1;
                 foreach($ids as $id){
                 ?>
@@ -138,20 +122,17 @@
                 ?>
             </div>
         </div>
-        <!-- <div class="more-details">
-                    <div class="more">
-                        <h2>Order Details</h2>
-                        <h3>Order Id : <span style="color: sienna;">1245685625</span></h3>
-                        <h4>Payed amout :123.15</h4>
-                        <h4>Order Date :2020 / 04 /21</h4>
-                        <h4>Order item :</h4>
-                        <ul>
-                            <li>1. rice</li>
-                            <li>2. kotthu</li>
-                            <li>3. fyed rice</li>
-                        </ul>
-                    </div>
-        </div> -->
+        <?php 
+            }
+            else
+            {?>
+                <div class="empty">
+                <h1> Nothing to show here</h1>
+            </div>
+         <?php
+            }
+        ?>
+    
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
