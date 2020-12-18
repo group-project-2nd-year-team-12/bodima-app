@@ -174,7 +174,7 @@ if (isset($_GET['request_id'])) {
                 }
                 elseif($_POST['pay']=="online")
                 {
-                        header('Location:../views/payKeyMIshan.php?B_post_id='.$B_post_id);
+                        header('Location:../views/payKeyMIshan.php?B_post_id='.$B_post_id.'&request_id='.$request_id);
                 }
               
                 }

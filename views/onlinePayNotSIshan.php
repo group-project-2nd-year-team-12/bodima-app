@@ -7,28 +7,29 @@
     <link rel="stylesheet" href="../resource/css/popupBoxIshan.css">
 </head>
 <body>
-<button id="modalBtn" class="button">Click Here</button>
+    <?php 
+    if (isset($_GET['request_id'])) {
+         $request_id=$_GET['request_id'];
+     } ?>
 
 <div id="simpleModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <span class="closeBtn">&times;</span>
-            <h2>Modal Header</h2>
+            
+            <h2>Your Payment is Unsuccessfull</h2>
         </div>
         <div class="modal-body">
        
-            <p>Hello I am Ishan</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Velit nam ipsa deleniti quaerat incidunt facere omnis illo? 
-                Ad eligendi, officiis voluptatum labore saepe nemo quod quos 
-                repellendus reprehenderit, dolorem quibusdam.</p>
+            <p>You tried to pay online But your transaction is not valid. Now you can choose pay hand over option and cancel this deal.</p>
+           
         </div>
         <div class="modal-footer">
-            <h3>Modal Footer</h3>
+           <button class="buttonhand" onclick="window.location='../controller/requestIshan.php?onPayNSReq=<?php echo $request_id;?>'">Pay handover</button>
+           <button class="buttoncancel" onclick=" window.location='../controller/requestIshan.php?onReqCan=<?php echo $request_id;?>'">Cancel</button>
         </div>
     </div>
 </div>
     
-    <script src="../resource/js/popupBoxIshan.js"></script>
+    
 </body>
 </html>
