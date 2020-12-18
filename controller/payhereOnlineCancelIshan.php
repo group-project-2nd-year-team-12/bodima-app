@@ -7,8 +7,8 @@
  ?>
 
  <?php 
-     // reg_userIshan::payhereCanReq($connection);
- echo "string";
+     header('../views/onlinePayNotSIshan.php');
+ //echo "string";
 
 
   ?>
