@@ -7,7 +7,8 @@
  ?>
 
  <?php 
-      reg_userIshan::payhereCanReq($connection)
+     // reg_userIshan::payhereCanReq($connection);
+ echo "string";
 
 
   ?>

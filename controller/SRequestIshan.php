@@ -8,8 +8,6 @@
 	<title>Request Page</title>
 </head>
 <body>
-	
-
 <?php 
 
 	
