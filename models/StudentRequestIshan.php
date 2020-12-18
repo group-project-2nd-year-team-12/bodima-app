@@ -280,6 +280,57 @@ class StudentRequestIshan{
 
     }
 
+    ////when online payment is not success,then select cash handover
+    public static function setHandover($connection,$request_id){
+      $query="UPDATE 
+      confirm_rent
+      SET
+      payment_method='hand'
+      WHERE
+      payment_method='online'
+      AND request_id=$request_id";
+      $result=mysqli_query($connection,$query);
+      return $result;
+
+    }
+
+    ///////delete boarder data because online payment is successfull
+    public static function deleteconfirm($connection,$request_id){
+      $query="DELETE FROM
+      confirm_rent 
+      WHERE
+      request_id=$request_id";
+      $result=mysqli_query($connection,$query);
+    }
+    public static function deleteboaParent($connection,$Bid){
+      $query="DELETE FROM
+     boarderparent
+      WHERE
+      Bid=$Bid";
+      $result=mysqli_query($connection,$query);
+    }
+    public static function deleteboarder($connection,$Bid){
+      $query="DELETE FROM
+      boarder
+      WHERE
+      Bid=$Bid";
+      $result=mysqli_query($connection,$query);
+    }
+
+public static function UpdateCtoAReq($connection,$request_id){
+  $query="UPDATE 
+  request
+  SET 
+  isAccept=1
+  WHERE 
+  request_id=$request_id";
+  $result=mysqli_query($connection,$query);
+}
+
+
+
+
+
 
 }
 

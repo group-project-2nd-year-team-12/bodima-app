@@ -3,18 +3,28 @@ body{
     font-size: 17px;
     line-height: 1.6;
 }
-.button{
-    background: coral;
+.buttonhand{
+    background:green;
     padding: 1em  2em;
     color: #fff;
     border: 0;
+    margin-left:770px;
+    font-size: 16px;
 }
+.buttoncancel{
+    background:red;
+    padding: 1em  2em;
+    color: #fff;
+    border: 0;
+    font-size: 16px;
+}
+
 .button-hover{
     background: #333;
 
 }
 .modal{
-    display: none;
+  
     position: fixed;
     z-index: 1;
     left: 0;
@@ -26,20 +36,20 @@ body{
 }
 .modal-content{
     background-color: #f4f4f4;
-    margin: 20% auto;
+    margin: 10% auto;
     padding: 20px;
     width: 70%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),0 7px 20px 0 rgba(0, 0, 0, 17);
-    animation-name: modalopen;
-    animation-duration: 3s;
+   
 }
-.modal-header h2, .modal-footer h3{
+.modal-header h2{
     margin: 0;
 }
 .modal-header{
-    background: coral;
+    background: #000080;
     padding: 15px;
     color: #fff;
+    text-align: center;
 
 }
 
@@ -47,24 +57,10 @@ body{
     padding: 10px 20px;
 }
 .modal-footer{
-    background: coral;
+    
     padding: 10px;
     color: #fff;
-    text-align: center;
-}
-.closeBtn{
-    color: #ccc;
-    float: right;
-    font-size: 30px;
-    color: #fff;
-}
+    
 
-.closeBtn:hover,.closeBtn:focus{
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-@keyframes modalopen{
-    from{opacity: 0;}
-    to{opacity: 1;}
-}
+
+
