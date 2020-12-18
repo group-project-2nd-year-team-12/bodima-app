@@ -231,7 +231,7 @@ class reg_userIshan{
          '{$university_name}',
          '{$gender}',
          '{$telephone}',
-         3)";
+         0)";
 
         $result=mysqli_query($connection,$query);
 
