@@ -1,5 +1,7 @@
 <?php   include ('../config/database.php');
-       include('../models/reg_userIshan.php');
+      // include('../models/reg_userIshan.php');
+       include('../models/StudentRequestIshan.php');
+        include('../models/reg_userIshan.php');
         session_start(); 
 ?>
 <!DOCTYPE html>
@@ -66,8 +68,9 @@
                     <!-- confirm deal for "rented payment done" customers -->
             </div>
 <?php 
-           $student_email=$_SESSION['email'];
-            $result=reg_userIshan::selectRPayD($connection,$student_email);
+          $student_email=$_SESSION['email'];
+          //print_r($_SESSION);
+            $result=StudentRequestIshan::selectRPayD($connection,$student_email);
             while ($user=mysqli_fetch_assoc($result)) {
                 $request_id=$user['request_id'];
                 $image=$user['image'];
@@ -79,7 +82,9 @@
                 $first_name=$user['first_name'];
                 $last_name=$user['last_name'];
 
-                $getBid=reg_userIshan::selectBorderid($connection,$student_email);
+                $result1=reg_userIshan::selectBorderid($connection,$student_email);
+               //  $user1=mysqli_fetch_assoc($result);
+               // $getBid=$user1['Bid'];
               
            
  ?>
@@ -105,7 +110,7 @@
                             <h4>You successfully rented this boarding place.<br/><br/></h4>
                             <h4>Address : <span style="color:green;"><?php echo $house_num.", ".$lane.", ".$city; ?></span></h4>
                             <h4>Owner : <span style="color:green;"><?php echo $first_name."  ".$last_name; ?></span></h4>
-                             <h4><span style="color:green;">Now,You can goto new Boarder Home Page:  <a  href="../controller/newBoarderIshanPayOn.php?click&Bid=<?php echo $getBid; ?>" style="color:red">Click here</a></span></h4>
+                             <h4><span style="color:green;">Now,You can goto new Boarder Home Page:  <a  href="../controller/newBoarderIshanPayOn.php?click&Bid=<?php echo $result1; ?>" style="color:red">Click here</a></span></h4>
                         </div>
                   </div>
         </div>

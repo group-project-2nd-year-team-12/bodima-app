@@ -1,6 +1,6 @@
 <?php   require_once ('../config/database.php');?>
 
-<?php include('../models/reg_userIshan.php');?>
+<?php include('../models/BOwnerReqIshan.php');?>
 <?php   
         session_start(); 
 ?>
@@ -77,10 +77,11 @@
 
            $email=$_SESSION['email'];
           $BOid=$_SESSION['BOid'];
-          $result=reg_userIshan::selectMyBordersBO($connection,$BOid);
+          $result=BOwnerReqIshan::selectMyBordersBO($connection,$BOid);
           while ($user=mysqli_fetch_assoc($result)) {
-          // echo  $request_id=$user['request_id'];
+             $request_id=$user['request_id'];
            // $student_email=$user['student_email'];
+           // $request_id=$user['request_id']; 
             $B_post_id=$user['B_post_id'];
            
 
@@ -88,7 +89,7 @@
          // $last_name=$user['last_name'];
         //  $date=$user['date'];
          // $message=$user['message'];
-$payment_date=$user['payment_date'];
+          $payment_date=$user['payment_date'];
          
           $keymoneyAmount=$user['keymoneyAmount'];
              
@@ -108,7 +109,7 @@ $payment_date=$user['payment_date'];
             <div class="box">
                     <div class="resend wait" style="background-color: rgb(29, 236, 191);">
                         <div class="right" ><i class="fas fa-user-check fa-2x"></i></div>
-                        <div class="letter"><h3 style="margin-top:35px;">Congratulations! You have a new boarder.<small> post number: <?php echo $B_post_id; ?><br/>request no: </small></h3></div>
+                        <div class="letter"><h3 style="margin-top:35px;">Congratulations! You have a new boarder.<small> post number: <?php echo $B_post_id; ?><br/>request no: <?php echo $request_id; ?></small></h3></div>
                     </div>
                   <div class="details-box">
                         <div class="details">

@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');?>
 
-<?php include('../models/reg_userIshan.php');?>
+<?php include('../models/StudentRequestIshan.php');?>
+
 <?php   
         session_start(); 
 ?>
@@ -76,13 +77,17 @@
           <?php 
 
           $student_email=$_SESSION['email'];
-          $result=reg_userIshan::selectPendingRequest($student_email,$connection);
+          $result=StudentRequestIshan::selectPendingRequest($student_email,$connection);
           while ($user=mysqli_fetch_assoc($result)) {
             $request_id=$user['request_id'];
             $student_email=$user['student_email'];
             $B_post_id=$user['B_post_id'];
             $city=$user['city'];
              $image=$user['image'];
+              $reqDate=$user['date'];
+             
+              $cenvertedTime = date('Y-m-d H:i:s',strtotime('+3 days',strtotime($reqDate)));
+            // echo date('Y-m-d', strtotime($reqDate. ' + 1 days'));
 
               $first_name=$user['first_name'];
           $last_name=$user['last_name'];
@@ -90,7 +95,7 @@
             
              
          
-         
+       //   echo $cenvertedTime = date('Y-m-d H:i:s',strtotime('+10 days',strtotime($date)));
 
           
              
@@ -98,14 +103,19 @@
 
 
            ?>
+           
+ 
                <div class="box">
+                  <input type="hidden" id="date" value="<?php echo $cenvertedTime; ?>">
+                  <input type="hidden"  id="request_id" value="<?php echo $request_id; ?>">
+                 
                     <div class="resend wait" >
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h3>Your Request is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small><b id="countdown">15h 45m 36s</b> This request will cancel </small></h3></div>
+                        <div class="letter"><h3>Your Request is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small><b id="countdown">  <div id="data"></div></b> This request will cancel </small></h3></div>
                     </div>
                   <div class="details-box">
                         <div class="details">
-                            <h2>Request Id :<span style="color:sienna;"><?php echo $request_id; ?></h2>
+                            <h2 >Request Id :<span style="color:sienna;"><?php echo $request_id; ?></h2>
                             <img src="<?php echo $image; ?>" class="post_image" alt="" >
                             <h4>post Id :<?php echo $B_post_id; ?></h4>
                             <h4><?php echo $city; ?></h4>
@@ -119,6 +129,7 @@
                         </div>
                   </div>
         </div>
+   
            <?php 
             } ?>
 
@@ -133,7 +144,33 @@
         </div> -->
         </div>
     </div>
+
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="..resource/js/timing.js"></script>
+        <script>
+    function func() {
+        var dateValue = document.getElementById("date").value;
+        var request_id = <?php echo $request_id; ?>
+ 
+        var date = Math.abs((new Date().getTime() / 1000).toFixed(0));
+        var date2 = Math.abs((new Date(dateValue).getTime() / 1000).toFixed(0));
+ 
+        var diff = Math.abs(date2 - date);
+
+        var days=Math.floor(diff/86400);
+        var hours=Math.floor(diff/3600)%24;
+         var minutes=Math.floor(diff/60)%60;
+          var seconds=diff%60;
+          
+       
+        document.getElementById("data").innerHTML = days+" days, "+hours+"  hours, "+minutes+"  minutes, "+seconds+" seconds";
+          if (days==0 && hours==0 && minutes==0 && seconds==0) {
+          window.location="../controller/requestIshan.php?requesttimeout_id=<?php echo $request_id; ?>"
+          }
+    }
+ 
+    func();
+    var interval = setInterval(func, 1000);
+</script>
 </html>
