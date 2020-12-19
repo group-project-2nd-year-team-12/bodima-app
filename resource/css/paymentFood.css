@@ -525,14 +525,20 @@ font-weight: bold;
 }
 
 .subNav{
-    display: flex;
+    /* display: flex; */
     /* justify-content: space-around; */
     padding:10px;
 }
+
 .subNav ul{
     /* display: flex; */
+    /* position: relative; */
     background-color: rgb(237, 237, 244);
 }
+.subNav ul >div{
+    position: relative;
+}
+
 .subNav-item{
     padding: 5px;
     width: 70px;
@@ -548,4 +554,49 @@ font-weight: bold;
 .subNav-item:focus{ background: orange; }
 .none{
     display: none;
+}
+#noti-breakfast{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    background-color: rgb(6, 36, 55);
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+
+#noti-dinner{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    background-color: rgb(6, 36, 55);
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+#noti-lunch{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    background-color: rgb(6, 36, 55);
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+#noti-longTerm{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    background-color: rgb(6, 36, 55);
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
 }

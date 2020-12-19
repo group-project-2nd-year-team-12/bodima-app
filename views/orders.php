@@ -97,10 +97,22 @@
          <?php include 'orderSide.php' ?>
             <div class="subNav">
                 <ul>
-                    <li id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
-                    <li id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
-                    <li id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
-                    <li id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                    <div>
+                        <div id="noti-breakfast"><h5></h5></div>
+                        <li id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
+                    </div>
+                    <div>
+                        <div id="noti-lunch"><h5></h5></div>
+                        <li id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
+                    </div>
+                    <div>
+                        <div id="noti-dinner"><h5></h5></div>
+                        <li id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
+                    </div>
+                    <div>
+                        <div id="noti-longTerm"><h5></h5></div>
+                        <li id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                    </div>
                 </ul>
             </div>
          <?php 
@@ -388,4 +400,54 @@
 <script src="../resource/js/settingOrder.js"></script>
 <script src="../resource/js/newOrder.js"></script>
 <script src="../resource/js/reload.js"></script>
+<script>
+    $(document).ready(function(){
+        function newOrder()
+    {
+        view="breakfast";
+        $.ajax({
+            url:"../controller/test.php",
+            method:"POST",
+            data:{view:view},
+            dataType:"json",
+            success:function(data)
+			{
+                if(data.breakfast!=0)
+                {
+                    $('#noti-breakfast h5').html(data.breakfast);
+                }else{
+                    $('#noti-breakfast').css("display","none");
+                }
+                if(data.lunch!=0)
+                {
+                    $('#noti-lunch h5').html(data.lunch);
+                }else{
+                    $('#noti-lunch').css("display","none");
+                }
+                if(data.dinner!=0)
+                {
+                    $('#noti-dinner h5').html(data.dinner);
+                }else{
+                    $('#noti-dinner').css("display","none");
+                }
+                if(data.longTerm!=0)
+                {
+                    $('#noti-longTerm h5').html(data.longTerm);
+                }else{
+                    $('#noti-longTerm').css("display","none");
+                }
+		
+		
+			}
+        })
+        // console.log('gdhdshchbcsk');
+    }
+    newOrder();
+
+
+    setInterval(function(){ 
+		newOrder();; 
+	}, 5000);
+    })
+</script>
 </html>
