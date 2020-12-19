@@ -23,6 +23,7 @@ if(isset($_GET['id']) && $_GET['id']==1)
         }
     }
     $record=serialize($data1);
+    print_r($data1);
     header('Location:../views/orders.php?record='.$record.'&available='.$availableFetch['available'].'');
 }
 // orderNotPayment Page details

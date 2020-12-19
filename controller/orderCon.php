@@ -122,7 +122,7 @@ if(isset($_GET['id']) && $_GET['id']==3)
 {
    $email=$_SESSION['email'];
    $ids_set=reg_user::getOrderById($connection,$email,3);
-   $order_pending=reg_user::getOrderAll($connection,$email,3);
+   // $order_pending=reg_user::getOrderAll($connection,$email,3);
    
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))

@@ -1,4 +1,4 @@
-<?php   require_once ('../config/database.php');
+ <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
         session_start(); 
 ?>
@@ -31,9 +31,11 @@ if(isset($_POST['add']))
           'item_quantity'=>$_POST['quantity']
       );
       $_SESSION['cart'][$count]=$item_array;
-      echo '<script>window.location="../views/cart.php?Pid='.$_POST['Pid'].'&name='.$_POST['name'].'&address='.$_POST['address'].'&restaurant='.$_POST['name'].'"</script>';
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+      // echo '<script>window.location="../views/cart.php?Pid='.$_POST['Pid'].'&name='.$_POST['name'].'&address='.$_POST['address'].'&restaurant='.$_POST['name'].'"</script>';
     }else{
       echo '<script>alert("Product already added")</script>';
+      // header('Location: ' . $_SERVER['HTTP_REFERER']);
       echo '<script>window.location="../views/cart.php?Pid='.$_POST['Pid'].'&name='.$_POST['name'].'&address='.$_POST['address'].'&restaurant='.$_POST['name'].'"</script>';
     }
   }else{
@@ -45,7 +47,8 @@ if(isset($_POST['add']))
       'item_quantity'=>$_POST['quantity']
   );
   $_SESSION['cart'][0]=$item_array;
-  echo '<script>window.location="../views/cart.php?Pid='.$_POST['Pid'].'&name='.$_POST['name'].'&address='.$_POST['address'].'&restaurant='.$_POST['name'].'"</script>';
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  // echo '<script>window.location="../views/cart.php?Pid='.$_POST['Pid'].'&name='.$_POST['name'].'&address='.$_POST['address'].'&restaurant='.$_POST['name'].'"</script>';
   }
 }else{
   session_destroy();
@@ -72,4 +75,4 @@ if(isset($_POST['remove']))
 
 //
 ?>
-
+ 

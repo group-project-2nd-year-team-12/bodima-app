@@ -21,7 +21,6 @@
                 
             </div>
             <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
-            <h5>State : <span id="availSpan">Available</span></h5>
             <div class="sign">
              
                 <?php if(isset($_SESSION['email'])){ 

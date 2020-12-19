@@ -20,8 +20,7 @@
                  <img src="../resource/img/logo.png" alt="">
                 <h1><small style="font-size: 14px; color:white; font-weight:lighter">   Solution for many problems</small></h1>
                 
-            </div>
-            <h2><i class="fas fa-tasks"></i> ORDER-REQUEST MANAGER</h2>
+</div>
             
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 

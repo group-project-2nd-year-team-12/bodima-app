@@ -43,7 +43,7 @@ class orderModel{
         return $result;
     }
     public static function getOrderIDFoodSupplier($connection,$F_post_id,$is_accepted){
-        $query="SELECT DISTINCT order_id FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
+        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }
