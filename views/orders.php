@@ -121,7 +121,10 @@
          ?>
         <div id="breakfast-box" class="accept ">
             <div class="title">
-                <h3>New orders </h3>
+                <div class="order-title">
+                    <h3>Orders </h3>
+                    <div><h5>1</h5></div>
+                </div>
                 <?php
                 if(in_array('breakfast',$new)){
 
@@ -134,7 +137,9 @@
                      <div class="box order">
                             <div class="resend">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
-                                    <div class="letter"><h4>Your have a order </h4></div>
+                                    <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
+                                    <button class="btn-rate" name="accept" type="submit">Accept</button>
+                                <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                             </div>
                             <div class="details-box">
                                     <div class="details">
@@ -172,7 +177,7 @@
                                 <input type="hidden" name='last_name' value="<?php echo $last_name; ?>">
                                 <input type="hidden" name='method' value="<?php echo $method; ?>">
                                 <button class="btn-rate" name="accept" type="submit">Accept</button>
-                    <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
+                                <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                             </div>
                             </div>
                     
@@ -191,7 +196,7 @@
         </div>
         <div id="lunch-box" class="accept none">
             <div class="title">
-                <h3>New orders </h3>
+            <div class="order-title"><h3>hello </h3></div>
                 <?php 
                 if(in_array('lunch',$new)){
                     foreach($records as $record)
@@ -258,7 +263,7 @@
         </div>
         <div id="dinner-box" class="accept none">
             <div class="title">
-                <h3>New orders </h3>
+            <div class="order-title"><h3>hello </h3></div>
                 <?php 
                  if(in_array('dinner',$new)){
                     foreach($records as $record)
@@ -326,7 +331,7 @@
         </div>
         <div id="longTerm-box" class="accept none">
             <div class="title">
-                <h3>New orders </h3>
+            <div class="order-title"><h3>hello </h3></div>
                 <?php 
                  if(in_array('longTerm',$new)){
                     foreach($records as $record)

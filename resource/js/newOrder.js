@@ -7,7 +7,7 @@ window.addEventListener('load',(e)=>{
     if(availble==0)
     {
         // availableCheck.checked=false;
-        availWord.style.color='red';
+        availWord.style.color='#ffca0a';
         availWord.innerHTML='Unavailable';
     }
     else if(availble==1)

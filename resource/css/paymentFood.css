@@ -72,14 +72,30 @@ body{
  padding-bottom:10px ;
 }
 
-.title >h3{
-    color: white;
+/* .title >h3{
+    color: rgb(0, 0, 0);
     font-weight: lighter;
+} */
+.order-title{
+    display: flex;
+    align-items: center;
+    color:#5d80b6;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+}
+.order-title >div h5{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #5d80b6;
+    text-align:center;
+    color: #ffffff;
+    margin-left: 20px;
 }
 .resend{
     display: flex;
     align-items: center;
-    background-color: #8ce99a;
+    background-color: #5d80b6;
     border-radius: 5px;
     height: 60px;
 }
@@ -87,7 +103,7 @@ body{
     padding: 10px;
 }
 .right{
-    color: #40c057;
+    color: #acbdd3;
     width: 60px;
 }
 .details-box{
@@ -260,6 +276,7 @@ body{
 .letter{
     width: 100%;
     align-items: center;
+    color: #f7f8f9;
 
 }
 .letter small{
