@@ -191,4 +191,32 @@
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/jquery.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
+<script>
+    $(document).ready(function(){
+        function newOrder()
+    {
+        view="breakfast";
+        $.ajax({
+            url:"../controller/test.php",
+            method:"POST",
+            data:{view:view},
+            dataType:"json",
+            success:function(data)
+			{
+                if(data.breakfast+data.lunch+data.dinner+data.longTerm!=0)
+                {   $('#noti-order').css("display","block");
+                    $('#noti-order h5').html(data.breakfast+data.lunch+data.dinner+data.longTerm);
+                }
+			}
+        })
+        // console.log('gdhdshchbcsk');
+    }
+    newOrder();
+
+
+    setInterval(function(){ 
+		newOrder();; 
+	}, 5000);
+    })
+</script>
 </html>

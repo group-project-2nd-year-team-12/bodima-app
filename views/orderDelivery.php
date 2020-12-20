@@ -95,10 +95,10 @@
         <?php include 'orderSide.php' ?> 
         <div class="subNav">
                 <ul>
-                    <li id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
-                    <li id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
-                    <li id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
-                    <li id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                    <li tabindex="0" id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
+                    <li tabindex="0" id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
+                    <li tabindex="0" id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
+                    <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                 </ul>
             </div> 
         <?php 
@@ -107,19 +107,28 @@
          ?>      
         <div id="breakfast-box" class="accept">
             <div class="title">
-                <h3>Delivering Orders </h3>
+            <div class="order-title">
+                    <h3>Delivery List </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
+                   $i=0;
+                   $y=1;
                    if(in_array('breakfast',$new)){
 
                     foreach($records as $record)
                     {
                         if($record['order_type']=='breakfast'){?>
-                     <div class="box ">
-                            <div class="resend receiving">
+                     <div class="box " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                            <div class="resend ">
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                                     <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirmFS_id=<?php echo $order_id; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                    </div>
+                                  
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
                                         <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
@@ -153,7 +162,7 @@
                     
                          </div>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$y+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -165,19 +174,27 @@
         </div>
         <div id="lunch-box" class="accept none">
             <div class="title">
-                <h3>Delivering Orders </h3>
+            <div class="order-title">
+                    <h3>Delivery List </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
+                   $i=0;
+                   $y=1;
                    if(in_array('lunch',$new)){
 
                     foreach($records as $record)
                     {
                         if($record['order_type']=='lunch'){?>
-                     <div class="box ">
-                            <div class="resend receiving">
+                     <div class="box " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                            <div class="resend ">
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                                     <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirmFS_id=<?php echo $order_id; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                    </div>
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
                                         <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
@@ -211,7 +228,7 @@
                     
                          </div>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$y+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -223,19 +240,27 @@
         </div>
         <div id="dinner-box" class="accept none">
             <div class="title">
-                <h3>Delivering Orders </h3>
+            <div class="order-title">
+                    <h3>Delivery List </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
+                   $i=0;
+                   $y=1;
                    if(in_array('dinner',$new)){
 
                     foreach($records as $record)
                     {
                         if($record['order_type']=='dinner'){?>
-                     <div class="box ">
-                            <div class="resend receiving">
+                     <div class="box " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                            <div class="resend ">
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                                     <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirmFS_id=<?php echo $order_id; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                    </div>
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
                                         <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
@@ -269,7 +294,7 @@
                     
                          </div>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$y+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -281,22 +306,31 @@
         </div>
         <div id="longTerm-box" class="accept none">
             <div class="title">
-                <h3>Delivering Orders </h3>
+            <div class="order-title">
+                    <h3>Delivery List </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
+                   $i=0;
+                   $y=1;
                    if(in_array('longTerm',$new)){
 
                     foreach($records as $record)
                     {
                         if($record['order_type']=='longTerm'){?>
-                     <div class="box ">
-                            <div class="resend receiving">
+                     <div class="box " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                            <div class="resend ">
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                                     <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirmFS_id=<?php echo $order_id; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                    </div>
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
                                         <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
+                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirmFS_id=<?php echo $order_id; ?>"'  type="button" class="btn1 "> Confirm </button>
                      <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
                         while($result=mysqli_fetch_assoc($getOrder))
                         {
@@ -327,7 +361,7 @@
                     
                          </div>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$y+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -347,9 +381,12 @@
                     {
                         if($record['order_type']=='breakfast'){?>
                      <div class="box ">
-                            <div class="resend receiving">
+                            <div class="resend ">
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                                     <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                        <button onclick='if(confirm("Confirm that you get the order ?")) {window.location="../controller/orderCon.php?orderConfirmFS_id=<?php echo $order_id; ?>"}'  type="button" class="btn1 "> Confirm </button>
+                                    </div>
                             </div>
                             <div class="details-box">
                                     <div class="details">
@@ -385,7 +422,7 @@
                     
                          </div>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$y+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -401,4 +438,41 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/newOrder.js"></script>
+<script src="../resource/js/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        function newOrder()
+    {
+        view="breakfast";
+        $.ajax({
+            url:"../controller/test.php",
+            method:"POST",
+            data:{view:view},
+            dataType:"json",
+            success:function(data)
+			{
+                if(data.breakfast+data.lunch+data.dinner+data.longTerm!=0)
+                {   $('#noti-order').css("display","block");
+                    $('#noti-order h5').html(data.breakfast+data.lunch+data.dinner+data.longTerm);
+                }
+			}
+        })
+        // console.log('gdhdshchbcsk');
+    }
+    newOrder();
+
+
+    setInterval(function(){ 
+		newOrder();; 
+	}, 5000);
+    })
+</script>
+<script>
+        function order(x,y) {  
+            var orderDown=document.getElementById(x);
+            var btn=document.getElementById(y);
+            if(orderDown.style.display=='none' || orderDown.style.display==''){orderDown.style.display='flex';btn.style.visibility='hidden'}
+            else{orderDown.style.display='none';btn.style.visibility='visible'}
+    }
+</script>
 </html>

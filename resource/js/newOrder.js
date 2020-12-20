@@ -26,3 +26,41 @@ window.addEventListener('load',(e)=>{
 //     console.log(id);
 //     console.log('dnv jdbv h');
 // }
+
+const breakfastFocus=document.getElementById('breakfast');
+const lunchfastFocus=document.getElementById('lunch');
+const dinnerfastFocus=document.getElementById('dinner');
+const longTermfastFocus=document.getElementById('longTerm');
+
+function focus(){
+    window.addEventListener('DOMContentLoaded',(e)=>{ 
+        breakfastFocus.style.backgroundColor='orange';
+        })
+    breakfastFocus.addEventListener('click',(e)=>{
+        breakfastFocus.style.backgroundColor='orange';
+        lunchfastFocus.style.backgroundColor='initial';
+        dinnerfastFocus.style.backgroundColor='initial';
+        longTermfastFocus.style.backgroundColor='initial';
+    })
+    lunchfastFocus.addEventListener('click',(e)=>{
+        lunchfastFocus.style.backgroundColor='orange';
+        breakfastFocus.style.backgroundColor='initial';
+        dinnerfastFocus.style.backgroundColor='initial';
+        longTermfastFocus.style.backgroundColor='initial';
+    })
+    dinnerfastFocus.addEventListener('click',(e)=>{
+        dinnerfastFocus.style.backgroundColor='orange';
+        lunchfastFocus.style.backgroundColor='initial';
+        breakfastFocus.style.backgroundColor='initial';
+        longTermfastFocus.style.backgroundColor='initial';
+    })
+    longTermfastFocus.addEventListener('click',(e)=>{
+        longTermfastFocus.style.backgroundColor='orange';
+        lunchfastFocus.style.backgroundColor='initial';
+        dinnerfastFocus.style.backgroundColor='initial';
+        breakfastFocus.style.backgroundColor='initial';
+    })
+    
+}
+
+focus();

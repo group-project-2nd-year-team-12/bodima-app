@@ -17,8 +17,7 @@
 <script>
     function orderType(id)
 {
-    console.log("jhbchbhcd");
-    const order=document.getElementById(id);
+    var order=document.getElementById(id);
     const breakfast=document.getElementById('breakfast-box');
     const lunch=document.getElementById('lunch-box');
     const dinner=document.getElementById('dinner-box');
@@ -30,7 +29,7 @@
         lunch.style.display='none';
         longTerm.style.display='none';
     }else{
-      
+        
     }
     if(id=='lunch')
     {
@@ -55,7 +54,6 @@
         lunch.style.display='none';
         breakfast.style.display='none';
     }
-   
     order.style.display='block';
   
 }
@@ -99,19 +97,19 @@
                 <ul>
                     <div>
                         <div id="noti-breakfast"><h5></h5></div>
-                        <li id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
+                        <li tabindex="0" id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
                     </div>
                     <div>
                         <div id="noti-lunch"><h5></h5></div>
-                        <li id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
+                        <li tabindex="0" id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
                     </div>
                     <div>
                         <div id="noti-dinner"><h5></h5></div>
-                        <li id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
+                        <li tabindex="0" id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
                     </div>
                     <div>
                         <div id="noti-longTerm"><h5></h5></div>
-                        <li id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                     </div>
                 </ul>
             </div>
@@ -123,9 +121,11 @@
             <div class="title">
                 <div class="order-title">
                     <h3>Orders </h3>
-                    <div><h5>1</h5></div>
+                    <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php
+                $i=0;
+                $y=1;
                 if(in_array('breakfast',$new)){
 
                     foreach($records as $record)
@@ -134,16 +134,19 @@
                    
                         if($record['order_type']=='breakfast'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
-                     <div class="box order">
+                     <div class="box order" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                    
                             <div class="resend">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
-                                    <button class="btn-rate" name="accept" type="submit">Accept</button>
-                                <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
+                                   <div id="<?php echo $y; ?>" class="button-pay">
+                                     <button class="btn-rate" name="accept" type="submit">Accept</button>
+                                     <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
+                                   </div>
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
-                                        <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
+                                        <h2>Order Id :<span style="color:#5d80b6;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order item:</h4>
                      <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                         while($result=mysqli_fetch_assoc($getOrder))
@@ -164,10 +167,24 @@
                                         
                                     </div>
                                 <div class="button-pay">
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer will pay for this order in : <span style="color: red;"><?php echo $method; ?></span></h4>
+                                <div class="order-details">
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Customer Name</h4>
+                                        <h4>: <?php echo $first_name; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Delivery address</h4>
+                                        <h4>: <?php echo $address; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Phone number </h4>
+                                        <h4>: <?php echo $phone; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Payment Method</h4>
+                                        <h4>: <?php echo $method; ?></h4>
+                                    </div>
+                                </div>
                                 <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> Please accept the Order</h4>
                                 <input type="hidden" name='order_id' value="<?php echo $record['order_id']; ?>">
                                 <input type="hidden" name='total' value="<?php echo $total; ?>">
@@ -184,7 +201,7 @@
                          </div>
                      </form>
                 <?php    } 
-                    }
+                 $i=$i+2;$y=$y+2;   }
                 }   else
                 {?>
                     <div class="empty">
@@ -196,21 +213,30 @@
         </div>
         <div id="lunch-box" class="accept none">
             <div class="title">
-            <div class="order-title"><h3>hello </h3></div>
+            <div class="order-title">
+                    <h3>Orders </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
+                 $i=0;
+                 $y=1;
                 if(in_array('lunch',$new)){
                     foreach($records as $record)
                     {
                         if($record['order_type']=='lunch'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
-                     <div class="box order">
+                     <div class="box order" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                             <div class="resend">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Your have a order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                     <button class="btn-rate" name="accept" type="submit">Accept</button>
+                                     <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
+                                   </div>
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
-                                        <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
+                                        <h2>Order Id :<span style="color:#5d80b6;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order item:</h4>
                      <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                         while($result=mysqli_fetch_assoc($getOrder))
@@ -231,10 +257,24 @@
                                         
                                     </div>
                                 <div class="button-pay">
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer will pay for this order in : <span style="color: red;"><?php echo $method; ?></span></h4>
+                                <div class="order-details">
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Customer Name</h4>
+                                        <h4>: <?php echo $first_name; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Delivery address</h4>
+                                        <h4>: <?php echo $address; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Phone number </h4>
+                                        <h4>: <?php echo $phone; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Payment Method</h4>
+                                        <h4>: <?php echo $method; ?></h4>
+                                    </div>
+                                </div>
                                 <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> Please accept the Order</h4>
                                 <input type="hidden" name='order_id' value="<?php echo $record['order_id']; ?>">
                                 <input type="hidden" name='total' value="<?php echo $total; ?>">
@@ -251,7 +291,7 @@
                          </div>
                      </form>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$i+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -263,21 +303,30 @@
         </div>
         <div id="dinner-box" class="accept none">
             <div class="title">
-            <div class="order-title"><h3>hello </h3></div>
+            <div class="order-title">
+                    <h3>Orders </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
+                 $i=0;
+                 $y=1;
                  if(in_array('dinner',$new)){
                     foreach($records as $record)
                     {
                         if($record['order_type']=='dinner'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
-                     <div class="box order">
+                     <div class="box order" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                             <div class="resend">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Your have a order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                     <button class="btn-rate" name="accept" type="submit">Accept</button>
+                                     <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
+                                   </div>
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
-                                        <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
+                                        <h2>Order Id :<span style="color:#5d80b6;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order item:</h4>
                      <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                         while($result=mysqli_fetch_assoc($getOrder))
@@ -298,11 +347,24 @@
                                         
                                     </div>
                                 <div class="button-pay">
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer will pay for this order in : <span style="color: red;"><?php echo $method; ?></span></h4>
-                                <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> Please accept the Order</h4>
+                                <div class="order-details">
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Customer Name</h4>
+                                        <h4>: <?php echo $first_name; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Delivery address</h4>
+                                        <h4>: <?php echo $address; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Phone number </h4>
+                                        <h4>: <?php echo $phone; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Payment Method</h4>
+                                        <h4>: <?php echo $method; ?></h4>
+                                    </div>
+                                </div>  <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> Please accept the Order</h4>
                                 <input type="hidden" name='order_id' value="<?php echo $record['order_id']; ?>">
                                 <input type="hidden" name='total' value="<?php echo $total; ?>">
                                 <input type="hidden" name='address' value="<?php echo $address; ?>">
@@ -318,7 +380,7 @@
                          </div>
                      </form>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$i+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -331,21 +393,30 @@
         </div>
         <div id="longTerm-box" class="accept none">
             <div class="title">
-            <div class="order-title"><h3>hello </h3></div>
+            <div class="order-title">
+                    <h3>Orders </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
+                 $i=0;
+                 $y=1;
                  if(in_array('longTerm',$new)){
                     foreach($records as $record)
                     {
                         if($record['order_type']=='longTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
-                     <div class="box order">
+                     <div class="box order" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                             <div class="resend">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Your have a order </h4></div>
+                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                     <button class="btn-rate" name="accept" type="submit">Accept</button>
+                                     <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
+                                   </div>
                             </div>
-                            <div class="details-box">
+                            <div id="<?php echo $i ?>" class="details-box">
                                     <div class="details">
-                                        <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
+                                        <h2>Order Id :<span style="color:#5d80b6;;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order item:</h4>
                      <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                         while($result=mysqli_fetch_assoc($getOrder))
@@ -366,11 +437,24 @@
                                         
                                     </div>
                                 <div class="button-pay">
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer will pay for this order in : <span style="color: red;"><?php echo $method; ?></span></h4>
-                                <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> Please accept the Order</h4>
+                                <div class="order-details">
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Customer Name</h4>
+                                        <h4>: <?php echo $first_name; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Delivery address</h4>
+                                        <h4>: <?php echo $address; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Phone number </h4>
+                                        <h4>: <?php echo $phone; ?></h4>
+                                    </div>
+                                    <div>
+                                        <h4 style="width: 200px;color:#101e5a;">Payment Method</h4>
+                                        <h4>: <?php echo $method; ?></h4>
+                                    </div>
+                                </div>  <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> Please accept the Order</h4>
                                 <input type="hidden" name='order_id' value="<?php echo $record['order_id']; ?>">
                                 <input type="hidden" name='total' value="<?php echo $total; ?>">
                                 <input type="hidden" name='address' value="<?php echo $address; ?>">
@@ -386,7 +470,7 @@
                          </div>
                      </form>
                 <?php    }
-                    }
+                   $i=$i+2;$y=$i+2;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -417,26 +501,35 @@
             dataType:"json",
             success:function(data)
 			{
+                if(data.breakfast+data.lunch+data.dinner+data.longTerm!=0)
+                {   $('#noti-order').css("display","block");
+                    $('#noti-order h5').html(data.breakfast+data.lunch+data.dinner+data.longTerm);
+                }
+              
                 if(data.breakfast!=0)
                 {
+                    $('#noti-breakfast').css("display","block");
                     $('#noti-breakfast h5').html(data.breakfast);
                 }else{
                     $('#noti-breakfast').css("display","none");
                 }
                 if(data.lunch!=0)
                 {
+                    $('#noti-lunch').css("display","block");
                     $('#noti-lunch h5').html(data.lunch);
                 }else{
                     $('#noti-lunch').css("display","none");
                 }
                 if(data.dinner!=0)
                 {
+                    $('#noti-dinner').css("display","block");
                     $('#noti-dinner h5').html(data.dinner);
                 }else{
                     $('#noti-dinner').css("display","none");
                 }
                 if(data.longTerm!=0)
                 {
+                    $('#noti-longTerm').css("display","block");
                     $('#noti-longTerm h5').html(data.longTerm);
                 }else{
                     $('#noti-longTerm').css("display","none");
@@ -454,5 +547,13 @@
 		newOrder();; 
 	}, 5000);
     })
+</script>
+<script>
+        function order(x,y) {  
+            var orderDown=document.getElementById(x);
+            var btn=document.getElementById(y);
+            if(orderDown.style.display=='none' || orderDown.style.display==''){orderDown.style.display='flex';btn.style.visibility='hidden'}
+            else{orderDown.style.display='none';btn.style.visibility='visible'}
+    }
 </script>
 </html>
