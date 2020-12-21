@@ -270,7 +270,7 @@ body{
 
 }
 .fa-clock{
-    color: #d5a23b;
+    color:#5d80b6;
     padding: 10px;
     /* color: rgb(70, 0, 136); */
 }
@@ -625,6 +625,7 @@ font-weight: bold;
     color: rgb(255, 255, 255);
     border-radius: 50%;
 }
+
 #noti-longTerm{
     display: none;
     position: absolute;

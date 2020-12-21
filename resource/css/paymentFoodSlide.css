@@ -43,7 +43,7 @@
  
 .empty{
     position: relative;
-    /* width: 80%; */
+    width: 80%;
     height: 90vh;
     padding: 10px 20px;
     background-image: url(../img/empty.svg);

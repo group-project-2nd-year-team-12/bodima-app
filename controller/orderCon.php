@@ -62,7 +62,7 @@ if(isset($_GET['id']) && $_GET['id']==1)
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
       $time_out=array();
@@ -103,7 +103,7 @@ if(isset($_GET['id']) && $_GET['id']==2)
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
       $i=0;
@@ -122,12 +122,12 @@ if(isset($_GET['id']) && $_GET['id']==3)
 {
    $email=$_SESSION['email'];
    $ids_set=reg_user::getOrderById($connection,$email,3);
-   // $order_pending=reg_user::getOrderAll($connection,$email,3);
+   $order_pending=reg_user::getOrderAll($connection,$email,3);
    
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
       $i=0;
@@ -151,7 +151,7 @@ if(isset($_GET['id']) && $_GET['id']==4)
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
       $i=0;
