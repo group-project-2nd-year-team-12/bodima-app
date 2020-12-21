@@ -7,7 +7,12 @@
  ?>
 
  <?php 
-      reg_userIshan::payhereCanReq($connection)
+ 	if (isset($_GET['request_id'])) {
+ 		 $request_id=$_GET['request_id'];
+ 		 header('../views/onlinePayNotSIshan.php?request_id='.$request_id);
+ 	}
+     
+ //echo "string";
 
 
   ?>

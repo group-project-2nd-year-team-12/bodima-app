@@ -28,9 +28,12 @@
 			   echo '<p class="error"><b>'.$error.'</b></p>';
 		   }
 	   }
+	   if(isset($_GET['request_id'])){
+	   echo 	$request_id=$_GET['request_id'];
+	   }
 	 
 	 ?>
-		   <form action="../controller/regBIshan.php" method="post" enctype="multipart/form-data">
+		   <form action="../controller/regBIshan.php?request_id=<?php echo $request_id;?>" method="post" enctype="multipart/form-data">
 		   	<p>What is Your Institute? </p>
 		   	<input type="text" name="university_name" placeholder="Are you Student? Enter Institute name.">
 
@@ -61,8 +64,8 @@
 
 
 
-			 <p>Upload Your NIC Images</p>
-			   <input type="file" accept=".jpg, .png, .jpeg" name="nicImg">
+			<!--  <p>Upload Your NIC Images</p>
+			   <input type="file" accept=".jpg, .png, .jpeg" name="nicImg"> -->
 			
 
 			<p>Pay KeyMoney</p>

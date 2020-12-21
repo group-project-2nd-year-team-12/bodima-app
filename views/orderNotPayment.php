@@ -8,17 +8,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/css/nav.css">
-    <link rel="stylesheet" href="../resource/css/footer.css">
+    <link rel="stylesheet" href="../resource/css/paymentFoodslide.css">
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('card');">
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:black;">   Solution for many problems</small></h1>
+                <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
+            <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
+            <h5>State : <span>Active</span></h5>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                    
@@ -46,35 +48,29 @@
         </div>
     <div class="container">
         <div class="content">
-          <div class="payment-slide">
-              <ul>
-                  <li onclick="window.location='../index.php'"><i class="fas fa-external-link-alt"></i> Home page</li>
-                  <li onclick="window.location='orders.php'"><i class="fas fa-sort-amount-down-alt"></i> New Orders</li>
-                  <li onclick="window.location='notPaymentOrder.php'"><i class="far fa-credit-card"></i> Card Payment</li>
-                  <li onclick="window.location='deliveringOrder.php'"><i class="fas fa-truck"></i> Delivering Orders</li>
-                  <li onclick="window.location='deliveredHistory.php'"><i class="fas fa-history"></i> Deliverd History</li>
-               
-               
-              </ul>
-          </div>          
+               <?php include 'orderSide.php' ?>  
+        <?php 
+         $records=unserialize($_GET['record']);
+         if(!empty($records))
+         {
+         ?>  
         <div class="accept">
             <div class="title">
-                <h3>Delivered Orders </h3>
+                <h3>Delivering Orders </h3>
                 <?php 
-                $FSid=$_SESSION['FSid'];
-                $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-                $F_post_id_set=array();
-                while($row=mysqli_fetch_assoc($F_post_id))
-                {
-                    $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],4);
-                    while($record=mysqli_fetch_assoc($getOrder_id))
+               
+                    foreach($records as $record)
                     {?>
                      <div class="box ">
+                            <div class="resend card">
+                                    <div class="right"><i style="padding: 10px;" class="fas fa-credit-card fa-lg"></i></div>
+                                    <div class="letter"><h4>Customer not pay yet this order </h4></div>
+                            </div>
                             <div class="details-box">
                                     <div class="details">
                                         <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
                                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
-                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],4);
+                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],1);
                         while($result=mysqli_fetch_assoc($getOrder))
                         {
                             echo '<div class="product_item"><h5 class="item">'.$result['product_name'].'</h5>';
@@ -86,27 +82,34 @@
                             $total=$result['total'];
                             $phone=$result['phone'];
                             $method=$result['method'];
+                            $order_id=$result['order_id'];
                         }?>
             
                                         <h4  class="order_item"><i class="fas fa-caret-right"></i> Pay amount :<span style="color: red;"> RS <?php echo $total; ?></h4>
                                         
                                     </div>
                                 <div class="button-pay">
-                                <h3>Order Details</h3>
+                                    <h3>Order Details</h3>
                                 <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
                                 <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
                                 <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer  payed for this order in : <span style="color: red;"><?php echo $method; ?></span></h4>
-                              </div>
+                                     </div>
                             </div>
                     
                          </div>
                 <?php    }
-                } ?>                
+                 ?>                
             </div>
         </div>
+        <?php }
+        else{?>
+            <div class="empty">
+                <h1> Nothing to show here</h1>
+            </div>
+      <?php  }?>
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
+<script src="../resource/js/timing.js"></script>
 </html>

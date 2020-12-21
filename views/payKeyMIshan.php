@@ -29,18 +29,20 @@ require_once ('../config/database.php');
            {
                echo '<p class="error"><b>'.$error.'</b></p>';
            }
+
        }
      
      ?>
 
      <?php 
+      $request_id=$_GET['request_id'];
      $st_email=$_SESSION['email'];
      $result=reg_userIshan::selectStToBoarder($st_email,$connection);
      
      $user=mysqli_fetch_assoc($result);
       $first_name=$user['first_name'];
             $last_name=$user['last_name'];
-            $nic=$user['nic'];
+   //         $nic=$user['nic'];
             $keymoney=$user['keymoney'];
             $BOid=$user['BOid'];
              $B_post_id=$user['B_post_id'];
@@ -66,9 +68,11 @@ require_once ('../config/database.php');
             <input type="password" name="password" placeholder="Enter Password"> -->
 
             <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
+
             <input type="hidden" name="return_url" value='http://localhost/bodima-app/controller/payhereOnlineSuccessIshan.php?success'>
-            <input type="hidden" name="cancel_url" value="http://localhost/bodima-app/controller/payhereOnlineCancelIshanphp">
+            <input type="hidden" name="cancel_url" value="http://localhost/bodima-app/controller/payhereOnlineCancelIshanphp?request_id=<?php echo $request_id;?>">
             <input type="hidden" name="notify_url" value="http://localhost/bodima-app/config/paycon.php"> 
+
 
 
             <br><p>Boarding Details</p>
