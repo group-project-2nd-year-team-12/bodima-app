@@ -1,5 +1,5 @@
 <?php   include ('../config/database.php');
-      include('../models/reg_userIshan.php');
+      include('../models/StudentRequestIshan.php');
       session_start(); ?>
         
 
@@ -71,14 +71,16 @@
           <?php 
 
           $student_email=$_SESSION['email'];
-          $result=reg_userIshan::AcceptRequest($student_email,$connection);
+          $result=StudentRequestIshan::AcceptRequest($student_email,$connection);
           while ($user=mysqli_fetch_assoc($result)) {
             $request_id=$user['request_id'];
             $student_email=$user['student_email'];
             $B_post_id=$user['B_post_id'];
             $city=$user['city'];
              $image=$user['image'];
+ $reqDate=$user['date'];
 
+   $cenvertedTime = date('Y-m-d H:i:s',strtotime('+23 days',strtotime($reqDate)));
               $first_name=$user['first_name'];
           $last_name=$user['last_name'];
          
@@ -96,9 +98,10 @@
 
 
            <div class="box">
+               <input type="hidden" id="date" value="<?php echo $cenvertedTime; ?>">
                     <div class="resend wait" style="background-color: #74bcf5;">
                         <div class="right" ><i class="fas fa-play-circle" ></i></div>
-                        <div class="letter"><h3>Your Request has Accepted - continue renting here <small><b id="countdown">15h 45m 36s</b> This request will cancel </small></h3></div>
+                        <div class="letter"><h3>Your Request has Accepted - continue renting here <small><b id="countdown"><div id="data"></div></b> This request will cancel </small></h3></div>
                     </div>
                   <div class="details-box">
                         <div class="details">
@@ -113,7 +116,7 @@
                             <h4>Post owner : <span style="color:#0900b0;"><?php echo $first_name."  ".$last_name; ?></span></h2>
                             <br/><br/><hr>
                             <h4>If you want to rent this boarding, click 'Pay and Reserve'</h4><br/>
-                            <button type="button" class="btn2 pay_and_reserve" onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?requestCAccept_id=<?php echo $request_id; ?>"'> Pay and Reserve</button>
+                            <button type="button" class="" onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?requestCAccept_id=<?php echo $request_id; ?>"'> Pay and Reserve</button>
 
 
                             <button type="button" class="btn1 cancel"   onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?requestDelete_id=<?php echo $request_id; ?>"'> Cancel</button>
@@ -135,5 +138,32 @@
     </div>
     <!-- <?php //include 'footer.php'?> -->
 </body>
+ <script>
+    function func() {
+        var dateValue = document.getElementById("date").value;
+ 
+        var date = Math.abs((new Date().getTime() / 1000).toFixed(0));
+        var date2 = Math.abs((new Date(dateValue).getTime() / 1000).toFixed(0));
+ 
+        var diff = Math.abs(date2 - date);
+
+        var days=Math.floor(diff/86400);
+        var hours=Math.floor(diff/3600)%24;
+         var minutes=Math.floor(diff/60)%60;
+          var seconds=diff%60;
+          
+       
+        document.getElementById("data").innerHTML = days+" days, "+hours+"  hours, "+minutes+"  minutes, "+seconds+" seconds";
+        if (days==0) {
+         if (days==0 && hours==0 && minutes==0 && seconds==0) {
+          window.location="../controller/requestIshan.php?requesttimeout_id=<?php echo $request_id; ?>"
+          }
+        }
+    }
+ 
+    func();
+    var interval = setInterval(func, 1000);
+</script>
 <script src="..resource/js/timing.js"></script>
+  
 </html>

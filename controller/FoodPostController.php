@@ -22,7 +22,9 @@ class FoodPostController {
         $FoodPostModel = new FoodPostModel();
         $FoodPostArray = $FoodPostModel->GetFoodPostbyType($types);
         $result = "";
-        
+        ?>
+            
+        <?php
         //Generate a Boarding_post for each BoardingPostEntity in array
         foreach ($FoodPostArray as $key => $food_post) 
         {

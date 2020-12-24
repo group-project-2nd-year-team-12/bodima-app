@@ -1,5 +1,5 @@
 <?php   require_once ('../config/database.php');
-         include('../models/reg_userIshan.php');
+         include('../models/StudentRequestIshan.php');
         session_start(); 
 ?>
 <!DOCTYPE html>
@@ -69,7 +69,7 @@
         </div>
          <?php 
            $student_email=$_SESSION['email'];
-            $result=reg_userIshan::selectcancelReq($connection,$student_email);
+            $result=StudentRequestIshan::selectcancelReq($connection,$student_email);
             while ($user=mysqli_fetch_assoc($result)) {
                  $request_id=$user['request_id'];
                 $image=$user['image'];

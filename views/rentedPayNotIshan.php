@@ -1,5 +1,5 @@
 <?php   require_once ('../config/database.php');
-        include('../models/reg_userIshan.php');
+       include('../models/StudentRequestIshan.php');
         session_start(); 
 ?>
 <!DOCTYPE html>
@@ -68,21 +68,19 @@
         </div> 
         <?php 
            $student_email=$_SESSION['email'];
-            $result=reg_userIshan::selectRPayNotD($connection,$student_email);
-            while ($user=mysqli_fetch_assoc($result)) {
+            $result=StudentRequestIshan::selectRPayNotD($connection,$student_email);
+            while ($user=mysqli_fetch_assoc($result)){
+
                  $request_id=$user['request_id'];
                 $image=$user['image'];
-                $payment_date=$user['payment_date'];
-                $B_post_id=$user['B_post_id'];
-                $city=$user['city'];
+                //$payment_date=$user['payment_date'];
+                 $B_post_id=$user['B_post_id'];
+                 $city=$user['city'];
                 $house_num=$user['house_num'];
                 $lane=$user['lane'];
                 $first_name=$user['first_name'];
                 $last_name=$user['last_name'];
 
-                
-              
-           
  ?>  
 
 

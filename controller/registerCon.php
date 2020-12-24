@@ -37,6 +37,12 @@ if(isset($_POST['submit']))
         else    {
                         if(strlen(trim($nic))==12 || (strlen(trim($nic))==10 && ($nic[9]=='v' || $nic[9]=='V')))
                         {
+                                $result=reg_user::checkNic($nic,$connection);
+                                print_r($result);
+                                if($result->num_rows)
+                                {
+                                        $errors[]="NIC already used";
+                                }
                                 if(strlen(trim($nic))==10)
                                 {
                                         $intPart=substr($nic,0,8);
@@ -44,6 +50,8 @@ if(isset($_POST['submit']))
                                         {
                                                 $errors[]="*NIC number is invalid";
                                         }
+                                        
+
                                 }
                                elseif(strlen(trim($nic))==12)
                                {

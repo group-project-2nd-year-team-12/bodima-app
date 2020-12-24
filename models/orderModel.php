@@ -38,18 +38,57 @@ class orderModel{
         return $result;
     }
     public static function getPostFoodSupplier($connection,$FSid){
-        $query="SELECT F_post_id FROM food_post WHERE FSid=$FSid";
+        $query="SELECT F_post_id FROM food_post WHERE FSid=$FSid ";
         $result=mysqli_query($connection,$query);
         return $result;
     }
     public static function getOrderIDFoodSupplier($connection,$F_post_id,$is_accepted){
-        $query="SELECT DISTINCT order_id FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted";
+        $query="SELECT DISTINCT order_id FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }
 
     public static function getOrderFoodSupplier($connection,$order_id,$is_accepted){
-        $query="SELECT * FROM food_request WHERE order_id=$order_id AND is_accepted=$is_accepted";
+        $query="SELECT * FROM food_request WHERE order_id=$order_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+   
+    public static function unavailableDate($FSid,$date,$connection)
+    {
+    $query="INSERT INTO available_order(FSid,unavailable_date) 
+    VALUE($FSid,'{$date}')";
+    $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function getUnavailableDate($FSid,$connection)
+    {
+        $query="SELECT unavailable_date FROM available_order WHERE FSid=$FSid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function checkUnavailableDate($date,$connection)
+    {
+        $query="SELECT * FROM available_order WHERE unavailable_date='{$date}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function deleteUnavailableDate($date,$connection)
+    {
+        $query="DELETE FROM available_order WHERE unavailable_date='{$date}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function checkAvailable($fsid,$connection){
+        $query="SELECT available FROM food_supplier WHERE FSid=$fsid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function available($fsid,$state,$connection)
+    {
+        $query="UPDATE food_supplier SET  available=$state  WHERE FSid=$fsid";
         $result=mysqli_query($connection,$query);
         return $result;
     }

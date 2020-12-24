@@ -1,5 +1,5 @@
 <?php
-     function sentAccept($email,$first_name,$address,$total)
+     function sentAccept($order_id,$email,$first_name,$address,$total)
      {
          $subject="Accepted your order";
          $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -170,19 +170,18 @@ p{
                     <h5>Total payment <span class="left-item">Rs '.$total.'</span></h5>
                     <h4>Select payment method </h4>
                     <form method="post" action="https://sandbox.payhere.lk/pay/checkout">
-                        <button id="request" type="button" class="btn5" >Pay with cash </button>
-                        <button id="request" class="btn3" id="btn3" >Pay with card </button>
-                        <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
-                        <input type="hidden" name="return_url" value="http://localhost/mvc/application/views/sucsses.php">
-                        <input type="hidden" name="cancel_url" value="http://localhost/mvc/application/views/sucsses.php">
-                        <input type="hidden" name="notify_url" value="http://localhost/mvc/application/config/payCon.php">  
-                        <input type="hidden" name="order_id" value="<?php echo "OrderNo".+time().rand(); ?>">
+                        <button id="request" type="submit" class="btn5" >Pay cash </button>
+                        <input type="hidden" name="merchant_id" value="1215562">
+                        <input type="hidden" name="return_url" value="http://localhost/bodima-app/views/paymentFood_receving.php">
+                        <input type="hidden" name="cancel_url" value="http://localhost//bodima-app/viewsmvc/application/views/sucsses.php">
+                        <input type="hidden" name="notify_url" value="http://localhost//bodima-app/viewsmvc/application/config/payCon.php">  
+                        <input type="hidden" name="order_id" value="'.$order_id.'">
                         <input type="hidden" name="items" value="Bodima"><br>
                         <input type="hidden" name="currency" value="LKR">
                         <input type="hidden" name="amount" value="'.$total.'">  
                         <input type="hidden" name="first_name" value="'.$first_name.'">
-                        <input type="hidden" name="last_name" value="<?php echo $_SESSION["last_name"];?>"><br>
-                        <input type="hidden" name="email" value="'.$address.'">
+                        <input type="hidden" name="last_name" value="'.$first_name.'"><br>
+                        <input type="hidden" name="email" value="'.$email.'">
                         <input type="hidden" name="phone" value="0771234567"><br>
                          <input type="hidden" name="address" value="'.$address.'"> 
                          <input type="hidden" name="city" value="Colombo">

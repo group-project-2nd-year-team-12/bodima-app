@@ -147,7 +147,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                         </div>
                         <button class="collapsible">Open Section 3</button>
                         <div class="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>Any Details.</p>
                         </div>
                     </div>
             </div>

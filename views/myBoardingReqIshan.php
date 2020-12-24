@@ -1,6 +1,6 @@
 <?php   require_once ('../config/database.php');?>
 
-<?php include('../models/reg_userIshan.php');?>
+<?php include('../models/BOwnerReqIshan.php');?>
 <?php   
         session_start(); 
 ?>
@@ -77,7 +77,7 @@
 
            $email=$_SESSION['email'];
           $BOid=$_SESSION['BOid'];
-          $result=reg_userIshan::selectnewRequest($BOid,$connection);
+          $result=BOwnerReqIshan::selectnewRequest($BOid,$connection);
           while ($user=mysqli_fetch_assoc($result)) {
             $request_id=$user['request_id'];
             $student_email=$user['student_email'];
@@ -90,7 +90,7 @@
           $date=$user['date'];
           $message=$user['message'];
 
-         
+         echo   $cenvertedTime = date('Y-m-d H:i:s',strtotime('+22 days',strtotime($date)));
             
              
          
@@ -105,9 +105,11 @@
 
 
             <div class="box">
+              <input type="hidden" id="date" value="<?php echo $cenvertedTime; ?>">
+
                     <div class="resend wait" style="background-color:  rgb(141, 243, 141);">
                         <div class="right" ><i class="far fa-check-circle fa-2x"></i></div>
-                        <div class="letter"><h3>You have recieved a new request<small> this request will automatically cancel in <b id="countdown">15h 45m 36s</b></small></h3></div>
+                        <div class="letter"><h3>You have recieved a new request<small> this request will automatically cancel in <b id="countdown"> <div id="data"></div></b></small></h3></div>
                     </div>
                   <div class="details-box">
                         <div class="details">
@@ -146,4 +148,30 @@
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="..resource/js/timing.js"></script>
+<script src="..resource/js/timing.js"></script>
+        <script>
+    function func() {
+        var dateValue = document.getElementById("date").value;
+ 
+        var date = Math.abs((new Date().getTime() / 1000).toFixed(0));
+        var date2 = Math.abs((new Date(dateValue).getTime() / 1000).toFixed(0));
+ 
+        var diff = Math.abs(date2 - date);
+
+        var days=Math.floor(diff/86400);
+        var hours=Math.floor(diff/3600)%24;
+         var minutes=Math.floor(diff/60)%60;
+          var seconds=diff%60;
+          
+       
+        document.getElementById("data").innerHTML = days+" days, "+hours+"  hours, "+minutes+"  minutes, "+seconds+" seconds";
+
+        if (days==0 && seconds==0) {
+          window.location="../controller/requestIshan.php?BOrequesttimeout_id=<?php echo $request_id; ?>"
+          }
+    }
+ 
+    func();
+    var interval = setInterval(func, 1000);
+</script>
 </html>

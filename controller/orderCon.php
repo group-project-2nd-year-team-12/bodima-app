@@ -1,6 +1,7 @@
 <?php 
  require_once ('../config/database.php');
  require_once ('../models/orderModel.php');
+ require_once ('../models/reg_user.php');
     session_start ();
 ?>
 
@@ -12,9 +13,12 @@ $errors=array();
    {
       $error['address']="errorAddress";
    }
-   if(!isset($_POST['phone']) || strlen(trim($_POST['phone']))<1)
+   if((!isset($_POST['phone']) || strlen(trim($_POST['phone']))<1) )
    {
       $error['phone']="errorPhone";
+   }elseif(!is_numeric($_POST['phone']) || (strlen(trim($_POST['phone']))>10 || strlen(trim($_POST['phone']))!=10))
+   {
+      $error['phone1']="errorPhone1";
    }
    if(empty($error)){
    //  print_r($_SESSION);
@@ -37,18 +41,116 @@ $errors=array();
        {
         orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$phone,$method,$time,$product['restaurant'],$connection);
        }
-      header('Location:../views/paymentFood_pending.php');
+      header('Location:orderCon.php?id=1');
    }
 }else{
-   header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&Pid='.$_POST['Pid']);
+   header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&'.$error['phone1'].'&Pid='.$_POST['Pid']);
 }
 }
+
+// pending order details print 
+if(isset($_GET['id']) && $_GET['id']==1)
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,0);
+   $order_pending=reg_user::getOrderAll($connection,$email,0);
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');
+   
+}
+
+// Accepted order deatils
+if(isset($_GET['id']) && $_GET['id']==2)
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,1);
+   $order_pending=reg_user::getOrderAll($connection,$email,1);
+   
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_accept.php?ids='.$data1.'&data_rows='.$data2.'');
+   
+}
+// Receiving order details
+if(isset($_GET['id']) && $_GET['id']==3)
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,3);
+   $order_pending=reg_user::getOrderAll($connection,$email,3);
+   
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_receving.php?ids='.$data1.'&data_rows='.$data2.'');
+   
+}
+// order history details 
+if(isset($_GET['id']) && $_GET['id']==4)
+{
+   $email=$_SESSION['email'];
+   $ids_set=reg_user::getOrderById($connection,$email,4);
+   $order_pending=reg_user::getOrderAll($connection,$email,4);
+  
+      $ids=array();
+      while($record=mysqli_fetch_assoc($ids_set))
+      {
+          $ids[]=$record['order_id'];
+      }
+      $data_rows=array();
+      $i=0;
+      while($record=mysqli_fetch_assoc($order_pending))
+      {
+          $data_rows[$i]=$record;
+          $i++;
+      }
+      $data1=serialize($ids);
+      $data2=serialize($data_rows);
+      header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
+    
+}
+
 
 if(isset($_GET['orderDelete_id'])){
    $order_id=$_GET['orderDelete_id'];
    $result=orderModel::requestOrderDelete($connection,$order_id);
    if($result){
-      header('Location:../views/paymentFood_pending.php');
+      header('Location:orderCon.php?id=1');
    }
    {
       echo "Mysqli query failed";
@@ -89,5 +191,6 @@ if(isset($_GET['order_id'])){
       echo "Mysqli query failed";
    }
 }
+
 
 ?>

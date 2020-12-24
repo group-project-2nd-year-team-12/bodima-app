@@ -28,9 +28,12 @@
 			   echo '<p class="error"><b>'.$error.'</b></p>';
 		   }
 	   }
+	   if(isset($_GET['request_id'])){
+	   echo 	$request_id=$_GET['request_id'];
+	   }
 	 
 	 ?>
-		   <form action="../controller/regBIshan.php" method="post" enctype="multipart/form-data">
+		   <form action="../controller/regBIshan.php?request_id=<?php echo $request_id;?>" method="post" enctype="multipart/form-data">
 		   	<p>What is Your Institute? </p>
 		   	<input type="text" name="university_name" placeholder="Are you Student? Enter Institute name.">
 
@@ -40,15 +43,18 @@
 		   	<input type="text" name="telephone" placeholder="Enter Your Telephone Number.">
 
 		   	<p>Gender</p>
-		   	 <div class="radio">
-					<input type="radio" name="gender" value="Boy" checked="checked" id="3" >
-					<label  for="3">Boy</label>
+	   		<div class="radio-box">
+			   <div class="radio1">
+				   <input type="radio" name="gender" value="Boy" checked="checked" id="3" >
+					<label for="3">Male</label>
 				</div>
-				
-				<div class="radio">
+				<div class="radio1">
 					<input type="radio" name="gender" value="Girl" id="4">
-					<label for="4">Girl</label>
+					<label for="4">Female</label>
 				</div>
+			   </div>
+		   		
+		   	
 
 		   	<p>Parent Name</p>
 			   <input type="text" name="p_name" placeholder="Enter Your Parent Name">
@@ -58,19 +64,19 @@
 
 
 
-			 <p>Upload Your NIC Images</p>
-			   <input type="file" name="nicImg">
+			<!--  <p>Upload Your NIC Images</p>
+			   <input type="file" accept=".jpg, .png, .jpeg" name="nicImg"> -->
 			
 
 			<p>Pay KeyMoney</p>
 			   <div class="radio">
 					<input type="radio" name="pay" value="hand" checked="checked" id="1" onclick="cash()">
-					<label  for="1">Cash handover</label>
+					<label class="radio2" for="1">Cash handover</label>
 				</div>
 				
 				<div class="radio">
 					<input type="radio" name="pay" value="online" id="2"onclick="online()">
-					<label for="2">Pay Online</label>
+					<label class="radio2" for="2">Pay Online</label>
 				</div>
 		   	<input type="submit" name="submit"  >
 		   </form>
