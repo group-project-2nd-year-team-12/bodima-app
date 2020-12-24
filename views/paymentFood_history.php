@@ -14,6 +14,26 @@
     <title>Document</title>
 </head>
 <body onload="checked('history');">
+<script>
+    function orderType(id)
+{
+    var order=document.getElementById(id);
+    const shortTerm=document.getElementById('shortTerm-box');
+    const longTerm=document.getElementById('longTerm-box');
+    if(id=='shortTerm')
+    {
+        shortTerm.style.display='block';
+        longTerm.style.display='none';
+    }
+    if(id=='longTerm')
+    {
+        longTerm.style.display='block';
+        shortTerm.style.display='none';
+    }
+    order.style.display='block';
+  
+}
+</script>
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
@@ -66,9 +86,12 @@
             $new=array_column($data_rows,'order_type');
            
        ?>
-        <div d="shortTerm-box"  class="pending">
+        <div id="shortTerm-box"  class="pending">
             <div class="title">
-                <h3>Order history</h3>
+            <div class="order-title">
+                    <h3>Order History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
               
                 $i=1;
@@ -78,20 +101,20 @@
                 foreach($ids as $id){
                     if($id['order_type']=='breakfast' || $id['order_type']=='lunch' || $id['order_type']=='dinner' ){
                 ?>
-                <div class="box small">
-                    <div class="resend receiving">
+                <div class="box " onclick="order('<?php echo $x ?>')">
+                    <div class="resend ">
                         <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                         <div class="letter"><h4>Your order is delivering <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span></h4></div>
                     </div>
-                  <div class="details-box">
+                  <div id="<?php echo $x ?>" class="details-box">
                     <div class="details">
-                            <h2>Order Id : <span style="color:sienna;"><?php echo $id; ?></span> </h2>
+                            <h2>Order Id : <span style="color:sienna;"><?php echo $id['order_id']; ?></span> </h2>
                            
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered Item :</h4>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
-                                      if($data_row['order_id']==$id)
+                                      if($data_row['order_id']==$id['order_id'])
                                       {
                                           $total=$data_row['total'];
                                           $time=$data_row['time'];
@@ -134,7 +157,10 @@
         </div>
         <div id="longTerm-box" class="pending none">
             <div class="title">
-                <h3>Order history</h3>
+            <div class="order-title">
+                    <h3> Order History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
               
                 $i=1;
@@ -144,20 +170,20 @@
                 foreach($ids as $id){
                     if($id['order_type']=='longTerm' ){
                 ?>
-                <div class="box small">
-                    <div class="resend receiving">
+                <div class="box" onclick="order('<?php echo $x ?>')">
+                    <div class="resend ">
                         <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                         <div class="letter"><h4>Your order is delivering <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span></h4></div>
                     </div>
-                  <div class="details-box">
+                  <div id="<?php echo $x ?>" class="details-box">
                     <div class="details">
-                            <h2>Order Id : <span style="color:sienna;"><?php echo $id; ?></span> </h2>
+                            <h2>Order Id : <span style="color:sienna;"><?php echo $id['order_id']; ?></span> </h2>
                            
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered Item :</h4>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
-                                      if($data_row['order_id']==$id)
+                                      if($data_row['order_id']==$id['order_id'])
                                       {
                                           $total=$data_row['total'];
                                           $time=$data_row['time'];

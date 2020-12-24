@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="../resource/css/paymentFoodSlide.css">
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/paymentFood.css">
+    <script src="../resource/js/jquery.js"></script>
     <title>Document</title>
 </head>
 <body onload="checked('pending');">
+
+<!-- page separate 2 section short term long term  -->
 <script>
     function orderType(id)
 {
@@ -34,12 +37,13 @@
   
 }
 </script>
+
+
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
                 <h1><small style="font-size: 14px; color:white; font-weight:lighter">   Solution for many problems</small></h1>
-                
-</div>
+            </div>
             
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
@@ -104,16 +108,20 @@
                 foreach($ids as $id){
                   if($id['order_type']=='breakfast' || $id['order_type']=='lunch' || $id['order_type']=='dinner' ){
                 ?>
-                <div id="<?php echo $id ?>" class="box" onclick="order('<?php echo $x ?>')">
-                
-                    <div class="resend ">
+                <div class="box" >
+                  
+                    <div class="resend " onclick="order('<?php echo $x ?>')">
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small><b id="countdown"></b> This order will cancel </small></h4></div>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
+                            <h5 style="color:#2c3e8f;">Order Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5></div>
                     </div>
-                  <div id="<?php echo $x ?>" class="details-box">
-                    <div class="details">
-                            <h2>Order Id :<span style="color:sienna;"><?php echo $id['order_id']; ?></h2>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
+                  <div id="<?php echo $x ?>" class="details-box req-pending">
+                  <img style="width: 300px;" src="../resource/img/pending.gif" alt="">
+                        <div class="button-pay">
+                            <h2 class="order_item order-head">ORDER INFO</h2>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
@@ -122,6 +130,10 @@
                                           $total=$data_row['total'];
                                           $time=$data_row['time'];
                                           $restaurant=$data_row['restaurant'];
+                                          $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
@@ -129,25 +141,47 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
-                        </div>
-                        <div class="button-pay">
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span id="<?php echo $date ?>" style="color: sienna;" id="orderTime"><?php echo $time ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                            <h4 class="order_item" style="margin-top: 5px;border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-window-close"></i> If you want cancel order. click the cancel order</h4>
-                            <button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id; ?>"' type="button" class="btn1 cancel"> Cancel Order</button>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                            <h4 class="order_item" style="color: #101e5a;margin-top:20px"> Please wait for food supplier accept this order.</h4>
+                           <div class="order_item" style="color: #101e5a;"><h4>Do you want to cancel this order ?</h4> <h4><button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id["order_id"]; ?>"' type="button" class="btn1 cancel"> Cancel</button></h4></div> 
                         </div>
                   </div>
-                    <!-- <script>
-                        var orderId= document.getElementById('<?php echo $order ?>');
-                        var date=document.getElementById('<?php echo $date ?>').innerHTML;
-                        var target = new Date("2020-01-01 " + date);
-                        var expireTime=target.setMinutes(target.getMinutes()+20);
-                        console.log(expireTime);
-                        console.log(target.toUTCString());
-                    </script> -->
-                </div>
                
+                </div>
+                <script>
+                    // timing function
+             $(document).ready(function(){
+                function newOrder()
+                     {
+                        view="<?php echo $id['order_id']; ?>";
+                        $.ajax({
+                            url:"../controller/orderCon.php",
+                            method:"POST",
+                            data:{view:view},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                if(data.minute==0 && data.secound==1){
+                                    window.location='../controller/orderCon.php?id=1';
+                                }
+                                document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
+                                document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
+                            }
+                              })
+        
+                        }
+                        newOrder();
+                        console.log('gdhdshchbcsk');
+
+                        setInterval(function(){ 
+                            newOrder();
+                        }, 1000);
+                     })
+                </script>
                 <?php
                     }  
             $date+=2;
@@ -178,26 +212,35 @@
                 $x=$x+2;
                 if(in_array('longTerm',$new)){
                 foreach($ids as $id){
-                    if(in_array('longTerm',$new)){
+                    if($id['order_type']=='longTerm'){
                 ?>
-                <div id="<?php echo $id ?>" class="box" onclick="order('<?php echo $x ?>')">
+                <div id="<?php echo $id ?>" class="box" >
                 
-                    <div class="resend ">
+                <div class="resend " onclick="order('<?php echo $x ?>')">
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is Pending <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small><b id="countdown"></b> This order will cancel </small></h4></div>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
+                            <h5 style="color:#2c3e8f;">Order Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5></div>
                     </div>
-                  <div id="<?php echo $x ?>" class="details-box">
-                    <div class="details">
-                            <h2>Order Id :<span style="color:sienna;"><?php echo $id; ?></h2>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
+                  <div id="<?php echo $x ?>" class="details-box req-pending">
+                  <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
+      
+                  <div class="button-pay">
+                            <h2 class="order_item order-head">ORDER INFO</h2>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
-                                      if($data_row['order_id']==$id[''])
+                                      if($data_row['order_id']==$id['order_id'])
                                       {
                                           $total=$data_row['total'];
                                           $time=$data_row['time'];
                                           $restaurant=$data_row['restaurant'];
+                                          $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
@@ -205,25 +248,46 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
-                        </div>
-                        <div class="button-pay">
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span id="<?php echo $date ?>" style="color: sienna;" id="orderTime"><?php echo $time ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                            <h4 class="order_item" style="margin-top: 5px;border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-window-close"></i> If you want cancel order. click the cancel order</h4>
-                            <button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id; ?>"' type="button" class="btn1 cancel"> Cancel Order</button>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                            <h4 class="order_item" style="color: #101e5a;margin-top:20px"> Please wait for food supplier accept this order.</h4>
+                           <div class="order_item" style="color: #101e5a;"><h4>Do you want to cancel this order ?</h4> <h4><button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id["order_id"]; ?>"' type="button" class="btn1 cancel"> Cancel</button></h4></div> 
                         </div>
                   </div>
-                    <script>
-                        var orderId= document.getElementById('<?php echo $order ?>');
-                        var date=document.getElementById('<?php echo $date ?>').innerHTML;
-                        var target = new Date("2020-01-01 " + date);
-                        var expireTime=target.setMinutes(target.getMinutes()+20);
-                        console.log(expireTime);
-                        console.log(target.toUTCString());
-                    </script>
                 </div>
-               
+                <script>
+                    // timing function
+             $(document).ready(function(){
+                function newOrder()
+                     {
+                        view="<?php echo $id['order_id']; ?>";
+                        $.ajax({
+                            url:"../controller/orderCon.php",
+                            method:"POST",
+                            data:{view:view},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                if(data.minute==0 && data.secound==1){
+                                    window.location='../controller/orderCon.php?id=1';
+                                }
+                                document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
+                                document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
+                            }
+                              })
+        
+                        }
+                        newOrder();
+                        console.log('gdhdshchbcsk');
+
+                        setInterval(function(){ 
+                            newOrder();
+                        }, 1000);
+                     })
+                </script>
                 <?php
                 $date+=2;
                
@@ -241,9 +305,12 @@
         </div>
         </div>
     </div>
-   <?php 
-    if(isset($_GET['timeOut'])){?>
+ <?php 
+
+   // time out function
+    if(isset($_GET['timeOut'])){?> 
     <div class="timeOut">
+    <div class="timeOut-box">
         <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x"></i></div>
         <div class="outImg"><img src="../resource/img/timeout.svg" alt=""></div>
         <div class="outHeader">
@@ -264,14 +331,18 @@
             <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
         </div>
     </div>
+    </div>
  <?php }   ?>
-    <!-- <?php include 'footer.php'?> -->
+
+ Order accpet popup
+
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
-<script src="../resource/js/jquery.js"></script>
-<script src="../resource/js/reload.js"></script>
+<script src="../resource/js/pendingOrder.js"></script>
 <script src="../resource/js/newOrder.js"></script>
+
+<!-- clickable drop down -->
 <script>
         function order(x,y) {  
             var orderDown=document.getElementById(x);
@@ -280,4 +351,5 @@
             else{orderDown.style.display='none';btn.style.visibility='visible'}
     }
 </script>
+
 </html>

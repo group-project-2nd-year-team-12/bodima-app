@@ -105,7 +105,7 @@
                         <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
                         <div class="letter"><h4>Your order is delivering <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span></h4></div>
                     </div>
-                  <div id="<?php echo $x ?>" class="details-box">
+                  <div id="<?php echo $x ?>"  class="details-box">
                     <div class="details">
                             <h2>Order Id :<span style="color:sienna;"><?php echo $id['order_id']; ?></h2>
                             <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
@@ -130,7 +130,7 @@
                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
                         <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
                             <h4 class="order_item"  style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter"><i class="fas fa-check-square"></i> If your  order is received. Please Confirm </h4>
-                            <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id; ?>"'  type="button" class="btn1 "> Confirm </button>
+                            <button tabindex="1" onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id; ?>"'  type="button" class="btn1 "> Confirm </button>
                         </div>
                   </div>
                     

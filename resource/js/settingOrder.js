@@ -1,3 +1,4 @@
+// order setting drop down 
 const down=document.getElementById('down');
 const dropDown=document.getElementById('dropDown');
 const dropDownIcon=document.getElementById('down-icon');
@@ -16,7 +17,7 @@ down.addEventListener('click',(e)=>{
 
 })
 
-
+// check available or not food supplier 
 var search=window.location.search;
 var param=new URLSearchParams(search);
 var availble=param.get('available');
@@ -41,6 +42,8 @@ window.addEventListener('load',(e)=>{
     
 })
 
+
+// available button settings
 availableCheck.addEventListener('click',(e)=>{
     if(availableCheck.checked==false)
     {

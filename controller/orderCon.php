@@ -51,7 +51,7 @@ $errors=array();
 }
 
 // pending order details print 
-if(isset($_GET['id']) && $_GET['id']==1)
+if((isset($_GET['id']) && $_GET['id']==1))
 {
    $email=$_SESSION['email'];
    date_default_timezone_set("Asia/Colombo");
@@ -70,7 +70,9 @@ if(isset($_GET['id']) && $_GET['id']==1)
       while($record=mysqli_fetch_assoc($order_pending))
       {
             $expireDate=date_create($record['expireTime']);
+       
             $diff= $expireDate->diff($nowTime);
+         
             if($diff->invert)
             {
                echo "not expireed";
@@ -87,6 +89,7 @@ if(isset($_GET['id']) && $_GET['id']==1)
       $data1=serialize($ids);
       $data2=serialize($data_rows);
       $data3=serialize($time_out);
+   
 
       if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
      else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
@@ -213,5 +216,34 @@ if(isset($_GET['order_id'])){
    }
 }
 
+
+// ajex countdown
+
+if(isset($_POST['view']))
+{
+   $order_id= $_POST['view'];
+   $exDate=orderModel::getCountDown($connection,$order_id,0);
+   $exfectch=mysqli_fetch_assoc($exDate);
+   date_default_timezone_set("Asia/Colombo");
+   $date=date('Y-m-d H:i:s');
+   $nowTime=date_create($date);
+   $expireDate=date_create($exfectch['expireTime']);  
+   $diff= $expireDate->diff($nowTime);
+   if($diff->invert)
+   {
+      $minute=$diff->format('%i');
+      $second=$diff->format('%s');
+      $data=array(
+         'minute'=>$minute,
+         'secound'=>$second
+      );
+   }else{
+      orderModel::deleteRequest($record['request_id'],$connection);
+   }
+    $arr=array(
+        'name'=>'1'
+    );
+    echo json_encode($data);
+}
 
 ?>
