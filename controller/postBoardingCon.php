@@ -64,14 +64,18 @@ $errors=array(); //create empty array
         $errors['err10']='*Cost Per Person For Month is required';
     }else if(!is_numeric($CPperson)) {
         $errors['err11']='*Should be an integer';
-    }
+    }else if($CPperson<-1){
+        $errors['err16']='*Should be Posivite';
+    } 
 
     $Keymoney=$_POST['Keymoney'];
     if(empty($_POST['Keymoney']) || strlen(trim($_POST['Keymoney']))<1){
         $errors['err12']='*Keymoney is required';
     }else if(!is_numeric($Keymoney)) {
         $errors['err13']='*Should be an integer';
-    }
+    }else if($Keymoney<-1){
+        $errors['err16']='*Should be Posivite';
+    } 
 
 
     $Lifespan=$_POST['Lifespan'];

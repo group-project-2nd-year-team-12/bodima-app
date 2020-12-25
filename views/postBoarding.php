@@ -142,6 +142,8 @@
 							echo "<div class='error2'>".$errors['err10']."</div>"; 
 						}elseif(isset($errors['err11'])){
 							echo "<div class='error2'>".$errors['err11']."</div>"; 
+						}elseif(isset($errors['err16'])){
+							echo "<div class='error2'>".$errors['err16']."</div>"; 
 						}
 				?>
 
@@ -152,6 +154,8 @@
 							echo "<div class='error2'>".$errors['err12']."</div>"; 
 						}elseif(isset($errors['err13'])){
 							echo "<div class='error2'>".$errors['err13']."</div>"; 
+						}elseif(isset($errors['err16'])){
+							echo "<div class='error2'>".$errors['err16']."</div>"; 
 						}
 				?>
 
