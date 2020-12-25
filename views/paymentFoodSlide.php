@@ -14,3 +14,22 @@
                   
               </ul>
           </div> 
+          <script>
+                     
+                     $(document).ready(function(){
+                function countOrder()
+                     {
+                        view="order";
+                        $.ajax({
+                            url:"../controller/notificationCon.php",
+                            method:"POST",
+                            data:{view:view},
+                            dataType:"json",
+                            success:function(data)
+                            {
+
+                            }
+                        })
+                    }
+                })
+          </script>

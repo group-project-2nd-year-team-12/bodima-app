@@ -108,13 +108,14 @@
                 foreach($ids as $id){
                   if($id['order_type']=='breakfast' || $id['order_type']=='lunch' || $id['order_type']=='dinner' ){
                 ?>
-                <div class="box" >
+                <div class="box" id="<?php echo $id['order_id'] ?>">
                   
                     <div class="resend " onclick="order('<?php echo $x ?>')">
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
                         <div class="letter">
                             <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
-                            <h5 style="color:#2c3e8f;">Order Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5></div>
+                            <h5 style="color:#2c3e8f;">Order Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5>
+                        </div>
                     </div>
                   <div id="<?php echo $x ?>" class="details-box req-pending">
                   <img style="width: 300px;" src="../resource/img/pending.gif" alt="">
@@ -168,14 +169,35 @@
                                 if(data.minute==0 && data.secound==1){
                                     window.location='../controller/orderCon.php?id=1';
                                 }
+                                else{
                                 document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
                                 document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
+                                
+                                }
+                                if(data.state==1)
+                                {
+                                        document.querySelector('.orderAccept').classList.add('orderAccept-active');
+                                        document.getElementById('acceptMethod').innerHTML=' : '+data.payment;
+                                        document.getElementById('acceptId').innerHTML=' : '+data.acceptId;
+                                        document.getElementById('acceptRes').innerHTML=' : '+data.rasturent;
+                                        console.log(document.getElementById('acceptMethod').innerHTML);
+                                       if(data.payment=="card")
+                                       {
+                                        document.getElementById('accept-btn').innerHTML='Check & Pay';
+                                       }
+                                       else{
+                                        document.getElementById('accept-btn').innerHTML='Receiving Order';
+                                       }
+                                        
+                                        // document.querySelector('.')
+                                }
+                             
+                                
                             }
                               })
         
                         }
                         newOrder();
-                        console.log('gdhdshchbcsk');
 
                         setInterval(function(){ 
                             newOrder();
@@ -274,14 +296,35 @@
                                 if(data.minute==0 && data.secound==1){
                                     window.location='../controller/orderCon.php?id=1';
                                 }
+                                else{
                                 document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
                                 document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
+                                
+                                }
+                                if(data.state==1)
+                                {
+                                        document.querySelector('.orderAccept').classList.add('orderAccept-active');
+                                        document.getElementById('acceptMethod').innerHTML=' : '+data.payment;
+                                        document.getElementById('acceptId').innerHTML=' : '+data.acceptId;
+                                        document.getElementById('acceptRes').innerHTML=' : '+data.rasturent;
+                                        console.log(document.getElementById('acceptMethod').innerHTML);
+                                       if(data.payment=="card")
+                                       {
+                                        document.getElementById('accept-btn').innerHTML='Check & Pay';
+                                       }
+                                       else{
+                                        document.getElementById('accept-btn').innerHTML='Receiving Order';
+                                       }
+                                        
+                                        // document.querySelector('.')
+                                }
+                             
+                                
                             }
                               })
         
                         }
                         newOrder();
-                        console.log('gdhdshchbcsk');
 
                         setInterval(function(){ 
                             newOrder();
@@ -307,7 +350,7 @@
     </div>
  <?php 
 
-   // time out function
+ // time out function
     if(isset($_GET['timeOut'])){?> 
     <div class="timeOut">
     <div class="timeOut-box">
@@ -326,15 +369,31 @@
                     $id=$timeOutDatas['order_id'];
              }
         ?>
-            <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Id : <span style="color: sienna;" id="orderTime"><?php echo $id ?></span> </h4>
-            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;" id="orderTime"><?php echo $time ?></span> </h4>
-            <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
+          <div style="margin-top:30px;">
+            <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Order ID </h4><h4>: <?php echo $id ?></h4></div>
+                <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Resturent </h4><h4>: <?php echo $restaurant ?></h4></div>
+            </div>
         </div>
     </div>
     </div>
  <?php }   ?>
 
- Order accpet popup
+ <!-- Order accpet popup -->
+ <div class="orderAccept">
+    <div class="acceptPop-box">
+        <div class="accHeader">
+            <h1>Your Order Accepted </h1>
+            <h4 style="margin-top: 20px;margin-left:10px">Your order accpted by food supplier. Cash payment user can receive order </h4>
+          <div style="margin-top:30px;">
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order ID </h4><h4 id="acceptId"></h4></div>
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment Method </h4><h4 id="acceptMethod"></h4></div>
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent </h4><h4 id="acceptRes"></h4></div>
+         </div>
+        </div>
+        <button class="accept-btn" id="accept-btn" onclick="if(document.getElementById('acceptMethod').innerHTML==' : card'){window.location='../controller/orderCon.php?id=2'}else{window.location='../controller/orderCon.php?id=3'}">Order Details</button>
+    </div>
+    </div>
 
 </body>
 <script src="../resource/js/timing.js"></script>

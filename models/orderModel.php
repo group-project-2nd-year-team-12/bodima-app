@@ -99,8 +99,8 @@ class orderModel{
         return $result;
     }
 
-    public static function getCountDown($connection,$order_id,$is_accepted){
-        $query="SELECT expireTime FROM food_request WHERE order_id=$order_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
+    public static function getCountDown($connection,$order_id){
+        $query="SELECT * FROM food_request WHERE order_id=$order_id LIMIT 1";
         $result=mysqli_query($connection,$query);
         return $result;
     }

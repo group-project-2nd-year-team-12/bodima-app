@@ -103,14 +103,17 @@
                 ?>
                 <div class="box " onclick="order('<?php echo $x ?>')">
                     <div class="resend ">
-                        <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is delivering <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span></h4></div>
+                        <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?></h4> 
+                        </div>
                     </div>
                   <div id="<?php echo $x ?>" class="details-box">
-                    <div class="details">
-                            <h2>Order Id : <span style="color:sienna;"><?php echo $id['order_id']; ?></span> </h2>
-                           
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered Item :</h4>
+                  <div style="width: 300px;"><img style="width: 250px;" src="../resource/img/history.svg" alt=""></div>
+                  <div class="button-pay">
+                            <h2 class="order_item order-head">ORDER INFO</h2>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
@@ -118,9 +121,11 @@
                                       {
                                           $total=$data_row['total'];
                                           $time=$data_row['time'];
-                                          $deliveredTime=$data_row['deliveredTime'];
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
@@ -128,15 +133,12 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payed amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
-                        </div>
-                        <div class="button-pay">
-                            <h3>Order Details</h3>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivered time : <span style="color: sienna;"><?php echo $deliveredTime ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payment method : <span style="color: sienna;"><?php echo $method ?></span> </h4>
-                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                        </div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                    </div>
                   </div>
                     
                 </div>
@@ -171,15 +173,18 @@
                     if($id['order_type']=='longTerm' ){
                 ?>
                 <div class="box" onclick="order('<?php echo $x ?>')">
-                    <div class="resend ">
-                        <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is delivering <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span></h4></div>
+                <div class="resend ">
+                        <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?></h4> 
+                        </div>
                     </div>
                   <div id="<?php echo $x ?>" class="details-box">
-                    <div class="details">
-                            <h2>Order Id : <span style="color:sienna;"><?php echo $id['order_id']; ?></span> </h2>
-                           
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered Item :</h4>
+                  <div style="width: 300px;"><img style="width: 250px;" src="../resource/img/history.svg" alt=""></div>
+                        <div class="button-pay">
+                            <h2 class="order_item order-head">ORDER INFO</h2>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
@@ -187,9 +192,11 @@
                                       {
                                           $total=$data_row['total'];
                                           $time=$data_row['time'];
-                                          $deliveredTime=$data_row['deliveredTime'];
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
@@ -197,15 +204,12 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payed amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
-                        </div>
-                        <div class="button-pay">
-                            <h3>Order Details</h3>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivered time : <span style="color: sienna;"><?php echo $deliveredTime ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payment method : <span style="color: sienna;"><?php echo $method ?></span> </h4>
-                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                        </div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                    </div>
                   </div>
                     
                 </div>

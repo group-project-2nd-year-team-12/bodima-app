@@ -100,38 +100,48 @@
                 foreach($ids as $id){
                     if($id['order_type']=='breakfast' || $id['order_type']=='lunch' || $id['order_type']=='dinner' ){
                    ?>
-                <div class="box" onclick="order('<?php echo $x ?>')">
-                <div class="resend">
+                <div class="box" >
+                <div class="resend" onclick="order('<?php echo $x ?>')">
                         <div class="right"><i class="fa fa-check fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is accepted <small ><b style="color: red;" ></b> This order will cancel </small></h4></div>
-                    </div>
-                  <div id="<?php echo $x ?>" class="details-box">
-                         <div class="details">
-                            <h2>Order Id :<span style="color:sienna;"><?php echo $id['order_id']; ?></h2>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
-                            <?php
-                                   foreach($data_rows as $data_row)
-                                   {
-                                       if($data_row['order_id']==$id['order_id'])
-                                       {
-                                           $total=$data_row['total'];
-                                           $time=$data_row['time'];
-                                           $restaurant=$data_row['restaurant'];
-                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
-                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
-                                       }
-                                           
-                                   }
-                                   $i=1;
-                            ?>
-                            <h4 class="order_item">Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
+                        <!-- <div class="letter"><h4>Your order is accepted <small ><b style="color: red;" ></b> This order will cancel </small></h4></div> -->
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
+                            <h5 style="color:#2c3e8f;">Card Payment Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5>
                         </div>
+                    </div>
+                        <div style="width: 300px;"> <img style="width: 200px;  margin:50px 50px" src="../resource/img/approve.svg" alt=""></div>
                         <div class="button-pay ">
-                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
-                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                            <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter" ><i class="fas fa-dollar-sign"></i> Please pay your order !</h4>
+                        <h2 class="order_item order-head">ORDER INFO</h2>
+                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                            <?php 
+                                  foreach($data_rows as $data_row)
+                                  {
+                                      if($data_row['order_id']==$id['order_id'])
+                                      {
+                                          $total=$data_row['total'];
+                                          $time=$data_row['time'];
+                                          $restaurant=$data_row['restaurant'];
+                                          $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
+                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
+                                          echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
+                                      }
+                                          
+                                  }
+                                  $i=1;
+                            ?>
+                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                       
+                            <h4 style="text-align:left;color: #101e5a;" > Please pay your order !</h4>
                             <form class="form1" method="post" action="https://sandbox.payhere.lk/pay/checkout">
-                                <button><i class="fas fa-wallet"></i> Pay Card</button>
+                                <button> Pay Card</button>
                                 <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
                                 <input type="hidden" name="return_url" value="http://localhost/bodima-app/controller/orderCon.php"> 
                                 <input type="hidden" name="cancel_url" value="http://localhost/mvc/application/views/sucsses.php">
@@ -181,35 +191,45 @@
                 <div class="box" onclick="order('<?php echo $x ?>')">
                 <div class="resend">
                         <div class="right"><i class="fa fa-check fa-2x"></i></div>
-                        <div class="letter"><h4>Your order is accepted <small ><b style="color: red;" ></b> This order will cancel </small></h4></div>
-                    </div>
-                  <div id="<?php echo $x ?>" class="details-box">
-                         <div class="details">
-                            <h2>Order Id :<span style="color:sienna;"><?php echo $id['order_id']; ?></h2>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
-                            <?php
-                                   foreach($data_rows as $data_row)
-                                   {
-                                       if($data_row['order_id']==$id['order_id'])
-                                       {
-                                           $total=$data_row['total'];
-                                           $time=$data_row['time'];
-                                           $restaurant=$data_row['restaurant'];
-                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
-                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
-                                       }
-                                           
-                                   }
-                                   $i=1;
-                            ?>
-                            <h4 class="order_item">Pay amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
+                            <h5 style="color:#2c3e8f;">Card payment Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5>
                         </div>
+                    </div>
+                    
+                  <div id="<?php echo $x ?>" class="details-box">
+                         <div style="width: 300px;"> <img style="width: 200px;  margin:50px 50px" src="../resource/img/approve.svg" alt=""></div>
                         <div class="button-pay ">
-                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
-                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                            <h4 class="order_item" style="border-top: 2px solid rgb(176, 175, 177);font-weight:lighter" ><i class="fas fa-dollar-sign"></i> Please pay your order !</h4>
+                        <h2 class="order_item order-head">ORDER INFO</h2>
+                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                            <?php 
+                                  foreach($data_rows as $data_row)
+                                  {
+                                      if($data_row['order_id']==$id['order_id'])
+                                      {
+                                          $total=$data_row['total'];
+                                          $time=$data_row['time'];
+                                          $restaurant=$data_row['restaurant'];
+                                          $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
+                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
+                                          echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
+                                      }
+                                          
+                                  }
+                                  $i=1;
+                            ?>
+                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                            <h4 style="text-align:left;color: #101e5a;" > Please pay your order !</h4>
                             <form class="form1" method="post" action="https://sandbox.payhere.lk/pay/checkout">
-                                <button><i class="fas fa-wallet"></i> Pay Card</button>
+                                <button> Pay Card</button>
                                 <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
                                 <input type="hidden" name="return_url" value="http://localhost/bodima-app/controller/orderCon.php"> 
                                 <input type="hidden" name="cancel_url" value="http://localhost/mvc/application/views/sucsses.php">

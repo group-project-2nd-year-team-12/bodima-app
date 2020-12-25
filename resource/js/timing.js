@@ -8,9 +8,14 @@ function checked(x)
 
 
 // remove popup
+function cancel(x,y){
 const timeOutIcon=document.getElementById('timeOutIcon');
-const timeOut=document.querySelector('.timeOut');
+const timeOut=document.querySelector(x);
 timeOutIcon.addEventListener('click',(e)=>{
-    timeOut.style.display='none';
-
+    timeOut.classList.remove(y);
 })
+}
+
+cancel('.timeOut','timeOut-active');
+cancel('.orderAccept','orderAccept-active');
+

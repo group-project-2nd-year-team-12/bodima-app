@@ -180,6 +180,7 @@ if(isset($_GET['orderDelete_id'])){
       echo "Mysqli query failed";
    }
 }
+
 if(isset($_GET['orderConfirm_id'])){
    $order_id=$_GET['orderConfirm_id'];
    date_default_timezone_set("Asia/Colombo");
@@ -222,7 +223,7 @@ if(isset($_GET['order_id'])){
 if(isset($_POST['view']))
 {
    $order_id= $_POST['view'];
-   $exDate=orderModel::getCountDown($connection,$order_id,0);
+   $exDate=orderModel::getCountDown($connection,$order_id);
    $exfectch=mysqli_fetch_assoc($exDate);
    date_default_timezone_set("Asia/Colombo");
    $date=date('Y-m-d H:i:s');
@@ -233,16 +234,19 @@ if(isset($_POST['view']))
    {
       $minute=$diff->format('%i');
       $second=$diff->format('%s');
-      $data=array(
-         'minute'=>$minute,
-         'secound'=>$second
-      );
+     
    }else{
       orderModel::deleteRequest($record['request_id'],$connection);
    }
-    $arr=array(
-        'name'=>'1'
-    );
+   $data=array(
+      'minute'=>$minute,
+      'secound'=>$second,
+      'acceptId'=>$exfectch['order_id'],
+      'state'=>$exfectch['is_accepted'],
+      'payment'=>$exfectch['method'],
+      'rasturent'=>$exfectch['restaurant']
+   );
+ 
     echo json_encode($data);
 }
 
