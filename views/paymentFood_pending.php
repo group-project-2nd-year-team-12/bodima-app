@@ -77,7 +77,7 @@
                 <ul>
                   
                     <div>
-                        <div id="noti-dinner"><h5></h5></div>
+                        <div id="noti-breakfast"><h5></h5></div>
                         <li tabindex="0" id="shortTerm" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
                     </div>
                     <div>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                   <div id="<?php echo $x ?>" class="details-box req-pending">
-                  <img style="width: 300px;" src="../resource/img/pending.gif" alt="">
+                  <div style="width: 300px;"> <img style="width: 300px;  margin:50px 20px" src="../resource/img/pending.svg" alt=""></div>
                         <div class="button-pay">
                             <h2 class="order_item order-head">ORDER INFO</h2>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
@@ -166,21 +166,21 @@
                             dataType:"json",
                             success:function(data)
                             {
-                                if(data.minute==0 && data.secound==1){
-                                    window.location='../controller/orderCon.php?id=1';
+                                if(data.minute==0 && data.secound<=1){
+                                    window.location="../controller/orderCon.php?id=1";
                                 }
                                 else{
                                 document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
                                 document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
                                 
                                 }
-                                if(data.state==1)
+                                console.log(data);
+                                if(data.state==1 || data.state==3)
                                 {
                                         document.querySelector('.orderAccept').classList.add('orderAccept-active');
                                         document.getElementById('acceptMethod').innerHTML=' : '+data.payment;
                                         document.getElementById('acceptId').innerHTML=' : '+data.acceptId;
                                         document.getElementById('acceptRes').innerHTML=' : '+data.rasturent;
-                                        console.log(document.getElementById('acceptMethod').innerHTML);
                                        if(data.payment=="card")
                                        {
                                         document.getElementById('accept-btn').innerHTML='Check & Pay';
@@ -190,6 +190,10 @@
                                        }
                                         
                                         // document.querySelector('.')
+                                }
+                                if(data.state==2)
+                                {
+                                    document.querySelector('.orderCancel').classList.add('orderCancel-active');
                                 }
                              
                                 
@@ -294,20 +298,19 @@
                             success:function(data)
                             {
                                 if(data.minute==0 && data.secound==1){
-                                    window.location='../controller/orderCon.php?id=1';
+                                        document.querySelector('.timeOut').classList.add('timeOut-active');
                                 }
                                 else{
                                 document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
                                 document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
                                 
                                 }
-                                if(data.state==1)
+                                if(data.state==1 || data.state==3)
                                 {
                                         document.querySelector('.orderAccept').classList.add('orderAccept-active');
                                         document.getElementById('acceptMethod').innerHTML=' : '+data.payment;
                                         document.getElementById('acceptId').innerHTML=' : '+data.acceptId;
                                         document.getElementById('acceptRes').innerHTML=' : '+data.rasturent;
-                                        console.log(document.getElementById('acceptMethod').innerHTML);
                                        if(data.payment=="card")
                                        {
                                         document.getElementById('accept-btn').innerHTML='Check & Pay';
@@ -317,6 +320,10 @@
                                        }
                                         
                                         // document.querySelector('.')
+                                }
+                                if(data.state==2)
+                                {
+                                    document.querySelector('.orderCancel').classList.add('orderCancel-active');
                                 }
                              
                                 
@@ -348,13 +355,14 @@
         </div>
         </div>
     </div>
- <?php 
+ 
 
- // time out function
-    if(isset($_GET['timeOut'])){?> 
+  <!-- time out function -->
+<?php if(isset($_GET['timeOut']))
+{   ?>
     <div class="timeOut">
     <div class="timeOut-box">
-        <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x"></i></div>
+        <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x" onclick="window.location='../controller/orderCon.php?id=1'"></i></div>
         <div class="outImg"><img src="../resource/img/timeout.svg" alt=""></div>
         <div class="outHeader">
             <h1>Your Order time out </h1>
@@ -377,7 +385,10 @@
         </div>
     </div>
     </div>
- <?php }   ?>
+
+<?php }
+?>
+ 
 
  <!-- Order accpet popup -->
  <div class="orderAccept">
@@ -395,6 +406,21 @@
     </div>
     </div>
 
+<!-- cancel order poppup -->
+    <div class="orderCancel">
+    <div class="orderCancel-box">
+        <div class="accHeader">
+        <div class="iconClose">  <i id="orderIcon" onclick="document.querySelector('.orderCancel').classList.remove('orderCancel-active');window.location='../controller/orderCon.php?id=1;'" class="fas fa-times fa-2x"></i></div>
+            <h1>Your Order Cancelled </h1>
+            <h4 style="margin-top: 20px;margin-left:10px">Your order accpted by food supplier. Cash payment user can receive order </h4>
+          <div style="margin-top:30px;">
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order ID </h4><h4 id="acceptId"></h4></div>
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment Method </h4><h4 id="acceptMethod"></h4></div>
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent </h4><h4 id="acceptRes"></h4></div>
+         </div>
+        </div>
+    </div>
+    </div>
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>

@@ -72,11 +72,11 @@
                 <ul>
                     
                     <div>
-                        <div id="noti-dinner"><h5></h5></div>
+                        <div id="noti-delShort" class="count"><h5></h5></div>
                         <li tabindex="0" id="shortTerm" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
                     </div>
                     <div>
-                        <div id="noti-longTerm"><h5></h5></div>
+                        <div id="noti-delLong" class="count"><h5></h5></div>
                         <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                     </div>
                 </ul>

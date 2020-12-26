@@ -104,4 +104,9 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function OrderCount($connection,$email,$state){
+        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE email='{$email}' AND is_accepted=$state";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 }

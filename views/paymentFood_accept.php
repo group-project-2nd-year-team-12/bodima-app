@@ -72,11 +72,11 @@
                 <ul>
                     
                     <div>
-                        <div id="noti-dinner"><h5></h5></div>
+                        <div id="noti-recShort" class="count"><h5></h5></div>
                         <li tabindex="0" id="shortTerm" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
                     </div>
                     <div>
-                        <div id="noti-longTerm"><h5></h5></div>
+                        <div id="noti-recLong" class="count"><h5></h5></div>
                         <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                     </div>
                 </ul>
@@ -103,12 +103,12 @@
                 <div class="box" >
                 <div class="resend" onclick="order('<?php echo $x ?>')">
                         <div class="right"><i class="fa fa-check fa-2x"></i></div>
-                        <!-- <div class="letter"><h4>Your order is accepted <small ><b style="color: red;" ></b> This order will cancel </small></h4></div> -->
                         <div class="letter">
                             <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
                             <h5 style="color:#2c3e8f;">Card Payment Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5>
                         </div>
                     </div>
+                    <div id="<?php echo $x ?>" class="details-box">
                         <div style="width: 300px;"> <img style="width: 200px;  margin:50px 50px" src="../resource/img/approve.svg" alt=""></div>
                         <div class="button-pay ">
                         <h2 class="order_item order-head">ORDER INFO</h2>

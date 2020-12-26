@@ -73,11 +73,9 @@ if((isset($_GET['id']) && $_GET['id']==1))
        
             $diff= $expireDate->diff($nowTime);
          
-            if($diff->invert)
+            print_r($diff->i);
+            if($diff->s <=1 && $diff->i==0)
             {
-               echo "not expireed";
-            }
-            else{
                orderModel::deleteRequest($record['request_id'],$connection);
                $time_out=$record;
                $id=$record['order_id'];
@@ -199,7 +197,7 @@ if(isset($_GET['orderConfirmFS_id'])){
     $deliveredTime=date("h:i:sa");
    $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
    if($result){
-      header('Location:../views/deliveredHistory.php');
+      header('Location:../views/orderHistory.php');
    }
    {
       echo "Mysqli query failed";
@@ -235,8 +233,6 @@ if(isset($_POST['view']))
       $minute=$diff->format('%i');
       $second=$diff->format('%s');
      
-   }else{
-      orderModel::deleteRequest($record['request_id'],$connection);
    }
    $data=array(
       'minute'=>$minute,
