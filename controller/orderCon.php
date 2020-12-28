@@ -37,11 +37,11 @@ $errors=array();
        date_default_timezone_set("Asia/Colombo");
        $time=date('Y-m-d H:i:s');
        $expireTime=date('Y-m-d H:i:s',strtotime('+20 minutes',strtotime($time)));
-       echo $expireTime;
+       echo $F_post_id;
        $_SESSION['order_id']=$order_id;  
        foreach($products as $product)
        {
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$product['order_type'],$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
        }
       header('Location:orderCon.php?id=1');
    }

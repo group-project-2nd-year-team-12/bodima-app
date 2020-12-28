@@ -2,10 +2,10 @@
 
 class orderModel{
 
-    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$product_name,$quantity,$order_id,$total,$phone,$method,$time,$expireTime,$name,$connection)
+    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$product_name,$quantity,$order_id,$order_type,$total,$phone,$method,$time,$expireTime,$name,$connection)
     {
-        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,product_name,quantity,total,phone,method,time,expireTime,restaurant,order_id) 
-        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$product_name}','{$quantity}','{$total}','{$phone}','{$method}','{$time}','{$expireTime}','{$name}','{$order_id}') LIMIT 1";
+        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,product_name,quantity,total,phone,method,time,expireTime,restaurant,order_id,order_type) 
+        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$product_name}','{$quantity}','{$total}','{$phone}','{$method}','{$time}','{$expireTime}','{$name}','{$order_id}','{$order_type}') LIMIT 1";
          $result=mysqli_query($connection,$query);
     }
     public static function accept($order_id,$is_accepted,$connection)

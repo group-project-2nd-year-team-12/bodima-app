@@ -106,6 +106,13 @@ body{
     height: 60px;
     cursor: pointer;
 }
+.details-box img{
+    transition: 0.5s ease-in;
+}
+.details-box img:hover{
+    transition: 0.5s ease-in;
+    transform: translateY(-5px);
+}
 .fa-check{
     padding: 10px;
 }
