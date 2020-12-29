@@ -84,7 +84,7 @@
         <?php
             $ids=unserialize($_GET['ids']);
             $data_rows=unserialize($_GET['data_rows']);
-            $new=array_column($data_rows,'order_type');
+            $new=array_column($data_rows,'term');
        ?>         
         <div id="shortTerm-box" class="accept">
             <div class="title">
@@ -96,9 +96,9 @@
                  $total='';
                 $i=1;
                 $x=0;
-                if(in_array('breakfast',$new) || in_array('dinner',$new) || in_array('lunch',$new)){
+                if(in_array('shortTerm',$new) ){
                 foreach($ids as $id){
-                    if($id['order_type']=='breakfast' || $id['order_type']=='lunch' || $id['order_type']=='dinner' ){
+                    if($id['term']=='shortTerm'  ){
                    ?>
                 <div class="box" >
                 <div class="resend" onclick="order('<?php echo $x ?>')">
@@ -186,7 +186,7 @@
                 $x=$x+2;
                 if(in_array('longTerm',$new)){
                 foreach($ids as $id){
-                    if($id['order_type']=='longTerm'){
+                    if($id['term']=='longTerm'){
                 ?>
                 <div class="box" onclick="order('<?php echo $x ?>')">
                 <div class="resend">

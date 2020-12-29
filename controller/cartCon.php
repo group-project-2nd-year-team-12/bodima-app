@@ -121,6 +121,17 @@ if(isset($_POST['remove']))
 }
 
 
-//
+//long term
+if(isset($_POST['startDate']))
+{
+  $_SESSION['startDate']=$_POST['startDate'];
+  $_SESSION['endDate']=$_POST['endDate'];
+  $arr=array(
+    'set'=>'doen',
+  );
+  echo json_encode($arr);
+}
+
+
 ?>
  

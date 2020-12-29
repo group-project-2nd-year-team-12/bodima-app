@@ -89,7 +89,7 @@
         <?php 
             $ids=unserialize($_GET['ids']);
             $data_rows=unserialize($_GET['data_rows']);
-            $new=array_column($data_rows,'order_type');
+            $new=array_column($data_rows,'term');
         ?>            
         <div id="shortTerm-box" class="pending">
             <div class="title">
@@ -104,9 +104,9 @@
                 $i=1;
                 $x=0;
                 $date=0;
-                if(in_array('breakfast',$new) || in_array('dinner',$new) || in_array('lunch',$new)){
+                if(in_array('shortTerm',$new)){
                 foreach($ids as $id){
-                  if($id['order_type']=='breakfast' || $id['order_type']=='lunch' || $id['order_type']=='dinner' ){
+                  if($id['term']=='shortTerm' ){
                 ?>
                 <div class="box" id="<?php echo $id['order_id'] ?>">
                   
@@ -238,7 +238,7 @@
                 $x=$x+2;
                 if(in_array('longTerm',$new)){
                 foreach($ids as $id){
-                    if($id['order_type']=='longTerm'){
+                    if($id['term']=='longTerm'){
                 ?>
                 <div id="<?php echo $id ?>" class="box" >
                 
@@ -426,7 +426,7 @@
 <script src="../resource/js/settingOrder.js"></script>
 <script src="../resource/js/pendingOrder.js"></script>
 <script src="../resource/js/newOrder.js"></script>
-
+<script src="../resource/js/disableBack.js"></script>
 <!-- clickable drop down -->
 <script>
         function order(x,y) {  

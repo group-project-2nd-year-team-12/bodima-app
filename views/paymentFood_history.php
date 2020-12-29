@@ -97,9 +97,9 @@
                 $i=1;
                 $x=0;
                 $total='';
-                if(in_array('breakfast',$new) || in_array('dinner',$new) || in_array('lunch',$new)){
+                if(in_array('shortTerm',$new) ){
                 foreach($ids as $id){
-                    if($id['order_type']=='breakfast' || $id['order_type']=='lunch' || $id['order_type']=='dinner' ){
+                    if($id['term']=='shortTerm'  ){
                 ?>
                 <div class="box " onclick="order('<?php echo $x ?>')">
                     <div class="resend ">
@@ -170,7 +170,7 @@
                 $total='';
                 if(in_array('longTerm',$new)){
                 foreach($ids as $id){
-                    if($id['order_type']=='longTerm' ){
+                    if($id['term']=='longTerm' ){
                 ?>
                 <div class="box" onclick="order('<?php echo $x ?>')">
                 <div class="resend ">

@@ -39,9 +39,25 @@ $errors=array();
        $expireTime=date('Y-m-d H:i:s',strtotime('+20 minutes',strtotime($time)));
        echo $F_post_id;
        $_SESSION['order_id']=$order_id;  
+       $term=$_SESSION['term'];
        foreach($products as $product)
        {
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$product['order_type'],$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$product['order_type'],$term,$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
+       }
+     
+       if($_SESSION['term']=='longTerm')
+       {
+          $start=$_SESSION['startDate'];
+          $end=$_SESSION['endDate'];
+
+          $dates=date_diff(date_create($end),date_create($start));
+          print_r($dates->days);
+          $startDate=date_create($start);
+          for($i=0; $i<$dates->days; $i++)
+          {
+            $startDate->modify('+1 day');
+            orderModel::addLongTerm($connection,$startDate->format('Y-m-d H:i:s'),$order_id);
+          }
        }
       header('Location:orderCon.php?id=1');
    }
@@ -74,7 +90,7 @@ if((isset($_GET['id']) && $_GET['id']==1))
             $diff= $expireDate->diff($nowTime);
          
             print_r($diff->i);
-            if($diff->s <=1 && $diff->i==0)
+            if(($diff->s <=1 && $diff->i==0) || !$diff->invert)
             {
                orderModel::deleteRequest($record['request_id'],$connection);
                $time_out=$record;
