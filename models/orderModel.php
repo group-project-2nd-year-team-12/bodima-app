@@ -2,10 +2,10 @@
 
 class orderModel{
 
-    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$product_name,$quantity,$order_id,$total,$phone,$method,$time,$name,$connection)
+    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$product_name,$quantity,$order_id,$order_type,$term,$total,$phone,$method,$time,$expireTime,$name,$connection)
     {
-        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,product_name,quantity,total,phone,method,time,restaurant,order_id) 
-        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$product_name}','{$quantity}','{$total}','{$phone}','{$method}','{$time}','{$name}','{$order_id}') LIMIT 1";
+        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,product_name,quantity,total,phone,method,time,expireTime,restaurant,order_id,order_type,term) 
+        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$product_name}','{$quantity}','{$total}','{$phone}','{$method}','{$time}','{$expireTime}','{$name}','{$order_id}','{$order_type}','{$term}') LIMIT 1";
          $result=mysqli_query($connection,$query);
     }
     public static function accept($order_id,$is_accepted,$connection)
@@ -43,7 +43,7 @@ class orderModel{
         return $result;
     }
     public static function getOrderIDFoodSupplier($connection,$F_post_id,$is_accepted){
-        $query="SELECT DISTINCT order_id FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
+        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -89,6 +89,28 @@ class orderModel{
     public static function available($fsid,$state,$connection)
     {
         $query="UPDATE food_supplier SET  available=$state  WHERE FSid=$fsid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function deleteRequest($id,$connection)
+    {
+        $query="DELETE FROM food_request WHERE request_id='{$id}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function getCountDown($connection,$order_id){
+        $query="SELECT * FROM food_request WHERE order_id=$order_id LIMIT 1";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function OrderCount($connection,$email,$state){
+        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE email='{$email}' AND is_accepted=$state";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function addLongTerm($connection,$day,$order_id){
+        $query="INSERT INTO longterm(day,order_id) VALUES ('{$day}','{$order_id}')";
         $result=mysqli_query($connection,$query);
         return $result;
     }

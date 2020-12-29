@@ -11,6 +11,8 @@ if(isset($_GET['id']) && $_GET['id']==1)
 {
     $FSid=$_SESSION['FSid'];
     $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+    $available=orderModel::checkAvailable( $FSid,$connection);
+    $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
@@ -21,13 +23,16 @@ if(isset($_GET['id']) && $_GET['id']==1)
         }
     }
     $record=serialize($data1);
-    header('Location:../views/orders.php?record='.$record.'');
+    print_r($data1);
+    header('Location:../views/orders.php?record='.$record.'&available='.$availableFetch['available'].'');
 }
 // orderNotPayment Page details
 if(isset($_GET['id']) && $_GET['id']==2)
 {
     $FSid=$_SESSION['FSid'];
     $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+    $available=orderModel::checkAvailable( $FSid,$connection);
+        $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
@@ -38,7 +43,7 @@ if(isset($_GET['id']) && $_GET['id']==2)
         }
     }
     $record=serialize($data1);
-    header('Location:../views/orderNotPayment.php?record='.$record.'');
+    header('Location:../views/orderNotPayment.php?record='.$record.'&available='.$availableFetch['available'].'');
 }
 
 // delivering order
@@ -46,6 +51,8 @@ if(isset($_GET['id']) && $_GET['id']==3)
 {
     $FSid=$_SESSION['FSid'];
     $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+    $available=orderModel::checkAvailable( $FSid,$connection);
+        $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
@@ -57,13 +64,15 @@ if(isset($_GET['id']) && $_GET['id']==3)
     }
     $record=serialize($data1);
  
-    header('Location:../views/orderDelivery.php?record='.$record.'&result='.$result.'');
+    header('Location:../views/orderDelivery.php?record='.$record.'&result='.$result.'&available='.$availableFetch['available'].'');
 }
 // order history page
 if(isset($_GET['id']) && $_GET['id']==4)
 {
     $FSid=$_SESSION['FSid'];
     $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+    $available=orderModel::checkAvailable( $FSid,$connection);
+        $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
@@ -75,7 +84,7 @@ if(isset($_GET['id']) && $_GET['id']==4)
     }
     $record=serialize($data1);
  
-    header('Location:../views/orderHistory.php?record='.$record.'&result='.$result.'');
+    header('Location:../views/orderHistory.php?record='.$record.'&result='.$result.'&available='.$availableFetch['available'].'');
 }
 
 // ordersetting page settings
@@ -88,6 +97,12 @@ if((isset($_GET['id']) && $_GET['id']==5) || isset($_POST['unavailable']))
     $date=array();
     while($row=mysqli_fetch_assoc($result))
     {
+        if(strtotime($row['unavailable_date'])-strtotime(date("Y-m-d"))<1)
+        {
+            orderModel::deleteUnavailableDate($row['unavailable_date'],$connection);
+            continue;
+        }
+       
         $date[]=$row;
     }
     $data=serialize($date);
