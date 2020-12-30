@@ -141,7 +141,7 @@ class reg_user{
     }
 
     public static function getOrderById($connection,$email,$isAccept){
-        $query="SELECT DISTINCT  order_id FROM food_request WHERE is_accepted=$isAccept AND email='{$email}' ORDER BY order_id DESC";
+        $query="SELECT DISTINCT  order_id,term FROM food_request WHERE is_accepted=$isAccept AND email='{$email}' ORDER BY order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }

@@ -14,13 +14,31 @@
     <title>Document</title>
 </head>
 <body onload="checked('history');">
+<script>
+    function orderType(id)
+{
+    var order=document.getElementById(id);
+    const shortTerm=document.getElementById('shortTerm-box');
+    const longTerm=document.getElementById('longTerm-box');
+    if(id=='shortTerm')
+    {
+        shortTerm.style.display='block';
+        longTerm.style.display='none';
+    }
+    if(id=='longTerm')
+    {
+        longTerm.style.display='block';
+        shortTerm.style.display='none';
+    }
+    order.style.display='block';
+  
+}
+</script>
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
-            <h2><i class="fas fa-tasks"></i> ORDER-REQUEST MANAGER</h2>
-            <h5>State : <span>Active</span></h5>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
@@ -48,38 +66,66 @@
         </div>
     <div class="container">
         <div class="content">
-        <?php include  'paymentFoodSlide.php';?>           
+        <?php include  'paymentFoodSlide.php';?>   
+        <div class="subNav">
+                <ul>
+                
+                    <div>
+                        <div id="noti-dinner"><h5></h5></div>
+                        <li tabindex="0" id="shortTerm" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
+                    </div>
+                    <div>
+                        <div id="noti-longTerm"><h5></h5></div>
+                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                    </div>
+                </ul>
+            </div>        
        <?php
             $ids=unserialize($_GET['ids']);
             $data_rows=unserialize($_GET['data_rows']);
-            if(!empty($ids))
-            {
+            $new=array_column($data_rows,'order_type');
+           
        ?>
-        <div class="pending">
+        <div id="shortTerm-box"  class="pending">
             <div class="title">
-                <h3>Order history</h3>
+            <div class="order-title">
+                    <h3>Order History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
               
                 $i=1;
+                $x=0;
                 $total='';
+                if(in_array('shortTerm',$new) ){
                 foreach($ids as $id){
+                    if($id['term']=='shortTerm'  ){
                 ?>
-                <div class="box small">
-                  <div class="details-box">
-                    <div class="details">
-                            <h2>Order Id : <span style="color:sienna;"><?php echo $id; ?></span> </h2>
-                           
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered Item :</h4>
+                <div class="box " onclick="order('<?php echo $x ?>')">
+                    <div class="resend ">
+                        <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?></h4> 
+                        </div>
+                    </div>
+                  <div id="<?php echo $x ?>" class="details-box">
+                  <div style="width: 300px;"><img style="width: 250px;" src="../resource/img/history.svg" alt=""></div>
+                  <div class="button-pay">
+                            <h2 class="order_item order-head">ORDER INFO</h2>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
                             <?php 
                                   foreach($data_rows as $data_row)
                                   {
-                                      if($data_row['order_id']==$id)
+                                      if($data_row['order_id']==$id['order_id'])
                                       {
                                           $total=$data_row['total'];
                                           $time=$data_row['time'];
-                                          $deliveredTime=$data_row['deliveredTime'];
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
@@ -87,34 +133,101 @@
                                   }
                                   $i=1;
                             ?>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payed amount :<span style="color: red;"> RS <?php echo $total; ?></span></h4>
-                        </div>
-                        <div class="button-pay">
-                            <h3>Order Details</h3>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Ordered time : <span style="color: sienna;"><?php echo $time ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivered time : <span style="color: sienna;"><?php echo $deliveredTime ?></span> </h4>
-                            <h4 class="order_item"><i class="fas fa-caret-right"></i> Payment method : <span style="color: sienna;"><?php echo $method ?></span> </h4>
-                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Resturent  : <span style="color: sienna;"><?php echo $restaurant ?></span> </h4>
-                        </div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                    </div>
                   </div>
                     
                 </div>
                 <?php
-            }
-                ?>
+                    }  
+            
+           $x=$x+2; 
+        }
+        } else
+        {?>
+            <div class="empty">
+                 <h1> Nothing to show here</h1>
+            </div>
+      <?php  }
+         ?> 
                
             </div>
         </div>
-        <?php 
-            }
-            else
-            {?>
-                <div class="empty">
-                <h1> Nothing to show here</h1>
+        <div id="longTerm-box" class="pending none">
+            <div class="title">
+            <div class="order-title">
+                    <h3> Order History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
+                <?php 
+              
+                $i=1;
+                $x=$x+2;
+                $total='';
+                if(in_array('longTerm',$new)){
+                foreach($ids as $id){
+                    if($id['term']=='longTerm' ){
+                ?>
+                <div class="box" onclick="order('<?php echo $x ?>')">
+                <div class="resend ">
+                        <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?></h4> 
+                        </div>
+                    </div>
+                  <div id="<?php echo $x ?>" class="details-box">
+                  <div style="width: 300px;"><img style="width: 250px;" src="../resource/img/history.svg" alt=""></div>
+                        <div class="button-pay">
+                            <h2 class="order_item order-head">ORDER INFO</h2>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                            <?php 
+                                  foreach($data_rows as $data_row)
+                                  {
+                                      if($data_row['order_id']==$id['order_id'])
+                                      {
+                                          $total=$data_row['total'];
+                                          $time=$data_row['time'];
+                                          $restaurant=$data_row['restaurant'];
+                                          $method=$data_row['method'];
+                                          $address=$data_row['address'];
+                                          ?> 
+                                          <?php
+                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
+                                          echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
+                                      }
+                                          
+                                  }
+                                  $i=1;
+                            ?>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                    </div>
+                  </div>
+                    
+                </div>
+                <?php
+                    }  
+            
+           $x=$x+2; 
+        }
+        } else
+        {?>
+            <div class="empty">
+                 <h1> Nothing to show here</h1>
             </div>
-         <?php
-            }
-        ?>
+      <?php  }
+         ?> 
+               
+            </div>
+        </div>
         </div>
     </div>
     <?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?>
@@ -142,4 +255,13 @@
 </body>
 <script src="../resource/js/order.js"></script>
 <script src="../resource/js/timing.js"></script>
+<script src="../resource/js/newOrder.js"></script>
+<script>
+        function order(x,y) {  
+            var orderDown=document.getElementById(x);
+            var btn=document.getElementById(y);
+            if(orderDown.style.display=='none' || orderDown.style.display==''){orderDown.style.display='flex';btn.style.visibility='hidden'}
+            else{orderDown.style.display='none';btn.style.visibility='visible'}
+    }
+</script>
 </html>

@@ -20,16 +20,10 @@
 <?php 
    if(isset($_SESSION['order_id']))
    {
-    //    echo $_SESSION['order_id'];
     $order_records=reg_user::getOrder($connection,$_SESSION['order_id']);
-    // print_r($order_records);
-    // $order_record=mysqli_fetch_assoc($order_records);
-    // if($order_record['is_accepted']==1){
-    //     $_SESSION['isdisable']=0;
-    // }
    }
 ?>                         <!-- header-bar -->
- <div class="cart-icon">
+ <!-- <div class="cart-icon">
     <?php 
    
       if(isset($_SESSION['cart']))
@@ -39,7 +33,7 @@
         ';
       }
     ?>
-   </div>
+   </div> -->
 
                                 <!-- product-cart and product order deatils -->
  <div class="grid-item">

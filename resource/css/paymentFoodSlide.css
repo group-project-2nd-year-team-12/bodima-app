@@ -1,16 +1,22 @@
 .payment-slide{
-    width: 270px;
+
+    width: 300px;
     height: 95vh;
-    background-color: #17181a;
+    background-color: #101e5a;
     border-right: 1px solid rgb(132, 132, 132);
-    overflow-y: scroll !important;
+    /* overflow-y: scroll !important; */
+}
+.payment-slide ul{
+    margin-top: 10px;
+    position: relative;
 }
 
 .payment-slide ul li{
     color: #f7f8f9;
-    padding: 25px 0;
+    padding: 20px 0;
+    position: relative;
     /* margin-top: 5px; */
-    border-bottom: 1px solid gray;
+    /* border-bottom: 1px solid gray; */
     /* background-color:  #5d80b6; */
     font-size: 16px;
     cursor: pointer;
@@ -83,4 +89,11 @@
     width: 30px;
     margin: 0 auto;
     color: rgb(222, 226, 228);
+}
+.orderManager{
+    padding: 10px 0;
+}
+.orderM{
+    color: #acbdd3;
+    text-align: center;
 }
