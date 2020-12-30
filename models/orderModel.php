@@ -114,4 +114,9 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function getLongTerm($connection,$email){
+        $query="SELECT * FROM food_request RIGHT JOIN longterm ON longterm.order_id=1609334827 AND food_request.email='{$email}' LIMIT 'SELECT COUNT(ltID) FROM longterm WHERE order_id=1609334827)'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 }

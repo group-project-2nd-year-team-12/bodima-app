@@ -37,7 +37,8 @@ $errors=array();
        date_default_timezone_set("Asia/Colombo");
        $time=date('Y-m-d H:i:s');
        $expireTime=date('Y-m-d H:i:s',strtotime('+20 minutes',strtotime($time)));
-       echo $F_post_id;
+      //  echo $F_post_id;
+
        $_SESSION['order_id']=$order_id;  
        $term=$_SESSION['term'];
        foreach($products as $product)
@@ -59,7 +60,7 @@ $errors=array();
             orderModel::addLongTerm($connection,$startDate->format('Y-m-d H:i:s'),$order_id);
           }
        }
-      header('Location:orderCon.php?id=1');
+      header('Location:../views/paymentFood_pending.php');
    }
 }else{
    header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&'.$error['phone1'].'&Pid='.$_POST['Pid']);
@@ -67,8 +68,7 @@ $errors=array();
 }
 
 // pending order details print 
-if((isset($_GET['id']) && $_GET['id']==1))
-{
+function getPending($connection){
    $email=$_SESSION['email'];
    date_default_timezone_set("Asia/Colombo");
    $date=date('Y-m-d H:i:s');
@@ -100,13 +100,13 @@ if((isset($_GET['id']) && $_GET['id']==1))
           $data_rows[]=$record;
           $i++;
       }
-      $data1=serialize($ids);
-      $data2=serialize($data_rows);
-      $data3=serialize($time_out);
-   
-
-      if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
-     else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
+      $data=array();
+      $data[0]=serialize($ids);
+      $data[1]=serialize($data_rows);
+      $data[2]=serialize($time_out);
+      return $data;
+   //    if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
+   //   else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
    
 }
 
@@ -181,6 +181,24 @@ if(isset($_GET['id']) && $_GET['id']==4)
       $data2=serialize($data_rows);
       header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
     
+}
+
+function getLongTerm($connection)
+{
+   $email=$_SESSION['email'];
+   $record=orderModel::getLongTerm($connection,$email);
+   
+   print_r($record);
+   $ids=array();
+      while($row=mysqli_fetch_assoc($record))
+      {
+          $ids[]=$row;
+         //  print_r($row);
+      }
+   // print_r($ids);
+   $data=serialize($ids);
+   
+      return $data;
 }
 
 
