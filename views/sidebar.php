@@ -33,11 +33,11 @@
                       </div>
                       <div class="element_set">
                             <li class='side_element'>
-                              <a href="../index.php"><i class="fas fa-home"></i><span>Home</span></a>
+                              <a href="../controller/profile_controlN.php?profile=1"><i class="fas fa-home"></i><span>Home</span></a>
                             </li>
 
                             <li class='side_element'>
-                              <a href="editprofile.php"><i class="fas fa-edit"></i><span>Edit Profile</span></a>
+                              <a href="../controller/editprofile_control.php?editprofile=1"><i class="fas fa-edit"></i><span>Edit Profile</span></a>
                             </li>
 
                     <?php  if($_SESSION['level']=="boarder")

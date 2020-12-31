@@ -35,11 +35,29 @@ $errors=array();
        $phone=$_POST['phone'];
        $method=$_POST['method'];
        date_default_timezone_set("Asia/Colombo");
-       $time=date("h:i:sa");
+       $time=date('Y-m-d H:i:s');
+       $expireTime=date('Y-m-d H:i:s',strtotime('+20 minutes',strtotime($time)));
+       echo $F_post_id;
        $_SESSION['order_id']=$order_id;  
+       $term=$_SESSION['term'];
        foreach($products as $product)
        {
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$total,$phone,$method,$time,$product['restaurant'],$connection);
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$product['order_type'],$term,$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
+       }
+     
+       if($_SESSION['term']=='longTerm')
+       {
+          $start=$_SESSION['startDate'];
+          $end=$_SESSION['endDate'];
+
+          $dates=date_diff(date_create($end),date_create($start));
+          print_r($dates->days);
+          $startDate=date_create($start);
+          for($i=0; $i<$dates->days; $i++)
+          {
+            $startDate->modify('+1 day');
+            orderModel::addLongTerm($connection,$startDate->format('Y-m-d H:i:s'),$order_id);
+          }
        }
       header('Location:orderCon.php?id=1');
    }
@@ -49,26 +67,46 @@ $errors=array();
 }
 
 // pending order details print 
-if(isset($_GET['id']) && $_GET['id']==1)
+if((isset($_GET['id']) && $_GET['id']==1))
 {
    $email=$_SESSION['email'];
+   date_default_timezone_set("Asia/Colombo");
+   $date=date('Y-m-d H:i:s');
+   $nowTime=date_create($date);
    $ids_set=reg_user::getOrderById($connection,$email,0);
    $order_pending=reg_user::getOrderAll($connection,$email,0);
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
+      $time_out=array();
       $i=0;
       while($record=mysqli_fetch_assoc($order_pending))
       {
-          $data_rows[$i]=$record;
+            $expireDate=date_create($record['expireTime']);
+       
+            $diff= $expireDate->diff($nowTime);
+         
+            print_r($diff->i);
+            if(($diff->s <=1 && $diff->i==0) || !$diff->invert)
+            {
+               orderModel::deleteRequest($record['request_id'],$connection);
+               $time_out=$record;
+               $id=$record['order_id'];
+               break;
+            }
+          $data_rows[]=$record;
           $i++;
       }
       $data1=serialize($ids);
       $data2=serialize($data_rows);
-      header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');
+      $data3=serialize($time_out);
+   
+
+      if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
+     else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
    
 }
 
@@ -82,7 +120,7 @@ if(isset($_GET['id']) && $_GET['id']==2)
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
       $i=0;
@@ -106,7 +144,7 @@ if(isset($_GET['id']) && $_GET['id']==3)
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
       $i=0;
@@ -130,7 +168,7 @@ if(isset($_GET['id']) && $_GET['id']==4)
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
-          $ids[]=$record['order_id'];
+          $ids[]=$record;
       }
       $data_rows=array();
       $i=0;
@@ -156,6 +194,7 @@ if(isset($_GET['orderDelete_id'])){
       echo "Mysqli query failed";
    }
 }
+
 if(isset($_GET['orderConfirm_id'])){
    $order_id=$_GET['orderConfirm_id'];
    date_default_timezone_set("Asia/Colombo");
@@ -174,7 +213,7 @@ if(isset($_GET['orderConfirmFS_id'])){
     $deliveredTime=date("h:i:sa");
    $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
    if($result){
-      header('Location:../views/deliveredHistory.php');
+      header('Location:../views/orderHistory.php');
    }
    {
       echo "Mysqli query failed";
@@ -192,5 +231,35 @@ if(isset($_GET['order_id'])){
    }
 }
 
+
+// ajex countdown
+
+if(isset($_POST['view']))
+{
+   $order_id= $_POST['view'];
+   $exDate=orderModel::getCountDown($connection,$order_id);
+   $exfectch=mysqli_fetch_assoc($exDate);
+   date_default_timezone_set("Asia/Colombo");
+   $date=date('Y-m-d H:i:s');
+   $nowTime=date_create($date);
+   $expireDate=date_create($exfectch['expireTime']);  
+   $diff= $expireDate->diff($nowTime);
+   if($diff->invert)
+   {
+      $minute=$diff->format('%i');
+      $second=$diff->format('%s');
+     
+   }
+   $data=array(
+      'minute'=>$minute,
+      'secound'=>$second,
+      'acceptId'=>$exfectch['order_id'],
+      'state'=>$exfectch['is_accepted'],
+      'payment'=>$exfectch['method'],
+      'rasturent'=>$exfectch['restaurant']
+   );
+ 
+    echo json_encode($data);
+}
 
 ?>

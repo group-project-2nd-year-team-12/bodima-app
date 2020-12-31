@@ -20,6 +20,12 @@ class profile_model{
         return mysqli_query($connection,$query);
     }
 
+    public static function update_contactno($level,$contactno,$email,$connection)
+    {
+        $query="UPDATE {$level} SET telephone='{$contactno}' where email='{$email}'";
+        return mysqli_query($connection,$query);
+    }
+
     public static function b_postListByPerson($BOid,$connection)
     {
         $query="SELECT * FROM boarding_post 
@@ -38,6 +44,8 @@ class profile_model{
 
        return mysqli_query($connection,$query);
     }
+
+    
 }
 
 

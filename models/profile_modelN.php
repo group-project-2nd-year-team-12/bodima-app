@@ -30,12 +30,21 @@ class profile_modelN{
     }
 
     public static function parent_details($connection,$Bid){
-        $query="SELECT * FROM boaderparent 
-                WHERE Bid='{$Bid}';";
+        $query="SELECT * FROM boarderparent 
+                WHERE Bid={$Bid};";
         // echo $query;
         // die();
        return mysqli_query($connection,$query);
     }
+
+    public static function update_password($connection,$level,$email,$new_password,$current_password){
+        $query="UPDATE {$level} SET password='{$new_password}'  
+                WHERE email='{$email}' and password='{$current_password}';";
+        echo $query;
+        die();
+       return mysqli_query($connection,$query);
+    }
+
 
 
 

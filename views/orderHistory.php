@@ -14,13 +14,58 @@
     <title>Document</title>
 </head>
 <body onload="checked('history');">
+<script>
+    function orderType(id)
+{
+    console.log("jhbchbhcd");
+    const order=document.getElementById(id);
+    const breakfast=document.getElementById('breakfast-box');
+    const lunch=document.getElementById('lunch-box');
+    const dinner=document.getElementById('dinner-box');
+    const longTerm=document.getElementById('longTerm-box');
+    if(id=='breakfast')
+    {
+        breakfast.style.display='block';
+        dinner.style.display='none';
+        lunch.style.display='none';
+        longTerm.style.display='none';
+    }else{
+      
+    }
+    if(id=='lunch')
+    {
+        lunch.style.display='block';
+        breakfast.style.display='none';
+        dinner.style.display='none';
+        longTerm.style.display='none';
+    }else{
+        
+    }
+    if(id=='dinner')
+    {
+        dinner.style.display='block';
+        lunch.style.display='none';
+        breakfast.style.display='none';
+        longTerm.style.display='none';
+    }
+    if(id=='longTerm')
+    {
+        longTerm.style.display='block';
+        dinner.style.display='none';
+        lunch.style.display='none';
+        breakfast.style.display='none';
+    }
+   
+    order.style.display='block';
+  
+}
+</script>
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.png" alt="">
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
-            <h2><i class="fas fa-tasks"></i> ORDER MANAGER</h2>
-            <h5>State : <span>Active</span></h5>
+     
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
                    
@@ -49,63 +94,279 @@
     <div class="container">
         <div class="content">
         <?php include 'orderSide.php' ?> 
+        <div class="subNav">
+                <ul>
+                    <div>
+                        <!-- <div id="noti-breakfast"><h5></h5></div> -->
+                        <li tabindex="0" id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
+                    </div>
+                    <div>
+                        <!-- <div id="noti-lunch"><h5></h5></div> -->
+                        <li tabindex="0" id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
+                    </div>
+                    <div>
+                        <!-- <div id="noti-dinner"><h5></h5></div> -->
+                        <li tabindex="0" id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
+                    </div>
+                    <div>
+                        <!-- <div id="noti-longTerm"><h5></h5></div> -->
+                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                    </div>
+                </ul>
+            </div>
         <?php 
          $records=unserialize($_GET['record']);
-         if(!empty($records))
-         {
+         $new=array_column($records,'order_type');
          ?>     
-        <div class="accept">
+        <div id="breakfast-box" class="accept">
             <div class="title">
-                <h3>Delivered Orders </h3>
+            <div class="order-title">
+                    <h3>Delivered History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
                 <?php 
-               
+                   $i=0;
+                 if(in_array('breakfast',$new)){
                     foreach($records as $record)
-                    {?>
-                     <div class="box ">
-                            <div class="details-box">
-                                    <div class="details">
-                                        <h2>Order Id :<span style="color:sienna;"><?php echo $record['order_id']; ?></h2>
-                                        <h4 class="order_item"><i class="fas fa-caret-right"></i> Order Item :</h4>
-                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],4);
-                        while($result=mysqli_fetch_assoc($getOrder))
-                        {
-                            echo '<div class="product_item"><h5 class="item">'.$result['product_name'].'</h5>';
-                            echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
-                            $address=$result['address'];
-                            $email=$result['email'];
-                            $first_name=$result['first_name'];
-                            $last_name=$result['last_name'];
-                            $total=$result['total'];
-                            $phone=$result['phone'];
-                            $method=$result['method'];
-                        }?>
-            
-                                        <h4  class="order_item"><i class="fas fa-caret-right"></i> Pay amount :<span style="color: red;"> RS <?php echo $total; ?></h4>
-                                        
-                                    </div>
-                                <div class="button-pay">
-                                <h3>Order Details</h3>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer Name : <span style="color: sienna;"><?php echo $first_name; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Delivery address :<span style="color: sienna;"><?php echo $address; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Phone number :<span style="color: sienna;"><?php echo $phone; ?></span></h4>
-                                <h4 class="order_item"><i class="fas fa-caret-right"></i> Customer  payed for this order in : <span style="color: red;"><?php echo $method; ?></span></h4>
-                              </div>
+                    {
+                        if($record['order_type']=='breakfast'){?>
+                        
+                     <div class="box " >
+                             <div class="resend" onclick="order('<?php echo $i ?>')">
+                                    <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                                    <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
+                             </div>
+                            <div id="<?php echo $i ?>" class="details-box">
+                            <div><img style="width: 300px;" src="../resource/img/history.svg" alt=""></div>
+                                    
+                                    <div class="button-pay">
+                                    <h2 class="order_item order-head">ORDER INFO</h2>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                                        <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],4);
+                                            while($result=mysqli_fetch_assoc($getOrder))
+                                            {
+                                                echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                                echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
+                                                $address=$result['address'];
+                                                $email=$result['email'];
+                                                $first_name=$result['first_name'];
+                                                $last_name=$result['last_name'];
+                                                $total=$result['total'];
+                                                $phone=$result['phone'];
+                                                $method=$result['method'];
+                                            
+                                            }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                                 </div>
                             </div>
                     
                          </div>
                 <?php    }
-                 ?>                
+                  $i=$i+2;  }
+                }   else
+                {?>
+                    <div class="empty">
+                         <h1> Nothing to show here</h1>
+                    </div>
+              <?php  }
+                 ?>                   
             </div>
         </div>
-        <?php }
-        else{?>
-            <div class="empty">
-                <h1> Nothing to show here</h1>
+        <div id="lunch-box" class="accept none">
+            <div class="title">
+            <div class="order-title">
+                    <h3>Delivered History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
+                <?php 
+                 $i=0;
+                 if(in_array('lunch',$new)){
+                    foreach($records as $record)
+                    {
+                        if($record['order_type']=='lunch'){?>
+                        
+                     <div class="box " >
+                         <div class="resend" onclick="order('<?php echo $i ?>')">
+                                    <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                                    <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
+                            </div>
+                            <div id="<?php echo $i ?>" class="details-box">
+                            <div><img style="width: 300px;" src="../resource/img/history.svg" alt=""></div>
+                                    
+                                    <div class="button-pay">
+                                    <h2 class="order_item order-head">ORDER INFO</h2>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                                        <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],4);
+                                            while($result=mysqli_fetch_assoc($getOrder))
+                                            {
+                                                echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                                echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
+                                                $address=$result['address'];
+                                                $email=$result['email'];
+                                                $first_name=$result['first_name'];
+                                                $last_name=$result['last_name'];
+                                                $total=$result['total'];
+                                                $phone=$result['phone'];
+                                                $method=$result['method'];
+                                            
+                                            }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                                 </div>
+                            </div>
+                    
+                         </div>
+                <?php    }
+                  $i=$i+2;  }
+                }   else
+                {?>
+                    <div class="empty">
+                         <h1> Nothing to show here</h1>
+                    </div>
+              <?php  }
+                 ?>                   
             </div>
-      <?php  }?>
+        </div>
+        <div id="dinner-box" class="accept none">
+            <div class="title">
+            <div class="order-title">
+                    <h3>Delivered History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
+                <?php 
+                   $i=0;
+                 if(in_array('dinner',$new)){
+                    foreach($records as $record)
+                    {
+                        if($record['order_type']=='dinner'){?>
+                        
+                     <div class="box " >
+                     <div class="resend" onclick="order('<?php echo $i ?>')">
+                            <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                                    <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
+                            </div>
+                            <div id="<?php echo $i ?>" class="details-box">
+                            <div><img style="width: 300px;" src="../resource/img/history.svg" alt=""></div>
+                                    
+                                    <div class="button-pay">
+                                    <h2 class="order_item order-head">ORDER INFO</h2>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                                        <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],4);
+                                            while($result=mysqli_fetch_assoc($getOrder))
+                                            {
+                                                echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                                echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
+                                                $address=$result['address'];
+                                                $email=$result['email'];
+                                                $first_name=$result['first_name'];
+                                                $last_name=$result['last_name'];
+                                                $total=$result['total'];
+                                                $phone=$result['phone'];
+                                                $method=$result['method'];
+                                            
+                                            }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                                 </div>
+                            </div>
+                    
+                         </div>
+                <?php    }
+                  $i=$i+2;  }
+                }   else
+                {?>
+                    <div class="empty">
+                         <h1> Nothing to show here</h1>
+                    </div>
+              <?php  }
+                 ?>                   
+            </div>
+        </div>
+        <div id="longTerm-box" class="accept none">
+            <div class="title">
+            <div class="order-title">
+                    <h3>Delivered History </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
+                <?php 
+                   $i=0;
+                 if(in_array('longTerm',$new)){
+                    foreach($records as $record)
+                    {
+                        if($record['order_type']=='longTerm'){?>
+                    
+                     <div class="box " >
+                     <div class="resend" onclick="order('<?php echo $i ?>')">
+                             <div class="right"><i class="fas fa-history fa-2x"></i></div>
+                                    <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
+                            </div>
+                            <div id="<?php echo $i ?>" class="details-box">
+                            <div><img style="width: 300px;" src="../resource/img/history.svg" alt=""></div>
+                                    
+                                    <div class="button-pay">
+                                    <h2 class="order_item order-head">ORDER INFO</h2>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                                        <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],4);
+                                            while($result=mysqli_fetch_assoc($getOrder))
+                                            {
+                                                echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                                echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
+                                                $address=$result['address'];
+                                                $email=$result['email'];
+                                                $first_name=$result['first_name'];
+                                                $last_name=$result['last_name'];
+                                                $total=$result['total'];
+                                                $phone=$result['phone'];
+                                                $method=$result['method'];
+                                            
+                                            }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                                 </div>
+                            </div>
+                    
+                         </div>
+                <?php    }
+                  $i=$i+2;  }
+                }   else
+                {?>
+                    <div class="empty">
+                         <h1> Nothing to show here</h1>
+                    </div>
+              <?php  }
+                 ?>                   
+            </div>
+        </div>
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/timing.js"></script>
+<script src="../resource/js/jquery.js"></script>
+<script src="../resource/js/newOrder.js"></script>
+<script>
+        function order(x,y) {  
+            var orderDown=document.getElementById(x);
+            var btn=document.getElementById(y);
+            if(orderDown.style.display=='none' || orderDown.style.display==''){orderDown.style.display='flex';btn.style.visibility='hidden'}
+            else{orderDown.style.display='none';btn.style.visibility='visible'}
+    }
+</script>
 </html>
