@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="../resource/css/profile1.css">
     <link rel="stylesheet" href="../resource/css/editprofile1.css">
     <link rel="stylesheet" href="../resource/css/extra.css">
+
+    
 </head>
 
  <body>
@@ -70,6 +72,7 @@
                           else{
                           $level_name = 'User';}
           ?>
+
 
 
         <div class="middle_b">
@@ -231,6 +234,10 @@
     function save_changes() {
     alert("Do you want to save changes of your profile?");
     }
+
+   
+
+    
 
     // function change_password() {
     // if(isvalid()==true){

@@ -47,7 +47,11 @@ if(isset($_GET['profile'])){
         } 
         else{
                 echo $_SESSION['first_name'].' '.$_SESSION['level'];
-        }      
+        } 
+        
+     
+
+
  }
 
         
