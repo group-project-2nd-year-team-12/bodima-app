@@ -1,0 +1,284 @@
+/* .middle_b{
+    margin-left:250px;
+    background-color: red;
+    display: flex;
+  } */
+  
+  .container2{width:100%; display: flex; flex-wrap: wrap; }
+  .sidebar_b{width: 20%;display:block;}
+  body{background-color:#f7f8f9 ;}
+
+
+  .middle_b h1{width: 100%; margin-left: 3%; text-transform: uppercase; color:#5d80b6 ;}
+  
+  h1 .paid{margin-left: 50px; padding: 4px  20px; background-color:#5d80b6 ;color:white; text-transform: uppercase; border-radius: 5px; font-style: oblique; border: none; }
+
+  h1 .paid .fas{padding:5px;}
+  h1 .paid:hover{background-color: #101e5a;}
+
+  h1 .paid{margin-top:-30px ;}
+
+  h1 a{text-decoration: none; color:white}
+  .middle_b h3{margin-left: 3%; text-transform: uppercase; color:#5d80b6 ; margin-bottom: 10px;}
+
+  hr{ margin-bottom: 10px;}
+
+  .profile_image{
+    width: 80px;
+    height: 80px;
+    /*border-radius: 100px;
+    margin-bottom: 10px;*/
+    object-fit:cover;
+    border-radius:50%;
+    margin:0 auto 10px auto;
+    display: block;
+    
+  }
+
+.top_info{
+      display: flex;
+      background-color:#acbdd3;
+      
+      padding: 20px;
+     
+  }
+
+.mid_G .top_info p{
+    font-size: small;
+    text-transform: capitalize;
+}
+.mid_G .top_info h2{
+    text-transform: capitalize;
+}
+
+.mid_H .button_set{
+    display: flex;
+   background-color: rgb(204, 203, 203);
+   margin: -20px;
+   justify-content: space-evenly;
+   
+}
+
+
+.mid_H .button_set li{
+   background-color: #5d80b6;
+   padding: 10px;
+   text-align: center;
+   padding-top:20px ;
+   padding-bottom:20px ;
+   text-transform: uppercase;
+   color: white;
+   font-weight: 700;
+} 
+
+.mid_H .button_set li:hover{
+    background-color: #101e5a ;
+}
+
+.mid_G .pay_list{
+    width: 100%;
+    background-color: rgba(194, 192, 192, 0.075);
+    display: block;
+}
+
+.mid_G .pay_list li{
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom:1px solid rgba(180, 180, 180, 0.322) ;
+}
+
+.mid_G .pay_list li:hover{
+    background-color: rgba(194, 192, 192, 0.151);
+    
+}
+
+.mid_G .pay_list li span{
+    /* background-color: green; */
+    padding-left:5px ;
+    padding-right: 5px;
+}
+  
+.mid_G .pay_list .head_block li{
+    background-color:rgba(194, 192, 192, 0.151);
+    max-height: 40px;
+    text-transform: capitalize;
+    font-weight: 600;
+    
+}
+
+.mid_H .Next_payment{
+   
+    background-color: rgba(226, 226, 224, 0.144);
+    padding: 5px;
+}
+
+.mid_H .Set_Notifications{
+    margin-top:40px;
+    background-color:  rgba(226, 226, 224, 0.144);
+    padding: 5px;
+}
+
+.mid_H .Cash_Payment_Entry{
+    margin-top:40px;
+    background-color: rgba(226, 226, 224, 0.144);
+    padding: 5px;
+}
+
+
+.mid_H .Next_payment li{
+    display: flex;
+}
+.mid_H .Next_payment .info_th{
+    font-weight: 500;
+    text-transform: capitalize;
+    padding-right: 15px;
+    width: 30%;
+    
+}
+
+.mid_H .Next_payment .info_td{
+    text-transform: capitalize;
+    color:#606161 ;
+}
+
+.mid_H .Next_payment span{
+    color: #5d80b6;
+}
+
+.notification_description{
+    font-size: small;
+    color:rgb(175, 175, 175);
+    margin:20px;
+}
+
+.mid_H .radio{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-evenly;
+}
+
+.mid_H .radio .radio_in{
+    /* background-color: yellow; */
+}
+
+.Cash_Payment_Entry .w{
+    display: flex;
+    padding-top: 10px;
+    
+}
+
+.Cash_Payment_Entry .p_entry_h{
+    /* background-color: yellow; */
+    width: 30%;
+}
+.Cash_Payment_Entry .p_des{
+    /* background-color: rgb(0, 47, 255); */
+    width: 70%;
+}
+
+.Cash_Payment_Entry .a {
+    width: 100%;
+    padding: 20px;
+    /* background-color: yellow; */
+    
+}
+
+.Cash_Payment_Entry button{
+    background-color: #5d80b6;
+    width: 50%;
+    padding:10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    border:none;
+    margin-top: 20px;
+    margin-left: 50%;
+    color:white;
+    font-weight: 700;
+    font-size: 18px;
+
+    
+}
+
+.Cash_Payment_Entry .a :hover{
+    background-color:#101e5a;
+    
+}
+
+
+.mid_H .Next_payment .new_payblock{
+    background-color: #5d80b6;
+    margin:10px;
+    height: 70px;
+    padding:10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mid_H .Next_payment .new_payblock h3{
+    text-transform: uppercase;
+    color: black;
+    padding-top:10px ;  
+}
+
+.mid_H .Next_payment .new_payblock button{
+    margin:30px;
+    padding:5px 40px 5px 40px ;
+    font-size: medium;
+    background-color:#101e5a;
+    border-radius: 5px;
+    outline: none;
+    border:none;
+    color:white;
+    font-weight: 700;
+  
+}
+
+
+
+.mid_H .Set_Notifications .notification_block{
+   
+}
+
+.mid_H .Set_Notifications .notification_block .notify{
+    background-color: #587eb618 ;
+    margin:10px;
+    font-size: small;
+    border-radius: 10px;
+
+   
+}
+
+
+.mid_H .Set_Notifications .notification_block .notify .msg_head{
+   background-color:  #587eb61a;
+   display: flex;
+   padding:5px;
+   border-radius: 10px;
+   justify-content: space-between;
+}
+.notify p{
+    font-size: small;
+    padding-left:10px;
+    
+}
+
+.notify span{
+    font-size: smaller;
+    color: grey;
+
+}
+
+.mid_H .Set_Notifications .notification_block .notify .msg_body{
+    
+    padding: 10px;
+ }
+.msg_head img{
+    width:20px;
+    height: 20px;
+}
+
