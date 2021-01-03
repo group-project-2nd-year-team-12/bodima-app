@@ -39,6 +39,8 @@
         <?php 
         $details=unserialize($_GET['details']);
         $parent=unserialize($_GET['parent']);
+        $payments=unserialize($_GET['pay']);
+        // print_r($payments);
         ?>
 
           <h1>boarders<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>Back</botton></a></h1>
@@ -68,34 +70,17 @@
                         <span>method</span>
                     </li>
                     </div>
+
+                    <?php foreach($payments as $payment){?>
                     <li>
-                        <span>november</span>
-                        <span>6000.00</span>
-                        <span>2020/10/23</span>
-                        <span>20:13:43</span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;cash</h5></span>
+                    <span><?php echo $payment['year']?> <?php echo date('F', mktime(0, 0, 0,$payment['month'], 10)); ?></span>
+                        <span><?php echo $payment['amount']?>.00</span>
+                        <span><?php echo date("Y/m/d",strtotime($payment['paidDateTime']))?></span>
+                        <span><?php echo date("H:i:s",strtotime($payment['paidDateTime']))?></span>
+                        <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash/card']?></h5></span>
                     </li>
-                    <li>
-                        <span>november</span>
-                        <span>6000.00</span>
-                        <span>2020/10/23</span>
-                        <span>20:13:43</span>
-                        <span><h5>online</h5></span>
-                    </li>
-                    <li>
-                        <span>november</span>
-                        <span>6000.00</span>
-                        <span>2020/10/23</span>
-                        <span>20:13:43</span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;cash</h5></span>
-                    </li>
-                    <li>
-                        <span>november</span>
-                        <span>6000.00</span>
-                        <span>2020/10/23</span>
-                        <span>20:13:43</span>
-                        <span><h5>online</h5></span>
-                    </li>
+                    <?php }?>
+                    
                 </div>
 
               </div>

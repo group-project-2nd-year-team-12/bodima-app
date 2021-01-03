@@ -9,7 +9,7 @@ class boarder_list_modelN{
         FROM boarder As bT
         INNER JOIN confirm_rent ON bT.Bid = confirm_rent.Bid
         INNER JOIN boarding_post AS BpT ON BpT.B_post_id = confirm_rent.B_post_id
-        WHERE confirm_rent.BOid=3";
+        WHERE confirm_rent.BOid=$BOid";
         // echo $query;
         // die();
         $result = mysqli_query($connection, $query);
@@ -51,22 +51,30 @@ class boarder_list_modelN{
 			return $result;
       }
 
+      public static function insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,$cashcard){
 
+        $query="INSERT INTO `payfee` (`Bid`, `BOid`, `year`, `month`, `amount`, `cash/card`) 
+                VALUES ('{$Bid}', '{$BOid}', '{$year}', '{$month}', '{$amount}',  '{$cashcard}');";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+      }
+      // boarder_list_modelN::insert_payfee($connection,4,4,2004,4,4040,'cash');
+
+
+      public static function select_payfee($connection,$Bid,$BOid){
+
+        $query="SELECT * FROM `payfee` WHERE Bid={$Bid} and BOid={$BOid} order by year DESC ,month DESC";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+        return $result;
+      }
+    
 
     }
 
     ?>
 
 
-  <!-- SELECT DISTINCTROW bT.Bid, confirm_rent.BOid,confirm_rent.B_post_id, bT.first_name, bT.last_name, bT.address, bT.location_link, bT.NIC, bT.image, bT.institute ,bT.gender ,bT.telephone ,bT.user_accepted ,bT.profileimage ,CONCAT(Bpt.house_num, ", ", Bpt.lane, ", ", Bpt.city) as Bp_address
-FROM boarder As bT
-INNER JOIN confirm_rent ON bT.Bid = confirm_rent.Bid
-INNER JOIN boarding_post AS BpT ON BpT.B_post_id = confirm_rent.B_post_id
-WHERE confirm_rent.BOid=3 -->
-
-
-<!-- SELECT DISTINCTROW bT.Bid, confirm_rent.BOid,CONCAT(Bpt.house_num, ', ', Bpt.lane, ', ', Bpt.city) as Bp_address,confirm_rent.B_post_id, bT.first_name, bT.last_name, bT.address, bT.location_link, bT.NIC, bT.image, bT.institute ,bT.gender ,bT.telephone ,bT.user_accepted ,bT.profileimage 
-        FROM boarder As bT
-        INNER JOIN confirm_rent ON bT.Bid = confirm_rent.Bid
-        INNER JOIN boarding_post AS BpT ON BpT.B_post_id = confirm_rent.B_post_id
-        WHERE bT.Bid=38 -->
+ 
