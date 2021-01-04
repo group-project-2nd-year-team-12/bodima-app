@@ -149,7 +149,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -213,7 +213,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -277,7 +277,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -341,7 +341,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -400,7 +400,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];

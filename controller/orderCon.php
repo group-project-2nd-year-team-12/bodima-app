@@ -43,7 +43,14 @@ $errors=array();
        $term=$_SESSION['term'];
        foreach($products as $product)
        {
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$product['order_type'],$term,$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
+         $order_type=$product['order_type'];
+         $restaurant=$product['restaurant'];
+       }
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$total,$phone,$method,$time,$expireTime,$restaurant,$connection);
+       
+       foreach($products as $product)
+       {
+         orderModel::food_item($product['item_name'],$product['item_quantity'],$order_id,$connection);
        }
      
        if($_SESSION['term']=='longTerm')
@@ -73,8 +80,8 @@ function getPending($connection){
    date_default_timezone_set("Asia/Colombo");
    $date=date('Y-m-d H:i:s');
    $nowTime=date_create($date);
-   $ids_set=reg_user::getOrderById($connection,$email,0);
-   $order_pending=reg_user::getOrderAll($connection,$email,0);
+   $ids_set=orderModel::getOrderById($connection,$email,0);
+   $order_pending=orderModel::getOrderAll($connection,$email,0);
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
@@ -86,10 +93,8 @@ function getPending($connection){
       while($record=mysqli_fetch_assoc($order_pending))
       {
             $expireDate=date_create($record['expireTime']);
-       
+            // print_r($record);
             $diff= $expireDate->diff($nowTime);
-         
-            print_r($diff->i);
             if(($diff->s <=1 && $diff->i==0) || !$diff->invert)
             {
                orderModel::deleteRequest($record['request_id'],$connection);
@@ -100,6 +105,7 @@ function getPending($connection){
           $data_rows[]=$record;
           $i++;
       }
+      // print_r($data_rows);
       $data=array();
       $data[0]=serialize($ids);
       $data[1]=serialize($data_rows);
@@ -114,8 +120,8 @@ function getPending($connection){
 if(isset($_GET['id']) && $_GET['id']==2)
 {
    $email=$_SESSION['email'];
-   $ids_set=reg_user::getOrderById($connection,$email,1);
-   $order_pending=reg_user::getOrderAll($connection,$email,1);
+   $ids_set=orderModel::getOrderById($connection,$email,1);
+   $order_pending=orderModel::getOrderAll($connection,$email,1);
    
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
@@ -138,8 +144,8 @@ if(isset($_GET['id']) && $_GET['id']==2)
 if(isset($_GET['id']) && $_GET['id']==3)
 {
    $email=$_SESSION['email'];
-   $ids_set=reg_user::getOrderById($connection,$email,3);
-   $order_pending=reg_user::getOrderAll($connection,$email,3);
+   $ids_set=orderModel::getOrderById($connection,$email,3);
+   $order_pending=orderModel::getOrderAll($connection,$email,3);
    
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
@@ -162,8 +168,8 @@ if(isset($_GET['id']) && $_GET['id']==3)
 if(isset($_GET['id']) && $_GET['id']==4)
 {
    $email=$_SESSION['email'];
-   $ids_set=reg_user::getOrderById($connection,$email,4);
-   $order_pending=reg_user::getOrderAll($connection,$email,4);
+   $ids_set=orderModel::getOrderById($connection,$email,4);
+   $order_pending=orderModel::getOrderAll($connection,$email,4);
   
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
@@ -186,18 +192,23 @@ if(isset($_GET['id']) && $_GET['id']==4)
 function getLongTerm($connection)
 {
    $email=$_SESSION['email'];
+   $longTermID=orderModel::getLongTermID($connection,$email);
+   // print_r($longTermID);
    $record=orderModel::getLongTerm($connection,$email);
-   
-   print_r($record);
+   // print_r($record);
    $ids=array();
-      while($row=mysqli_fetch_assoc($record))
+   $result=array();
+      while($row=mysqli_fetch_assoc($longTermID))
       {
           $ids[]=$row;
-         //  print_r($row);
+      }
+      while($row=mysqli_fetch_assoc($record))
+      {
+          $result[]=$row;
       }
    // print_r($ids);
-   $data=serialize($ids);
-   
+   $data[0]=serialize($ids);
+   $data[1]=serialize($result);
       return $data;
 }
 

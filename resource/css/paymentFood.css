@@ -8,6 +8,7 @@
 ::-webkit-scrollbar{
     width: 10px;
     background-color: rgb(233, 230, 239);
+    border-radius: 25px;
 }
 :focus{
     outline: none;
@@ -813,4 +814,50 @@ font-weight: bold;
     background-color: rgb(6, 36, 55);
     color: rgb(255, 255, 255);
     border-radius: 50%;
+}
+
+.longTerm-struct{
+    /* display:flex;
+    justify-content: space-between; */
+    
+}
+
+.longTerm-details{
+    width: 1000px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.longTerm-table{
+    background: rgb(200, 200, 222);
+    width: 80%;
+    margin: 0 50px 50px 50px;
+    height: 50vh;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-Y: scroll;
+    overflow-x: hidden;
+}
+
+.longTerm-details table tr,th,td{
+    padding: 5px;
+    text-align: left;
+    width: 450px;
+    /* background-color: red; */
+}
+table th {
+    background-color:#5d80b6;
+}
+table td{
+    background-color: white;
+}
+
+.longTerm-btn-1{
+    padding: 4px;
+    width: 100px;
+    color: white;
+    background-color:#101e5a;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }

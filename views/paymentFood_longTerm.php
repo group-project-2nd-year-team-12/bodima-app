@@ -87,32 +87,112 @@
                     </div>
                 </ul>
             </div>
+            <?php 
+                    $recordsSeritaize=getLongTerm($connection);
+                    $ids=unserialize($recordsSeritaize[0]);
+                    $data_rows=unserialize($recordsSeritaize[1]);
+                
+                    ?>
             <div id="shortTerm-box" class="pending">
-            <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Order Type</th>
-                        <th>Order Item</th>
-                        <th>Delivery State </th>
-                        <th>Delivered Time</th>
-                    </tr> 
-                    <?php
-                         $recordsSeritaize=getLongTerm($connection);
-                         $records=unserialize($recordsSeritaize);
-                          foreach($records as $row)
-                          {
-                          ?>
-                          <tr>
-                              <td><?php echo $row['day']; ?></td>
-                              <td><?php echo $row['order_type']; ?></td>
-                              <td><?php echo $row['restaurant']; ?></td>
-                              <td><?php echo $row['email']; ?></td>
-                              <td><?php echo $row['order_id']; ?></td>
-                              
-                          </tr>
-                          <?php } ?>
-                </table>
+            <div class="title">
+            <div class="order-title">
+                    <h3>Pending Orders </h3>
+                    <!-- <div><h5>1</h5></div> -->
+                </div>
+                <?php 
+               
+               
+                $total='';
+                $i=1;
+                $x=0;
+                $date=0;
+            
+                foreach($ids as $id){
+                ?>
+                <div class="box" id="<?php echo $id['order_id'] ?>">
+                  
+                    <div class="resend " onclick="order('<?php echo $x ?>')">
+                        <div class="right"><i class="far fa-clock fa-2x"></i></div>
+                        <div class="letter">
+                            <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
+                            <h5 style="color:#2c3e8f;">Order Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5>
+                        </div>
+                    </div>
+                  <div id="<?php echo $x ?>" class=" longTerm-struct">
+                       <div class="longTerm-details">
+                        <div style="width: 300px;"> <img style="width: 300px;  margin:50px 20px" src="../resource/img/pending.svg" alt=""></div>
+                        <div style="width: 100%; margin:20px" class="button-pay">
+                                <h2 class="order_item order-head">ORDER INFO</h2>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
+                                <?php 
+                                    foreach($data_rows as $data_row)
+                                    {
+                                        if($data_row['order_id']==$id['order_id'])
+                                        {
+                                            $total=$data_row['total'];
+                                            $time=$data_row['time'];
+                                            $restaurant=$data_row['restaurant'];
+                                            $method=$data_row['method'];
+                                            $address=$data_row['address'];
+                                            ?> 
+                                            <?php
+                                            //   echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['order_item'].'</h5>';
+                                            //   echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
+                                        }
+                                            
+                                    }
+                                    $i=1;
+                                ?>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
+                            </div>
+                       </div>
+                
+                            <div class="longTerm-table">
+                                <h1>Long term delivery records</h1>
+                                <table>
+                                        <tr>
+                                            <th>Record No</th>
+                                            <th>Date</th>
+                                            <th>Delivery State </th>
+                                            <th>Delivered Time</th>
+                                            
+                                        </tr> 
+                                        <?php
+                                        
+                                            foreach($data_rows as $row)
+                                            {
+                                                if($row['order_id']==$id['order_id'])
+                                                {
+                                            ?>
+                                            <tr>
+                                                <td ><?php echo $i; ?></td>
+                                                <td><?php echo $row['day']; ?>
+                                                <td style="text-align: center;"><button class="longTerm-btn-1">Delivery</button></td>
+                                                <td><?php echo $row['deliveredTime']; ?>Not set</td>
+                                                
+                                                
+                                            </tr>
+                                            <?php $i++; } 
+
+                                            }?>
+                                    </table>        
+                              </div>
+         
+                  </div>
+               
+                </div>
+                <?php
+                    
+            $date+=2;
+           $x=$x+2; 
+        }?>      
             </div>
+        </div>
         </div>
     </div>
 </body>
