@@ -43,15 +43,15 @@
      
   }
 
-.mid_G .top_info p{
+.mid_I .top_info p{
     font-size: small;
     text-transform: capitalize;
 }
-.mid_G .top_info h2{
+.mid_I .top_info h2{
     text-transform: capitalize;
 }
 
-.mid_H .button_set{
+.mid_J .button_set{
     display: flex;
    background-color: rgb(204, 203, 203);
    margin: -20px;
@@ -60,7 +60,7 @@
 }
 
 
-.mid_H .button_set li{
+.mid_J .button_set li{
    background-color: #5d80b6;
    padding: 10px;
    text-align: center;
@@ -71,17 +71,17 @@
    font-weight: 700;
 } 
 
-.mid_H .button_set li:hover{
+.mid_J .button_set li:hover{
     background-color: #101e5a ;
 }
 
-.mid_G .pay_list{
+.mid_I .pay_list{
     width: 100%;
     background-color: rgba(194, 192, 192, 0.075);
     display: block;
 }
 
-.mid_G .pay_list li{
+.mid_I .pay_list li{
     /* background-color: yellow; */
     display: flex;
     justify-content: space-between;
@@ -90,18 +90,18 @@
     border-bottom:1px solid rgba(180, 180, 180, 0.322) ;
 }
 
-.mid_G .pay_list li:hover{
+.mid_I .pay_list li:hover{
     background-color: rgba(194, 192, 192, 0.151);
     
 }
 
-.mid_G .pay_list li span{
+.mid_I .pay_list li span{
     /* background-color: green; */
     padding-left:5px ;
     padding-right: 5px;
 }
   
-.mid_G .pay_list .head_block li{
+.mid_I .pay_list .head_block li{
     background-color:rgba(194, 192, 192, 0.151);
     max-height: 40px;
     text-transform: capitalize;
@@ -109,29 +109,29 @@
     
 }
 
-.mid_H .Next_payment{
+.mid_J .Next_payment{
    
     background-color: rgba(226, 226, 224, 0.144);
     padding: 5px;
 }
 
-.mid_H .Set_Notifications{
+.mid_J .Set_Notifications{
     margin-top:40px;
     background-color:  rgba(226, 226, 224, 0.144);
     padding: 5px;
 }
 
-.mid_H .Cash_Payment_Entry{
+.mid_J .Cash_Payment_Entry{
     margin-top:40px;
     background-color: rgba(226, 226, 224, 0.144);
     padding: 5px;
 }
 
 
-.mid_H .Next_payment li{
+.mid_J .Next_payment li{
     display: flex;
 }
-.mid_H .Next_payment .info_th{
+.mid_J .Next_payment .info_th{
     font-weight: 500;
     text-transform: capitalize;
     padding-right: 15px;
@@ -139,12 +139,12 @@
     
 }
 
-.mid_H .Next_payment .info_td{
+.mid_J .Next_payment .info_td{
     text-transform: capitalize;
     color:#606161 ;
 }
 
-.mid_H .Next_payment span{
+.mid_J .Next_payment span{
     color: #5d80b6;
 }
 
@@ -154,13 +154,13 @@
     margin:20px;
 }
 
-.mid_H .radio{
+.mid_J .radio{
     display: flex;
     margin-top: 20px;
     justify-content: space-evenly;
 }
 
-.mid_H .radio .radio_in{
+.mid_J .radio .radio_in{
     /* background-color: yellow; */
 }
 
@@ -209,7 +209,7 @@
 }
 
 
-.mid_H .Next_payment .new_payblock{
+.mid_J .Next_payment .new_payblock{
     background-color: #5d80b6;
     margin:10px;
     height: 70px;
@@ -219,13 +219,13 @@
     justify-content: space-between;
 }
 
-.mid_H .Next_payment .new_payblock h3{
+.mid_J .Next_payment .new_payblock h3{
     text-transform: uppercase;
     color: black;
     padding-top:10px ;  
 }
 
-.mid_H .Next_payment .new_payblock button{
+.mid_J .Next_payment .new_payblock button{
     margin:30px;
     padding:5px 40px 5px 40px ;
     font-size: medium;
@@ -239,7 +239,7 @@
 }
 
 
-.mid_H .Set_Notifications .notification_block .notify{
+.mid_J .Set_Notifications .notification_block .notify{
     background-color: #587eb618 ;
     margin:10px;
     font-size: small;
@@ -249,7 +249,7 @@
 }
 
 
-.mid_H .Set_Notifications .notification_block .notify .msg_head{
+.mid_J .Set_Notifications .notification_block .notify .msg_head{
    background-color:  #587eb61a;
    display: flex;
    padding:5px;
@@ -268,7 +268,7 @@
 
 }
 
-.mid_H .Set_Notifications .notification_block .notify .msg_body{
+.mid_J .Set_Notifications .notification_block .notify .msg_body{
     
     padding: 10px;
  }

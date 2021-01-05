@@ -70,7 +70,16 @@ class boarder_list_modelN{
         $result = mysqli_query($connection, $query);
         return $result;
       }
-    
+
+      
+      public static function get_last_paymonth($connection,$Bid,$BOid){
+
+        $query="SELECT year,month FROM `payfee` WHERE Bid={$Bid} and BOid={$BOid} order by year DESC ,month DESC limit 1";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+        return $result;
+      }
 
     }
 
