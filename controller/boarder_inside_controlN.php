@@ -31,9 +31,39 @@ if(isset($_GET['Bid'])){
         }
         $payments=serialize($data);
     }
+
+    $last=boarder_list_modelN::get_last_paymonth($connection,$Bid,$BOid);
+    $lastpay=mysqli_fetch_assoc($last);
+        print_r($lastpay);
+            $y=$lastpay['year'];
+            $m=$lastpay['month'];
+            $date3 =$y.'-'.$m.'-01';
+            echo $date3;
+            $date1  = '2013-11-15';
+            $date2  = date('Y-m-d');
+            $output = [];
+            $time   = strtotime($date3);
+            $last   = date('Y F', strtotime($date2));
+            $time = strtotime('+1 month', $time);
+
+            do {
+                $month = date('Y F', $time);
+                
+                $output[] = [
+                    'time' => $time,
+                    'month' => $month
+                    
+                ];
+                $x=$month;
+                echo '  <br/>'.$x;
+
+                $time = strtotime('+1 month', $time);
+            } while ($month != $last);
+
+            $monthlist=serialize($output);
     // print_r($pay);
 
-    header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments);
+    header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&months='.$monthlist);
 }
 
 ?>
