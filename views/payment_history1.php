@@ -37,7 +37,9 @@
         <!-- ../controller/boarder_list_controlN.php?boarderlist=1 -->
 
         <?php 
-        
+        $payments=unserialize($_GET['pay']);
+        $monthlist=unserialize($_GET['months']);
+        // print_r($monthlist);
         ?>
 
           <h1>payment History<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>NEW</botton></a></h1>
@@ -52,6 +54,9 @@
                 </div>
                 <div class="pay_list">
                     <div class="head_block">
+
+                    
+                    
                     <li>
                         <span>Month</span>
                         <span>amount</span>
@@ -61,34 +66,16 @@
                     </li>
                     </div>
 
+                    <?php foreach($payments as $payment){?>
                     <li>
-                        <span>2020 november</span>
-                        <span>5000</span>
-                        <span>2025/18/34</span>
-                        <span>43:43:78</span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;online</h5></span>
+                    <span><?php echo $payment['year']?> <?php echo date('F', mktime(0, 0, 0,$payment['month'], 10)); ?></span>
+                        <span><?php echo $payment['amount']?>.00</span>
+                        <span><?php echo date("Y/m/d",strtotime($payment['paidDateTime']))?></span>
+                        <span><?php echo date("H:i:s",strtotime($payment['paidDateTime']))?></span>
+                        <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash/card']?></h5></span>
                     </li>
-                    <li>
-                        <span>2020 november</span>
-                        <span>5000</span>
-                        <span>2025/18/34</span>
-                        <span>43:43:78</span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;online</h5></span>
-                    </li>
-                    <li>
-                        <span>2020 november</span>
-                        <span>5000</span>
-                        <span>2025/18/34</span>
-                        <span>43:43:78</span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;online</h5></span>
-                    </li>
-                    <li>
-                        <span>2020 november</span>
-                        <span>5000</span>
-                        <span>2025/18/34</span>
-                        <span>43:43:78</span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;online</h5></span>
-                    </li>
+                    <?php }?>
+                    
                    
                     
                 </div>
@@ -100,13 +87,20 @@
                     <div class="Next_payment">
                         <h3>New Payment</h3>
                         <hr/>
+
+                        <?php foreach($monthlist as $month){?>
                         <div class="new_payblock">
-                            <h3>january</h3>
+                            <h3><?php echo date('F', $month['time'])?></h3>
                             <button>Pay</button>
                         </div>
+                        <?php }?>
 
                         <div class="new_payblock">
-                            <h3>december</h3>
+                            <h3>January</h3>
+                            <button>Pay</button>
+                        </div>
+                        <div class="new_payblock">
+                            <h3>December</h3>
                             <button>Pay</button>
                         </div>
                         
