@@ -40,6 +40,7 @@
         $details=unserialize($_GET['details']);
         $parent=unserialize($_GET['parent']);
         $payments=unserialize($_GET['pay']);
+        $months=unserialize($_GET['months']);
         // print_r($payments);
         ?>
 
@@ -168,10 +169,12 @@
                         <div class="p_entry_h">Month </div>
                         <div class="p_des">
                         <form>
-                        : <select name='myfield' onchange='this.form.submit()'>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
+                        : <select name='myfield'>
+                        <!-- onchange='this.form.submit()'> -->
+                        <?php foreach($months as $month){?>
+                            
+                            <option><?php echo $month['month'];?></option>
+                            <?php } ?>
                             </select>
                             <noscript><input type="submit" value="Submit"></noscript>
                         </form>
