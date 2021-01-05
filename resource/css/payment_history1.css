@@ -277,3 +277,33 @@
     height: 20px;
 }
 
+.mid_G .pdfbar{
+    margin-top:15px;
+    display: flex;
+   justify-content: right;
+    /* background-color: red; */
+    
+}
+
+.mid_G .pdfbar .genarate_pdf_btn{
+    background-color:#101e5a ;
+    outline:none;
+    border:none;
+    /* border:1px solid #0b153d; */
+    color: white;
+    padding:5px 30px 5px 30px ;
+    border-radius: 5px;
+    float:right;
+    
+}
+
+
+.mid_G .pdfbar .genarate_pdf_btn:hover{
+    background-color:#5d80b6 ;
+}
+
+.mid_G .pdfbar .pdfin{
+    margin-right:20px;
+    margin-left:auto;
+}
+
