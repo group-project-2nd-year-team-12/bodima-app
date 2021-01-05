@@ -14,15 +14,11 @@
     <link rel="stylesheet" href="../resource/css/nav.css">
     <link rel="stylesheet" href="../resource/css/footer.css">
     <link rel="stylesheet" href="../resource/css/all.css">
+    <script src="../resource/js/jquery.js"></script>
 </head>
 <body>
 <?php include 'nav.php' ?>
-<?php 
-   if(isset($_SESSION['order_id']))
-   {
-    $order_records=reg_user::getOrder($connection,$_SESSION['order_id']);
-   }
-?>                         <!-- header-bar -->
+                       <!-- header-bar -->
  <!-- <div class="cart-icon">
     <?php 
    
@@ -40,38 +36,34 @@
  <div class="mycart">
      <div class="mycart-header">
     <!-- <?php echo '<a href="cart.php?Pid='.$_GET["Pid"].'&name='.$_GET["name"].'&address='.$_GET["address"].'"><i class="fas fa-chevron-circle-left fa-2x"></i></a>'; ?> -->
-    <h5>My Cart</h5>
+    <h1>My Cart</h1>
      </div>
 <?php 
 $total=0;
  if(isset($_SESSION['cart']))
  {
-    $result=reg_user::getProduct($connection);
-    $product_id=array_column($_SESSION['cart'],'product_id'); //create array of product_ids
+    $results=$_SESSION['cart'];
     $amount=0;
-         while($row=mysqli_fetch_assoc($result))
-         {
-             foreach($product_id as $id)
+    $i=0;    
+             foreach($results as $result)
              {
-                 if($row['id']==$id)
-                 {
-           ?>
-                   <form action="../controller/cartCon.php?action=remove&id=<?php echo $row['id'];?>" method="post">
+                //  print_r($_SESSION);
+           ?> 
+                   <form action="../controller/cartCon.php?action=remove&id=<?php echo $result['product_id'];?>" method="post">
                    
                      <div class="item-wrap">
                          <div class="cart-item">
-                             <img src="<?php echo $row['image']?>" alt="">
+                             <img src="<?php echo $result['product_img']?>" alt="">
                                  <div class="product-details">
-                                     <h4><?php echo $row['product_name'];?></h4>
-                                     <p><small>Lorem ipsum dolor sit amet .</small></p>
-                                     <h3><?php echo $row['price'];?></h3>
+                                     <h3><?php echo $result['item_name'];?></h3>
+                                     <h3>RS : <?php echo $result['product_price'];?></h3>
                 
                                      <div class="item-count">
                                          
-                                        <button class="btn4" type="button" onclick="quan.decrease('<?php echo $row['id'];?>')" >-</button>
-                                            <p><h4 ><a id="<?php echo $row['id'];?>">1</a></h4></p>
-                                        <button  class="btn4" type="button" onclick="quan.increse('<?php echo $row['id'];?>')" >+</button>
-                                        <button class="btn2" name="remove" type="submit">cancel</button>
+                                        <button class="btn4" type="button" id="minus<?php echo $i; ?>"><i class="fas fa-minus"></i></button>
+                                            <p><h4 id=<?php echo $i; ?>><?php echo $result['item_quantity'] ?></h4></p>
+                                        <button  class="btn4" type="button" id="plus<?php echo $i; ?>" ><i class="fas fa-plus"></i></button>
+                                        <button class="btn2" name="remove" type="submit"> <i class="far fa-trash-alt"></i> Remove</button>
 
                                      </div>
                                      
@@ -82,10 +74,51 @@ $total=0;
                    
                    </form>
            <?php
-           $total=$total+$row['price'];
-                 }
-             }
-         }
+           $total=$total+$result['product_price'];
+            ?>     
+            <script> // increase quantity
+                        $(document).ready(function(){
+                            $(document).on('click',"#plus<?php echo $i ; ?>",function()
+                             {
+                                var countTag=document.getElementById(<?php echo $i; ?>);
+                                var count = parseInt(countTag.innerHTML)+1;
+                                if(count>10)
+                                {
+                                    count=10;
+                                }
+                                countTag.innerHTML=count;
+                                var productId=<?php echo $result['product_id'] ?>;
+                                // console.log(countTag);
+                                $.ajax({
+                                url:"../controller/cartCon.php",
+                                method:"POST",
+                                data:{quantity:count,productId:productId},
+                                dataType:"json"
+                                });
+                             })
+                         })
+                     // decrase quantity    
+                         $(document).on('click',"#minus<?php echo $i ; ?>",function()
+                             {
+                                var countTag=document.getElementById(<?php echo $i; ?>);
+                                var count = parseInt(countTag.innerHTML)-1;
+                                if(count<=0){
+                                    count=1;
+                                }
+                                countTag.innerHTML=count;
+                                var productId=<?php echo $result['product_id'] ?>;
+                                // console.log(countTag);
+                                $.ajax({
+                                url:"../controller/cartCon.php",
+                                method:"POST",
+                                data:{quantity:count,productId:productId},
+                                dataType:"json"
+                                });
+                             })
+                
+            </script>
+            <?php $i++; }
+         
  }
       ?>
  </div> 
@@ -101,9 +134,9 @@ $total=0;
         </div>
         <div class="details">
             <h5>price (<?php echo $count ?>) item<span class="left-item">Rs <?php echo $total; ?></span></h5>
-            <h5>delivery Charges <span style="color: green;" class="left-item">Free</span></h5>
-            <h4>Amount payable<span class="left-item1">Rs <?php echo $total; ?></span> </h4>
-            <form action="../controller/orderCon.php" method="post">
+            <h5 style="padding-bottom: 10px ;">delivery Charges <span style="color: green;" class="left-item">Free</span></h5>
+            <h4 style="padding-bottom: 10px;border-top:1px solid rgb(191, 184, 184); border-bottom:1px solid rgb(191, 184, 184);">Amount payable<span class="left-item">Rs <?php echo $total; ?></span> </h4>
+            <form  action="../controller/orderCon.php" method="post">
                 <h4>Enter delivery address :</h4>
                 <?php if(isset($_GET['errorAddress'])) echo "<h5 style='color:red'>*Please enter the delivery address</h5>"; ?>
                 <input type="hidden" name="Pid" value="<?php echo $_GET['Pid'];?>">
@@ -121,7 +154,7 @@ $total=0;
                     <input type="radio" id="2" name="method" value="cash">
                     <label for="2">Cash</label>
                 </div>
-                <button name="submit" type="submit" id="request" class="btn6 request">Request </button>
+                <button name="submit" type="submit" id="request" class="btn6 request">ORDER </button>
               
             </form>
 
@@ -150,7 +183,8 @@ $total=0;
     </div>
     <?php include 'footer.php'?>
         
-        <script src="../resource/js/home1.js"></script>
-<script src="../resource/js/jquery.js"></script>
+
 </body>
+<script src="../resource/js/home1.js"></script>
+<script src="../resource/js/cartItem.js"></script>
 </html> 

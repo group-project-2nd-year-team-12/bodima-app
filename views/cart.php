@@ -155,6 +155,7 @@ if(isset($_GET['Pid']))
                      <!-- <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>"> -->
                      <input id="Pid<?php echo $i ?>" type="hidden" name="Pid" value="<?php echo $fpid;?>">
                      <input id="name<?php echo $i ?>" type="hidden" name="name" value="<?php echo $_GET['name'];?>">
+                     <input id="img<?php echo $i ?>" type="hidden" name="img" value="<?php echo $row['image'];?>">
                      <input id="address<?php echo $i ?>" type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <input id="order_type<?php echo $i ?>" type="hidden" name="order_type" value="breakfast">
                      <p><button id="add<?php echo $i ; ?>" type="button" class="cart-num block1" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
@@ -178,11 +179,12 @@ if(isset($_GET['Pid']))
               var address=$("#address<?php echo $i ?>").val();
               var item_name=$("#item_name<?php echo $i ?>").val();
               var order_type=$("#order_type<?php echo $i ?>").val();
+              var img=$("#img<?php echo $i ?>").val();
               var add ='add';
               $.ajax({
                 url:"../controller/cartCon.php",
                 method:"POST",
-                data:{quantity:quantity,id:id,price:price,Pid:Pid,name:name,address:address,add:add,item_name:item_name,order_type:order_type,term:term},
+                data:{quantity:quantity,id:id,price:price,Pid:Pid,name:name,address:address,add:add,item_name:item_name,order_type:order_type,term:term,img:img},
                 dataType:"json",
                 success:function(data)
 		            	{
@@ -267,6 +269,7 @@ if(isset($_GET['Pid']))
                      <!-- <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>"> -->
                      <input id="Pid<?php echo $i ?>" type="hidden" name="Pid" value="<?php echo $fpid;?>">
                      <input id="name<?php echo $i ?>" type="hidden" name="name" value="<?php echo $_GET['name'];?>">
+                     <input id="img<?php echo $i ?>" type="hidden" name="img" value="<?php echo $row['image'];?>">
                      <input id="address<?php echo $i ?>" type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <input id="order_type<?php echo $i ?>" type="hidden" name="order_type" value="lunch">
                      <p><button id="add<?php echo $i ; ?>" type="button" class="cart-num block1" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
@@ -290,11 +293,12 @@ if(isset($_GET['Pid']))
               var address=$("#address<?php echo $i ?>").val();
               var item_name=$("#item_name<?php echo $i ?>").val();
               var order_type=$("#order_type<?php echo $i ?>").val();
+              var img=$("#img<?php echo $i ?>").val();
               var add ='add';
               $.ajax({
                 url:"../controller/cartCon.php",
                 method:"POST",
-                data:{quantity:quantity,id:id,price:price,Pid:Pid,name:name,address:address,add:add,item_name:item_name,order_type:order_type,term:term},
+                data:{quantity:quantity,id:id,price:price,Pid:Pid,name:name,address:address,add:add,item_name:item_name,order_type:order_type,term:term,img:img},
                 dataType:"json",
                 success:function(data)
 		            	{
@@ -379,6 +383,7 @@ if(isset($_GET['Pid']))
                      <!-- <input type="hidden" name="FSid" value="<?php echo $row['FSid'];?>"> -->
                      <input id="Pid<?php echo $i ?>" type="hidden" name="Pid" value="<?php echo $fpid;?>">
                      <input id="name<?php echo $i ?>" type="hidden" name="name" value="<?php echo $_GET['name'];?>">
+                     <input id="img<?php echo $i ?>" type="hidden" name="img" value="<?php echo $row['image'];?>">
                      <input id="address<?php echo $i ?>" type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <input id="order_type<?php echo $i ?>" type="hidden" name="order_type" value="dinner">
                      <p><button id="add<?php echo $i ; ?>" type="button" class="cart-num block1" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
@@ -402,11 +407,12 @@ if(isset($_GET['Pid']))
               var address=$("#address<?php echo $i ?>").val();
               var item_name=$("#item_name<?php echo $i ?>").val();
               var order_type=$("#order_type<?php echo $i ?>").val();
+              var img=$("#img<?php echo $i ?>").val();
               var add ='add';
               $.ajax({
                 url:"../controller/cartCon.php",
                 method:"POST",
-                data:{quantity:quantity,id:id,price:price,Pid:Pid,name:name,address:address,add:add,item_name:item_name,order_type:order_type,term:term},
+                data:{quantity:quantity,id:id,price:price,Pid:Pid,name:name,address:address,add:add,item_name:item_name,order_type:order_type,term:term,img:img},
                 dataType:"json",
                 success:function(data)
 		            	{

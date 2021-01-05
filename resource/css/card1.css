@@ -251,6 +251,8 @@ body{
 
   .price-details{
       /* height: 60%; */
+      position: sticky;
+      top: 100px;
       width: 60%;
       margin: 0 auto;
       margin-bottom: 20px;
@@ -270,23 +272,22 @@ body{
   }
 
   .details h5{
-    padding-bottom: 10px;
+    width: 90%;
   }
 
   .details h4{
-    border-top: 1px solid gray;
+    /* border-top: 1px solid rgb(191, 184, 184); */
     padding-top: 10px;
+
+    width: 90%;
   }
 
   .left-item{
-      padding-left: 100px;
       color: orangered;
+      float: right;
   }
   
-  .left-item1{
-    padding-left: 45px;
-    color: orangered;
-}
+
 .method{
     padding-top: 20px;
     display: flex;
@@ -360,12 +361,13 @@ body{
   font-size: 18px;
   border: none;
   border-radius: 5px;
-  margin-left: 25px;
-  margin-top: 10px;
-  width: 250px;
+  margin: 20px  20px 25px 20px;
+  width: 85%;
   cursor: pointer;
 }
-
+.details form{
+  padding-top: 20px;
+}
 .details form input{
   padding: 5px;
   box-sizing: border-box;
@@ -373,8 +375,9 @@ body{
 }
 .details form input[type="text"]{
   width: 100%;
-  outline: blue;
-  border: 1px solid blue;
+  border-radius: 5px;
+  border: 1px solid  #8b8d94;
+
 }
 
 .slide-nav-animate ul li{
@@ -386,12 +389,17 @@ body{
   display: inline-block;
   width: 100%;
 } */
+.price{
+  position: relative;
+}
 .payment_method{
   margin-left: 10px;
   display: flex;
+  
 }
 .payment_method label{
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .view-product{
