@@ -59,7 +59,7 @@ class orderModel{
         return $result;
     }
     public static function getOrderIDFoodSupplier($connection,$F_post_id,$is_accepted){
-        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
+        $query="SELECT DISTINCT order_id,order_type,term FROM food_request WHERE F_post_id=$F_post_id AND is_accepted=$is_accepted ORDER BY order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -121,7 +121,7 @@ class orderModel{
         return $result;
     }
     public static function OrderCount($connection,$email,$state){
-        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE email='{$email}' AND is_accepted=$state";
+        $query="SELECT DISTINCT order_id,term FROM food_request WHERE email='{$email}' AND is_accepted=$state";
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -131,12 +131,12 @@ class orderModel{
         return $result;
     }
     public static function getLongTermID($connection,$email){
-        $query="SELECT DISTINCT order_id FROM food_request WHERE email='{$email}' AND term='longTerm' ";
+        $query="SELECT DISTINCT order_id FROM food_request WHERE email='{$email}' AND term='longTerm' AND food_request.is_accepted=3 ";
         $result=mysqli_query($connection,$query);
         return $result;
     }
     public static function getLongTerm($connection,$email){
-        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id  AND email='{$email}'";
+        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND email='{$email}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }

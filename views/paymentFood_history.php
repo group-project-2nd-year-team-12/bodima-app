@@ -253,7 +253,7 @@
     <?php } ?>
     <!-- <?php include 'footer.php'?> -->
 </body>
-<script src="../resource/js/order.js"></script>
+<script src="../resource/js/requestHistory.js"></script>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/newOrder.js"></script>
 <script>

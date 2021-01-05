@@ -15,7 +15,7 @@
     <script src="../resource/js/jquery.js"></script>
     <title>Document</title>
 </head>
-<body onload="checked('longTerm');">
+<body onload="checked('long-term');">
 
 <!-- page separate 2 section short term long term  -->
 <script>
@@ -76,11 +76,6 @@
         <?php include  'paymentFoodSlide.php';?> 
         <div class="subNav">
                 <ul>
-                  
-                    <div>
-                        <div id="noti-breakfast"><h5></h5></div>
-                        <li tabindex="0" id="shortTerm" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
-                    </div>
                     <div>
                         <div id="noti-longTerm"><h5></h5></div>
                         <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
@@ -96,7 +91,7 @@
             <div id="shortTerm-box" class="pending">
             <div class="title">
             <div class="order-title">
-                    <h3>Pending Orders </h3>
+                    <h3>Long Term Orders </h3>
                     <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 

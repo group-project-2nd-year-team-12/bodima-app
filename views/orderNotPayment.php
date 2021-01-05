@@ -46,13 +46,7 @@
         breakfast.style.display='none';
         longTerm.style.display='none';
     }
-    if(id=='longTerm')
-    {
-        longTerm.style.display='block';
-        dinner.style.display='none';
-        lunch.style.display='none';
-        breakfast.style.display='none';
-    }
+   
    
     order.style.display='block';
   
@@ -106,10 +100,6 @@
                     <div>
                         <div class="count" id="noti-accpetDinner"><h5></h5></div>
                         <li tabindex="0" id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
-                    </div>
-                    <div>
-                        <div class="count" id="noti-accpetLongTerm"><h5></h5></div>
-                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                     </div>
                 </ul>
             </div> 
@@ -295,72 +285,13 @@
                                 
             </div>
         </div>
-        <div id="longTerm-box" class="accept none">
-            <div class="title">
-            <div class="order-title">
-                    <h3>Card Payment </h3>
-                    <!-- <div><h5>1</h5></div> -->
-                </div>
-                <?php 
-                  $i=0;
-                 if(in_array('longTerm',$new)){
-                    foreach($records as $record)
-                    {
-                        if($record['order_type']=='longTerm'){?>
-                     <div class="box " >
-                            <div class="resend" onclick="order('<?php echo $i ?>')">
-                                    <div class="right"><i style="padding: 10px;" class="fas fa-credit-card fa-lg"></i></div>
-                                    <div class="letter"><h4>Order Id : <?php echo $record['order_id']; ?></h4></div>
-                            </div>
-                            <div id="<?php echo $i ?>" class="details-box">
-                            <div style="width: 300px;"><img style="width: 200px; margin:20px 30px" src="../resource/img/card.svg" alt=""></div>
-                                    
-                                    <div class="button-pay">
-                                    <h2 class="order_item order-head">ORDER INFO</h2>
-                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
-                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                        <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],1);
-                                            while($result=mysqli_fetch_assoc($getOrder))
-                                            {
-                                                echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
-                                                echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
-                                                $address=$result['address'];
-                                                $email=$result['email'];
-                                                $first_name=$result['first_name'];
-                                                $last_name=$result['last_name'];
-                                                $total=$result['total'];
-                                                $phone=$result['phone'];
-                                                $method=$result['method'];
-                                            
-                                            }?>
-                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
-                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
-                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
-                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
-                                 </div>
-                            </div>
-                    
-                         </div>
-                <?php    }
-                    $i=$i+2;  }
-                }   else
-                {?>
-                    <div class="empty">
-                         <h1> Nothing to show here</h1>
-                    </div>
-              <?php  }
-                 ?>              
-                                
-            </div>
-        </div>
        
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/timing.js"></script>
-<script src="../resource/js/newOrder.js"></script>
+<script src="../resource/js/order.js"></script>
 <script src="../resource/js/jquery.js"></script>
 <script>
         function order(x,y) {  

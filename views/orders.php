@@ -116,6 +116,7 @@
          <?php 
          $records=unserialize($_GET['record']);
          $new=array_column($records,'order_type');
+         $term=array_column($records,'term');
          ?>
         <div id="breakfast-box" class="accept ">
             <div class="title">
@@ -126,13 +127,13 @@
                 <?php
                 $i=0;
                 $y=1;
-                if(in_array('breakfast',$new)){
+                if(in_array('breakfast',$new) && in_array('shortTerm',$term)){
 
                     foreach($records as $record)
                     { 
                     
                    
-                        if($record['order_type']=='breakfast'){?>
+                        if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order" >
                     
@@ -204,7 +205,7 @@
                 <?php 
                  $i=0;
                  $y=1;
-                if(in_array('lunch',$new)){
+                if(in_array('lunch',$new) && in_array('shortTerm',$term)){
                     foreach($records as $record)
                     {
                         if($record['order_type']=='lunch'){?>
@@ -278,7 +279,7 @@
                 <?php 
                  $i=0;
                  $y=1;
-                 if(in_array('dinner',$new)){
+                 if(in_array('dinner',$new) && in_array('shortTerm',$term)){
                     foreach($records as $record)
                     {
                         if($record['order_type']=='dinner'){?>
@@ -353,10 +354,10 @@
                 <?php 
                  $i=0;
                  $y=1;
-                 if(in_array('longTerm',$new)){
+                 if(in_array('longTerm',$term)){
                     foreach($records as $record)
                     {
-                        if($record['order_type']=='longTerm'){?>
+                        if($record['term']=='longTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order">
                             <div class="resend"  onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
@@ -424,7 +425,7 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
-<script src="../resource/js/newOrder.js"></script>
+<script src="../resource/js/order.js"></script>
 
 <script>
         function order(x,y) {  

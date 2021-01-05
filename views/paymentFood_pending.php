@@ -83,7 +83,7 @@
                     </div>
                     <div>
                         <div id="noti-longTerm"><h5></h5></div>
-                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Long Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                     </div>
                 </ul>
             </div>
@@ -428,8 +428,8 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
-<script src="../resource/js/pendingOrder.js"></script>
 <script src="../resource/js/newOrder.js"></script>
+<script> src="../resource/order.js"</script>
 <script src="../resource/js/disableBack.js"></script>
 <!-- clickable drop down -->
 <script>

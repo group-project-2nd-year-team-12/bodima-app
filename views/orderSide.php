@@ -7,6 +7,7 @@
                   </div>
                   <li onclick="window.location='../index.php'"><i style="width: 30px;" class="fas fa-external-link-alt"></i> Home page</li>
                   <li id="order" onclick="window.location='../controller/orderConFood.php?id=1'"><i style="width: 30px;" class="fas fa-sort-amount-down-alt"></i> New Orders <div id="noti-order" class="noti-order"><h5>1</h5></div></li>
+                  <li id="order" onclick="window.location='../controller/orderConFood.php?id=1'"><i style="width: 30px;" class="fas fa-sort-amount-down-alt"></i> Long Term List <div id="noti-order" class="noti-order"><h5>1</h5></div></li>
                   <li id="card" onclick="window.location='../controller/orderConFood.php?id=2'"><i style="width: 30px;"  class="far fa-credit-card"></i> Card Payment <div id="noti-accpet" class="noti-order"><h5>1</h5></div></li>
                   <li id="deliver" onclick="window.location='../controller/orderConFood.php?id=3'"><i style="width: 30px;" class="fas fa-truck"></i> Delivery List <div id="noti-delivery" class="noti-order"><h5>1</h5></div></li>
                   <li id="history" onclick="window.location='../controller/orderConFood.php?id=4'"><i style="width: 30px;" class="fas fa-history"></i> Deliverd History</li>
@@ -29,7 +30,6 @@
             dataType:"json",
             success:function(data)
 			{
-        console.log(data);
                 if(data.breakfast+data.lunch+data.dinner+data.longTerm!=0)
                 {   $('#noti-order').css("display","block");
                     $('#noti-order h5').html(data.breakfast+data.lunch+data.dinner+data.longTerm);
@@ -66,7 +66,7 @@
                     $('#noti-longTerm').css("display","none");
                 }
 
-                if(data.acceptBreakfast+data.accLunch+data.accDCount+data.accLTCount!=0)
+                if(data.acceptBreakfast+data.accLunch+data.accDinner+data.accLongTerm!=0)
                 {   $('#noti-accpet').css("display","block");
                     $('#noti-accpet h5').html(data.acceptBreakfast+data.accLunch+data.accDinner+data.accLongTerm);
                 }

@@ -156,8 +156,12 @@ if(isset($_GET['id']) && $_GET['id']==3)
       $i=0;
       while($record=mysqli_fetch_assoc($order_pending))
       {
-          $data_rows[$i]=$record;
-          $i++;
+         if($record['term']=='shortTerm')
+         {
+            $data_rows[$i]=$record;
+            $i++;
+         }
+         
       }
       $data1=serialize($ids);
       $data2=serialize($data_rows);
@@ -236,18 +240,7 @@ if(isset($_GET['orderConfirm_id'])){
       echo "Mysqli query failed";
    }
 }
-if(isset($_GET['orderConfirmFS_id'])){
-   $order_id=$_GET['orderConfirmFS_id'];
-   date_default_timezone_set("Asia/Colombo");
-    $deliveredTime=date("h:i:sa");
-   $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
-   if($result){
-      header('Location:../views/orderHistory.php');
-   }
-   {
-      echo "Mysqli query failed";
-   }
-}
+
 
 if(isset($_GET['order_id'])){
    $order_id=$_GET['order_id'];

@@ -122,7 +122,26 @@ $total=0;
                     <label for="2">Cash</label>
                 </div>
                 <button name="submit" type="submit" id="request" class="btn6 request">Request </button>
+              
             </form>
+
+             <!-- disabled if term is long term -->
+                <?php 
+                    if($_SESSION['term']=='longTerm')
+                    { ?>
+                            <script>
+                                document.getElementById('1').disabled=true;
+                                document.getElementById('2').checked=true;
+                            </script>
+                <?php   }elseif($_SESSION['term']=='shortTerm')
+                {?>
+
+                            <script>
+                                document.getElementById('1').disabled=false;
+                            </script>
+             <?php   }
+
+                ?>
            
         </div>
      </div>
@@ -130,7 +149,7 @@ $total=0;
      
     </div>
     <?php include 'footer.php'?>
-        <script src="../resource/js/cart1.js"></script>
+        
         <script src="../resource/js/home1.js"></script>
 <script src="../resource/js/jquery.js"></script>
 </body>

@@ -360,7 +360,7 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/jquery.js"></script>
-<script src="../resource/js/newOrder.js"></script>
+<script src="../resource/js/order.js"></script>
 <script>
         function order(x,y) {  
             var orderDown=document.getElementById(x);
