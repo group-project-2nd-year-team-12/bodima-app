@@ -17,6 +17,20 @@ body {
     border-radius: 5px;
 }
 
+.con-2 {
+    background-color: white;
+    margin: 15%px 15% 100px 15%;
+    padding: 40px;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+.con-2 hr {
+    border-top: 2px solid #5d80b6;
+    width: 100%;
+    display: flex;
+}
+
 .con-1 .section {
     /* background-color: yellow; */
     margin: 20px;
@@ -27,36 +41,106 @@ body {
 }
 
 .con-1 h1 {
-    color: #476aa0;
+    color: black;
 }
 
 .con-1 p {
     font-size: medium;
     text-transform: capitalize;
-    color: #476aa0;
-    font-weight: 600;
+    color: #1978a5;
+    font-weight: 200;
+    padding: 1% 1% 1% 1%;
+}
+
+.con-1 p.opt {
+    position: relative;
+    bottom: 53px;
+    display: flex;
 }
 
 .con-1 input[type=text] {
-    width: 60%;
+    width: 70%;
+    line-height: 20px;
+    padding: 1% 1% 1% 1%;
+    border: 1.5px solid #5d80b6;
 }
 
 .con-1 textarea {
-    width: 60%;
+    width: 70%;
+    line-height: 35px;
+    padding: 1% 1% 1% 1%;
+    border: 1.5px solid #5d80b6;
 }
 
 .con-1 .section span {
-    font-size: medium;
-    color: gray;
-    font-weight: 500;
+    font-size: 15px;
+    color: rgb(48, 47, 47);
+    font-weight: 100;
+}
+
+.con-1 .radio-1 {
+    position: relative;
+    left: 20%;
+}
+
+.con-1 .radio-2 {
+    position: relative;
+    left: 10%;
 }
 
 .con-1 h4 {
-    color: #101e5ad8;
+    color: black;
     margin-top: -15px;
     margin-left: -20%;
     margin-bottom: 20px;
-    font-size: large;
+    font-size: 20px;
+}
+
+.con-1 .images {
+    position: relative;
+    padding: 2% 1% 1% 1%;
+    box-shadow: 0 0 3px 0.1px #5d80b6;
+    display: flex;
+    width: 70%;
+    text-align: center;
+    bottom: 20px;
+}
+
+.con-1 input[type=file] {
+    text-align: center;
+    margin: 10px 10px 10px 10px;
+}
+
+.con-1 input#pcount {
+    position: relative;
+    left: 250px;
+    bottom: 30px;
+    line-height: 35px;
+    border-radius: 0px;
+    padding: -1px;
+    font-size: 15px;
+    border: 1.5px solid #5d80b6;
+    margin-top: 9px;
+    text-align: center;
+    width: 40px;
+}
+
+.radio {
+    display: inline-block;
+    padding-right: 70px;
+    font-size: 15px;
+    margin-left: 55px;
+    margin-top: 15px;
+    color: black;
+    /* border: 1.5px solid rgb(26, 155, 194); */
+}
+
+.radio input {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
 }
 
 .con-1 input[type=submit] {
@@ -85,7 +169,36 @@ body {
     display: flex;
 }
 
-.con-1 hr {
-    margin-left: 5%;
-    margin-right: 5%;
+.error_msg {
+    color: #cc0000;
+    margin-right: 100px;
+    position: relative;
+    width: 100%;
+    left: 150px;
+    bottom: 30px;
+    border-radius: 0px;
+    padding: 5px 5px 0px 0px;
+    font-size: 15px;
+}
+
+.error {
+    color: #cc0000;
+    width: 100%;
+    padding: 5px 0px;
+}
+
+.error1 {
+    color: #cc0000;
+    position: relative;
+    width: 100%;
+    left: 30px;
+    bottom: 20px;
+}
+
+.error2 {
+    color: #cc0000;
+    position: relative;
+    width: 100%;
+    left: 250px;
+    bottom: 20px;
 }

@@ -14,7 +14,8 @@
 <?php require "header1.php"?>
 
 <div class="con-1">
-<?php
+<div class="con-2">
+		<?php
         if(isset($_GET['param']))
         {
             $errors=$_GET['param'];
@@ -34,7 +35,7 @@
 	<form action="../controller/postBoardingCon.php" method="post" enctype="multipart/form-data"  class="form">
 			<!-- <div id="name"> -->
 
-    <h1>Boarding Advertisement Form</p><!-- postBoarding -->
+    <h1>Boarding Advertisement Form</p><!-- postBoarding --> 
     <hr/>
 
     <div class="section">
@@ -85,8 +86,13 @@
 
     <hr/>
     <div class="section">
-            <p>Boarding Cover Image</p ><br>
+
+			<h4>Add 5 Photos</h4><p class="opt">(Optional)</p>
+
+			<div class="images">
+            
 				<input type="file" name="BCimage" accept=".jpg, .png, .jpeg"  id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg ><br>
+			</div>	
     </div>
 
 
@@ -94,18 +100,26 @@
     <div class="section">
             <h4>Boarding Information</h4>
 
-            <p>Renting For Girls Or Boys</p >
+			<p>Renting For (Girls / Boys / Any One) : </p >
+			
+					<div class="radio-1">
 				
 					<input type="radio" name="gender" value="Boys"> <span>Boys</span>
 					<input type="radio" name="gender" value="Girls"> <span>Girls</span> 
+					<input type="radio" name="gender" value="AnyOne"> <span>Any One</span> 
+
+					</div>
 					<?php if(isset($errors['err6'])) echo "<div class='error'>".$errors['err6']."</div>"; ?>
 
 				
 			
-			<p>Renting Options</p >
+			<p>Renting Options : </p >
+
+					<div class="radio-2">
 				
 					<input type="radio" name="individual" id="individual" value="Individual"><span id="individual" >&nbsp; <span>Individual</span></span>&nbsp;&nbsp;
 					<input type="radio" name="individual" id="RoomOrHome" value="RoomOrHome"><span id="RomeOrHome" >&nbsp; <span>Rome Or Home</span></span>&nbsp;&nbsp;
+					</div>
 					<?php if(isset($errors['err5'])) echo "<div class='error'>".$errors['err5']."</div>"; ?>
 
 				
@@ -216,7 +230,7 @@
 			
 				
 			</form>
-
+</div>
 </div>
     
 </body>
