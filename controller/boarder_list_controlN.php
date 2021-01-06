@@ -10,11 +10,11 @@ if(isset($_GET['boarderlist'])){
     if(!isset($_POST["qry"]))
     {
         
-        $boarder= boarder_list_modelN::all_boarderlist_of_owner($connection,$BOid);
+        $boarder= boarder_list_modelN::all_boarderlist_of_owner($connection,$_SESSION['BOid']);
 
     }else{
         
-        $boarder= boarder_list_modelN::search_boarder_in_list($connection,$qry,$BOid);
+        $boarder= boarder_list_modelN::search_boarder_in_list($connection,$qry,$_SESSION['BOid']);
     }
 
 $output=array();

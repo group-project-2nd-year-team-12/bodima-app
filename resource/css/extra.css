@@ -20,6 +20,13 @@
     .mid_E{width: 55%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
     .mid_F{width:37%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px; display:block;}
     
+    /* payment history page */
+    .mid_G{width: 55%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_H{width:37%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px; display:block;}
+
+    /* new payment page */
+    .mid_I{width: 55%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_J{width:37%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px; display:block;}
     
 }
 
@@ -32,6 +39,12 @@
     
     .mid_E{width: 96%; margin:2%; order:1;}
     .mid_F{width: 96%; margin:2%; order:2;}
+
+    .mid_G{width: 96%; margin:2%; order:1;}
+    .mid_H{width: 96%; margin:2%; order:2;}
+
+    .mid_I{width: 96%; margin:2%; order:1;}
+    .mid_J{width: 96%; margin:2%; order:2;}
 }
 
 

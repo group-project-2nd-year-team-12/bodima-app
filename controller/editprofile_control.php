@@ -23,6 +23,10 @@ if(isset($_GET['editprofile'])){
 
         header('Location:../views/editprofile1.php?user='.$user.'&parent='.$parent);
 
+        if(isset($_GET['msg'])){
+            header('Location:../views/editprofile1.php?msg='.$_GET['msg'].'&user='.$user.'&parent='.$parent);
+        }
+
     }else if($_SESSION['level']=='boardings_owner'| $_SESSION['level']=='food_supplier'| $_SESSION['level']=='student')
 
     {
@@ -32,6 +36,10 @@ if(isset($_GET['editprofile'])){
     $user=serialize($detail); 
 
         header('Location:../views/editprofile1.php?user='.$user);
+
+        if(isset($_GET['msg'])){
+            header('Location:../views/editprofile1.php?msg='.$_GET['msg'].'&user='.$user);
+        }
     }
 }
 
@@ -91,9 +99,18 @@ if(isset($_POST['editprofile_btn'])){
 if(isset($_POST['password_change_btn'])){
     $current_password=sha1($_POST['current_password']);
     $new_password=sha1($_POST['new_password']);
-    profile_modelN::update_password($connection,$_SESSION['level'],$_SESSION['email'],$new_password,$current_password);
-    
+    $out=profile_modelN::update_password($connection,$_SESSION['level'],$_SESSION['email'],$new_password,$current_password);
+    if($out==0){
+        $msg='Current password is invalid!';
+    }else if($out==1){
+        $msg='Your password has succesfully updated';
+    }else{
+        $msg='error occurred with multiple rows!';
+    }
+    echo $msg;
    
+    // header('Location:../controller/editprofile_control.php?msg='.$msg.'&editprofile=1');
+    
 }
 
 

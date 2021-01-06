@@ -121,7 +121,7 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="#">History</a></li>
+            <li><a href="../controller/payment_history_controlN.php?id=1">History</a></li>
             <li><a href="#">New Payment</a></li>
           </ul>
         </li>

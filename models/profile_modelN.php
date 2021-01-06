@@ -40,9 +40,19 @@ class profile_modelN{
     public static function update_password($connection,$level,$email,$new_password,$current_password){
         $query="UPDATE {$level} SET password='{$new_password}'  
                 WHERE email='{$email}' and password='{$current_password}';";
-        echo $query;
-        die();
-       return mysqli_query($connection,$query);
+        // echo $query;
+        // die();
+       
+       $out=mysqli_query($connection,$query);
+       $x=mysqli_affected_rows($connection);
+       if($x==0){
+               return 0;
+       }else if($x==1){
+               return 1;
+       }else{
+               return 9999;
+       }
+       
     }
 
 
