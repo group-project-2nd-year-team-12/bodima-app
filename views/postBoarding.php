@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="../resource/css/new_home.css"> 
 	<link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/extra.css">
-    <link href="../resource/css/boarding.css" rel="stylesheet">
+	<link href="../resource/css/boarding.css" rel="stylesheet">
+	<!-- <script src="jquery-3.5.1.min.js"></script> -->
+	
+
 </head>
 <body>
 
@@ -117,8 +120,8 @@
 
 					<div class="radio-2">
 				
-					<input type="radio" name="individual" id="individual" value="Individual"><span id="individual" >&nbsp; <span>Individual</span></span>&nbsp;&nbsp;
-					<input type="radio" name="individual" id="RoomOrHome" value="RoomOrHome"><span id="RomeOrHome" >&nbsp; <span>Rome Or Home</span></span>&nbsp;&nbsp;
+					<input type="radio" name="individual" id="individual" value="Individual"  onclick="text('0')" checked><span id="individual" >&nbsp; <span>Individual</span></span>&nbsp;&nbsp;
+					<input type="radio" name="individual" id="RoomOrHome" value="RoomOrHome"  onclick="text('1')" ><span id="RomeOrHome" >&nbsp; <span>Rome Or Home</span></span>&nbsp;&nbsp;
 					</div>
 					<?php if(isset($errors['err5'])) echo "<div class='error'>".$errors['err5']."</div>"; ?>
 
@@ -127,8 +130,8 @@
 
 				
 			
-				<p>Total Person Count</p >
-				<input type="number"  name="Pcount" id="pcount" value=1  >
+				<p>Total Person Count :  </p >
+				<input type="number"  name="Pcount" id="pcount" value=1 min=0  >
 				<?php   if(isset($errors['err7'])){
 							echo "<div class='error2'>".$errors['err7']."</div>"; 
 						}elseif(isset($errors['err8'])){
@@ -145,7 +148,8 @@
     <div class="section">
     <h4>Boarding Renting fee details</h4>
 
-            <p>Cost Per Person For Month</p >
+			<p id="indivi">Cost Per Person For Month</p >
+			<p id="ROrH">Cost Renting For Month</p >
 				<input type="text" name="CPperson" id="cpperson"  >
 				<?php   if(isset($errors['err10'])){
 							echo "<div class='error2'>".$errors['err10']."</div>"; 
@@ -169,7 +173,7 @@
 				?>
 
 				<div class="group">
-				<p>Avertisement Lifespan (Days)</p >
+				<p id="life">Avertisement Lifespan (Days) : </p >
 				
 				<input type="number"  name="Lifespan" id="lifespan" value=30  class="control prc" >
 				<?php   if(isset($errors['err14'])){
@@ -182,7 +186,7 @@
 				
 				<div class="group">
 				
-				<p>Avertisement Amount :     Rs  </p >
+				<p id="Aamou">Avertisement Amount :     Rs  </p >
 				<!-- <output  name="result" id="result"></output>   -->
 				<input type="text"  disabled  name="Aamount" id="Aamount" value=3000 >
 				</div>
@@ -191,7 +195,7 @@
     </div>
     <hr/>   
     <div class="submitdiv">
-                <input type="submit" class="save" name="submit" id="submit" value="Save Details" >
+                <input type="submit" class="save" name="submit" id="submit" value="post advertisement" >
     </div>
 				
 
@@ -201,30 +205,8 @@
 					
 						
 				<script src="../resource/js/jquery-3.5.1.min.js"></script>
-				<script>
-					$('.group').on('input','.prc',function(){
-						var totalsum =0;
-						$('.group .prc').each(function(){
-							var inputVal = $(this).val();
-							if($.isNumeric(inputVal)){
-								totalsum = parseFloat(inputVal)*100;
-							}
-
-						});
-						$('#Aamount').val(totalsum);
-						//$('#result').text(totalsum);
-						
-						//result=$_SESSION['totalsum']
-
-					});
-
-					$('form').submit(function(e){
-						$(':disabled').each(function(e){
-							$(this).removeAttr('disabled');
-						})
-
-					});
-				</script>
+				<script src="../resource/js/boarding.js"></script>
+				
 
 
 			
