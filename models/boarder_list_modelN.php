@@ -81,6 +81,35 @@ class boarder_list_modelN{
         return $result;
       }
 
+      public static function get_rent_amount($connection,$Bid,$BOid){
+
+        $query="SELECT cost_per_person FROM `boarding_post` 
+        WHERE B_post_id =(SELECT B_post_id FROM `confirm_rent` 
+        WHERE Bid=$Bid AND BOid=$BOid
+        ORDER BY payment_date DESC LIMIT 1)";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+        return $result;
+      }
+
+
+      public static function set_notification($connection,$from_BOid,$to_Bid,$date,$occurance,$massage){
+
+        $query="INSERT INTO set_notification (`from_BOid`, `to_Bid`, `setdate`, `occurance`, `massage`)
+        VALUES ({$from_BOid},{$to_Bid},'{$date}','{$occurance}','{$massage}')";
+        // echo $query;
+        // die();
+        // INSERT INTO `set_notification`(`from_BOid`, `to_Bid`, `setdate`, `occurance`, `massage`)
+        // VALUES (3,38,'2020-01-06',1,'February rent is due. Please pay before 20/01/2021')
+        $result = mysqli_query($connection, $query);
+        return $result;
+      }
+
+
+
+     
+
     }
 
     ?>
