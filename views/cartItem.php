@@ -82,17 +82,25 @@ $total=0;
                              {
                                 var countTag=document.getElementById(<?php echo $i; ?>);
                                 var count = parseInt(countTag.innerHTML)+1;
+                                var totalTag=document.querySelectorAll('.left-item');
+                                var total=parseInt(totalTag[0].innerHTML);
+                                var itemPrice=<?php echo $result['product_price'] ?>;
                                 if(count>10)
                                 {
                                     count=10;
+                                }else{
+                                    total=total+itemPrice;
+                                    totalTag[0].innerHTML=total;
+                                    totalTag[2].innerHTML=total;
                                 }
                                 countTag.innerHTML=count;
                                 var productId=<?php echo $result['product_id'] ?>;
-                                // console.log(countTag);
+                                
+                                console.log(total);
                                 $.ajax({
                                 url:"../controller/cartCon.php",
                                 method:"POST",
-                                data:{quantity:count,productId:productId},
+                                data:{quantity:count,productId:productId,total:total},
                                 dataType:"json"
                                 });
                              })
@@ -102,8 +110,15 @@ $total=0;
                              {
                                 var countTag=document.getElementById(<?php echo $i; ?>);
                                 var count = parseInt(countTag.innerHTML)-1;
+                                var itemPrice=<?php echo $result['product_price'] ?>;
+                                var totalTag=document.querySelectorAll('.left-item');
+                                var total=parseInt(totalTag[0].innerHTML);
                                 if(count<=0){
                                     count=1;
+                                }else{
+                                    total=total-itemPrice;
+                                    totalTag[0].innerHTML=total;
+                                    totalTag[2].innerHTML=total;
                                 }
                                 countTag.innerHTML=count;
                                 var productId=<?php echo $result['product_id'] ?>;
@@ -111,7 +126,7 @@ $total=0;
                                 $.ajax({
                                 url:"../controller/cartCon.php",
                                 method:"POST",
-                                data:{quantity:count,productId:productId},
+                                data:{quantity:count,productId:productId,total:total},
                                 dataType:"json"
                                 });
                              })
@@ -125,7 +140,7 @@ $total=0;
                                          <!-- order price details -->
 
       <?php $count=count($_SESSION['cart']); 
-            $_SESSION['total']=$total; 
+      $_SESSION['total']=$total;
       ?>
      <div class="payment">
      <div class="price-details">
@@ -133,9 +148,9 @@ $total=0;
             <h3>Price details</h3>
         </div>
         <div class="details">
-            <h5>price (<?php echo $count ?>) item<span class="left-item">Rs <?php echo $total; ?></span></h5>
+            <h5>price (<?php echo $count ?>) item<span class="left-item"><?php echo $_SESSION['total']; ?></span></h5>
             <h5 style="padding-bottom: 10px ;">delivery Charges <span style="color: green;" class="left-item">Free</span></h5>
-            <h4 style="padding-bottom: 10px;border-top:1px solid rgb(191, 184, 184); border-bottom:1px solid rgb(191, 184, 184);">Amount payable<span class="left-item">Rs <?php echo $total; ?></span> </h4>
+            <h4 style="padding-bottom: 10px;border-top:1px solid rgb(191, 184, 184); border-bottom:1px solid rgb(191, 184, 184);">Amount payable<span class="left-item"><?php echo $_SESSION['total']; ?></span> </h4>
             <form  action="../controller/orderCon.php" method="post">
                 <h4>Enter delivery address :</h4>
                 <?php if(isset($_GET['errorAddress'])) echo "<h5 style='color:red'>*Please enter the delivery address</h5>"; ?>

@@ -136,8 +136,8 @@ if(isset($_POST['startDate']))
 
 
 
-//quantity increas
-if(isset($_POST['quantity']) && isset($_POST['productId']))
+//quantity increas and decrease
+if(isset($_POST['quantity']) && isset($_POST['productId']) && isset($_POST['total']))
 {
   $quantity=$_POST['quantity'];
   $productId=$_POST['productId'];
@@ -151,6 +151,7 @@ if(isset($_POST['quantity']) && isset($_POST['productId']))
     
   }
   $_SESSION['cart']=$cartItems;
+  $_SESSION['total']=$_POST['total'];
   $arr=array(
     'set'=>$productId,
   );
