@@ -43,7 +43,8 @@
 
     <div class="section">
                     <p>Title</p>
-                    <input type="text" name="title" id="title" ><br>
+					<input type="text" name="title" id="title" ><br>
+					<?php if(isset($errors['err17'])) echo "<div class='error_msg'>".$errors['err17']."</div>"; ?>
                     
                     <p>Description </p >
                     <!--<input type="text" name="description" id="description" placeholder="Enter Description" ><br><br>-->
@@ -94,7 +95,7 @@
 
 			<div class="images">
             
-				<input type="file" name="BCimage" accept=".jpg, .png, .jpeg"  id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg ><br>
+				<input type="file" name="image[]" accept=".jpg, .png, .jpeg"  id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg multiple ><br>
 			</div>	
     </div>
 
@@ -131,7 +132,7 @@
 				
 			
 				<p>Total Person Count :  </p >
-				<input type="number"  name="Pcount" id="pcount" value=1 min=0  >
+				<input type="number"  name="Pcount" id="pcount" value=1  >
 				<?php   if(isset($errors['err7'])){
 							echo "<div class='error2'>".$errors['err7']."</div>"; 
 						}elseif(isset($errors['err8'])){

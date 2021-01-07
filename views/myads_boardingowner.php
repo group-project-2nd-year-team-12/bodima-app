@@ -66,6 +66,8 @@ session_start();
         <?php
         // echo $BOid;
          $result=profile_model::b_postListByPerson($BOid,$connection);
+         
+
 
         while($row=mysqli_fetch_assoc($result)){
          
