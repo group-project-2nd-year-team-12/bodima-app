@@ -31,7 +31,7 @@
                                     dataType:"json",
                                     success:function(data)
                                     {
-                                        console.log(data);
+                                        
                                         // pending count
                                         if(data.pCount!=0) 
                                         {

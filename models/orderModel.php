@@ -141,5 +141,22 @@ class orderModel{
         return $result;
     }
 
+    public static function checkLongTermState($connection,$orderId,$date){
+        $query="SELECT * FROM longterm WHERE order_id=$orderId AND day='{$date}'  LIMIT 1";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function updateLongTermState($connection,$orderId,$date,$time){
+        $query="UPDATE longterm SET delivery_state=1,deliveredTime='{$time}' WHERE order_id=$orderId AND day='{$date}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function checkAvailableUser($connection,$pid){
+        $query="SELECT f.available FROM food_supplier f,food_post p WHERE p.F_post_id=$pid AND f.FSid=p.FSid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
     
 }

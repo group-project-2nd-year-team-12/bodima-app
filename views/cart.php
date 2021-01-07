@@ -124,12 +124,12 @@ if(isset($_GET['Pid']))
         <h1>Get  </h1>
         <h1>Your</h1>
         <h1>Breakfast</h1>
-           <form action="#">
+           
             <div class="search-item">
-              <input type="text" placeholder="search food ...">
+              <input id="breakfast-search" type="text" placeholder="search food ...">
               <h4><i class="fas fa-search"></i></h4>
             </div>
-          </form>
+          
       </div>
     </div>
     <div class="cart-wrapper">
@@ -141,11 +141,11 @@ if(isset($_GET['Pid']))
         {
           if($row['breakfast']==1)
           {?>
-        <div class="cartbox">  
+        <div id="b<?php echo $row['product_name'];?>" class="cartbox">  
              <form class="breakformForm<?php echo $i  ?>" action='#'>         
                  <div class="card"> 
                      <div style="width: 100%; height: 150px;overflow:hidden"><img src="<?php echo $row['image'];?>" alt=""></div>
-                     <h3><?php echo $row['product_name'];?><span class="price"> Rs. <?php echo $row['price'];?></span></h3>
+                     <h3><span  class="food-item"><?php echo $row['product_name'];?></span><span class="price"> Rs. <?php echo $row['price'];?></span></h3>
                      
                      <p>Some text about the item </p>
                      <input id="quantity<?php echo $i ?>" type="hidden" name="quantity" value="1">
@@ -159,8 +159,12 @@ if(isset($_GET['Pid']))
                      <input id="address<?php echo $i ?>" type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <input id="order_type<?php echo $i ?>" type="hidden" name="order_type" value="breakfast">
                      <p><button id="add<?php echo $i ; ?>" type="button" class="cart-num block1" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
+                     <div class="unavailable">
+                      <h1>Food supplier not available</h1>
+                    </div>
                  </div>
                </form>
+             
          </div>
          <script>
          $(document).ready(function(){
@@ -216,13 +220,15 @@ if(isset($_GET['Pid']))
                   },
                 error:function(jqXHR, textStatus, error)
                 {
-                  window.location='../views/user_loging.php?login';
+                  // window.location='../views/user_loging.php?login';
                     console.log(jqXHR.responseText);
                     console.log(jqXHR.statusText);
                 }
             });
           
          });
+
+
         });
          </script>
         <?php $i++; }
@@ -239,12 +245,12 @@ if(isset($_GET['Pid']))
         <h1>Get  </h1>
         <h1>Your</h1>
         <h1>Lunch</h1>
-           <form action="#">
+           
             <div class="search-item">
-              <input type="text" placeholder="search food ...">
+              <input  id="lunch-search"  type="text" placeholder="search food ...">
               <h4><i class="fas fa-search"></i></h4>
             </div>
-          </form>
+          
       </div>
     </div>
     <div class="cart-wrapper">
@@ -255,7 +261,7 @@ if(isset($_GET['Pid']))
         {
           if($row['lunch']==1)
           {?>
-             <div class="cartbox">  
+             <div id="l<?php echo $row['product_name'];?>" class="cartbox">  
              <form class="breakformForm<?php echo $i  ?>" action='#'>         
                  <div class="card"> 
                      <div style="width: 100%; height: 150px;overflow:hidden"><img src="<?php echo $row['image'];?>" alt=""></div>
@@ -273,8 +279,12 @@ if(isset($_GET['Pid']))
                      <input id="address<?php echo $i ?>" type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <input id="order_type<?php echo $i ?>" type="hidden" name="order_type" value="lunch">
                      <p><button id="add<?php echo $i ; ?>" type="button" class="cart-num block1" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
+                     <div class="unavailable">
+                      <h1>Food supplier not available</h1>
+                    </div>
                  </div>
                </form>
+               
          </div>
          <script>
          $(document).ready(function(){
@@ -330,7 +340,7 @@ if(isset($_GET['Pid']))
                   },
                 error:function(jqXHR, textStatus, error)
                 {
-                  window.location='../views/user_loging.php?login';
+                  // window.location='../views/user_loging.php?login';
                     console.log(jqXHR.responseText);
                     console.log(jqXHR.statusText);
                 }
@@ -353,12 +363,12 @@ if(isset($_GET['Pid']))
         <h1>Get  </h1>
         <h1>Your</h1>
         <h1>Dinner</h1>
-           <form action="#">
+           
             <div class="search-item">
-              <input type="text" placeholder="search food ...">
+              <input  id="dinner-search" type="text" placeholder="search food ...">
               <h4><i class="fas fa-search"></i></h4>
             </div>
-          </form>
+          
       </div>
     </div>
     <div class="cart-wrapper">
@@ -369,7 +379,7 @@ if(isset($_GET['Pid']))
         {
           if($row['dinner']==1)
           {?>
-            <div class="cartbox">  
+            <div id="d<?php echo $row['product_name'];?>" class="cartbox">  
              <form class="breakformForm<?php echo $i  ?>" action='#'>         
                  <div class="card"> 
                      <div style="width: 100%; height: 150px;overflow:hidden"><img src="<?php echo $row['image'];?>" alt=""></div>
@@ -387,6 +397,9 @@ if(isset($_GET['Pid']))
                      <input id="address<?php echo $i ?>" type="hidden" name="address" value="<?php echo $_GET['address'];?>">
                      <input id="order_type<?php echo $i ?>" type="hidden" name="order_type" value="dinner">
                      <p><button id="add<?php echo $i ; ?>" type="button" class="cart-num block1" name="add"><i style="padding-right:5px;" class="fa fa-cart-plus"></i>Add to Order</button></p>
+                     <div class="unavailable">
+                      <h1>Food supplier not available</h1>
+                    </div>
                  </div>
                </form>
          </div>
@@ -444,7 +457,7 @@ if(isset($_GET['Pid']))
                   },
                 error:function(jqXHR, textStatus, error)
                 {
-                  window.location='../views/user_loging.php?login';
+                  // window.location='../views/user_loging.php?login';
                     console.log(jqXHR.responseText);
                     console.log(jqXHR.statusText);
                 }

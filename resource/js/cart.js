@@ -40,7 +40,6 @@ $(document).ready(function () {
      data:{manage:manage},
      success:function(data)
      {
-       console.log(data);
        if(data.term=="")
        {
          document.getElementById('1').disabled=false;
@@ -130,5 +129,99 @@ function formSheduleValidate()
   return true;
 }                 
 
+$(window).on('load', function () {
+  var url=new URL(window.location.href);
+  var postId = url.searchParams.get("Pid");
+  console.log(postId);
+  $.ajax({
+    type: "POST",
+    url: "../controller/notificationCon.php",
+    data:{postId:postId},
+    dataType: "json",
+    success: function (data) {
+      console.log(data);
+      if(data.available==0)
+      {
+        document.querySelectorAll('.unavailable').forEach(function(element){
+          element.style.display='block';
+        })
+        document.querySelectorAll('.cart-num').forEach(function(element){
+          element.disabled=true;
+          element.style.color='gray';
+        })
 
+      }else
+      {
+        document.querySelectorAll('.unavailable').forEach(function(element){
+          element.style.display='none';
+        })
+      }
+      
+    }
+  });
+  
+});
 
+$(document).on('keypress','#breakfast-search', function (e) {
+
+  if(e.key==='Enter')
+  {
+    var searchContent=$('#breakfast-search').val();
+    var productName=document.querySelectorAll('.food-item');
+    var myPattern = new RegExp('(\\w*'+searchContent+'\\w*)','gi');
+
+    productName.forEach(function(element){
+      document.getElementById('b'+element.innerHTML).style.display='none';
+      if(element.innerHTML.match(myPattern))
+      {
+        console.log('ok');
+        document.getElementById('b'+element.innerHTML).style.display='block';
+      }
+      
+    })
+   
+  }
+ 
+})
+$(document).on('keypress','#lunch-search', function (e) {
+
+  if(e.key==='Enter')
+  {
+    var searchContent=$('#lunch-search').val();
+    var productName=document.querySelectorAll('.food-item');
+    var myPattern = new RegExp('(\\w*'+searchContent+'\\w*)','gi');
+
+    productName.forEach(function(element){
+      document.getElementById('l'+element.innerHTML).style.display='none';
+      if(element.innerHTML.match(myPattern))
+      {
+        console.log('ok');
+        document.getElementById('l'+element.innerHTML).style.display='block';
+      }
+      
+    })
+   
+  }
+ 
+})
+$(document).on('keypress','#dinner-search', function (e) {
+
+  if(e.key==='Enter')
+  {
+    var searchContent=$('#dinner-search').val();
+    var productName=document.querySelectorAll('.food-item');
+    var myPattern = new RegExp('(\\w*'+searchContent+'\\w*)','gi');
+
+    productName.forEach(function(element){
+      document.getElementById('d'+element.innerHTML).style.display='none';
+      if(element.innerHTML.match(myPattern))
+      {
+        console.log('ok');
+        document.getElementById('d'+element.innerHTML).style.display='block';
+      }
+      
+    })
+   
+  }
+ 
+})

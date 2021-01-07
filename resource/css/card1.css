@@ -73,16 +73,33 @@ body{
     grid-template-columns: 1fr 1fr 1fr;
 }
 .card {
+  position: relative;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8); */
     max-width: 380px;
     margin: auto;
     text-align: center;
     background-color: rgb(255, 255, 255);
   }
+  .unavailable{
+    display: none;
+    padding-top: 20px;
+    box-sizing: border-box;
+    cursor: default;
+    position: absolute;
+    height: 150px;
+    width: 100%;
+    top: 0;
+    color: white;
+    
+    background-color: rgba(0, 0, 0, 0.631);
+  }
+  .unavailable h1:hover{
+    transform: scale(0.95);
+  }
   .card img{
       /* height: 150px; */
-      width: 100%;
-      transition: 0.5s ease-in;
+    width: 100%;
+    transition: 0.5s ease-in;
   }
   .card img:hover{
     transform: scale(1.02);
@@ -91,9 +108,9 @@ body{
     background-color: rgb(0, 27, 50);
     /* position: fixed; */
     padding: 10px !important;
-     width: 150px;
-     margin: 10px auto 10px auto;
-     cursor: pointer;
+    width: 150px;
+    margin: 10px auto 10px auto;
+    cursor: pointer;
   }
 
   .cart-icon a{
@@ -152,8 +169,11 @@ body{
  
 
   .cartbox{
+ 
     padding:20px 10px 10px 10px;
   }
+
+  
   
   .price {
     color: rgb(0, 255, 72);
@@ -352,6 +372,7 @@ body{
   margin-top: 10px;
   width: 250px;
   cursor: pointer;
+  color: #a9841f;
 }
 
 .btn6{

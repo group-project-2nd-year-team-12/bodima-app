@@ -134,4 +134,15 @@ if(isset($_POST['request']))
     );
     echo json_encode($arr);
 }
+
+if(isset($_POST['postId']))
+{
+    $pid=$_POST['postId'];
+    $available=orderModel::checkAvailableUser($connection,$pid);
+    $availableFetch=mysqli_fetch_assoc($available);
+    $arr=array(
+    'available'=>$availableFetch['available'],
+    );
+    echo json_encode($arr);
+}
 ?>

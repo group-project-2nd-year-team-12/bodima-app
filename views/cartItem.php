@@ -147,12 +147,12 @@ $total=0;
                 <input type="text" placeholder="ex:07x xxx xxx xxxx" name="phone"  ?>
                 <h4>Select the payment method :</h4>
                 <div class="payment_method">
-                    <input type="radio" id="1" name="method" value="card" checked>
-                    <label for="1">Card</label>
+                    <input type="radio" id="card" name="method" value="card" checked>
+                    <label for="card">Card</label>
                 </div>
                 <div class="payment_method">
-                    <input type="radio" id="2" name="method" value="cash">
-                    <label for="2">Cash</label>
+                    <input type="radio" id="cash" name="method" value="cash">
+                    <label for="cash">Cash</label>
                 </div>
                 <button name="submit" type="submit" id="request" class="btn6 request">ORDER </button>
               
@@ -163,14 +163,14 @@ $total=0;
                     if($_SESSION['term']=='longTerm')
                     { ?>
                             <script>
-                                document.getElementById('1').disabled=true;
-                                document.getElementById('2').checked=true;
+                                document.getElementById('card').disabled=true;
+                                document.getElementById('cash').checked=true;
                             </script>
                 <?php   }elseif($_SESSION['term']=='shortTerm')
                 {?>
 
                             <script>
-                                document.getElementById('1').disabled=false;
+                                document.getElementById('card').disabled=false;
                             </script>
              <?php   }
 

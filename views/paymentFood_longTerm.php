@@ -130,6 +130,7 @@
                                             $restaurant=$data_row['restaurant'];
                                             $method=$data_row['method'];
                                             $address=$data_row['address'];
+                                            $type=$data_row['order_type'];
                                             ?> 
                                             <?php
                                             //   echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['order_item'].'</h5>';
@@ -137,9 +138,9 @@
                                         }
                                             
                                     }
-                                    $i=1;
                                 ?>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Type </h4><h4>: <?php echo $type; ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
@@ -167,9 +168,81 @@
                                             <tr>
                                                 <td ><?php echo $i; ?></td>
                                                 <td><?php echo $row['day']; ?>
-                                                <td style="text-align: center;"><button class="longTerm-btn-1">Delivery</button></td>
-                                                <td><?php echo $row['deliveredTime']; ?>Not set</td>
-                                                
+                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
+                                                <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                            var date='<?php echo $row['day']; ?>';
+                                                            var orderId=<?php echo $row['order_id']; ?>;
+                                                            var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
+                                                        $(window).on('load', function () {
+                                                           
+                                                            $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{date:date,orderId:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                               
+                                                                if(data.date=='qual' && data.delivery==0 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='blue'; 
+                                                                     
+                                                            
+                                                                }
+                                                                if(data.date=='qual' && data.delivery==1 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                                    stateBtn.innerHTML='Received';
+                                                                    stateBtn.disabled=true;
+                                                                }
+                                                                if(data.date=='plus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='gray';  
+                                                                
+                                                                }
+                                                                if(data.delivery==1 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                        
+                                                                }
+                                                                if(data.delivery==0 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.innerHTML='Not Received';
+                                                                    stateBtn.disabled=true;
+                                                                    stateBtn.style.backgroundColor='black';
+                                                                }
+                                                                
+                                                               
+                                                            }
+                                                            });
+                                                      
+                                                    });
+                                                     
+                                                    $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
+                                                    
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{dateUp:date,orderIdUp:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                                console.log(data); 
+                                                                stateBtn.style.backgroundColor='black';  
+                                                                stateBtn.innerHTML='Received';
+                                                                stateBtn.disabled=true; 
+                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
+                                                            }
+
+                                                        });
+                                                    
+                                                     });
+
+                                                });
+                                                   
+                                                </script>
                                                 
                                             </tr>
                                             <?php $i++; } 

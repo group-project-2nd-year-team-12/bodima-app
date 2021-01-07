@@ -284,4 +284,58 @@ if(isset($_POST['view']))
     echo json_encode($data);
 }
 
+// long term date controller
+if(isset($_POST['date']) && isset($_POST['orderId']))
+{
+   date_default_timezone_set("Asia/Colombo");
+   $today=date('Y-m-d');
+   $date=$_POST['date'];
+   $todayObj=date_create($today);
+   $dateObj=date_create($date);
+   $diff=date_diff($dateObj,$todayObj);
+   $order_id=$_POST['orderId'];
+   $result=orderModel::checkLongTermState($connection,$order_id,$date);
+   $resultFetch=mysqli_fetch_assoc($result);
+   if($todayObj->format('%d') == $dateObj->format('%d'))
+   {
+      $state='qual';
+   }
+   if($todayObj->format('%d') < $dateObj->format('%d'))
+   {
+      $state='plus';
+   }
+   if($todayObj->format('%d') > $dateObj->format('%d'))
+   {
+      $state='minus';
+   }
+   
+
+   $data=array(
+      'date'=>$state,
+      'delivery'=> $resultFetch['delivery_state'],
+ 
+   );
+ 
+    echo json_encode($data);
+}
+
+if(isset($_POST['dateUp']) && isset($_POST['orderIdUp']) )
+{
+   date_default_timezone_set("Asia/Colombo");
+   $today=date('Y-m-d');
+   $date=$_POST['dateUp'];
+   $todayObj=date_create($today);
+   $dateObj=date_create($date);
+   $diff=date_diff($dateObj,$todayObj);
+   $order_id=$_POST['orderIdUp'];
+   $result=orderModel::updateLongTermState($connection,$order_id,$date,date('Y-m-d H:i:s'));
+  
+   $data=array(
+      'deliveryTime'=>date('Y-m-d H:i:s'),
+ 
+   );
+ 
+    echo json_encode($data);
+}
+
 ?>

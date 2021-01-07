@@ -137,7 +137,7 @@ if(isset($_POST['startDate']))
 
 
 //quantity increas
-if(isset($_POST['quantity']))
+if(isset($_POST['quantity']) && isset($_POST['productId']))
 {
   $quantity=$_POST['quantity'];
   $productId=$_POST['productId'];
