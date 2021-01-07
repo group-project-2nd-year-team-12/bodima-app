@@ -44,7 +44,7 @@ if(isset($_POST["generate_pdf"]))
       require_once('../resource/tcpdf/tcpdf.php');  
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
-      $obj_pdf->SetTitle("Generate HTML Table Data To PDF From MySQL Database Using TCPDF In PHP");  
+      $obj_pdf->SetTitle("BODIMA.LK Payment Report - Monthly Rent");  
       $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
       $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
       $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
@@ -150,9 +150,6 @@ if(isset($_POST["generate_pdf"]))
                 </div>
                 <div class="pay_list">
                     <div class="head_block">
-
-                    
-                    
                     <li>
                         <span>Month</span>
                         <span>amount</span>
