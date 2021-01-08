@@ -186,9 +186,10 @@
                     </div>
 
                     <div class="Cash_Payment_Entry" id="Cash_Payment_Entry">
-                    <form method="post" action="../controller/boarder_inside_controlN.php?Bid=<?php echo $details['Bid']?>" >
+                    <form method="post" action="../controller/boarder_inside_controlN.php" >
                         <h3>Cash Payment Entry</h3>
                         <hr/>
+                        <input type="hidden" name="Bid" value="<?php echo $details['Bid'];?>">
                         <div class="w"  style="display:flex;">
                         <div class="p_entry_h">Month </div>
                         <div class="p_des">
@@ -210,7 +211,7 @@
                         </div>
                         </div>
                         <div class="a">
-                        <button type="submit" class="paid" name="paid" id="paid"><i class="fas fa-check"></i> PAID</botton>
+                        <button type="submit" class="paid" name="paidurl" id="paid"><i class="fas fa-check"></i> PAID</botton>
                         </div>
                         </form>
                         </div>

@@ -177,11 +177,6 @@
     margin-top: 20px;
     justify-content: space-evenly;
 }
-
-.mid_F .radio .radio_in{
-    /* background-color: yellow; */
-}
-
 .Cash_Payment_Entry .w{
     display: flex;
     padding-top: 10px;
@@ -225,12 +220,6 @@
     background-color:#101e5a;
     
 }
-
-.btn_block{
-/* background-color: red; */
-
-}
-
 .btn_block button{
     background-color: #5d80b6;
     width:160px;
