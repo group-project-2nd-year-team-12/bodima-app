@@ -97,7 +97,7 @@
                 <?php } ?>
                 </ul>
         </div>
-        <div class="section1">
+        <!-- <div class="section1">
             <img src="resource/img/hostel-img3.jpg" alt="">
             <div class="section1-header">
                <div>
@@ -105,11 +105,89 @@
                  <h4>Accomadation Management System</h4>
                 <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
                  <img  src="resource/img/home-home.png" alt="">
-                 <!-- <h1>To Search, To Find, To delivery</h1> -->
-                 <!-- <h1>To Find,To Search,To Delivery</h1> -->
+               
                </div>
             </div>
-        </div>
+        </div> -->
+        <section>
+            <div class="slider">
+               <div class="myslider fade" style="display: block;">
+                    <div class="txt">
+                        <!-- <h1>IMAGE 1</h1>
+                        <p>
+                            WEb developer <br>
+                            Subcribe to my channerl for more videos
+                        </p> -->
+                        <div class="section1-header">
+                            <div>
+                                <h2 >Welcome to Bodima</h2>
+                                <h4>Accomadation Management System</h4>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div>
+                    </div>
+                   <div> <img src="resource/img/slide/1 (1).svg" alt=""></div>
+               </div>
+               <div class="myslider fade">
+                    <div class="txt">
+                        <h1>Image 2</h1>
+                        <p>
+                            WEb developer <br>
+                            Subcribe to my channerl for more videos
+                        </p>
+                        <!-- <div class="section1-header">
+                            <div>
+                                <h2 >Welcome to Bodima</h2>
+                                <h4>Accomadation Management System</h4>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div> -->
+                    </div>
+                    <img src="resource/img/slide/1 (2).svg" alt="">
+               </div>
+               <div class="myslider fade">
+                    <div class="txt">
+                        <h1>Image 3</h1>
+                        <p>
+                            WEb developer <br>
+                            Subcribe to my channerl for more videos
+                        </p>
+                    </div>
+                    <img src="resource/img/slide/1 (3).svg" alt="">
+               </div>
+               <div class="myslider fade">
+                    <div class="txt">
+                        <h1>Image 4</h1>
+                        <p>
+                            WEb developer <br>
+                            Subcribe to my channerl for more videos
+                        </p>
+                    </div>
+                    <img src="resource/img/slide/1 (4).svg" alt="">
+               </div>
+               <div class="myslider fade">
+                    <div class="txt">
+                        <h1>Image 5</h1>
+                        <p>
+                            WEb developer <br>
+                            Subcribe to my channerl for more videos
+                        </p>
+                    </div>
+                    <img src="resource/img/slide/1 (5).svg" alt="">
+               </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+                <a class="next" onclick="plusSlides(1)" >&#10095</a>
+                <div class="dotsbox" style="text-align: center;">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                </div>
+            </div>
+        </section>
         <div class="section2">
             <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
             <div class="section2-header">
@@ -233,5 +311,6 @@
 <script src="resource/js/jquery.js"></script>
 <script src="resource/js/home1.js"></script>
 <script src="resource/js/new_home.js"></script>
+<script src="resource/js/slider.js"></script>
 
 </html>

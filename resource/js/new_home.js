@@ -5,21 +5,13 @@ window.addEventListener('load',(e)=>{
     // console.log(splitText);
     text.textContent="";  // text tag eka empty karanawa
     for(let i=0;i<splitText.length;i++){
-        if(i%4==0)        // every letter put to span tag
-        text.innerHTML+="<span style='color:#0057e7'>"+splitText[i]+"</span>";
-        if(i%4==1)        // every letter put to span tag
-        text.innerHTML+="<span style='color:blueviolet'>"+splitText[i]+"</span>";
-        if(i%4==2)        // every letter put to span tag
-        text.innerHTML+="<span style='color:#ffa700'>"+splitText[i]+"</span>";
-        if(i%4==3)        // every letter put to span tag
-        text.innerHTML+="<span style='color:#008744'>"+splitText[i]+"</span>";
+        text.innerHTML+="<span style='color:#fff'>"+splitText[i]+"</span>";
     }
     let char =0;
     let timer = setInterval(onTick,50);  // set time 
     function onTick(){
         const span=text.querySelectorAll("span")[char];   // every span tag add class fade
-        span.classList.add("fade");
-        console.log(span);
+        span.classList.add("fade1");
         char++;
         if(char===splitText.length){         // after the every letter add 'fade' then terminate the process
             complete();
@@ -31,7 +23,7 @@ window.addEventListener('load',(e)=>{
         clearInterval(timer);
         timer=null;
     }
-    document.querySelector('.section1-header h4').classList.add('section1-apper');   
+    // document.querySelector('.section1-header h4').classList.add('section1-apper');   
 });
 
 
