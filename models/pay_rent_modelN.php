@@ -29,6 +29,9 @@ class pay_rent_modelN{
         $result = mysqli_query($connection, $query);
         return $result;
       }
+
+
+      
      
 }
 

@@ -2,6 +2,7 @@
     session_start();
     require_once ('../config/database.php');
     require_once ('../models/pay_rent_modelN.php');
+    
 
 
     if(isset($_GET['id'])){
@@ -56,5 +57,8 @@
 
         header('Location:../views/payment_history1.php?pay='.$paymentdetails.'&months='.$monthlist);
     }
+
+
+
 
 ?>

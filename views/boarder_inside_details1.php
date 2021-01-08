@@ -17,10 +17,15 @@
 	 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+     
+     
     <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
     <link rel="stylesheet" href="../resource/css/boarder_inside_details1.css">
     <link rel="stylesheet" href="../resource/css/extra.css">
+    <link rel="stylesheet" href="../resource/js/jquery-ui.css">
+	<script type="text/javascript" src="../resource/js/jquery.js"></script>
+	<script type="text/javascript" src="../resource/js/jquery-ui.js"></script>
 </head>
 
  <body>
@@ -41,7 +46,8 @@
         $parent=unserialize($_GET['parent']);
         $payments=unserialize($_GET['pay']);
         $months=unserialize($_GET['months']);
-        // print_r($payments);
+        $amount=unserialize($_GET['amount']);
+        // print_r($amount);
         ?>
 
           <h1>boarders<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>Back</botton></a></h1>
@@ -87,12 +93,12 @@
               </div>
               <div class="mid_F">
                   <div class="button_set">
-                    <li style="width: 30%;">Info</li>
-                    <li style="width: 36%;">Set Notifications</li>
-                    <li style="width: 33%;">Cash Payment Entry</li>
+                    <li style="width: 30%;" id="info">Info</li>
+                    <li style="width: 36%;" id="notifi">Set Notifications</li>
+                    <li style="width: 33%;" id="cashpay">Cash Payment Entry</li>
                   </div>
-                  
-                    <div class="Info">
+                  <div class="flexy" >
+                    <div class="Info" id="Info">
                         <h3>Info</h3>
                         <hr/>
                         <span>boarder information</span>
@@ -136,59 +142,77 @@
                     </div>
 
 
-                    <div class="Set_Notifications">
-                        <h3>Set Notifications</h3>   
+                    <div class="Set_Notifications" id="Set_Notifications">
+                        <h3>Set Notifications</h3> 
+                        <form method="post" id="setmsg" action="../controller/boarder_inside_controlN.php?Bid=<?php echo $details['Bid']?>" >
                         <hr/>
                         <div class="deadline_calender">
-                        Set deadline :
+                        Set deadline : <input type="text" name="calendar" id="calendar" autocomplete='off'/>
                         </div>
                         <div class="radio">
                             <div class="radio_in">
-                            <input type="radio" id="only_this_month" name="month" value="only_this_month">
+                            <input type="radio" id="only_this_month" name="occure" value="only_this_month">
                             <label for="only_this_month">Only this month</label><br>
                             </div>
                             <div class="radio_in">
-                            <input type="radio" id="every_month" name="month" value="every_month">
+                            <input type="radio" id="every_month" name="occure" value="every_month">
                             <label for="every_month">Every month</label><br>
                             </div>
                         </div>
-                        <div class="notification_description">
-                        1. 1st notification will send - on 2020/10/02<br/>
-                        2. 2nd remainder will send - on 2020/10/05<br/>
-                        3. 3rd remainder will send on deadline<br/>
+                        <div class="description_block">
+                            <br/>
+                        <span id="downbefore"><i class="fas fa-chevron-down"></i> notification description...</span>
+                        <span id="upafter"><i class="fas fa-chevron-up"></i> notification description...</span>
+                            <div class="notification_description" id="notification_description">
+                            1. 1st notification will send - on 2020/10/02<br/>
+                            2. 2nd remainder will send - on 2020/10/05<br/>
+                            3. 3rd remainder will send on deadline<br/>
+                            </div>
                         </div>
+                        <br/>
+                        <div id="text">
+                                <textarea name="mssage" cols="50" rows="4" >February rent is due. Please pay before 20/01/2021</textarea>
+                        </div>
+                        <div class="btn_block">
+                       
+                        <div><button type="submit" id="set" name="set" class="x" onclick="confirmSET()">Send</button></div>
+                        </form>
+                        <div id="preview" name="preview" class="y"> See Preview</div>
+                        </div>
+                        <br/>
                         <hr/>
   
-
+                   
                     </div>
 
-                    <div class="Cash_Payment_Entry">
+                    <div class="Cash_Payment_Entry" id="Cash_Payment_Entry">
+                    <form method="post" action="../controller/boarder_inside_controlN.php?Bid=<?php echo $details['Bid']?>" >
                         <h3>Cash Payment Entry</h3>
                         <hr/>
                         <div class="w"  style="display:flex;">
                         <div class="p_entry_h">Month </div>
                         <div class="p_des">
-                        <form>
-                        : <select name='myfield'>
+                        
+                        : <select name='setdate'>
                         <!-- onchange='this.form.submit()'> -->
                         <?php foreach($months as $month){?>
                             
                             <option><?php echo $month['month'];?></option>
                             <?php } ?>
                             </select>
-                            <noscript><input type="submit" value="Submit"></noscript>
-                        </form>
                         </div>
                         </div>
 
                         <div  class="w" style="display:flex;">
                         <div class="p_entry_h">Amount  </div>
                         <div class="p_des">
-                        : <input type="text" name="amount" placeholder="6000.00">
+                        : <input type="text" name="amount" value="<?php echo $amount['cost_per_person']?>" placeholder="<?php echo $amount['cost_per_person']?>.00">
                         </div>
                         </div>
                         <div class="a">
-                        <button class="paid"><i class="fas fa-check"></i> PAID</botton>
+                        <button type="submit" class="paid" name="paid" id="paid"><i class="fas fa-check"></i> PAID</botton>
+                        </div>
+                        </form>
                         </div>
                         </div>
                     </div>
@@ -202,7 +226,67 @@
         
     </div>
 
-	</div>	
+    </div>
+
+    <script >
+		$(document).ready(function(){
+			$("#calendar").datepicker({
+        minDate:-0,
+        maxDate:"+4m"
+      });
+		});
+	</script>
+<script>
+
+
+   
+    
+
+</script>	
+    <script>
+		$(document).ready(function(){
+		  $("#cashpay").click(function(){
+		    $("#Cash_Payment_Entry").css("order","1");
+		    $("#Info").css("order","2");
+            $("#Set_Notifications").css("order","3");
+		  });
+
+          $("#notifi").click(function(){
+            $("#Set_Notifications").css("order","1");
+		    $("#Cash_Payment_Entry").css("order","3");
+		    $("#Info").css("order","2"); 
+		  });
+
+          $("#info").click(function(){
+            $("#Set_Notifications").css("order","2");
+		    $("#Cash_Payment_Entry").css("order","3");
+		    $("#Info").css("order","1"); 
+		  });
+
+          $("#downbefore").click(function(){
+            $("#downbefore").hide();
+            $("#notification_description").hide("slow");
+            $("#upafter").show();
+		  });
+
+          $("#upafter").click(function(){
+            $("#downbefore").show();
+            $("#notification_description").show("slow");
+            $("#upafter").hide();
+		  });
+
+          $("#preview").click(function(){
+            $("#preview").hide();
+            $("#text").show("slow");
+            $("#set").show("slow");
+            
+		  });
+
+      
+		});
+</script>
+
+
 	 
 	 <script>
     // $('.btn').click(function(){
@@ -222,6 +306,13 @@
 
       $('nav ul li').click(function(){
         $(this).addClass("active").siblings().removeClass("active");
+      });
+
+
+      $("#set").click(function(){
+        alert("Do you want to send the notification? confirm settings : click OK.")
+        $("#setmsg").submit();
+       
       });
     </script>
 </body>

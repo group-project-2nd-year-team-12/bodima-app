@@ -63,7 +63,42 @@ if(isset($_GET['Bid'])){
             $monthlist=serialize($output);
     // print_r($pay);
 
-    header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&months='.$monthlist);
+
+    $rentamount=boarder_list_modelN::get_rent_amount($connection,$Bid,$BOid);
+    $amount=serialize(mysqli_fetch_assoc($rentamount));
+
+    if(isset($_POST['paid'])){
+        
+        $year=intval(substr($_POST['setdate'],0,4));
+        $month=date('m',strtotime(substr($_POST['setdate'],5)));
+        $amount=$_POST['amount'];
+        $BOid=$_SESSION['BOid'];
+        $Bid=$valset['Bid'];
+        boarder_list_modelN::insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,'cash');
+
+        $rentamount=boarder_list_modelN::get_rent_amount($connection,$Bid,$BOid);
+        $amount=serialize(mysqli_fetch_assoc($rentamount));
+
+        // header('Location:../controller/boarder_inside_controlN.php?Bid='.$valset['Bid']);
+        
+    }
+
+    if(isset($_POST['set'])){
+        $from_BOid=$_SESSION['BOid'];
+        $to_Bid=$valset['Bid'];
+        $date=date('Y-m-d',strtotime($_POST['calendar']));
+        $occurance=$_POST['occure'];
+        $massage=$_POST['mssage'];
+        boarder_list_modelN::set_notification($connection,$from_BOid,$to_Bid,$date,$occurance,$massage);
+    }
+
+
+
+    header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&months='.$monthlist.'&amount='.$amount);
 }
+
+
+
+
 
 ?>

@@ -109,22 +109,31 @@
     
 }
 
+.mid_F .flexy{
+    display: flex; 
+    flex-wrap: wrap;
+}
+
 .mid_F .Info{
     margin-top:40px;
     background-color: rgba(226, 226, 224, 0.144);
     padding: 5px;
+    width: 100%;
+    
 }
 
 .mid_F .Set_Notifications{
     margin-top:40px;
     background-color:  rgba(226, 226, 224, 0.144);
     padding: 5px;
+    width: 100%;
 }
 
 .mid_F .Cash_Payment_Entry{
     margin-top:40px;
     background-color: rgba(226, 226, 224, 0.144);
     padding: 5px;
+    width: 100%;
 }
 
 
@@ -151,7 +160,16 @@
 .notification_description{
     font-size: small;
     color:rgb(175, 175, 175);
-    margin:20px;
+    margin:10px;
+}
+
+#upafter{
+    display: none;
+}
+
+.description_block span{
+    font-size: smaller;
+    color:#5d80b6;
 }
 
 .mid_F .radio{
@@ -205,9 +223,59 @@
 
 .Cash_Payment_Entry .a :hover{
     background-color:#101e5a;
-   
-
     
 }
 
+.btn_block{
+/* background-color: red; */
+
+}
+
+.btn_block button{
+    background-color: #5d80b6;
+    width:160px;
+    outline: none;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:white;
+    font-size: small;
+    font-weight:700;
+    letter-spacing:0.7px;
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+#text{
+    display: none;
+}
+
+#set{
+    display: none;
+}
+
+.x{
+    margin-right: 0;
+    margin-left: auto;
+    display: block;
+}
+
+.y{
+    background-color: #5d80b6;
+    width:160px;
+    outline: none;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:white;
+    font-size: small;
+    font-weight:700;
+    letter-spacing:0.7px;
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+    display:flex;
+    justify-content: center;
+}
 

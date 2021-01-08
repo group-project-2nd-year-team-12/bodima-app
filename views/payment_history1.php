@@ -1,6 +1,102 @@
 <?php session_start();
 
-?>
+date_default_timezone_set("Asia/Colombo");?>
+
+<?php function fetchdata($val){
+    $output='';
+foreach($val as $payment){
+        $output .=
+"
+<li>
+    <span>".$payment['year']."  ".date('F', mktime(0, 0, 0,$payment['month'], 10))."</span>
+    <span>".$payment['amount'].".00</span>
+    <span>".date('Y/m/d',strtotime($payment['paidDateTime']))."</span>
+    <span>".date('H:i:s',strtotime($payment['paidDateTime']))."</span>
+    <span><h5>&nbsp;&nbsp;&nbsp;".$payment['cash/card']."</h5></span>
+</li>
+";
+}
+return $output;
+}
+
+function fetchdatapdf($val){
+    $output='';
+foreach($val as $payment){
+        $output .=
+"
+
+<tr>
+    <td>".$payment['year']."  ".date('F', mktime(0, 0, 0,$payment['month'], 10))."</td>
+    <td>".$payment['amount']."</td>
+    <td>".date('Y/m/d',strtotime($payment['paidDateTime']))."</td>
+    <td>".date('H:i:s',strtotime($payment['paidDateTime']))."</td>
+    <td>".$payment['cash/card']."</td>
+</tr>
+
+";
+}
+return $output;
+}
+ 
+
+if(isset($_POST["generate_pdf"]))  
+ { 
+      require_once('../resource/tcpdf/tcpdf.php');  
+      $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
+      $obj_pdf->SetCreator(PDF_CREATOR);  
+      $obj_pdf->SetTitle("BODIMA.LK Payment Report - Monthly Rent");  
+      $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
+      $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
+      $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
+      $obj_pdf->SetDefaultMonospacedFont('helvetica');  
+      $obj_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);  
+      $obj_pdf->SetMargins(PDF_MARGIN_LEFT, '10', PDF_MARGIN_RIGHT);  
+      $obj_pdf->setPrintHeader(false);  
+      $obj_pdf->setPrintFooter(false);  
+      $obj_pdf->SetAutoPageBreak(TRUE, 10);  
+      $obj_pdf->SetFont('helvetica', '', 11);  
+      $obj_pdf->AddPage();  
+      $content = '';  
+      $content .= '  
+      <style>
+      table{
+          
+      }
+
+      li{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      
+      
+      </style>
+      <h4 align="center">Payment Report - Monthly Rent </h4><br /> 
+      Reciver : Rohini Wimalarathne<br/>
+
+      Genarated date : '.date("Y/m/d  H:i:s") .'<br/>
+
+      Report genarated automatically<br/><br/>
+
+      <table border="1" cellspacing="0" cellpadding="3" align="center">  
+       
+        
+            <tr>  
+                <th width="25%">Month</th>  
+                <th width="20%">amount</th>  
+                <th width="20%">date</th>  
+                <th width="20%">time</th>  
+                <th width="15%">method</th>
+           </tr>  
+      ';  
+      $payments=unserialize($_GET['pay']);
+      $content .= fetchdatapdf($payments);  
+      $content .= '</table>';  
+      $obj_pdf->writeHTML($content);  
+      ob_end_clean();
+      $obj_pdf->Output('file.pdf', 'I');  
+ }?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +122,7 @@
  <body>
 
 
- <?php require "header1.php"?>
+<?php require "header1.php"?>
 	 <div class="container1">
      	
      <div class="container2">
@@ -54,9 +150,6 @@
                 </div>
                 <div class="pay_list">
                     <div class="head_block">
-
-                    
-                    
                     <li>
                         <span>Month</span>
                         <span>amount</span>
@@ -66,19 +159,27 @@
                     </li>
                     </div>
 
-                    <?php foreach($payments as $payment){?>
-                    <li>
-                    <span><?php echo $payment['year']?> <?php echo date('F', mktime(0, 0, 0,$payment['month'], 10)); ?></span>
-                        <span><?php echo $payment['amount']?>.00</span>
-                        <span><?php echo date("Y/m/d",strtotime($payment['paidDateTime']))?></span>
-                        <span><?php echo date("H:i:s",strtotime($payment['paidDateTime']))?></span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash/card']?></h5></span>
-                    </li>
-                    <?php }?>
-                    
+
+<?php echo fetchdata($payments);?>
+
                    
-                    
+
                 </div>
+                <br/> 
+                <hr/>
+                
+                
+                
+                <form method="post"> 
+                <div class="pdfbar">
+                   
+                   <div class="pdfin"><button type="submit" name="generate_pdf" class="genarate_pdf_btn">Generate PDF<i class="far fa-file-pdf" style="font-size: medium; padding-left: 10px;"></i></button></div>
+                  
+               </div>
+                </form>
+
+                
+
 
               </div>
               <div class="mid_H">
