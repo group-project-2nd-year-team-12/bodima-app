@@ -20,15 +20,24 @@ class profile_model{
         return mysqli_query($connection,$query);
     }
 
+    public static function update_contactno($level,$contactno,$email,$connection)
+    {
+        $query="UPDATE {$level} SET telephone='{$contactno}' where email='{$email}'";
+        return mysqli_query($connection,$query);
+    }
+
     public static function b_postListByPerson($BOid,$connection)
     {
-        $query="SELECT * FROM boarding_post 
-                WHERE BOid=$BOid
-                ORDER BY B_post_id desc;";
+            $query="SELECT * FROM boarding_post 
+                 WHERE BOid=$BOid
+                 ORDER BY B_post_id desc;";
 
 
-       return mysqli_query($connection,$query);
-    }
+        return mysqli_query($connection,$query);
+     }
+
+
+    
 
     public static function f_postListByPerson($FSid,$connection)
     {
@@ -38,6 +47,8 @@ class profile_model{
 
        return mysqli_query($connection,$query);
     }
+
+    
 }
 
 

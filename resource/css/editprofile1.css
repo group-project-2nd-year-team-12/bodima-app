@@ -1,0 +1,192 @@
+.mid_A input{
+    width: 100%;
+    color: rgb(97, 96, 96);
+    padding-top: 10px;
+    border: none;
+    outline: none;  
+}
+
+.mid_A input:active{
+    background-color: rgb(236, 236, 235); 
+}
+
+.mid_A textarea{
+    width: 100%;
+    color: rgb(97, 96, 96);
+    padding-top: 10px;
+    border: none;
+    outline: none;
+    margin-bottom: -7px;
+}
+
+.mid_A .animate_inupt textarea:hover{
+    background-color: rgb(236, 236, 235);
+    border-bottom: 2px solid  #5d80b6;
+    scroll-margin-block: none;
+    width: 100%;
+    transform: 1s;
+}
+
+.mid_A .edit_lable{
+    display: flex;
+}
+
+.mid_A  .animate_inupt{
+    width: 60%;
+    border-bottom: 1px solid black;
+    margin-left:10px ;
+}
+
+.mid_A .animate_inupt input:hover{
+    background-color: rgb(236, 236, 235);
+}
+
+.mid_A .animate_inupt input:hover{
+    background-color: rgb(236, 236, 235);
+    width: 100%;
+    border-bottom: 2px solid  #5d80b6;
+ }
+ 
+ 
+ .mid_A .edit_lable span{
+    color: #3567b3;
+    padding-left: 10px;
+    font-weight:500;
+ }
+
+ .mid_A span{
+    color: #3567b3;
+    font-weight:500;
+ }
+
+ .mid_B .profile_photo .fas{
+     color: white;
+     font-size: 22px;
+ }
+
+ .mid_B .edit_pic{
+    position: relative;
+    top:-5vw;
+    left:13vw;
+    background-color: #5d80b6;
+    width: 52px;
+    height: 52px;
+    padding: 15px;
+     border-radius: 50%;
+ }
+
+
+ input[type=password]{
+     color:rgb(153, 149, 149);
+     font-size: 15px;
+     letter-spacing: 2px;
+     padding: none;
+
+     /* padding-left: 30px ; */
+ }
+
+ .mid_A .change_password .animate_inupt {
+    width: 40%;
+ }
+
+ .change_password .edit_lable{
+     padding-top: 20px;
+ }
+
+ .change_password .edit_lable span{
+     
+ }
+
+ .edit_lable input[type=reset]{
+     background-color:#5d80b6;
+     color: white;
+     text-transform: capitalize;
+     font-weight: 500;
+     padding-bottom:10px ;
+ }
+
+ .edit_lable input[type=submit]{
+    background-color:#5d80b6;
+    color: white;
+    text-transform: capitalize;
+    font-weight: 500;
+    padding-bottom:10px ;
+}
+
+.submit_button input:hover{
+    background-color:#101e5a;  
+}
+
+.submit_button{
+    backface-visibility: red;
+    width: 100%;
+    display: flex;
+}
+
+
+/* ************************popup - upload image (drag and drop)************************* */
+
+.outerbx{
+	background-color:   rgb(243, 243, 243);
+	margin:100px 25% 150px 25%;
+	width: 50%;
+	height: 400px;
+	padding:20px;
+    box-shadow: -2px -0.5px 20px  rgb(77, 77, 77);
+    position: fixed;
+    top:20px;
+    z-index: 0;
+    /* display: none; */
+}
+
+.outerbx h2{
+    margin-left: 30px;
+
+}
+
+.outerbx hr{
+	margin:0px 20px 0px 20px ;
+}
+
+.outerbx .drag{
+	background-color: rgb(226, 226, 226);
+	margin:30px 30px 30px 30px;
+	height: 270px;
+	display: block;
+	padding:  20px 20px 20px ;
+}
+
+.outerbx .dragbox{
+	background-color: rgba(255, 255, 255, 0.24);
+	height: 110px;
+	padding:auto;
+	display: flex;
+	border: 2px dashed grey;
+	margin:-5px;
+
+
+}
+.outerbx .dragbox p{
+	color:rgb(196, 196, 196);
+	font-size: xx-large;
+    padding-left: 40px;
+    padding-top: 20px;
+
+}
+
+
+.outerbx input[type=submit]{
+	background-color: #5d80b6;
+	outline: none;
+	border:#5d80b6;
+	padding:10px 20px 10px 20px;
+	color: white;
+	font-weight: 700;
+	font-size: medium;
+	border-radius: 2px;
+}
+
+.backblur#backblur.active{
+    filter:blur(20px);
+}
+/* ******************************************************************************* */

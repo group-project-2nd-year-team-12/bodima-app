@@ -1,0 +1,141 @@
+.container2{width:100%; display: flex; flex-wrap: wrap; }
+
+.sidebar_b{width: 20%;display:block;}
+
+body{background-color:#f7f8f9 ;}
+
+.middle_b h1{width: 100%; margin-left: 3%; text-transform: uppercase; color:#5d80b6 ;}
+  
+.middle_b h3{margin-left: 3%; text-transform: uppercase; color:#5d80b6 ; margin-bottom: 10px;}
+
+hr{ margin-bottom: 10px;}
+
+p span{color:#3567b3;}
+
+.mid_C{
+    display: inline;
+    position: relative;
+    z-index: 0;
+}
+
+.mid_D{
+    display: inline;
+    position: relative;
+    z-index: 0;
+}
+
+
+.stat_bar2{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    margin-left:5%;
+    margin-right:5%;
+  }
+
+.stat_item2{
+    border-top: 2px solid #d4af37;
+    border-bottom: 2px solid #d4af37;
+    /* background-color: aquamarine; */
+    padding:20%;
+    
+  }
+
+.stat_item2 li{
+    color: #5d80b6; 
+    font-size: 20px;
+    text-align: center;
+  }
+
+.stat_item2 span{
+    font-size: 40px;
+    color: rgb(136, 135, 136);
+  }
+
+.list_view{
+    width: 98%;
+    margin:2%;
+}
+
+.l_item{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid rgba(197, 197, 197, 0.774);
+}
+
+.list_view .l_item:hover{
+    background-color: rgba(128, 128, 128, 0.068);
+}
+
+.list_view li{
+    text-transform: capitalize;
+    width:400px;
+    font-size: 20px;
+}
+
+.profile_image{
+    width: 50px;
+    height: 50px;
+    /*border-radius: 100px;
+    margin-bottom: 10px;*/
+    object-fit:cover;
+    border-radius:50%;
+    margin:0 auto 10px auto;
+    display: block;
+    
+  }
+
+.list_view .icon_strip{
+    /* background-color: #5d80b6; */
+    align-content: right;
+    display: inline;
+    margin-top: 2px;
+    width: 120px;
+    align-content: right;
+}
+.list_view .icon_strip a{
+    background-color: #5d80b6;
+    align-content: center;
+    padding: 0.02vw 0vw 0.02vw 0.07vw;
+    padding-left: 0.5vw;
+    border-radius: 5px;
+}
+.list_view .icon_strip a:hover{
+    background-color: #476aa0;
+    align-content: center;
+    padding:auto;
+    border-radius: 5px;
+}
+
+.icon_strip a .fas{
+    padding-left:3px ;
+    color: rgb(235, 235, 235);
+    font-size: 1vw;
+}
+
+.list_view li p{
+    font-size: 11px;
+}
+
+.search_boarder{
+    background-color: rgba(218, 218, 218, 0.301);
+    margin-bottom: 10px;
+    padding-top:5px ;
+    padding-bottom:5px ;
+    border-radius: 15px;
+}
+
+.search_boarder input[type=text]{
+    width:200px;
+    background-color: transparent;
+    outline: none;
+    border:none;
+}
+
+.search_boarder i{
+    padding-left:10px ;
+    color:rgb(156, 156, 156)
+}
+ 

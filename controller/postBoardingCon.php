@@ -13,6 +13,12 @@ if(isset($_POST['submit']))
 {
 $errors=array(); //create empty array
 
+
+    $title=$_POST['title'];
+    if(empty($_POST['title']) || strlen(trim($_POST['title']))<1){
+        $errors['err17']='*Title is required';  //erros 17
+    }
+
     $Hnumber=$_POST['Hnumber'];
     if(empty($_POST['Hnumber']) || strlen(trim($_POST['Hnumber']))<1){
         $errors['err1']='*Home Number is required';
@@ -64,14 +70,18 @@ $errors=array(); //create empty array
         $errors['err10']='*Cost Per Person For Month is required';
     }else if(!is_numeric($CPperson)) {
         $errors['err11']='*Should be an integer';
-    }
+    }else if($CPperson<-1){
+        $errors['err16']='*Should be Posivite';
+    } 
 
     $Keymoney=$_POST['Keymoney'];
     if(empty($_POST['Keymoney']) || strlen(trim($_POST['Keymoney']))<1){
         $errors['err12']='*Keymoney is required';
     }else if(!is_numeric($Keymoney)) {
         $errors['err13']='*Should be an integer';
-    }
+    }else if($Keymoney<-1){
+        $errors['err16']='*Should be Posivite';
+    } 
 
 
     $Lifespan=$_POST['Lifespan'];
@@ -83,36 +93,21 @@ $errors=array(); //create empty array
         $errors['err15']='*Should be greater than 30 days';
     } 
 
-
+    
    
    
 
 
     if(empty($errors)){
 
+        $title=$_POST['title'];
         $Hnumber=$_POST['Hnumber'];
         $lane=$_POST['lane'];
         $city=$_POST['city'];
         $district=$_POST['district'];
-        //$location=$_POST['location'];
+        $location=$_POST['location'];
         $description=$_POST['description'];
-    
-        $image_name=$_FILES['BCimage']['name'];
-        if(null==trim($image_name)){
-            echo "null";
-            $image_name="defaultbp1.jpg";
-        }else{
-            echo " have value";
-        }
-        
-        $image_type=$_FILES['BCimage']['type'];
-        $image_size=$_FILES['BCimage']['size'];
-        $temp_name=$_FILES['BCimage']['tmp_name'];
-        print_r($_FILES);
-        $upload_to="../resource/Images/uploaded_boarding/";
-    
-        move_uploaded_file($temp_name, $upload_to . $image_name);
-    
+
         $individual=$_POST['individual'];
         $gender=$_POST['gender'];
         $Pcount=$_POST['Pcount'];
@@ -121,12 +116,51 @@ $errors=array(); //create empty array
         $Lifespan=$_POST['Lifespan'];
         //$Aamount=$_SESSION['result'];
         $Aamount=$_POST['Aamount'];
+
+
+
+        $id=$_SESSION['BOid'];
+       
+
+     $creattime=date('Y-m-d h:i:s');
+      // $creattime=dat;
+        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$individual,$location,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
+
+        $result_set=boarding::getPostId($connection);
+        $result_post=mysqli_fetch_assoc($result_set);
+        $postid=$result_post['B_post_id'];
+        echo $postid;
+
+        foreach ($_FILES['image']['tmp_name'] as $key => $value){
+
+            $image_name=$_FILES['image']['name'][$key];
+            
+            if(null==trim($image_name)){
+                echo "null";
+                $image_name="defaultbp1.jpg";
+            }else{
+                echo " have value";
+            }
+
+            $temp_name=$_FILES['image']['tmp_name'][$key];
+            $image_type=$_FILES['image']['type'][$key];
+            $image_size=$_FILES['image']['size'][$key];
+            $upload_to="../resource/Images/uploaded_boarding/";
+
+            print_r($_FILES);
+        
+    
+            move_uploaded_file($temp_name, $upload_to . $image_name);
+            boarding::image_save($id,$postid,$image_name,$upload_to,$connection);
+
+        }
+
+        echo $upload_to.$image_name;
     
         //echo $Hnumber;
-        $id=$_SESSION['BOid'];
-        echo $upload_to.$image_name;
-        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$image_name,$individual,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$upload_to,$connection);
         header('Location:../views/myads_boardingowner.php');
+
+        //header('Location:../views/postBoarding.php?success'); //meka balanna
 
     }else{
         header('Location:../views/postBoarding.php?'.http_build_query(array('param'=>$errors)));

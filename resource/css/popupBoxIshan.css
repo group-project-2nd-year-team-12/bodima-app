@@ -1,0 +1,66 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+}
+.buttonhand{
+    background:green;
+    padding: 1em  2em;
+    color: #fff;
+    border: 0;
+    margin-left:770px;
+    font-size: 16px;
+}
+.buttoncancel{
+    background:red;
+    padding: 1em  2em;
+    color: #fff;
+    border: 0;
+    font-size: 16px;
+}
+
+.button-hover{
+    background: #333;
+
+}
+.modal{
+  
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content{
+    background-color: #f4f4f4;
+    margin: 10% auto;
+    padding: 20px;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),0 7px 20px 0 rgba(0, 0, 0, 17);
+   
+}
+.modal-header h2{
+    margin: 0;
+}
+.modal-header{
+    background: #000080;
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+
+}
+
+.modal-body{
+    padding: 10px 20px;
+}
+.modal-footer{
+    
+    padding: 10px;
+    color: #fff;
+    
+
+
+

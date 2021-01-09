@@ -1,0 +1,75 @@
+
+@media screen and (max-width: 5000px) {
+	.container1 { width: 100%; }
+	.logo { width: 50%; }
+    .dot_menu{display:none;}
+    
+    
+    
+    .middle_b{display: flex; flex-wrap: wrap; margin-left: 270px;}
+
+    /* profile, editprofile */
+    .mid_A{width: 46%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_B{width:46%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+
+    /* myboarders */
+    .mid_C{width: 70%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_D{width:22%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px; display:block;}
+    
+    /* boarer_info_page */
+    .mid_E{width: 55%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_F{width:37%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px; display:block;}
+    
+    /* payment history page */
+    .mid_G{width: 55%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_H{width:37%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px; display:block;}
+
+    /* new payment page */
+    .mid_I{width: 55%; margin:2%; background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_J{width:37%;margin: 2%; background-color: white;box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px; display:block;}
+
+    /* foodpost search */
+    .mid_K{width: 25%;  background-color: white; box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); border-radius:5px; padding:20px;}
+    .mid_L{width:75%;margin: 1%; padding:20px; display:block;}
+    
+}
+
+@media screen and (max-width: 1200px){
+    .mid_A{width: 96%; margin:2%;  order:2;}
+    .mid_B{width:96%;margin: 2% ;order:1;}
+    
+    .mid_D{display: none;}
+    .mid_C{width: 96%;margin:2%;}
+    
+    .mid_E{width: 96%; margin:2%; order:1;}
+    .mid_F{width: 96%; margin:2%; order:2;}
+
+    .mid_G{width: 96%; margin:2%; order:1;}
+    .mid_H{width: 96%; margin:2%; order:2;}
+
+    .mid_I{width: 96%; margin:2%; order:1;}
+    .mid_J{width: 96%; margin:2%; order:2;}
+
+    .mid_K{display: none;}
+    .mid_L{width:98%;margin: 1%; padding:20px; display:block;}
+    .bc_title{width: 100%;}
+}
+
+
+@media screen and (max-width: 700px) {
+	.container1 { width: 100%;}
+	.logo { width: 90%;}
+    .sign { display:none;}
+    .dot_menu{width:10%; display: block; padding-right:20px ; float: right;}
+    .mid_C .icon_strip{display: none;}
+    .list_view li{width:300px;}
+    .mid_C .list_view{width:50vw;}
+    .bc_title{width: 100%;}
+    
+   
+
+   
+    
+}
+
+

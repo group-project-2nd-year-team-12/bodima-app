@@ -9,7 +9,9 @@
 if(isset($_POST['submit']))
 {
  $errors=array();            //create empty array
-
+if (isset($_GET['request_id'])) {
+    $request_id=$_GET['request_id'];
+}
  
 
 
@@ -35,10 +37,10 @@ if(isset($_POST['submit']))
         //         $errors[]='*Invalid first name ';
         // }
 
-         if(!isset($_POST['nicImg']))   
-        {
-            $errors[]='*Insert your NIC Image';
-        }
+        //  if(!isset($_FILES['nicImg']))   
+        // {
+        //     $errors[]='*Insert your NIC Image';
+        // }
                 
 
       if((!isset($_POST['telephone']) || strlen(trim($_POST['telephone']))<1))
@@ -146,7 +148,7 @@ if(isset($_POST['submit']))
 
             reg_userIshan::insertBorderparent($connection,$data,$p_name,$p_telephone);
 
-            reg_userIshan::insertConfirmRent($connection,$data,$BOid,$B_post_id,$keymoney,$payment_method);
+            reg_userIshan::insertConfirmRent($connection,$request_id,$data,$BOid,$B_post_id,$keymoney,$payment_method);
 
 
 
@@ -172,7 +174,7 @@ if(isset($_POST['submit']))
                 }
                 elseif($_POST['pay']=="online")
                 {
-                        header('Location:../views/payKeyMIshan.php?B_post_id='.$B_post_id);
+                        header('Location:../views/payKeyMIshan.php?B_post_id='.$B_post_id.'&request_id='.$request_id);
                 }
               
                 }
