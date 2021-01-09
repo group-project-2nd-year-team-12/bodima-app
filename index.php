@@ -97,83 +97,81 @@
                 <?php } ?>
                 </ul>
         </div>
-        <!-- <div class="section1">
-            <img src="resource/img/hostel-img3.jpg" alt="">
-            <div class="section1-header">
-               <div>
-                 <h2 >Welcome to Bodima</h2>
-                 <h4>Accomadation Management System</h4>
-                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
-                 <img  src="resource/img/home-home.png" alt="">
-               
-               </div>
-            </div>
-        </div> -->
         <section>
             <div class="slider">
                <div class="myslider fade" style="display: block;">
                     <div class="txt">
-                        <!-- <h1>IMAGE 1</h1>
-                        <p>
-                            WEb developer <br>
-                            Subcribe to my channerl for more videos
-                        </p> -->
-                        <div class="section1-header">
+                        <div class="section1-header title1 ">
                             <div>
                                 <h2 >Welcome to Bodima</h2>
                                 <h4>Accomadation Management System</h4>
+                                <h3>Learn Together  </h3>
+                                <h3>With</h3>
+                                <h3>Friends</h3>
                                 <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
                             
                             </div>
                        </div>
                     </div>
-                   <div> <img src="resource/img/slide/1 (1).svg" alt=""></div>
+                    <img style="width: 500px;" src="resource/img/slide/1 (1).svg" alt="">
                </div>
                <div class="myslider fade">
-                    <div class="txt">
-                        <h1>Image 2</h1>
-                        <p>
-                            WEb developer <br>
-                            Subcribe to my channerl for more videos
-                        </p>
-                        <!-- <div class="section1-header">
+                   <div class="txt">
+                        <div class="section1-header title2">
                             <div>
-                                <h2 >Welcome to Bodima</h2>
-                                <h4>Accomadation Management System</h4>
+                                <h2>"Find Boarding"</h2>
+                                <h3>Find a Safe </h3>
+                                <h3>Place</h3>
+                                <h3>For Study</h3>
                                 <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
                             
                             </div>
-                       </div> -->
+                       </div>
                     </div>
-                    <img src="resource/img/slide/1 (2).svg" alt="">
+                    <img style="width: 500px;" src="resource/img/slide/1 (2).png" alt="">
                </div>
                <div class="myslider fade">
                     <div class="txt">
-                        <h1>Image 3</h1>
-                        <p>
-                            WEb developer <br>
-                            Subcribe to my channerl for more videos
-                        </p>
+                        <div class="section1-header title3">
+                            <div>
+                                <h2>"Order Food"</h2>
+                                <h3>Learn Together  </h3>
+                                <h3>With</h3>
+                                <h3>Friends</h3>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div>
                     </div>
-                    <img src="resource/img/slide/1 (3).svg" alt="">
+                    <img  style="width: 500px;" src="resource/img/slide/1 (3).svg" alt="">
+               </div>
+               <div class="myslider fade">
+                        <div class="txt">
+                        <div class="section1-header title4">
+                            <div>
+                                <h2>Connect With Close</h2>
+                                <h3>Download Our </h3>
+                                <h3>Android Application</h3>
+                                <h3>For Manage</h3>
+                               <button onclick="window.location='views/register.php'">Download</button>
+                            
+                            </div>
+                       </div>
+                    </div>
+                    <img style="width: 500px;" src="resource/img/slide/1 (3).png" alt="">
                </div>
                <div class="myslider fade">
                     <div class="txt">
-                        <h1>Image 4</h1>
-                        <p>
-                            WEb developer <br>
-                            Subcribe to my channerl for more videos
-                        </p>
-                    </div>
-                    <img src="resource/img/slide/1 (4).svg" alt="">
-               </div>
-               <div class="myslider fade">
-                    <div class="txt">
-                        <h1>Image 5</h1>
-                        <p>
-                            WEb developer <br>
-                            Subcribe to my channerl for more videos
-                        </p>
+                        <div class="section1-header title5">
+                            <div>
+                                <h2>Find Boarding</h2>
+                                <h3>Learn Together  </h3>
+                                <h3>With</h3>
+                                <h3>Friends</h3>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div>
                     </div>
                     <img src="resource/img/slide/1 (5).svg" alt="">
                </div>

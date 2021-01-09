@@ -1,33 +1,34 @@
-window.addEventListener('load',(e)=>{
-    const text=document.querySelector('.section1-header h2');  // get text tag
-    const starText=text.textContent;           //only get sentence 
-    const splitText=starText.split("");   // split each letter w
-    // console.log(splitText);
-    text.textContent="";  // text tag eka empty karanawa
-    for(let i=0;i<splitText.length;i++){
-        text.innerHTML+="<span style='color:#fff'>"+splitText[i]+"</span>";
-    }
-    let char =0;
-    let timer = setInterval(onTick,50);  // set time 
-    function onTick(){
-        const span=text.querySelectorAll("span")[char];   // every span tag add class fade
-        span.classList.add("fade1");
-        char++;
-        if(char===splitText.length){         // after the every letter add 'fade' then terminate the process
-            complete();
-            return;
+function textAppere(x)
+{
+        var text=document.querySelector(x);  // get text tag
+        var starText=text.textContent; 
+        console.log(starText);          //only get sentence 
+        var splitText=starText.split("");   // split each letter w
+        // console.log(splitText);
+        text.textContent="";  // text tag eka empty karanawa
+        for(let i=0;i<splitText.length;i++){
+            text.innerHTML+="<span style='color:#fff'>"+splitText[i]+"</span>";
         }
-
-    }
-    function complete(){        // time clear function
-        clearInterval(timer);
-        timer=null;
-    }
-    // document.querySelector('.section1-header h4').classList.add('section1-apper');   
-});
-
-
-
+        let char =0;
+        let timer = setInterval(onTick,50);  // set time 
+        function onTick(){
+            var span=text.querySelectorAll("span")[char];   // every span tag add class fade
+            span.classList.add("fade1");
+            char++;
+            if(char===splitText.length){         // after the every letter add 'fade' then terminate the process
+                complete();
+                return;
+            }
+    
+        }
+        function complete(){        // time clear function
+            clearInterval(timer);
+            timer=null;
+        }
+        // document.querySelector('.section1-header h4').classList.add('section1-apper');   
+    
+}
+textAppere('.title1 h2');
 function scrollimg1(){
     var introText=document.querySelector('.section2');
     var introPosition=introText.getBoundingClientRect().top;
