@@ -29,7 +29,6 @@
             dataType:"json",
             success:function(data)
 			{
-        console.log(data);
                 if(data.breakfast+data.lunch+data.dinner+data.longTerm!=0)
                 {   $('#noti-order').css("display","block");
                     $('#noti-order h5').html(data.breakfast+data.lunch+data.dinner+data.longTerm);
@@ -66,7 +65,7 @@
                     $('#noti-longTerm').css("display","none");
                 }
 
-                if(data.acceptBreakfast+data.accLunch+data.accDCount+data.accLTCount!=0)
+                if(data.acceptBreakfast+data.accLunch+data.accDinner+data.accLongTerm!=0)
                 {   $('#noti-accpet').css("display","block");
                     $('#noti-accpet h5').html(data.acceptBreakfast+data.accLunch+data.accDinner+data.accLongTerm);
                 }

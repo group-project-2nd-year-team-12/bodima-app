@@ -87,6 +87,19 @@ if(isset($_GET['id']) && $_GET['id']==4)
     header('Location:../views/orderHistory.php?record='.$record.'&result='.$result.'&available='.$availableFetch['available'].'');
 }
 
+if(isset($_GET['orderConfirmFS_id'])){
+    $order_id=$_GET['orderConfirmFS_id'];
+    date_default_timezone_set("Asia/Colombo");
+     $deliveredTime=date("h:i:sa");
+    $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
+    if($result){
+       header('Location:../controller/orderConFood.php?id=4');
+    }
+    {
+       echo "Mysqli query failed";
+    }
+ }
+
 // ordersetting page settings
 if((isset($_GET['id']) && $_GET['id']==5) || isset($_POST['unavailable']))
 {
@@ -155,6 +168,7 @@ if((isset($_GET['id']) && $_GET['id']==5) || isset($_POST['unavailable']))
 }
     
 }
+
 
 if(isset($_GET['delectDate']))
 {
