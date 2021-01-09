@@ -36,9 +36,27 @@
             
         </div>
         <div class="post_container">
-            <div class="mid_K">The placeholder text is set with the placeholder attribute, which specifies a hint that describes the expected value of an input field.The placeholder text is set with the placeholder attribute, which specifies a hint that describes the expected value of an input field.</div>
-            <div class="mid_L">
+            <div class="mid_K">
+                <div class="iconbar">
+                <div class="ibox2"><i class="fas fa-sliders-h"></i></div>
+                <div class="ibox1"><i class="fas fa-search"></i></div>
+                </div>
 
+                <div class="filterform">
+                <form>
+                <input type="text" name="city_search" placeholder="City">  </br> 
+                <input type="checkbox" name="longTerm" value="longterm">longTerm<br/>
+                <input type="checkbox" name="shortTerm" value="longterm">shortTerm
+                </form>
+                </div>
+            </div>
+            <div class="mid_L">
+                <div class="fp_search">
+                <div class="search_box">
+                <input type="text" name="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>
+                </div>
+                </div>
+            <div class="post_box">
             <?php for ($x = 0; $x <= 4; $x++) {?>
  
 
@@ -70,7 +88,7 @@
                 </div>
 
                 <?php }?>
-            
+            </div>
             </div>
         </div>
 

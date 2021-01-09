@@ -310,3 +310,86 @@ background: linear-gradient(212deg, rgba(9,9,121,0.6828769298081987) 0%, rgba(0,
     padding-right: 5px;
     padding-left: 5px;
 }
+
+.mid_K .iconbar{
+    background-color:  #5d80b6;
+    display: flex;
+}
+
+.mid_K .iconbar .ibox1{
+    background-color: #5d80b6;
+    width:30%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    
+   
+}
+.mid_K .iconbar .ibox2{
+    background-color: #5d80b6;
+    width:70%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.mid_K .iconbar i{
+    padding-top: 17px;
+    color:white;
+    font-weight: 700;
+}
+
+.mid_K .iconbar .ibox1:hover{
+    background-color:#101e5a;
+   
+    
+   
+}
+.mid_K .iconbar .ibox2:hover{
+    background-color: #101e5a;
+  
+}
+
+.mid_L .fp_search{
+    background-color:#5d80b6;
+    margin-top: -40px;
+    padding:5px;
+    display: flex;
+    justify-content:space-around;
+
+}
+
+.mid_L .search_box{
+    margin-top:20px;
+    margin-bottom:21px;
+    background-color:#101e5a ;
+}
+
+.mid_L .search_box i{
+    background-color:#101e5a ;
+    padding-left: 18px;
+    color:white;
+}
+
+.post_box{
+    padding: 20px;
+}
+
+.mid_K .filterform{
+    padding:20px;
+    padding-left: 40px;
+}
+
+.mid_K .filterform input[type=text]{
+    border:1px solid grey;
+    width:60%;
+
+}
+.mid_K .filterform input[type=checkbox]{
+    display: inline;
+    
+}
+
+.mid_K .filterform input{
+    margin: 10px;
+    
+}
