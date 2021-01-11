@@ -1,6 +1,7 @@
 <?php
 require_once ('../config/database.php');
 require_once ('../models/orderModel.php');
+require_once ('../models/notificationModel.php');
 session_start();
 
 if(isset($_POST['view'])){
@@ -144,5 +145,40 @@ if(isset($_POST['postId']))
     'available'=>$availableFetch['available'],
     );
     echo json_encode($arr);
+}
+
+
+if(isset($_POST['count']))
+{
+    $email=$_SESSION['email'];
+    $results=notificationModel::notificationAll($connection,$email);
+    $count=0;
+    $record=array();
+    while($row=mysqli_fetch_assoc($results)){
+        if($row['seen_state']==0)
+        {
+            $count++;
+        }
+        $record[]=$row;
+    }
+    $arr=array(
+        'data'=>$record,
+        'count'=>$count
+        );
+        echo json_encode($arr);
+}
+
+if(isset($_POST['id']) && isset($_POST['email']))
+{
+    $email=$_POST['email'];
+    $noID=$_POST['id'];
+    notificationModel::notificationSeen($connection,$email,$noID);
+    $result=notificationModel::notificationResponce($connection,$email,$noID);
+    $resultFetch=mysqli_fetch_assoc($result);
+    $arr=array(
+        'responce'=>$resultFetch["responce_url"],
+      
+        );
+        echo json_encode($arr);
 }
 ?>

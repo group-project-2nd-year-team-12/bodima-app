@@ -1,7 +1,9 @@
 <?php 
  require_once ('../config/database.php');
  require_once ('../models/orderModel.php');
+ require_once ('../models/notificationModel.php');
  require_once('../config/acceptReq.php');
+
     session_start ();
 ?>
 
@@ -32,6 +34,19 @@ if(isset($_POST['accept']))
       $result=orderModel::accept($order_id,3,$connection);
       header('Location:orderConFood.php?id=3');
    }
+   $title="Your order Accpeted";
+   $discription="Order id :".$order_id;
+   $type="order";
+   date_default_timezone_set("Asia/Colombo");
+   $time=Date('H:i');
+   if($method=='card')
+   {
+     $responseUrl="controller/orderCon.php?id=2";
+   }elseif($method=="cash")
+   {
+     $responseUrl="controller/orderCon.php?id=3";
+   }
+   notificationModel::notificationOrderAccept($connection,$email,$title,$discription,$time,$type,$responseUrl);
    
 }
 
