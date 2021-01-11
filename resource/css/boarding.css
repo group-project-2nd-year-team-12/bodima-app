@@ -128,23 +128,23 @@ body {
 
 .con-1 .images {
     position: relative;
-    padding: 1% 1% 1% 1%;
+    padding: 1% 1% 0% 1%;
     /* box-shadow: 0 0 3px 0.1px #5d80b6; */
     display: flex;
     width: 16%;
     /* height: 10%; */
     text-align: center;
-    bottom: 20px;
+    bottom: 0px;
 }
 
 .con-1 .wrapper {
     position: relative;
-    padding: 0% 1% 0% 1%;
+    padding: 4% 1% 0% 1%;
     /* box-shadow: 0 0 3px 0.1px #5d80b6; */
     display: flex;
     width: 90%;
     text-align: center;
-    bottom: 20px;
+    bottom: 0px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -169,7 +169,7 @@ body {
 .con-1 input#Aamount {
     position: relative;
     left: 200px;
-    bottom: 49px;
+    bottom: 42px;
     line-height: 35px;
     border-radius: 0px;
     border: none;
@@ -195,7 +195,7 @@ body {
 .con-1 input#lifespan {
     position: relative;
     left: 260px;
-    bottom: 48px;
+    bottom: 35px;
     line-height: 35px;
     padding: -1px;
     border: 1.5px solid #5d80b6;
@@ -208,29 +208,6 @@ body {
     display: none;
     /* js work renting and per person month fee */
 }
-
-
-/* .radio {
-    display: inline-block;
-    padding-right: 70px;
-    font-size: 15px;
-    margin-left: 55px;
-    margin-top: 15px;
-    color: black;
-     border: 1.5px solid rgb(26, 155, 194);
-
-
-}
-*/
-
-
-/* .radio input {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    outline: none;
-} */
 
 .con-1 input[type=submit] {
     background-color: #101e5a;
@@ -336,8 +313,29 @@ body {
     padding: 10px 10px 10px 10px;
 }
 
-.fas fa-chevron-down {
-    left: 30%;
+.fa-chevron-down:before {
+    font-size: medium;
+    text-transform: capitalize;
+    color: #1978a5;
+    right: 30%;
+    bottom: 40%;
+    /* color: #cc0000; */
+    font-weight: 570;
+    padding: 1% 1% 1% 1%;
+}
+
+span#downbefore {
+    top: 50%;
+    font-size: medium;
+    text-transform: capitalize;
+    color: #1978a5;
+    /* color: #cc0000; */
+    font-weight: 570;
+    padding: 1% 1% 1% 1%;
+}
+
+span#upafter {
+    top: 50%;
     font-size: medium;
     text-transform: capitalize;
     color: #1978a5;

@@ -21,12 +21,21 @@ session_start();
             
             $(document).ready(function()
             {
-                $('.show_hide').click(function()
-                {
-                    $(".show_hide").show();
-                    $(this).hide();
+               
+				$("#downbefore").click(function(){
+            		$("#downbefore").hide();
+					//$("#photo-wrapper").hide("slow");
+					$("#photo-wrapper").show("slow");
+            		$("#upafter").show();
+          		});
 
-                });
+          		$("#upafter").click(function(){
+					$("#downbefore").show();
+					$("#photo-wrapper").hide("slow");
+            		//$("#photo-wrapper").show("slow");
+            		$("#upafter").hide();
+          		});
+				
             });
         </script>
 	
@@ -122,15 +131,17 @@ session_start();
             </div>
 			
 			
+			<span id="downbefore"><i class="fas fa-chevron-down"></i>   Images For Display In Detailed Information Page....</span>
+            <span id="upafter" style="display: none;"><i class="fas fa-chevron-up"></i>   Images For Display In Detailed Information Page....</span>
 			
-			
-			<div  class="show_hide">
-			<p class="slide-shower"><i class="fas fa-chevron-down"></i>Images For Display In Detailed Information Page.</p >
+			<!-- <div  class="show_hide">
+			<i class="fas fa-chevron-down"></i>
+			<p class="slide-shower">Images For Display In Detailed Information Page.</p >
 
 			</div>
 			<div class="show_hide" style="display: none;">
-			<p class="slide-shower"><i class="fas fa-chevron-up"></i> Images For Display In Detailed Information Page.</p >
-			<div id="photo-wrapper" class="wrapper" >
+			<p class="slide-shower"><i class="fas fa-chevron-up"></i> Images For Display In Detailed Information Page.</p > -->
+			<div id="photo-wrapper" class="wrapper" style="display: none;">
                  <!-- clone photo div using js and append to photo-wrapper-->
                  <!-- one -->
                 <div class="photo" style="position: relative;">
