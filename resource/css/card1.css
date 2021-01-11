@@ -73,16 +73,33 @@ body{
     grid-template-columns: 1fr 1fr 1fr;
 }
 .card {
+  position: relative;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8); */
     max-width: 380px;
     margin: auto;
     text-align: center;
     background-color: rgb(255, 255, 255);
   }
+  .unavailable{
+    display: none;
+    padding-top: 20px;
+    box-sizing: border-box;
+    cursor: default;
+    position: absolute;
+    height: 150px;
+    width: 100%;
+    top: 0;
+    color: white;
+    
+    background-color: rgba(0, 0, 0, 0.631);
+  }
+  .unavailable h1:hover{
+    transform: scale(0.95);
+  }
   .card img{
       /* height: 150px; */
-      width: 100%;
-      transition: 0.5s ease-in;
+    width: 100%;
+    transition: 0.5s ease-in;
   }
   .card img:hover{
     transform: scale(1.02);
@@ -91,9 +108,9 @@ body{
     background-color: rgb(0, 27, 50);
     /* position: fixed; */
     padding: 10px !important;
-     width: 150px;
-     margin: 10px auto 10px auto;
-     cursor: pointer;
+    width: 150px;
+    margin: 10px auto 10px auto;
+    cursor: pointer;
   }
 
   .cart-icon a{
@@ -152,8 +169,11 @@ body{
  
 
   .cartbox{
+ 
     padding:20px 10px 10px 10px;
   }
+
+  
   
   .price {
     color: rgb(0, 255, 72);
@@ -251,6 +271,8 @@ body{
 
   .price-details{
       /* height: 60%; */
+      position: sticky;
+      top: 100px;
       width: 60%;
       margin: 0 auto;
       margin-bottom: 20px;
@@ -270,23 +292,22 @@ body{
   }
 
   .details h5{
-    padding-bottom: 10px;
+    width: 90%;
   }
 
   .details h4{
-    border-top: 1px solid gray;
+    /* border-top: 1px solid rgb(191, 184, 184); */
     padding-top: 10px;
+
+    width: 90%;
   }
 
   .left-item{
-      padding-left: 100px;
       color: orangered;
+      float: right;
   }
   
-  .left-item1{
-    padding-left: 45px;
-    color: orangered;
-}
+
 .method{
     padding-top: 20px;
     display: flex;
@@ -351,6 +372,7 @@ body{
   margin-top: 10px;
   width: 250px;
   cursor: pointer;
+  color: #a9841f;
 }
 
 .btn6{
@@ -360,12 +382,13 @@ body{
   font-size: 18px;
   border: none;
   border-radius: 5px;
-  margin-left: 25px;
-  margin-top: 10px;
-  width: 250px;
+  margin: 20px  20px 25px 20px;
+  width: 85%;
   cursor: pointer;
 }
-
+.details form{
+  padding-top: 20px;
+}
 .details form input{
   padding: 5px;
   box-sizing: border-box;
@@ -373,8 +396,9 @@ body{
 }
 .details form input[type="text"]{
   width: 100%;
-  outline: blue;
-  border: 1px solid blue;
+  border-radius: 5px;
+  border: 1px solid  #8b8d94;
+
 }
 
 .slide-nav-animate ul li{
@@ -386,12 +410,17 @@ body{
   display: inline-block;
   width: 100%;
 } */
+.price{
+  position: relative;
+}
 .payment_method{
   margin-left: 10px;
   display: flex;
+  
 }
 .payment_method label{
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .view-product{

@@ -5,6 +5,8 @@
     require_once ('../models/profile_modelN.php');
 
 if(isset($_GET['Bid'])){
+
+
     $Bid=$_GET['Bid'];
     $details=boarder_list_modelN::boader_join_postConfirmdeal($connection,$Bid);
     $valset=mysqli_fetch_assoc($details);
@@ -39,7 +41,7 @@ if(isset($_GET['Bid'])){
             $m=$lastpay['month'];
             $date3 =$y.'-'.$m.'-01';
             echo $date3;
-            $date1  = '2013-11-15';
+            
             $date2  = date('Y-m-d');
             $output = [];
             $time   = strtotime($date3);
@@ -55,10 +57,10 @@ if(isset($_GET['Bid'])){
                     
                 ];
                 $x=$month;
-                echo '  <br/>'.$x;
+                echo '  <br/>'.$time;
 
                 $time = strtotime('+1 month', $time);
-            } while ($month != $last);
+            } while ($month < $last);
 
             $monthlist=serialize($output);
     // print_r($pay);
@@ -67,21 +69,8 @@ if(isset($_GET['Bid'])){
     $rentamount=boarder_list_modelN::get_rent_amount($connection,$Bid,$BOid);
     $amount=serialize(mysqli_fetch_assoc($rentamount));
 
-    if(isset($_POST['paid'])){
-        
-        $year=intval(substr($_POST['setdate'],0,4));
-        $month=date('m',strtotime(substr($_POST['setdate'],5)));
-        $amount=$_POST['amount'];
-        $BOid=$_SESSION['BOid'];
-        $Bid=$valset['Bid'];
-        boarder_list_modelN::insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,'cash');
+   
 
-        $rentamount=boarder_list_modelN::get_rent_amount($connection,$Bid,$BOid);
-        $amount=serialize(mysqli_fetch_assoc($rentamount));
-
-        // header('Location:../controller/boarder_inside_controlN.php?Bid='.$valset['Bid']);
-        
-    }
 
     if(isset($_POST['set'])){
         $from_BOid=$_SESSION['BOid'];
@@ -96,6 +85,25 @@ if(isset($_GET['Bid'])){
 
     header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&months='.$monthlist.'&amount='.$amount);
 }
+
+
+
+
+    if(isset($_POST['paidurl'])){
+        $Bid=$_POST['Bid'];
+
+        // $details=boarder_list_modelN::boader_join_postConfirmdeal($connection,$Bid);
+        // $valset=mysqli_fetch_assoc($details);
+        $year=intval(substr($_POST['setdate'],0,4));
+        $month=date('m',strtotime(substr($_POST['setdate'],5)));
+        $amount=$_POST['amount'];
+        $BOid=$_SESSION['BOid'];
+        // $Bid=$valset['Bid'];
+        boarder_list_modelN::insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,'cash');
+
+        header('Location:boarder_inside_controlN.php?Bid='.$Bid);
+
+    }
 
 
 

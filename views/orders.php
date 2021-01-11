@@ -116,6 +116,7 @@
          <?php 
          $records=unserialize($_GET['record']);
          $new=array_column($records,'order_type');
+         $term=array_column($records,'term');
          ?>
         <div id="breakfast-box" class="accept ">
             <div class="title">
@@ -126,13 +127,13 @@
                 <?php
                 $i=0;
                 $y=1;
-                if(in_array('breakfast',$new)){
+                if(in_array('breakfast',$new) && in_array('shortTerm',$term)){
 
                     foreach($records as $record)
                     { 
                     
                    
-                        if($record['order_type']=='breakfast'){?>
+                        if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order" >
                     
@@ -150,10 +151,10 @@
                                     <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0); 
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -204,7 +205,7 @@
                 <?php 
                  $i=0;
                  $y=1;
-                if(in_array('lunch',$new)){
+                if(in_array('lunch',$new) && in_array('shortTerm',$term)){
                     foreach($records as $record)
                     {
                         if($record['order_type']=='lunch'){?>
@@ -227,7 +228,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -278,7 +279,7 @@
                 <?php 
                  $i=0;
                  $y=1;
-                 if(in_array('dinner',$new)){
+                 if(in_array('dinner',$new) && in_array('shortTerm',$term)){
                     foreach($records as $record)
                     {
                         if($record['order_type']=='dinner'){?>
@@ -301,7 +302,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -353,10 +354,10 @@
                 <?php 
                  $i=0;
                  $y=1;
-                 if(in_array('longTerm',$new)){
+                 if(in_array('longTerm',$term)){
                     foreach($records as $record)
                     {
-                        if($record['order_type']=='longTerm'){?>
+                        if($record['term']=='longTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order">
                             <div class="resend"  onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
@@ -376,7 +377,7 @@
                                     <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],0);
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['product_name'].'</h5>';
+                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
                                             echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
                                             $address=$result['address'];
                                             $email=$result['email'];
@@ -424,7 +425,7 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
-<script src="../resource/js/newOrder.js"></script>
+<script src="../resource/js/order.js"></script>
 
 <script>
         function order(x,y) {  

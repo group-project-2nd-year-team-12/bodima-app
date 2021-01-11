@@ -1,6 +1,7 @@
 <?php
 require_once ('../config/database.php');
 require_once ('../models/orderModel.php');
+require_once ('../models/notificationModel.php');
 session_start();
 
 if(isset($_POST['view'])){
@@ -23,10 +24,10 @@ if(isset($_POST['view'])){
         $getOrderIdNew=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],0);
         while($record=mysqli_fetch_assoc($getOrderIdNew))
         {
-            if($record['order_type']=='breakfast'){$bCount++;}
-            if($record['order_type']=='lunch'){$lCount++;}
-            if($record['order_type']=='dinner'){$dCount++;}
-            if($record['order_type']=='longTerm'){$ltCount++;}
+            if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){$bCount++;}
+            if($record['order_type']=='lunch' && $record['term']=='shortTerm'){$lCount++;}
+            if($record['order_type']=='dinner' && $record['term']=='shortTerm'){$dCount++;}
+            if($record['term']=='longTerm'){$ltCount++;}
         }
         $getOrderIdAccept=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],1);
         while($record=mysqli_fetch_assoc($getOrderIdAccept))
@@ -39,10 +40,10 @@ if(isset($_POST['view'])){
         $getOrderIdAccept=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],3);
         while($record=mysqli_fetch_assoc($getOrderIdAccept))
         {
-            if($record['order_type']=='breakfast'){$delBCount++;}
-            if($record['order_type']=='lunch'){$delLCount++;}
-            if($record['order_type']=='dinner'){$delDCount++;}
-            if($record['order_type']=='longTerm'){$delLTCount++;}
+            if($record['order_type']=='breakfast' && $record['term']=='shortTerm' ){$delBCount++;}
+            if($record['order_type']=='lunch' && $record['term']=='shortTerm'){$delLCount++;}
+            if($record['order_type']=='dinner'&& $record['term']=='shortTerm'){$delDCount++;}
+            if($record['order_type']=='longTerm' && $record['term']=='shortTerm'){$delLTCount++;}
         }
     }
 
@@ -78,41 +79,106 @@ if(isset($_POST['request']))
     $DCount=orderModel::OrderCount($connection,$email,3);
     $deliveryCount=$DCount->num_rows;
     $acceptCount=$ACount->num_rows;
+    $pendingCount=$PCount->num_rows;
+    $pendingS=0;
+    $pendingL=0;
     $acceptS=0;
     $acceptL=0;
     $recevieS=0;
     $recevieL=0;
+    $longTermCount=0;
+    while($row=mysqli_fetch_assoc($PCount))
+    {
+        if($row['term']=='shortTerm')
+        {
+            $pendingS++;
+        }
+        elseif($row['term']=='longTerm')
+        {
+            $pendingL++;
+        }
+    }
     while($row=mysqli_fetch_assoc($ACount))
     {
-        if($row['order_type']=='breakfast' || $row['order_type']=='lunch' || $row['order_type']=='dinner' )
+        if($row['term']=='shortTerm')
         {
             $acceptS++;
         }
-        elseif($row['order_type']=='longTerm')
+        elseif($row['term']=='longTerm')
         {
             $acceptL++;
         }
     }
     while($row=mysqli_fetch_assoc($DCount))
     {
-        if($row['order_type']=='breakfast' || $row['order_type']=='lunch' || $row['order_type']=='dinner' )
+        if($row['term']=='shortTerm')
         {
             $recevieS++;
         }
-        elseif($row['order_type']=='longTerm')
+        elseif($row['term']=='longTerm')
         {
-            $recevieL++;
+            $longTermCount++;
         }
     }
     $arr=array(
         'aCount'=>$acceptCount,
         'acceptLong'=>$acceptL,
         'acceptShort'=>$acceptS,
-        'dCount'=>$deliveryCount,
+        'dCount'=>$recevieS,
         'deliveryShort'=>$recevieS,
-        'deliveryLong'=>$recevieL
+        'deliveryLong'=>$recevieL,
+        'pCount'=>$pendingCount,
+        'pendingShort'=>$pendingS,
+        'pendingLong'=>$pendingL,
+        'longTerm'=>$longTermCount
 
     );
     echo json_encode($arr);
+}
+
+if(isset($_POST['postId']))
+{
+    $pid=$_POST['postId'];
+    $available=orderModel::checkAvailableUser($connection,$pid);
+    $availableFetch=mysqli_fetch_assoc($available);
+    $arr=array(
+    'available'=>$availableFetch['available'],
+    );
+    echo json_encode($arr);
+}
+
+
+if(isset($_POST['count']))
+{
+    $email=$_SESSION['email'];
+    $results=notificationModel::notificationAll($connection,$email);
+    $count=0;
+    $record=array();
+    while($row=mysqli_fetch_assoc($results)){
+        if($row['seen_state']==0)
+        {
+            $count++;
+        }
+        $record[]=$row;
+    }
+    $arr=array(
+        'data'=>$record,
+        'count'=>$count
+        );
+        echo json_encode($arr);
+}
+
+if(isset($_POST['id']) && isset($_POST['email']))
+{
+    $email=$_POST['email'];
+    $noID=$_POST['id'];
+    notificationModel::notificationSeen($connection,$email,$noID);
+    $result=notificationModel::notificationResponce($connection,$email,$noID);
+    $resultFetch=mysqli_fetch_assoc($result);
+    $arr=array(
+        'responce'=>$resultFetch["responce_url"],
+      
+        );
+        echo json_encode($arr);
 }
 ?>

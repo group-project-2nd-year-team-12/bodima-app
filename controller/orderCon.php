@@ -37,12 +37,20 @@ $errors=array();
        date_default_timezone_set("Asia/Colombo");
        $time=date('Y-m-d H:i:s');
        $expireTime=date('Y-m-d H:i:s',strtotime('+20 minutes',strtotime($time)));
-       echo $F_post_id;
+      //  echo $F_post_id;
+
        $_SESSION['order_id']=$order_id;  
        $term=$_SESSION['term'];
        foreach($products as $product)
        {
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$product['item_name'],$product['item_quantity'],$order_id,$product['order_type'],$term,$total,$phone,$method,$time,$expireTime,$product['restaurant'],$connection);
+         $order_type=$product['order_type'];
+         $restaurant=$product['restaurant'];
+       }
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$total,$phone,$method,$time,$expireTime,$restaurant,$connection);
+       
+       foreach($products as $product)
+       {
+         orderModel::food_item($product['item_name'],$product['item_quantity'],$order_id,$connection);
        }
      
        if($_SESSION['term']=='longTerm')
@@ -59,7 +67,7 @@ $errors=array();
             orderModel::addLongTerm($connection,$startDate->format('Y-m-d H:i:s'),$order_id);
           }
        }
-      header('Location:orderCon.php?id=1');
+      header('Location:../views/paymentFood_pending.php');
    }
 }else{
    header('Location:../views/cartItem.php?'.$error['address'].'&'.$error['phone'].'&'.$error['phone1'].'&Pid='.$_POST['Pid']);
@@ -67,14 +75,13 @@ $errors=array();
 }
 
 // pending order details print 
-if((isset($_GET['id']) && $_GET['id']==1))
-{
+function getPending($connection){
    $email=$_SESSION['email'];
    date_default_timezone_set("Asia/Colombo");
    $date=date('Y-m-d H:i:s');
    $nowTime=date_create($date);
-   $ids_set=reg_user::getOrderById($connection,$email,0);
-   $order_pending=reg_user::getOrderAll($connection,$email,0);
+   $ids_set=orderModel::getOrderById($connection,$email,0);
+   $order_pending=orderModel::getOrderAll($connection,$email,0);
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
       {
@@ -86,10 +93,8 @@ if((isset($_GET['id']) && $_GET['id']==1))
       while($record=mysqli_fetch_assoc($order_pending))
       {
             $expireDate=date_create($record['expireTime']);
-       
+            // print_r($record);
             $diff= $expireDate->diff($nowTime);
-         
-            print_r($diff->i);
             if(($diff->s <=1 && $diff->i==0) || !$diff->invert)
             {
                orderModel::deleteRequest($record['request_id'],$connection);
@@ -100,13 +105,14 @@ if((isset($_GET['id']) && $_GET['id']==1))
           $data_rows[]=$record;
           $i++;
       }
-      $data1=serialize($ids);
-      $data2=serialize($data_rows);
-      $data3=serialize($time_out);
-   
-
-      if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
-     else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
+      // print_r($data_rows);
+      $data=array();
+      $data[0]=serialize($ids);
+      $data[1]=serialize($data_rows);
+      $data[2]=serialize($time_out);
+      return $data;
+   //    if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
+   //   else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
    
 }
 
@@ -114,8 +120,8 @@ if((isset($_GET['id']) && $_GET['id']==1))
 if(isset($_GET['id']) && $_GET['id']==2)
 {
    $email=$_SESSION['email'];
-   $ids_set=reg_user::getOrderById($connection,$email,1);
-   $order_pending=reg_user::getOrderAll($connection,$email,1);
+   $ids_set=orderModel::getOrderById($connection,$email,1);
+   $order_pending=orderModel::getOrderAll($connection,$email,1);
    
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
@@ -138,8 +144,8 @@ if(isset($_GET['id']) && $_GET['id']==2)
 if(isset($_GET['id']) && $_GET['id']==3)
 {
    $email=$_SESSION['email'];
-   $ids_set=reg_user::getOrderById($connection,$email,3);
-   $order_pending=reg_user::getOrderAll($connection,$email,3);
+   $ids_set=orderModel::getOrderById($connection,$email,3);
+   $order_pending=orderModel::getOrderAll($connection,$email,3);
    
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
@@ -150,8 +156,12 @@ if(isset($_GET['id']) && $_GET['id']==3)
       $i=0;
       while($record=mysqli_fetch_assoc($order_pending))
       {
-          $data_rows[$i]=$record;
-          $i++;
+         if($record['term']=='shortTerm')
+         {
+            $data_rows[$i]=$record;
+            $i++;
+         }
+         
       }
       $data1=serialize($ids);
       $data2=serialize($data_rows);
@@ -162,8 +172,8 @@ if(isset($_GET['id']) && $_GET['id']==3)
 if(isset($_GET['id']) && $_GET['id']==4)
 {
    $email=$_SESSION['email'];
-   $ids_set=reg_user::getOrderById($connection,$email,4);
-   $order_pending=reg_user::getOrderAll($connection,$email,4);
+   $ids_set=orderModel::getOrderById($connection,$email,4);
+   $order_pending=orderModel::getOrderAll($connection,$email,4);
   
       $ids=array();
       while($record=mysqli_fetch_assoc($ids_set))
@@ -181,6 +191,29 @@ if(isset($_GET['id']) && $_GET['id']==4)
       $data2=serialize($data_rows);
       header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
     
+}
+
+function getLongTerm($connection)
+{
+   $email=$_SESSION['email'];
+   $longTermID=orderModel::getLongTermID($connection,$email);
+   // print_r($longTermID);
+   $record=orderModel::getLongTerm($connection,$email);
+   // print_r($record);
+   $ids=array();
+   $result=array();
+      while($row=mysqli_fetch_assoc($longTermID))
+      {
+          $ids[]=$row;
+      }
+      while($row=mysqli_fetch_assoc($record))
+      {
+          $result[]=$row;
+      }
+   // print_r($ids);
+   $data[0]=serialize($ids);
+   $data[1]=serialize($result);
+      return $data;
 }
 
 
@@ -207,18 +240,7 @@ if(isset($_GET['orderConfirm_id'])){
       echo "Mysqli query failed";
    }
 }
-if(isset($_GET['orderConfirmFS_id'])){
-   $order_id=$_GET['orderConfirmFS_id'];
-   date_default_timezone_set("Asia/Colombo");
-    $deliveredTime=date("h:i:sa");
-   $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
-   if($result){
-      header('Location:../views/orderHistory.php');
-   }
-   {
-      echo "Mysqli query failed";
-   }
-}
+
 
 if(isset($_GET['order_id'])){
    $order_id=$_GET['order_id'];
@@ -257,6 +279,60 @@ if(isset($_POST['view']))
       'state'=>$exfectch['is_accepted'],
       'payment'=>$exfectch['method'],
       'rasturent'=>$exfectch['restaurant']
+   );
+ 
+    echo json_encode($data);
+}
+
+// long term date controller
+if(isset($_POST['date']) && isset($_POST['orderId']))
+{
+   date_default_timezone_set("Asia/Colombo");
+   $today=date('Y-m-d');
+   $date=$_POST['date'];
+   $todayObj=date_create($today);
+   $dateObj=date_create($date);
+   $diff=date_diff($dateObj,$todayObj);
+   $order_id=$_POST['orderId'];
+   $result=orderModel::checkLongTermState($connection,$order_id,$date);
+   $resultFetch=mysqli_fetch_assoc($result);
+   if($todayObj->format('%d') == $dateObj->format('%d'))
+   {
+      $state='qual';
+   }
+   if($todayObj->format('%d') < $dateObj->format('%d'))
+   {
+      $state='plus';
+   }
+   if($todayObj->format('%d') > $dateObj->format('%d'))
+   {
+      $state='minus';
+   }
+   
+
+   $data=array(
+      'date'=>$state,
+      'delivery'=> $resultFetch['delivery_state'],
+ 
+   );
+ 
+    echo json_encode($data);
+}
+
+if(isset($_POST['dateUp']) && isset($_POST['orderIdUp']) )
+{
+   date_default_timezone_set("Asia/Colombo");
+   $today=date('Y-m-d');
+   $date=$_POST['dateUp'];
+   $todayObj=date_create($today);
+   $dateObj=date_create($date);
+   $diff=date_diff($dateObj,$todayObj);
+   $order_id=$_POST['orderIdUp'];
+   $result=orderModel::updateLongTermState($connection,$order_id,$date,date('Y-m-d H:i:s'));
+  
+   $data=array(
+      'deliveryTime'=>date('Y-m-d H:i:s'),
+ 
    );
  
     echo json_encode($data);

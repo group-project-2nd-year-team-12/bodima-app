@@ -17,7 +17,8 @@
 	 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/vquery/5.0.1/v.min.js" integrity="sha512-JTaEfpc0EjojckV4ObScEHC2yHkDKUXEC5xO4Yb8upLDUR/2clSQKloqw6Ocp66a7dW689eKo0b/KC9C+T6osg==" crossorigin="anonymous"></script>
     <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
     <link rel="stylesheet" href="../resource/css/profile1.css">
     <link rel="stylesheet" href="../resource/css/editprofile1.css">
@@ -27,6 +28,7 @@
 </head>
 
  <body>
+<div class="backblur" id="backblur">
  <?php require "header1.php"?>
 	 <div class="container1">
      	
@@ -182,7 +184,7 @@
               <div class="mid_B">
                 <div class="profile_photo">
                   <img src="<?php echo $profileimage ?>" class="profile_img" alt="">
-                  <div class="edit_pic"><i class="fas fa-camera"></i></div>
+                  <a onclick="toggle()"><div class="edit_pic" ><i class="fas fa-camera"></i></div></a>
                 </div>
                 <div class="prof_info">
                   <h2><?php echo ''.$_SESSION['first_name'].'&nbsp;  '.$_SESSION['last_name']?></h2>
@@ -202,8 +204,30 @@
         
     </div>
 
-	 </div>	
-	 
+</div>
+</div>	
+
+<div class="outerbx">
+	<h2>Upload Profile Image</h2>
+	<hr/>
+
+	<div class="drag">
+
+		<div class="dragbox">
+		<p>Drop Image Here</p>
+		</div>
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+  <br/>
+  <input type="file" name="fileToUpload" id="fileToUpload"><br/><br/>
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+	</div>
+</div>
+     
+     
+
+
+
 	 <script>
     // $('.btn').click(function(){
     //   $(this).toggleClass("click");
@@ -233,6 +257,11 @@
 
     function save_changes() {
     alert("Do you want to save changes of your profile?");
+    }
+
+    function toggle(){
+        var backblur=document.getElementById('#backblur');
+        backblur.classList.toggle('active')
     }
 
    

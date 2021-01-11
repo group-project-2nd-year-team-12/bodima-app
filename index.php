@@ -30,14 +30,8 @@
                     
                     <div class="notification">
                         <i class="fa fa-bell fa-lg"></i>
-                        <div class="notification-box" >
-                            <ul>
-                                <li><i class="fas fa-times fa-2x"></i></li>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
+                        <div class="notification-box">
+                            <ul class="notifi-record">
                             </ul>
                         </div>
                     </div>
@@ -48,7 +42,12 @@
                     ?>
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?> 
-                
+                  <!-- live support  -->
+                  <div class="liveSupport">
+                  <i class="fas fa-headset fa-3x"></i>
+                     <div class="live-box">
+                     </div>
+                </div>
             </div>
         </div>
         <div class="nav">
@@ -87,7 +86,7 @@
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='boardings_owner' || $_SESSION['level']=='boarder'){?>
-                    <li onclick='window.location="controller/orderCon.php?id=1"'>My food Orders</li>
+                    <li onclick='window.location="views/paymentFood_pending.php"'>My food Orders</li>
                     <?php } ?>
                     <li onclick='window.location="controller/logoutController.php"'>Log out</li>
                 <?php } else{?>
@@ -97,19 +96,95 @@
                 <?php } ?>
                 </ul>
         </div>
-        <div class="section1">
-            <img src="resource/img/hostel-img3.jpg" alt="">
-            <div class="section1-header">
-               <div>
-                 <h2 >Welcome to Bodima</h2>
-                 <h4>Accomadation Management System</h4>
-                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
-                 <img  src="resource/img/home-home.png" alt="">
-                 <!-- <h1>To Search, To Find, To delivery</h1> -->
-                 <!-- <h1>To Find,To Search,To Delivery</h1> -->
+        <section>
+            <div class="slider">
+               <div class="myslider fade" style="display: block;">
+                    <div class="txt">
+                        <div class="section1-header title1 ">
+                            <div>
+                                <h2 >Welcome to Bodima</h2>
+                                <h4>Accomadation Management System</h4>
+                                <h3>Learn Together  </h3>
+                                <h3>With</h3>
+                                <h3>Friends</h3>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div>
+                    </div>
+                    <img style="width: 500px;" src="resource/img/slide/1 (1).svg" alt="">
                </div>
+               <div class="myslider fade">
+                   <div class="txt">
+                        <div class="section1-header title2">
+                            <div>
+                                <h2>"Find Boarding"</h2>
+                                <h3>Find a Safe </h3>
+                                <h3>Place</h3>
+                                <h3>For Study</h3>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div>
+                    </div>
+                    <img style="width: 500px;" src="resource/img/slide/1 (2).png" alt="">
+               </div>
+               <div class="myslider fade">
+                    <div class="txt">
+                        <div class="section1-header title3">
+                            <div>
+                                <h2>"Order Food"</h2>
+                                <h3>Learn Together  </h3>
+                                <h3>With</h3>
+                                <h3>Friends</h3>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div>
+                    </div>
+                    <img  style="width: 500px;" src="resource/img/slide/1 (3).svg" alt="">
+               </div>
+               <div class="myslider fade">
+                        <div class="txt">
+                        <div class="section1-header title4">
+                            <div>
+                                <h2>Connect With Close</h2>
+                                <h3>Download Our </h3>
+                                <h3>Android Application</h3>
+                                <h3>For Manage</h3>
+                               <button onclick="window.location='views/register.php'">Download</button>
+                            
+                            </div>
+                       </div>
+                    </div>
+                    <img style="width: 500px;" src="resource/img/slide/1 (3).png" alt="">
+               </div>
+               <div class="myslider fade">
+                    <div class="txt">
+                        <div class="section1-header title5">
+                            <div>
+                                <h2>Find Boarding</h2>
+                                <h3>Learn Together  </h3>
+                                <h3>With</h3>
+                                <h3>Friends</h3>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                            
+                            </div>
+                       </div>
+                    </div>
+                    <img src="resource/img/slide/1 (5).svg" alt="">
+               </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+                <a class="next" onclick="plusSlides(1)" >&#10095</a>
+                <div class="dotsbox" style="text-align: center;">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                </div>
             </div>
-        </div>
+        </section>
         <div class="section2">
             <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
             <div class="section2-header">
@@ -233,5 +308,7 @@
 <script src="resource/js/jquery.js"></script>
 <script src="resource/js/home1.js"></script>
 <script src="resource/js/new_home.js"></script>
+<script src="resource/js/slider.js"></script>
+<script src="resource/js/notification.js"></script>
 
 </html>
