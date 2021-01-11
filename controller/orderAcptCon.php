@@ -30,7 +30,7 @@ if(isset($_POST['accept']))
    }elseif($method=="cash")
    {
       $result=orderModel::accept($order_id,3,$connection);
-      header('Location:../views/deliveringOrder.php');
+      header('Location:orderConFood.php?id=3');
    }
    
 }

@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
-        session_start(); 
+        require_once ('../controller/orderCon.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,14 +83,17 @@
                     </div>
                     <div>
                         <div id="noti-longTerm"><h5></h5></div>
-                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Long Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                     </div>
                 </ul>
             </div>
         <?php 
-            $ids=unserialize($_GET['ids']);
-            $data_rows=unserialize($_GET['data_rows']);
+            $records=getPending($connection);
+            $ids=unserialize($records[0]);
+            $data_rows=unserialize($records[1]);
+            $time_out=unserialize($records[2]);
             $new=array_column($data_rows,'term');
+           
         ?>            
         <div id="shortTerm-box" class="pending">
             <div class="title">
@@ -135,7 +139,7 @@
                                           $address=$data_row['address'];
                                           ?> 
                                           <?php
-                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
+                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
                                           
@@ -167,7 +171,7 @@
                             success:function(data)
                             {
                                 if(data.minute==0 && data.secound<=1){
-                                    window.location="../controller/orderCon.php?id=1";
+                                    window.location="paymentFood_pending.php";
                                 }
                                 else{
                                 document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
@@ -267,7 +271,7 @@
                                           $address=$data_row['address'];
                                           ?> 
                                           <?php
-                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['product_name'].'</h5>';
+                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
                                           
@@ -358,11 +362,11 @@
  
 
   <!-- time out function -->
-<?php if(isset($_GET['timeOut']))
+<?php if(!empty($time_out))
 {   ?>
     <div class="timeOut">
     <div class="timeOut-box">
-        <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x" onclick="window.location='../controller/orderCon.php?id=1'"></i></div>
+        <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x" onclick="window.location='paymentFood_pending.php'"></i></div>
         <div class="outImg"><img src="../resource/img/timeout.svg" alt=""></div>
         <div class="outHeader">
             <h1>Your Order time out </h1>
@@ -424,8 +428,8 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
-<script src="../resource/js/pendingOrder.js"></script>
 <script src="../resource/js/newOrder.js"></script>
+<script> src="../resource/order.js"</script>
 <script src="../resource/js/disableBack.js"></script>
 <!-- clickable drop down -->
 <script>

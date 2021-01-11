@@ -36,7 +36,8 @@ if(isset($_POST['add']))
               'restaurant'=>$_POST['name'],
               'product_price'=>$_POST['price'],
               'item_quantity'=>$_POST['quantity'],
-              'order_type'=>$_POST['order_type']
+              'order_type'=>$_POST['order_type'],
+              'product_img'=>$_POST['img']
           );
           $_SESSION['cart'][$count]=$item_array;
               $item="Item added";
@@ -53,7 +54,8 @@ if(isset($_POST['add']))
       'product_price'=>$_POST['price'],
       'restaurant'=>$_POST['name'],
       'item_quantity'=>$_POST['quantity'],
-      'order_type'=>$_POST['order_type']
+      'order_type'=>$_POST['order_type'],
+      'product_img'=>$_POST['img']
   );
   $_SESSION['term']=$_POST['term'];
   $_SESSION['cart'][0]=$item_array;
@@ -132,6 +134,29 @@ if(isset($_POST['startDate']))
   echo json_encode($arr);
 }
 
+
+
+//quantity increas and decrease
+if(isset($_POST['quantity']) && isset($_POST['productId']) && isset($_POST['total']))
+{
+  $quantity=$_POST['quantity'];
+  $productId=$_POST['productId'];
+  $cartItems=$_SESSION['cart'];
+  foreach($cartItems as $key=>$cartItem)
+  {
+    if($cartItem['product_id']==$productId)
+    {
+      $cartItems[$key]['item_quantity']=$quantity;
+    }
+    
+  }
+  $_SESSION['cart']=$cartItems;
+  $_SESSION['total']=$_POST['total'];
+  $arr=array(
+    'set'=>$productId,
+  );
+  echo json_encode($arr);
+}
 
 ?>
  
