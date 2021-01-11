@@ -8,7 +8,7 @@ foreach($val as $payment){
         $output .=
 "
 <li>
-    <span>".$payment['year']."  ".date('F', mktime(0, 0, 0,$payment['month'], 10))."</span>
+    <span>".$payment['year']."  ".date('M', mktime(0, 0, 0,$payment['month'], 10))."</span>
     <span>".$payment['amount'].".00</span>
     <span>".date('Y/m/d',strtotime($payment['paidDateTime']))."</span>
     <span>".date('H:i:s',strtotime($payment['paidDateTime']))."</span>
@@ -26,7 +26,7 @@ foreach($val as $payment){
 "
 
 <tr>
-    <td>".$payment['year']."  ".date('F', mktime(0, 0, 0,$payment['month'], 10))."</td>
+    <td>".$payment['year']."  ".date('M', mktime(0, 0, 0,$payment['month'], 10))."</td>
     <td>".$payment['amount']."</td>
     <td>".date('Y/m/d',strtotime($payment['paidDateTime']))."</td>
     <td>".date('H:i:s',strtotime($payment['paidDateTime']))."</td>
@@ -196,14 +196,7 @@ if(isset($_POST["generate_pdf"]))
                         </div>
                         <?php }?>
 
-                        <div class="new_payblock">
-                            <h3>January</h3>
-                            <button>Pay</button>
-                        </div>
-                        <div class="new_payblock">
-                            <h3>December</h3>
-                            <button>Pay</button>
-                        </div>
+                       
                         
                         <br/>  
                         <hr/>                   
