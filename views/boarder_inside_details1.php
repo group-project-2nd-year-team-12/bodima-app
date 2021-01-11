@@ -80,7 +80,7 @@
 
                     <?php foreach($payments as $payment){?>
                     <li>
-                    <span><?php echo $payment['year']?> <?php echo date('F', mktime(0, 0, 0,$payment['month'], 10)); ?></span>
+                    <span><?php echo $payment['year']?> <?php echo date('M', mktime(0, 0, 0,$payment['month'], 10)); ?></span>
                         <span><?php echo $payment['amount']?>.00</span>
                         <span><?php echo date("Y/m/d",strtotime($payment['paidDateTime']))?></span>
                         <span><?php echo date("H:i:s",strtotime($payment['paidDateTime']))?></span>
