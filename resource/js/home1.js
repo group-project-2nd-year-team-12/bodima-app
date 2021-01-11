@@ -39,14 +39,43 @@ function slide(){
 
 
 
-// notification menu appler
- const noti=document.querySelector('.fa-bell');
- const noti_box=document.querySelector('.notification-box');
- const noti_close=document.querySelector('.fa-times');
- noti.addEventListener('click',(e)=>{
-    noti_box.style.display="block";
- })
 
- noti_close.addEventListener('click',(e)=>{
-    noti_box.style.display="none";
- })
+// notification menu appler
+const noti=document.querySelector('.fa-bell');
+const noti_box=document.querySelector('.notification-box');
+const noti_close=document.querySelector('.fa-times');
+var flag=0;
+//  noti.addEventListener('click',(e)=>{
+//      if(flag==0){
+//         noti_box.style.display="block";
+//         flag=1;
+//      }
+//      else{
+//         noti_box.style.display="none";
+//         flag=0;
+//      }
+//  })
+//  $('.notification-box').click(function(event){
+//     event.stopPropagation();
+// });
+// var flag=0;
+window.onclick=function(event){
+   if(event.target.matches(".fa-bell") && flag==0){
+       noti_box.style.display="block";
+       flag=1;
+   }
+   else
+   {
+       if((!event.target.matches(".notification-box")) &&  (!event.target.matches(".fa-bell")))
+       {
+           noti_box.style.display="none";
+           flag=0;
+       }
+       if(event.target.matches(".fa-bell") && flag==1)
+       {
+           noti_box.style.display="none";
+           flag=0;
+       }
+
+   }
+}

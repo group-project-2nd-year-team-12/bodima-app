@@ -30,14 +30,8 @@
                     
                     <div class="notification">
                         <i class="fa fa-bell fa-lg"></i>
-                        <div class="notification-box" >
-                            <ul>
-                                <li><i class="fas fa-times fa-2x"></i></li>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
+                        <div class="notification-box">
+                            <ul class="notifi-record">
                             </ul>
                         </div>
                     </div>
@@ -48,7 +42,12 @@
                     ?>
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?> 
-                
+                  <!-- live support  -->
+                  <div class="liveSupport">
+                  <i class="fas fa-headset fa-3x"></i>
+                     <div class="live-box">
+                     </div>
+                </div>
             </div>
         </div>
         <div class="nav">
@@ -310,5 +309,6 @@
 <script src="resource/js/home1.js"></script>
 <script src="resource/js/new_home.js"></script>
 <script src="resource/js/slider.js"></script>
+<script src="resource/js/notification.js"></script>
 
 </html>
