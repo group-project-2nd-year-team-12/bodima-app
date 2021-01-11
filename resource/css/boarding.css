@@ -9,6 +9,18 @@ body {
     background-color: #acbdd38c;
 }
 
+.cam {
+    padding: 2% 2% 2% 2%;
+    box-shadow: 0 0 3px 0.1px #5d80b6;
+    /* box-shadow: 0 0 3px 0.1px rgba(81, 84, 88, 0.5); */
+    cursor: pointer;
+}
+
+
+/* .form {
+    height: 0;
+} */
+
 .con-1 {
     background-color: white;
     margin: 40px 15% 100px 15%;
@@ -48,7 +60,8 @@ body {
     font-size: medium;
     text-transform: capitalize;
     color: #1978a5;
-    font-weight: 300;
+    /* color: #cc0000; */
+    font-weight: 570;
     padding: 1% 1% 1% 1%;
 }
 
@@ -56,6 +69,21 @@ body {
     position: relative;
     bottom: 53px;
     display: flex;
+    left: 5%;
+}
+
+.con-1 p.cover {
+    position: relative;
+    bottom: 24px;
+    display: flex;
+    left: 0%;
+}
+
+.con-1 p.slide-shower {
+    position: relative;
+    bottom: 24px;
+    display: flex;
+    left: 0%;
 }
 
 .con-1 input[type=text] {
@@ -100,12 +128,26 @@ body {
 
 .con-1 .images {
     position: relative;
-    padding: 2% 1% 1% 1%;
-    box-shadow: 0 0 3px 0.1px #5d80b6;
+    padding: 1% 1% 1% 1%;
+    /* box-shadow: 0 0 3px 0.1px #5d80b6; */
     display: flex;
-    width: 70%;
+    width: 16%;
+    /* height: 10%; */
     text-align: center;
     bottom: 20px;
+}
+
+.con-1 .wrapper {
+    position: relative;
+    padding: 0% 1% 0% 1%;
+    /* box-shadow: 0 0 3px 0.1px #5d80b6; */
+    display: flex;
+    width: 90%;
+    text-align: center;
+    bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .con-1 input[type=file] {
@@ -175,7 +217,7 @@ body {
     margin-left: 55px;
     margin-top: 15px;
     color: black;
-     border: 1.5px solid rgb(26, 155, 194); 
+     border: 1.5px solid rgb(26, 155, 194);
 
 
 }
@@ -248,4 +290,58 @@ body {
     width: 100%;
     left: 250px;
     bottom: 20px;
+}
+
+
+/* //////////////////////// */
+
+.btn {
+    position: absolute;
+    top: 3%;
+    left: 70%;
+    color: red;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.fa-window-close:before {
+    color: red;
+    font-weight: bold;
+}
+
+.btn1 {
+    position: absolute;
+    top: 2%;
+    left: 73%;
+    color: red;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+
+/* #photo-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+} */
+
+
+/* form {
+    padding: 100px;
+} */
+
+.photo {
+    padding: 10px 10px 10px 10px;
+}
+
+.fas fa-chevron-down {
+    left: 30%;
+    font-size: medium;
+    text-transform: capitalize;
+    color: #1978a5;
+    /* color: #cc0000; */
+    font-weight: 570;
+    padding: 1% 1% 1% 1%;
 }
