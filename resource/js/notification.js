@@ -11,7 +11,6 @@ $(document).ready(function () {
                     var content="";
                     var email="";
                     var noID="";
-                    console.log(document.querySelector('.notifi-record'));
                     for(var i=0;i<data.data.length; i++)
                     {
                         data.data[i];

@@ -51,48 +51,12 @@
                          </div>
                         <div class="live-content">
                   
-                            <div class="receiver">
-                                <div>
-                                     <div class="sender-icon"><h3>L</h3></div>
-                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
-                                 </div>
-                            </div>
-                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
-                            <div class="receiver">
-                                <div>
-                                     <div class="sender-icon"><h3>L</h3></div>
-                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
-                                 </div>
-                            </div>
-                       
-                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
-                            <div class="receiver">
-                                <div>
-                                     <div class="sender-icon"><h3>L</h3></div>
-                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
-                                 </div>
-                            </div>
-                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
-                            <div class="receiver">
-                                <div>
-                                     <div class="sender-icon"><h3>L</h3></div>
-                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
-                                 </div>
-                            </div>
-                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
-                            <div class="receiver">
-                                <div>
-                                     <div class="sender-icon"><h3>L</h3></div>
-                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
-                                 </div>
-                            </div>
-                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
-
+                          
                         </div>
                         <div class="live-footer">
                         <form action="#" id="live-form">
-                            <input type="text" placeholder="Type a massege" name="" id="">
-                            <button type="submit"><i style="background-color:tr" class="far fa-paper-plane fa-lg"></i></button>
+                            <input type="text" placeholder="Type a massege" name="" id="chat">
+                            <button onclick=chatLive()><i style="background-color:tr" class="far fa-paper-plane fa-lg"></i></button>
                         </form>
                         </div>
                      </div>
