@@ -932,10 +932,117 @@ span.fade1{
 }
 
 /* live support */
-.liveSupport{
+/* .liveSupport{
     position: fixed;
     bottom: 20px;
     right: 20px;
     color: rgb(30, 176, 255);
     z-index: 1;
+    cursor: pointer;
+} */
+
+/* live support */
+.live-icon{
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+}
+.live-box{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 330px;
+    height: 550px;
+    background-color: white;
+    z-index: 100;
+    box-shadow: 1px 3px 50px 1px rgba(0, 0, 0, 0.578);
+}
+.live-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    border-bottom: 1px solid rgb(131, 184, 225);
+}
+.live-content{
+    height: 450px;
+    overflow-y: scroll;
+    padding: 10px;
+}
+.sender{
+    width: 100%;
+}
+.sender  > div{
+    display: flex;
+    text-align: right;
+    width: 55%;
+    float: right;
+    
+}
+.sender  > div >p{
+    background-color:rgb(131, 184, 225);
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 2px;
+}
+
+.receiver{
+    width: 100%;
+    display: inline-block;
+}
+.receiver > div{
+    display: flex;
+    align-items: flex-start;
+    width: 55%;
+    left: 0;
+}
+
+.sender-icon{
+    width: 30px;
+    margin-right: 5px;
+}
+.sender-icon h3{
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.receiver > div p{
+    background-color:#E8E8EB;
+    padding: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 2px;
+}
+
+.live-footer {
+    width: 100%;
+    padding: 4px;
+    border-top: 1px solid rgb(131, 184, 225);
+}
+#live-form{
+    display: flex;
+    align-items: center;
+}
+#live-form input{
+    width: 80%;
+    font-size: 18px;
+    padding: 5px;
+    outline: none;
+    border: none;
+    background-color:#E8E8EB;
+    border-radius: 5px;
+}
+#live-form input:focus{
+    background-color:#b8b8c9;
+}
+#live-form button {
+    background-color: rgb(32, 85, 199);
+    color: white;
+    
 }

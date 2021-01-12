@@ -44,9 +44,59 @@
                 <?php } ?> 
                   <!-- live support  -->
                   <div class="liveSupport">
-                  <i class="fas fa-headset fa-3x"></i>
                      <div class="live-box">
+                         <div class="live-header">
+                                 <h3>Live support</h3>
+                                 <i class="fas fa-times fa-lg"></i>                            
+                         </div>
+                        <div class="live-content">
+                  
+                            <div class="receiver">
+                                <div>
+                                     <div class="sender-icon"><h3>L</h3></div>
+                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
+                                 </div>
+                            </div>
+                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
+                            <div class="receiver">
+                                <div>
+                                     <div class="sender-icon"><h3>L</h3></div>
+                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
+                                 </div>
+                            </div>
+                       
+                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
+                            <div class="receiver">
+                                <div>
+                                     <div class="sender-icon"><h3>L</h3></div>
+                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
+                                 </div>
+                            </div>
+                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
+                            <div class="receiver">
+                                <div>
+                                     <div class="sender-icon"><h3>L</h3></div>
+                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
+                                 </div>
+                            </div>
+                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
+                            <div class="receiver">
+                                <div>
+                                     <div class="sender-icon"><h3>L</h3></div>
+                                     <p>mama thamai amal lakshan man ina  e delasja h auwe kjnjcn jncn sdjncnsdndncjkcd n snsnjdcn sncj njk jk kjsc knj</p>
+                                 </div>
+                            </div>
+                            <div class="sender"><div><p>helggggg ggggg gggggggg ggg ggggg ggggg ggggg gggg gggg ggglo</p></div></div>
+
+                        </div>
+                        <div class="live-footer">
+                        <form action="#" id="live-form">
+                            <input type="text" placeholder="Type a massege" name="" id="">
+                            <button type="submit"><i style="background-color:tr" class="far fa-paper-plane fa-lg"></i></button>
+                        </form>
+                        </div>
                      </div>
+                     <div class="live-icon"><i  class="fas fa-headset fa-3x"></i></div>
                 </div>
             </div>
         </div>
@@ -310,5 +360,6 @@
 <script src="resource/js/new_home.js"></script>
 <script src="resource/js/slider.js"></script>
 <script src="resource/js/notification.js"></script>
+<script src="resource/js/chat.js"></script>
 
 </html>
