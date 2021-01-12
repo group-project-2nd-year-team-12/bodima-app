@@ -48,7 +48,22 @@ if(isset($_GET['Bid'])){
             $last   = date('Y F', strtotime($date2));
             $time = strtotime('+1 month', $time);
 
-            do {
+            // do {
+            //     $month = date('Y F', $time);
+                
+            //     $output[] = [
+            //         'time' => $time,
+            //         'month' => $month
+                    
+            //     ];
+            //     $x=$month;
+            //     echo '  <br/>'.$time;
+
+            //     $time = strtotime('+1 month', $time);
+            // } while ($month < $last);
+
+
+            while ($month < $last){
                 $month = date('Y F', $time);
                 
                 $output[] = [
@@ -60,7 +75,7 @@ if(isset($_GET['Bid'])){
                 echo '  <br/>'.$time;
 
                 $time = strtotime('+1 month', $time);
-            } while ($month < $last);
+            }
 
             $monthlist=serialize($output);
     // print_r($pay);

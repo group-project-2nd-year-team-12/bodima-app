@@ -58,7 +58,7 @@
           </ul>
         </li>
         <li><a href="../controller/boarder_list_controlN.php?boarderlist=1"><i class="fas fa-users"></i>My Boarders</a></li>
-        <li><a href="#"><i class="fas fa-comment"></i>Chat</a></li>
+        <li><a href="#"><i class="fas fa-print"></i>Print Reports</a></li>
         <li><a href="#"><i class="fas fa-puzzle-piece"></i>Post New Ad</a></li>
         <li><a href="#"><i class="fas fa-ad"></i>My Advertisements</a></li>
         <li><a href="#"><i class="fas fa-utensils"></i>Order Food</a></li>
