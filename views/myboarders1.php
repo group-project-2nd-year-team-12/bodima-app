@@ -42,6 +42,7 @@
                 </div>
                 </div>
                 <hr/>
+                <div class="h1btn"><div><a href="../views/BOwner_reports.php"><button class="p_edit" name="p_edit" value="Edit"><i class="fas fa-print"></i>Genarate Reports</button></a></div></div>
                 <div class="list_view">
                   
 
