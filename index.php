@@ -72,7 +72,7 @@
                         </form>
                         </div>
                      </div>
-                     <div style="cursor: pointer;"  class="live-icon"><i onclick=activeLive();  class="fas fa-headset fa-3x"></i></div>
+                     <div style="cursor: pointer;"  class="live-icon"><i onclick=activeLive(); class="fas fa-comments fa-4x"></i></div>
                 </div>
             </div>
         </div>
