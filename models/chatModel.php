@@ -7,9 +7,17 @@ class chatModel{
         return$result_set;
 
     }
-    public static function setChat($connection,$email,$msg)
+    public static function setChat($connection,$userEmail,$sender,$msg,$name)
     {
-        $query="INSERT INTO livesupport(user,message) VALUES ('{$email}','{$msg}')";
+        $query="INSERT INTO livesupport(user,sender,message,sender_name) VALUES ('{$userEmail}','{$sender}','{$msg}','{$name}')";
+        $result_set=mysqli_query($connection,$query);
+        return$result_set;
+
+    }
+
+    public static function getChatUser($connection)
+    {
+        $query="SELECT * FROM livesupport GROUP BY user";
         $result_set=mysqli_query($connection,$query);
         return$result_set;
 

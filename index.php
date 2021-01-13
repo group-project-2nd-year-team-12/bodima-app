@@ -43,16 +43,28 @@
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?> 
                   <!-- live support  -->
-                  <div class="liveSupport">
+                  <div class="liveSupport ">
                      <div class="live-box">
                          <div class="live-header">
+                                <!-- <div id="back" class="avater"  style="cursor:pointer"><i onclick=back(); class="fas fa-chevron-left fa-lg"></i></div> -->
                                  <h3>Live support</h3>
-                                 <i class="fas fa-times fa-lg"></i>                            
+                                 <i style="cursor:pointer" onclick=removeLive(); class="fas fa-times fa-lg"></i>                            
                          </div>
-                        <div class="live-content">
-                  
-                          
-                        </div>
+                            <?php 
+
+                             if($_SESSION['level']=="administrator"){?>
+                                <div class="admin-side">
+                                    
+                                </div>
+                                <div class="live-content-admin">
+                                </div>
+                            <?php }else{ ?>
+                                <div class="live-content">
+
+                                </div>
+                                <?php }
+                                ?>
+                                
                         <div class="live-footer">
                         <form action="#" id="live-form">
                             <input type="text" placeholder="Type a massege" name="" id="chat">
@@ -60,7 +72,7 @@
                         </form>
                         </div>
                      </div>
-                     <div class="live-icon"><i  class="fas fa-headset fa-3x"></i></div>
+                     <div style="cursor: pointer;"  class="live-icon"><i onclick=activeLive();  class="fas fa-headset fa-3x"></i></div>
                 </div>
             </div>
         </div>
