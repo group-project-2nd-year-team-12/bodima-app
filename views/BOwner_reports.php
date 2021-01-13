@@ -36,7 +36,9 @@
         </div>
         <div class="middle_b">
           <h1>Genarate Reports</h1>
+          <form method="post" action="../controller/BOwner_reports_Control.php">
           <div class="filterBtnSet">
+              <div class="inner_filterBtnSet">
                 <div class="filtr_1">
                     <div class="fltr_btn"><i class="fas fa-filter"></i></div>
                 </div> 
@@ -45,12 +47,25 @@
                 </div>    
                 <div class="filtr_1">
                     <span>Sort by</span>
-                    <select><option>all options</option></select>
+                    <select name="sort_by">
+                        <option value="paidDateTime">date</option>
+                        <option value="first_name">name</option>
+                        <option value="amount">amount</option>
+                        <option value="B_post_id">post number</option>
+                        <!-- don't change option values >> these are database column names  -->
+                    </select>
                 </div>
                 <div class="filtr_1">
                     <span>Order</span>
-                    <select><option>Desending</option></select>
+                    <select name="order">
+                        <option value="DESC">Descending</option>
+                        <option value="ASC">Ascending</option>
+                    </select>
                 </div>
+                </div>
+                <div class="go2">
+                        <input type="submit" name="go1" id="go1" value="Go">
+                    </div>
             </div>
 
             <div class="filters">
@@ -59,11 +74,13 @@
                     <i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="filt_body">
+                    <div class="inner_filt_body">
                     <div class="filtr_1">
-                        <span>Boarder</span>
-                        <select>
-                            <option>Anuki Gayara</option>
-                            <option>Nimasha</option>
+                        <span>Boarder Name</span>
+                        <select name=filter_Bid>
+                            <option value="all">All</option>
+                            <option value="48">Anuki Gayara</option>
+                            <option value="37">Nimasha</option>
                         </select>
                     </div>
                     <div class="filtr_1" style=" margin: 0px 5px 0px 20px;">
@@ -76,24 +93,30 @@
                     </div>
                     <div class="filtr_1">
                         <span>Method</span>
-                        <select style="width:80px;">
-                            <option>Online</option>
-                            <option>Cash</option>
+                        <select name="method" style="width:80px;">
+                            <option value="all">All</option>
+                            <option value="online">Online</option>
+                            <option value="cash">Cash</option>
                         </select>
                     </div>
                     <div class="filtr_1">
                         <span>PostNo</span>
-                        <select style="width:80px;">
-                            <option>0012</option>
-                            <option>0021</option>
-                            <option>0033</option>
-                            <option>0131</option>
+                        <select name="filter_postno" style="width:80px;">
+                            <option value="all">All</option>
+                            <option value="1">0001</option>
+                            <option value="4">0004</option>
+                            <option value="5">0033</option>
+                            <option value="2222">2222</option>
                         </select>
+                    </div>
+                    </div>
+                    <div class="go1">
+                        <input type="submit" name="go1" id="go1" value="Go">
                     </div>
                 </div>
             </div>
 
-
+</form>
 
               <div class="mid_M">
               <div style="display:flex; justify-content:space-between;">  
@@ -114,12 +137,28 @@
                         <th>postNo</th>
                         </tr>
                         <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
+                        <td>2021/10/12 </td>
+                        <td>anuki gayara </td>
+                        <td>2020 Jan</td>
+                        <td>6000 </td>
+                        <td>online</td>
+                        <td>0021</td>
+                        </tr>
+                        <tr>
+                        <td>2021/10/12 </td>
+                        <td>anuki gayara </td>
+                        <td>2020 Jan</td>
+                        <td>6000 </td>
+                        <td>online</td>
+                        <td>0021</td>
+                        </tr>
+                        <tr>
+                        <td>2021/10/12 </td>
+                        <td>anuki gayara </td>
+                        <td>2020 Jan</td>
+                        <td>6000 </td>
+                        <td>online</td>
+                        <td>0021</td>
                         </tr>
 
                         </table>
@@ -215,7 +254,7 @@
 </head>
 <body>
 filters
-<form method="post" action="../controller/BOwner_reports_Control.php">
+
 <input type="text" name="bOreportsearch" id="BORsearch" />
 <select name="person" id="person">
     <option value="all">All</option>
