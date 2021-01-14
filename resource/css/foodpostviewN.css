@@ -393,3 +393,16 @@ background: linear-gradient(212deg, rgba(9,9,121,0.6828769298081987) 0%, rgba(0,
     margin: 10px;
     
 }
+
+.not_available{
+    
+    font-size: x-small;
+    border-radius:10px ;
+    padding: 3px;
+    color: rgb(255, 38, 0) ;
+    border: 1px solid rgb(255, 38, 0);
+    margin-right: 20px;
+    margin-left: 10px;
+    margin-top: -6px;
+
+}
