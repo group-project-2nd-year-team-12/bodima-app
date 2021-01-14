@@ -186,7 +186,13 @@ table{
     width: 96%;
     margin:5px 2% 0px 2%;
     padding: 10px;
+    /* background-color: rgb(190, 138, 238); */
+    justify-content: space-between;
    
+}
+
+.inner_filterBtnSet{
+    display: flex;
 }
 
 .filters{
@@ -195,6 +201,7 @@ table{
     display: block;
     width: 96%;
     margin:0px 2% 0px 2%;
+    /* background-color: blueviolet; */
     
     
 }
@@ -211,8 +218,13 @@ table{
     display: block;
     width:100%;
     display: flex;
-    width: 96%;
     padding: 10px;
+    /* background-color: tomato; */
+    justify-content: space-between;
+}
+
+.inner_filt_body{
+    display: flex;
 }
 
 
@@ -278,4 +290,36 @@ table{
     width:120px;
     box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5); 
     border-radius:5px;
+}
+
+.mid_M table{
+    background-color: rgba(212, 211, 211, 0.075);
+    width:100%;
+}
+
+.mid_M table td{
+    text-align: center;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.445);
+}
+.mid_M table tr{
+    height: 30px;
+    
+}
+
+.mid_M table th{
+    background-color:rgba(212, 211, 211, 0.11) ;
+    border-bottom: 1px solid #ddd;
+}
+
+.go1 input[type=submit],.go2 input[type=submit]{
+   width: 40px;
+   border-radius: 5px;
+
+    
+}
+
+.go1{
+    /* background-color: cadetblue; */
+    float:right;
 }
