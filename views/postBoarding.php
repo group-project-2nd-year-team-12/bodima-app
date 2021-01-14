@@ -65,6 +65,7 @@ session_start();
     
 	
 	<form action="../controller/postBoardingCon.php" method="post" enctype="multipart/form-data"  class="form">
+	<!-- <form action="../controller/cont.php" method="post" enctype="multipart/form-data"  class="form"> -->
 			<!-- <div id="name"> -->
 
     <h1>Boarding Advertisement Form</p><!-- postBoarding --> 
@@ -127,7 +128,7 @@ session_start();
 			<div id="photo1" class="images" style="position: relative;">
                     <label for="inputFile"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah1" alt="Img" width="100px" height="100px"><br><br></label>
                     <button type="button" class="btn1" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
-                    <input type="file" id="inputFile" name="image11" hidden > <br>
+                    <input type="file" id="inputFile" name="image1" hidden > <br>
             </div>
 			
 			
@@ -147,7 +148,7 @@ session_start();
                 <div class="photo" style="position: relative;">
                     <label for="inputFile1"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah" alt="Img" width="100px" height="100px"><br><br></label>
                     <button type="button" class="btn" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
-                    <input type="file" id="inputFile1" name="image1" hidden > <br>
+                    <input type="file" id="inputFile1" name="image[]" hidden > <br>
                 </div>
                 <!-- two -->
                 <div class="photo" style="position: relative;">
@@ -281,7 +282,31 @@ session_start();
     </div>
 				
 
+					<script>
+						$('.group').on('input', '.prc', function() {
+    						var totalsum = 0;
+							$('.group .prc').each(function() {
+								var inputVal = $(this).val();
+								if ($.isNumeric(inputVal)) {
+									totalsum = parseFloat(inputVal) * 100;
+								}
 
+							});
+							$('#Aamount').val(totalsum);
+							//$('#result').text(totalsum);
+
+							//result=$_SESSION['totalsum']
+
+						});
+
+						$('form').submit(function(e) {
+								$(':disabled').each(function(e) {
+								$(this).removeAttr('disabled');
+							})
+
+						});
+					
+					</script>
 				<!--<label for="">Boarding Images  </label><br>
 				<input type="file" name="Bimage{}" id="Bimage" multiple ><br><br>-->
 					
