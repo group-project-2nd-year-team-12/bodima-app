@@ -30,6 +30,38 @@ echo '<br/>$toDate : '.$_POST['toDate'];
 echo '<br/>$postno : '.$_POST['filter_postno'];
 echo '<br/>method: '.$_POST['method'].'<br/><br/><br/>';
 
+$BOid =$_SESSION['BOid'];
+$sortcontext=$_POST['sort_by'];
+$DESC_ASC=$_POST['order'];
+$filter_Bid=$_POST['filter_Bid'];
+if($_POST['fromDate']>0 && $_POST['toDate']>0){
+    $fromDate= date("Y-m-d 00:00:00",strtotime($_POST['fromDate']));
+    $toDate=date("Y-m-d 23:59:59",strtotime($_POST['toDate']));
+}else if($_POST['fromDate']>0 && !($_POST['toDate']>0 )){
+    $fromDate= date("Y-m-d 00:00:00",strtotime($_POST['fromDate']));
+    $toDate=date("Y-m-d 23:59:59");
+}else if(!($_POST['fromDate']>0) && $_POST['toDate']>0 ){
+    $fromDate= date("2000-m-d 00:00:00");
+    $toDate=date("Y-m-d 23:59:59",strtotime($_POST['toDate']));
+}else{
+    $fromDate=$_POST['fromDate'];
+    $toDate=$_POST['toDate'];
+}
+$postno=$_POST['filter_postno'];
+$method=$_POST['method'];
+
+$resultM=BOwner_reports_Model::payments_filter($connection,$BOid,$sortcontext,$DESC_ASC,$filter_Bid,$fromDate,$toDate,$postno,$method);
+if(mysqli_num_rows($resultM)>0){
+
+    while($row=mysqli_fetch_assoc($resultM)){
+        $data[]=$row;
+        print_r($row);
+        echo '<br/>';
+    }
+    $result=serialize($data);}
+
+
+}
 
 header('Location:../views/BOwner_reports.php?results='.$result);
 
