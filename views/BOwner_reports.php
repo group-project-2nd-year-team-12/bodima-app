@@ -29,7 +29,10 @@
  <body>
  <?php require "header1.php"?>
 	 <div class="container1">
-     	
+         <?php 
+         $results=unserialize($_GET['results']);
+        //  print_r($results);
+         ?>
      <div class="container2">
         <div class="sidebar_b">
         <?php require "sidebar1.php"?>	
@@ -37,10 +40,11 @@
         <div class="middle_b">
           <h1>Genarate Reports</h1>
           <form method="post" action="../controller/BOwner_reports_Control.php">
+          <div class="mid_N">
           <div class="filterBtnSet">
               <div class="inner_filterBtnSet">
                 <div class="filtr_1">
-                    <div class="fltr_btn"><i class="fas fa-filter"></i></div>
+                    <div class="fltr_btn" id="fltr_btn"><i class="fas fa-filter"></i></div>
                 </div> 
                     <div class="filtr_1">
                     <div class="fltr_btn" style="background-color:rgb(221, 220, 220);"><i class="fas fa-ellipsis-h"></i></div>
@@ -68,7 +72,7 @@
                     </div>
             </div>
 
-            <div class="filters">
+            <div class="filters" id="filters">
                 <div class="filt_title">
                     <span>Filters 
                     <i class="fas fa-chevron-down"></i></span>
@@ -115,7 +119,7 @@
                     </div>
                 </div>
             </div>
-
+</div>
 </form>
 
               <div class="mid_M">
@@ -136,51 +140,25 @@
                         <th>Method</th>
                         <th>postNo</th>
                         </tr>
+
+                        <?php foreach($results as $row){?>
                         <tr>
-                        <td>2021/10/12 </td>
-                        <td>anuki gayara </td>
-                        <td>2020 Jan</td>
-                        <td>6000 </td>
-                        <td>online</td>
-                        <td>0021</td>
+                        <td><?php echo $row['paidDateTime']?></td>
+                        <td><?php echo $row['first_name']?></td>
+                        <td><?php echo $row['year'].' '.date("F",mktime(0,0,0,$row['month'],0,0))?></td>
+                        <td><?php echo $row['amount']?> </td>
+                        <td><?php echo $row['cash_card']?></td>
+                        <td><?php echo '000'.$row['B_post_id']?></td>
                         </tr>
-                        <tr>
-                        <td>2021/10/12 </td>
-                        <td>anuki gayara </td>
-                        <td>2020 Jan</td>
-                        <td>6000 </td>
-                        <td>online</td>
-                        <td>0021</td>
-                        </tr>
-                        <tr>
-                        <td>2021/10/12 </td>
-                        <td>anuki gayara </td>
-                        <td>2020 Jan</td>
-                        <td>6000 </td>
-                        <td>online</td>
-                        <td>0021</td>
-                        </tr>
+
+                        <?php }?>
+                        
 
                         </table>
                         </div>
 
 
-                  <?php $boarderlist=unserialize($_GET['blist']);
-                      foreach($boarderlist as $detail ){?>
-                                  <!-- boarder_inside_details1 -->
-                                  <!-- ../controller/boarder_inside_controlN.php?Bid=-->
-                      <div class="l_item" onclick="location.href='../controller/boarder_inside_controlN.php?Bid=<?php echo $detail['Bid']?>'" >
-                        <div><img src="<?php echo $detail['profileimage']?>" class="profile_image" alt=""></div>
-                        <li><?php echo $detail['first_name'].' '.$detail['last_name']?><p>boarding : <?php echo $detail['Bp_address'] ?></p><p>post no:000<?php echo $detail['B_post_id'] ?></p></li>
-                        <div class="icon_strip">
-                        <a><i class="fas fa-info"></i></a>
-                        <a><i class="fas fa-bell"></i></a>
-                        <a><i class="fas fa-dollar-sign"></i></a>
-                        </div>
-                        <a href="#"><button class="boarder_delete">Remove</button></a>
-                    </div>
-
-                     <?php }?>
+                  
                      
                     
                 </div>
@@ -204,7 +182,13 @@
 			$("#fromDate").datepicker({
         maxDate:0
       });
-		});
+		
+
+        
+            $("#fltr_btn").click(function(){
+                $("#filters").show("slow");
+            });
+        });
 	</script>
 	 <!-- ********************sidebar ************************************************ -->
 	 <script>
@@ -246,36 +230,3 @@
 
 
 
-<html>
-<head>
-<title>Genarate Reports</title>
-<link rel="stylesheet" href="../resource/css/BOwner_reports.css">
-
-</head>
-<body>
-filters
-
-<input type="text" name="bOreportsearch" id="BORsearch" />
-<select name="person" id="person">
-    <option value="all">All</option>
-    <option value="Anuki gayara">Anuki gayara</option>
-    <option value="Nimsha Supunprabha">Nimsha Supunprabha</option>
-    <option value="Amal Lakshan">Amal Lakshan</option>
-    <option value="Ishan Reshmika">Ishan Reshmikai</option>
-</select>
-
-from <input type="text" name="from_cal" id="from_cal" autocomplete='off'/>
-to <input type="text" name="to_cal" id="to_cal" autocomplete='off'/>
-
-method <select name="method" id="method">
-    <option value="cash">Cash</option>
-    <option value="online">Online</option>
-</select>
-
-<input type="submit" name="btnx">
-</form>
-
-
-
-</body>
-</html>
