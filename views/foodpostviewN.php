@@ -18,6 +18,29 @@
     <title>Food</title>
 </head>
 <body>
+<?php
+//  $posts=unserialize($_GET['posts']);
+//  print_r($posts);
+
+require_once ('../config/database.php');
+require_once ('../models/foodpostviewN_model.php');
+
+ $result=foodpostviewN_model::foodpost_details($connection);
+
+if(mysqli_num_rows($result)>0){
+
+    while($row=mysqli_fetch_assoc($result)){
+        $data[]=$row;
+       
+        
+
+    }
+    $posts2=serialize($data);
+}
+// $data = preg_replace('!s:(\d+):"(.*?)";!e', "'s:'.strlen('$2').':\"$2\";'", $posts);
+$posts=unserialize($posts2);
+
+?>
 	<div class="whole">
         <?php include 'nav.php' ?>
         <div class="backdrop_1">
@@ -56,7 +79,53 @@
                 <input type="text" name="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>
                 </div>
                 </div>
+                
+                
+
             <div class="post_box">
+
+            <?php foreach($posts as $post){?>
+                    <div class="f_post">
+                   <div class="f_image">
+                       <img src="<?php echo $post['image']?>">
+                    </div>
+                    <div class="f_content">
+                    
+                        <li><h2><a><?php echo $post['ad_title']?></a>
+                        
+                        <?php if ($post['available']=='0'){?>
+                        <span class="not_available">Unavailable</span>
+                        <?php }?>
+                        </h2>
+                        </li>
+                        <li>3.5 
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i> (15) 
+                        </li>
+                        <li><i class="fas fa-map-marker-alt" id="map"></i><?php echo $post['address']?></li>
+                        <li class="description"><p>"<?php echo $post['description']?>"</p></li>
+                        <li class="term">
+
+                        <?php if($post['type']=="Both" || $post['type']=="Short Term" ){?>
+                            <div class="short">
+                                <span>shortTerm</span>
+                            </div>
+                            <?php }
+                            
+                            if($post['type']=="Both" || $post['type']=="Long Term" ){?>
+                            <div class="long">
+                            <span>longTerm</span>
+                            </div>
+                            <?php }?>
+                        </li>
+                    </div>
+                </div>
+                    <?php }?>
+
+
             <?php for ($x = 0; $x <= 4; $x++) {?>
  
 
@@ -65,7 +134,10 @@
                        <img src="../resource/img/backdrop_2.jpg">
                     </div>
                     <div class="f_content">
-                        <li><h2><a>Rasika Food Delivery</a></h2></li>
+                    
+                        <li><h2><a>Rasika Food Delivery</a><span class="not_available">Unavailable</span></h2>
+                        
+                        </li>
                         <li>3.5 
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
