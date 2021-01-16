@@ -18,7 +18,7 @@
             while($row=mysqli_fetch_assoc($paymentdetails)){
                 $data[]=$row;
                 echo '<br/><br/>';
-                print_r($row);
+                // print_r($row);
             }
             $paymentdetails=serialize($data);
         }
@@ -36,6 +36,7 @@
             $output = [];
             $time   = strtotime($date3);
             $last   = date('Y F', strtotime($date2));
+            echo $last;
             $time = strtotime('+1 month', $time);
 
             do {
@@ -50,7 +51,8 @@
                 echo '  <br/>'.$x;
 
                 $time = strtotime('+1 month', $time);
-            } while ($month != $last);
+                echo ' &nbsp&nbsp '.$last;
+            } while ($month < $last);
 
             $monthlist=serialize($output);  
 // ***********************************************************************************************
