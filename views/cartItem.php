@@ -48,7 +48,7 @@ $total=0;
     $i=0;    
              foreach($results as $result)
              {
-                 print_r($_SESSION);
+                //  print_r($_SESSION);
            ?> 
                    <form action="../controller/cartCon.php?action=remove&id=<?php echo $result['product_id'];?>" method="post">
                    

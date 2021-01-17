@@ -514,9 +514,7 @@ if(isset($_GET['Pid']))
   <script>
     function typeOrder(type)
     {
-      var breakfast=document.getElementById('breakfast');
-      var lunch=document.getElementById('lunch');
-      var dinner=document.getElementById('dinner');
+     
         if(type==1)
         {
           breakfast.style.display='block';
