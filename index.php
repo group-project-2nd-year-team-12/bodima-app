@@ -15,8 +15,8 @@
 <div class="container" id="container">
         <div class="header">
             <div class="logo">
-                <img src="resource/img/logo.png" alt="">
-                <h1><small style="font-size: 14px; color:white;font-weight:normal">   Solutions for many problems</small></h1>
+                <img src="resource/img/logo.svg" alt="">
+                <!-- <h1><small style="font-size: 14px; color:white;font-weight:normal">   Solutions for many problems</small></h1> -->
             </div>
             <div class="sign">
                 
@@ -25,7 +25,7 @@
                     <button onclick="window.location='controller/logingController.php?click1'">Sign In <i class="fa fa-sign-in-alt"></i></button>
                     <?php }?>
                 <?php if(isset($_SESSION['email'])){ 
-                  
+                  echo '<div class="user"><h4>Hi <span style="color:#FDDB21;font-weight:bold">'.$_SESSION['first_name'].' </span>!</h4></div>'; 
                     ?>
                     
                     <div class="notification">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="profile"><a href="views/profilepage.php"> <i class="fa fa-user-circle fa-lg"></a></i></div>
                 <?php
-                    echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; 
+                    
                     if($_SESSION['level']=='administrator'){?> <button onclick="window.location='controller/adminPanelCon.php?admin'"><i class="fas fa-cogs"></i> Dash Board </button>&nbsp<?php }
                     ?>
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
             <ul class="nav_bar">
-                <li class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i>Home</li>
+                <li class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i> Home</li>
                 <li class="nav_item " onclick="window.location='views/boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
                 <li class="nav_item " onclick="window.location='views/foodposts.php'"><i class="fas fa-hamburger"></i> Order Food</li>
                 <li class="nav_item " onclick="window.location='views/about.php'"><i class="fa fa-address-card"></i> About us</li>
@@ -133,7 +133,7 @@
                                 <h3>Learn Together  </h3>
                                 <h3>With</h3>
                                 <h3>Friends</h3>
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Get Start</button><?php } ?>
                             
                             </div>
                        </div>
