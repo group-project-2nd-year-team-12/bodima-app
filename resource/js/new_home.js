@@ -7,7 +7,11 @@ function textAppere(x)
         // console.log(splitText);
         text.textContent="";  // text tag eka empty karanawa
         for(let i=0;i<splitText.length;i++){
-            text.innerHTML+="<span style='color:#fff'>"+splitText[i]+"</span>";
+           if(i==7)
+           {
+            // text.innerHTML+="<span><br></span>";
+           }
+            text.innerHTML+="<span style='color: #3f3d56;font-weight:bolder;padding-top:30px'>"+splitText[i]+"</span>";
         }
         let char =0;
         let timer = setInterval(onTick,50);  // set time 
