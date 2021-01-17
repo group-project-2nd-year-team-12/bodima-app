@@ -158,5 +158,11 @@ class orderModel{
         return $result;
     }
 
+    public static function checkTerm($connection,$pid){
+        $query="SELECT type FROM food_post WHERE F_post_id=$pid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
     
 }

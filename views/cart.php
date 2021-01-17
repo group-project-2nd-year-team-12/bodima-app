@@ -28,6 +28,7 @@ if(isset($_GET['Pid']))
 {
   $fpid=$_GET['Pid'];
 ?>
+<input type="hidden" id="fpid" value="<?php echo $fpid; ?>">
  <div class="view-product">
 <div class="order-type">
     <div class="order-typeBox">

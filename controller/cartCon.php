@@ -96,6 +96,7 @@ if(isset($_POST['count']))
 if(isset($_POST['manage']))
 {
   $term='';
+ 
   if(isset($_SESSION['term']))
   {
     $term=$_SESSION['term'];

@@ -29,6 +29,8 @@ function activeLongterm(){
   document.querySelector('.shedule').style.display='block';
 }
 
+
+//get term from session
 $(document).ready(function () {
   function cartMange()
   {
@@ -159,6 +161,23 @@ $(window).on('load', function () {
           element.style.display='none';
         })
       }
+
+      if(data.term=="Long Term")
+      {
+        activeLongterm();
+        $("#longTerm-check").prop("disabled", true);
+      }
+      if(data.term=="Short Term")
+      {
+        console.log(document.querySelector('.term'));
+      document.querySelector('.term').innerHTML="<h4>\"Long term food delivery not support this restaurent\"</h4>";
+      }
+      if(data.term=="Both")
+      {
+        //default
+      }
+
+
       
     }
   });
@@ -254,6 +273,10 @@ function deadLine(){
  if(hour > 19 )
  {
   dinner.disabled=true;
+  document.querySelectorAll('.cart-num').forEach(function(element){
+    element.disabled=true;
+    element.style.color='gray';
+  })
  }
 
 }
