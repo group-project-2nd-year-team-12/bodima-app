@@ -16,7 +16,7 @@
         <div class="header">
             <div class="logo">
                 <img src="resource/img/logo.svg" alt="">
-                <!-- <h1><small style="font-size: 14px; color:white;font-weight:normal">   Solutions for many problems</small></h1> -->
+                <h1><small style="font-size: 14px; color:white;font-weight:normal">   Solutions for many problems</small></h1>
             </div>
             <div class="sign">
                 
@@ -35,7 +35,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="views/profilepage.php"> <i class="fa fa-user-circle fa-lg"></a></i></div>
+                    <div class="profile"><a href="views/profilepage.php"> <i class="fa fa-user-circle fa-lg"></i></a></div>
                 <?php
                     
                     if($_SESSION['level']=='administrator'){?> <button onclick="window.location='controller/adminPanelCon.php?admin'"><i class="fas fa-cogs"></i> Dash Board </button>&nbsp<?php }
@@ -72,7 +72,7 @@
                         </form>
                         </div>
                      </div>
-                     <div style="cursor: pointer;"  class="live-icon"><i onclick=activeLive(); class="fas fa-comments fa-4x"></i></div>
+                     <div style="cursor: pointer;"  class="live-icon"><i onclick=activeLive(); class="fas fa-comment fa-4x"></i></div>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
             <ul class="nav_bar">
                 <li class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i> Home</li>
                 <li class="nav_item " onclick="window.location='views/boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
-                <li class="nav_item " onclick="window.location='views/foodposts.php'"><i class="fas fa-hamburger"></i> Order Food</li>
+                <li class="nav_item " onclick="window.location='views/foodpostviewN.php'"><i class="fas fa-hamburger"></i> Order Food</li>
                 <li class="nav_item " onclick="window.location='views/about.php'"><i class="fa fa-address-card"></i> About us</li>
                 <li class="nav_item " onclick="window.location='views/contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
             </ul>
@@ -130,15 +130,17 @@
                             <div>
                                 <h2 >Welcome to Bodima</h2>
                                 <h4>Accomadation Management System</h4>
-                                <h3>Learn Together  </h3>
+                                <!-- <h3>Learn Together  </h3>
                                 <h3>With</h3>
-                                <h3>Friends</h3>
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Get Start</button><?php } ?>
+                                <h3>Friends</h3> -->
+                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Get Start</button><?php } 
+                                else{?> <button onclick="window.location=''">Get Start</button> <?php } ?>
+                                
                             
                             </div>
                        </div>
                     </div>
-                    <img style="width: 500px;" src="resource/img/slide/1 (1).svg" alt="">
+                    <img style="width: 855px;" src="resource/img/slide/3.png" alt="">
                </div>
                <div class="myslider fade">
                    <div class="txt">
