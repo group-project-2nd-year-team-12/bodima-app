@@ -72,7 +72,7 @@
                         </form>
                         </div>
                      </div>
-                     <div style="cursor: pointer;"  class="live-icon"><i onclick=activeLive(); class="fas fa-comment fa-4x"></i></div>
+                     <div style="cursor: pointer;"  class="live-icon"><i style="position: relative;" onclick=activeLive(); class="fas fa-comment fa-4x"></i><i class="fas fa-comment-alt fa-lg"></i></div>
                 </div>
             </div>
         </div>

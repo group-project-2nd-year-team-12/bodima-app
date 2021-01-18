@@ -159,5 +159,15 @@ if(isset($_POST['quantity']) && isset($_POST['productId']) && isset($_POST['tota
   echo json_encode($arr);
 }
 
+
+//shedule
+if(isset($_POST['shedule']))
+{
+  $type=array_column($_SESSION['cart'],"order_type");
+  $arr=array(
+    'type'=>$type[0],
+  );
+  echo json_encode($arr);
+}
 ?>
  

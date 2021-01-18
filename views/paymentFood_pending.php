@@ -137,6 +137,7 @@
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
                                           $address=$data_row['address'];
+                                          $shedule=$data_row['shedule'];
                                           ?> 
                                           <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
@@ -150,6 +151,7 @@
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Shedule Time </h4><h4>: <?php echo $shedule; ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                             <h4 class="order_item" style="color: #101e5a;margin-top:20px"> Please wait for food supplier accept this order.</h4>
                            <div class="order_item" style="color: #101e5a;"><h4>Do you want to cancel this order ?</h4> <h4><button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id["order_id"]; ?>"' type="button" class="btn1 cancel"> Cancel</button></h4></div> 
@@ -269,6 +271,7 @@
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
                                           $address=$data_row['address'];
+                                          $shedule=$data_row['shedule'];
                                           ?> 
                                           <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
@@ -282,6 +285,7 @@
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Shedule Time </h4><h4>: <?php echo $shedule; ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                             <h4 class="order_item" style="color: #101e5a;margin-top:20px"> Please wait for food supplier accept this order.</h4>
                            <div class="order_item" style="color: #101e5a;"><h4>Do you want to cancel this order ?</h4> <h4><button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id["order_id"]; ?>"' type="button" class="btn1 cancel"> Cancel</button></h4></div> 

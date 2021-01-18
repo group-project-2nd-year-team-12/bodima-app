@@ -2,10 +2,10 @@
 
 class orderModel{
 
-    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$total,$phone,$method,$time,$expireTime,$name,$connection)
+    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$shedule,$total,$phone,$method,$time,$expireTime,$name,$connection)
     {
-        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,total,phone,method,time,expireTime,restaurant,order_id,order_type,term) 
-        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$total}','{$phone}','{$method}','{$time}','{$expireTime}','{$name}','{$order_id}','{$order_type}','{$term}') LIMIT 1";
+        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,total,phone,method,time,expireTime,restaurant,order_id,order_type,term,shedule) 
+        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$total}','{$phone}','{$method}','{$time}','{$expireTime}','{$name}','{$order_id}','{$order_type}','{$term}','{$shedule}') LIMIT 1";
          $result=mysqli_query($connection,$query);
     }
     public static function food_item($item_name,$quantity,$order_id,$connection)
@@ -66,6 +66,11 @@ class orderModel{
 
     public static function getOrderFoodSupplier($connection,$order_id,$is_accepted){
         $query="SELECT * FROM food_request,order_item WHERE order_item.order_id='{$order_id}' AND food_request.order_id=order_item.order_id AND  food_request.is_accepted=$is_accepted ORDER BY order_item.order_id DESC";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function getOrderFoodSupplierTerm($connection,$order_id,$is_accepted,$term){
+        $query="SELECT * FROM food_request,order_item WHERE order_item.order_id='{$order_id}' AND food_request.order_id=order_item.order_id AND  food_request.is_accepted=$is_accepted AND food_request.term='{$term}' ORDER BY order_item.order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }

@@ -172,15 +172,10 @@ $total=0;
                 </div>
                <div class="shedule-order">
                 <h4>Shedule your order :</h4>
-                <select class="shedule-time">
+                <select name="shedule" class="shedule-time">
                
-                    </select>
+                </select>
                </div>
-               <?php 
-                        // <option value="">8.00AM-8.30AM</option>
-                        $date=Date('H-i');
-                        echo $date;
-                    ?>
                 <button name="submit" type="submit" id="request" class="btn6 request">ORDER </button>
               
             </form>

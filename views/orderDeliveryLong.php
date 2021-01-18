@@ -85,6 +85,10 @@
         <div class="content">  
         <?php include 'orderSide.php' ?> 
         
+        <?php 
+        $records=unserialize($_GET['record']);
+        $new=array_column($records,'order_type');
+         ?>      
         <div class="subNav">
                 <ul>
                     <div>
@@ -101,19 +105,14 @@
                     </div>
                    
                 </ul>
-            </div>  
-          
-        <?php 
-        $records=unserialize($_GET['record']);
-        $new=array_column($records,'order_type');
-        $termArray=array_column($records,'term');
-         ?>      
-        <div class="short-term-box ">
-        <div class="term">
-            <a style="background-color: orange;" onclick="window.location='../controller/orderConFood.php?term=short'" id="Short-Term"> Short-term List</a>
-            <a onclick="window.location='../controller/orderConFood.php?term=long'" id="Long-Term"> Long-term List</a>
+            </div> 
+         <div class="long-term-box ">
+         <div class="term">
+            <a  onclick="window.location='../controller/orderConFood.php?term=short'" id="Short-Term"> Short-term List</a>
+            <a style="background-color: orange;" onclick="window.location='../controller/orderConFood.php?term=long'" id="Long-Term"> Long-term List</a>
         </div>
-        <div id="breakfast-box" class="accept-term">
+         <div id="breakfast-box" class="accept-term">
+        
             <div class="title">
             <div class="order-title">
                     <h3>Delivery List </h3>
@@ -122,11 +121,11 @@
                 <?php 
                    $i=0;
                    $y=1;
-                   if(in_array('breakfast',$new) && in_array('shortTerm',$termArray)){
-
+                   if(in_array('breakfast',$new)){
+                   
                     foreach($records as $record)
                     {
-                        if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){?>
+                        if($record['order_type']=='breakfast' && $record['term']=='longTerm'){?>
                      <div class="box " >
                             <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                                     <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
@@ -142,7 +141,7 @@
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"shortTerm");
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"longTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -187,11 +186,12 @@
                 <?php 
                    $i=0;
                    $y=1;
-                   if(in_array('lunch',$new)  && in_array('shortTerm',$termArray)){
+                   if(in_array('lunch',$new)){
 
                     foreach($records as $record)
                     {
-                        if($record['order_type']=='lunch' && $record['term']=='shortTerm'){?>
+                        if($record['order_type']=='lunch' && $record['term']=='longTerm'){?>
+                        <!-- <h1>dbbcjhbcd</h1> -->
                      <div class="box " >
                             <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')" >
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
@@ -206,7 +206,7 @@
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"shortTerm");
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"longTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -243,6 +243,7 @@
             </div>
         </div>
         <div id="dinner-box" class="accept-term none">
+   
             <div class="title">
             <div class="order-title">
                     <h3>Delivery List </h3>
@@ -251,11 +252,11 @@
                 <?php 
                    $i=0;
                    $y=1;
-                   if(in_array('dinner',$new) && in_array('shortTerm',$termArray)){
+                   if(in_array('dinner',$new)){
 
                     foreach($records as $record)
                     {
-                        if($record['order_type']=='dinner' && $record['term']=='shortTerm'){?>
+                        if($record['order_type']=='dinner' && $record['term']=='longTerm'){?>
                      <div class="box ">
                             <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
@@ -270,7 +271,7 @@
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"shortTerm");
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"longTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -306,7 +307,8 @@
                  ?>                         
             </div>
         </div>
-        </div> 
+         </div> 
+
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->

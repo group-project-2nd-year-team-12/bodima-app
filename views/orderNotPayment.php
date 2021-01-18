@@ -144,8 +144,10 @@
                                             $total=$result['total'];
                                             $phone=$result['phone'];
                                             $method=$result['method'];
+                                            $shedule=$result['shedule'];
                                         
                                         }?>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Sheduled Time  </h4><h4>: <?php echo  $shedule ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
@@ -203,8 +205,10 @@
                                                 $total=$result['total'];
                                                 $phone=$result['phone'];
                                                 $method=$result['method'];
+                                                $shedule=$result['shedule'];
                                             
                                             }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Sheduled Time  </h4><h4>: <?php echo  $shedule ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
@@ -262,8 +266,10 @@
                                                 $total=$result['total'];
                                                 $phone=$result['phone'];
                                                 $method=$result['method'];
+                                                $shedule=$result['shedule'];
                                             
                                             }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Sheduled Time  </h4><h4>: <?php echo  $shedule ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
