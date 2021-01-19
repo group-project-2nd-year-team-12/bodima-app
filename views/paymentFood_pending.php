@@ -48,6 +48,7 @@
             
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
+                     echo '<div class="user"><h4>Hi <span style="color:#FDDB21;font-weight:bold">'.$_SESSION['first_name'].' </span>!</h4></div>'; 
                     ?>
 
                     <div class="notification">
@@ -64,8 +65,7 @@
                         </div>
                     </div>
                     <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
-                <?php
-                    echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; ?>
+            
                     <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
                 

@@ -63,6 +63,11 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function getOrderIDFoodSupplierLong($connection,$F_post_id,$is_accepted){
+        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE F_post_id=$F_post_id AND term='longTerm' AND is_accepted=$is_accepted ORDER BY order_id DESC";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 
     public static function getOrderFoodSupplier($connection,$order_id,$is_accepted){
         $query="SELECT * FROM food_request,order_item WHERE order_item.order_id='{$order_id}' AND food_request.order_id=order_item.order_id AND  food_request.is_accepted=$is_accepted ORDER BY order_item.order_id DESC";
@@ -142,6 +147,11 @@ class orderModel{
     }
     public static function getLongTerm($connection,$email){
         $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND email='{$email}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function getLongTermFood($connection,$fsid){
+        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND food_request.F_post_id='{$fsid}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }

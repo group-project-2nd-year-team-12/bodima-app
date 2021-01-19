@@ -47,7 +47,8 @@
             </div>
             
             <div class="sign">
-                <?php if(isset($_SESSION['email'])){ 
+                <?php if(isset($_SESSION['email'])){
+                      echo '<div class="user"><h4>Hi <span style="color:#FDDB21;font-weight:bold">'.$_SESSION['first_name'].' </span>!</h4></div>'; 
                     ?>
 
                     <div class="notification">
@@ -64,8 +65,7 @@
                         </div>
                     </div>
                     <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
-                <?php
-                    echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; ?>
+                
                     <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
                 
@@ -88,7 +88,7 @@
                     $data_rows=unserialize($recordsSeritaize[1]);
                 
                     ?>
-            <div id="shortTerm-box" class="pending">
+            <div style="overflow-x:hidden ;" id="shortTerm-box" class="pending">
             <div class="title">
             <div class="order-title">
                     <h3>Long Term Orders </h3>
@@ -115,8 +115,8 @@
                     </div>
                   <div id="<?php echo $x ?>" class=" longTerm-struct">
                        <div class="longTerm-details">
-                        <div style="width: 300px;"> <img style="width: 300px;  margin:50px 20px" src="../resource/img/pending.svg" alt=""></div>
-                        <div style="width: 100%; margin:20px" class="button-pay">
+                        <!-- <div style="width: 300px;"> <img style="width: 300px;  margin:50px 20px" src="../resource/img/pending.svg" alt=""></div> -->
+                        <div style="width: 60%; margin:20px" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
@@ -146,13 +146,10 @@
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                             </div>
-                       </div>
-                
                             <div class="longTerm-table">
                                 <h1>Long term delivery records</h1>
                                 <table>
                                         <tr>
-                                            <th>Record No</th>
                                             <th>Date</th>
                                             <th>Delivery State </th>
                                             <th>Delivered Time</th>
@@ -166,7 +163,7 @@
                                                 {
                                             ?>
                                             <tr>
-                                                <td ><?php echo $i; ?></td>
+                                            
                                                 <td><?php echo $row['day']; ?>
                                                 <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
                                                 <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
@@ -250,6 +247,9 @@
                                             }?>
                                     </table>        
                               </div>
+                       </div>
+                
+                          
          
                   </div>
                

@@ -73,7 +73,7 @@ if(isset($_GET['term']) && $_GET['term']=='long')
     $available=orderModel::checkAvailable( $FSid,$connection);
         $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
-    
+
     while($row=mysqli_fetch_assoc($F_post_id))
     {
         $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],3);
@@ -250,6 +250,28 @@ if(isset($_GET['avail']))
     }
     
     
+}
+
+function getLongTerm($connection)
+{
+
+   $FSid=$_SESSION['FSid'];
+   $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+   $ids=array();
+   $data1=array();
+    while($row=mysqli_fetch_assoc($F_post_id))
+    {
+        $getOrder_id=orderModel::getLongTermFood($connection,$row['F_post_id']);
+        while($record=mysqli_fetch_assoc($getOrder_id))
+        {
+            $data1[]=$record;
+        }
+    }
+    
+   // print_r($ids);
+//    $data[0]=serialize($ids);
+   $data[0]=serialize($data1);
+      return $data;
 }
 
 

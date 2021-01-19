@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/orderModel.php');
-        session_start(); 
+        require_once ('../controller/orderConFood.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,6 +89,10 @@
         <?php 
         $records=unserialize($_GET['record']);
         $new=array_column($records,'order_type');
+        $recordsSeritaize=getLongTerm($connection);
+        // $ids=unserialize($recordsSeritaize[0]);
+        $data_rows=unserialize($recordsSeritaize[0]);
+        // print_r($data_rows);
          ?>      
         <div class="subNav">
                 <ul>
@@ -136,8 +141,8 @@
                                   
                             </div>
                             <div id="<?php echo $i ?>" class="details-box">
-                            <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
-                                <div class="button-pay">
+                            <!-- <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div> -->
+                                <div style="padding-left:20px ;" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
@@ -160,14 +165,120 @@
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
-                                <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
+                                <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you complte the this order confirm that</h4>
                                 <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                
                             </div>
+                            <div class="longTerm-table">
+                                <h1>Long term delivery records</h1>
+                                <table>
+                                        <tr>
+
+                                            <th>Date</th>
+                                            <th>Delivery State </th>
+                                            <th>Delivered Time</th>
+                                            
+                                        </tr> 
+                                        <?php
+                                        
+                                            foreach($data_rows as $row)
+                                            {
+                                                if($row['order_type']=="breakfast"){
+                                                
+                                            ?>
+                                            <tr>
+                                              
+                                                <td><?php echo $row['day']; ?>
+                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
+                                                <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                            var date='<?php echo $row['day']; ?>';
+                                                            var orderId=<?php echo $row['order_id']; ?>;
+                                                            var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
+                                                        $(window).on('load', function () {
+                                                           
+                                                            $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{date:date,orderId:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                               
+                                                                if(data.date=='qual' && data.delivery==0 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='blue'; 
+                                                                     
+                                                            
+                                                                }
+                                                                if(data.date=='qual' && data.delivery==1 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                                    stateBtn.innerHTML='Received';
+                                                                    stateBtn.disabled=true;
+                                                                }
+                                                                if(data.date=='plus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='gray';  
+                                                                
+                                                                }
+                                                                if(data.delivery==1 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                        
+                                                                }
+                                                                if(data.delivery==0 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.innerHTML='Not Received';
+                                                                    stateBtn.disabled=true;
+                                                                    stateBtn.style.backgroundColor='black';
+                                                                }
+                                                                
+                                                               
+                                                            }
+                                                            });
+                                                      
+                                                    });
+                                                     
+                                                    $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
+                                                    
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{dateUp:date,orderIdUp:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                                console.log(data); 
+                                                                stateBtn.style.backgroundColor='black';  
+                                                                stateBtn.innerHTML='Received';
+                                                                stateBtn.disabled=true; 
+                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
+                                                            }
+
+                                                        });
+                                                    
+                                                     });
+
+                                                });
+                                                   
+                                                </script>
+                                                
+                                            </tr>
+                                            <?php $i++; 
+                                                } 
+
+                                            }?>
+                                    </table>        
+                              </div>
                             </div>
+                            
                     
                          </div>
                 <?php    }
-                   $i=$i+2;$y=$y+2;  }
+                        }
+                   $i=$i+2;$y=$y+2;  
                 }   else
                 {?>
                     <div class="empty">
@@ -184,8 +295,7 @@
                     <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 
-                   $i=0;
-                   $y=1;
+             
                    if(in_array('lunch',$new)){
 
                     foreach($records as $record)
@@ -202,7 +312,7 @@
                             </div>
                             <div id="<?php echo $i ?>" class="details-box">
                             <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
-                                <div class="button-pay">
+                                <div style="padding-left:20px ;" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
@@ -228,6 +338,108 @@
                                 <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
                                 <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                             </div>
+                            <div class="longTerm-table">
+                                <h1>Long term delivery records</h1>
+                                <table>
+                                        <tr>
+                                            <th>Record No</th>
+                                            <th>Date</th>
+                                            <th>Delivery State </th>
+                                            <th>Delivered Time</th>
+                                            
+                                        </tr> 
+                                        <?php
+                                        
+                                            foreach($data_rows as $row)
+                                            {
+                                                if($row['order_type']=="lunch")
+                                                {
+                                            ?>
+                                            <tr>
+                                                <td ><?php echo $i; ?></td>
+                                                <td><?php echo $row['day']; ?>
+                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
+                                                <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                            var date='<?php echo $row['day']; ?>';
+                                                            var orderId=<?php echo $row['order_id']; ?>;
+                                                            var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
+                                                        $(window).on('load', function () {
+                                                           
+                                                            $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{date:date,orderId:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                               
+                                                                if(data.date=='qual' && data.delivery==0 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='blue'; 
+                                                                     
+                                                            
+                                                                }
+                                                                if(data.date=='qual' && data.delivery==1 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                                    stateBtn.innerHTML='Received';
+                                                                    stateBtn.disabled=true;
+                                                                }
+                                                                if(data.date=='plus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='gray';  
+                                                                
+                                                                }
+                                                                if(data.delivery==1 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                        
+                                                                }
+                                                                if(data.delivery==0 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.innerHTML='Not Received';
+                                                                    stateBtn.disabled=true;
+                                                                    stateBtn.style.backgroundColor='black';
+                                                                }
+                                                                
+                                                               
+                                                            }
+                                                            });
+                                                      
+                                                    });
+                                                     
+                                                    $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
+                                                    
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{dateUp:date,orderIdUp:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                                console.log(data); 
+                                                                stateBtn.style.backgroundColor='black';  
+                                                                stateBtn.innerHTML='Received';
+                                                                stateBtn.disabled=true; 
+                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
+                                                            }
+
+                                                        });
+                                                    
+                                                     });
+
+                                                });
+                                                   
+                                                </script>
+                                                
+                                            </tr>
+                                            <?php $i++; } 
+
+                                            }?>
+                                    </table>        
+                              </div>
                             </div>
                     
                          </div>
@@ -250,8 +462,7 @@
                     <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 
-                   $i=0;
-                   $y=1;
+                 
                    if(in_array('dinner',$new)){
 
                     foreach($records as $record)
@@ -266,8 +477,8 @@
                                     </div>
                             </div>
                             <div id="<?php echo $i ?>" class="details-box">
-                            <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
-                                <div class="button-pay">
+                            <!-- <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div> -->
+                                <div style="padding-left:20px ;" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
@@ -293,6 +504,108 @@
                                 <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
                                 <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                             </div>
+                            <div class="longTerm-table">
+                                <h1>Long term delivery records</h1>
+                                <table>
+                                        <tr>
+                                            <th>Record No</th>
+                                            <th>Date</th>
+                                            <th>Delivery State </th>
+                                            <th>Delivered Time</th>
+                                            
+                                        </tr> 
+                                        <?php
+                                        
+                                            foreach($data_rows as $row)
+                                            {
+                                                if($row['order_type']=="dinner")
+                                                {
+                                            ?>
+                                            <tr>
+                                                <td ><?php echo $i; ?></td>
+                                                <td><?php echo $row['day']; ?>
+                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
+                                                <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                            var date='<?php echo $row['day']; ?>';
+                                                            var orderId=<?php echo $row['order_id']; ?>;
+                                                            var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
+                                                        $(window).on('load', function () {
+                                                           
+                                                            $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{date:date,orderId:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                               
+                                                                if(data.date=='qual' && data.delivery==0 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='blue'; 
+                                                                     
+                                                            
+                                                                }
+                                                                if(data.date=='qual' && data.delivery==1 )
+                                                                {                                                       
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                                    stateBtn.innerHTML='Received';
+                                                                    stateBtn.disabled=true;
+                                                                }
+                                                                if(data.date=='plus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='gray';  
+                                                                
+                                                                }
+                                                                if(data.delivery==1 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.disabled=true;      
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                        
+                                                                }
+                                                                if(data.delivery==0 && data.date=='minus')
+                                                                {
+                                                                    stateBtn.innerHTML='Not Received';
+                                                                    stateBtn.disabled=true;
+                                                                    stateBtn.style.backgroundColor='black';
+                                                                }
+                                                                
+                                                               
+                                                            }
+                                                            });
+                                                      
+                                                    });
+                                                     
+                                                    $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
+                                                    
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "../controller/orderCon.php",
+                                                            data:{dateUp:date,orderIdUp:orderId},
+                                                            dataType: "json",
+                                                            success: function (data) {
+                                                                console.log(data); 
+                                                                stateBtn.style.backgroundColor='black';  
+                                                                stateBtn.innerHTML='Received';
+                                                                stateBtn.disabled=true; 
+                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
+                                                            }
+
+                                                        });
+                                                    
+                                                     });
+
+                                                });
+                                                   
+                                                </script>
+                                                
+                                            </tr>
+                                            <?php $i++; } 
+
+                                            }?>
+                                    </table>        
+                              </div>
                             </div>
                     
                          </div>
