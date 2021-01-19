@@ -13,6 +13,7 @@ body{
   background-size: 60hv 100vh;
   background-position: fixed;
   overflow-x: hidden;
+  background-color: #f7f8f9;
 }
 
 .catogory{
@@ -132,7 +133,7 @@ body{
     color: rgb(0, 0, 0);
     height: 250px;
     margin: 40px 0 70px 0;
-    box-shadow: 1px 1px 50px 10px  #5db67687;
+    box-shadow: 1px 1px 10px 1px  #ffffff;
   }
   .cart-wrap img{
     position: absolute;
@@ -230,7 +231,7 @@ body{
 
 
   .item-wrap{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5);
     margin-bottom: 20px;
     background-color: white;
   }
@@ -278,7 +279,8 @@ body{
       margin-bottom: 20px;
       padding: 20px;
       padding-bottom: 25px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+      box-shadow: 0 0 3px 0.1px hsl(216, 67%, 77%,0.5);
       border-radius: 5px;
       background: white;
   }

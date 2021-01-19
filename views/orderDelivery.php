@@ -49,35 +49,16 @@
     order.style.display='block';
   
 }
-function orderTerm(id)
-{
-    var term=document.getElementById(id);
-    var shortTerm=document.querySelector('.short-term-box');
-    var longTerm=document.querySelector('.long-term-box');
-    if(id=='Short-Term')
-    {
-        shortTerm.style.display='block';
-        longTerm.style.display='none';
-        term.style.backgroundColor='orange';
-        console.log('hi-dh');
-    }
-    if(id=='Long-Term')
-    {
-        console.log('hi');
-        shortTerm.style.display='none';
-        longTerm.style.display='block';
-        term.style.backgroundColor='orange';
-    }
-}
+
 </script>
 <div class="header">
             <div class="logo">
-                 <img src="../resource/img/logo.png" alt="">
+                 <img src="../resource/img/logo.svg" alt="">
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
-                   
+                   echo '<div class="user"><h4>Hi <span style="color:#FDDB21;font-weight:bold">'.$_SESSION['first_name'].' </span>!</h4></div>'; 
                     ?>
 
                     <div class="notification">
@@ -94,8 +75,8 @@ function orderTerm(id)
                         </div>
                     </div>
                     <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
-                <?php
-                  echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; ?>
+               
+                  
                  <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
             </div>
@@ -125,13 +106,14 @@ function orderTerm(id)
         <?php 
         $records=unserialize($_GET['record']);
         $new=array_column($records,'order_type');
+        $termArray=array_column($records,'term');
          ?>      
         <div class="short-term-box ">
-        <div id="breakfast-box" class="accept-term">
         <div class="term">
-            <a onclick="orderTerm(this.id)" id="Short-Term"> Short-term List</a>
-            <a onclick="orderTerm(this.id)" id="Long-Term"> Long-term List</a>
+            <a style="background-color: orange;" onclick="window.location='../controller/orderConFood.php?term=short'" id="Short-Term"> Short-term List</a>
+            <a onclick="window.location='../controller/orderConFood.php?term=long'" id="Long-Term"> Long-term List</a>
         </div>
+        <div id="breakfast-box" class="accept-term">
             <div class="title">
             <div class="order-title">
                     <h3>Delivery List </h3>
@@ -140,15 +122,15 @@ function orderTerm(id)
                 <?php 
                    $i=0;
                    $y=1;
-                   if(in_array('breakfast',$new)){
+                   if(in_array('breakfast',$new) && in_array('shortTerm',$termArray)){
 
                     foreach($records as $record)
                     {
                         if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){?>
                      <div class="box " >
                             <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
-                                    <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
+                                    <div class="letter"><h4>Order ID : <?php echo $record['order_id']; ?></h4></div>
                                     <div id="<?php echo $y; ?>" class="button-pay">
                                         <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                                     </div>
@@ -160,7 +142,7 @@ function orderTerm(id)
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"shortTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -197,10 +179,6 @@ function orderTerm(id)
             </div>
         </div>
         <div id="lunch-box" class="accept-term none">
-        <div class="term">
-            <a onclick="orderTerm(this.id)" id="Short-Term"> Short-term List</a>
-            <a onclick="orderTerm(this.id)" id="Long-Term"> Long-term List</a>
-        </div>
             <div class="title">
             <div class="order-title">
                     <h3>Delivery List </h3>
@@ -209,7 +187,7 @@ function orderTerm(id)
                 <?php 
                    $i=0;
                    $y=1;
-                   if(in_array('lunch',$new)){
+                   if(in_array('lunch',$new)  && in_array('shortTerm',$termArray)){
 
                     foreach($records as $record)
                     {
@@ -217,7 +195,7 @@ function orderTerm(id)
                      <div class="box " >
                             <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')" >
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div class="letter"><h4>Order ID : <?php echo $record['order_id']; ?></h4></div>
                                     <div id="<?php echo $y; ?>" class="button-pay">
                                         <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                                     </div>
@@ -228,7 +206,7 @@ function orderTerm(id)
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"shortTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -265,10 +243,6 @@ function orderTerm(id)
             </div>
         </div>
         <div id="dinner-box" class="accept-term none">
-        <div class="term">
-            <a onclick="orderTerm(this.id)" id="Short-Term"> Short-term List</a>
-            <a onclick="orderTerm(this.id)" id="Long-Term"> Long-term List</a>
-        </div>
             <div class="title">
             <div class="order-title">
                     <h3>Delivery List </h3>
@@ -277,7 +251,7 @@ function orderTerm(id)
                 <?php 
                    $i=0;
                    $y=1;
-                   if(in_array('dinner',$new)){
+                   if(in_array('dinner',$new) && in_array('shortTerm',$termArray)){
 
                     foreach($records as $record)
                     {
@@ -285,7 +259,7 @@ function orderTerm(id)
                      <div class="box ">
                             <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                                     <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Deliver this order </h4></div>
+                                    <div class="letter"><h4>Order ID : <?php echo $record['order_id']; ?></h4></div>
                                     <div id="<?php echo $y; ?>" class="button-pay">
                                         <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                                     </div>
@@ -296,7 +270,7 @@ function orderTerm(id)
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"shortTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -333,233 +307,6 @@ function orderTerm(id)
             </div>
         </div>
         </div> 
-        <div class="subNav none">
-                <ul>
-                    <div>
-                        <div class="count" id="noti-delBreakfast"><h5></h5></div>
-                        <li tabindex="0" id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
-                    </div>
-                    <div>
-                        <div class="count" id="noti-delLunch"><h5></h5></div>
-                        <li tabindex="0" id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
-                    </div>
-                    <div>
-                        <div class="count" id="noti-delDinner"><h5></h5></div>
-                        <li tabindex="0" id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
-                    </div>
-                   
-                </ul>
-            </div> 
-         <div class="long-term-box none">
-         <div id="breakfast-box" class="accept-term">
-        <div class="term">
-            <a onclick="orderTerm(this.id)" id="Short-Term"> Short-term List</a>
-            <a onclick="orderTerm(this.id)" id="Long-Term"> Long-term List</a>
-        </div>
-            <div class="title">
-            <div class="order-title">
-                    <h3>Delivery List </h3>
-                    <!-- <div><h5>1</h5></div> -->
-                </div>
-                <?php 
-                   $i=0;
-                   $y=1;
-                   if(in_array('breakfast',$new)){
-                   
-                    foreach($records as $record)
-                    {
-                        if($record['order_type']=='breakfast' && $record['term']=='longTerm'){?>
-                          <h1>dbbcjhbcd</h1>
-                     <div class="box " >
-                            <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
-                                    <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Deliver this order </h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
-                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                                    </div>
-                                  
-                            </div>
-                            <div id="<?php echo $i ?>" class="details-box">
-                            <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
-                                <div class="button-pay">
-                                <h2 class="order_item order-head">ORDER INFO</h2>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
-                                        while($result=mysqli_fetch_assoc($getOrder))
-                                        {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
-                                            echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
-                                            $address=$result['address'];
-                                            $email=$result['email'];
-                                            $first_name=$result['first_name'];
-                                            $last_name=$result['last_name'];
-                                            $total=$result['total'];
-                                            $phone=$result['phone'];
-                                            $method=$result['method'];
-                                        
-                                        }?>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
-                                <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                            </div>
-                            </div>
-                    
-                         </div>
-                <?php    }
-                   $i=$i+2;$y=$y+2;  }
-                }   else
-                {?>
-                    <div class="empty">
-                         <h1> Nothing to show here</h1>
-                    </div>
-              <?php  }
-                 ?>                         
-            </div>
-        </div>
-        <div id="lunch-box" class="accept-term none">
-        <div class="term">
-            <a onclick="orderTerm(this.id)" id="Short-Term"> Short-term List</a>
-            <a onclick="orderTerm(this.id)" id="Long-Term"> Long-term List</a>
-        </div>
-            <div class="title">
-            <div class="order-title">
-                    <h3>Delivery List </h3>
-                    <!-- <div><h5>1</h5></div> -->
-                </div>
-                <?php 
-                   $i=0;
-                   $y=1;
-                   if(in_array('lunch',$new)){
-
-                    foreach($records as $record)
-                    {
-                        if($record['order_type']=='lunch' && $record['term']=='longTerm'){?>
-                        <!-- <h1>dbbcjhbcd</h1> -->
-                     <div class="box " >
-                            <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')" >
-                                    <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Deliver this order </h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
-                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                                    </div>
-                            </div>
-                            <div id="<?php echo $i ?>" class="details-box">
-                            <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
-                                <div class="button-pay">
-                                <h2 class="order_item order-head">ORDER INFO</h2>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
-                                        while($result=mysqli_fetch_assoc($getOrder))
-                                        {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
-                                            echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
-                                            $address=$result['address'];
-                                            $email=$result['email'];
-                                            $first_name=$result['first_name'];
-                                            $last_name=$result['last_name'];
-                                            $total=$result['total'];
-                                            $phone=$result['phone'];
-                                            $method=$result['method'];
-                                        
-                                        }?>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
-                                <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                            </div>
-                            </div>
-                    
-                         </div>
-                <?php    }
-                   $i=$i+2;$y=$y+2;  }
-                }   else
-                {?>
-                    <div class="empty">
-                         <h1> Nothing to show here</h1>
-                    </div>
-              <?php  }
-                 ?>                         
-            </div>
-        </div>
-        <div id="dinner-box" class="accept-term none">
-        <div class="term">
-            <a onclick="orderTerm(this.id)" id="Short-Term"> Short-term List</a>
-            <a onclick="orderTerm(this.id)" id="Long-Term"> Long-term List</a>
-        </div>
-            <div class="title">
-            <div class="order-title">
-                    <h3>Delivery List </h3>
-                    <!-- <div><h5>1</h5></div> -->
-                </div>
-                <?php 
-                   $i=0;
-                   $y=1;
-                   if(in_array('dinner',$new)){
-
-                    foreach($records as $record)
-                    {
-                        if($record['order_type']=='dinner' && $record['term']=='longTerm'){?>
-                     <div class="box ">
-                            <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
-                                    <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Deliver this order </h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
-                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                                    </div>
-                            </div>
-                            <div id="<?php echo $i ?>" class="details-box">
-                            <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
-                                <div class="button-pay">
-                                <h2 class="order_item order-head">ORDER INFO</h2>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplier($connection,$record['order_id'],3);
-                                        while($result=mysqli_fetch_assoc($getOrder))
-                                        {
-                                            echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
-                                            echo '<h5 class="quantity">Quantity :'.$result['quantity'].'</span></h5></div>';
-                                            $address=$result['address'];
-                                            $email=$result['email'];
-                                            $first_name=$result['first_name'];
-                                            $last_name=$result['last_name'];
-                                            $total=$result['total'];
-                                            $phone=$result['phone'];
-                                            $method=$result['method'];
-                                        
-                                        }?>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
-                                <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                            </div>
-                            </div>
-                    
-                         </div>
-                <?php    }
-                   $i=$i+2;$y=$y+2;  }
-                }   else
-                {?>
-                    <div class="empty">
-                         <h1> Nothing to show here</h1>
-                    </div>
-              <?php  }
-                 ?>                         
-            </div>
-        </div>
-         </div> 
-
         </div>
     </div>
     <!-- <?php include 'footer.php'?> -->

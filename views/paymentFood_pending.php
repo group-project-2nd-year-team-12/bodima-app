@@ -42,12 +42,13 @@
 
 <div class="header">
             <div class="logo">
-                 <img src="../resource/img/logo.png" alt="">
+                 <img src="../resource/img/logo.svg" alt="">
                 <h1><small style="font-size: 14px; color:white; font-weight:lighter">   Solution for many problems</small></h1>
             </div>
             
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
+                     echo '<div class="user"><h4>Hi <span style="color:#FDDB21;font-weight:bold">'.$_SESSION['first_name'].' </span>!</h4></div>'; 
                     ?>
 
                     <div class="notification">
@@ -64,8 +65,7 @@
                         </div>
                     </div>
                     <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
-                <?php
-                    echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; ?>
+            
                     <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
                 
@@ -137,6 +137,7 @@
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
                                           $address=$data_row['address'];
+                                          $shedule=$data_row['shedule'];
                                           ?> 
                                           <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
@@ -150,6 +151,7 @@
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Shedule Time </h4><h4>: <?php echo $shedule; ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                             <h4 class="order_item" style="color: #101e5a;margin-top:20px"> Please wait for food supplier accept this order.</h4>
                            <div class="order_item" style="color: #101e5a;"><h4>Do you want to cancel this order ?</h4> <h4><button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id["order_id"]; ?>"' type="button" class="btn1 cancel"> Cancel</button></h4></div> 
@@ -269,6 +271,7 @@
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
                                           $address=$data_row['address'];
+                                          $shedule=$data_row['shedule'];
                                           ?> 
                                           <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
@@ -282,6 +285,7 @@
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
+                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Shedule Time </h4><h4>: <?php echo $shedule; ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                             <h4 class="order_item" style="color: #101e5a;margin-top:20px"> Please wait for food supplier accept this order.</h4>
                            <div class="order_item" style="color: #101e5a;"><h4>Do you want to cancel this order ?</h4> <h4><button onclick='if(confirm("Are you want to cancel this Order ?")) window.location="../controller/orderCon.php?orderDelete_id=<?php echo $id["order_id"]; ?>"' type="button" class="btn1 cancel"> Cancel</button></h4></div> 

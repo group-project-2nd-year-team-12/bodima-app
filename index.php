@@ -72,7 +72,7 @@
                         </form>
                         </div>
                      </div>
-                     <div style="cursor: pointer;"  class="live-icon"><i onclick=activeLive(); class="fas fa-comment fa-4x"></i></div>
+                     <div style="cursor: pointer;"  class="live-icon"><i style="position: relative;" onclick=activeLive(); class="fas fa-comment fa-4x"></i><i class="fas fa-comment-alt fa-lg"></i></div>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
             <ul class="nav_bar">
                 <li class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i> Home</li>
                 <li class="nav_item " onclick="window.location='views/boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
-                <li class="nav_item " onclick="window.location='views/foodpostviewN.php'"><i class="fas fa-hamburger"></i> Order Food</li>
+                <li class="nav_item " onclick="window.location='views/foodposts.php'"><i class="fas fa-hamburger"></i> Order Food</li>
                 <li class="nav_item " onclick="window.location='views/about.php'"><i class="fa fa-address-card"></i> About us</li>
                 <li class="nav_item " onclick="window.location='views/contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
             </ul>
