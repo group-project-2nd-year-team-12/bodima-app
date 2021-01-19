@@ -42,7 +42,7 @@
 
 <div class="header">
             <div class="logo">
-                 <img src="../resource/img/logo.png" alt="">
+                 <img src="../resource/img/logo.svg" alt="">
                 <h1><small style="font-size: 14px; color:white; font-weight:lighter">   Solution for many problems</small></h1>
             </div>
             
