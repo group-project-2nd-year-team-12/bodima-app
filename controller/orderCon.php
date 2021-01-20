@@ -24,6 +24,7 @@ $errors=array();
    //  print_r($_SESSION);
     if(isset($_SESSION['cart']))
     {
+       $shedule=$_POST['shedule'];
        $email=$_SESSION['email'];
        $F_post_id=$_POST['Pid'];
        $first_name=$_SESSION['first_name'];
@@ -46,7 +47,7 @@ $errors=array();
          $order_type=$product['order_type'];
          $restaurant=$product['restaurant'];
        }
-        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$total,$phone,$method,$time,$expireTime,$restaurant,$connection);
+        orderModel::food_request($F_post_id,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$shedule,$total,$phone,$method,$time,$expireTime,$restaurant,$connection);
        
        foreach($products as $product)
        {

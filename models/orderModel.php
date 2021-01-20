@@ -2,10 +2,10 @@
 
 class orderModel{
 
-    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$total,$phone,$method,$time,$expireTime,$name,$connection)
+    public static function food_request($Fpid,$email,$address,$first_name,$last_name,$order_id,$order_type,$term,$shedule,$total,$phone,$method,$time,$expireTime,$name,$connection)
     {
-        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,total,phone,method,time,expireTime,restaurant,order_id,order_type,term) 
-        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$total}','{$phone}','{$method}','{$time}','{$expireTime}','{$name}','{$order_id}','{$order_type}','{$term}') LIMIT 1";
+        $query="INSERT INTO food_request (F_post_id,email,address,first_name,last_name,is_accepted,total,phone,method,time,expireTime,restaurant,order_id,order_type,term,shedule) 
+        VALUES('{$Fpid}','{$email}','{$address}','{$first_name}','{$last_name}',0,'{$total}','{$phone}','{$method}','{$time}','{$expireTime}','{$name}','{$order_id}','{$order_type}','{$term}','{$shedule}') LIMIT 1";
          $result=mysqli_query($connection,$query);
     }
     public static function food_item($item_name,$quantity,$order_id,$connection)
@@ -63,9 +63,19 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function getOrderIDFoodSupplierLong($connection,$F_post_id,$is_accepted){
+        $query="SELECT DISTINCT order_id,order_type FROM food_request WHERE F_post_id=$F_post_id AND term='longTerm' AND is_accepted=$is_accepted ORDER BY order_id DESC";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 
     public static function getOrderFoodSupplier($connection,$order_id,$is_accepted){
         $query="SELECT * FROM food_request,order_item WHERE order_item.order_id='{$order_id}' AND food_request.order_id=order_item.order_id AND  food_request.is_accepted=$is_accepted ORDER BY order_item.order_id DESC";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    public static function getOrderFoodSupplierTerm($connection,$order_id,$is_accepted,$term){
+        $query="SELECT * FROM food_request,order_item WHERE order_item.order_id='{$order_id}' AND food_request.order_id=order_item.order_id AND  food_request.is_accepted=$is_accepted AND food_request.term='{$term}' ORDER BY order_item.order_id DESC";
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -140,6 +150,11 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    public static function getLongTermFood($connection,$fsid){
+        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND food_request.F_post_id='{$fsid}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 
     public static function checkLongTermState($connection,$orderId,$date){
         $query="SELECT * FROM longterm WHERE order_id=$orderId AND day='{$date}'  LIMIT 1";
@@ -154,6 +169,12 @@ class orderModel{
 
     public static function checkAvailableUser($connection,$pid){
         $query="SELECT f.available FROM food_supplier f,food_post p WHERE p.F_post_id=$pid AND f.FSid=p.FSid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function checkTerm($connection,$pid){
+        $query="SELECT type FROM food_post WHERE F_post_id=$pid";
         $result=mysqli_query($connection,$query);
         return $result;
     }

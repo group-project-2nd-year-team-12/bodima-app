@@ -29,6 +29,8 @@ function activeLongterm(){
   document.querySelector('.shedule').style.display='block';
 }
 
+
+//get term from session
 $(document).ready(function () {
   function cartMange()
   {
@@ -42,10 +44,10 @@ $(document).ready(function () {
      {
        if(data.term=="")
        {
-         document.getElementById('1').disabled=false;
-         document.getElementById('2').disabled=false;
-         document.getElementById('3').disabled=false;
-         document.getElementById('longTerm-check').disabled=false;
+        //  document.getElementById('1').disabled=false;
+        //  document.getElementById('2').disabled=false;
+        //  document.getElementById('3').disabled=false;
+        //  document.getElementById('longTerm-check').disabled=false;
        }
        else{
         document.getElementById('1').disabled=true;
@@ -62,7 +64,7 @@ $(document).ready(function () {
   }
   cartMange();
 
-
+// cart count function
  function loadSession()
   {
    var count='count';
@@ -82,6 +84,8 @@ $(document).ready(function () {
   loadSession();
 });
 
+
+//longterm form validation
 function formSheduleValidate()
 {
   var startDate=$('#startDate').val();
@@ -129,6 +133,7 @@ function formSheduleValidate()
   return true;
 }                 
 
+// available or unavailable
 $(window).on('load', function () {
   var url=new URL(window.location.href);
   var postId = url.searchParams.get("Pid");
@@ -156,12 +161,30 @@ $(window).on('load', function () {
           element.style.display='none';
         })
       }
+
+      if(data.term=="Long Term")
+      {
+        activeLongterm();
+        $("#longTerm-check").prop("disabled", true);
+      }
+      if(data.term=="Short Term")
+      {
+        console.log(document.querySelector('.term'));
+      document.querySelector('.term').innerHTML="<h4>\"Long term food delivery not support this restaurent\"</h4>";
+      }
+      if(data.term=="Both")
+      {
+        //default
+      }
+
+
       
     }
   });
   
 });
 
+// search breakfast
 $(document).on('keypress','#breakfast-search', function (e) {
 
   if(e.key==='Enter')
@@ -183,6 +206,8 @@ $(document).on('keypress','#breakfast-search', function (e) {
   }
  
 })
+
+//search lunch
 $(document).on('keypress','#lunch-search', function (e) {
 
   if(e.key==='Enter')
@@ -204,6 +229,8 @@ $(document).on('keypress','#lunch-search', function (e) {
   }
  
 })
+
+//search dinner
 $(document).on('keypress','#dinner-search', function (e) {
 
   if(e.key==='Enter')
@@ -225,3 +252,34 @@ $(document).on('keypress','#dinner-search', function (e) {
   }
  
 })
+
+//auto section
+function deadLine(){
+  var date = new Date;
+  var breakfast=document.getElementById('1');
+  var lunch=document.getElementById('2');
+  var dinner=document.getElementById('3');
+  var hour=date.getHours();
+ if(hour > 11 )
+ {
+  breakfast.disabled=true;
+  lunch.checked=true;
+ }
+ if(hour > 15 )
+ {
+  lunch.disabled=true;
+  dinner.checked=true;
+ }
+ if(hour > 19 )
+ {
+  dinner.disabled=true;
+  document.querySelectorAll('.cart-num').forEach(function(element){
+    element.disabled=true;
+    element.style.color='gray';
+  })
+ }
+
+}
+
+window.onload=deadLine();
+

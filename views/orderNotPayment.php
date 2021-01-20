@@ -55,13 +55,13 @@
 <body onload="checked('card');">
 <div class="header">
             <div class="logo">
-                 <img src="../resource/img/logo.png" alt="">
+                 <img src="../resource/img/logo.svg" alt="">
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
             </div>
             
             <div class="sign">
                 <?php if(isset($_SESSION['email'])){ 
-                   
+                   echo '<div class="user"><h4>Hi <span style="color:#FDDB21;font-weight:bold">'.$_SESSION['first_name'].' </span>!</h4></div>'; 
                     ?>
 
                     <div class="notification">
@@ -78,8 +78,7 @@
                         </div>
                     </div>
                     <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
-                <?php
-                  echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; ?>
+           
                  <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
             </div>
@@ -144,8 +143,10 @@
                                             $total=$result['total'];
                                             $phone=$result['phone'];
                                             $method=$result['method'];
+                                            $shedule=$result['shedule'];
                                         
                                         }?>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Sheduled Time  </h4><h4>: <?php echo  $shedule ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
@@ -203,8 +204,10 @@
                                                 $total=$result['total'];
                                                 $phone=$result['phone'];
                                                 $method=$result['method'];
+                                                $shedule=$result['shedule'];
                                             
                                             }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Sheduled Time  </h4><h4>: <?php echo  $shedule ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
@@ -262,8 +265,10 @@
                                                 $total=$result['total'];
                                                 $phone=$result['phone'];
                                                 $method=$result['method'];
+                                                $shedule=$result['shedule'];
                                             
                                             }?>
+                                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Sheduled Time  </h4><h4>: <?php echo  $shedule ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
                                         <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>

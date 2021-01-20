@@ -139,10 +139,13 @@ if(isset($_POST['request']))
 if(isset($_POST['postId']))
 {
     $pid=$_POST['postId'];
+    $type=orderModel::checkTerm($connection,$pid);
+    $typeFetch=mysqli_fetch_assoc($type);
     $available=orderModel::checkAvailableUser($connection,$pid);
     $availableFetch=mysqli_fetch_assoc($available);
     $arr=array(
     'available'=>$availableFetch['available'],
+    'term'=>$typeFetch['type']
     );
     echo json_encode($arr);
 }
