@@ -66,13 +66,13 @@ header a{
     padding: 20px 0;
     /* text-transform: uppercase; */
     transition: 0.3s all ease-in;
-    color: rgb(255, 255, 255);
+    color:#bdc3ff;
     /* border-bottom: 2px solid rgb(255, 255, 255); */
     font-weight: 500;
 }
 .nav_item:hover,.nav_item:active{
-    color: rgb(137, 43, 226);
-    background-color: rgb(255, 255, 255);
+    background-color: #07113d;
+    font-weight: bold;
 }
 .notification{
     color: #bdc3ff;
@@ -205,7 +205,7 @@ header a{
       left: 0;
       top:65px;
       height: 100vh;
-      background-color: blueviolet;
+      background-color: #101e5a;
       transition: 0.9s;
       z-index: 1000;
       font-weight: 400;

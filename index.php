@@ -43,7 +43,8 @@
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?> 
                   <!-- live support  -->
-                  <div class="liveSupport ">
+              <?php if(isset($_SESSION['email'])){?>
+                <div class="liveSupport ">
                      <div class="live-box">
                          <div class="live-header">
                                 <!-- <div id="back" class="avater"  style="cursor:pointer"><i onclick=back(); class="fas fa-chevron-left fa-lg"></i></div> -->
@@ -74,6 +75,9 @@
                      </div>
                      <div style="cursor: pointer;"  class="live-icon"><i style="position: relative;" onclick=activeLive(); class="fas fa-comment fa-4x"></i><i class="fas fa-comment-alt fa-lg"></i></div>
                 </div>
+
+
+                <?php } ?>
             </div>
         </div>
         <div class="nav">
@@ -129,7 +133,7 @@
                         <div class="section1-header title1 ">
                             <div>
                                 <h2 >Welcome to Bodima</h2>
-                                <h4>Accomadation Management System</h4>
+                                <!-- <h4>Accomadation Management System</h4> -->
                                 <!-- <h3>Learn Together  </h3>
                                 <h3>With</h3>
                                 <h3>Friends</h3> -->
@@ -140,13 +144,13 @@
                             </div>
                        </div>
                     </div>
-                    <img style="width: 855px;" src="resource/img/slide/3.png" alt="">
+                    <img style="width: 860px;" src="resource/img/slide/3.png" alt="">
                </div>
                <div class="myslider fade">
                    <div class="txt">
                         <div class="section1-header title2">
                             <div>
-                                <h2>"Find Boarding"</h2>
+                                <h2>Find Boarding</h2>
                                 <h3>Find a Safe </h3>
                                 <h3>Place</h3>
                                 <h3>For Study</h3>
@@ -155,7 +159,7 @@
                             </div>
                        </div>
                     </div>
-                    <img style="width: 500px;" src="resource/img/slide/1 (2).png" alt="">
+                    <img style="width: 860px;" src="resource/img/slide/1 (2).png" alt="">
                </div>
                <div class="myslider fade">
                     <div class="txt">
