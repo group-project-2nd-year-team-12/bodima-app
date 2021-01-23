@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="../resource/css/nav.css">
     <link rel="stylesheet" href="../resource/css/contact.css">
 </head>
-<body>
-    <?php include "nav.php" ?>
+<body onload="document.getElementById('contact').style.backgroundColor='#07113d'">
+    <?php include "nav.php";
+          include ("liveSupport.php");
+    ?>
     <div class="container">
         <div class="content">
             <div class="titile-contact">
