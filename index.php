@@ -9,6 +9,7 @@
     <title>Bodima-Accomadation Management System</title>
     <link rel="stylesheet" href="resource/css/new_home.css">
     <link rel="stylesheet" href="resource/css/all.css">
+    <link rel="stylesheet" href="resource/css/liveSupport.css" >
     </head>
 
 <body >
@@ -43,41 +44,7 @@
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?> 
                   <!-- live support  -->
-              <?php if(isset($_SESSION['email'])){?>
-                <div class="liveSupport ">
-                     <div class="live-box">
-                         <div class="live-header">
-                                <!-- <div id="back" class="avater"  style="cursor:pointer"><i onclick=back(); class="fas fa-chevron-left fa-lg"></i></div> -->
-                                 <h3>Live support</h3>
-                                 <i style="cursor:pointer" onclick=removeLive(); class="fas fa-times fa-lg"></i>                            
-                         </div>
-                            <?php 
-
-                             if($_SESSION['level']=="administrator"){?>
-                                <div class="admin-side">
-                                    
-                                </div>
-                                <div class="live-content-admin">
-                                </div>
-                            <?php }else{ ?>
-                                <div class="live-content">
-
-                                </div>
-                                <?php }
-                                ?>
-                                
-                        <div class="live-footer">
-                        <form action="#" id="live-form">
-                            <input type="text" placeholder="Type a massege" name="" id="chat">
-                            <button onclick=chatLive()><i style="background-color:tr" class="far fa-paper-plane fa-lg"></i></button>
-                        </form>
-                        </div>
-                     </div>
-                     <div style="cursor: pointer;"  class="live-icon"><i style="position: relative;" onclick=activeLive(); class="fas fa-comment fa-4x"></i><i class="fas fa-comment-alt fa-lg"></i></div>
-                </div>
-
-
-                <?php } ?>
+                    <?php include ("views/liveSupport.php"); ?>
             </div>
         </div>
         <div class="nav">
@@ -89,7 +56,7 @@
                         </div>
                     </div>
             <ul class="nav_bar">
-                <li class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i> Home</li>
+                <li style="background-color: #07113d;" class="nav_item " onclick="window.location='#'"><i class=" fa fa-home"></i> Home</li>
                 <li class="nav_item " onclick="window.location='views/boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
                 <li class="nav_item " onclick="window.location='views/foodposts.php'"><i class="fas fa-hamburger"></i> Order Food</li>
                 <li class="nav_item " onclick="window.location='views/about.php'"><i class="fa fa-address-card"></i> About us</li>

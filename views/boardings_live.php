@@ -14,7 +14,7 @@
   
     <title>search boarding</title>
 </head>
-<body>
+<body onload="document.getElementById('boarding').style.backgroundColor='#07113d'">
 	<div class="whole">
 		<?php include 'nav.php' ?>
 		<!-- <div class="live_container"> -->
