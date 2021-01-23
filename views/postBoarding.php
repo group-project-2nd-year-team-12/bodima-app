@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,32 @@
     <link rel="stylesheet" href="../resource/css/extra.css">
 	<link href="../resource/css/boarding.css" rel="stylesheet">
 	<!-- <script src="jquery-3.5.1.min.js"></script> -->
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	 
+
+	 <script >
+            
+            $(document).ready(function()
+            {
+               
+				$("#downbefore").click(function(){
+            		$("#downbefore").hide();
+					//$("#photo-wrapper").hide("slow");
+					$("#photo-wrapper").show("slow");
+            		$("#upafter").show();
+          		});
+
+          		$("#upafter").click(function(){
+					$("#downbefore").show();
+					$("#photo-wrapper").hide("slow");
+            		//$("#photo-wrapper").show("slow");
+            		$("#upafter").hide();
+          		});
+				
+            });
+        </script>
 	
 
 </head>
@@ -36,6 +65,7 @@
     
 	
 	<form action="../controller/postBoardingCon.php" method="post" enctype="multipart/form-data"  class="form">
+	<!-- <form action="../controller/cont.php" method="post" enctype="multipart/form-data"  class="form"> -->
 			<!-- <div id="name"> -->
 
     <h1>Boarding Advertisement Form</p><!-- postBoarding --> 
@@ -91,12 +121,64 @@
     <hr/>
     <div class="section">
 
-			<h4>Add 5 Photos</h4><p class="opt">(Optional)</p>
+			<h4>Boarding Photos</h4><p class="opt">(Optional)</p>
+			<p class="cover">Boarding Cover Image</p >
 
-			<div class="images">
-            
-				<input type="file" name="image[]" accept=".jpg, .png, .jpeg"  id="BCimage" value=../resource/Images/uploaded_boarding/defaultbp1.jpg multiple ><br>
+
+			<div id="photo1" class="images" style="position: relative;">
+                    <label for="inputFile"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah1" alt="Img" width="100px" height="100px"><br><br></label>
+                    <button type="button" class="btn1" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
+                    <input type="file" id="inputFile" name="image1" hidden > <br>
+            </div>
+			
+			
+			<span id="downbefore"><i class="fas fa-chevron-down"></i>   Images For Display In Detailed Information Page....</span>
+            <span id="upafter" style="display: none;"><i class="fas fa-chevron-up"></i>   Images For Display In Detailed Information Page....</span>
+			
+			<!-- <div  class="show_hide">
+			<i class="fas fa-chevron-down"></i>
+			<p class="slide-shower">Images For Display In Detailed Information Page.</p >
+
+			</div>
+			<div class="show_hide" style="display: none;">
+			<p class="slide-shower"><i class="fas fa-chevron-up"></i> Images For Display In Detailed Information Page.</p > -->
+			<div id="photo-wrapper" class="wrapper" style="display: none;">
+                 <!-- clone photo div using js and append to photo-wrapper-->
+                 <!-- one -->
+                <div class="photo" style="position: relative;">
+                    <label for="inputFile1"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah" alt="Img" width="100px" height="100px"><br><br></label>
+                    <button type="button" class="btn" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
+                    <input type="file" id="inputFile1" name="image[]" hidden > <br>
+                </div>
+                <!-- two -->
+                <div class="photo" style="position: relative;">
+                    <label for="inputFile2"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah" alt="Img" width="100px" height="100px"><br><br></label>
+                    <button type="button" class="btn" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
+                    <input type="file" id="inputFile2" name="image[]" hidden > <br>
+                </div>
+                <!-- three -->
+                <div class="photo" style="position: relative;">
+                    <label for="inputFile3"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah" alt="Img" width="100px" height="100px"><br><br></label>
+                    <button type="button" class="btn" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
+                    <input type="file" id="inputFile3" name="image[]" hidden > <br>
+                </div>
+                <!-- four -->
+                <div class="photo" style="position: relative;">
+                    <label for="inputFile4"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah" alt="Img" width="100px" height="100px"><br><br></label>
+                    <button type="button" class="btn" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
+                    <input type="file" id="inputFile4" name="image[]" hidden > <br>
+                </div>
+                <!-- five -->
+                <div class="photo" style="position: relative;">
+                    <label for="inputFile5"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah" alt="Img" width="100px" height="100px"><br><br></label>
+                    <button type="button" class="btn" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
+                    <input type="file" id="inputFile5" name="image[]" hidden > <br>
+                </div>
+            </div>
 			</div>	
+
+
+
     </div>
 
 
@@ -200,12 +282,37 @@
     </div>
 				
 
+					<script>
+						$('.group').on('input', '.prc', function() {
+    						var totalsum = 0;
+							$('.group .prc').each(function() {
+								var inputVal = $(this).val();
+								if ($.isNumeric(inputVal)) {
+									totalsum = parseFloat(inputVal) * 100;
+								}
 
+							});
+							$('#Aamount').val(totalsum);
+							//$('#result').text(totalsum);
+
+							//result=$_SESSION['totalsum']
+
+						});
+
+						$('form').submit(function(e) {
+								$(':disabled').each(function(e) {
+								$(this).removeAttr('disabled');
+							})
+
+						});
+					
+					</script>
 				<!--<label for="">Boarding Images  </label><br>
 				<input type="file" name="Bimage{}" id="Bimage" multiple ><br><br>-->
 					
 						
 				<script src="../resource/js/jquery-3.5.1.min.js"></script>
+				<script src="../resource/js/custom.js"></script>
 				<script src="../resource/js/boarding.js"></script>
 				
 

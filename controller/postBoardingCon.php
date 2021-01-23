@@ -119,12 +119,30 @@ $errors=array(); //create empty array
 
 
 
+
+        $image_name1=$_FILES['image1']['name'];
+        if(null==trim($image_name1)){
+           echo "null";
+            $image_name1="defaultbp1.jpg";
+        }else{
+            echo " have value";
+        }
+        
+        $image_type1=$_FILES['image1']['type'];
+        $image_size1=$_FILES['image1']['size'];
+        $temp_name1=$_FILES['image1']['tmp_name'];
+        print_r($_FILES);
+        $upload_to="../resource/Images/uploaded_boarding/";
+    
+        move_uploaded_file($temp_name1, $upload_to . $image_name1);
+
+
         $id=$_SESSION['BOid'];
        
 
      $creattime=date('Y-m-d h:i:s');
       // $creattime=dat;
-        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$individual,$location,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
+        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
 
         $result_set=boarding::getPostId($connection);
         $result_post=mysqli_fetch_assoc($result_set);
@@ -135,12 +153,12 @@ $errors=array(); //create empty array
 
             $image_name=$_FILES['image']['name'][$key];
             
-            if(null==trim($image_name)){
+           /* if(null==trim($image_name)){
                 echo "null";
                 $image_name="defaultbp1.jpg";
             }else{
                 echo " have value";
-            }
+            }*/
 
             $temp_name=$_FILES['image']['tmp_name'][$key];
             $image_type=$_FILES['image']['type'][$key];
@@ -151,14 +169,20 @@ $errors=array(); //create empty array
         
     
             move_uploaded_file($temp_name, $upload_to . $image_name);
-            boarding::image_save($id,$postid,$image_name,$upload_to,$connection);
+
+
+            if(null!=trim($image_name)){
+                echo "null";
+                boarding::image_save($id,$postid,$image_name,$upload_to,$connection);
+             }
+            
 
         }
 
         echo $upload_to.$image_name;
     
         //echo $Hnumber;
-        header('Location:../views/myads_boardingowner.php');
+        header('Location:../views/myads_boardingowner.php?success');
 
         //header('Location:../views/postBoarding.php?success'); //meka balanna
 

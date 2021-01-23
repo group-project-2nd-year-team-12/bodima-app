@@ -12,7 +12,7 @@ foreach($val as $payment){
     <span>".$payment['amount'].".00</span>
     <span>".date('Y/m/d',strtotime($payment['paidDateTime']))."</span>
     <span>".date('H:i:s',strtotime($payment['paidDateTime']))."</span>
-    <span><h5>&nbsp;&nbsp;&nbsp;".$payment['cash/card']."</h5></span>
+    <span><h5>&nbsp;&nbsp;&nbsp;".$payment['cash_card']."</h5></span>
 </li>
 ";
 }
@@ -30,7 +30,7 @@ foreach($val as $payment){
     <td>".$payment['amount']."</td>
     <td>".date('Y/m/d',strtotime($payment['paidDateTime']))."</td>
     <td>".date('H:i:s',strtotime($payment['paidDateTime']))."</td>
-    <td>".$payment['cash/card']."</td>
+    <td>".$payment['cash_card']."</td>
 </tr>
 
 ";
