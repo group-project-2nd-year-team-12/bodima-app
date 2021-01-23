@@ -493,21 +493,26 @@ if(isset($_GET['Pid']))
           <button class="cancel" onclick="cancelLongTerm();">Cancel</button>
         </div>
     </div>
-    </div>
+  </div>
       
-    <!-- <div class="longTerm">
-    <div class="longTerm-box">
-        <div class="accHeader">
-            <h1>Active Long Term Food delivery Service </h1>
-            <h3 style="margin-top: 15px;margin:0 10px">After activating this service you can order food automatically within a certain number of day.</h3>
-            <h4>Notice : Only cash on hand is valid for this service and The maximum term of an order is one month</h4> 
-        </div>
-        <div class="btn-long">
-          <button class="active" onclick="activeLongterm();" id="accept-btn" >Long term</button>
-          <button class="cancel" onclick="cancelLongTerm();">Cancel</button>
-        </div>
-    </div>
-    </div> -->
+<?php 
+if(!isset($_SESSION['email']))
+{?>
+  <div class="log">
+  <div class="log-box">
+      <div class="accHeader">
+          <h1>Loggin</h1>
+          <h3 style="margin-top: 15px;margin:0 10px">Please, First  log in to system for search food item and place an order</h3>
+      </div>
+      <div class="btn-long">
+        <button class="active" onclick="window.location='user_loging.php';" id="accept-btn" >Sign in</button>
+        <button class="active" onclick="window.location='register.php';">Sign up</button>
+      </div>
+  </div>
+  </div>
+<?php }
+
+?>
 
 
 <?php include 'footer.php'?>
