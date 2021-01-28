@@ -24,14 +24,16 @@ if(isset($_POST['accept']))
    $first_name=$_POST['first_name'];
    $last_name=$_POST['last_name'];
    $method=$_POST['method'];
+   date_default_timezone_set("Asia/Colombo");
+   $expireTime=date('Y-m-d H:i:s',strtotime('+10 minutes',strtotime($time)));
    if($method=='card')
-   {
-      $result=orderModel::accept($order_id,1,$connection);
+   {   
+      $result=orderModel::accept($order_id,1,$expireTime,$connection);
       // sentAccept( $order_id,$email,$first_name,$address,$total);
       header('Location:orderConFood.php?id=2');
    }elseif($method=="cash")
    {
-      $result=orderModel::accept($order_id,3,$connection);
+      $result=orderModel::accept($order_id,3,$expireTime,$connection);
       header('Location:orderConFood.php?id=3');
    }
    $title="Your order Accpeted";
