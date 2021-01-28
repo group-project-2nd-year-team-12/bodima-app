@@ -141,7 +141,7 @@
                             </div>
                        </div>
                     </div>
-                    <img  style="width: 500px;" src="resource/img/slide/1 (3).svg" alt="">
+                    <img  style="width: 860px;" src="resource/img/slide/1 (3).png" alt="">
                </div>
                <div class="myslider fade">
                         <div class="txt">
@@ -156,7 +156,7 @@
                             </div>
                        </div>
                     </div>
-                    <img style="width: 500px;" src="resource/img/slide/1 (3).png" alt="">
+                    <img style="width: 860px;" src="resource/img/slide/1 (4).png" alt="">
                </div>
                <div class="myslider fade">
                     <div class="txt">
@@ -171,7 +171,7 @@
                             </div>
                        </div>
                     </div>
-                    <img src="resource/img/slide/1 (5).svg" alt="">
+                    <img style="width: 860px;" src="resource/img/slide/1 (5).png" alt="">
                </div>
                 <a class="prev" onclick="plusSlides(-1)">&#10094</a>
                 <a class="next" onclick="plusSlides(1)" >&#10095</a>
