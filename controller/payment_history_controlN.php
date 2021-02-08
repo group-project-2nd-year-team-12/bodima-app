@@ -26,35 +26,37 @@
 // ******************month list genarate***************************************************************
         $last=pay_rent_modelN::get_last_paymonth($connection,$Bid,$BOid);
         $lastpay=mysqli_fetch_assoc($last);
+
         print_r($lastpay);
-            $y=$lastpay['year'];
-            $m=$lastpay['month'];
-            $date3 =$y.'-'.$m.'-01';
-            echo $date3;
-            $date1  = '2013-11-15';
-            $date2  = date('Y-m-d');
-            $output = [];
-            $time   = strtotime($date3);
-            $last   = date('Y F', strtotime($date2));
-            echo $last;
-            $time = strtotime('+1 month', $time);
 
-            do {
-                $month = date('Y F', $time);
+
+        $y=$lastpay['year'];
+        $m=date("m", mktime(0,0,0,$lastpay['month']+1,0,0));
+        $date3=$y.'-'.$m.'-01';
+        echo $date3."<br>";
+
+        $d1=strtotime($date3);
+        $d2 = strtotime(date('Y-m-d'));
+        $totalSecondsDiff = abs($d1-$d2); 
+        $totalMonthsDiff  = $totalSecondsDiff/60/60/24/30;
+        echo $totalMonthsDiff;
+        $monthgap=intval($totalMonthsDiff);//truncate decimal points of monthdiff
+        echo ' | '.$monthgap.'  <br>';
+
+        while($monthgap>0){
+            $d1=strtotime('+1 month', $d1);
+            $month = date('Y F', $d1);
+            echo $month.'<br>';
+            $output[] = [
+                'time' => $d1,
+                'month' => $month
                 
-                $output[] = [
-                    'time' => $time,
-                    'month' => $month
-                    
-                ];
-                $x=$month;
-                echo '  <br/>'.$x;
-
-                $time = strtotime('+1 month', $time);
-                echo ' &nbsp&nbsp '.$last;
-            } while ($month < $last);
-
-            $monthlist=serialize($output);  
+            ];
+            $monthgap=$monthgap-1;
+        }
+    
+        $monthlist=serialize($output); 
+   
 // ***********************************************************************************************
 
         header('Location:../views/payment_history1.php?pay='.$paymentdetails.'&months='.$monthlist);
