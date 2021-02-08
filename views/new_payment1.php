@@ -37,7 +37,11 @@
         <!-- ../controller/boarder_list_controlN.php?boarderlist=1 -->
 
         <?php 
-        
+        $BOdetails=unserialize($_GET['BOd']);
+        $months=unserialize($_GET['months']);
+        print_r($BOdetails);
+        print_r($months);
+        echo '<br><br><br>';
         ?>
 
           <h1>New Payment<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>BACK</botton></a></h1>
@@ -47,7 +51,37 @@
                 <h3>boarding&nbsp; Rent &nbsp;Payment</h3>
                 <hr/>
                <p style="font-size:smaller;">Pay your monthly rentals here. . .</p>
-            
+<br/><br/>
+
+                <div class="payblock1">
+                
+                <div class="con"><div class="th_p">Reciver</div><div class="td_p">: <?php echo $BOdetails['first_name'].' '.$BOdetails['last_name']; ?></div></div>
+                <div class="con"> <div class="th_p">Payment Month </div><div class="td_p">:
+                    <select id="cars">
+                    <?php 
+                    $c_flag=0;
+                    foreach($months as $month){
+                        if ($c_flag==0){
+                            ?>
+                            <option value="<?php echo $month['month'];?>"><?php echo $month['month'];?></option>
+                            <?php
+                            $c_flag=1;
+                        }elseif($c_flag==1){
+                            ?>
+                            <option value="<?php echo $month['month'];?>" disabled><?php echo $month['month'];?></option>
+                            <?php
+
+                        }
+                         }?>
+                    </select>
+                </div>
+               </div>
+               <div class="con"><div class="th_p">Amount</div><div class="td_p">: 
+               <input type="text" id="lname" name="lname" value="8000" disabled>
+               </div></div>
+          
+            </div>
+
 
               </div>
               <div class="mid_J">
