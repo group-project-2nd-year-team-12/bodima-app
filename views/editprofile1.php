@@ -207,7 +207,7 @@
 </div>
 </div>	
 
-<div class="outerbx">
+<div class="outerbx" id="outerbx">
 	<h2>Upload Profile Image</h2>
 	<hr/>
 
@@ -215,11 +215,13 @@
 
 		<div class="dragbox">
 		<p>Drop Image Here</p>
-		</div>
-		<form action="upload.php" method="post" enctype="multipart/form-data">
+        </div>
+ 
+		<form action="../controller/editprofile_control.php" method="post" enctype="multipart/form-data">
   <br/>
   <input type="file" name="fileToUpload" id="fileToUpload"><br/><br/>
   <input type="submit" value="Upload Image" name="submit">
+ 
 </form>
 	</div>
 </div>
@@ -260,8 +262,10 @@
     }
 
     function toggle(){
-        var backblur=document.getElementById('#backblur');
-        backblur.classList.toggle('active')
+        var backblur=document.getElementById('backblur');
+        backblur.classList.toggle('active');
+        var outerbx=document.getElementById('outerbx');
+        outerbx.classList.toggle('active');
     }
 
    
