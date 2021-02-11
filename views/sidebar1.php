@@ -115,14 +115,14 @@
         <!-- ************************** boarder ***************************************************** -->
         <?php  if($_SESSION['level']=="boarder")
           {?>
-        <li><a href="#"><i class="fas fa-home"></i>Pay Rent</a></li>
+        <li><a href="../controller/new_payment_Control.php?id=1"><i class="fas fa-home"></i>Pay Rent</a></li>
         <li>
           <a href="#" class="serv-btn"><i class="fas fa-dollar-sign"></i>My Payments
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
             <li><a href="../controller/payment_history_controlN.php?id=1">History</a></li>
-            <li><a href="#">New Payment</a></li>
+            <li><a href="../controller/new_payment_Control.php?id=1">New Payment</a></li>
           </ul>
         </li>
         

@@ -17,7 +17,7 @@
   
     <title>Food</title>
 </head>
-<body>
+<body onload="document.getElementById('food').style.backgroundColor='#07113d'">
 <?php
 //  $posts=unserialize($_GET['posts']);
 //  print_r($posts);

@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,5 +43,22 @@
 		
 	</div>
 	</div>
+<?php
+if(isset($_SESSION['email']))
+{?>
+	<div class="longTerm">
+    <div class="longTerm-box">
+        <div class="accHeader">
+            <h1>Confirm logout</h1>
+            <h3 style="margin-top: 15px;margin:0 10px">You are already logged in as <b><?php echo $_SESSION['first_name'] ?></b>. You need to log out ?</h3>
+        </div>
+        <div class="btn-long">
+          <button class="active" onclick="window.location='../controller/logoutController.php'" id="accept-btn" >Log out</button>
+          <button class="cancel" onclick="window.location='../index.php'">Cancel</button>
+        </div>
+    </div>
+  </div>
+<?php }
+?>
 </body>
 </html>

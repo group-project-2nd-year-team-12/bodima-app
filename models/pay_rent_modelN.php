@@ -30,6 +30,17 @@ class pay_rent_modelN{
         return $result;
       }
 
+      public static function get_BO_details($connection,$Bid){
+
+        $query="SELECT BOid, first_name, last_name,NIC,account_no FROM boardings_owner 
+        WHERE BOid =(SELECT BOid FROM `confirm_rent` WHERE Bid=$Bid order by payment_date DESC LIMIT 1)";
+        //SELECT BOid FROM `confirm_rent` WHERE Bid=$Bid order by payment_date DESC LIMIT 1
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+        return $result;
+      }
+
 
       
      

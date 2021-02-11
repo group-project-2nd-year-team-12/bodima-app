@@ -55,7 +55,13 @@ class profile_modelN{
        
     }
 
-
+    public static function upload_profileimage($connection,$email,$level,$imagepath){
+        $query="UPDATE $level SET profileimage ='{$imagepath}' 
+        WHERE email='{$email}' ";
+        // echo $query;
+        // die();
+       return mysqli_query($connection,$query);
+    }
 
 
 }

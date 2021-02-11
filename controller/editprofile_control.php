@@ -21,10 +21,14 @@ if(isset($_GET['editprofile'])){
         $P_detail= mysqli_fetch_assoc($parent); 
         $parent=serialize($P_detail);
 
-        header('Location:../views/editprofile1.php?user='.$user.'&parent='.$parent);
+        // header('Location:../views/editprofile1.php?user='.$user.'&parent='.$parent);
 
         if(isset($_GET['msg'])){
             header('Location:../views/editprofile1.php?msg='.$_GET['msg'].'&user='.$user.'&parent='.$parent);
+        }elseif(isset($_GET['error'])){
+            header('Location:../views/editprofile1.php?error='.$_GET['error'].'&user='.$user);
+        }else{
+            header('Location:../views/editprofile1.php?user='.$user.'&parent='.$parent);
         }
 
     }else if($_SESSION['level']=='boardings_owner'| $_SESSION['level']=='food_supplier'| $_SESSION['level']=='student')
@@ -35,10 +39,13 @@ if(isset($_GET['editprofile'])){
     echo $detail['address']; 
     $user=serialize($detail); 
 
-        header('Location:../views/editprofile1.php?user='.$user);
-
+        
         if(isset($_GET['msg'])){
             header('Location:../views/editprofile1.php?msg='.$_GET['msg'].'&user='.$user);
+        }elseif(isset($_GET['error'])){
+            header('Location:../views/editprofile1.php?error='.$_GET['error'].'&user='.$user);
+        }else{
+            header('Location:../views/editprofile1.php?user='.$user);
         }
     }
 }
@@ -112,6 +119,45 @@ if(isset($_POST['password_change_btn'])){
     // header('Location:../controller/editprofile_control.php?msg='.$msg.'&editprofile=1');
     
 }
+
+
+
+if(isset($_FILES['fileToUpload'])==true){
+    $error='';
+if(empty($_FILES['fileToUpload']['name'])==false){
+   
+    $allow_extn=array('jpg','jpeg','png','gif');
+    $file_name=$_FILES['fileToUpload']['name'];
+    $file_tmp=$_FILES['fileToUpload']['tmp_name'];
+    $file_extn=explode('.',$file_name);
+    if(in_array(strtolower(end($file_extn)),$allow_extn)){
+       
+        $file_path='../resource/Images/uploaded_profile_Image/'.$file_name;
+        move_uploaded_file($file_tmp,$file_path);
+        // echo $file_path;
+        profile_modelN::upload_profileimage($connection,$_SESSION['email'],$_SESSION['level'], $file_path);
+        $_SESSION['profileimage']= $file_path;
+    }else{
+        $error="Insert an image file!";
+        // echo "Insert an image file!";
+    }
+    
+}else{
+    echo "please choose a file!";
+    $error="please choose a file!";
+    
+}
+
+if($error!=''){
+    
+    header('Location:../controller/editprofile_control.php?editprofile=1&error='.serialize($error));
+}else{
+    header('Location:../views/profilepage1.php?profile=1');
+}
+
+
+}
+
 
 
 

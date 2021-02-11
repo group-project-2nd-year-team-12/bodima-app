@@ -24,9 +24,9 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
-    public static function accept($order_id,$is_accepted,$connection)
+    public static function accept($order_id,$is_accepted,$expireTime,$connection)
     {
-       $query="UPDATE food_request SET is_accepted=$is_accepted WHERE order_id=$order_id ";
+       $query="UPDATE food_request SET is_accepted=$is_accepted AND expireTime='{$expireTime}' WHERE order_id=$order_id ";
        $result_set=mysqli_query($connection,$query);
        return $result_set;
     }

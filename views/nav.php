@@ -1,4 +1,6 @@
-
+<link rel="stylesheet" href="../resource/css/liveSupport.css" >
+<script src="../resource/js/jquery.js"></script>
+<script src="../resource/js/liveSupport.js"></script>
         <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.svg" alt="">
@@ -46,11 +48,11 @@
                         </div>
                     </div>
             <ul class="nav_bar">
-                <li class="nav_item " onclick="window.location='../index.php'"><i class=" fa fa-home"></i>Home</li>
-                <li class="nav_item " onclick="window.location='boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
-                <li class="nav_item " onclick="window.location='../controller/foodpostviewN_control.php'"><i class="fas fa-hamburger"></i> Order Food</li>
-                <li class="nav_item " onclick="window.location='about.php'"><i class="fa fa-address-card"></i> About us</li>
-                <li class="nav_item " onclick="window.location='contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
+                <li class="nav_item " onclick="window.location='../index.php'"><i class=" fa fa-home"></i> Home</li>
+                <li id="boarding" class="nav_item " onclick="window.location='boardings_live.php'"><i class="fa fa-bed"></i> Boardings</li>
+                <li id="food" class="nav_item " onclick="window.location='../controller/foodpostviewN_control.php'"><i class="fas fa-hamburger"></i> Order Food</li>
+                <li id="about" class="nav_item " onclick="window.location='about.php'"><i class="fa fa-address-card"></i> About us</li>
+                <li id="contact" class="nav_item " onclick="window.location='contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
             </ul>
         </div>
             <div class="slide-nav">
@@ -84,3 +86,4 @@
                 <?php } ?>
                 </ul>
         </div>
+        <?php include ("../views/liveSupport.php"); ?>

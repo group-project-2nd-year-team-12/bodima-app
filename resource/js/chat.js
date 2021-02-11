@@ -97,32 +97,36 @@ function getChatUsers() {
 function chatLive()
 {
     var msg=$('#chat').val();
-    $('#chat').val('')
-    var userEmail=document.getElementById('userEmail');
-    var scrollTopElementAdmin= document.querySelector('.live-content-admin');
-    var scrollTopElement= document.querySelector('.live-content');
-    if(userEmail!=null)
+    if(msg!="")
     {
-        userEmail=userEmail.innerHTML;
-    }
-    console.log(userEmail);
-    $.ajax({
-        type: "post",
-        url: "controller/chatCon.php",
-        data: {msg:msg,userEmail:userEmail},
-        dataType: "json",
-        success: function (data) {
-            if(scrollTopElementAdmin!=null)
-            {
-                scrollTopElementAdmin.scrollTop = scrollTopElementAdmin.scrollHeight+200;
-            }else{
-                scrollTopElement.scrollTop = scrollTopElement.scrollHeight+200;
-            }
-            
-            
+        $('#chat').val("");
+        var userEmail=document.getElementById('userEmail');
+        var scrollTopElementAdmin= document.querySelector('.live-content-admin');
+        var scrollTopElement= document.querySelector('.live-content');
+        if(userEmail!=null)
+        {
+            userEmail=userEmail.innerHTML;
         }
-       
-    });
+        console.log(userEmail);
+        $.ajax({
+            type: "post",
+            url: "controller/chatCon.php",
+            data: {msg:msg,userEmail:userEmail},
+            dataType: "json",
+            success: function (data) {
+                if(scrollTopElementAdmin!=null)
+                {
+                    scrollTopElementAdmin.scrollTop = scrollTopElementAdmin.scrollHeight+200;
+                }else{
+                    scrollTopElement.scrollTop = scrollTopElement.scrollHeight+200;
+                }
+                
+                
+            }
+           
+        });
+    }
+
 }
 
 function chatBox(x) { 

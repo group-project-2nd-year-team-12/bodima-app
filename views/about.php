@@ -11,7 +11,7 @@
   
     <title>Document</title>
 </head>
-<body>
+<body onload="document.getElementById('about').style.backgroundColor='#07113d'">
 <div class="back-img">
    <div class="back-image"> <img src="../resource/img/about-us1.jpg" alt=""></div>
 <?php include 'nav.php' ?>
