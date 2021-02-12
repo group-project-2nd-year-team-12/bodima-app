@@ -84,7 +84,7 @@
                         <span><?php echo $payment['amount']?>.00</span>
                         <span><?php echo date("Y/m/d",strtotime($payment['paidDateTime']))?></span>
                         <span><?php echo date("H:i:s",strtotime($payment['paidDateTime']))?></span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash/card']?></h5></span>
+                        <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash_card']?></h5></span>
                     </li>
                     <?php }?>
                     
