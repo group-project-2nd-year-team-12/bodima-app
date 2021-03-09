@@ -45,6 +45,33 @@ class BOwner_reports_Model{
         // die();
        return mysqli_query($connection,$query);
     }
+
+
+
+    public static function boarder_namelist_BOwner($connection,$BOid){
+        $query="SELECT DISTINCTROW bT.Bid, bT.first_name, bT.last_name 
+        FROM boarder As bT
+        INNER JOIN confirm_rent ON bT.Bid = confirm_rent.Bid
+        INNER JOIN boarding_post AS BpT ON BpT.B_post_id = confirm_rent.B_post_id
+        WHERE confirm_rent.BOid=$BOid";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+			return $result;
+    }
+
+    public static function postlist_BOwner($connection,$BOid){
+
+        $query="SELECT DISTINCTROW confirm_rent.B_post_id 
+        FROM boarder As bT
+        INNER JOIN confirm_rent ON bT.Bid = confirm_rent.Bid
+        INNER JOIN boarding_post AS BpT ON BpT.B_post_id = confirm_rent.B_post_id
+        WHERE confirm_rent.BOid=$BOid";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+			return $result;
+      }
 }
 ?>
  
