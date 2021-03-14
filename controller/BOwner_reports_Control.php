@@ -11,6 +11,24 @@ require_once ('../models/BOwner_reports_Model.php');
 date_default_timezone_set("Asia/Colombo");
 echo $todate="tomorrow :".date( "Y-m-d 00:00:00", strtotime( "+1 days" ));
 
+$bname=BOwner_reports_Model::boarder_namelist_BOwner($connection,$_SESSION['BOid']);
+$bpost_num=BOwner_reports_Model::postlist_BOwner($connection,$_SESSION['BOid']);
+
+if(mysqli_num_rows($bname)>0){
+    while($row=mysqli_fetch_assoc($bname)){
+        $data[]=$row;
+        print_r($row);
+        echo '<br/>';
+    }$bnames=serialize($data);}
+
+if(mysqli_num_rows($bpost_num)>0){
+    while($row=mysqli_fetch_assoc($bpost_num)){
+        $data[]=$row;
+        print_r($row);
+        echo '<br/>';
+    }$bpost_nums=serialize($data);}
+    
+
 if(isset($_POST['go1'])){
 
 echo '<br/>sort_by :'.$_POST['sort_by'];
@@ -63,7 +81,33 @@ if(mysqli_num_rows($resultM)>0){
 
 }
 
-header('Location:../views/BOwner_reports.php?results='.$result);
+if(isset($_GET['q'])){
+
+    $BOid =$_SESSION['BOid'];
+    $sortcontext='paidDateTime';
+    $DESC_ASC='DESC';
+    $filter_Bid='all';
+   
+        $fromDate='';
+        $toDate='';
+    
+    
+    $postno='all';
+    $method='all';
+    
+    $resultM=BOwner_reports_Model::payments_filter($connection,$BOid,$sortcontext,$DESC_ASC,$filter_Bid,$fromDate,$toDate,$postno,$method);
+    if(mysqli_num_rows($resultM)>0){
+    
+        while($row=mysqli_fetch_assoc($resultM)){
+            $data[]=$row;
+            print_r($row);
+            echo '<br/>';
+        }
+        $result=serialize($data);}
+    
+    
+    }
+header('Location:../views/BOwner_reports.php?results='.$result.'&bname='.$bnames.'&postnum='.$bpost_nums);
 
 // $resultM=BOwner_reports_Model::payments_filter($connection,3,'first_name','asc','2020-07-02 16:47:09',0,0,0);
 

@@ -31,6 +31,8 @@
 	 <div class="container1">
          <?php 
          $results=unserialize($_GET['results']);
+         $border_names=unserialize($_GET['bname']);
+         $postnum=unserialize($_GET['postnum']);
         //  print_r($results);
          ?>
      <div class="container2">

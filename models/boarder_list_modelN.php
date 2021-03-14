@@ -96,7 +96,7 @@ class boarder_list_modelN{
 
       public static function set_notification($connection,$from_BOid,$to_Bid,$date,$occurance,$massage){
 
-        $query="INSERT INTO set_notification (`from_BOid`, `to_Bid`, `setdate`, `occurance`, `massage`)
+        $query="INSERT INTO set_notification (`from_BOid`, `to_Bid`, `deadline_date`, `occurance`, `massage`)
         VALUES ({$from_BOid},{$to_Bid},'{$date}','{$occurance}','{$massage}')";
         // echo $query;
         // die();

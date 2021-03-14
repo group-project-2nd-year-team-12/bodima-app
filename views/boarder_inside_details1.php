@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="../resource/js/jquery-ui.css">
 	<script type="text/javascript" src="../resource/js/jquery.js"></script>
 	<script type="text/javascript" src="../resource/js/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
  <body>
@@ -84,7 +87,7 @@
                         <span><?php echo $payment['amount']?>.00</span>
                         <span><?php echo date("Y/m/d",strtotime($payment['paidDateTime']))?></span>
                         <span><?php echo date("H:i:s",strtotime($payment['paidDateTime']))?></span>
-                        <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash/card']?></h5></span>
+                        <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash_card']?></h5></span>
                     </li>
                     <?php }?>
                     
@@ -147,7 +150,8 @@
                         <form method="post" id="setmsg" action="../controller/boarder_inside_controlN.php?Bid=<?php echo $details['Bid']?>" >
                         <hr/>
                         <div class="deadline_calender">
-                        Set deadline : <input type="text" name="calendar" id="calendar" autocomplete='off'/>
+                        Set deadline : <input type="text" name="calendar" id="calendar" autocomplete='off' />
+                        
                         </div>
                         <div class="radio">
                             <div class="radio_in">
@@ -164,14 +168,12 @@
                         <span id="downbefore"><i class="fas fa-chevron-down"></i> notification description...</span>
                         <span id="upafter"><i class="fas fa-chevron-up"></i> notification description...</span>
                             <div class="notification_description" id="notification_description">
-                            1. 1st notification will send - on 2020/10/02<br/>
-                            2. 2nd remainder will send - on 2020/10/05<br/>
-                            3. 3rd remainder will send on deadline<br/>
+                            
                             </div>
                         </div>
                         <br/>
                         <div id="text">
-                                <textarea name="mssage" cols="50" rows="4" >February rent is due. Please pay before 20/01/2021</textarea>
+                                <textarea name="mssage" id="mssage" cols="50" rows="4" >preview not available! please select deadline first.</textarea>
                         </div>
                         <div class="btn_block">
                        
@@ -230,12 +232,51 @@
     </div>
 
     <script >
-		$(document).ready(function(){
-			$("#calendar").datepicker({
-        minDate:-0,
-        maxDate:"+4m"
-      });
-		});
+		// $(document).ready(function(){
+		// 	$("#calendar").datepicker({
+    //     minDate:-0,
+    //     maxDate:"+4m"
+    //   });
+		// });
+
+    $(document).ready(function() {
+    
+    $("#calendar").datepicker({
+         minDate:-0,
+          maxDate:"+4m",
+      onSelect: function(dateText) {
+        var date = $(this).datepicker("getDate"); //Get the Date object with actual date
+            date.setDate(date.getDate()-3);
+            m=date.getMonth()+1;
+            d=date.getDate() ;      // 30
+            y=date.getFullYear();
+            
+      display(" 1. 1st notification will send today <br>2. 2nd remainder will send - on " +m+'/'+d+'/'+y+"<br>3. 3rd remainder will send on deadline ("+dateText+")");
+
+       dynamic_notify(date.getDate()+3,m,y); 
+      
+      }
+    })
+  
+    function display(msg) {
+       $('#notification_description').html(msg).append();
+    }
+
+    function dynamic_notify(d,m,y) {
+      var month_name=getMonthName(m-1);
+       var content = month_name + " is due. Please pay the rent before "+m+'/'+d+'/'+y;
+      $("#mssage").val(content);
+    }
+
+    getMonthName = function (v) {
+    var n = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    return n[v]
+}
+    });
+
+
+
+
 	</script>
 <script>
 
