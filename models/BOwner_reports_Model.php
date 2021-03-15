@@ -41,9 +41,17 @@ class BOwner_reports_Model{
         }
          $query.= " ORDER BY $sortcontext $DESC_ASC;";
 
-        // echo $query;
+     
+        return mysqli_query($connection,$query);
+        // if(mysqli_num_rows($res)){
+        //    return $res;
+        // }else{
+        //     return 0;
+        // }
+
+        // echo $query; 
         // die();
-       return mysqli_query($connection,$query);
+        
     }
 
 
