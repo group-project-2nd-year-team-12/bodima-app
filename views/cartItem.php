@@ -171,7 +171,7 @@ $total=0;
                     <label for="cash">Cash</label>
                 </div>
                <div class="shedule-order">
-                <h4>Shedule your order :</h4>
+                <h4>Shedule your order </h4>
                 <select name="shedule" class="shedule-time">
                
                 </select>
