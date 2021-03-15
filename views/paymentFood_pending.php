@@ -332,6 +332,9 @@
                                 if(data.state==2)
                                 {
                                     document.querySelector('.orderCancel').classList.add('orderCancel-active');
+                                    document.getElementById('cancelMethod').innerHTML=' : '+data.payment;
+                                    document.getElementById('cancelId').innerHTML=' : '+data.acceptId;
+                                    document.getElementById('cancelRes').innerHTML=' : '+data.rasturent;
                                 }
                              
                                 
@@ -422,9 +425,9 @@
             <h1>Your Order Cancelled </h1>
             <h4 style="margin-top: 20px;margin-left:10px">Your order accpted by food supplier. Cash payment user can receive order </h4>
           <div style="margin-top:30px;">
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order ID </h4><h4 id="acceptId"></h4></div>
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment Method </h4><h4 id="acceptMethod"></h4></div>
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent </h4><h4 id="acceptRes"></h4></div>
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order ID </h4><h4 id="canceltId"></h4></div>
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment Method </h4><h4 id="cancelMethod"></h4></div>
+                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent </h4><h4 id="cancekRes"></h4></div>
          </div>
         </div>
     </div>

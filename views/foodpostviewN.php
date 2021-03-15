@@ -85,7 +85,7 @@ $posts=unserialize($posts2);
             <div class="post_box">
 
             <?php foreach($posts as $post){?>
-                    <div class="f_post">
+                    <div class="f_post" onclick='window.location="cart.php?Pid=<?php echo $post["F_post_id"] ?>&name=<?php echo $post["ad_title"] ?>&address=<?php echo $post["address"] ?>"'>
                    <div class="f_image">
                        <img src="<?php echo $post['image']?>">
                     </div>
@@ -129,7 +129,7 @@ $posts=unserialize($posts2);
             <?php for ($x = 0; $x <= 4; $x++) {?>
  
 
-               <div class="f_post">
+               <div class="f_post" onclick="window.location='cart.php'">
                    <div class="f_image">
                        <img src="../resource/img/backdrop_2.jpg">
                     </div>
