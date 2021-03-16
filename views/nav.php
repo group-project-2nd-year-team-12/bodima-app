@@ -76,7 +76,7 @@
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='boardings_owner' || $_SESSION['level']=='boarder'){?>
-                    <li onclick='window.location="../views/paymentFood_pending"'>My food Orders</li>
+                    <li onclick='window.location="../views/paymentFood_pending.php"'>My food Orders</li>
                     <?php } ?>
                     <li onclick="window.location='../controller/logoutController.php'">Log out</li>
                 <?php } else{?>
