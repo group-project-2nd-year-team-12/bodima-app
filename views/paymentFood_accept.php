@@ -161,6 +161,52 @@
                   </div>
                     
                 </div>
+                <script>
+                    // timing function
+             $(document).ready(function(){
+                function acceptTimer()
+                     {
+                        cardOrder="<?php echo $id['order_id']; ?>";
+                        $.ajax({
+                            url:"../controller/orderCon.php",
+                            method:"POST",
+                            data:{cardOrder:cardOrder},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                if(data.invert==0){
+                                    document.querySelector('.acceptTimer').classList.add('acceptTimer-active');
+                                      $.ajax({
+                                        url:"../controller/orderCon.php",
+                                        method:"POST",
+                                        data:{cancel:cardOrder},
+                                        dataType:"json",
+                                        success:function(data){
+                                            console.log(data)
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            console.log(xhr.status);
+                                            console.log(thrownError);
+                                        }
+                                    })
+                                }
+                                else{
+                                    document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
+                                    document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
+                                }
+                             console.log(data);
+                                
+                            }
+                              })
+        
+                        }
+                        acceptTimer();
+
+                        setInterval(function(){ 
+                            acceptTimer();
+                        }, 1000);
+                     })
+                </script>
                 <?php
            $x=$x+2;  }
         }
@@ -249,6 +295,52 @@
                   </div>
                     
                 </div>
+                <script>
+                    // timing function
+                    $(document).ready(function(){
+                function acceptTimer()
+                     {
+                        cardOrder="<?php echo $id['order_id']; ?>";
+                        $.ajax({
+                            url:"../controller/orderCon.php",
+                            method:"POST",
+                            data:{cardOrder:cardOrder},
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                if(data.invert==0){
+                                    document.querySelector('.acceptTimer').classList.add('acceptTimer-active');
+                                      $.ajax({
+                                        url:"../controller/orderCon.php",
+                                        method:"POST",
+                                        data:{cancel:cardOrder},
+                                        dataType:"json",
+                                        success:function(data){
+                                            console.log(data)
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            console.log(xhr.status);
+                                            console.log(thrownError);
+                                        }
+                                    })
+                                }
+                                else{
+                                    document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
+                                    document.getElementById('secound<?php echo $x; ?>').innerHTML=data.secound+'sec';
+                                }
+                             console.log(data);
+                                
+                            }
+                              })
+        
+                        }
+                        acceptTimer();
+
+                        setInterval(function(){ 
+                            acceptTimer();
+                        }, 1000);
+                     })
+                </script>
                 <?php
             }
             $x=$x+2; }
@@ -263,10 +355,38 @@
         </div>
         </div>
     </div>
+
+    <!-- Timeout popup -->
+    <div class="timeOut acceptTimer">
+        <div class="timeOut-box">
+            <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x" onclick="window.location='../controller/orderCon.php?id=2'"></i></div>
+            <div class="outImg"><img src="../resource/img/timeout.svg" alt=""></div>
+            <div class="outHeader">
+                <h1>Your Order time out </h1>
+                <h4>Your order timeout. Because food supplier not accept your order .Please try again or place order another resturent</h4>
+                <?php 
+                $timeOutDatas=unserialize($_GET['timeOut']); 
+                foreach($timeOutDatas as $timeOutData)
+                {
+                        $total=$timeOutDatas['total'];
+                        $time=$timeOutDatas['time'];
+                        $restaurant=$timeOutDatas['restaurant'];
+                        $id=$timeOutDatas['order_id'];
+                }
+            ?>
+            <div style="margin-top:30px;">
+                <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Order ID </h4><h4>: <?php echo $id ?></h4></div>
+                    <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
+                    <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Resturent </h4><h4>: <?php echo $restaurant ?></h4></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/newOrder.js"></script>
+<script src="../resource/js/paymentFood_accept.js"></script>
 <script>
         function order(x,y) {  
             var orderDown=document.getElementById(x);
@@ -274,5 +394,7 @@
             if(orderDown.style.display=='none' || orderDown.style.display==''){orderDown.style.display='flex';btn.style.visibility='hidden'}
             else{orderDown.style.display='none';btn.style.visibility='visible'}
     }
+
+   
 </script>
 </html>

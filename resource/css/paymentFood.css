@@ -901,3 +901,12 @@ table td{
 .term a:focus{
     background-color: red;
 }
+
+
+.acceptTimer{
+    display: none;
+}
+.acceptTimer-active{
+    display: block;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+}

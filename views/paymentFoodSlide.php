@@ -10,7 +10,7 @@
                   <li id="receive" onclick="window.location='../controller/orderCon.php?id=3'"><i style="width: 30px;" class="fas fa-truck"></i> Receiving Order <div id="noti-delivery"><h5>1</h5></div></li>
                   <li id="long-term" onclick="window.location='paymentFood_longTerm.php'"><i style="width: 30px;" class="fas fa-table"></i> Longterm Order <div class="noti-order" id="noti-long"><h5>1</h5></div></li>
                   <li id="history" onclick="window.location='../controller/orderCon.php?id=4'"><i style="width: 30px;" class="fas fa-history"></i> Order History</li>
-                  <li onclick="window.location='foodposts.php'"><i style="width: 30px;" class="fas fa-plus"></i> New Order</li>
+                  <li onclick="window.location='foodpostviewN.php'"><i style="width: 30px;" class="fas fa-plus"></i> New Order</li>
                   
                   
               </ul>
