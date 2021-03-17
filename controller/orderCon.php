@@ -200,9 +200,11 @@ function getLongTerm($connection)
    $longTermID=orderModel::getLongTermID($connection,$email);
    // print_r($longTermID);
    $record=orderModel::getLongTerm($connection,$email);
+   $foodItem=orderModel::getLongTermFood($connection,$email);
    // print_r($record);
    $ids=array();
    $result=array();
+   $item=array();
       while($row=mysqli_fetch_assoc($longTermID))
       {
           $ids[]=$row;
@@ -211,9 +213,14 @@ function getLongTerm($connection)
       {
           $result[]=$row;
       }
+      while($row=mysqli_fetch_assoc($foodItem))
+      {
+          $item[]=$row;
+      }
    // print_r($ids);
    $data[0]=serialize($ids);
    $data[1]=serialize($result);
+   $data[2]=serialize($item);
       return $data;
 }
 
@@ -256,7 +263,6 @@ if(isset($_GET['order_id'])){
 
 
 // ajex countdown
-
 if(isset($_POST['view']))
 {
    $order_id= $_POST['view'];
@@ -267,12 +273,8 @@ if(isset($_POST['view']))
    $nowTime=date_create($date);
    $expireDate=date_create($exfectch['expireTime']);  
    $diff= $expireDate->diff($nowTime);
-   if($diff->invert)
-   {
-      $minute=$diff->format('%i');
-      $second=$diff->format('%s');
-     
-   }
+   $minute=$diff->format('%i');
+   $second=$diff->format('%s');
    $data=array(
       'invert'=>$diff->invert,
       'minute'=>$minute,
@@ -282,7 +284,6 @@ if(isset($_POST['view']))
       'payment'=>$exfectch['method'],
       'rasturent'=>$exfectch['restaurant']
    );
- 
     echo json_encode($data);
 }
 
@@ -298,14 +299,14 @@ if(isset($_POST['cardOrder']))
    $diff= $expireDate->diff($nowTime);
    $minute=$diff->format('%i');
    $second=$diff->format('%s');
-      $data=array(
-         'invert'=>$diff->invert,
-         'minute'=>$minute,
-         'secound'=>$second,
-         'acceptId'=>$exfectch['order_id'],
-         'state'=>$exfectch['is_accepted'],
-         'payment'=>$exfectch['method'],
-         'rasturent'=>$exfectch['restaurant']
+   $data=array(
+      'invert'=>$diff->invert,
+      'minute'=>$minute,
+      'secound'=>$second,
+      'acceptId'=>$exfectch['order_id'],
+      'state'=>$exfectch['is_accepted'],
+      'payment'=>$exfectch['method'],
+      'rasturent'=>$exfectch['restaurant']
       ); 
     echo json_encode($data);
 }

@@ -151,12 +151,12 @@ class orderModel{
         return $result;
     }
     public static function getLongTerm($connection,$email){
-        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND email='{$email}'";
+        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id  AND food_request.is_accepted=3  AND email='{$email}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }
-    public static function getLongTermFood($connection,$fsid){
-        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND food_request.F_post_id='{$fsid}'";
+    public static function getLongTermFood($connection,$email){
+        $query="SELECT * FROM food_request,order_item WHERE food_request.order_id=order_item.order_id AND food_request.is_accepted=3  AND food_request.email='{$email}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -178,8 +178,16 @@ class orderModel{
         return $result;
     }
 
+    //check term of food post
     public static function checkTerm($connection,$pid){
         $query="SELECT type FROM food_post WHERE F_post_id=$pid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    // check term of food request
+    public static function checkTermOrder($connection,$order_id){
+        $query="SELECT term FROM food_request WHERE order_id=$order_id";
         $result=mysqli_query($connection,$query);
         return $result;
     }

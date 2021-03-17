@@ -1,8 +1,9 @@
+<!-- load pre assert -->
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
         require_once ('../controller/orderCon.php');
-        // session_start(); 
 ?>
+<!-- page  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,28 +17,6 @@
     <title>Document</title>
 </head>
 <body onload="checked('long-term');">
-
-<!-- page separate 2 section short term long term  -->
-<script>
-    function orderType(id)
-{
-    var order=document.getElementById(id);
-    const shortTerm=document.getElementById('shortTerm-box');
-    const longTerm=document.getElementById('longTerm-box');
-    if(id=='shortTerm')
-    {
-        shortTerm.style.display='block';
-        longTerm.style.display='none';
-    }
-    if(id=='longTerm')
-    {
-        longTerm.style.display='block';
-        shortTerm.style.display='none';
-    }
-    order.style.display='block';
-  
-}
-</script>
 
 
 <div class="header">
@@ -74,29 +53,29 @@
     <div class="container">
         <div class="content">
         <?php include  'paymentFoodSlide.php';?> 
-        <div class="subNav">
+            <div class="subNav" style="visibility:hidden">
                 <ul>
                     <div>
                         <div id="noti-longTerm"><h5></h5></div>
-                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
+                        <li tabindex="0" id="longTerm" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
                     </div>
                 </ul>
             </div>
+            <!-- load data -->
             <?php 
                     $recordsSeritaize=getLongTerm($connection);
                     $ids=unserialize($recordsSeritaize[0]);
                     $data_rows=unserialize($recordsSeritaize[1]);
-                
-                    ?>
+                    $items=unserialize($recordsSeritaize[2]);
+                    // print_r($data_rows);
+            ?>
+
             <div style="overflow-x:hidden ;" id="shortTerm-box" class="pending">
             <div class="title">
-            <div class="order-title">
+                <div class="order-title">
                     <h3>Long Term Orders </h3>
-                    <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 
-               
-               
                 $total='';
                 $i=1;
                 $x=0;
@@ -110,13 +89,13 @@
                         <div class="right"><i class="far fa-clock fa-2x"></i></div>
                         <div class="letter">
                             <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
-                            <h5 style="color:#2c3e8f;">Order Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5>
+                            <!-- <h5 style="color:#2c3e8f;">Order Time Out in : <span  id="minute<?php echo $x; ?>"> min</span> <span id="secound<?php echo $x; ?>"> sec</span></h5> -->
                         </div>
                     </div>
                   <div id="<?php echo $x ?>" class=" longTerm-struct">
                        <div class="longTerm-details">
                         <!-- <div style="width: 300px;"> <img style="width: 300px;  margin:50px 20px" src="../resource/img/pending.svg" alt=""></div> -->
-                        <div style="width: 60%; margin:20px" class="button-pay">
+                        <div style="width: 65%; margin:20px" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
@@ -131,18 +110,23 @@
                                             $method=$data_row['method'];
                                             $address=$data_row['address'];
                                             $type=$data_row['order_type'];
-                                            ?> 
-                                            <?php
-                                            //   echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['order_item'].'</h5>';
-                                            //   echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                         }
                                             
+                                    }
+                                    // print_r($item);
+                                    foreach($items as $data_row)
+                                    {
+                                        if($data_row['order_id']==$id['order_id'])
+                                        {
+                                               echo '<div class="product_item"><h5 class="item">'.$data_row['item_name'].'</h5>';
+                                              echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
+                                        }
                                     }
                                 ?>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Type </h4><h4>: <?php echo $type; ?></h4></div>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent </h4><h4>: <?php echo $restaurant ?></h4></div>
+                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address </h4><h4>: <?php echo $address ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
                                 <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                             </div>

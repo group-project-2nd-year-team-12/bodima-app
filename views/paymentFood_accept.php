@@ -15,6 +15,8 @@
 </head>
 <body onload="checked('accept');">
 <div class="header">
+
+ <!-- this function for select order type -->
 <script>
     function orderType(id)
 {
@@ -35,6 +37,7 @@
   
 }
 </script>
+
             <div class="logo">
                  <img src="../resource/img/logo.svg" alt="">
                 <h1><small style="font-size: 14px; color:white;">   Solution for many problems</small></h1>
@@ -174,8 +177,10 @@
                             dataType:"json",
                             success:function(data)
                             {
-                                if(data.invert==0){
-                                    document.querySelector('.acceptTimer').classList.add('acceptTimer-active');
+                                if(data.minute==0 && data.secound<=1 || data.invert==0){
+                                    document.querySelector('.timeOut').classList.add('timeOut-active');
+                                    document.getElementById('timeOutId').innerHTML='['+data.acceptId+']';
+                                    document.getElementById('timeOutRes').innerHTML='['+data.rasturent+']';
                                       $.ajax({
                                         url:"../controller/orderCon.php",
                                         method:"POST",
@@ -308,8 +313,10 @@
                             dataType:"json",
                             success:function(data)
                             {
-                                if(data.invert==0){
-                                    document.querySelector('.acceptTimer').classList.add('acceptTimer-active');
+                                if(data.minute==0 && data.secound<=1 || data.invert==0){
+                                    document.querySelector('.timeOut').classList.add('timeOut-active');
+                                    document.getElementById('timeOutId').innerHTML='['+data.acceptId+']';
+                                    document.getElementById('timeOutRes').innerHTML='['+data.rasturent+']';
                                       $.ajax({
                                         url:"../controller/orderCon.php",
                                         method:"POST",
@@ -356,32 +363,20 @@
         </div>
     </div>
 
-    <!-- Timeout popup -->
-    <div class="timeOut acceptTimer">
-        <div class="timeOut-box">
-            <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x" onclick="window.location='../controller/orderCon.php?id=2'"></i></div>
-            <div class="outImg"><img src="../resource/img/timeout.svg" alt=""></div>
-            <div class="outHeader">
-                <h1>Your Order time out </h1>
-                <h4>Your order timeout. Because food supplier not accept your order .Please try again or place order another resturent</h4>
-                <?php 
-                $timeOutDatas=unserialize($_GET['timeOut']); 
-                foreach($timeOutDatas as $timeOutData)
-                {
-                        $total=$timeOutDatas['total'];
-                        $time=$timeOutDatas['time'];
-                        $restaurant=$timeOutDatas['restaurant'];
-                        $id=$timeOutDatas['order_id'];
-                }
-            ?>
-            <div style="margin-top:30px;">
-                <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Order ID </h4><h4>: <?php echo $id ?></h4></div>
-                    <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
-                    <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Resturent </h4><h4>: <?php echo $restaurant ?></h4></div>
-                </div>
-            </div>
+<!-- Timeout popup -->
+<div class="timeOut">
+    <div class="timeOut-box">
+        <div class="accHeader">
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="window.location='../controller/orderCon.php?id=2'"></i></div>
+        <img src="https://img.icons8.com/pastel-glyph/100/4a90e2/sale-time--v1.png"/>
+            <h1>Card Payment Time Out !</h1>
+            <h4>Your order <span id="timeOutId" style="color:black"></span> placed at <span id="timeOutRes" style="color:black"></span> is card payment timeout. Because You were unable to make the payment within the allotted time [10 min]</h4>
+            <button class="accept-btn" id="accept-btn" style="margin: 10px 0 10px 0;" onclick="window.location='foodpostviewN.php'">New Order</button>
+            <button class="cancel-btn" id="accept-btn" onclick="window.location='../controller/orderCon.php?id=2'">cancel</button>
         </div>
     </div>
+</div>
+
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/timing.js"></script>
