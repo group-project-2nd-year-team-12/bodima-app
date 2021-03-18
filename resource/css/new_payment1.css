@@ -160,9 +160,6 @@
     justify-content: space-evenly;
 }
 
-.mid_J .radio .radio_in{
-    /* background-color: yellow; */
-}
 
 .Cash_Payment_Entry .w{
     display: flex;
@@ -217,6 +214,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .mid_J .Next_payment .new_payblock h3{
@@ -241,6 +239,7 @@
 
 .mid_J .Set_Notifications .notification_block .notify{
     background-color: #587eb618 ;
+    background-color: #70a6f769 ;
     margin:10px;
     font-size: small;
     border-radius: 10px;
@@ -277,3 +276,42 @@
     height: 20px;
 }
 
+
+.mid_I .con{
+/* background-color: #5d80b6; */
+display: flex;
+padding: 7px;
+}
+
+.mid_I .con .th_p{
+    /* background-color: aqua; */
+    width: 160px;
+}
+.mid_I .con select{
+    width: 160px;
+
+}
+
+.mid_I .payblock1{
+    background-color:rgba(226, 226, 224, 0.144);
+    padding: 20px;
+    padding-bottom: 60px;
+}
+
+.payblock1 button{
+    background-color:#101e5a;
+    outline:none;
+    border: none; 
+    padding: 10px;
+    padding-left:25px ;
+    padding-right:25px ;
+    border-radius:5px;
+    color:white;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.payblock1 .btnp{
+    display: flex;
+    float:right;
+}
