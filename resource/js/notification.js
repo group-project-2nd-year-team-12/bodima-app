@@ -4,7 +4,7 @@ $(document).ready(function () {
         $.ajax({
             type: "post",
             url: "controller/notificationCon.php",
-            data:{count:count},
+            data:{count:count},// send to controller
             dataType: "json",
             success: function (data) {
               
