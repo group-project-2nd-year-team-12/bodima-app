@@ -263,20 +263,24 @@ function deadLine(){
   var dinner=document.getElementById('3');
   var hour=date.getHours();
   console.log(hour);
- if(hour >= 11 && hour <15)
+  if(hour<=11){
+    breakfast.checked=true;
+    document.getElementById('breakfast').classList.add('checked');
+  }
+ if(hour > 11 && hour <15)
  {
   breakfast.disabled=true;
   lunch.checked=true;
-  document.getElementById('lanch').classList.add('checked');
+  document.getElementById('lunch').classList.add('checked');
  }
- if(hour >= 15 && hour <20)
+ if(hour >= 15 && hour <=23)
  {
   breakfast.disabled=true;
   lunch.disabled=true;
   dinner.checked=true;
   document.getElementById('dinner').classList.add('checked');
  }
- if(hour >= 20 )
+ if(hour >23 )
  {
   dinner.disabled=true;
   lunch.disabled=true;
