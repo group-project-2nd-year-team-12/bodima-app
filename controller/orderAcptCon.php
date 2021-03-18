@@ -52,6 +52,17 @@ if(isset($_POST['accept']))
    }
    notificationModel::notificationOrderAccept($connection,$email,$title,$discription,$time,$type,$responseUrl);
    
+
+   $detailreciever=notificationModel::find_levelAndId($connection,$email);
+   $type_number=1;
+   $from_level=$_SESSION['level'];
+   $from_id=$_SESSION['BOid'];
+   $to_level=$detailreciever['level'];    // should get from query
+   $to_id=$detailreciever['id'];              // should get from query
+   $massageHeader="Your order Accpeted";
+   $massage="Order id :".$order_id;
+
+   notificationModel::insertnotification($connection,$type_number,$from_level,$from_id,$to_level,$to_id,$massageHeader,$massage);
 }
 
 // cancel order 
