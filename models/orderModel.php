@@ -151,18 +151,24 @@ class orderModel{
         return $result;
     }
     public static function getLongTerm($connection,$email){
-        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND email='{$email}'";
+        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id  AND food_request.is_accepted=3  AND email='{$email}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }
-    public static function getLongTermFood($connection,$fsid){
-        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id AND food_request.is_accepted=3  AND food_request.F_post_id='{$fsid}'";
+    public static function getLongTermFood($connection,$email){
+        $query="SELECT * FROM food_request,order_item WHERE food_request.order_id=order_item.order_id AND food_request.is_accepted=3  AND food_request.email='{$email}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }
 
     public static function checkLongTermState($connection,$orderId,$date){
         $query="SELECT * FROM longterm WHERE order_id=$orderId AND day='{$date}'  LIMIT 1";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    // get last date of longterm food delivery
+    public static function longTermLast($connection,$orderId){
+        $query="SELECT day FROM longterm WHERE order_id=$orderId ORDER BY day DESC LIMIT 1";
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -178,8 +184,16 @@ class orderModel{
         return $result;
     }
 
+    //check term of food post
     public static function checkTerm($connection,$pid){
         $query="SELECT type FROM food_post WHERE F_post_id=$pid";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    // check term of food request
+    public static function checkTermOrder($connection,$order_id){
+        $query="SELECT term FROM food_request WHERE order_id=$order_id";
         $result=mysqli_query($connection,$query);
         return $result;
     }

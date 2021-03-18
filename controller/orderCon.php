@@ -190,7 +190,13 @@ if(isset($_GET['id']) && $_GET['id']==4)
       }
       $data1=serialize($ids);
       $data2=serialize($data_rows);
-      header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
+      if(isset($_GET['success']))
+      {
+         header('Location:../views/paymentFood_history.php?success&order_id='.$_GET['order_id'].'&ids='.$data1.'&data_rows='.$data2.'');
+      }else{
+         header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
+      }
+     
     
 }
 
@@ -200,9 +206,11 @@ function getLongTerm($connection)
    $longTermID=orderModel::getLongTermID($connection,$email);
    // print_r($longTermID);
    $record=orderModel::getLongTerm($connection,$email);
+   $foodItem=orderModel::getLongTermFood($connection,$email);
    // print_r($record);
    $ids=array();
    $result=array();
+   $item=array();
       while($row=mysqli_fetch_assoc($longTermID))
       {
           $ids[]=$row;
@@ -211,9 +219,14 @@ function getLongTerm($connection)
       {
           $result[]=$row;
       }
+      while($row=mysqli_fetch_assoc($foodItem))
+      {
+          $item[]=$row;
+      }
    // print_r($ids);
    $data[0]=serialize($ids);
    $data[1]=serialize($result);
+   $data[2]=serialize($item);
       return $data;
 }
 
@@ -229,34 +242,30 @@ if(isset($_GET['orderDelete_id'])){
    }
 }
 
+// order confirm after go to history page
 if(isset($_GET['orderConfirm_id'])){
    $order_id=$_GET['orderConfirm_id'];
    date_default_timezone_set("Asia/Colombo");
     $deliveredTime=date("h:i:sa");
    $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
-   if($result){
-      header('Location:../views/paymentFood_history.php?success&order_id='.$order_id);
-   }
-   {
-      echo "Mysqli query failed";
-   }
+   header('Location:orderCon.php?success&order_id='.$order_id.'&id=4');
+   
 }
 
 
-if(isset($_GET['order_id'])){
-   $order_id=$_GET['order_id'];
-   $result=orderModel::paymentOrder($connection,$order_id);
-   if($result){
-      header('Location:../views/paymentFood_receving.php');
-   }
-   {
-      echo "Mysqli query failed";
-   }
-}
+// if(isset($_GET['order_id'])){
+//    $order_id=$_GET['order_id'];
+//    $result=orderModel::paymentOrder($connection,$order_id);
+//    if($result){
+//       header('Location:../views/paymentFood_receving.php');
+//    }
+//    {
+//       echo "Mysqli query failed";
+//    }
+// }
 
 
 // ajex countdown
-
 if(isset($_POST['view']))
 {
    $order_id= $_POST['view'];
@@ -267,12 +276,8 @@ if(isset($_POST['view']))
    $nowTime=date_create($date);
    $expireDate=date_create($exfectch['expireTime']);  
    $diff= $expireDate->diff($nowTime);
-   if($diff->invert)
-   {
-      $minute=$diff->format('%i');
-      $second=$diff->format('%s');
-     
-   }
+   $minute=$diff->format('%i');
+   $second=$diff->format('%s');
    $data=array(
       'invert'=>$diff->invert,
       'minute'=>$minute,
@@ -282,7 +287,6 @@ if(isset($_POST['view']))
       'payment'=>$exfectch['method'],
       'rasturent'=>$exfectch['restaurant']
    );
- 
     echo json_encode($data);
 }
 
@@ -298,22 +302,25 @@ if(isset($_POST['cardOrder']))
    $diff= $expireDate->diff($nowTime);
    $minute=$diff->format('%i');
    $second=$diff->format('%s');
-      $data=array(
-         'invert'=>$diff->invert,
-         'minute'=>$minute,
-         'secound'=>$second,
-         'acceptId'=>$exfectch['order_id'],
-         'state'=>$exfectch['is_accepted'],
-         'payment'=>$exfectch['method'],
-         'rasturent'=>$exfectch['restaurant']
+   $data=array(
+      'invert'=>$diff->invert,
+      'minute'=>$minute,
+      'secound'=>$second,
+      'acceptId'=>$exfectch['order_id'],
+      'state'=>$exfectch['is_accepted'],
+      'payment'=>$exfectch['method'],
+      'rasturent'=>$exfectch['restaurant']
       ); 
     echo json_encode($data);
 }
+
 if(isset($_POST['cancel'])){
    $order_id=$_POST['cancel'];
    orderModel::deleteOrder($order_id,$connection);
    echo json_encode("sucess");
 }
+
+
 // long term date controller
 if(isset($_POST['date']) && isset($_POST['orderId']))
 {
@@ -326,6 +333,10 @@ if(isset($_POST['date']) && isset($_POST['orderId']))
    $order_id=$_POST['orderId'];
    $result=orderModel::checkLongTermState($connection,$order_id,$date);
    $resultFetch=mysqli_fetch_assoc($result);
+   $lastDateobj=orderModel::longTermLast($connection,$order_id);
+   $lastDateFetch=mysqli_fetch_assoc($lastDateobj);
+   $lastDate=$lastDateFetch['day'];
+   $lastDate=date_create($lastDate);
    if($todayObj->format('%d') == $dateObj->format('%d'))
    {
       $state='qual';
@@ -338,12 +349,19 @@ if(isset($_POST['date']) && isset($_POST['orderId']))
    {
       $state='minus';
    }
+   if($todayObj->format('%d') > $lastDate->format('%d'))
+   {
+      $complete='complete';
+   }
+   else{
+      $complete='incomplete';
+   }
    
 
    $data=array(
       'date'=>$state,
       'delivery'=> $resultFetch['delivery_state'],
- 
+      'complete'=>$complete
    );
  
     echo json_encode($data);

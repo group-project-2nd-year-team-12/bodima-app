@@ -14,26 +14,23 @@
     <title>Document</title>
 </head>
 <body onload="checked('receive');">
+
+ <!-- sub nav select function -->
 <script>
     function orderType(id)
-{
-    var order=document.getElementById(id);
-    const shortTerm=document.getElementById('shortTerm-box');
-    const longTerm=document.getElementById('longTerm-box');
-    if(id=='shortTerm')
     {
-        shortTerm.style.display='block';
-        longTerm.style.display='none';
+        var order=document.getElementById(id);
+        const shortTerm=document.getElementById('shortTerm-box');
+        if(id=='shortTerm')
+        {
+            shortTerm.style.display='block';
+            longTerm.style.display='none';
+        }
+        order.style.display='block';
     }
-    if(id=='longTerm')
-    {
-        longTerm.style.display='block';
-        shortTerm.style.display='none';
-    }
-    order.style.display='block';
-  
-}
 </script>
+
+
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.svg" alt="">
@@ -67,19 +64,18 @@
     <div class="container">
         <div class="content">
           <?php include  'paymentFoodSlide.php';?> 
-          <div class="subNav">
-                <ul>
-                    
-                    <div>
-                        <div id="noti-delShort" class="count"><h5></h5></div>
-                        <li tabindex="0" id="shortTerm" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
-                    </div>
-                    <div>
-                        <div id="noti-delLong" class="count"><h5></h5></div>
-                        <li tabindex="0" id="longTerm" onclick="orderType(this.id);" title="Log Term " class="subNav-item"><img src="https://img.icons8.com/cute-clipart/40/000000/property-with-timer.png"/></li>
-                    </div>
-                </ul>
-            </div>       
+
+          <!-- sub nav -->
+        <div class="subNav">
+            <ul>
+                <div>
+                    <div id="noti-delShort" class="count"><h5></h5></div>
+                    <li tabindex="0" id="shortTerm" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
+                </div>
+            </ul>
+         </div>
+            
+            
           <?php
             $ids=unserialize($_GET['ids']);
             $data_rows=unserialize($_GET['data_rows']);
@@ -89,10 +85,8 @@
             <div class="title">
             <div class="order-title">
                     <h3>Receiving Orders </h3>
-                    <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 
-               
                 $total='';
                 $x=0;
                 $i=1;
@@ -137,13 +131,22 @@
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                            <h4 style="text-align:left;color: #101e5a;" > Please pay your order !</h4>
-                                <button tabindex="1" onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                        </div>
+                            <h4 style="text-align:left;color: #101e5a;" >Please confirm that your order has been received !</h4>
+                            <button id="con<?php echo $x; ?>" tabindex="1"   type="button" class="btn1"> Confirm </button>                        </div>
                   </div>
-                    
                 </div>
-               
+                <script>
+                    //   window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id["order_id"]; ?>"'
+                    $(document).on('click', "#con<?php echo $x ?>", function(){
+                        var d = new Date();
+                        document.querySelector('.orderAccept').classList.add('orderAccept-active');
+                        document.getElementById('confirmId').innerHTML='[<?php echo $id["order_id"]; ?>]';
+                        document.getElementById('resTime').innerHTML='['+d.toLocaleString()+']'
+                    });
+                    $(document).on('click', "#accept-btn", function(){
+                        window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id['order_id']; ?>";
+                    });
+                 </script> 
                 <?php
                     }  
             
@@ -155,86 +158,29 @@
                  <h1> Nothing to show here</h1>
             </div>
       <?php  }
-         ?> 
-               
+         ?>    
             </div>
         </div>
-        <div id="longTerm-box" class="pending none">
-            <div class="title">
-            <div class="order-title">
-                    <h3>Receiving Orders  </h3>
-                    <!-- <div><h5>1</h5></div> -->
-                </div>
-                <?php 
-               
-                $total='';
-                $x=$x+2;
-                if(in_array('longTerm',$new)){
-                foreach($ids as $id){
-                    if($id['term']=='longTerm' ){
-                ?>
-                <div class="box" onclick="order('<?php echo $x ?>')">
-                    <div class="resend">
-                        <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                        <div class="letter">
-                            <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
-                        </div>
-                    </div>
-                  <div id="<?php echo $x ?>" class="details-box">
-                  <div style="width: 300px;"> <img style="width: 250px;  margin:70px 10px" src="../resource/img/delivery1.svg" alt=""></div>
-                        <div class="button-pay">
-                        <h2 class="order_item order-head">ORDER INFO</h2>
-                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
-                        <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                        <?php       
-                                  foreach($data_rows as $data_row)
-                                  {
-                                      if($data_row['order_id']==$id['order_id'])
-                                      {
-                                          $total=$data_row['total'];
-                                          $time=$data_row['time'];
-                                          $restaurant=$data_row['restaurant'];
-                                          $method=$data_row['method'];
-                                          $address=$data_row['address'];
-                                          ?> 
-                                          <?php
-                                          echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
-                                          echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
-                                      }
-                                          
-                                  }
-                                  $i=1;
-                            ?>
-                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
-                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent  </h4><h4>: <?php echo $restaurant ?></h4></div>
-                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Address  </h4><h4>: <?php echo $address ?></h4></div>
-                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
-                            <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                            <h4 style="text-align:left;color: #101e5a;" > Please pay your order !</h4>
-                                <button tabindex="1" onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                        </div>
-                  </div>
-                    
-                </div>
-               
-                <?php
-                    }  
-           $x=$x+2; 
-        }
-        } else
-        {?>
-            <div class="empty">
-                 <h1> Nothing to show here</h1>
-            </div>
-      <?php  }
-         ?> 
-               
-            </div>
-        </div>
-      
         </div>
     </div>
-    <!-- <?php include 'footer.php'?> -->
+
+<!-- Order receive popuo -->
+<div class="orderAccept">
+    <div class="acceptPop-box">
+        <div class="accHeader">
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="window.location='../controller/orderCon.php?id=3'"></i></div>
+        <img src="https://img.icons8.com/pastel-glyph/100/4a90e2/delivery-scooter--v1.png"/>
+            <h1>Confirm Your Order Received !</h1>
+            <h4 style="margin-top: 20px">Confirm that your order <span id="confirmId" style="color:black"></span> has been received by  <span id="resTime" style="color:black"></span>  </h4>
+            <div style="margin-top:30px;">
+                    <div style="display: none;" ><h4 id="termType"></h4></div>
+            </div>
+         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="accept-btn">Confirm</button>
+         <button class="cancel-btn" onclick="window.location='../controller/orderCon.php?id=3'">cancel</button>
+        </div>
+    </div>
+</div>
+
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/newOrder.js"></script>

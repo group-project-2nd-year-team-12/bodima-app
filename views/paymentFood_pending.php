@@ -94,7 +94,8 @@
             $time_out=unserialize($records[2]);
             $new=array_column($data_rows,'term');
            
-        ?>            
+        ?>      
+        <!-- short term order set       -->
         <div id="shortTerm-box" class="pending">
             <div class="title">
             <div class="order-title">
@@ -172,8 +173,11 @@
                             dataType:"json",
                             success:function(data)
                             {
-                                if(data.minute==0 && data.secound<=1){
-                                    window.location="paymentFood_pending.php";
+                                if(data.minute==0 && data.secound<=1 || data.invert==0){
+                                    // window.location="paymentFood_pending.php";
+                                    document.querySelector('.timeOut').classList.add('timeOut-active');
+                                    document.getElementById('timeOutId').innerHTML='['+data.acceptId+']';
+                                    document.getElementById('timeOutRes').innerHTML='['+data.rasturent+']';
                                 }
                                 else{
                                 document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
@@ -184,9 +188,9 @@
                                 if(data.state==1 || data.state==3)
                                 {
                                         document.querySelector('.orderAccept').classList.add('orderAccept-active');
-                                        document.getElementById('acceptMethod').innerHTML=' : '+data.payment;
-                                        document.getElementById('acceptId').innerHTML=' : '+data.acceptId;
-                                        document.getElementById('acceptRes').innerHTML=' : '+data.rasturent;
+                                        document.getElementById('acceptMethod').innerHTML='['+data.payment+']';
+                                        document.getElementById('acceptId').innerHTML='['+data.acceptId+']';
+                                        document.getElementById('acceptRes').innerHTML='['+data.rasturent+']';
                                        if(data.payment=="card")
                                        {
                                         document.getElementById('accept-btn').innerHTML='Check & Pay';
@@ -197,9 +201,11 @@
                                         
                                         // document.querySelector('.')
                                 }
-                                if(data.state==2)
+                                if(data.state==5)
                                 {
                                     document.querySelector('.orderCancel').classList.add('orderCancel-active');
+                                    document.getElementById('cancelOrderId').innerHTML='['+data.acceptId+']';
+                                    document.getElementById('cancelRes').innerHTML='['+data.rasturent+']';
                                 }
                              
                                 
@@ -305,8 +311,11 @@
                             dataType:"json",
                             success:function(data)
                             {
-                                if(data.minute==0 && data.secound==1){
-                                        document.querySelector('.timeOut').classList.add('timeOut-active');
+                                if(data.minute==0 && data.secound<=1 || data.invert==0){
+                                    // window.location="paymentFood_pending.php";
+                                    document.querySelector('.timeOut').classList.add('timeOut-active');
+                                    document.getElementById('timeOutId').innerHTML='['+data.acceptId+']';
+                                    document.getElementById('timeOutRes').innerHTML='['+data.rasturent+']';
                                 }
                                 else{
                                 document.getElementById('minute<?php echo $x; ?>').innerHTML=data.minute+'min';
@@ -316,25 +325,21 @@
                                 if(data.state==1 || data.state==3)
                                 {
                                         document.querySelector('.orderAccept').classList.add('orderAccept-active');
-                                        document.getElementById('acceptMethod').innerHTML=' : '+data.payment;
-                                        document.getElementById('acceptId').innerHTML=' : '+data.acceptId;
-                                        document.getElementById('acceptRes').innerHTML=' : '+data.rasturent;
-                                       if(data.payment=="card")
-                                       {
-                                        document.getElementById('accept-btn').innerHTML='Check & Pay';
-                                       }
-                                       else{
+                                        document.getElementById('acceptMethod').innerHTML='['+data.payment+']';
+                                        document.getElementById('acceptId').innerHTML='['+data.acceptId+']';
+                                        document.getElementById('acceptRes').innerHTML='['+data.rasturent+']';
                                         document.getElementById('accept-btn').innerHTML='Receiving Order';
-                                       }
+                                        document.getElementById('termType').innerHTML='longterm';
+                                   
                                         
                                         // document.querySelector('.')
                                 }
-                                if(data.state==2)
+                                if(data.state==5)
                                 {
                                     document.querySelector('.orderCancel').classList.add('orderCancel-active');
-                                    document.getElementById('cancelMethod').innerHTML=' : '+data.payment;
-                                    document.getElementById('cancelId').innerHTML=' : '+data.acceptId;
-                                    document.getElementById('cancelRes').innerHTML=' : '+data.rasturent;
+                                    document.getElementById('cancelMethod').innerHTML='['+data.payment+']';
+                                    document.getElementById('cancelId').innerHTML='['+data.acceptId+']';
+                                    document.getElementById('cancelRes').innerHTML='['+data.rasturent+']';
                                 }
                              
                                 
@@ -369,69 +374,50 @@
  
 
   <!-- time out function -->
-<?php if(!empty($time_out))
-{   ?>
-    <div class="timeOut">
+<div class="timeOut">
     <div class="timeOut-box">
-        <div class="iconClose">  <i id="timeOutIcon" class="fas fa-times fa-2x" onclick="window.location='paymentFood_pending.php'"></i></div>
-        <div class="outImg"><img src="../resource/img/timeout.svg" alt=""></div>
-        <div class="outHeader">
+        <div class="accHeader">
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="window.location='paymentFood_pending.php'"></i></div>
+        <img src="https://img.icons8.com/pastel-glyph/100/4a90e2/sale-time--v1.png"/>
             <h1>Your Order time out </h1>
-            <h4>Your order timeout. Because food supplier not accept your order .Please try again or place order another resturent</h4>
-            <?php 
-            $timeOutDatas=unserialize($_GET['timeOut']); 
-              foreach($timeOutDatas as $timeOutData)
-              {
-                    $total=$timeOutDatas['total'];
-                    $time=$timeOutDatas['time'];
-                    $restaurant=$timeOutDatas['restaurant'];
-                    $id=$timeOutDatas['order_id'];
-             }
-        ?>
-          <div style="margin-top:30px;">
-            <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Order ID </h4><h4>: <?php echo $id ?></h4></div>
-                <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Ordered time </h4><h4>: <?php echo $time ?></h4></div>
-                <div class="order_item"> <h4 style="width: 120px;text-align:left;color: #101e5a;">Resturent </h4><h4>: <?php echo $restaurant ?></h4></div>
-            </div>
+            <h4>Your order <span id="timeOutId" style="color:black"></span> placed at <span id="timeOutRes" style="color:black"></span> is  timeout. Because food supplier not accepted your order within timeout. Please try again or place order another resturent</h4>
+            <button class="accept-btn" id="accept-btn" style="margin: 10px 0 10px 0;" onclick="window.location='foodpostviewN.php'">New Order</button>
+            <button class="cancel-btn" id="accept-btn" onclick="document.querySelector('.orderCancel').classList.remove('orderCancel-active');window.location='paymentFood_pending.php'">cancel</button>
         </div>
     </div>
-    </div>
-
-<?php }
-?>
- 
+</div>
 
  <!-- Order accpet popup -->
  <div class="orderAccept">
     <div class="acceptPop-box">
         <div class="accHeader">
+        <img src="https://img.icons8.com/ios-filled/100/4a90e2/check-all--v1.png"/>
             <h1>Your Order Accepted </h1>
-            <h4 style="margin-top: 20px;margin-left:10px">Your order accpted by food supplier. Cash payment user can receive order </h4>
-          <div style="margin-top:30px;">
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order ID </h4><h4 id="acceptId"></h4></div>
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment Method </h4><h4 id="acceptMethod"></h4></div>
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent </h4><h4 id="acceptRes"></h4></div>
-         </div>
+            <h4 style="margin-top: 20px">Your order <span id="acceptId" style="color:black"></span> placed at <span id="acceptRes" style="color:black"></span> was  accpted by food supplier. Please follw the instruction for pay your order. Payment method <span id="acceptMethod" style="color:black"></span> </h4>
+            <div style="margin-top:30px;">
+                    <div style="display: none;" ><h4 id="termType"></h4></div>
+            </div>
+         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="accept-btn" onclick="if(document.getElementById('acceptMethod').innerHTML=='[card]'){window.location='../controller/orderCon.php?id=2'}else if(document.getElementById('termType').innerHTML=='longterm'){window.location='../views/paymentFood_longTerm.php'}else{window.location='../controller/orderCon.php?id=3'}">Order Details</button>
         </div>
-        <button class="accept-btn" id="accept-btn" onclick="if(document.getElementById('acceptMethod').innerHTML==' : card'){window.location='../controller/orderCon.php?id=2'}else{window.location='../controller/orderCon.php?id=3'}">Order Details</button>
     </div>
     </div>
 
 <!-- cancel order poppup -->
-    <div class="orderCancel">
+<div class="orderCancel">
     <div class="orderCancel-box">
         <div class="accHeader">
-        <div class="iconClose">  <i id="orderIcon" onclick="document.querySelector('.orderCancel').classList.remove('orderCancel-active');window.location='../controller/orderCon.php?id=1;'" class="fas fa-times fa-2x"></i></div>
+        <div class="iconClose">  <i id="orderIcon" onclick="document.querySelector('.orderCancel').classList.remove('orderCancel-active');window.location='paymentFood_pending.php'" class="fas fa-times fa-2x"></i></div>
+            <img src="https://img.icons8.com/ios-filled/100/4a90e2/sad-ghost.png"/>
             <h1>Your Order Cancelled </h1>
-            <h4 style="margin-top: 20px;margin-left:10px">Your order accpted by food supplier. Cash payment user can receive order </h4>
-          <div style="margin-top:30px;">
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order ID </h4><h4 id="canceltId"></h4></div>
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment Method </h4><h4 id="cancelMethod"></h4></div>
-                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Resturent </h4><h4 id="cancekRes"></h4></div>
-         </div>
+            <h4 style="margin-top: 10px">Order <span  id="cancelOrderId" style="color:black"></span> you placed at the <span id="cancelRes" style="color:black"></span> was canceled  by food supplier. Sorry for any inconvenience this may cause. Order canceled by following reason  </h4>
+            <h4 style="margin-top: 20px;text-align:left">Reason : <span id="reason"></span></h4>
+            <button class="accept-btn" id="accept-btn" style="margin: 10px 0 10px 0;" onclick="window.location='foodpostviewN.php'">New Order</button>
+            <button class="cancel-btn" id="accept-btn" onclick="document.querySelector('.orderCancel').classList.remove('orderCancel-active');window.location='paymentFood_pending.php'">cancel</button>
         </div>
     </div>
-    </div>
+</div>
+
+
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>

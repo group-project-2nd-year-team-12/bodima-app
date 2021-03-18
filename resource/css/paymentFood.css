@@ -393,18 +393,27 @@ font-weight: bold;
     }
 }
 
+
+/* rating box style */
+.rating-box{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+}
 .rating{
-    /* display: none; */
-    position:absolute;
+    position:fixed;
     top:100px;
     width: 300px;
     height: 400px;
     left: 50%;
     transform: translate(-50%,0%);
     background-color: white;
-    box-shadow: 0 0 0 1000px rgba(0,0,0,.5);
     padding: 5px;
     border-radius: 5px;
+    box-shadow: 8px 8px #5d80b6;
+    transition: 5s ease all ;
 }
 .rating h2{
     padding: 5px;
@@ -479,8 +488,7 @@ font-weight: bold;
 .btn-rate{
     padding: 7px 25px;
     color: white;
-    background-color: rgb(0, 81, 255);
-    border: 1px solid  rgb(0, 81, 255);
+    background-color: #0093FF;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -496,7 +504,7 @@ font-weight: bold;
 .cancel-rate{
     background-color: white!important;
     color: black!important;
-    border: 1px solid gray!important;
+    border: 2px solid  #0093FF!important;
 }
 .form-rate textarea{
     margin-top: 15px;
@@ -559,8 +567,10 @@ font-weight: bold;
     width: 100%;
     height: 100vh;
     top: 0;
+    opacity: 0;
+    visibility: hidden;
     background-color: rgba(0, 0, 0, 0.55);
-    transition: visibility 0s, opacity 0.5s ;
+    /* transition: visibility 0s, opacity 0.5s ; */
 }
 .timeOut-active{
     visibility: visible;
@@ -575,12 +585,13 @@ font-weight: bold;
     width: 700px;
     height: 400px;
     padding:20px;
-   background-image: url(../img/time-out.svg);
+    /* background-image: url(../img/time-out.svg); */
     background-size: 400px 400px;
     background-position: right bottom;
     background-repeat: no-repeat;
     border-radius: 5px;
     transition: 5s ease all ;
+    box-shadow: 8px 6px #5d80b6;
 }
 .orderAccept{
     position: fixed;
@@ -591,6 +602,7 @@ font-weight: bold;
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0.55);
     transition: visibility 0s, opacity 0.5s ;
+
 }
 
 .orderCancel{
@@ -612,12 +624,14 @@ font-weight: bold;
     width: 700px;
     height: 400px;
     padding:20px;
-   background-image: url(../img/cancel.svg);
+   /* background-image: url(../img/cancel.svg);
     background-size: 400px 400px;
-    background-position: right bottom;
+    background-position: right bottom; */
     background-repeat: no-repeat;
     border-radius: 5px;
     transition: 5s ease all ;
+    text-align: center !important;
+    box-shadow: 8px 6px #5d80b6;
 }
 .orderCancel-active{
     visibility: visible;
@@ -638,12 +652,13 @@ font-weight: bold;
     width: 700px;
     height: 400px;
     padding:20px;
-   background-image: url(../img/approve.svg);
+   /* background-image: url(../img/approve.svg); */
     background-size: 400px 400px;
     background-position: right bottom;
     background-repeat: no-repeat;
     border-radius: 5px;
     transition: 5s ease all ;
+    box-shadow: 8px 6px #5d80b6;
 }
 .iconClose{
     float: right;
@@ -652,34 +667,17 @@ font-weight: bold;
 .iconClos:hover{
     color: red;
 }
-.outImg{
-    display: flex;
-    justify-content: space-around;
-}
-.timeOut img{
-    width: 60px;
-    height: 60px;
-}
-.outHeader{
-   text-align: left;
-   color:#FFC700;
-}
+
 .accHeader{
-    text-align: left;
+    text-align: center;
     color :#101e5a;
    
 }
 .accHeader h4{
     /* margin-top: 20px; */
     color :#101e5a;
-    width: 300px;
 }
-.outHeader h4{
-    color: #7983b3;
-    width: 320px;
-    margin-left: 20px;
-    font-weight:normal;
-}
+
 .accept-btn{
     padding: 10px 10px;
     width: 150px;
@@ -687,6 +685,16 @@ font-weight: bold;
     background-color: #0093FF;
     border: none;
     margin:80px 0 0 80px ;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.cancel-btn{
+    padding: 10px 10px;
+    width: 150px;
+    color: black;
+    background-color: white;
+    border: 2px solid #0093FF;
+    margin:10px 0 80px 0;
     cursor: pointer;
     border-radius: 5px;
 }
@@ -834,11 +842,7 @@ font-weight: bold;
     border-radius: 50%;
 }
 
-.longTerm-struct{
-    /* display:flex;
-    justify-content: space-between; */
-    
-}
+
 
 .longTerm-details{
     width: 100%;
@@ -848,8 +852,8 @@ font-weight: bold;
 
 .longTerm-table{
     background: rgb(237, 237, 244);
-    width: 80%;
-    margin: 0 50px 50px 50px;
+    width: 65%;
+    margin: 0 50px 30px 10px;
     height: 50vh;
     padding: 20px;
     border-radius: 5px;
@@ -871,8 +875,8 @@ table td{
 }
 
 .longTerm-btn-1{
-    padding: 4px;
-    width: 100px;
+    padding: 4px 10px;
+    /* width: 100px; */
     color: white;
     background-color:#101e5a;
     border: none;

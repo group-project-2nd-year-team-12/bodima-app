@@ -38,7 +38,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 
     <div class="box_outer">
         <div class="col-7 main">
-            <div class="inner_main">
+            <div class="inner_main" style="background-color:white;">
                 <h2><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h2>
                 <span>posted by: <?php echo $boardingpost_owner_d['first_name']?> <?php echo $boardingpost_owner_d['last_name']?> - Nov 19, 2020</span>
                 <img runat = 'server' src = '<?php echo $boardingpost_d['image']?>' />
@@ -63,7 +63,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
             </div>
         </div>
         <div class="col-5 right">
-            <div class="inner_right">
+            <div class="inner_right" style="background-color:white;">
                 <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
                 <hr>
                     <div class="expandable">
