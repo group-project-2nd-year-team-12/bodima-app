@@ -1,5 +1,87 @@
 <?php session_start();
 
+date_default_timezone_set("Asia/Colombo");?>
+
+<?php function fetchdata_pay($results){
+    $output2 ='';
+
+foreach($results as $row){ 
+    $output2 .="
+    <tr>
+    <td>".$row['paidDateTime']."</td>
+    <td>".$row['first_name']."</td>
+    <td>".$row['year'].' '.date('F',mktime(0,0,0,$row['month'],0,0))."</td>
+    <td>".$row['amount']."</td>
+    <td>".$row['cash_card']."</td>
+    <td>000".$row['B_post_id']."</td>
+    </tr>
+";
+    }
+
+return $output2;
+}?>
+<?php 
+
+function displaypdf($result){
+ 
+        date_default_timezone_set("Asia/Colombo");
+      require_once('../resource/tcpdf/tcpdf.php');  
+      $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
+      $obj_pdf->SetCreator(PDF_CREATOR);  
+      $obj_pdf->SetTitle("BODIMA.LK - Monthly Rent Report");  
+      $obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
+      $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
+      $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
+      $obj_pdf->SetDefaultMonospacedFont('helvetica');  
+      $obj_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);  
+      $obj_pdf->SetMargins(PDF_MARGIN_LEFT, '10', PDF_MARGIN_RIGHT);  
+      $obj_pdf->setPrintHeader(false);  
+      $obj_pdf->setPrintFooter(false);  
+      $obj_pdf->SetAutoPageBreak(TRUE, 10);  
+      $obj_pdf->SetFont('helvetica', '', 11);  
+      $obj_pdf->AddPage();  
+      $content = '';  
+      $content .= '  
+      <style>
+      table{
+          
+      }
+
+      li{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      
+      
+      </style>
+      <h4 align="center">Payment Report - Monthly Rent </h4><br /> 
+      Reciver : Rohini Wimalarathne<br/>
+
+      Genarated date : '.date("Y/m/d  H:i:s") .'<br/>
+
+      Report genarated automatically<br/><br/>
+
+      <table border="1" cellspacing="0" cellpadding="3" align="center">  
+       
+        
+            <tr>  
+                <th width="25%">Month</th>  
+                <th width="20%">amount</th>  
+                <th width="20%">date</th>  
+                <th width="20%">time</th>  
+                <th width="15%">method</th>
+           </tr>  
+      ';  
+      $payments=unserialize($_GET['pay']);
+      $content .=fetchdata_pay($result);  
+      $content .= '</table>';  
+      $obj_pdf->writeHTML($content);  
+      ob_end_clean();
+      $obj_pdf->Output('rent_report.pdf', 'I');  
+ }
+
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +115,8 @@
          $results=unserialize($_GET['results']);
          $border_names=unserialize($_GET['bname']);
          $postnum=unserialize($_GET['postnum']);
-
-        //  print_r($results);
+            
+         
          ?>
      <div class="container2">
         <div class="sidebar_b">
@@ -86,8 +168,11 @@
                         <span>Boarder Name</span>
                         <select name=filter_Bid>
                             <option value="all">All</option>
-                            <option value="48">Anuki Gayara</option>
-                            <option value="37">Nimasha</option>
+                            <?php if(isset($border_names)){
+                                foreach($border_names as $name){
+                                    echo "<option value='".$name['Bid']."'>".$name['first_name']." ".$name['last_name']."</option>";
+                                }
+                            }?>
                         </select>
                     </div>
                     <div class="filtr_1" style=" margin: 0px 5px 0px 20px;">
@@ -110,10 +195,11 @@
                         <span>PostNo</span>
                         <select name="filter_postno" style="width:80px;">
                             <option value="all">All</option>
-                            <option value="1">0001</option>
-                            <option value="4">0004</option>
-                            <option value="5">0033</option>
-                            <option value="2222">2222</option>
+                            <?php if(isset($postnum)){
+                                foreach($postnum as $num){
+                                    echo "<option value='".$num['B_post_id']."'>000".$num['B_post_id']."</option>";
+                                }
+                            }?>
                         </select>
                     </div>
                     </div>
@@ -128,7 +214,8 @@
               <div class="mid_M">
               <div style="display:flex; justify-content:space-between;">  
               <h3>Details</h3>
-              <div class="h1btn"><div><a href="../views/BOwner_reports.php"><button class="p_edit" name="p_edit" value="Edit"><i class="far fa-file-pdf"></i>Genarate PDF</button></a></div></div>
+               
+              <div class="h1btn"><div><button class="p_edit" type="submit" name="generate_pdf" value="genarate" onclick="redirectpdf()" ><i class="far fa-file-pdf"  ></i>Genarate PDF</button></div></div>
 
                 </div>
                 <hr/>
@@ -152,19 +239,12 @@
                         <th>postNo</th>
                         </tr>
 
-                        <?php 
-                        foreach($results as $row){ ?>
-                        <tr>
-                        <td><?php echo $row['paidDateTime']?></td>
-                        <td><?php echo $row['first_name']?></td>
-                        <td><?php echo $row['year'].' '.date("F",mktime(0,0,0,$row['month'],0,0))?></td>
-                        <td><?php echo $row['amount']?> </td>
-                        <td><?php echo $row['cash_card']?></td>
-                        <td><?php echo '000'.$row['B_post_id']?></td>
-                        </tr>
-
-                        <?php }}?>
                         
+<?php echo fetchdata_pay($results)?>
+
+                        <?php }?>
+                        
+                   
 
                         </table>
                         </div>
@@ -180,6 +260,14 @@
     </div>	
     
     <script>
+
+    function redirectpdf(){
+
+        header('Location:../views/displaypdf.php');
+    } 
+
+
+
 		$(document).ready(function(){
 			$("#toDate").datepicker({
         maxDate:0
