@@ -175,12 +175,13 @@ background: linear-gradient(212deg, rgba(9,9,121,0.6828769298081987) 0%, rgba(0,
 }
 
 .bc_title{
-    background-color: rgba(0, 0, 0, 0.418);
+    /* #101e5a  ,#5d80b6, #acbdd3,#f7f8f9, #cbc6c3 */
+    background-color: #acbdd3f1;
     width: 60%;
     /* height:260px; */
     position: absolute;
     margin-top:110px;
-    z-index: 100;   
+    z-index: 4;   
 }
 .backdrop_1 .toplayer{
     padding: 30px;
@@ -188,10 +189,9 @@ background: linear-gradient(212deg, rgba(9,9,121,0.6828769298081987) 0%, rgba(0,
 }
 
 .backdrop_1 .toplayer h1{
-    font-family: 'Redressed', cursive;
+    font-family: cursive;
     color:#5d80b6 ;
-    filter: brightness(150%);
-    font-size: 60px;
+    font-size: 50px;
 }
 
 .backdrop_1 .toplayer span{

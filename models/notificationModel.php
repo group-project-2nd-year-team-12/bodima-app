@@ -3,7 +3,7 @@ class notificationModel{
     public static function notificationOrderAccept($connection,$email,$title,$discription,$time,$type,$responce)
     {
         $query="INSERT INTO notification (email,title,discription,time,type,responce_url) 
-        VALUES('{$email}','{$title}','{$discription}','{$time}','{$type}', '{$responce}')";
+                VALUES('{$email}','{$title}','{$discription}','{$time}','{$type}', '{$responce}')";
          $result=mysqli_query($connection,$query);
     }
 
@@ -13,6 +13,16 @@ class notificationModel{
          $result=mysqli_query($connection,$query);
          return $result;
     }
+
+
+    public static function notificationsAll2($connection,$email,$level,$id)
+    {
+        $query="SELECT * FROM notifications WHERE to_id=$id and to_level='{$level}' ORDER BY is_seen=0 DESC";
+        // SELECT * FROM notifications WHERE to_id=37 and to_level='boarder' ORDER BY is_seen=0 DESC 
+        $result=mysqli_query($connection,$query);
+         return $result;
+    }
+
     public static function notificationSeen($connection,$email,$noId)
     {
         $query="UPDATE notification SET seen_state=1  WHERE email='{$email}' AND noID=$noId";
@@ -27,6 +37,31 @@ class notificationModel{
     }
     
 
+    // ****************************************************************************
+
+    public static function insertnotification($connection,$type_number,$from_level,$from_id,$to_level,$to_id,$massageHeader,$massage)
+    {
+        $query="INSERT INTO notifications(type_number,from_level,from_id,to_level,to_id,massageHeader,massage)
+                VALUES($type_number,'{$from_level}',$from_id,'{$to_level}',$to_id,'{$massageHeader}','{$massage}')";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+
+    public static function find_levelAndId($connection,$email){
+        $query="select * from 
+        (SELECT level,email,Bid as id FROM boarder 
+        UNION 
+        SELECT level,email,BOid as id FROM boardings_owner 
+        UNION 
+        (SELECT level,email,Reg_id as id FROM student WHERE user_accepted=1)) 
+        as U WHERE email='{$email}'";
+        // echo $query;
+        // die(); 
+       $result=mysqli_query($connection,$query);
+       return $result;
+            
+    }
 
 }
 

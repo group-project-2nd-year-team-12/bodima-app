@@ -95,6 +95,9 @@ p{
     color:#ffffff!important;
     border-radius: 50px;
 }
+
+
+/* ***********************notification****************************** */
 .notification{
     color: #bdc3ff;
     margin-right:5px;
@@ -181,6 +184,8 @@ p{
       justify-content: space-between;
   }
 
+
+  /* ************************** */
 .nav_bar {
     width: 70%;
     display: flex;

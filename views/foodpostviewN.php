@@ -50,7 +50,7 @@ $posts=unserialize($posts2);
                 <span>Select your favourite Resturant ...</span>
                 
                 <div class="search_box">
-                <input type="text" name="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>
+                <input type="text" name="res_search" id="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>
                 </div>
             </div>
             </div>
@@ -76,23 +76,28 @@ $posts=unserialize($posts2);
             <div class="mid_L">
                 <div class="fp_search">
                 <div class="search_box">
-                <input type="text" name="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>
+                <input type="text" name="res_search" id="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>
                 </div>
                 </div>
                 
                 
 
-            <div class="post_box">
-
+            <div class="post_box" id="post_box">
+            <!--***************** genarate food posts **********************-->
             <?php foreach($posts as $post){?>
+
                     <div class="f_post" onclick='window.location="../controller/cartClearCon.php?Pid=<?php echo $post["F_post_id"] ?>&name=<?php echo $post["ad_title"] ?>&address=<?php echo $post["address"] ?>"'>
+
+                
+
                    <div class="f_image">
                        <img src="<?php echo $post['image']?>">
                     </div>
                     <div class="f_content">
                     
                         <li><h2><a><?php echo $post['ad_title']?></a>
-                        
+
+
                         <?php if ($post['available']=='0'){?>
                         <span class="not_available">Unavailable</span>
                         <?php }?>
@@ -123,8 +128,10 @@ $posts=unserialize($posts2);
                         </li>
                     </div>
                 </div>
-                    <?php }?>
 
+                
+                    <?php }?>
+            <!-- ************************************************************** -->
 
             <?php for ($x = 0; $x <= 4; $x++) {?>
  
@@ -179,17 +186,17 @@ $(document).ready(function(){
 	function load_data(qry)
 	{
 		$.ajax({
-			url:"../controller/livesearch_control.php",
+			url:"../controller/foodpostviewN_control.php",
 			method:"post",
 			data:{qry:qry},
 			success:function(data)
 			{
-				$('#result').html(data);
+				
 			}
 		});
 	}
 	
-	$('#search_text').keyup(function(){
+	$('#res_search').keyup(function(){
 		var search = $(this).val();
 		if(search != '')
 		{
