@@ -308,7 +308,7 @@
 <script src="resource/js/home1.js"></script>
 <script src="resource/js/new_home.js"></script>
 <script src="resource/js/slider.js"></script>
-<script src="resource/js/notification.js"></script>
+<script src="resource/js/notification_new.js"></script>
 <script src="resource/js/chat.js"></script>
 
 </html>
