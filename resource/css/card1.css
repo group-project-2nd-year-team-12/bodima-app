@@ -3,8 +3,8 @@
 * {
     margin: 0;
     padding: 0;
-    /* font-family: 'Poppins', sans-serif; */
-    font-family: 'Baloo Chettan 2', cursive;
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Baloo Chettan 2', cursive; */
 }
 body{
   /* background-image: url(../img/boarding.jpg); */
@@ -585,10 +585,13 @@ body{
 
 .shedule-order{
   display: flex;
-  align-items: center;
+  height: 40px;
 }
 .shedule-time{
-  padding: 0px 30px 0px 30px;
+  padding: 0px 25px 0px 25px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
 }
 
 .log{

@@ -26,7 +26,7 @@ class orderModel{
     }
     public static function accept($order_id,$is_accepted,$expireTime,$connection)
     {
-       $query="UPDATE food_request SET is_accepted=$is_accepted AND expireTime='{$expireTime}' WHERE order_id=$order_id ";
+       $query="UPDATE food_request SET is_accepted=$is_accepted , expireTime='{$expireTime}' WHERE order_id=$order_id ";
        $result_set=mysqli_query($connection,$query);
        return $result_set;
     }
@@ -124,7 +124,12 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
-
+    public static function deleteOrder($id,$connection)
+    {
+        $query="DELETE FROM food_request WHERE order_id='{$id}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
     public static function getCountDown($connection,$order_id){
         $query="SELECT * FROM food_request WHERE order_id=$order_id LIMIT 1";
         $result=mysqli_query($connection,$query);

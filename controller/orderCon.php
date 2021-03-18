@@ -274,6 +274,7 @@ if(isset($_POST['view']))
      
    }
    $data=array(
+      'invert'=>$diff->invert,
       'minute'=>$minute,
       'secound'=>$second,
       'acceptId'=>$exfectch['order_id'],
@@ -285,6 +286,34 @@ if(isset($_POST['view']))
     echo json_encode($data);
 }
 
+if(isset($_POST['cardOrder']))
+{
+   $order_id= $_POST['cardOrder'];
+   $exDate=orderModel::getCountDown($connection,$order_id);
+   $exfectch=mysqli_fetch_assoc($exDate);
+   date_default_timezone_set("Asia/Colombo");
+   $date=date('Y-m-d H:i:s');
+   $nowTime=date_create($date);
+   $expireDate=date_create($exfectch['expireTime']);  
+   $diff= $expireDate->diff($nowTime);
+   $minute=$diff->format('%i');
+   $second=$diff->format('%s');
+      $data=array(
+         'invert'=>$diff->invert,
+         'minute'=>$minute,
+         'secound'=>$second,
+         'acceptId'=>$exfectch['order_id'],
+         'state'=>$exfectch['is_accepted'],
+         'payment'=>$exfectch['method'],
+         'rasturent'=>$exfectch['restaurant']
+      ); 
+    echo json_encode($data);
+}
+if(isset($_POST['cancel'])){
+   $order_id=$_POST['cancel'];
+   orderModel::deleteOrder($order_id,$connection);
+   echo json_encode("sucess");
+}
 // long term date controller
 if(isset($_POST['date']) && isset($_POST['orderId']))
 {

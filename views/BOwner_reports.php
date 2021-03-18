@@ -33,6 +33,7 @@
          $results=unserialize($_GET['results']);
          $border_names=unserialize($_GET['bname']);
          $postnum=unserialize($_GET['postnum']);
+
         //  print_r($results);
          ?>
      <div class="container2">
@@ -133,6 +134,14 @@
                 <hr/>
                 <div class="list_view">
                 <div class="result">
+                        
+
+                        <?php 
+                        if($results=='no result found'){
+                            echo "no results found";
+                        }else{
+                            $size=sizeof($results);
+                            echo $size." results available"; ?>
                         <table>
                         <tr>
                         <th>Date</th>
@@ -143,7 +152,8 @@
                         <th>postNo</th>
                         </tr>
 
-                        <?php foreach($results as $row){?>
+                        <?php 
+                        foreach($results as $row){ ?>
                         <tr>
                         <td><?php echo $row['paidDateTime']?></td>
                         <td><?php echo $row['first_name']?></td>
@@ -153,16 +163,12 @@
                         <td><?php echo '000'.$row['B_post_id']?></td>
                         </tr>
 
-                        <?php }?>
+                        <?php }}?>
                         
 
                         </table>
                         </div>
-
-
-                  
-                     
-                    
+    
                 </div>
 
               </div>

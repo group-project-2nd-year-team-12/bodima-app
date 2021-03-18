@@ -1,8 +1,10 @@
+<!-- preload assesment -->
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
         session_start(); 
 ?>
 
+<!-- page -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +15,9 @@
     <script src="../resource/js/jquery.js"></script>
 </head>
 <body>
+  <?php include 'nav.php' ?>   <!--nav bar-->
 
-  <?php include 'nav.php' ?>
+  <!-- intro warpper -->
   <div class="cart-wrap">
     <h1><?php echo $_GET['name']; ?></h1>
     <h3><?php echo $_GET['address']; ?></h3>
@@ -22,8 +25,8 @@
     <div class="rate"><h4><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half"></i></h4></div>
     <img src="../resource/img/resturent.jpg" alt="">
 </div>
-<?php 
 
+<?php 
 if(isset($_GET['Pid']))
 {
   $fpid=$_GET['Pid'];
@@ -33,20 +36,23 @@ if(isset($_GET['Pid']))
 <div class="order-type">
     <div class="order-typeBox">
       <h1>Your Cart Details </h1>
-      <!-- <?php  print_r($_SESSION) ?> -->
+
+      <!-- order type select box -->
       <h3>Order Type</h3>
-      <div class="type">
-        <input name="type" id="1" onclick="typeOrder(this.id);" type="radio" checked>
-        <label for="1">Breakfast</label>
-      </div>
-      <div class="type">
-        <input name="type" id="2" onclick="typeOrder(this.id);" type="radio">
-        <label for="2">Lunch</label>
-      </div>
-      <div class="type">
-        <input name="type" id="3" onclick="typeOrder(this.id);" type="radio">
-        <label for="3">Dinner</label>
-      </div>
+        <div class="type">
+          <input name="type" id="1" onclick="typeOrder(this.id);" type="radio" checked>
+          <label for="1" id="next">Breakfast</label>
+        </div>
+        <div class="type">
+          <input name="type" id="2" onclick="typeOrder(this.id);" type="radio">
+          <label for="2">Lunch</label>
+        </div>
+        <div class="type">
+          <input name="type" id="3" onclick="typeOrder(this.id);" type="radio">
+          <label for="3">Dinner</label>
+        </div>
+
+      <!-- long term check box -->
       <h3>Long term food delivery</h3>
       <div class="term">
         <input id="longTerm-check" type="checkbox" onclick="if(this.checked){document.querySelector('.longTerm').classList.add('longTerm-active')}else{document.querySelector('.shedule').style.display='none'}">
@@ -56,7 +62,7 @@ if(isset($_GET['Pid']))
              <script> document.getElementById('longTerm-check').checked=true; </script>
          <?php   }
           ?>
-    
+  
         <h4>Please tick the button place long term food order</h4>
     </div>
       <form name="shedule" action="">
@@ -79,7 +85,6 @@ if(isset($_GET['Pid']))
               <a onclick="validateLongTerm()"><i class="fas fa-shopping-cart"></i> View Cart <span id="cart-count" class="count">0</span></a>
           </div>
           <h4><a href="../controller/cartClearCon.php?Pid=<?php echo $_GET['Pid']?>&name=<?php echo $_GET['name'] ?>&address=<?php echo $_GET['address']?>">Clear Cart</a></h4>
-        
     </form>
       <script>
           function validateLongTerm()
@@ -118,7 +123,7 @@ if(isset($_GET['Pid']))
    
 </div>
 <div class="product">
-<div class="catogory checked" id="breakfast">
+<div class="catogory" id="breakfast">
     <div class="cato-header">
       <img  src="../resource/img/breakfast.jpg" alt="">
       <div>
@@ -495,6 +500,7 @@ if(isset($_GET['Pid']))
     </div>
   </div>
       
+  <!-- login warning box -->
 <?php 
 if(!isset($_SESSION['email']))
 {?>

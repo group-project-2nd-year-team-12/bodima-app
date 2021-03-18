@@ -238,13 +238,15 @@ $(document).on('keypress','#dinner-search', function (e) {
     var searchContent=$('#dinner-search').val();
     var productName=document.querySelectorAll('.food-item');
     var myPattern = new RegExp('(\\w*'+searchContent+'\\w*)','gi');
-
+    myPattern='d'+myPattern;
     productName.forEach(function(element){
       document.getElementById('d'+element.innerHTML).style.display='none';
       if(element.innerHTML.match(myPattern))
       {
         console.log('ok');
         document.getElementById('d'+element.innerHTML).style.display='block';
+      }else{
+        console.log('ok');
       }
       
     })
@@ -260,19 +262,27 @@ function deadLine(){
   var lunch=document.getElementById('2');
   var dinner=document.getElementById('3');
   var hour=date.getHours();
- if(hour > 11 )
+  console.log(hour);
+ if(hour >= 11 && hour <15)
  {
   breakfast.disabled=true;
   lunch.checked=true;
+  document.getElementById('lanch').classList.add('checked');
  }
- if(hour > 15 )
+ if(hour >= 15 && hour <20)
  {
+  breakfast.disabled=true;
   lunch.disabled=true;
   dinner.checked=true;
+  document.getElementById('dinner').classList.add('checked');
  }
- if(hour > 19 )
+ if(hour >= 20 )
  {
   dinner.disabled=true;
+  lunch.disabled=true;
+  breakfast.checked=true;
+  document.getElementById('breakfast').classList.add('checked');
+  document.getElementById('next').innerHTML="Breakfast <span style='color:green'>(Next Day)</span>";
   document.querySelectorAll('.cart-num').forEach(function(element){
     element.disabled=true;
     element.style.color='gray';
