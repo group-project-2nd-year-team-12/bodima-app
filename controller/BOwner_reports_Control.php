@@ -23,10 +23,10 @@ if(mysqli_num_rows($bname)>0){
 
 if(mysqli_num_rows($bpost_num)>0){
     while($row=mysqli_fetch_assoc($bpost_num)){
-        $data[]=$row;
+        $databpost[]=$row;
         // print_r($row);
         // echo '<br/>';
-    }$bpost_nums=serialize($data);}
+    }$bpost_nums=serialize($databpost);}
     
 
 if(isset($_POST['go1'])){
