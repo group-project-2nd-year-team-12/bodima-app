@@ -44,6 +44,14 @@ class live_search{
 
 	}
 
+	public static function all_f_posts($connection){
+
+		$query = "SELECT * FROM food_post ORDER BY F_post_id";
+		$result = mysqli_query($connection, $query);
+		return $result;
+
+}
+
 
 
 
