@@ -166,6 +166,12 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    // get last date of longterm food delivery
+    public static function longTermLast($connection,$orderId){
+        $query="SELECT day FROM longterm WHERE order_id=$orderId ORDER BY day DESC LIMIT 1";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
     public static function updateLongTermState($connection,$orderId,$date,$time){
         $query="UPDATE longterm SET delivery_state=1,deliveredTime='{$time}' WHERE order_id=$orderId AND day='{$date}'";
         $result=mysqli_query($connection,$query);

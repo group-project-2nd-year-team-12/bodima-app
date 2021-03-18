@@ -17,7 +17,6 @@
 <script>
     function orderType(id)
 {
-    console.log("jhbchbhcd");
     const order=document.getElementById(id);
     const breakfast=document.getElementById('breakfast-box');
     const lunch=document.getElementById('lunch-box');
@@ -127,7 +126,7 @@
                     foreach($records as $record)
                     {
                         if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){?>
-                     <div class="box " >
+                     <div class="box" >
                             <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                                     <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
                                     <div class="letter"><h4>Order ID : <?php echo $record['order_id']; ?></h4></div>

@@ -82,8 +82,8 @@
        <?php
             $ids=unserialize($_GET['ids']);
             $data_rows=unserialize($_GET['data_rows']);
-            $new=array_column($data_rows,'order_type');
-           
+            $new=array_column($data_rows,'term');
+            // print_r($new);
        ?>
         <div id="shortTerm-box"  class="pending">
             <div class="title">
@@ -97,6 +97,7 @@
                 $x=0;
                 $total='';
                 if(in_array('shortTerm',$new) ){
+                    // print_r($new);
                 foreach($ids as $id){
                     if($id['term']=='shortTerm'  ){
                 ?>
@@ -229,10 +230,11 @@
         </div>
         </div>
     </div>
-    <?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?>
+<?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?>
+  <div class="rating-box">
     <div class="rating">
-    <form class="form-rate" action="" method="post">
-        <h2>Rate for order !</h2>
+        <form class="form-rate" action="" method="post">
+        <h2 style="text-align: center;">Rate for order !</h2>
         <div class="rate">
             <input type="radio" name="rate" id="star1"><label for="star1"></label>
             <input type="radio" name="rate" id="star2"><label for="star2"></label>
@@ -245,11 +247,13 @@
             <textarea name="" id="" cols="5" rows="5" placeholder="Add commet"></textarea>
             <div>
                 <button class="btn-rate" type="submit" >Submit</button>
-                <button class="btn-rate cancel-rate" type="button" >Cancel</button>
+                <button onclick="window.location='../controller/orderCon.php?id=4'" class="btn-rate cancel-rate" type="button" >Cancel</button>
             </div>
         </form>
     </div>
+  </div>
     <?php } ?>
+
     <!-- <?php include 'footer.php'?> -->
 </body>
 <script src="../resource/js/requestHistory.js"></script>
