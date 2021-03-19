@@ -165,8 +165,7 @@
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                                     <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you complte the this order confirm that</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                                
+                                    <button id="confirm-btn<?php echo $i ?>" class="btn1"> Complete </button>
                             </div>
                             <div class="longTerm-table">
                                 <h1>Long term delivery records</h1>
@@ -182,25 +181,26 @@
                                             foreach($date as $row)
                                             {
                                                 if($row['order_type']=="breakfast"){
+                                                    if($row['order_id']==$id['order_id'])
+                                                    {
                                             ?>
                                             <tr>
                                                 <td><?php echo $row['day']; ?></td>
-                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
+                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Delivery</button></td>
                                                 <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
                                                 <script>
                                                     $(document).ready(function () {
                                                             var date='<?php echo $row['day']; ?>';
                                                             var orderId=<?php echo $row['order_id']; ?>;
                                                             var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
-                                                        $(window).on('load', function () {
-                                                           
+                                                            function loadState(){
                                                             $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
                                                             data:{date:date,orderId:orderId},
                                                             dataType: "json",
                                                             success: function (data) {
-                                                               
+                                                               console.log(data);
                                                                 if(data.date=='qual' && data.delivery==0 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='blue'; 
@@ -208,7 +208,7 @@
                                                                 if(data.date=='qual' && data.delivery==1 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='black';  
-                                                                    stateBtn.innerHTML='Received';
+                                                                    stateBtn.innerHTML='Deliverd';
                                                                     stateBtn.disabled=true;
                                                                 }
                                                                 if(data.date=='plus')
@@ -223,16 +223,22 @@
                                                                 }
                                                                 if(data.delivery==0 && data.date=='minus')
                                                                 {
-                                                                    stateBtn.innerHTML='Not Received';
+                                                                    stateBtn.innerHTML='Not Delivered';
                                                                     stateBtn.disabled=true;
                                                                     stateBtn.style.backgroundColor='black';
                                                                 }
                                                             }
                                                             });
-                                                    });
+                                                            }
+                                                            loadState(); 
                                                      
-                                                    // when clicl the delived button
+                                                    // when click the delived button
                                                     $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
+                                                        var d = new Date();
+                                                        document.querySelector('.orderAccept').classList.add('orderAccept-active');
+                                                        document.getElementById('longTermId').innerHTML='['+orderId+']';
+                                                        document.getElementById('resTime').innerHTML='['+d.toLocaleString()+']';
+                                                        $(document).on('click', "#accept-btn", function(){
                                                         $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
@@ -241,17 +247,28 @@
                                                             success: function (data) {
                                                                 console.log(data); 
                                                                 stateBtn.style.backgroundColor='black';  
-                                                                stateBtn.innerHTML='Received';
+                                                                stateBtn.innerHTML='Deliverd';
                                                                 stateBtn.disabled=true; 
-                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
+                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;  
+                                                                document.querySelector('.orderAccept').classList.remove('orderAccept-active');    
                                                             }
                                                         });
                                                      });
+                                                    });
+                                                        
+                                                    // click the complete button
+                                                    $(document).on('click', "#confirm-btn<?php echo $i ?>", function(){
+                                                            var v = new Date();
+                                                            document.querySelector('.confirmOrder').classList.add('orderAccept-active');
+                                                            document.getElementById('confirmId').innerHTML='[<?php echo $id["order_id"]; ?>]';
+                                                            document.getElementById('conTime').innerHTML='['+v.toLocaleString()+']'
+                                                      });
                                                 });
                                                 </script>
                                             </tr>
                                             <?php $i++; 
                                                 } 
+                                            }
                                             }?>
                                     </table>        
                               </div>
@@ -315,7 +332,7 @@
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                                 <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                <button id="confirm-btn<?php echo $i ?>" class="btn1"> Complete </button>
                             </div>
                             <div class="longTerm-table">
                                 <h1>Long term delivery records</h1>
@@ -330,25 +347,26 @@
                                             {
                                                 if($row['order_type']=="lunch")
                                                 {
+                                                    if($row['order_id']==$id['order_id'])
+                                                    {
                                             ?>
                                             <tr>
                                                 <td><?php echo $row['day']; ?>
-                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
+                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Delivery</button></td>
                                                 <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
                                                 <script>
                                                     $(document).ready(function () {
                                                             var date='<?php echo $row['day']; ?>';
                                                             var orderId=<?php echo $row['order_id']; ?>;
                                                             var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
-                                                        $(window).on('load', function () {
-                                                           
+                                                            function loadState(){
                                                             $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
                                                             data:{date:date,orderId:orderId},
                                                             dataType: "json",
                                                             success: function (data) {
-                                                               
+                                                               console.log(data);
                                                                 if(data.date=='qual' && data.delivery==0 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='blue'; 
@@ -356,7 +374,7 @@
                                                                 if(data.date=='qual' && data.delivery==1 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='black';  
-                                                                    stateBtn.innerHTML='Received';
+                                                                    stateBtn.innerHTML='Delivered';
                                                                     stateBtn.disabled=true;
                                                                 }
                                                                 if(data.date=='plus')
@@ -371,33 +389,50 @@
                                                                 }
                                                                 if(data.delivery==0 && data.date=='minus')
                                                                 {
-                                                                    stateBtn.innerHTML='Not Received';
+                                                                    stateBtn.innerHTML='Not Delivered';
                                                                     stateBtn.disabled=true;
                                                                     stateBtn.style.backgroundColor='black';
                                                                 }
                                                             }
                                                             });
-                                                    });
-
-                                                    $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: "../controller/orderCon.php",
-                                                            data:{dateUp:date,orderIdUp:orderId},
-                                                            dataType: "json",
-                                                            success: function (data) {
-                                                                console.log(data); 
-                                                                stateBtn.style.backgroundColor='black';  
-                                                                stateBtn.innerHTML='Received';
-                                                                stateBtn.disabled=true; 
-                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
                                                             }
+                                                            loadState(); 
+
+                                                            $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
+                                                            var d = new Date();
+                                                            document.querySelector('.orderAccept').classList.add('orderAccept-active');
+                                                            document.getElementById('longTermId').innerHTML='['+orderId+']';
+                                                            document.getElementById('resTime').innerHTML='['+d.toLocaleString()+']';
+                                                            $(document).on('click', "#accept-btn", function(){
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: "../controller/orderCon.php",
+                                                                data:{dateUp:date,orderIdUp:orderId},
+                                                                dataType: "json",
+                                                                success: function (data) {
+                                                                    console.log(data); 
+                                                                    stateBtn.style.backgroundColor='black';  
+                                                                    stateBtn.innerHTML='Deliverd';
+                                                                    stateBtn.disabled=true; 
+                                                                    document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;  
+                                                                    document.querySelector('.orderAccept').classList.remove('orderAccept-active');    
+                                                                }
+                                                            });
                                                         });
-                                                     });
+                                                        });
+                                                            
+                                                    // click the complete button
+                                                    $(document).on('click', "#confirm-btn<?php echo $i ?>", function(){
+                                                            var v = new Date();
+                                                            document.querySelector('.confirmOrder').classList.add('orderAccept-active');
+                                                            document.getElementById('confirmId').innerHTML='[<?php echo $id["order_id"]; ?>]';
+                                                            document.getElementById('conTime').innerHTML='['+v.toLocaleString()+']'
+                                                      });
                                                 });
                                                 </script>
                                             </tr>
                                             <?php $i++; } 
+                                                }
                                             }?>
                                     </table>        
                               </div>
@@ -461,7 +496,7 @@
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                                 <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                <button id="confirm-btn<?php echo $i ?>" class="btn1"> Complete </button>
                             </div>
                             <div class="longTerm-table">
                                 <h1>Long term delivery records</h1>
@@ -476,23 +511,26 @@
                                             {
                                                 if($row['order_type']=="dinner")
                                                 {
+                                                    if($row['order_id']==$id['order_id'])
+                                                    {
                                             ?>
                                             <tr>
                                                 <td><?php echo $row['day']; ?>
-                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
+                                                <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Delivery</button></td>
                                                 <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
                                                 <script>
                                                     $(document).ready(function () {
                                                             var date='<?php echo $row['day']; ?>';
                                                             var orderId=<?php echo $row['order_id']; ?>;
                                                             var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
-                                                        $(window).on('load', function () {
+                                                            function loadState(){
                                                             $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
                                                             data:{date:date,orderId:orderId},
                                                             dataType: "json",
                                                             success: function (data) {
+                                                               console.log(data);
                                                                 if(data.date=='qual' && data.delivery==0 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='blue'; 
@@ -500,14 +538,13 @@
                                                                 if(data.date=='qual' && data.delivery==1 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='black';  
-                                                                    stateBtn.innerHTML='Received';
+                                                                    stateBtn.innerHTML='Deliverd';
                                                                     stateBtn.disabled=true;
                                                                 }
                                                                 if(data.date=='plus')
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='gray';  
-                                                                
                                                                 }
                                                                 if(data.delivery==1 && data.date=='minus')
                                                                 {
@@ -516,15 +553,21 @@
                                                                 }
                                                                 if(data.delivery==0 && data.date=='minus')
                                                                 {
-                                                                    stateBtn.innerHTML='Not Received';
+                                                                    stateBtn.innerHTML='Not delivery';
                                                                     stateBtn.disabled=true;
                                                                     stateBtn.style.backgroundColor='black';
                                                                 }
                                                             }
                                                             });
-                                                    });
+                                                            }
+                                                            loadState(); 
                                                      
                                                     $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
+                                                        var d = new Date();
+                                                        document.querySelector('.orderAccept').classList.add('orderAccept-active');
+                                                        document.getElementById('longTermId').innerHTML='['+orderId+']';
+                                                        document.getElementById('resTime').innerHTML='['+d.toLocaleString()+']';
+                                                        $(document).on('click', "#accept-btn", function(){
                                                         $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
@@ -533,16 +576,28 @@
                                                             success: function (data) {
                                                                 console.log(data); 
                                                                 stateBtn.style.backgroundColor='black';  
-                                                                stateBtn.innerHTML='Received';
+                                                                stateBtn.innerHTML='Deliverd';
                                                                 stateBtn.disabled=true; 
-                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
+                                                                document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;  
+                                                                document.querySelector('.orderAccept').classList.remove('orderAccept-active');    
                                                             }
                                                         });
                                                      });
+                                                    });
+
+                                                    // click the complete button
+                                                    $(document).on('click', "#confirm-btn<?php echo $i ?>", function(){
+                                                            var v = new Date();
+                                                            document.querySelector('.confirmOrder').classList.add('orderAccept-active');
+                                                            document.getElementById('confirmId').innerHTML='[<?php echo $id["order_id"]; ?>]';
+                                                            document.getElementById('conTime').innerHTML='['+v.toLocaleString()+']'
+                                                      });
+
                                                 });
                                                 </script>
                                             </tr>
                                             <?php $i++; } 
+                                                }
                                             }?>
                                     </table>        
                               </div>
@@ -564,7 +619,51 @@
 
         </div>
     </div>
- 
+      
+<!-- accept  the each day popup-->
+<div class="orderAccept">
+    <div class="acceptPop-box">
+        <div class="accHeader">
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick=" document.querySelector('.orderAccept').classList.remove('orderAccept-active');"></i></div>
+        <img src="https://img.icons8.com/pastel-glyph/100/4a90e2/delivery-scooter--v1.png"/>
+            <h1>Confirm Your Order Received !</h1>
+            <h4 style="margin-top: 20px">Confirm that your longterm order <span id="longTermId" style="color:black"></span> has been received by  <span id="resTime" style="color:black"></span>  </h4>
+            <div style="margin-top:30px;">
+                    <div style="display: none;" ><h4 id="termType"></h4></div>
+            </div>
+         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="accept-btn">Confirm</button>
+         <button class="cancel-btn" onclick="document.querySelector('.orderAccept').classList.remove('orderAccept-active');">cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- click the confirm button then update the database   -->
+<script>
+     $(document).on('click', "#complete-btn", function(){
+        var orderId=document.getElementById('confirmId').innerHTML;
+        orderId=orderId.substring(1,11);
+        window.location="../controller/orderConFood.php?orderConfirmFS_id="+orderId+"";
+    });
+</script>
+
+<!-- Order receive popuo -->
+<div class="orderAccept confirmOrder">
+    <div class="acceptPop-box">
+        <div class="accHeader">
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick=" document.querySelector('.confirmOrder').classList.remove('orderAccept-active');"></i></div>
+        <img src="https://img.icons8.com/material/100/4a90e2/task-completed.png"/>
+            <h1>Confirm Your Longterm Order is complete !</h1>
+            <h4 style="margin-top: 20px">Confirm that your order <span id="confirmId" style="color:black"></span> has been completed by  <span id="conTime" style="color:black"></span> </h4>
+            <div style="margin-top:30px;">
+                    <div style="display: none;" ><h4 id="termType"></h4></div>
+            </div>
+         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="complete-btn">Confirm</button>
+         <button class="cancel-btn" onclick=" document.querySelector('.confirmOrder').classList.remove('orderAccept-active');">cancel</button>
+        </div>
+    </div>
+</div> 
+
+
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/order.js"></script>
