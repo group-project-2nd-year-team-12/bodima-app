@@ -69,7 +69,7 @@
 
                     <li>Chat</li>
                     <?php  if($_SESSION['level']=='food_supplier'){?>
-                      <li onclick='window.location="controller/orderConFood.php?id=1"'>Orders </li>
+                      <li onclick='window.location="views/orders.php"'>Orders </li>
                     <?php } ?>
                     <?php if($_SESSION['level']=='boardings_owner'){?>
                       

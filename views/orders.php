@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/orderModel.php');
-        session_start(); 
+        require_once ('../controller/orderConFood.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,10 +122,9 @@
                 </ul>
             </div>
 
-
-        <!-- load the data -->
          <?php 
-         $records=unserialize($_GET['record']);
+         $dataSet=allOrders($connection);
+         $records=unserialize($dataSet[0]);
          $new=array_column($records,'order_type');
          $term=array_column($records,'term');
          $i=0;

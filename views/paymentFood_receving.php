@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
-        session_start(); 
+        require_once ('../controller/orderCon.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,8 +78,9 @@
             
             
           <?php
-            $ids=unserialize($_GET['ids']);
-            $data_rows=unserialize($_GET['data_rows']);
+            $dataSet=orderReceive($connection);
+            $ids=unserialize($dataSet[0]);
+            $data_rows=unserialize($dataSet[1]);
             $new=array_column($data_rows,'term');
        ?>
         <div id="shortTerm-box" class="pending">

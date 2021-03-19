@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/orderModel.php');
-        session_start(); 
+        require_once ('../controller/orderConFood.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +115,8 @@
                 </ul>
             </div>
         <?php 
-         $records=unserialize($_GET['record']);
+        $dataSet=longTermHistoryFood($connection);
+         $records=unserialize($dataSet[0]);
          $new=array_column($records,'order_type');
          ?>     
         <div id="breakfast-box" class="accept">

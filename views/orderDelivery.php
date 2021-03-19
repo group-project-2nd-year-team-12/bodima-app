@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/orderModel.php');
-        session_start(); 
+        require_once ('../controller/orderConFood.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,15 +104,20 @@
             </div>  
           
         <?php 
-        $records=unserialize($_GET['record']);
+        $dataSet=getShortTerm($connection);
+        $records=unserialize($dataSet[0]);
         $new=array_column($records,'order_type');
         $termArray=array_column($records,'term');
          ?>      
         <div class="short-term-box ">
+
+        <!-- long term short term select tabs -->
         <div class="term">
-            <a style="background-color: orange;" onclick="window.location='../controller/orderConFood.php?term=short'" id="Short-Term"> Short-term List</a>
+            <a style="background-color: orange;" onclick="window.location='orderDelivery.php'" id="Short-Term"> Short-term List</a>
             <a onclick="window.location='orderDeliveryLong.php'" id="Long-Term"> Long-term List</a>
         </div>
+
+        
         <div id="breakfast-box" class="accept-term">
             <div class="title">
             <div class="order-title">

@@ -100,15 +100,15 @@
         <div class="subNav">
                 <ul>
                     <div>
-                        <div class="count" id="noti-delBreakfast"><h5></h5></div>
+                        <div class="count" id="noti-delBreakfastLong"><h5></h5></div>
                         <li tabindex="0" id="breakfast" onclick="orderType(this.id);" title="Breakfast" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/toast--v4.png"/></li>
                     </div>
                     <div>
-                        <div class="count" id="noti-delLunch"><h5></h5></div>
+                        <div class="count" id="noti-delLunchLong"><h5></h5></div>
                         <li tabindex="0" id="lunch" onclick="orderType(this.id);" title="Lunch" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v1.png"/></li>
                     </div>
                     <div>
-                        <div class="count" id="noti-delDinner"><h5></h5></div>
+                        <div class="count" id="noti-delDinnerLong"><h5></h5></div>
                         <li tabindex="0" id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
                     </div>
                 </ul>
@@ -116,10 +116,14 @@
 
 
     <div class="long-term-box">
+
+    <!-- long term short term select tabs -->
          <div class="term">
-            <a  onclick="window.location='../controller/orderConFood.php?term=short'" id="Short-Term"> Short-term List</a>
+            <a  onclick="window.location='orderDelivery.php'" id="Short-Term"> Short-term List</a>
             <a style="background-color: orange;" onclick="window.location='orderDeliveryLong.php'" id="Long-Term"> Long-term List</a>
         </div>
+
+
          <div id="breakfast-box" class="accept-term">
         
             <div class="title">
@@ -294,11 +298,11 @@
                 </div>
                 <?php 
              
-                   if(in_array('lunch',$new)){
+                   if(in_array('lunch',$new) && in_array('longTerm',$termArray)){
 
                     foreach($ids as $id)
                     {
-                        if($id['order_type']=='lunch' && in_array('longTerm',$termArray)){?>
+                        if($id['order_type']=='lunch' && $id['term']=='longTerm'){?>
                         <!-- <h1>dbbcjhbcd</h1> -->
                      <div class="box " >
                             <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">

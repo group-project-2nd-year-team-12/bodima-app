@@ -31,18 +31,18 @@ if(isset($_POST['accept']))
    if($method=='card')
    {   
       $result=orderModel::accept($order_id,1,$expireTime,$connection);
-      sentAccept( $order_id,$email,$first_name,$address,$total);
+      // sentAccept( $order_id,$email,$first_name,$address,$total);
       header('Location:orderConFood.php?id=2');
    }elseif($method=="cash")
    {
       $result=orderModel::accept($order_id,3,$expireTime,$connection);
       if($termFetch['term']=='shortTerm')
       {
-         header('Location:orderConFood.php?term=short');
+         header('Location:../views/orderDelivery.php');
       }
       if($termFetch['term']=='longTerm')
       {
-         header('Location:orderConFood.php?term=long');
+         header('Location:../views/orderDeliveryLong.php');
       }
       echo $termFetch;
       

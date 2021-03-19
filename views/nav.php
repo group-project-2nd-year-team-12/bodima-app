@@ -61,7 +61,7 @@
 
                     <li>Chat</li>
                     <?php if($_SESSION['level']=='food_supplier'){?>
-                        <li onclick='window.location="orders.php"'>Orders </li>
+                        <li onclick='window.location="orders.php"'>Orders</li>
                         
                        
                    <?php } ?>

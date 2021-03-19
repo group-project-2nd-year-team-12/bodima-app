@@ -397,7 +397,7 @@
             <div style="margin-top:30px;">
                     <div style="display: none;" ><h4 id="termType"></h4></div>
             </div>
-         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="acceptBtn" onclick="if(document.getElementById('acceptMethod').innerHTML=='[card]'){window.location='../controller/orderCon.php?id=2'}else if(document.getElementById('termType').innerHTML=='longterm'){window.location='../views/paymentFood_longTerm.php'}else{window.location='../controller/orderCon.php?id=3'}">Order Details</button>
+         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="acceptBtn" onclick="if(document.getElementById('acceptMethod').innerHTML=='[card]'){window.location='../controller/orderCon.php?id=2'}else if(document.getElementById('termType').innerHTML=='longterm'){window.location='../views/paymentFood_longTerm.php'}else{window.location='paymentFood_receving.php'}">Order Details</button>
         </div>
     </div>
     </div>

@@ -5,19 +5,16 @@ var availWord=document.getElementById('availSpan');
 window.addEventListener('load',(e)=>{
     if(availble==0)
     {
-        // availableCheck.checked=false;
         availWord.style.color='#ffca0a';
         availWord.innerHTML='Unavailable';
     }
     else if(availble==1)
     {
-        // availableCheck.checked=true;
         availWord.style.color='#40c057';
-        
     }
     
 })
-
+// focus function for selecet order type Sub nav
 const breakfastFocus=document.getElementById('breakfast');
 const lunchfastFocus=document.getElementById('lunch');
 const dinnerfastFocus=document.getElementById('dinner');
