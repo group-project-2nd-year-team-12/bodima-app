@@ -17,7 +17,7 @@ class notificationModel{
 
     public static function notificationsAll2($connection,$email,$level,$id)
     {
-        $query="SELECT * FROM notifications WHERE to_id=$id and to_level='{$level}' ORDER BY is_seen=0 DESC";
+        $query="SELECT * FROM notifications WHERE to_id=$id and to_level='{$level}' ORDER BY is_seen=0 ,sendDateTime DESC";
         // SELECT * FROM notifications WHERE to_id=37 and to_level='boarder' ORDER BY is_seen=0 DESC 
         $result=mysqli_query($connection,$query);
          return $result;
@@ -39,10 +39,13 @@ class notificationModel{
 
     // ****************************************************************************
 
-    public static function insertnotification($connection,$type_number,$from_level,$from_id,$to_level,$to_id,$massageHeader,$massage)
+    public static function insertnotification($connection,$type_number,$from_level,$from_id,$to_level,$to_id,$massageHeader,$massage,$redirect_url)
     {
-        $query="INSERT INTO notifications(type_number,from_level,from_id,to_level,to_id,massageHeader,massage)
-                VALUES($type_number,'{$from_level}',$from_id,'{$to_level}',$to_id,'{$massageHeader}','{$massage}')";
+        $query="INSERT INTO notifications(type_number,from_level,from_id,to_level,to_id,massageHeader,massage,redirect_url)
+                VALUES($type_number,'{$from_level}',$from_id,'{$to_level}',$to_id,'{$massageHeader}','{$massage}','{$redirect_url}')";
+// echo $query;
+//         die(); 
+                
         $result=mysqli_query($connection,$query);
         return $result;
     }
@@ -63,6 +66,7 @@ class notificationModel{
             
     }
 
+   
 }
 
 
