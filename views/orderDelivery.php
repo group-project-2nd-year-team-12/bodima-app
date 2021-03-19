@@ -14,6 +14,8 @@
     <title>Document</title>
 </head>
 <body onload="checked('deliver');">
+
+<!-- Order type select function -->
 <script>
     function orderType(id)
 {
@@ -43,10 +45,7 @@
         lunch.style.display='none';
         breakfast.style.display='none';
     }
-
-   
     order.style.display='block';
-  
 }
 
 </script>
@@ -79,8 +78,9 @@
                  <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
             </div>
-        </div>
-    <div class="container">
+</div>
+
+<div class="container">
         <div class="content">  
         <?php include 'orderSide.php' ?> 
         
@@ -110,7 +110,7 @@
         <div class="short-term-box ">
         <div class="term">
             <a style="background-color: orange;" onclick="window.location='../controller/orderConFood.php?term=short'" id="Short-Term"> Short-term List</a>
-            <a onclick="window.location='../controller/orderConFood.php?term=long'" id="Long-Term"> Long-term List</a>
+            <a onclick="window.location='orderDeliveryLong.php'" id="Long-Term"> Long-term List</a>
         </div>
         <div id="breakfast-box" class="accept-term">
             <div class="title">
@@ -308,7 +308,7 @@
         </div> 
         </div>
     </div>
-    <!-- <?php include 'footer.php'?> -->
+
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/order.js"></script>

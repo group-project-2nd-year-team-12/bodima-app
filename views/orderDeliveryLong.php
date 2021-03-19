@@ -1,8 +1,8 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/orderModel.php');
         require_once ('../controller/orderConFood.php');
-        // session_start(); 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +15,11 @@
     <title>Document</title>
 </head>
 <body onload="checked('deliver');">
+
+<!-- Order type select function -->
 <script>
     function orderType(id)
 {
-    console.log("jhbchbhcd");
     const order=document.getElementById(id);
     const breakfast=document.getElementById('breakfast-box');
     const lunch=document.getElementById('lunch-box');
@@ -45,13 +46,11 @@
         lunch.style.display='none';
         breakfast.style.display='none';
     }
-
-   
     order.style.display='block';
   
 }
-
 </script>
+
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.svg" alt="">
@@ -86,13 +85,18 @@
         <?php include 'orderSide.php' ?> 
         
         <?php 
-        $records=unserialize($_GET['record']);
-        $new=array_column($records,'order_type');
         $recordsSeritaize=getLongTerm($connection);
-        // $ids=unserialize($recordsSeritaize[0]);
-        $data_rows=unserialize($recordsSeritaize[0]);
-        // print_r($data_rows);
-         ?>      
+        $ids=unserialize($recordsSeritaize[0]);
+        $result=unserialize($recordsSeritaize[1]);
+        $date=unserialize($recordsSeritaize[2]);
+        $termArray=array_column($ids,'term');
+        $new=array_column($ids,'order_type');
+        $i=0;
+        // print_r($ids);
+        // print_r($result);
+         ?> 
+         
+         <!-- Sub nav -->
         <div class="subNav">
                 <ul>
                     <div>
@@ -107,45 +111,40 @@
                         <div class="count" id="noti-delDinner"><h5></h5></div>
                         <li tabindex="0" id="dinner" onclick="orderType(this.id);" title="Dinner" class="subNav-item"><img src="https://img.icons8.com/cotton/40/000000/breakfast--v2.png"/></li>
                     </div>
-                   
                 </ul>
-            </div> 
-         <div class="long-term-box ">
+        </div> 
+
+
+    <div class="long-term-box">
          <div class="term">
             <a  onclick="window.location='../controller/orderConFood.php?term=short'" id="Short-Term"> Short-term List</a>
-            <a style="background-color: orange;" onclick="window.location='../controller/orderConFood.php?term=long'" id="Long-Term"> Long-term List</a>
+            <a style="background-color: orange;" onclick="window.location='orderDeliveryLong.php'" id="Long-Term"> Long-term List</a>
         </div>
          <div id="breakfast-box" class="accept-term">
         
             <div class="title">
             <div class="order-title">
                     <h3>Delivery List </h3>
-                    <!-- <div><h5>1</h5></div> -->
-                </div>
+            </div>
                 <?php 
-                   $i=0;
                    $y=1;
-                   if(in_array('breakfast',$new)){
+                   if(in_array('breakfast',$new) && in_array('longTerm',$termArray)){
                    
-                    foreach($records as $record)
+                    foreach($ids as $id)
                     {
-                        if($record['order_type']=='breakfast' && $record['term']=='longTerm'){?>
-                     <div class="box " >
+                        if($id['order_type']=='breakfast' && $id['term']=='longTerm'){?>
+                     <div class="box">
                             <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
                                     <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
-                                    <div class="letter"><h4>Order ID : <?php echo $record['order_id']; ?></h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
-                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                                    </div>
-                                  
+                                    <div class="letter"><h4>Order ID : <?php echo $id['order_id']; ?></h4></div>
                             </div>
+
                             <div id="<?php echo $i ?>" class="details-box">
-                            <!-- <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div> -->
                                 <div style="padding-left:20px ;" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"longTerm");
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$id['order_id'],3,"longTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -156,38 +155,36 @@
                                             $last_name=$result['last_name'];
                                             $total=$result['total'];
                                             $phone=$result['phone'];
-                                            $method=$result['method'];
-                                        
+                                            $shedule=$result['shedule'];
+                                            $type=$result['order_type'];
                                         }?>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Type </h4><h4>: <?php echo $type ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Time </h4><h4>: <?php echo $shedule ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
-                                <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you complte the this order confirm that</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                    <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you complte the this order confirm that</h4>
+                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                                 
                             </div>
                             <div class="longTerm-table">
                                 <h1>Long term delivery records</h1>
                                 <table>
+                                    <!-- TABLE HEADER -->
                                         <tr>
-
                                             <th>Date</th>
                                             <th>Delivery State </th>
                                             <th>Delivered Time</th>
-                                            
                                         </tr> 
                                         <?php
-                                        
-                                            foreach($data_rows as $row)
+                                        //  print_r($date);
+                                            foreach($date as $row)
                                             {
                                                 if($row['order_type']=="breakfast"){
-                                                
                                             ?>
                                             <tr>
-                                              
-                                                <td><?php echo $row['day']; ?>
+                                                <td><?php echo $row['day']; ?></td>
                                                 <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
                                                 <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
                                                 <script>
@@ -207,8 +204,6 @@
                                                                 if(data.date=='qual' && data.delivery==0 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='blue'; 
-                                                                     
-                                                            
                                                                 }
                                                                 if(data.date=='qual' && data.delivery==1 )
                                                                 {                                                       
@@ -220,13 +215,11 @@
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='gray';  
-                                                                
                                                                 }
                                                                 if(data.delivery==1 && data.date=='minus')
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='black';  
-                                                        
                                                                 }
                                                                 if(data.delivery==0 && data.date=='minus')
                                                                 {
@@ -234,15 +227,12 @@
                                                                     stateBtn.disabled=true;
                                                                     stateBtn.style.backgroundColor='black';
                                                                 }
-                                                                
-                                                               
                                                             }
                                                             });
-                                                      
                                                     });
                                                      
+                                                    // when clicl the delived button
                                                     $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
-                                                    
                                                         $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
@@ -255,25 +245,17 @@
                                                                 stateBtn.disabled=true; 
                                                                 document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
                                                             }
-
                                                         });
-                                                    
                                                      });
-
                                                 });
-                                                   
                                                 </script>
-                                                
                                             </tr>
                                             <?php $i++; 
                                                 } 
-
                                             }?>
                                     </table>        
                               </div>
                             </div>
-                            
-                    
                          </div>
                 <?php    }
                         }
@@ -297,25 +279,22 @@
              
                    if(in_array('lunch',$new)){
 
-                    foreach($records as $record)
+                    foreach($ids as $id)
                     {
-                        if($record['order_type']=='lunch' && $record['term']=='longTerm'){?>
+                        if($id['order_type']=='lunch' && in_array('longTerm',$termArray)){?>
                         <!-- <h1>dbbcjhbcd</h1> -->
                      <div class="box " >
-                            <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')" >
-                                    <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Order ID : <?php echo $record['order_id']; ?></h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
-                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                                    </div>
+                            <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                                    <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
+                                    <div class="letter"><h4>Order ID : <?php echo $id['order_id']; ?></h4></div>
                             </div>
-                            <div id="<?php echo $i ?>" class="details-box">
-                            <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div>
+
+                            <div id="<?php echo $i ?>" class="details-box"> 
                                 <div style="padding-left:20px ;" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"longTerm");
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$id['order_id'],3,"longTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -326,36 +305,33 @@
                                             $last_name=$result['last_name'];
                                             $total=$result['total'];
                                             $phone=$result['phone'];
-                                            $method=$result['method'];
-                                        
+                                            $shedule=$result['shedule'];
+                                            $type=$result['order_type'];
                                         }?>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Type </h4><h4>: <?php echo $type ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Time </h4><h4>: <?php echo $shedule ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
                                 <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                             </div>
                             <div class="longTerm-table">
                                 <h1>Long term delivery records</h1>
                                 <table>
                                         <tr>
-                                            <th>Record No</th>
                                             <th>Date</th>
                                             <th>Delivery State </th>
                                             <th>Delivered Time</th>
-                                            
                                         </tr> 
                                         <?php
-                                        
-                                            foreach($data_rows as $row)
+                                            foreach($date as $row)
                                             {
                                                 if($row['order_type']=="lunch")
                                                 {
                                             ?>
                                             <tr>
-                                                <td ><?php echo $i; ?></td>
                                                 <td><?php echo $row['day']; ?>
                                                 <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
                                                 <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
@@ -376,8 +352,6 @@
                                                                 if(data.date=='qual' && data.delivery==0 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='blue'; 
-                                                                     
-                                                            
                                                                 }
                                                                 if(data.date=='qual' && data.delivery==1 )
                                                                 {                                                       
@@ -389,13 +363,11 @@
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='gray';  
-                                                                
                                                                 }
                                                                 if(data.delivery==1 && data.date=='minus')
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='black';  
-                                                        
                                                                 }
                                                                 if(data.delivery==0 && data.date=='minus')
                                                                 {
@@ -403,15 +375,11 @@
                                                                     stateBtn.disabled=true;
                                                                     stateBtn.style.backgroundColor='black';
                                                                 }
-                                                                
-                                                               
                                                             }
                                                             });
-                                                      
                                                     });
-                                                     
+
                                                     $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
-                                                    
                                                         $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
@@ -424,23 +392,16 @@
                                                                 stateBtn.disabled=true; 
                                                                 document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
                                                             }
-
                                                         });
-                                                    
                                                      });
-
                                                 });
-                                                   
                                                 </script>
-                                                
                                             </tr>
                                             <?php $i++; } 
-
                                             }?>
                                     </table>        
                               </div>
                             </div>
-                    
                          </div>
                 <?php    }
                    $i=$i+2;$y=$y+2;  }
@@ -462,26 +423,24 @@
                 </div>
                 <?php 
                  
-                   if(in_array('dinner',$new)){
+                   if(in_array('dinner',$new) && in_array('longTerm',$termArray)){
 
-                    foreach($records as $record)
+                    foreach($ids as $id)
                     {
-                        if($record['order_type']=='dinner' && $record['term']=='longTerm'){?>
+                        if($id['order_type']=='dinner' && $id['term']=='longTerm'){?>
                      <div class="box ">
-                            <div class="resend " onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
-                                    <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
-                                    <div class="letter"><h4>Order ID : <?php echo $record['order_id']; ?></h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
-                                        <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
-                                    </div>
+                            <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                                    <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
+                                    <div class="letter"><h4>Order ID : <?php echo $id['order_id']; ?></h4></div>
                             </div>
+
                             <div id="<?php echo $i ?>" class="details-box">
                             <!-- <div><img style="width: 300px;" src="../resource/img/pending.gif" alt=""></div> -->
                                 <div style="padding-left:20px ;" class="button-pay">
                                 <h2 class="order_item order-head">ORDER INFO</h2>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $record['order_id']; ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Id  </h4><h4>: <?php echo $id['order_id']; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Item  </h4></div>
-                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$record['order_id'],3,"longTerm");
+                                    <?php   $getOrder=orderModel::getOrderFoodSupplierTerm($connection,$id['order_id'],3,"longTerm");
                                         while($result=mysqli_fetch_assoc($getOrder))
                                         {
                                             echo '<div class="product_item"><h5  class="item">'.$result['item_name'].'</h5>';
@@ -492,36 +451,33 @@
                                             $last_name=$result['last_name'];
                                             $total=$result['total'];
                                             $phone=$result['phone'];
-                                            $method=$result['method'];
-                                        
+                                            $shedule=$result['shedule'];
+                                            $type=$result['order_type'];
                                         }?>
-                                <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Customer Name  </h4><h4>: <?php echo  $first_name ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Delivery Address </h4><h4>: <?php echo $address ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Type </h4><h4>: <?php echo $type ?></h4></div>
+                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Order Time </h4><h4>: <?php echo $shedule ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Contact Number </h4><h4>: <?php echo $phone; ?></h4></div>
                                     <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
-                                    <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
                                 <h4 class="order_item" style="color: #101e5a;margin-top:20px">If you delivered this order. Please confirm this order</h4>
-                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $record["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
+                                <button onclick='if(confirm("Confirm that you get the order ?")) window.location="../controller/orderConFood.php?orderConfirmFS_id=<?php echo $id["order_id"]; ?>"'  type="button" class="btn1 "> Confirm </button>
                             </div>
                             <div class="longTerm-table">
                                 <h1>Long term delivery records</h1>
                                 <table>
                                         <tr>
-                                            <th>Record No</th>
                                             <th>Date</th>
                                             <th>Delivery State </th>
                                             <th>Delivered Time</th>
-                                            
                                         </tr> 
                                         <?php
-                                        
-                                            foreach($data_rows as $row)
+                                            foreach($date as $row)
                                             {
                                                 if($row['order_type']=="dinner")
                                                 {
                                             ?>
                                             <tr>
-                                                <td ><?php echo $i; ?></td>
                                                 <td><?php echo $row['day']; ?>
                                                 <td style="text-align: center;"><button id="stateBtn<?php echo $i ?>" class="longTerm-btn-1">Receive</button></td>
                                                 <td id="delivery<?php echo $i ?>"><?php echo $row['deliveredTime']; ?></td>
@@ -531,19 +487,15 @@
                                                             var orderId=<?php echo $row['order_id']; ?>;
                                                             var stateBtn=document.getElementById('stateBtn<?php echo $i ?>');
                                                         $(window).on('load', function () {
-                                                           
                                                             $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
                                                             data:{date:date,orderId:orderId},
                                                             dataType: "json",
                                                             success: function (data) {
-                                                               
                                                                 if(data.date=='qual' && data.delivery==0 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='blue'; 
-                                                                     
-                                                            
                                                                 }
                                                                 if(data.date=='qual' && data.delivery==1 )
                                                                 {                                                       
@@ -561,7 +513,6 @@
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='black';  
-                                                        
                                                                 }
                                                                 if(data.delivery==0 && data.date=='minus')
                                                                 {
@@ -569,15 +520,11 @@
                                                                     stateBtn.disabled=true;
                                                                     stateBtn.style.backgroundColor='black';
                                                                 }
-                                                                
-                                                               
                                                             }
                                                             });
-                                                      
                                                     });
                                                      
                                                     $(document).on('click', "#stateBtn<?php echo $i ?>", function(){
-                                                    
                                                         $.ajax({
                                                             type: "POST",
                                                             url: "../controller/orderCon.php",
@@ -590,18 +537,12 @@
                                                                 stateBtn.disabled=true; 
                                                                 document.getElementById('delivery<?php echo $i ?>').innerHTML=data.deliveryTime;      
                                                             }
-
                                                         });
-                                                    
                                                      });
-
                                                 });
-                                                   
                                                 </script>
-                                                
                                             </tr>
                                             <?php $i++; } 
-
                                             }?>
                                     </table>        
                               </div>
@@ -623,7 +564,7 @@
 
         </div>
     </div>
-    <!-- <?php include 'footer.php'?> -->
+ 
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/order.js"></script>

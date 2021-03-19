@@ -155,8 +155,21 @@ class orderModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+    // get date of long term food supplier side
+    public static function getLongTermSupplier($connection,$Fpid){
+        $query="SELECT * FROM food_request,longterm WHERE food_request.order_id=longterm.order_id  AND food_request.is_accepted=3  AND food_request.F_post_id='{$Fpid}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    //customer side
     public static function getLongTermFood($connection,$email){
         $query="SELECT * FROM food_request,order_item WHERE food_request.order_id=order_item.order_id AND food_request.is_accepted=3  AND food_request.email='{$email}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    // food supplier side
+    public static function getLongTermFoodSupplier($connection,$Fpid){
+        $query="SELECT * FROM food_request,order_item WHERE food_request.order_id=order_item.order_id AND food_request.is_accepted=3  AND food_request.F_post_id='{$Fpid}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }

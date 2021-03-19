@@ -193,10 +193,10 @@
                                         document.getElementById('acceptRes').innerHTML='['+data.rasturent+']';
                                        if(data.payment=="card")
                                        {
-                                        document.getElementById('accept-btn').innerHTML='Check & Pay';
+                                        document.getElementById('acceptBtn').innerHTML='Check & Pay';
                                        }
                                        else{
-                                        document.getElementById('accept-btn').innerHTML='Receiving Order';
+                                        document.getElementById('acceptBtn').innerHTML='Receiving Order';
                                        }
                                         
                                         // document.querySelector('.')
@@ -397,7 +397,7 @@
             <div style="margin-top:30px;">
                     <div style="display: none;" ><h4 id="termType"></h4></div>
             </div>
-         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="accept-btn" onclick="if(document.getElementById('acceptMethod').innerHTML=='[card]'){window.location='../controller/orderCon.php?id=2'}else if(document.getElementById('termType').innerHTML=='longterm'){window.location='../views/paymentFood_longTerm.php'}else{window.location='../controller/orderCon.php?id=3'}">Order Details</button>
+         <button style="margin: 10px 0 10px 0;" class="accept-btn" id="acceptBtn" onclick="if(document.getElementById('acceptMethod').innerHTML=='[card]'){window.location='../controller/orderCon.php?id=2'}else if(document.getElementById('termType').innerHTML=='longterm'){window.location='../views/paymentFood_longTerm.php'}else{window.location='../controller/orderCon.php?id=3'}">Order Details</button>
         </div>
     </div>
     </div>
