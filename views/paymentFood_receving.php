@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
-        session_start(); 
+        require_once ('../controller/orderCon.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,8 +78,9 @@
             
             
           <?php
-            $ids=unserialize($_GET['ids']);
-            $data_rows=unserialize($_GET['data_rows']);
+            $dataSet=orderReceive($connection);
+            $ids=unserialize($dataSet[0]);
+            $data_rows=unserialize($dataSet[1]);
             $new=array_column($data_rows,'term');
        ?>
         <div id="shortTerm-box" class="pending">
@@ -96,7 +98,7 @@
                 ?>
                 <div class="box" >
                     <div class="resend " onclick="order('<?php echo $x ?>')">
-                        <div class="right"><i class="fas fa-motorcycle fa-2x"></i></div>
+                    <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
                         <div class="letter">
                             <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> <small>View More</small> </h4> 
                         </div>
@@ -132,19 +134,16 @@
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Payment method </h4><h4>: <?php echo $method; ?></h4></div>
                             <div class="order_item"> <h4 style="width: 150px;text-align:left;color: #101e5a;">Pay amount </h4><h4>: RS <?php echo $total; ?></h4></div>
                             <h4 style="text-align:left;color: #101e5a;" >Please confirm that your order has been received !</h4>
-                            <button id="con<?php echo $x; ?>" tabindex="1"   type="button" class="btn1"> Confirm </button>                        </div>
+                            <button id="con<?php echo $x; ?>" tabindex="1"   type="button" class="btn1"> Confirm </button>                        
+                        </div>
                   </div>
                 </div>
                 <script>
-                    //   window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id["order_id"]; ?>"'
                     $(document).on('click', "#con<?php echo $x ?>", function(){
                         var d = new Date();
                         document.querySelector('.orderAccept').classList.add('orderAccept-active');
                         document.getElementById('confirmId').innerHTML='[<?php echo $id["order_id"]; ?>]';
                         document.getElementById('resTime').innerHTML='['+d.toLocaleString()+']'
-                    });
-                    $(document).on('click', "#accept-btn", function(){
-                        window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id['order_id']; ?>";
                     });
                  </script> 
                 <?php
@@ -164,11 +163,20 @@
         </div>
     </div>
 
+<!-- click the confirm button then update the database   -->
+<script>
+     $(document).on('click', "#accept-btn", function(){
+         var orderId=document.getElementById('confirmId').innerHTML;
+         orderId=orderId.substring(1,11);
+        window.location="../controller/orderCon.php?orderConfirm_id="+orderId+"";
+    });
+</script>
+
 <!-- Order receive popuo -->
 <div class="orderAccept">
     <div class="acceptPop-box">
         <div class="accHeader">
-        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="window.location='../controller/orderCon.php?id=3'"></i></div>
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="document.querySelector('.orderAccept').classList.remove('orderAccept-active');"></i></div>
         <img src="https://img.icons8.com/pastel-glyph/100/4a90e2/delivery-scooter--v1.png"/>
             <h1>Confirm Your Order Received !</h1>
             <h4 style="margin-top: 20px">Confirm that your order <span id="confirmId" style="color:black"></span> has been received by  <span id="resTime" style="color:black"></span>  </h4>
@@ -176,7 +184,7 @@
                     <div style="display: none;" ><h4 id="termType"></h4></div>
             </div>
          <button style="margin: 10px 0 10px 0;" class="accept-btn" id="accept-btn">Confirm</button>
-         <button class="cancel-btn" onclick="window.location='../controller/orderCon.php?id=3'">cancel</button>
+         <button class="cancel-btn" onclick="document.querySelector('.orderAccept').classList.remove('orderAccept-active');">cancel</button>
         </div>
     </div>
 </div>

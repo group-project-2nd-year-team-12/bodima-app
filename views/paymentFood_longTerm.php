@@ -87,7 +87,7 @@
                 <div class="box" id="<?php echo $id['order_id'] ?>">
                   
                     <div class="resend " onclick="order('<?php echo $x ?>')">
-                        <div class="right"><i class="far fa-clock fa-2x"></i></div>
+                    <div class="right"><img src="https://img.icons8.com/color/48/000000/delivery--v2.png"/></div>
                         <div class="letter">
                             <h4>Order ID : <?php echo $id['order_id'] ?> <span class="dot dot1">.</span> <span class="dot dot2">.</span> <span class="dot dot3">.</span> </h4> 
                         </div>
@@ -170,8 +170,6 @@
                                                                 if(data.date=='qual' && data.delivery==0 )
                                                                 {                                                       
                                                                     stateBtn.style.backgroundColor='#0093FF'; 
-                                                                     
-                                                            
                                                                 }
                                                                 if(data.date=='qual' && data.delivery==1 )
                                                                 {                                                       
@@ -183,13 +181,11 @@
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='gray';  
-                                                                
                                                                 }
                                                                 if(data.delivery==1 && data.date=='minus')
                                                                 {
                                                                     stateBtn.disabled=true;      
                                                                     stateBtn.style.backgroundColor='black';  
-                                                        
                                                                 }
                                                                 if(data.delivery==0 && data.date=='minus')
                                                                 {
@@ -199,12 +195,12 @@
                                                                 }
                                                                 // check all date delivery
                                                                 if(data.complete=='incomplete'){
-                                                                    document.getElementById('confirm-btn').style.backgroundColor='gray';
-                                                                    document.getElementById('confirm-btn').disabled=true;
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').style.backgroundColor='gray';
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').disabled=true;
                                                                 }
                                                                 if(data.complete=='complete'){
-                                                                    document.getElementById('confirm-btn').style.backgroundColor='#0093FF';
-                                                                    document.getElementById('confirm-btn').disabled=false;
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').style.backgroundColor='#0093FF';
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').disabled=false;
                                                                 }
                                                             }
                                                             });
@@ -244,11 +240,6 @@
                                                             document.getElementById('confirmId').innerHTML='[<?php echo $id["order_id"]; ?>]';
                                                             document.getElementById('conTime').innerHTML='['+v.toLocaleString()+']'
                                                       });
-
-                                                        //click complete button
-                                                      $(document).on('click', "#complete-btn", function(){
-                                                        window.location="../controller/orderCon.php?orderConfirm_id=<?php echo $id["order_id"]; ?>";
-                                                      });
                                             });
                                                 </script>
                                                 
@@ -280,12 +271,21 @@
         </div>
         </div>
     </div>
+    
+<!-- click the confirm button then update the database   -->
+<script>
+     $(document).on('click', "#complete-btn", function(){
+         var orderId=document.getElementById('confirmId').innerHTML;
+         orderId=orderId.substring(1,11);
+        window.location="../controller/orderCon.php?orderConfirm_id="+orderId+"";
+    });
+</script>
 
-    <!-- accept  the each day popup-->
+<!-- accept  the each day popup-->
 <div class="orderAccept">
     <div class="acceptPop-box">
         <div class="accHeader">
-        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="window.location='paymentFood_longTerm.php'"></i></div>
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="document.querySelector('.orderAccept').classList.remove('orderAccept-active');"></i></div>
         <img src="https://img.icons8.com/pastel-glyph/100/4a90e2/delivery-scooter--v1.png"/>
             <h1>Confirm Your Order Received !</h1>
             <h4 style="margin-top: 20px">Confirm that your longterm order <span id="longTermId" style="color:black"></span> has been received by  <span id="resTime" style="color:black"></span>  </h4>
@@ -293,16 +293,16 @@
                     <div style="display: none;" ><h4 id="termType"></h4></div>
             </div>
          <button style="margin: 10px 0 10px 0;" class="accept-btn" id="accept-btn">Confirm</button>
-         <button class="cancel-btn" onclick="window.location='paymentFood_longTerm.php'">cancel</button>
+         <button class="cancel-btn" onclick="document.querySelector('.orderAccept').classList.remove('orderAccept-active');">cancel</button>
         </div>
     </div>
 </div>
 
-<!-- Order receive popuo -->
+<!-- Order complete  popup -->
 <div class="orderAccept confirmOrder">
     <div class="acceptPop-box">
         <div class="accHeader">
-        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="window.location='paymentFood_longTerm.php'"></i></div>
+        <div class="iconClose">  <i id="orderIcon" class="fas fa-times fa-2x" onclick="document.querySelector('.confirmOrder').classList.remove('orderAccept-active');"></i></div>
         <img src="https://img.icons8.com/material/100/4a90e2/task-completed.png"/>
             <h1>Confirm Your Longterm Order is complete !</h1>
             <h4 style="margin-top: 20px">Confirm that your order <span id="confirmId" style="color:black"></span> has been completed by  <span id="conTime" style="color:black"></span> </h4>
@@ -310,7 +310,7 @@
                     <div style="display: none;" ><h4 id="termType"></h4></div>
             </div>
          <button style="margin: 10px 0 10px 0;" class="accept-btn" id="complete-btn">Confirm</button>
-         <button class="cancel-btn" onclick="window.location='paymentFood_longTerm.php'">cancel</button>
+         <button class="cancel-btn" onclick="document.querySelector('.confirmOrder').classList.remove('orderAccept-active');">cancel</button>
         </div>
     </div>
 </div>
