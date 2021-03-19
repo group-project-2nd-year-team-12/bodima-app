@@ -66,7 +66,25 @@ class notificationModel{
             
     }
 
-   
+    public static function find_FSid_from_fpost($connection,$F_post_id){
+        $query="SELECT FSid from food_post WHERE F_post_id=$F_post_id";
+        //  echo $query;
+        // die(); 
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    public static function resturant_name($connection,$order_id){
+        $query="SELECT restaurant FROM food_request WHERE order_id=$order_id";
+         $result=mysqli_query($connection,$query);
+       return $result;
+    }
+
+    
+
+
+    
+
 }
 
 
