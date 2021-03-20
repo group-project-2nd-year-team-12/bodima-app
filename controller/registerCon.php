@@ -5,6 +5,23 @@
 ?>
 <?php
 
+if(isset($_POST['check']))
+{
+        $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
+        $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
+        $nic=mysqli_real_escape_string($connection,$_POST['nic']);
+        $email=mysqli_real_escape_string($connection,$_POST['email']);
+        $level=mysqli_real_escape_string($connection,$_POST['level']);
+        $data=array(
+                'ok'=>$first_name,
+                'ok1'=>$last_name,
+                'ok2'=>$nic,
+                'ok3'=>$email,
+                'ok3'=>$level
+        );
+        echo json_encode($data);
+
+}
 // check the click submit and validation form
 if(isset($_POST['submit']))
 {
@@ -108,6 +125,7 @@ if(isset($_POST['submit']))
                 header('Location:../views/register.php?'.http_build_query(array('param'=>$errors)));
         }
 }
+
 
 // check the click student register button and validation
 if(isset($_POST['register_student']))

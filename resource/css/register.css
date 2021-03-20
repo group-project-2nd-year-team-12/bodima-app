@@ -2,7 +2,7 @@
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    
+    overflow: hidden;
 }
 body{
     width: 100%;
@@ -22,7 +22,7 @@ body{
     background-position: 50px 100%;
 }
 .body0 {
-    background-image: url(../img/new/register.jpg);
+    background-image: url(../img/new/register.png);
     background-size: 500px;
     background-repeat: no-repeat;
     background-position: 50px 100%;
@@ -52,7 +52,7 @@ body{
 .container{
     width: 100%;
     display: flex;
-    background-image: url(../img/kindpng_1561276.png);
+    background-image: url(../img/kindpng1.png);
     background-size: 700px 620px;
     background-repeat: no-repeat;
     background-position: right;
@@ -61,15 +61,14 @@ body{
 
 .register {
     width: 370px;
-    /* height: 100%; */
-    /* min-height: 430px; */
     margin:60px auto 60px auto;
     box-sizing: border-box;
     padding: 20px;
-    box-shadow: -1px 1px 20px 3px blueviolet;
+    box-shadow: 5px 5px 20px #6164a0;
     border-radius: 10px;
-   margin-right: 180px;
-   background-color: rgb(255, 255, 255,0.5);
+    margin-right: 180px;
+    background-color: rgb(255, 255, 255,0.81);
+    color: #101e5a;
 }
 
 .register p {
@@ -92,6 +91,7 @@ body{
 .register input[placeholder]
 {
     padding-left:10px;
+    font-weight: bolder;
 }
 .register input[type="text"],
 input[type="email"],input[type="password"] {
@@ -102,7 +102,7 @@ input[type="email"],input[type="password"] {
     height: 30px;
     color: rgb(52, 52, 52);
     font-size: 14px;
-    background-color: rgba(225, 212, 237, 0.8);
+    background: #b8bcc4;
     box-sizing: border-box;
 }
 
@@ -111,18 +111,19 @@ input[type="email"],input[type="password"] {
     outline: none;
     margin-top: 15px;
     height: 40px;
-    background: #ac26d8;
+    background:#101e5a;
     color: #fff;
     font-size: 18px;
-    border-radius: 20px;
+    border-radius: 5px;
     transition: 0.5s;
+    cursor: pointer;
 }
 
-.register input[type="submit"]:hover {
+/* .register input[type="submit"]:hover {
     cursor: pointer;
     background: #850aae;
     color: #ecb3ff;
-}
+} */
  
 /* next-page css */
 
@@ -147,33 +148,34 @@ h1 {
 label {
     position: relative;
     width: 100%;
-    border: 2px solid #3f3941;
+    border: 2px solid #5d80b6;
     padding: 4px 4px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    background-color: #242326;
+    background-color: #acbdd3;
     border-radius: 5px;
     color: white;
     transition: 0.5s;
+    margin-top: 5px;
 }
 
 label::before {
     content: "";
     height: 10px;
     width: 10px;
-    border: 3px solid  #242326;
+    border: 3px solid  #acbdd3;
     border-radius: 50%;
     margin-right: 10px;
 }
 
 input[type="radio"]:checked+label {
-    background-color:  #939393ff;
+    background-color:  #5d80b6;
     color: rgb(255, 255, 255);
 }
 
 input[type="radio"]:checked+label::before {
-    background-color:  #242326;
+    background-color:   #101e5a;
     height: 10px;
     width: 10px;
     border: 5px solid white;
@@ -204,11 +206,17 @@ input[type="radio"]:checked+label::before {
     font-size: 48px;
     font-weight: lighter;
     border-bottom: 2px solid black;
-    color: blueviolet;
+    color:  #5d80b6;
 }
 .para p{
     padding: 20px 60px;
+    color:#101e5a;
+    font-weight: bolder;
 }
+.para span{
+    color: #5d80b6;
+}
+
 
 .check input[type="checkbox"]{
     width: 12px;
