@@ -42,7 +42,18 @@ class pay_rent_modelN{
       }
 
 
-      
+   public static function get_costPerPerson($connection,$Bid){
+
+    $query="SELECT cost_per_person from boarding_post 
+            WHERE B_post_id=(SELECT B_post_id 
+                            FROM confirm_rent 
+                            WHERE Bid=$Bid and is_paid=1 
+                            ORDER BY rent_id LIMIT 1)";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+        return $result;
+   }   
      
 }
 
