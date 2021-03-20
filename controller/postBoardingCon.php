@@ -2,7 +2,7 @@
     require_once ('../config/database.php');
     require_once ('../models/post_boarding.php');
     session_start();
-    print_r($_POST['Aamount']);
+    // print_r($_POST['Aamount']);
 
 ?>
 
@@ -122,22 +122,23 @@ $errors=array(); //create empty array
 
         $image_name1=$_FILES['image1']['name'];
         if(null==trim($image_name1)){
-           echo "null";
+        //    echo "null";
             $image_name1="defaultbp1.jpg";
         }else{
-            echo " have value";
+            // echo " have value";
         }
         
         $image_type1=$_FILES['image1']['type'];
         $image_size1=$_FILES['image1']['size'];
         $temp_name1=$_FILES['image1']['tmp_name'];
-        print_r($_FILES);
+        // print_r($_FILES);
         $upload_to="../resource/Images/uploaded_boarding/";
     
         move_uploaded_file($temp_name1, $upload_to . $image_name1);
 
 
         $id=$_SESSION['BOid'];
+        //$id=1;
        
 
      $creattime=date('Y-m-d h:i:s');
@@ -147,7 +148,7 @@ $errors=array(); //create empty array
         $result_set=boarding::getPostId($connection);
         $result_post=mysqli_fetch_assoc($result_set);
         $postid=$result_post['B_post_id'];
-        echo $postid;
+        // echo $postid;
 
         foreach ($_FILES['image']['tmp_name'] as $key => $value){
 
@@ -165,7 +166,7 @@ $errors=array(); //create empty array
             $image_size=$_FILES['image']['size'][$key];
             $upload_to="../resource/Images/uploaded_boarding/";
 
-            print_r($_FILES);
+            // print_r($_FILES);
         
     
             move_uploaded_file($temp_name, $upload_to . $image_name);
@@ -174,15 +175,18 @@ $errors=array(); //create empty array
             if(null!=trim($image_name)){
                 echo "null";
                 boarding::image_save($id,$postid,$image_name,$upload_to,$connection);
-             }
+            }
             
 
         }
 
-        echo $upload_to.$image_name;
+        // echo $upload_to.$image_name;
+
+
     
         //echo $Hnumber;
-        header('Location:../views/myads_boardingowner.php?success');
+         //header('Location:../views/postBoarding.php?success&pop=1&amount='.$Aamount.'&lifespan='.$Lifespan);
+         header('Location:../views/postBoarding.php?success&pop=1');
 
         //header('Location:../views/postBoarding.php?success'); //meka balanna
 
@@ -193,4 +197,48 @@ $errors=array(); //create empty array
 
     
 }
+
+
+if (isset($_GET['success'])) {
+    echo "gggggg";
+	//print_r($_SESSION);
+	//$student_email=$_SESSION['email'];
+	
+	  $B_post_id=$_GET['order_id'];
+      $id=$B_post_id;
+      echo $B_post_id;
+      boarding::updatePostpay($id,$connection);
+
+      header('Location:../views/myads_boardingowner.php');
+      
+      print_r($_POST);
+      echo "sfsdfhdfsjhs";
+
+
+
+}
+
+
+
+if(isset($_GET['deletePost'])){
+
+    $result=boarding::delete_post($connection);
+    echo $result;
+    header('Location:../views/profilepage.php?');
+    // $state="";
+    // if($result->num_rows!=0){
+    //     $state="sucess";
+    // }else{
+    //     $state="unsucess";
+    // }
+
+    // $data=array(
+    //     'setPost'=>'nima'
+    // );
+    // echo json_encode($data);
+}
+
+
+
 ?>
+

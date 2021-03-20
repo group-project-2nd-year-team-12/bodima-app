@@ -42,6 +42,21 @@ class boarding{
         return $result;
     }
 
+    public static function getPostpop($connection)
+    {
+        $query="SELECT B_post_id,image,city,lifespan,post_amount,title FROM boarding_post ORDER BY B_post_id desc LIMIT 1;";
+
+
+       $result= mysqli_query($connection,$query);
+
+        if($result){
+            echo "Sucessfull  seccond <br>";
+        }else{
+            echo "Unsucessfull second <br>";
+        }
+
+        return $result;
+    }
 
 
     public static function image_save($id,$postid,$image_name,$upload_to,$connection){
@@ -61,6 +76,54 @@ class boarding{
             echo "Unsucessfull third <br>";
         }
     }
+
+
+    public static function delete_post($connection)
+    {
+        $query1="DELETE FROM image WHERE is_pay=0";
+        $query2="DELETE FROM boarding_post WHERE is_pay_post=0";
+
+        
+        //echo $query;
+        //die();
+        mysqli_query($connection,$query1);
+        mysqli_query($connection,$query2);
+       // mysqli_query($connection,$query);
+        //return $result;
+
+        // if($result){
+        //     echo "Sucessfull 4 <br>";
+        // }else{
+        //     echo "Unsucessfull 4 <br>";
+        // }
+        
+        
+    }
+
+
+    public static function updatePostpay($id,$connection)
+    {
+        $query1="UPDATE boarding_post SET is_pay_post=1 WHERE B_post_id=$id;";
+        $query2="UPDATE image SET is_pay=1 WHERE postid=$id;";
+
+
+       $result1= mysqli_query($connection,$query1);
+       $result2= mysqli_query($connection,$query2);
+
+        if($result1){
+            echo "Sucessfull  seccond <br>";
+        }else{
+            echo "Unsucessfull second <br>";
+        }
+        if($result2){
+            echo "Sucessfull  seccond <br>";
+        }else{
+            echo "Unsucessfull second <br>";
+        }
+
+        //return $result1$result2;
+    }
+
 
 }
 
