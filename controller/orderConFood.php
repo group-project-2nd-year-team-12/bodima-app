@@ -6,13 +6,12 @@
 ?>
 
 <?php 
+
 // order page details 
-if(isset($_GET['id']) && $_GET['id']==1)
+function allOrders($connection)
 {
     $FSid=$_SESSION['FSid'];
     $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-    $available=orderModel::checkAvailable( $FSid,$connection);
-    $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
@@ -22,17 +21,16 @@ if(isset($_GET['id']) && $_GET['id']==1)
             $data1[]=$record;
         }
     }
-    $record=serialize($data1);
-    print_r($data1);
-    header('Location:../views/orders.php?record='.$record.'&available='.$availableFetch['available'].'');
+    $data[0]=serialize($data1);
+    return $data;
+    // header('Location:../views/orders.php?record='.$record.'');
+    // json_encode($data1);
 }
 // orderNotPayment Page details
 if(isset($_GET['id']) && $_GET['id']==2)
 {
     $FSid=$_SESSION['FSid'];
     $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-    $available=orderModel::checkAvailable( $FSid,$connection);
-        $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
@@ -43,56 +41,14 @@ if(isset($_GET['id']) && $_GET['id']==2)
         }
     }
     $record=serialize($data1);
-    header('Location:../views/orderNotPayment.php?record='.$record.'&available='.$availableFetch['available'].'');
+    header('Location:../views/orderNotPayment.php?record='.$record.'');
 }
 
-// delivering order
-if(isset($_GET['term']) && $_GET['term']=='short')
-{
-    $FSid=$_SESSION['FSid'];
-    $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-    $available=orderModel::checkAvailable( $FSid,$connection);
-        $availableFetch=mysqli_fetch_assoc($available);
-    $data1=array();
-    while($row=mysqli_fetch_assoc($F_post_id))
-    {
-        $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],3);
-        while($record=mysqli_fetch_assoc($getOrder_id))
-        {
-            $data1[]=$record;
-        }
-    }
-    $record=serialize($data1);
- 
-    header('Location:../views/orderDelivery.php?record='.$record.'&result='.$result.'&available='.$availableFetch['available'].'');
-}
-if(isset($_GET['term']) && $_GET['term']=='long')
-{
-    $FSid=$_SESSION['FSid'];
-    $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-    $available=orderModel::checkAvailable( $FSid,$connection);
-        $availableFetch=mysqli_fetch_assoc($available);
-    $data1=array();
 
-    while($row=mysqli_fetch_assoc($F_post_id))
-    {
-        $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],3);
-        while($record=mysqli_fetch_assoc($getOrder_id))
-        {
-            $data1[]=$record;
-        }
-    }
-    $record=serialize($data1);
- 
-    header('Location:../views/orderDeliveryLong.php?record='.$record.'&result='.$result.'&available='.$availableFetch['available'].'');
-}
 // order history page
-if(isset($_GET['id']) && $_GET['id']==4)
-{
+function longTermHistoryFood($connection){
     $FSid=$_SESSION['FSid'];
     $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-    $available=orderModel::checkAvailable( $FSid,$connection);
-        $availableFetch=mysqli_fetch_assoc($available);
     $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
@@ -103,17 +59,18 @@ if(isset($_GET['id']) && $_GET['id']==4)
         }
     }
     $record=serialize($data1);
- 
-    header('Location:../views/orderHistory.php?record='.$record.'&result='.$result.'&available='.$availableFetch['available'].'');
+    $data[0]=serialize($data1);
+    return $data;
 }
 
+// order confirm 
 if(isset($_GET['orderConfirmFS_id'])){
     $order_id=$_GET['orderConfirmFS_id'];
     date_default_timezone_set("Asia/Colombo");
      $deliveredTime=date("h:i:sa");
     $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
     if($result){
-       header('Location:../controller/orderConFood.php?id=4');
+       header('Location:../views/orderHistory.php');
     }
     {
        echo "Mysqli query failed";
@@ -146,46 +103,46 @@ if((isset($_GET['id']) && $_GET['id']==5) || isset($_POST['unavailable']))
     }
 
     if(isset($_POST['unavailable']))  // add unavailable date
-{
+    {
       // date validation
-    date_default_timezone_set("Asia/Colombo"); 
-    if(!isset($_POST['date']) || empty($_POST['date']))
-    {
-        $error="Date is not set ";
-    }
-    elseif(strtotime($_POST['date'])-strtotime(date("Y-m-d"))<1)
-    {
-        $error="invalid date"; // check that date is future 
-    }
-    $checkDate=orderModel::checkUnavailableDate(($_POST['date']),$connection);
-    if($checkDate && $checkDate->num_rows!=0)
-    {
-        $error="Date is already selected";
-    }
-
-    if(empty($error))
-    {
-        $getDate=strtotime(mysqli_real_escape_string($connection,$_POST['date']));
-        $dateFormat=date('Y-m-d',$getDate);
-        $FSid=$_SESSION['FSid'];
-        $available=orderModel::checkAvailable( $FSid,$connection);
-        $availableFetch=mysqli_fetch_assoc($available);
-        orderModel::unavailableDate($FSid,$dateFormat,$connection);
-        $result=orderModel::getUnavailableDate($FSid,$connection);
-        $date=array();
-        while($row=mysqli_fetch_assoc($result))
+        date_default_timezone_set("Asia/Colombo"); 
+        if(!isset($_POST['date']) || empty($_POST['date']))
         {
-            $date[]=$row;
+            $error="Date is not set ";
         }
-        $data=serialize($date);
-      header('Location:../views/orderSetting.php?date='.$data.'&available='.$availableFetch['available'].'');
+        elseif(strtotime($_POST['date'])-strtotime(date("Y-m-d"))<1)
+        {
+            $error="invalid date"; // check that date is future 
+        }
+        $checkDate=orderModel::checkUnavailableDate(($_POST['date']),$connection);
+        if($checkDate && $checkDate->num_rows!=0)
+        {
+            $error="Date is already selected";
+        }
 
+        if(empty($error))
+        {
+            $getDate=strtotime(mysqli_real_escape_string($connection,$_POST['date']));
+            $dateFormat=date('Y-m-d',$getDate);
+            $FSid=$_SESSION['FSid'];
+            $available=orderModel::checkAvailable( $FSid,$connection);
+            $availableFetch=mysqli_fetch_assoc($available);
+            orderModel::unavailableDate($FSid,$dateFormat,$connection);
+            $result=orderModel::getUnavailableDate($FSid,$connection);
+            $date=array();
+            while($row=mysqli_fetch_assoc($result))
+            {
+                $date[]=$row;
+            }
+            $data=serialize($date);
+        header('Location:../views/orderSetting.php?date='.$data.'&available='.$availableFetch['available'].'');
+
+        }
+        else{
+            $error=serialize($error);
+            header('Location:../views/orderSetting.php?date='.$data.'&error='.$error.'&available='.$availableFetch['available'].'');
+        }
     }
-    else{
-        $error=serialize($error);
-        header('Location:../views/orderSetting.php?date='.$data.'&error='.$error.'&available='.$availableFetch['available'].'');
-    }
-}
     
 }
 
@@ -251,28 +208,67 @@ if(isset($_GET['avail']))
     
     
 }
-
-function getLongTerm($connection)
-{
-
-   $FSid=$_SESSION['FSid'];
-   $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
-   $ids=array();
-   $data1=array();
+//short term page details
+function getShortTerm($connection){
+    $FSid=$_SESSION['FSid'];
+    $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+    $data1=array();
     while($row=mysqli_fetch_assoc($F_post_id))
     {
-        $getOrder_id=orderModel::getLongTermFood($connection,$row['F_post_id']);
+        $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],3);
         while($record=mysqli_fetch_assoc($getOrder_id))
         {
             $data1[]=$record;
         }
     }
-    
-   // print_r($ids);
-//    $data[0]=serialize($ids);
-   $data[0]=serialize($data1);
+    $data[0]=serialize($data1);
+    return $data;
+}
+
+// long term page details
+function getLongTerm($connection)
+{
+   $FSid=$_SESSION['FSid'];
+   $F_post_id=orderModel::getPostFoodSupplier($connection,$FSid);
+   $ids=array();
+   $result=array();
+   $date=array();
+    while($row=mysqli_fetch_assoc($F_post_id))
+    {
+        $result_set=orderModel::getLongTermFoodSupplier($connection,$row['F_post_id']);
+        while($record=mysqli_fetch_assoc($result_set))
+        {
+            $result[]=$record;
+        }
+        $getOrder_id=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],3);
+        while($record=mysqli_fetch_assoc($getOrder_id))
+        {
+            $ids[]=$record;
+        }
+        $getOrder_date=orderModel::getLongTermSupplier($connection,$row['F_post_id'],3);
+        while($record=mysqli_fetch_assoc($getOrder_date))
+        {
+            $date[]=$record;
+        }
+        
+
+    }
+   $data[0]=serialize($ids);
+   $data[1]=serialize($result);
+   $data[2]=serialize($date);
       return $data;
 }
 
+// check the food supplier is available
+if(isset($_POST['checkAvailable']))
+{
+    $FSid=$_SESSION['FSid'];
+    $available=orderModel::checkAvailable( $FSid,$connection);
+    $availableFetch=mysqli_fetch_assoc($available);
+    $data=array(
+        'available'=>$availableFetch['available'],
+     );
+      echo json_encode($data);
+}
 
 ?>

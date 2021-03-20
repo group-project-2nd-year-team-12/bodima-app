@@ -2,10 +2,13 @@
  require_once ('../config/database.php');
  require_once ('../models/orderModel.php');
  require_once ('../models/reg_user.php');
+ require_once ('../models/notificationModel.php');
     session_start ();
 ?>
 
 <?php
+
+// validate and save cart item to database
 if(isset($_POST['submit']))
 {
 $errors=array();
@@ -54,6 +57,21 @@ $errors=array();
          orderModel::food_item($product['item_name'],$product['item_quantity'],$order_id,$connection);
        }
      
+ //notification - F1
+         $detailsender=mysqli_fetch_assoc(notificationModel::find_levelAndId($connection,$email));
+         $FSid=mysqli_fetch_assoc(notificationModel::find_FSid_from_fpost($connection,$F_post_id));
+         $type_number=2;//new order arrived   
+         $from_level=$_SESSION['level'];
+         $from_id=$detailsender['id'];
+         $to_level='food_supplier';
+         $to_id=$FSid['FSid'];
+         $massageHeader='New order Arrived';
+         $massage='customer name : '.$first_name.' '.$last_name.'<br>order id : '.$order_id.'<p style="font-size:12px; color:black;">Accept the order before timeout!</p>';
+         $redirect_url='../views/orders.php';
+         notificationModel::insertnotification($connection,$type_number,$from_level,$from_id,$to_level,$to_id,$massageHeader,$massage,$redirect_url);
+ //*************** 
+
+
        if($_SESSION['term']=='longTerm')
        {
           $start=$_SESSION['startDate'];
@@ -112,9 +130,6 @@ function getPending($connection){
       $data[1]=serialize($data_rows);
       $data[2]=serialize($time_out);
       return $data;
-   //    if(empty($time_out)) {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'');}
-   //   else  {header('Location:../views/paymentFood_pending.php?ids='.$data1.'&data_rows='.$data2.'&timeOut='.$data3.'&timeOutId='.$id.'');}
-   
 }
 
 // Accepted order deatils
@@ -142,8 +157,8 @@ if(isset($_GET['id']) && $_GET['id']==2)
    
 }
 // Receiving order details
-if(isset($_GET['id']) && $_GET['id']==3)
-{
+
+function orderReceive($connection){
    $email=$_SESSION['email'];
    $ids_set=orderModel::getOrderById($connection,$email,3);
    $order_pending=orderModel::getOrderAll($connection,$email,3);
@@ -164,14 +179,13 @@ if(isset($_GET['id']) && $_GET['id']==3)
          }
          
       }
-      $data1=serialize($ids);
-      $data2=serialize($data_rows);
-      header('Location:../views/paymentFood_receving.php?ids='.$data1.'&data_rows='.$data2.'');
-   
+      $data[0]=serialize($ids);
+      $data[1]=serialize($data_rows);
+      return $data;
 }
-// order history details 
-if(isset($_GET['id']) && $_GET['id']==4)
-{
+
+// order history page  
+function orderHistory($connection){
    $email=$_SESSION['email'];
    $ids_set=orderModel::getOrderById($connection,$email,4);
    $order_pending=orderModel::getOrderAll($connection,$email,4);
@@ -188,15 +202,16 @@ if(isset($_GET['id']) && $_GET['id']==4)
           $data_rows[$i]=$record;
           $i++;
       }
-      $data1=serialize($ids);
-      $data2=serialize($data_rows);
-      if(isset($_GET['success']))
-      {
-         header('Location:../views/paymentFood_history.php?success&order_id='.$_GET['order_id'].'&ids='.$data1.'&data_rows='.$data2.'');
-      }else{
-         header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
-      }
-     
+      // if(isset($_GET['success']))
+      // {
+      //    header('Location:../views/paymentFood_history.php?success&order_id='.$_GET['order_id'].'&ids='.$data1.'&data_rows='.$data2.'');
+      // }else{
+      //    header('Location:../views/paymentFood_history.php?ids='.$data1.'&data_rows='.$data2.'');
+      // }
+      $data=array();
+      $data[0]=serialize($ids);
+      $data[1]=serialize($data_rows);
+      return $data;
     
 }
 
@@ -248,7 +263,7 @@ if(isset($_GET['orderConfirm_id'])){
    date_default_timezone_set("Asia/Colombo");
     $deliveredTime=date("h:i:sa");
    $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
-   header('Location:orderCon.php?success&order_id='.$order_id.'&id=4');
+   header('Location:../views/paymentFood_history.php?success&order_id='.$order_id.'');
    
 }
 

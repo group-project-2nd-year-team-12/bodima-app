@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/orderModel.php');
-        session_start(); 
+        require_once ('../controller/orderConFood.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,9 @@
     <title>Document</title>
 </head>
 <body onload="checked('order');">
+
+
+<!-- order type select function -->
 <script>
     function orderType(id)
 {
@@ -55,9 +59,10 @@
         breakfast.style.display='none';
     }
     order.style.display='block';
-  
 }
 </script>
+
+<!-- header -->
 <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.svg" alt="">
@@ -88,10 +93,14 @@
                  <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
             </div>
-        </div>
-    <div class="container">
+</div>
+
+<!-- container page -->
+<div class="container">
         <div class="content">
          <?php include 'orderSide.php' ?>
+
+         <!-- sub nav order type -->
             <div class="subNav">
                 <ul>
                     <div>
@@ -112,39 +121,37 @@
                     </div>
                 </ul>
             </div>
+
          <?php 
-         $records=unserialize($_GET['record']);
+         $dataSet=allOrders($connection);
+         $records=unserialize($dataSet[0]);
          $new=array_column($records,'order_type');
          $term=array_column($records,'term');
+         $i=0;
          ?>
-        <div id="breakfast-box" class="accept ">
+
+<!-- short term breakfast -->
+        <div id="breakfast-box" class="accept">
             <div class="title">
                 <div class="order-title">
                     <h3>Orders </h3>
-                    <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php
-                $i=0;
-                $y=1;
                 if(in_array('breakfast',$new) && in_array('shortTerm',$term)){
-
                     foreach($records as $record)
-                    { 
-                    
-                   
-                        if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){?>
-                     <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
-                     <div class="box order" >
-                    
-                            <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                    {
+                       if($record['order_type']=='breakfast' && $record['term']=='shortTerm'){?>
+                        <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
+                        <div class="box order" >
+                            <div class="resend" onclick="order('detail<?php echo $i ?>','btnSet<?php echo $i ?>')">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
-                                   <div id="<?php echo $y; ?>" class="button-pay">
+                                   <div id="btnSet<?php echo $i ?>" class="button-pay">
                                      <button class="btn-rate" name="accept" type="submit">Accept</button>
                                      <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                                    </div>
                             </div>
-                            <div id="<?php echo $i ?>" class="details-box">
+                            <div id="detail<?php echo $i ?>" class="details-box">
                             <div style="width: 300px;"><img style="width: 250px;margin:20px 30px" src="../resource/img/newOrder.svg" alt=""></div>
                                 <div class="button-pay">
                                     <h2 class="order_item order-head">ORDER INFO</h2>
@@ -187,7 +194,7 @@
                          </div>
                      </form>
                 <?php    } 
-                 $i=$i+2;$y=$y+2;   }
+                 $i++;}
                 }   else
                 {?>
                     <div class="empty">
@@ -197,30 +204,29 @@
                  ?>                
             </div>
         </div>
+
+<!-- short term lunch box  -->
         <div id="lunch-box" class="accept none">
             <div class="title">
             <div class="order-title">
                     <h3>Orders </h3>
-                    <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 
-                 $i=0;
-                 $y=1;
                 if(in_array('lunch',$new) && in_array('shortTerm',$term)){
                     foreach($records as $record)
                     {
-                        if($record['order_type']=='lunch'){?>
+                        if($record['order_type']=='lunch' && $record['term']=='shortTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order">
-                            <div class="resend"  onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                            <div class="resend"  onclick="order('detail<?php echo $i ?>','btnSet<?php echo $i ?>')">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                    <div id="btnSet<?php echo $i ?>" class="button-pay">
                                      <button class="btn-rate" name="accept" type="submit">Accept</button>
                                      <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                                    </div>
                             </div>
-                            <div id="<?php echo $i ?>" class="details-box">
+                            <div id="detail<?php echo $i ?>" class="details-box">
                             <div style="width: 300px;"><img style="width: 250px;margin:20px 30px" src="../resource/img/newOrder.svg" alt=""></div>
                                     <div class="button-pay">
                                     <h2 class="order_item order-head">ORDER INFO</h2>
@@ -263,7 +269,7 @@
                          </div>
                      </form>
                 <?php    }
-                   $i=$i+2;$y=$i+2;  }
+                   $i++;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -273,30 +279,28 @@
                  ?>                      
             </div>
         </div>
+<!-- short term dinner -->
         <div id="dinner-box" class="accept none">
             <div class="title">
             <div class="order-title">
                     <h3>Orders </h3>
-                    <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 
-                 $i=0;
-                 $y=1;
                  if(in_array('dinner',$new) && in_array('shortTerm',$term)){
                     foreach($records as $record)
                     {
-                        if($record['order_type']=='dinner'){?>
+                        if($record['order_type']=='dinner' && $record['term']=='shortTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order" >
-                            <div class="resend" onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                            <div class="resend" onclick="order('detail<?php echo $i ?>','btnSet<?php echo $i?>')">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                    <div id="btnSet<?php echo $i ?>" class="button-pay">
                                      <button class="btn-rate" name="accept" type="submit">Accept</button>
                                      <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                                    </div>
                             </div>
-                            <div id="<?php echo $i ?>" class="details-box">
+                            <div id="detail<?php echo $i ?>" class="details-box">
                             <div style="width: 300px;"><img style="width: 250px;margin:20px 30px" src="../resource/img/newOrder.svg" alt=""></div>
                                     <div class="button-pay">
                                     <h2 class="order_item order-head">ORDER INFO</h2>
@@ -339,7 +343,7 @@
                          </div>
                      </form>
                 <?php    }
-                   $i=$i+2;$y=$i+2;  }
+                   $i++;  }
                 }   else
                 {?>
                     <div class="empty">
@@ -350,6 +354,8 @@
                              
             </div>
         </div>
+        
+<!-- Long term food  -->
         <div id="longTerm-box" class="accept none">
             <div class="title">
             <div class="order-title">
@@ -357,23 +363,21 @@
                     <!-- <div><h5>1</h5></div> -->
                 </div>
                 <?php 
-                 $i=0;
-                 $y=1;
                  if(in_array('longTerm',$term)){
                     foreach($records as $record)
                     {
                         if($record['term']=='longTerm'){?>
                      <form action="../controller/orderAcptCon.php" onsubmit="" method="post">
                      <div class="box order">
-                            <div class="resend"  onclick="order('<?php echo $i ?>','<?php echo $y ?>')">
+                            <div class="resend"  onclick="order('detail<?php echo $i ?>','btnSet<?php echo $i ?>')">
                                     <div class="right"><i class="fas fa-sort-amount-down-alt fa-2x"></i></div>
                                     <div class="letter"><h4>Order Id:<?php echo $record['order_id']; ?> </h4></div>
-                                    <div id="<?php echo $y; ?>" class="button-pay">
+                                    <div id="btnSet<?php echo $i ?>" class="button-pay">
                                      <button class="btn-rate" name="accept" type="submit">Accept</button>
                                      <button class="cancel-rate" type="submit" name="remove" onclick="return confirm('Are you sure cancel this order ?')" >cancel</button>
                                    </div>
                             </div>
-                            <div id="<?php echo $i ?>" class="details-box">
+                            <div id="detail<?php echo $i ?>" class="details-box">
                             <div style="width: 300px;"><img style="width: 250px;margin:20px 30px" src="../resource/img/newOrder.svg" alt=""></div>
                                     <div class="button-pay">
                                     <h2 class="order_item order-head">ORDER INFO</h2>
@@ -416,7 +420,7 @@
                          </div>
                      </form>
                 <?php    }
-                   $i=$i+2;$y=$i+2;  }
+                   $i++;  }
                 }   else
                 {?>
                     <div class="empty">
