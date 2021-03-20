@@ -46,10 +46,12 @@
     
         $monthlist=serialize($output); 
 
-
+        $cpparr=pay_rent_modelN::get_costPerPerson($connection,$Bid);
+        $cppval=mysqli_fetch_assoc($cpparr);
+        $cppv=serialize($cppval);
  
 // ***********************************************************************************************
-header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist);
+header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist.'&cppv='.$cppv);
   
     }
 
