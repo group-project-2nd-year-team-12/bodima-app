@@ -6,18 +6,18 @@
                     <h5 class="orderM">State : <span id="availSpan">Available</span></h5>
                   </div>
                   <li onclick="window.location='../index.php'"><i style="width: 30px;" class="fas fa-external-link-alt"></i> Home page</li>
-                  <li id="order" onclick="window.location='../controller/orderConFood.php?id=1'"><i style="width: 30px;" class="fas fa-sort-amount-down-alt"></i> New Orders <div id="noti-order" class="noti-order"><h5>1</h5></div></li>
+                  <li id="order" onclick="window.location='orders.php'"><i style="width: 30px;" class="fas fa-sort-amount-down-alt"></i> New Orders <div id="noti-order" class="noti-order"><h5>1</h5></div></li>
                   <li id="card" onclick="window.location='../controller/orderConFood.php?id=2'"><i style="width: 30px;"  class="far fa-credit-card"></i> Card Payment <div id="noti-accpet" class="noti-order"><h5>1</h5></div></li>
-                  <li id="deliver" onclick="window.location='../controller/orderConFood.php?term=short'"><i style="width: 30px;" class="fas fa-truck"></i> Delivery List <div id="noti-delivery" class="noti-order"><h5>1</h5></div></li>
-                  <li id="history" onclick="window.location='../controller/orderConFood.php?id=4'"><i style="width: 30px;" class="fas fa-history"></i> Deliverd History</li>
+                  <li id="deliver" onclick="window.location='orderDelivery.php'"><i style="width: 30px;" class="fas fa-truck"></i> Delivery List <div id="noti-delivery" class="noti-order"><h5>1</h5></div></li>
+                  <li id="history" onclick="window.location='orderHistory.php'"><i style="width: 30px;" class="fas fa-history"></i> Deliverd History</li>
                   <li id="setting" onclick="window.location='../controller/orderConFood.php?id=5'" ><i style="width: 30px;" class="fas fa-cog"></i> Settings</li>
               </ul>
           </div> 
 
 
-          <!-- food supplier side count -->
-          <script src="../resource/js/jquery.js"></script>
-          <script>
+<!-- food supplier side count -->
+<script src="../resource/js/jquery.js"></script>
+<script>
     $(document).ready(function(){
         function newOrder()
     {
@@ -29,6 +29,7 @@
             dataType:"json",
             success:function(data)
 			{
+                console.log(data);
                 if(data.breakfast+data.lunch+data.dinner+data.longTerm!=0)
                 {   $('#noti-order').css("display","block");
                     $('#noti-order h5').html(data.breakfast+data.lunch+data.dinner+data.longTerm);
@@ -112,6 +113,7 @@
                     $('#noti-delivery').css("display","none");
                 }
     
+                // short term breakfast delivery list count
                 if(data.delBCount!=0)
                 {
                   $('#noti-delBreakfast').css("display","block");
@@ -119,6 +121,7 @@
                 }else{
                     $('#noti-delBreakfast').css("display","none");
                 }
+                // short term lunch delivery list count
                 if(data.delLCount!=0)
                 {
                   $('#noti-delLunch').css("display","block");
@@ -126,6 +129,7 @@
                 }else{
                     $('#noti-delLunch').css("display","none");
                 }
+                // short term dinner delivery list count
                 if(data.delDCount!=0)
                 {
                   $('#noti-delDinner').css("display","block");
@@ -133,6 +137,32 @@
                 }else{
                     $('#noti-delDinner').css("display","none");
                 }
+
+                // long term breakfast delivery list count
+                if(data.delLTBcount!=0)
+                {
+                  $('#noti-delBreakfastLong').css("display","block");
+                    $('#noti-delBreakfastLong h5').html(data.delLTBcount);
+                }else{
+                    $('#noti-delBreakfastLong').css("display","none");
+                }
+                // long term lunch delivery list count
+                if(data.delLTLcount!=0)
+                {
+                  $('#noti-delLunchLong').css("display","block");
+                    $('#noti-delLunchLong h5').html(data.delLTLcount);
+                }else{
+                    $('#noti-delLunchLong').css("display","none");
+                }
+                // long term dinner delivery list count
+                if(data.delLTDcount!=0)
+                {
+                  $('#noti-delDinnerLong').css("display","block");
+                    $('#noti-delDinnerLong h5').html(data.delLTDcount);
+                }else{
+                    $('#noti-delDinnerLong').css("display","none");
+                }
+
                 if(data.delLTCount!=0)
                 {
                   $('#noti-delLongTerm').css("display","block");
@@ -143,7 +173,6 @@
 		
 			}
         })
-        // console.log('gdhdshchbcsk');
     }
     newOrder();
     setInterval(function(){ 
@@ -151,3 +180,33 @@
 	}, 1000);
     })
 </script>
+
+<!-- check available function -->
+<script>
+    $(document).ready(function () {
+        function available(){
+            var availWord=document.getElementById('availSpan');
+            $.ajax({
+            type: "post",
+            url: "../controller/orderConFood.php",
+            data:{checkAvailable:'check'},// send to controller
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                if(data.available=="0")
+                {
+                    availWord.style.color='#ffca0a';
+                    availWord.innerHTML='Unavailable';
+                }
+                else if(data.available=="1")
+                {
+                    availWord.style.color='#40c057';
+                    availWord.innerHTML='Available';
+                }
+            }
+        });
+    }
+        available();
+    });
+</script>
+

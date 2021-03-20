@@ -491,7 +491,7 @@ if(isset($_GET['Pid']))
     <img src="https://img.icons8.com/ios-filled/70/4a90e2/happy-eyes.png"/>
         <div class="accHeader">
             <h1>Active Long Term Food delivery Service </h1>
-            <h3 style="margin-top: 15px;margin:0 10px">After activating this service you can order food automatically within a certain number of day.</h3>
+            <h4 style="margin-top: 15px;margin:0 10px">After activating this service you can order food automatically within a certain number of day.</h4>
             <!-- <h4>Notice : Only cash on hand is valid for this service and The maximum term of an order is one month </h4>  -->
             <!-- <h5>No</h5> -->
         </div>

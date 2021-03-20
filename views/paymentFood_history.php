@@ -1,6 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
-        session_start(); 
+        require_once ('../controller/orderCon.php');
+        // session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,8 +81,9 @@
                 </ul>
             </div>        
        <?php
-            $ids=unserialize($_GET['ids']);
-            $data_rows=unserialize($_GET['data_rows']);
+            $data_set=orderHistory($connection);
+            $ids=unserialize($data_set[0]);
+            $data_rows=unserialize($data_set[1]);
             $new=array_column($data_rows,'term');
             // print_r($new);
        ?>
@@ -247,7 +249,7 @@
             <textarea name="" id="" cols="5" rows="5" placeholder="Add commet"></textarea>
             <div>
                 <button class="btn-rate" type="submit" >Submit</button>
-                <button onclick="window.location='../controller/orderCon.php?id=4'" class="btn-rate cancel-rate" type="button" >Cancel</button>
+                <button onclick="window.location='paymentFood_history.php'" class="btn-rate cancel-rate" type="button" >Cancel</button>
             </div>
         </form>
     </div>

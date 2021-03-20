@@ -19,6 +19,9 @@ if(isset($_POST['view'])){
     $delLCount=0;
     $delDCount=0;
     $delLTCount=0;
+    $delLTBcount=0;
+    $delLTLcount=0;
+    $delLTDcount=0;
     while($row=mysqli_fetch_assoc($F_post_id))
     {
         $getOrderIdNew=orderModel::getOrderIDFoodSupplier($connection,$row['F_post_id'],0);
@@ -44,6 +47,9 @@ if(isset($_POST['view'])){
             if($record['order_type']=='lunch' && $record['term']=='shortTerm'){$delLCount++;}
             if($record['order_type']=='dinner'&& $record['term']=='shortTerm'){$delDCount++;}
             if($record['order_type']=='longTerm' && $record['term']=='shortTerm'){$delLTCount++;}
+            if($record['order_type']=='breakfast' && $record['term']=='longTerm'){$delLTBcount++;}
+            if($record['order_type']=='lunch' && $record['term']=='longTerm'){$delLTLcount++;}
+            if($record['order_type']=='dinner' && $record['term']=='longTerm'){$delLTDcount++;}
         }
     }
 
@@ -63,8 +69,10 @@ if(isset($_POST['view'])){
         'delBCount'=>$delBCount,
         'delLCount'=>$delLCount,
         'delDCount'=>$delDCount,
-        'delLTCount'=>$delLTCount
-
+        'delLTCount'=>$delLTCount,
+        'delLTBcount'=>$delLTBcount,
+        'delLTLcount'=>$delLTLcount,
+        'delLTDcount'=>$delLTDcount
     );
     echo json_encode($data);
 }
