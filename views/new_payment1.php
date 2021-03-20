@@ -39,12 +39,12 @@
         <?php 
         $BOdetails=unserialize($_GET['BOd']);
         $months=unserialize($_GET['months']);
-        print_r($BOdetails);
-        print_r($months);
-        echo '<br><br><br>';
+        $cost_per_person=unserialize($_GET['cppv']);
+       print_r($BOdetails);
+
         ?>
 
-          <h1>New Payment<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>BACK</botton></a></h1>
+          <h1>New Payment<a href="../controller/payment_history_controlN.php?id=1"><button class="paid"><i class="fas fa-chevron-left"></i>BACK</botton></a></h1>
               <div class="mid_I">
                   
                 
@@ -77,11 +77,39 @@
                 </div>
                </div>
                <div class="con"><div class="th_p">Amount</div><div class="td_p">: 
-               <input type="text" id="lname" name="lname" value="8000" disabled>
-               </div></div>
-          
+               <input type="text" id="lname" name="lname" value="<?php echo $cost_per_person['cost_per_person']?>" disabled>
+               </div>
             </div>
+<!-- sandbox -->
+            <form action="https://sandbox.payhere.lk/pay/checkout" method="post">
+           
+            <input type="hidden" name="merchant_id" value="1215562">    
+            <input type="hidden" name="return_url" value='http://localhost:1234/bodima-app/controller/payhereOnlineSuccessIshan.php?success'>
+            <input type="hidden" name="cancel_url" value="http://localhost:1234/bodima-app/controller/payhereOnlineCancelIshanphp?request_id=<?php echo $request_id;?>">
+            <input type="hidden" name="notify_url" value="http://localhost:1234/bodima-app/config/paycon.php"> 
+            
+            <!--reciever details  -->
+            <input type="hidden" name="order_id" value="<?php echo  $BOdetails['BOid'];?>">
+            <input type="hidden" name="baddress" value="colombo">
+            <input type="hidden" name="items" value="colombo"><br>
+            <input type="hidden" name="currency" value="LKR">
+            <input type="hidden" name="amount" value="<?php echo $cost_per_person['cost_per_person'];?>">  
+            <!--payer details(who is doing payment)  -->
+            <input type="hidden" name="first_name" value="<?php echo $_SESSION['first_name'];?>">
+            <input type="hidden" name="last_name" value="<?php echo $_SESSION['last_name'];?>"><br>
+            <input type="hidden" name="email" value="<?php echo $_SESSION['email'];?>">
+            <input type="hidden" name="address" value="No.1, Galle Road">
+            <input type="hidden" name="city" value="Colombo">
+            <input type="hidden" name="country" value="Sri Lanka"><br><br>  
+            <div class="btnp">
+                 <button type="submit" value="Pay & Reserve" name="value">Pay NOW</button>
+            </div>
+           </form>
 
+              
+            </div>
+            <br><br>
+            <hr>
 
               </div>
               <div class="mid_J">
@@ -90,16 +118,15 @@
                     <div class="Next_payment">
                         <h3>New Payment</h3>
                         <hr/>
-                        <div class="new_payblock">
-                            <h3>january</h3>
-                            <button>Pay</button>
-                        </div>
 
+                        <?php foreach($months as $month){?>
                         <div class="new_payblock">
-                            <h3>december</h3>
+                            <h3><?php echo date('F', $month['time'])?></h3>
                             <button>Pay</button>
                         </div>
-                        
+                        <?php }?>
+
+                       
                         <br/>  
                         <hr/>                   
                     </div>
