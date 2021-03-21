@@ -1,6 +1,10 @@
 <?php
-session_start();
+require_once ('../config/database.php');
+require_once ('../models/post_boarding.php');
+
+session_start(); 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="../resource/css/new_home.css"> 
 	<link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/extra.css">
+    <link rel="stylesheet" href="../resource/css/popboarding.css">
 	<link href="../resource/css/boarding.css" rel="stylesheet">
 	<!-- <script src="jquery-3.5.1.min.js"></script> -->
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -45,7 +50,7 @@ session_start();
 
 <?php require "header1.php"?>
 
-<div class="con-1">
+<div class="con-1" id="blur">
 <div class="con-2">
 		<?php
         if(isset($_GET['param']))
@@ -278,9 +283,23 @@ session_start();
     </div>
     <hr/>   
     <div class="submitdiv">
-                <input type="submit" class="save" name="submit" id="submit" value="post advertisement" >
+                <input type="submit" class="save" name="submit"  id="submit" value="post advertisement" >
+                
+                <!-- <button id="submit" type="button" class="save" onclick="toggle()" >post advertisement</button> -->
     </div>
-				
+
+    
+                    <script type="text/javascript">
+
+                        function toggle(){
+                            //var blur = document.getElementById('blur');
+                            //blur.classList.toggle('active')
+                            var popup = document.getElementById('popup');
+                            popup.classList.toggle('nima')
+                        }
+
+                    </script>
+
 
 					<script>
 						$('.group').on('input', '.prc', function() {
@@ -314,14 +333,121 @@ session_start();
 				<script src="../resource/js/jquery-3.5.1.min.js"></script>
 				<script src="../resource/js/custom.js"></script>
 				<script src="../resource/js/boarding.js"></script>
+
+                <!-- <script type="text/javascript">
+
+                    function Redirect() {
+						//alert("ghjdssdjhs");
+						$.ajax({
+								url:"../controller/postBoardingCon.php",
+								method:"POST",
+								data:{deletePost:'nima'},
+								dataType:"json",
+								success:function(data){
+									console.log(data);
+									//window.location = "../views/profilepage.php";
+								}
+						});	
+                        
+                       
+                    }
+                    
+                </script> -->
 				
 
 
 			
 				
 			</form>
+
+
+
+<?php  if (isset($_GET['pop'])){?>
+        <div id="popup">
+        
+		<?php
+		$result_set=boarding::getPostpop($connection);
+        $result_post=mysqli_fetch_assoc($result_set);
+        $postid=$result_post['B_post_id'];
+		$image_p=$result_post['image'];
+		$city_p=$result_post['city'];
+		$lifespan_p=$result_post['lifespan'];
+		$post_amount_p=$result_post['post_amount'];
+		$title_p=$result_post['title'];
+		?>
+		
+		<img runat = 'server' src = '<?php echo $result_post['image']?>' height="80" width="80" />
+		
+		<?php echo $city_p ?>
+		<?php echo $title_p ?>
+		
+       <br>
+        <p> Amount: <?php echo $post_amount_p ?></p>
+        <p> valid time period of the post: <?php echo $lifespan_p ?></p>
+		
+        <form action="https://sandbox.payhere.lk/pay/checkout" method="post">
+
+            <!-- <p>Address</p>
+            <input type="text" name="address" placeholder="Enter Address Name">
+
+            <p>Location link</p>
+            <input type="text" name="link" placeholder="Enter Location Name">
+               
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password"> -->
+
+            <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
+
+            <input type="hidden" name="return_url" value='http://localhost/bodima-app/controller/postBoardingCon.php?success'>
+            <input type="hidden" name="cancel_url" value="http://localhost/bodima-app/controller/payhereOnlineCancelIshan.php?request_id=<?php echo $request_id;?>">
+            <input type="hidden" name="notify_url" value="http://localhost/bodima-app/config/paycon.php"> 
+
+
+
+            <!-- <br><p>Boarding Details</p> -->
+            <?php
+            $B_post_id=$postid;
+            $house_num=1;
+            $lane='aaa';
+            $city='aa';
+            $first_name='hgg';
+            $last_name='vbvv';
+            $st_email='fgf@gmail.com';
+            ?>
+            <input type="hidden" name="order_id" value="<?php echo $B_post_id;?>">
+            <!-- <p>Boarding address:</p> -->
+            <input type="hidden" name="baddress" value="<?php echo $house_num.", ". $lane.", ".$city;?>">
+            <!-- <p>Boarding Owner Name :</p> -->
+            <input type="hidden" name="items" value="<?php echo $city." Boarding KeyMoney";?>"><br>
+            <input type="hidden" name="currency" value="LKR">
+            <!-- <p>KeyMoney Price(LKR):</p> -->
+            <input type="hidden" name="amount" value="<?php echo $post_amount_p;?>">  
+                <br><br>
+            <!-- <p>My Details</p>
+            <p>First Name:</p> -->
+            <input type="hidden" name="first_name" value="<?php echo $first_name;?>">
+            <!-- <p>Last Name:</p> -->
+            <input type="hidden" name="last_name" value="<?php echo $last_name;?>"><br>
+            <!-- <p>Email:</p> -->
+            <input type="hidden" name="email" value="<?php echo $st_email;?>">
+         
+            <input type="hidden" name="address" value="No.1, Galle Road">
+            <input type="hidden" name="city" value="Colombo">
+            <input type="hidden" name="country" value="Sri Lanka"><br><br>
+            <!-- <input type = "button" id="submit"  value = "Close" onclick = "Redirect();" /> -->
+			<input type = "button" id="submit"  value = "Close" onclick = "window.location = '../controller/postBoardingCon.php?deletePost'"/>
+            
+            <input type="submit" value="Pay advertisement" name="value"> 
+   
+
+        </form>
+    </div>
+		
+    
+    <?php }?>
 </div>
 </div>
     
 </body>
 </html>
+
