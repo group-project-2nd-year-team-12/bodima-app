@@ -52,9 +52,9 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="#">New Requests</a></li>
-            <li><a href="#">New Boarder added</a></li>
-            <li><a href="#">Add as New Boarder</a></li>
+            <li><a href="myBoardingReqIshan.php">New Requests</a></li>
+            <li><a href="newBoarderAddIshan.php">New Boarder added</a></li>
+            <li><a href="addAsBoarderIshanBO.php">Add as New Boarder</a></li>
           </ul>
         </li>
         <li><a href="../controller/boarder_list_controlN.php?boarderlist=1"><i class="fas fa-users"></i>My Boarders</a></li>
@@ -99,10 +99,10 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="#">Pending Requests</a></li>
-            <li><a href="#">Accepted Requests</a></li>
-            <li><a href="#">Pay Advance and rent</a></li>
-            <li><a href="#">Rented</a></li>
+            <li><a href="pendingReqIshan.php">Pending Requests</a></li>
+            <li><a href="acceptedReqIshan.php">Accepted Requests</a></li>
+            <li><a href="rentedPayIshan.php">Pay Advance and rent</a></li>
+            <li><a href="rentedPayNotIshan.php">Rented</a></li>
           </ul>
         </li>
         <li><a href="#"><i class="fas fa-plus-circle"></i>Boarding Request</a></li>
