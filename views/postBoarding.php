@@ -14,7 +14,7 @@ session_start();
     <link rel="stylesheet" href="../resource/css/new_home.css"> 
 	<link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/extra.css">
-    <link rel="stylesheet" href="s1.css">
+    <link rel="stylesheet" href="../resource/css/popboarding.css">
 	<link href="../resource/css/boarding.css" rel="stylesheet">
 	<!-- <script src="jquery-3.5.1.min.js"></script> -->
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>

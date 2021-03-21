@@ -209,6 +209,26 @@ body {
     /* js work renting and per person month fee */
 }
 
+.con-1 input[type=button] {
+    background-color: #101e5a;
+    outline: none;
+    border: none;
+    padding: 10px 60px 10px 60px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 20px;
+    margin-left: auto;
+    text-transform: uppercase;
+    box-shadow: 0 0 3px 0.1px rgba(81, 84, 88, 0.5);
+    border-radius: 5px;
+}
+
+.con-1 input:hover[type=button] {
+    background-color: #476aa0;
+}
+
 .con-1 input[type=submit] {
     background-color: #101e5a;
     outline: none;

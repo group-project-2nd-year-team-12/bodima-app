@@ -203,11 +203,17 @@ if (isset($_GET['success'])) {
     echo "gggggg";
 	//print_r($_SESSION);
 	//$student_email=$_SESSION['email'];
-	
+    $result_P=boarding::delete_post($connection);
+    echo $result;
 	  $B_post_id=$_GET['order_id'];
       $id=$B_post_id;
       echo $B_post_id;
+
+  
+
       boarding::updatePostpay($id,$connection);
+
+      //boarding::delete_post($connection);
 
       header('Location:../views/myads_boardingowner.php');
       
