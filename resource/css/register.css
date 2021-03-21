@@ -4,9 +4,27 @@
     padding: 0;
     overflow: hidden;
 }
+.logo{
+    position: fixed;
+    width: 120px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 255, 0.041);
+    text-align: center;
+}
+.logo img{
+    width: 100px;
+    height: 55px;
+}
+.background-img1 img{
+    width: 515px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+}
 body{
     width: 100%;
-    /* height: 100vh; */
+    height: 100vh;
 }
 .body5{
     background-image: url(../img/wel.png);
@@ -15,38 +33,18 @@ body{
     background-size:  400px 120%;
 }
 
-.body1 {
-    background-image: url(../img/boarder.jpg);
-    background-size: 500px;
-    background-repeat: no-repeat;
-    background-position: 50px 100%;
-}
-.body0 {
-    background-image: url(../img/new/register.png);
-    background-size: 500px;
-    background-repeat: no-repeat;
-    background-position: 50px 100%;
-}
-.body2 {
-    background-image: url(../img/undraw_posting_photo_v65l\ \(1\).svg);
-    background-size: 500px;
-    background-repeat: no-repeat;
-    background-position: 50px 100%;
-}
-.body3 {
-    background-image: url(../img/undraw_on_the_way_ldaq.svg);
-    background-size: 500px;
-    background-repeat: no-repeat;
-    background-position: 50px 100%;
-}
 .body4 {
     background-image: url(../img/undraw_authentication_fsn5.svg);
     background-size: 500px;
     background-repeat: no-repeat;
     background-position: 50px 100%;
 }
-.error b {
-    color: red;
+.error{
+    color: rgb(255, 93, 93);
+    /* color: rgb(255, 224, 224); */
+
+    float: right;
+    font-size: 14px;
 }
 
 .container{
@@ -61,7 +59,7 @@ body{
 
 .register {
     width: 370px;
-    margin:60px auto 60px auto;
+    margin:40px auto 40px auto;
     box-sizing: border-box;
     padding: 20px;
     box-shadow: 5px 5px 20px #6164a0;
@@ -119,11 +117,10 @@ input[type="email"],input[type="password"] {
     cursor: pointer;
 }
 
-/* .register input[type="submit"]:hover {
+.register input[type="submit"]:hover {
     cursor: pointer;
-    background: #850aae;
-    color: #ecb3ff;
-} */
+    background: #1d2d79;
+}
  
 /* next-page css */
 
@@ -191,8 +188,12 @@ input[type="radio"]:checked+label::before {
 .agreement textarea {
     width: 100%;
     resize: none;
-    margin-top: 30px;
-    background-color: rgba(255, 167, 255, 0.4);
+    margin-top: 10px;
+    background-color: #acbdd3;
+    border-radius: 3px;
+    border: none;
+    /* outline:1px solid #5d80b6; */
+    overflow-y: scroll;
 }
 
 
@@ -209,7 +210,7 @@ input[type="radio"]:checked+label::before {
     color:  #5d80b6;
 }
 .para p{
-    padding: 20px 60px;
+    padding: 10px 60px;
     color:#101e5a;
     font-weight: bolder;
 }

@@ -8,8 +8,9 @@
 	<title>Registration Form</title>
 	
 </head>
-<body class="body0">
-
+<body>
+	<div class="background-img1"><img src="../resource/img/new/register.png" alt=""></div>
+	<div class="logo"><img src="../resource/img/logo1.png" alt=""></div>
 	<div class="container">
 	<div class="para">
 			<h1><b>U</b>ser <b>R</b>egistration</h1>
@@ -17,29 +18,18 @@
 			<p style="text-align: center">Are you <span>finding a boarding place? </span>this is the ideal platform for you. find the closest place you want.<br/>Do you want to <span>advertise your boarding or food delivary service?</span> this is the ideal platform for you. Your customers are waiting for you! </p>
 	</div>
 	<div class="register">
-	<!--<img src="img/new1.png" class="registerProfile">-->
-	   <?php
-	   if(isset($_GET['param']))
-	   {
-		   $errors=$_GET['param'];
-		   foreach($errors as $error)
-		   {
-			   echo '<p class="error"><b>'.$error.'</b></p>';
-		   }
-	   }
-	 
-	 ?>
-		   <form action="../controller/registerCon.php" method="post" id="registerForm">
-		   	<p>First Name</p>
+
+		<form method="post" id="registerForm">
+		   	<p>First Name <span class="error" id="firstError"></span></p>
 		   	<input type="text" id="first_name" name="first_name" placeholder="Enter First Name">
 
-		   	<p>Last Name</p>
+		   	<p>Last Name <span class="error" id="lastError"></span></p>
 		   	<input type="text" id="last_name" name="last_name" placeholder="Enter Last Name">
 
-            <p>NIC</p>
+            <p>NIC <span class="error" id="nicError"></span></p>
 		   	<input type="text" id="nic" name="nic" placeholder="Enter NIC">
 
-		   	<p>Email Address</p>
+		   	<p>Email Address <span class="error" id="emailError"></span></p>
 			   <input type="email" id="email" name="email" placeholder="Enter Email Address">
 
 			<p>Register as</p>
@@ -56,7 +46,7 @@
 					<label for="3">food supplier</label>
 				</div>
 		   	<input type="submit"  name="submit" value="Next">
-		   </form>
+		</form>
 	</div>
 </div>
 </body>
