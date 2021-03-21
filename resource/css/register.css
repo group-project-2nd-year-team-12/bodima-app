@@ -15,6 +15,16 @@
     width: 100px;
     height: 55px;
 }
+.background-img img{
+    top: 0;
+    width:100vw;
+    position: fixed;
+    z-index: -100;
+}
+
+.para-img img{
+    width: 100px;
+}
 .background-img1 img{
     width: 515px;
     position: fixed;
@@ -41,8 +51,6 @@ body{
 }
 .error{
     color: rgb(255, 93, 93);
-    /* color: rgb(255, 224, 224); */
-
     float: right;
     font-size: 14px;
 }
@@ -268,19 +276,12 @@ input[type="radio"]:checked+label::before {
     background-color:#242326 ;
 }
 
-.body6 {
-    background-image: url(../img/Screenshot_28.jpg);
-    background-size: 1400px 670px  ;
-    background-attachment: fixed;
-    z-index: -10;
-    background-repeat: no-repeat;
-}
 .container1{
     background-color: rgb(255, 255, 255,0.9);
     background-size: cover;
-    margin: 100px auto;
+    margin: 80px auto;
     width: 60%;
-    min-height: 350px;
+    min-height: 400px;
 }
 .paragraph{
     text-align: center;
@@ -290,21 +291,22 @@ input[type="radio"]:checked+label::before {
 .paragraph h2{
     font-size: 40px;
     font-weight: lighter;
-    color: blueviolet;
+    color: #5d80b6;
 }
 .paragraph h3{
-    color: blue;
+    color: #101e5a;
 }
 .paragraph p{
     padding: 20px 30px;
-    font-size: 20px;
-    color: gray;
+    font-size: 19px;
+    color: #5d80b6;
     text-align: center;
+    font-weight: bolder;
 }
 .paragraph button{
     padding: 10px;
     color: white;
-    background-color:  #228be6;
+    background-color: #101e5a;
     border: none;
     box-shadow:inset  0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);
     cursor: pointer;
