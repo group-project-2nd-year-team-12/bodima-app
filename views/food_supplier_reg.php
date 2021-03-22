@@ -15,12 +15,12 @@
 			<p style="text-align: center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim libero numquam officiis veritatis omnis? Magni veniam neque voluptates. Corporis totam consectetur magni quod corrupti expedita eligendi animi odit tempora autem.</p>
 	</div>
 	<div class="register">
-		   <form action="../controller/registerCon.php" method="post">
+		   <form id="foodReg" method="post">
 				<p>Address <span class="error" id="addError"></p>
 				<input type="text" id="address" name="address" placeholder="Enter Address ">
 
 				<p>Merchant ID <span class="error" id="merError"></p>
-				<input type="text" id="link"  name="link" placeholder="Enter Payhere Merchant ID">
+				<input type="text" id="merchant"  name="merchant" placeholder="Enter Payhere Merchant ID">
 				
 				<p>Password <span class="error" id="passError"></p>
 				<input type="password" id="password" name="password" placeholder="Enter Password">
@@ -39,11 +39,10 @@
 					<input id="check" type="checkbox" name="check">
 					<div class="agree"> I am agree with term and condition</div> 
 				</div>
-				<input type="hidden" name="email" value="<?php echo $_GET['email'];?>">
-				<input type="hidden" name="first_name" value="<?php echo $_GET['first_name'];?>">
-				<input type="hidden" name="last_name" value="<?php echo $_GET['last_name'];?>">
-				<input type="hidden" name="nic" value="<?php echo $_GET['nic'];?>">
-				<input type="hidden" name="level" value="<?php echo "food_supplier";?>">
+				<input type="hidden" id="email" name="email" value="<?php echo $_GET['email'];?>">
+				<input type="hidden" id="first_name" name="first_name" value="<?php echo $_GET['first_name'];?>">
+				<input type="hidden" id="last_name" name="last_name" value="<?php echo $_GET['last_name'];?>">
+				<input type="hidden" id="nic" name="nic" value="<?php echo $_GET['nic'];?>">
 				<input id="register" type="submit" name="register" value="Register">
 		   </form>
 	</div>

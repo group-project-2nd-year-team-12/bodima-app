@@ -23,13 +23,12 @@
         <?php }?>
         <h3><i class="fa fa-envelope-open"></i> You've got a mail</h3>
          <h2><b>C</b>heck <b>Y</b>our <b>E</b>mail </h2>
-        <p> We just sent you a confirmation link to <span style="color:#101e5a;"><?php echo $_GET['email']; ?></span>  check your emails and verify your email address by clicking the confirm link in the email.</p>
+        <p> We just sent you a reset link to <span style="color:#101e5a;"><?php echo $_GET['email']; ?></span>  check your emails and reset your by clicking the reset link in the email.</p>
 
         <!-- <div class='emailerror'>Do you want to resend the email :</div> -->
-    <form action="../controller/registerCon.php" method="post">
+    <form action="../controller/forgotPasswordController.php" method="post">
         <input type="hidden" name="email" value="<?php echo $_GET['email']; ?>" >
         <input type="hidden" name="token" value="<?php echo $_GET['token']; ?>" >
-        <input type="hidden" name="level" value="<?php echo $_GET['level']; ?>" >
         <button type="submit" name="resend" id='resend' >Resend Confirmation Email </button>
     </form>
     </div>

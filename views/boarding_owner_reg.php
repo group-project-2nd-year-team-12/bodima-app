@@ -42,7 +42,7 @@
 			<input type="hidden" id="email" name="email" value="<?php echo $_GET['email'];?>">
 			<input type="hidden" id="first_name" name="first_name" value="<?php echo $_GET['first_name'];?>">
 			<input type="hidden" id="last_name" name="last_name" value="<?php echo $_GET['last_name'];?>">
-			<input type="hidden" id="nic" v name="nic" value="<?php echo $_GET['nic'];?>">
+			<input type="hidden" id="nic" name="nic" value="<?php echo $_GET['nic'];?>">
 			<input id="register" type="submit" name="register" value="Register">
 		</form>
 	</div>

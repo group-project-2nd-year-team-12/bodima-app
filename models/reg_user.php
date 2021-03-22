@@ -8,15 +8,19 @@ class reg_user{
         mysqli_query($connection,$query);
     }
 
-    public static function userReg($email,$first_name,$last_name,$nic,$password,$token,$level,$address,$link,$connection)
+
+    public static function boardingReg($email,$first_name,$last_name,$nic,$password,$token,$address,$link,$connection)
     {
-        $query="INSERT INTO $level (email,first_name,last_name,NIC,password,token,address,location_link) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$link}')";
+        $query="INSERT INTO boardings_owner (email,first_name,last_name,NIC,password,token,address,location_link) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$link}')";
         $result_set=mysqli_query($connection,$query);
         return$result_set;
     }
-
-
-
+    public static function foodReg($email,$first_name,$last_name,$nic,$password,$token,$merchent,$address,$connection)
+    {
+        $query="INSERT INTO food_supplier (email,first_name,last_name,NIC,password,token,address,merchent_id) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$merchent}')";
+        $result_set=mysqli_query($connection,$query);
+        return$result_set;
+    }
     // check the email email already used
     public static function checkUser($email,$connection)
     {

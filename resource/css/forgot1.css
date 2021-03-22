@@ -294,8 +294,7 @@ body {
 }
 
 .feild-pa label {
-    padding-left: 15px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
     display: flex;
     color: black;
@@ -310,14 +309,13 @@ body {
     background-repeat: no-repeat;
     background-size: 20px;
     border-radius: 5px;
-    padding-left: 45px;
     color: white;
 }
 
 .feild-pa input[type=submit] {
     padding: 10px;
     color: white;
-    background-color: #228be6;
+    background-color: #101e5a;
     border: none;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.0125), 0 1px 1px rgba(0, 0, 0, 0.05);
     cursor: pointer;
@@ -328,7 +326,7 @@ body {
 }
 
 .feild-pa input[type=submit]:hover {
-    background-color: rgb(85, 85, 255);
+    background-color: #1d2d79;
 }
 
 .feild-pa input[type=password]:active,
@@ -345,8 +343,7 @@ body {
     width: 300px;
     height: 400px;
     margin: 50px auto;
-    padding: 30px 30px;
-    background-color: rgb(255, 255, 255, 0.5);
-    box-shadow: -1px 1px 20px 3px blueviolet;
+    padding: 10px;
+    background-color: rgb(255, 255, 255,0.81);
     border-radius: 10px;
 }

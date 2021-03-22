@@ -13,7 +13,7 @@ $('#forgotForm').on('submit',function(){
                 $('#emailError').html(data.email);
                 $('#email').css("background-color", "rgb(255, 224, 224)");
              }else{
-                 window.location='emailVerify.php?email='+email+'&token='+data.token+'';
+                 window.location='resetLink.php?email='+email+'&token='+data.token+'';
              }
         }
     });

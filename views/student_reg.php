@@ -16,7 +16,7 @@
 			<p style="text-align: center"> <span>Hey there!</span> Welcome to Bodima Platform. Explore our facilities. <span>Click Register</span> to find best places just in seconds. Now Sri Lanka's <span>best boardings</span> are at your fingertips!</p>
 	</div>
 	<div class="register">
-		   <form action="../controller/registerCon.php" method="post" id="studentReg">
+		   <form method="post" id="studentReg">
 		   		<p>Password <span class="error" id="passError"></span></p>
 		   		<input type="password" id="password" name="password" placeholder="Enter Password">
 		   		<p>Confirm Password <span class="error" id="cpassError"></span></p>
