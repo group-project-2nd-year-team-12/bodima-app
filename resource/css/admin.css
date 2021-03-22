@@ -164,13 +164,6 @@ a{
     overflow-y: hidden;
 }
 
-.content{
-    /* margin: 30px; */
-    /* background-color: rgb(104, 104, 104); */
-    /* width: 100%; */
-}
-
-
 .chart1{
     width: 100%;
 }
@@ -186,7 +179,7 @@ a{
     padding: 5px;
     font-size: 22px;
     box-sizing: border-box;
-    /* background-color: white; */
+    color:  #406caf;
 }
 .numbers > div{
     width: 250px;

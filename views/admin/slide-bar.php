@@ -1,3 +1,9 @@
+<head>
+    <link rel="stylesheet" href="../../resource/css/liveSupport.css">
+    <script src="../../resource/js/jquery.js"></script>
+    <script src="../../resource/js/liveSupport.js"></script>
+
+</head>
 <div class="nav">
             <div class="orderM">
                 <img src="https://img.icons8.com/color/48/000000/data-configuration.png"/>
@@ -44,4 +50,8 @@
                 <a href="#" id="complaint"><li><div><i class="fas fa-exclamation-triangle"></i> Complaint</div> <i class="fa fa-chevron-down"></i></li></a>
                 <a href="../../index.php"><li>Web Site <i class="fa fa-angle-double-right"></i></li></a>
             </ul>
-        </div>
+</div>
+
+<!-- live support  -->
+<?php include ("../liveSupport.php"); ?>
+

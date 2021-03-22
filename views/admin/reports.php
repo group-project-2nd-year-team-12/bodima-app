@@ -24,7 +24,7 @@ session_start(); ?>
             <h2>Users details</h2>
             <div><a href="../../controller/adminPanelCon.php?userPDF"><i class="fa fa-file-download fa-lg"></i> Get file here</a></div>
         </div>
-        <div class="report-box">
+        <!-- <div class="report-box">
             <h2>Student details</h2>
             <div><a href="../../controller/adminPanelCon.php?studentPDF"><i class="fa fa-file-download fa-lg"></i> Get file here</a></div>
         </div>
@@ -39,7 +39,7 @@ session_start(); ?>
         <div class="report-box">
             <h2>Boarder details</h2>
             <div><a href="../../controller/adminPanelCon.php?boarderPDF"><i class="fa fa-file-download fa-lg"></i> Get file here</a></div>
-        </div>
+        </div> -->
         </div>
         </div>
     </div>

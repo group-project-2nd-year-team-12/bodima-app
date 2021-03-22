@@ -51,6 +51,8 @@ if(isset($_POST['block']))
     header('Location:../views/admin/student.php');
 }
 
+
+// PDF generation function
 if(isset($_GET['userPDF']))
 { 
     userDetails();
