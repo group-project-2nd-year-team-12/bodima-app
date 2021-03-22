@@ -18,5 +18,15 @@ class advertisement_model{
     }
 
 
+
+    public static function get_post_details($B_post_id,$connection)
+    {
+        $query="SELECT * FROM image WHERE postid = $B_post_id ";
+         //echo $query;
+        return mysqli_query($connection,$query);
+    }
+
+
+
 }
 ?>

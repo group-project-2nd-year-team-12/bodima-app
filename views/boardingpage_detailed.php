@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../resource/css/nav.css">
     <link rel="stylesheet" href="../resource/css/footer.css">
     <link rel="stylesheet" href="../resource/css/all.css">
+    <link rel="stylesheet" href="../resource/css/slider.css">
     <link rel="stylesheet" href="../resource/css/boardingpage_detailed.css">
   
     <title>Boarding details</title>
@@ -37,33 +38,127 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 ?>
 
     <div class="box_outer">
-        <div class="col-7 main">
-            <div class="inner_main" style="background-color:white;">
-                <h2><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h2>
-                <span>posted by: <?php echo $boardingpost_owner_d['first_name']?> <?php echo $boardingpost_owner_d['last_name']?> - Nov 19, 2020</span>
-                <img runat = 'server' src = '<?php echo $boardingpost_d['image']?>' />
-                <h4>Details</h4>
-                <hr />
-                <div class="details">
-                        <li>Category    : <?php echo $boardingpost_d['category']?></li>
-                        <li>rent for    : <?php echo $boardingpost_d['girlsBoys']?></li>
-                        <li>Description : <?php echo $boardingpost_d['description']?></li>
+        <div class="col-7">
+            <div class="inner_slider">
+                <h1><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h1>
+                <h3>Title: <?php echo $boardingpost_d['title']?> </h3>
+                <span>posted by: <?php echo $boardingpost_owner_d['first_name']?> <?php echo $boardingpost_owner_d['last_name']?> - <?php echo $boardingpost_d['create_time']?></span>
+                
+
+
+            <div id="content-wrapper">
+
+
+            <?php 
+                
+               
+                $boardingpost= advertisement_model::get_post_details($B_post_id,$connection);
+
+
+                if(mysqli_num_rows($boardingpost)>0){
+                    while($fetch= mysqli_fetch_all($boardingpost)){
+
+                        //print_r($fetch);
+
+                    //print_r(count($fetch));
+                    //print_r($fetch[0][3]);
+
+            ?>
+
+            
+                <div class="featured">
+                    
+                     <img id=featured src="<?php echo $fetch[0][3]; ?>">
+
                 </div>
 
-                <h4>payment details</h4>
-                <hr />
+
+
+                <div id="slide-wrapper">
+                    <img id="slideLeft" class="arrow" src="../resource/Images/s_image/arrow-left.png">
+
+                     <div id="slider">
+                        <img class="thumbnail active" src="<?php echo $fetch[0][3]; ?>">
+
+                        <?php
+
+                            //print_r($fetch);
+
+                            for($a=1;$a < count($fetch);$a++){
+
+                        ?>
+                        <img class="thumbnail" src="<?php echo $fetch[$a][3]; ?>">
+
+                        <?php
+
+
+                        }
+
+                            ?>
+
+                        <!-- <img class="thumbnail" src="../resource/Images/s_image/shoe3.jpg">
+                        <img class="thumbnail" src="../resource/Images/s_image/shoe2.jpg">
+                        <img class="thumbnail" src="../resource/Images/s_image/shoe3.jpg"> -->
+
+
+                        <!-- <img class="thumbnail" src="../resource/Images/s_image/preset1.png">
+                        <img class="thumbnail" src="../resource/Images/s_image/preset2.jpg"> -->
+                        <!-- <img class="thumbnail" src="images/preset3.jpg"> -->
+                        <!-- <img class="thumbnail" src="images/preset4.jpg"> -->
+                    </div>
+
+                    <img id="slideRight" class="arrow" src="../resource/Images/s_image/arrow-right.png">
+                </div>
+
+
+                <?php
+
+                        
+                       
+            
+} //while close
+}else{
+?>
+<div class="featured">
+<img id=featured runat = 'server' src = '<?php echo $boardingpost_d['image']?>' />
+</div>
+<?php
+} // if close
+
+
+
+?>
+
+            </div>
+
+
+
+                <h3>DETAILS</h3>
+                <hr color="#101e5a" />
                 <div class="details">
-                        <li>Monthly rental (per person)    : Rs. <?php echo $boardingpost_d['cost_per_person']?></li>
-                        <li>keymoney    : Rs. <?php echo $boardingpost_d['keymoney']?></li>
-                        <li>extra details : food will not be provided<br/>
+                        <p>Category    : <?php echo $boardingpost_d['category']?></p>
+                        <p>Rent for    : <?php echo $boardingpost_d['girlsBoys']?></p>
+                        <p>Description : <?php echo $boardingpost_d['description']?></p>
+                        <p>Count of Person : <?php echo $boardingpost_d['person_count']?></p>
+                        <p>Address : <?php echo $boardingpost_d['house_num']?> , <?php echo $boardingpost_d['lane']?> , <?php echo $boardingpost_d['city']?></p>
+                        <p>District : <?php echo $boardingpost_d['district']?></p>
+
+                </div>
+
+                <h3>PAYMENT DETAILS</h3>
+                <hr color="#101e5a"/>
+                <div class="details">
+                        <p>Monthly rental (per person or Renting)    : Rs. <?php echo $boardingpost_d['cost_per_person']?></p>
+                        <p>keymoney    : Rs. <?php echo $boardingpost_d['keymoney']?></p>
+                        <p>extra details : food will not be provided<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        water and current bill will be included for rent</li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;water and current bill will be included for rent</p>
                 </div>
             
             </div>
         </div>
-        <div class="col-5 right">
-            <div class="inner_right" style="background-color:white;">
+        <div class="col-5" style="margin-bottom: 100px;">
+            <div class="inner_right">
                 <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
                 <hr>
                     <div class="expandable">
@@ -160,8 +255,9 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 </script>
 
 
-<?php include 'footer.php' ?>
+
 </div>
+<?php include 'footer.php' ?>
 </body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
@@ -178,7 +274,42 @@ for (i = 0; i < coll.length; i++) {
     } 
   });
 }
+
 </script>
+
+<script type="text/javascript">
+        let thumbnails = document.getElementsByClassName('thumbnail')
+
+        let activeImages = document.getElementsByClassName('active')
+
+        //console.log(thumbnails.length);
+        for (var i = 0; i < thumbnails.length; i++) {
+
+
+
+            thumbnails[i].addEventListener('click', function() {
+                console.log(activeImages)
+
+                if (activeImages.length > 0) {
+                    activeImages[0].classList.remove('active')
+                }
+
+                this.classList.add('active')
+                document.getElementById('featured').src = this.src
+            })
+        }
+        let buttonRight = document.getElementById('slideRight');
+        let buttonLeft = document.getElementById('slideLeft');
+
+        buttonLeft.addEventListener('click', function() {
+            document.getElementById('slider').scrollLeft -= 180
+        })
+
+        buttonRight.addEventListener('click', function() {
+            document.getElementById('slider').scrollLeft += 180
+        })
+    </script>
+
 <script src="../resource/js/home1.js"></script>
 <script src="../resource/js/jquery.js"></script>
 </html>
