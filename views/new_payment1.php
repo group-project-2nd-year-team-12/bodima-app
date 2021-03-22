@@ -40,7 +40,8 @@
         $BOdetails=unserialize($_GET['BOd']);
         $months=unserialize($_GET['months']);
         $cost_per_person=unserialize($_GET['cppv']);
-       print_r($BOdetails);
+    //    print_r($BOdetails);
+    //    print_r($months);
 
         ?>
 
@@ -62,6 +63,7 @@
                     $c_flag=0;
                     foreach($months as $month){
                         if ($c_flag==0){
+                            $paymonth=$month['month'];
                             ?>
                             <option value="<?php echo $month['month'];?>"><?php echo $month['month'];?></option>
                             <?php
@@ -81,10 +83,24 @@
                </div>
             </div>
 <!-- sandbox -->
+
+            <?php $arr=[];
+                    $arr['B']=$_SESSION['Bid'];//Bid
+                    $arr['BO']=$BOdetails['BOid'];//BOid
+                    $arr['y']=substr($paymonth,0,4);//year
+                    $arr['m']=substr($paymonth,5);//month
+                    $arr['a']=$cost_per_person['cost_per_person'];//costperperson
+                    $arr['c']='card';   
+                    $s='';
+                    $s='&B='.$arr['B'].'&BO='.$arr['BO'].'&y='.$arr['y'].'&m='.$arr['m'].'&a='.$arr['a'].'&c='.$arr['c'];
+                        //  print_r($arr);
+                        //  echo $s;
+                    ?>
+
             <form action="https://sandbox.payhere.lk/pay/checkout" method="post">
            
             <input type="hidden" name="merchant_id" value="1215562">    
-            <input type="hidden" name="return_url" value='http://localhost:1234/bodima-app/controller/payhereOnlineSuccessIshan.php?success'>
+            <input type="hidden" name="return_url" value='http://localhost:1234/bodima-app/controller/new_payment_Control.php?success<?php echo $s?>'>
             <input type="hidden" name="cancel_url" value="http://localhost:1234/bodima-app/controller/payhereOnlineCancelIshanphp?request_id=<?php echo $request_id;?>">
             <input type="hidden" name="notify_url" value="http://localhost:1234/bodima-app/config/paycon.php"> 
             
