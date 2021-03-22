@@ -18,6 +18,7 @@ a{
     position: absolute;
     bottom: 0;
 }
+
 .image img{
     width: 550px;
     height: 550px;
@@ -64,13 +65,15 @@ a{
 }
 .welcome{
     position: absolute;
-    top:180px;
-    left: 0;
-    transform: translate(50%,50%);
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     color: white;
+    text-align: center;
 }
 .welcome h1{
-    font-size: 35px;
+    font-size: 39px;
     font-weight: bolder;
 }
 
