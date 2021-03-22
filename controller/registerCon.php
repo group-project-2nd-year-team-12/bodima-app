@@ -5,222 +5,266 @@
 ?>
 <?php
 
-if(isset($_POST['check']))
+// form validation register 
+if(isset($_POST['submit']))
 {
         $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
         $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
         $nic=mysqli_real_escape_string($connection,$_POST['nic']);
         $email=mysqli_real_escape_string($connection,$_POST['email']);
         $level=mysqli_real_escape_string($connection,$_POST['level']);
-        $data=array(
-                'ok'=>$first_name,
-                'ok1'=>$last_name,
-                'ok2'=>$nic,
-                'ok3'=>$email,
-                'ok3'=>$level
-        );
-        echo json_encode($data);
-
-}
-// check the click submit and validation form
-if(isset($_POST['submit']))
-{
- $errors=array();            //create empty array
- $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
- $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
- $nic=mysqli_real_escape_string($connection,$_POST['nic']);
- $email=mysqli_real_escape_string($connection,$_POST['email']);
- $level=mysqli_real_escape_string($connection,$_POST['level']);
-
+        $errors['eFirst']='';
+        $errors['eLast']='';
+        $errors['eNic']='';
+        $errors['eEmail']='';
+        $errors['state']='unsucess';
         if(!isset($first_name) || strlen(trim($first_name))<1)   //check if the username and password has been entered
         {
-                $errors[]='*First name required';
+                $errors['eFirst']='*First name required';
         }
         elseif(!preg_match(("/^([a-zA-Z']+)$/"), $first_name)){ // preg_match -> check regular expression
-                $errors[]='*Invalid first name ';
+                $errors['eFirst']='*Invalid first name ';
         }
         if(!isset($last_name) || strlen(trim($last_name))<1)
         {
-                $errors[]='*Last name required';
+                $errors['eLast']='*Last name required';
         } 
         elseif(!preg_match(("/^([a-zA-Z']+)$/"), $last_name)){ // preg_match -> check regular expression
-                $errors[]='*Invalid Last name ';
+                $errors['eLast']='*Invalid Last name ';
         }
-        if(!isset($nic) || strlen(trim($nic))<1)   // check password 
+
+        if(!isset($nic) || strlen(trim($nic))<1)   
                  {
-                 $errors[]='*NIC  required';
+                 $errors['eNic']='*NIC  required';
                  }
 
         else    {
                         if(strlen(trim($nic))==12 || (strlen(trim($nic))==10 && ($nic[9]=='v' || $nic[9]=='V')))
                         {
                                 $result=reg_user::checkNic($nic,$connection);
-                                print_r($result);
                                 if($result->num_rows)
                                 {
-                                        $errors[]="NIC already used";
+                                        $errors['eNic']="NIC already used";
                                 }
                                 if(strlen(trim($nic))==10)
                                 {
                                         $intPart=substr($nic,0,8);
                                         if(!is_numeric($intPart))
                                         {
-                                                $errors[]="*NIC number is invalid";
+                                                $errors['eNic']="*NIC number is invalid";
                                         }
-                                        
-
                                 }
                                elseif(strlen(trim($nic))==12)
                                {
                                         $intPart=substr($nic,0,11);
                                         if(!is_numeric($intPart))
                                         {
-                                                $errors[]="*NIC number is invalid";
+                                                $errors['eNic']="*NIC number is invalid";
                                         }  
                                }
-                               
                         }
                         else{
-                                $errors[]="*NIC number is invalid";
+                                $errors['eNic']="*NIC number is invalid";
                         }    
                 }
         if(!isset($email) || strlen(trim($email))<1)
                 {
-                $errors[]='*Email address required';
+                $errors['eEmail']='*Email address required';
                }
         elseif (!filter_var($email,FILTER_VALIDATE_EMAIL)) 
                {
-                   $errors[]='*Invalied email address ';
+                   $errors['eEmail']='*Invalied email address ';
                } 
-
-        if(empty($errors))
+          // finally check email is already used     
+       else
         {
                 $user_email=reg_user::checkUser($email,$connection);
                 $email_arr=mysqli_fetch_assoc($user_email);  
-                if(empty($email_arr))
+                if(!empty($email_arr))
                 {
-             
+                        $errors['eEmail']='*Entered email alredy used ';
+                }
+        }  
+        if($errors['eFirst']=="" && $errors['eLast']=="" && $errors['eNic']=="" && $errors['eEmail']=="" ){
+                $errors['state']='sucess';
+                $errors['first_name']=$first_name;
+                $errors['last_name']=$last_name;
+                $errors['email']=$email;
+                $errors['nic']=$nic;
+                $errors['level']=$level;
+        }
 
-                if($level=="boardings_owner")
-                {
-                        header('Location:../views/boarding_owner_reg.php?email='.$email.'&first_name='.$first_name.'&last_name='.$last_name.'&nic='.$nic);
-                }
-                elseif($level=="student")
-                {
-                        header('Location:../views/student_reg.php?email='.$email.'&first_name='.$first_name.'&last_name='.$last_name.'&nic='.$nic);
-                }
-                elseif($level=="food_supplier")
-                {
-                        header('Location:../views/food_supplier_reg.php?email='.$email.'&first_name='.$first_name.'&last_name='.$last_name.'&nic='.$nic);
-                }
-                }
-                else{
-                        $errors[]='*Entered email alredy used ';
-                        header('Location:../views/register.php?'.http_build_query(array('param'=>$errors)));
-                }
-                
-        }
-        else
-        {
-                header('Location:../views/register.php?'.http_build_query(array('param'=>$errors)));
-        }
+        echo json_encode($errors);
 }
 
 
-// check the click student register button and validation
-if(isset($_POST['register_student']))
+if(isset($_POST['saveStudent']))
+{
+        $errors['pass']='';  
+        $email=mysqli_real_escape_string($connection,$_POST['email']);
+        $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
+        $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
+        $nic=mysqli_real_escape_string($connection,$_POST['nic']);
+        $level=mysqli_real_escape_string($connection,$_POST['level']);
+        $password=mysqli_real_escape_string($connection,$_POST['password']);
+        $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']); 
+        if(empty($password || $confirmPassword))                // validation of new password
         {
-                $errors=array();
-                $email=mysqli_real_escape_string($connection,$_POST['email']);
-                $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
-                $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
-                $nic=mysqli_real_escape_string($connection,$_POST['nic']);
-                $level=mysqli_real_escape_string($connection,$_POST['level']);
-                $password=mysqli_real_escape_string($connection,$_POST['password']);
-                $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']);
-
-                if(empty($password || $confirmPassword))                // validation of new password
-                {
-                    $errors[]="*Password requried";
-                }
-                elseif((strlen(trim($password))<6))
-                {
-                    $errors[]="*Minimum is 6 charactor ";
-                }
-
-                elseif($password != $confirmPassword)
-                {
-                    $errors[]="*Passwords do not match";
-                }
-              
-                if(empty($errors))
-                {
-                        $token= bin2hex(random_bytes(50));
-                        $hash=sha1($password);
-                        reg_user::studentReg($email,$first_name,$last_name,$nic,$hash,$token,$connection);
-                        sendRegUser($email,$token,$level);
-                        header('Location:../views/emailVerify.php?email='.$email.'&token='.$token.'&level='.$level);  
-
-                }else{
-                        header('Location:../views/student_reg.php?'.http_build_query(array('param'=>$errors)));  
-                }
+            $errors['pass']="*Password requried";
+        }
+        elseif((strlen(trim($password))<6))
+        {
+            $errors['pass']="*Minimum is 6 charactor ";
         }
 
-
-        // check the click food_supplier and boarding owner register button and validation
-if(isset($_POST['register']) )
+        elseif($password != $confirmPassword)
+        {
+            $errors['pass']="*Password must be qual";
+        }
+        elseif(!preg_match('/[A-Z]/', $password)){
+            $errors['pass']="*Need least one uppercase letter";
+        }
+        elseif(!preg_match('/[a-z]/', $password)){
+            $errors['pass']="*Need least one lowercase letter*"; 
+        }
+        elseif(!preg_match('/[0-9]/', $password)){
+                $errors['pass']="*Need least one number*"; 
+        }
+        if($errors['pass']==''){
+                $token= bin2hex(random_bytes(50));
+                $hash=sha1($password);
+                reg_user::studentReg($email,$first_name,$last_name,$nic,$hash,$token,$connection);
+                // sendRegUser($email,$token,$level);
+                $errors['email']=$email;
+                $errors['token']=$token;
+                $errors['level']=$level;
+        }
+        echo json_encode($errors);
+}
+// boarding owner registertion
+if(isset($_POST['submitBoarding']) )
 {
-                $errors=array();
-                $email=mysqli_real_escape_string($connection,$_POST['email']);
-                $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
-                $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
-                $nic=mysqli_real_escape_string($connection,$_POST['nic']);
-                $level=mysqli_real_escape_string($connection,$_POST['level']);
-                $password=mysqli_real_escape_string($connection,$_POST['password']);
-                $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']);
-                $address=mysqli_real_escape_string($connection,$_POST['address']);
-                $link=mysqli_real_escape_string($connection,$_POST['link']);
-                print_r($_POST);
+        $errors=array();
+        $errors['address']='';
+        $errors['link']='';
+        $errors['pass']='';
+        $errors['state']='unsucess';
+        $email=mysqli_real_escape_string($connection,$_POST['email']);
+        $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
+        $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
+        $nic=mysqli_real_escape_string($connection,$_POST['nic']);
+        $level=mysqli_real_escape_string($connection,$_POST['level']);
+        $password=mysqli_real_escape_string($connection,$_POST['password']);
+        $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']);
+        $address=mysqli_real_escape_string($connection,$_POST['address']);
+        $link=mysqli_real_escape_string($connection,$_POST['link']);
+        if(!isset($address) || strlen(trim($address))<1)
+        {
+         $errors['address']='*Address required';
+        }
+        if(!isset($link) || strlen(trim($link))<1)
+        {
+         $errors['link']='*Location Link required';
+        }
+        if(empty($password || $confirmPassword))                // validation of new password
+        {
+            $errors['pass']="*Password requried";
+        }
+        elseif((strlen(trim($password))<6))
+        {
+            $errors['pass']="*Minimum is 6 charactor ";
+        }
 
-                if(!isset($address) || strlen(trim($address))<1)
-                {
-                 $errors[]='*Address required';
-                }
-                if(!isset($link) || strlen(trim($link))<1)
-                {
-                 $errors[]='*Location Link required';
-                }
-                if(empty($password || $confirmPassword))                // validation of new password
-                {
-                    $errors[]="*Password requried";
-                }
-                elseif((strlen(trim($password))<6))
-                {
-                    $errors[]="*Minimum is 6 charactor ";
-                }
+        elseif($password != $confirmPassword)
+        {
+            $errors['pass']="*Password must be qual";
+        }
+        elseif(!preg_match('/[A-Z]/', $password)){
+            $errors['pass']="*Need least one uppercase letter";
+        }
+        elseif(!preg_match('/[a-z]/', $password)){
+            $errors['pass']="*Need least one lowercase letter*"; 
+        }
+        elseif(!preg_match('/[0-9]/', $password)){
+                $errors['pass']="*Need least one number*"; 
+        }
 
-                elseif($password != $confirmPassword)
-                {
-                    $errors[]="*Passwords do not match";
-                }
-              
-                if(empty($errors))
-                {
+        if($errors['address']=="" && $errors['link']=="" && $errors['pass']=="" ){
+                $token= bin2hex(random_bytes(50));
+                $hash=sha1($password);
+                $result=reg_user::boardingReg($email,$first_name,$last_name,$nic,$hash,$token,$address,$link,$connection);
+                sendRegUser($email,$token,$level);
+                $errors['email']=$email;
+                $errors['token']=$token;
+                $errors['level']=$level;
+                $errors['state']='sucess';
+        }
 
-                        $token= bin2hex(random_bytes(50));
-                        $hash=sha1($password);
-                       
-                        $result=reg_user::userReg($email,$first_name,$last_name,$nic,$hash,$token,$level,$address,$link,$connection);
-                     
-                                sendRegUser($email,$token,$level);
-                                header('Location:../views/emailVerify.php?email='.$email.'&token='.$token.'&level='.$level); 
+        echo json_encode($errors);
+}
 
-                }else{
-                        if($level=='boardings_owner'){header('Location:../views/boarding_owner_reg.php?'.http_build_query(array('param'=>$errors)));}
-                        else   header('Location:../views/food_supplier_reg.php?'.http_build_query(array('param'=>$errors)));
-                }
-        
- }
+//food supplier registration
+if(isset($_POST['submitFood']) )
+{
+        $errors=array();
+        $errors['address']='';
+        $errors['merchant']='';
+        $errors['pass']='';
+        $errors['state']='unsucess';
+        $email=mysqli_real_escape_string($connection,$_POST['email']);
+        $first_name=mysqli_real_escape_string($connection,$_POST['first_name']);
+        $last_name=mysqli_real_escape_string($connection,$_POST['last_name']);
+        $nic=mysqli_real_escape_string($connection,$_POST['nic']);
+        $level=mysqli_real_escape_string($connection,$_POST['level']);
+        $password=mysqli_real_escape_string($connection,$_POST['password']);
+        $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']);
+        $address=mysqli_real_escape_string($connection,$_POST['address']);
+        $merchant=mysqli_real_escape_string($connection,$_POST['merchant']);
+        if(!isset($address) || strlen(trim($address))<1)
+        {
+         $errors['address']='*Address required';
+        }
+        if(!isset($merchant) || strlen(trim($merchant))<1)
+        {
+         $errors['merchant']='*merchant required';
+        }
+        if(empty($password || $confirmPassword))                // validation of new password
+        {
+            $errors['pass']="*Password requried";
+        }
+        elseif((strlen(trim($password))<6))
+        {
+            $errors['pass']="*Minimum is 6 charactor ";
+        }
+
+        elseif($password != $confirmPassword)
+        {
+            $errors['pass']="*Password must be qual";
+        }
+        elseif(!preg_match('/[A-Z]/', $password)){
+            $errors['pass']="*Need least one uppercase letter";
+        }
+        elseif(!preg_match('/[a-z]/', $password)){
+            $errors['pass']="*Need least one lowercase letter*"; 
+        }
+        elseif(!preg_match('/[0-9]/', $password)){
+                $errors['pass']="*Need least one number*"; 
+        }
+
+        if($errors['address']=="" && $errors['merchant']=="" && $errors['pass']=="" ){
+                $token= bin2hex(random_bytes(50));
+                $hash=sha1($password);
+                $result=reg_user::foodReg($email,$first_name,$last_name,$nic,$hash,$token,$merchant,$address,$connection);
+                // sendRegUser($email,$token,$level);
+                $errors['email']=$email;
+                $errors['token']=$token;
+                $errors['level']=$level;
+                $errors['state']='sucess';
+        }
+
+        echo json_encode($errors);
+}
+
  //resend
 if(isset($_POST['resend']))
 {

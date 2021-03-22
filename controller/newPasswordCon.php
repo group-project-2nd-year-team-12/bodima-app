@@ -11,16 +11,25 @@
 
                         if(empty($password || $confirmPassword))                // validation of new password
                         {
-                            $errors[]="*Password requried";
+                            $errors['pass']="*Password requried";
                         }
                         elseif((strlen(trim($password))<6))
                         {
-                            $errors[]="*Minimum is 6 charactor ";
+                            $errors['pass']="*Minimum is 6 charactor ";
                         }
 
                         elseif($password != $confirmPassword)
                         {
-                            $errors[]="*Passwords do not match";
+                            $errors['pass']="*Passwords do not match";
+                        }
+                        elseif(!preg_match('/[A-Z]/', $password)){
+                            $errors['pass']="*Need least one uppercase letter";
+                        }
+                        elseif(!preg_match('/[a-z]/', $password)){
+                            $errors['pass']="*Need least one lowercase letter*"; 
+                        }
+                        elseif(!preg_match('/[0-9]/', $password)){
+                                $errors['pass']="*Need least one number*"; 
                         }
                         
                             if(empty($errors))
@@ -40,10 +49,9 @@
                                             }
                                         
                             }
-                            else
-                            {
-                                header('Location:../views/new_password.php?'.http_build_query(array('param'=>$errors)));
-                            }
+                         
+
+                            echo json_encode($errors);
                     }
                 
 ?>
