@@ -32,7 +32,7 @@
       </div>
      
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="../index.php">Home</a></li>
         <li class="active" >
             <a href="#" class="profile-btn">Profile
               <span class="fas fa-caret-down first"></span>
@@ -127,7 +127,7 @@
         </li>
         
         <li><a href="#"><i class="fas fa-utensils"></i>Order Food</a></li>
-        <li><a href="#"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
+        <li><a href="../views/paymentFood_pending.php"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
         <li><a href="#"><i class="fas fa-home"></i>My Request Manager</a></li>
         
         <?php
