@@ -53,7 +53,17 @@ class pay_rent_modelN{
         // die();
         $result = mysqli_query($connection, $query);
         return $result;
-   }   
+   } 
+   
+   
+   public static function insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,$cashcard){
+
+    $query="INSERT INTO `payfee` (`Bid`, `BOid`, `year`, `month`, `amount`, `cash_card`) 
+            VALUES ('{$Bid}', '{$BOid}', '{$year}', '{$month}', '{$amount}',  '{$cashcard}');";
+    // echo $query;
+    // die();
+    $result = mysqli_query($connection, $query);
+  }
      
 }
 
