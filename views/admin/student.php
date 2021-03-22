@@ -13,15 +13,9 @@ session_start(); ?>
     <link rel="stylesheet" href="../../resource/css/all.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('user')">
 
     <div class="container">
-    <div class="header">
-            <div class="logo"><img src="../../resource/img/logo.svg" alt=""></div>
-            <div class="sign">
-            <a href="../../index.php"><i style=" padding-right:10px" class="fa fa-angle-double-right"></i></a>
-            <a href="../../controller/logoutController.php"><i style=" padding-right:30px" class="fa fa-sign-out-alt"></i></a>    </div>
-        </div>
         <div class="wrapper">
         <?php include 'slide-bar.php' ?>
       
