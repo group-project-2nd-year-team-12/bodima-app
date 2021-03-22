@@ -10,7 +10,7 @@ foreach($results as $row){
     <tr>
     <td>".$row['paidDateTime']."</td>
     <td>".$row['first_name']."</td>
-    <td>".$row['year'].' '.date('F',mktime(0,0,0,$row['month'],0,0))."</td>
+    <td>".$row['year'].' '.date('F',mktime(0,0,0,$row['month']+1,0,0))."</td>
     <td>".$row['amount']."</td>
     <td>".$row['cash_card']."</td>
     <td>000".$row['B_post_id']."</td>
@@ -115,7 +115,7 @@ function displaypdf($result){
          $results=unserialize($_GET['results']);
          $border_names=unserialize($_GET['bname']);
          $postnum=unserialize($_GET['postnum']);
-            
+        // print_r($results); 
          
          ?>
      <div class="container2">
