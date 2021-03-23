@@ -20,7 +20,7 @@
 <div class="big-box">
 			<!-- login left side box -->
 			<div class="discrip">
-				<div style="width: 650px;height:480px;"><img  style="width:650px;height:480px;" src="../resource/img/boardingPost.jpg" ></div>
+				<div style="width: 650px;height:480px;"><img  style="width:650px;height:480px;" src="../resource/img/boardingPost.png" ></div>
 				<div class="welcome">
 					<h1>Welcome To Bodima</h1>
 				</div>

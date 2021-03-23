@@ -1,3 +1,12 @@
+// load nav select
+function checked(x)
+{
+    document.getElementById(x).style.color="#5d80b6";
+    document.getElementById(x).style.borderLeft="3px solid #5d80b6";
+    document.getElementById(x).style.backgroundColor="#000033";
+}
+
+
 // slide bar animation
 document.querySelector('.element1').addEventListener('click',(e)=>{
     if(!$('.element1 > div').hasClass('item-active')){

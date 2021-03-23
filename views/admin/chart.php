@@ -1,3 +1,4 @@
+<!-- google  chart  -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -74,7 +75,10 @@
       }
     </script>
   
-     <script type="text/javascript">
+
+
+
+<script type="text/javascript">
 google.charts.load('49', {'packages': ['vegachart']}).then(drawChart);
 
 function drawChart() {
@@ -185,3 +189,88 @@ function drawChart() {
 }
       
     </script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['User Type', 'Hours per Day'],
+          ['Student',     11],
+          ['Boarder',      2],
+          ['Boarding Owner',  2],
+          ['Food Supplier', 2],
+        ]);
+
+        var options = {
+          title: 'User type',
+          backgroundColor: 'transparent',
+          legend:{
+            textStyle:{
+                fontSize:12,
+                bold:'true',
+            }
+          },
+          slices: {
+            0: { color: '#101e5a' },
+            1: { color: '#283a8b' },
+            2: { color: '#576abe' },
+            3: { color: '#8899e4' },
+          },
+          titleTextStyle: {
+            //  color: 'red',
+             fontSize: 18
+            }
+          // chartArea:{left:5,top:10,width:"100%",height:"90%"},
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart3'));
+
+        chart.draw(data, options);
+      }
+</script>
+
+<!-- Line chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'new user',],
+          ['jan',  100, ],
+          ['feb',  150, ],
+          ['mar',  90,  ],
+          ['apr',  80, ],
+          ['may',  60, ],
+          ['jun',  30,  ],
+          ['jul',  25, ],
+          ['aug',  73, ],
+          ['sep',  120,  ],
+          ['oct',  135, ],
+          ['nov',  96, ],
+          ['dec',  56,  ],
+          
+        ]);
+
+        var options = {
+          title: 'Registration Rate',
+          backgroundColor: 'transparent',
+          legend: { position: 'bottom' },
+          titleTextStyle: {
+            //  color: 'red',
+             fontSize: 18
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>

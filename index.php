@@ -43,8 +43,7 @@
                     ?>
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?> 
-                  <!-- live support  -->
-                    <?php include ("views/liveSupport.php"); ?>
+           
             </div>
         </div>
         <div class="nav">
@@ -100,10 +99,6 @@
                         <div class="section1-header title1 ">
                             <div>
                                 <h2 >Welcome to Bodima</h2>
-                                <!-- <h4>Accomadation Management System</h4> -->
-                                <!-- <h3>Learn Together  </h3>
-                                <h3>With</h3>
-                                <h3>Friends</h3> -->
                                 <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Get Start</button><?php } 
                                 else{?> <button onclick="window.location=''">Get Start</button> <?php } ?>
                                 
@@ -120,8 +115,7 @@
                                 <h2>Find Boarding</h2>
                                 <h3>Find a Safe </h3>
                                 <h3>Place</h3>
-                                <h3>For Study</h3>
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                                <!-- <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?> -->
                             
                             </div>
                        </div>
@@ -132,11 +126,10 @@
                     <div class="txt">
                         <div class="section1-header title3">
                             <div>
-                                <h2>"Order Food"</h2>
-                                <h3>Learn Together  </h3>
-                                <h3>With</h3>
-                                <h3>Friends</h3>
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                                <h2>Order Food</h2>
+                                <h3>Learn Together </h3>
+                                <h3>With Friends</h3>
+                                <!-- <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?> -->
                             
                             </div>
                        </div>
@@ -147,10 +140,9 @@
                         <div class="txt">
                         <div class="section1-header title4">
                             <div>
-                                <h2>Connect With Close</h2>
+                                <!-- <h2>Connect With Close</h2> -->
                                 <h3>Download Our </h3>
                                 <h3>Android Application</h3>
-                                <h3>For Manage</h3>
                                <button onclick="window.location='views/register.php'">Download</button>
                             
                             </div>
@@ -158,7 +150,7 @@
                     </div>
                     <img style="width: 860px;" src="resource/img/slide/1 (4).png" alt="">
                </div>
-               <div class="myslider fade">
+               <!-- <div class="myslider fade">
                     <div class="txt">
                         <div class="section1-header title5">
                             <div>
@@ -172,7 +164,7 @@
                        </div>
                     </div>
                     <img style="width: 860px;" src="resource/img/slide/1 (5).png" alt="">
-               </div>
+               </div> -->
                 <a class="prev" onclick="plusSlides(-1)">&#10094</a>
                 <a class="next" onclick="plusSlides(1)" >&#10095</a>
                 <div class="dotsbox" style="text-align: center;">
@@ -303,6 +295,8 @@
         </div>
         <?php include '../bodima-app/views/footer.php' ?>
 </div>
+       <!-- live support  -->
+       <?php include ("views/liveSupport.php"); ?>
 </body>
 <script src="resource/js/jquery.js"></script>
 <script src="resource/js/home1.js"></script>

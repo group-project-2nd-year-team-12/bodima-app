@@ -2,7 +2,7 @@
 require '../config/database.php';
 require '../models/adminModel.php';
 require '../config/email.php';
-require '../config/pdfFunction.php';
+// require '../config/pdfFunction.php';
 require_once('../config/pdf/tcpdf.php');
 ?>
 <?php
@@ -51,24 +51,37 @@ if(isset($_POST['block']))
     header('Location:../views/admin/student.php');
 }
 
+
+// PDF generation function
 if(isset($_GET['userPDF']))
 { 
     userDetails();
 }
-if(isset($_GET['studentPDF']))
+
+if(isset($_POST['userDetails']))
 { 
-    userDetails();
+    date_default_timezone_set("Asia/Colombo");
+    $student=adminModel::userDetails('student',$connection);
+    $month=array();
+    $date='';
+    while($row=mysqli_fetch_assoc($student))
+    {
+        $date=strtotime($row['reg_date']);
+        
+        $month[]=date("F",$date);
+    }
+    $boarder=adminModel::userDetails('boarder',$connection);
+    $food_supplier=adminModel::userDetails('food_supplier',$connection);
+    $boardings_owner=adminModel::userDetails('boardings_owner',$connection);
+    $data=array(
+        "studentC"=>$student->num_rows,
+        "boarderC"=>$boarder->num_rows,
+        "food_supplierC"=>$food_supplier->num_rows,
+        "boardings_ownerC"=>$boardings_owner->num_rows,
+        "date"=>$month
+    );
+    echo json_encode($data);
 }
-if(isset($_GET['boardingPDF']))
-{ 
-    userDetails();
-}
-if(isset($_GET['foodPDF']))
-{ 
-    userDetails();
-}
-if(isset($_GET['boarderPDF']))
-{ 
-    userDetails();
-}
+
+
 ?>
