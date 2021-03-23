@@ -1,6 +1,7 @@
 <?php require_once ('../../config/database.php');
       require_once ('../../models/adminModel.php');
-session_start(); ?>
+      require_once 'chart.php';
+?>
 <?php 
 $userCount=$_GET['student']+$_GET['boarding_owner']+$_GET['boarder']+$_GET['food_supplier'];
 $bConut=$_GET['boarding_count'];
@@ -14,7 +15,7 @@ $fConut=$_GET['food_count'];
     <link rel="stylesheet" href="../../resource/css/admin.css">
     <link rel="stylesheet" href="../../resource/css/all.css">
     <title>Document</title>
-   <?php include 'chart.php' ?>
+  
 </head>
 <body onload="checked('order')">
     <div class="container">

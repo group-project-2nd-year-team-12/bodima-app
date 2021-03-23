@@ -86,7 +86,8 @@ session_start(); ?>
                          <td><?php echo $row['first_name']; ?></td>
                          <td><?php echo $row['last_name']; ?></td>
                          <td><?php echo $row['email']; ?></td>
-                         <td><?php echo $row['nic']; ?></td>
+                         <!-- <td><?php echo $row['nic']; ?></td> -->
+                         <td>bnbfbsh</td>
                          <td><?php echo $row['address']; ?></td>
                     <td><?php      if($row['user_accepted']==0){?> <div class="accept accept-not"><h4>Not confirm</h4></div> <?php }?>
                         <?php      if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
