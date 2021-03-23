@@ -143,6 +143,9 @@ $errors=array(); //create empty array
 
      $creattime=date('Y-m-d h:i:s');
       // $creattime=dat;
+        //$result=boarding::delete_post($connection);
+       // echo $result;
+
         boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
 
         $result_set=boarding::getPostId($connection);
@@ -203,8 +206,8 @@ if (isset($_GET['success'])) {
     echo "gggggg";
 	//print_r($_SESSION);
 	//$student_email=$_SESSION['email'];
-    $result_P=boarding::delete_post($connection);
-    echo $result;
+    //$result_P=boarding::delete_post($connection);
+    //echo $result;
 	  $B_post_id=$_GET['order_id'];
       $id=$B_post_id;
       echo $B_post_id;
@@ -213,7 +216,8 @@ if (isset($_GET['success'])) {
 
       boarding::updatePostpay($id,$connection);
 
-      //boarding::delete_post($connection);
+      $result_P=boarding::delete_post($connection);
+      echo $result;
 
       header('Location:../views/myads_boardingowner.php');
       

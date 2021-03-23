@@ -2,7 +2,7 @@
     
     require_once ('../config/database.php');
     require_once ('../models/food_post.php');
-    session_start ();
+    session_start();
 
    
 
@@ -54,16 +54,16 @@ if(isset($_POST['submit'])){
 
         // $image_name=$_FILES['BCimage']['name'];
 
-        $image_name=$_FILES['BCimage']['name'];
+        $image_name=$_FILES['image1']['name'];
         if(null==trim($image_name)){
             echo "null";
             $image_name="defaultfp1.png";
         }else{
             echo " have value";
         }
-        $image_type=$_FILES['BCimage']['type'];
-        $image_size=$_FILES['BCimage']['size'];
-        $temp_name=$_FILES['BCimage']['tmp_name'];
+        $image_type=$_FILES['image1']['type'];
+        $image_size=$_FILES['image1']['size'];
+        $temp_name=$_FILES['image1']['tmp_name'];
 
         $upload_to='../resource/Images/uploaded_foodpost/';
         
@@ -81,8 +81,12 @@ if(isset($_POST['submit'])){
         //echo $Hnumber;
         $fid=$_SESSION['FSid'];
         echo $fid;
+        //$creattime=date('Y-m-d h:i:s');
+        $result1=foodSupplierPost::delete_food_post($connection);
+        echo $result1;
         foodSupplierPost::foodPost($fid,$resName,$address,$location,$description,$image_name,$type,$otDeadline,$Lifespan,$Aamount,$upload_to,$connection);
 //database post id 
+        
         header('Location:../views/iteam.php');
 
         print_r($_POST);
@@ -93,7 +97,6 @@ if(isset($_POST['submit'])){
         header('Location:../views/foodPost.php?'.http_build_query(array('param'=>$errors)));
     }
 }
-
 
 
 ?>

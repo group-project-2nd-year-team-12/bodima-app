@@ -14,7 +14,7 @@ body {
     font-family: 'Poppins', sans-serif;
     width: 100%;
     overflow-x: hidden;
-    background-color: #e7e0da;
+    background-color: #eef2f7;
 }
 
 
@@ -65,6 +65,12 @@ body {
     width: 41.66%;
 }
 
+
+/* .resquest {
+    position: fixed;
+    right: 0px;
+} */
+
 .col-6 {
     width: 50%;
 }
@@ -97,10 +103,10 @@ body {
 /* *************************************************************** */
 
 .inner_slider {
-    background-color: #86abdf;
-    margin: 30px;
-    padding: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    /* background-color: #ffff; */
+    /* margin: 30px; */
+    padding: 50px;
+    /* box-shadow: 0 4px 8px 0 rgba(171, 208, 238, 0.5); */
 }
 
 .inner_slider h1 {
@@ -114,11 +120,12 @@ body {
 }
 
 .inner_right {
-    background-color: #7ca0d4;
+    background-color: #fff;
     margin: 30px;
     /* margin-bottom: 700px; */
     padding: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); */
 }
 
 .inner_slider span {
