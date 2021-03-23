@@ -53,7 +53,7 @@ class boarder_list_modelN{
 
       public static function insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,$cashcard){
 
-        $query="INSERT INTO `payfee` (`Bid`, `BOid`, `year`, `month`, `amount`, `cash/card`) 
+        $query="INSERT INTO `payfee` (`Bid`, `BOid`, `year`, `month`, `amount`, `cash_card`) 
                 VALUES ('{$Bid}', '{$BOid}', '{$year}', '{$month}', '{$amount}',  '{$cashcard}');";
         // echo $query;
         // die();

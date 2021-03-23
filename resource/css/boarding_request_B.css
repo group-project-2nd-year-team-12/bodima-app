@@ -1,0 +1,27 @@
+.boxx{
+    width: 95%;
+    background-color: rgba(231, 231, 231, 0.774);
+    min-height: 150px;
+    border-radius: 5px;
+    align-items: center;
+    margin-bottom: 10px;
+   
+}
+
+.post_image{
+    width: 150px;
+    height: 100px;
+    overflow-x: hidden;
+}
+.details-boxx{
+display: flex;
+padding-bottom: 15px;
+}
+
+#btnpay{
+    margin-top: -15px;
+}
+
+.btncancel2{
+    background-color: rgb(150, 12, 12);
+}

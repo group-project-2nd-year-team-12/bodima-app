@@ -65,7 +65,7 @@
         </div>
         <div class="slide-nav">
             <ul><?php if(isset($_SESSION['email'])){?> 
-                    <li onclick="window.location='views/profilepage.php'">Profile</li>
+                    <li onclick="window.location='controller/profile_controlN.php?profile=1'">Profile</li>
 
                     <li>Chat</li>
                     <?php  if($_SESSION['level']=='food_supplier'){?>

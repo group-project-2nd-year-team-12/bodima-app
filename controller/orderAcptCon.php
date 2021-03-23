@@ -44,6 +44,8 @@ if(isset($_POST['accept']))
       }
       notificationModel::notificationOrderAccept($connection,$email,$title,$discription,$time,$type,$responseUrl);
 
+//notification -D1
+      notificationModel::delete_notification_by_orderid($connection,$order_id);
 
       $detailreciever=mysqli_fetch_assoc(notificationModel::find_levelAndId($connection,$email));
       $orderdetails=mysqli_fetch_assoc(notificationModel::resturant_name($connection,$order_id));
@@ -62,7 +64,15 @@ if(isset($_POST['accept']))
       $redirect_url='../views/paymentFood_accept.php';
       $res=notificationModel::insertnotification($connection,$type_number,$from_level,$from_id,$to_level,$to_id,$massageHeader,$massage,$redirect_url);
 
+
+
 /************/
+
+
+
+
+
+
 
 //accept order 
    if($method=='card')

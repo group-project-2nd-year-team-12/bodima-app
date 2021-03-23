@@ -138,7 +138,7 @@ if(isset($_POST["generate_pdf"]))
         // print_r($monthlist);
         ?>
 
-          <h1>payment History<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>NEW</botton></a></h1>
+          <h1>payment History<a href="../controller/new_payment_Control.php?id=1"><button class="paid"><i class="fas fa-chevron-left"></i>NEW</botton></a></h1>
               <div class="mid_G">
                   
                 
@@ -190,7 +190,7 @@ if(isset($_POST["generate_pdf"]))
                         <hr/>
 
                         <?php foreach($monthlist as $month){?>
-                        <div class="new_payblock">
+                        <div class="new_payblock" onclick="location.href='../controller/new_payment_Control.php?id=1';">
                             <h3><?php echo date('F', $month['time'])?></h3>
                             <button>Pay</button>
                         </div>

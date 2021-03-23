@@ -32,7 +32,7 @@
       </div>
      
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="../index.php">Home</a></li>
         <li class="active" >
             <a href="#" class="profile-btn">Profile
               <span class="fas fa-caret-down first"></span>
@@ -52,9 +52,9 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="myBoardingReqIshan.php">New Requests</a></li>
-            <li><a href="newBoarderAddIshan.php">New Boarder added</a></li>
-            <li><a href="addAsBoarderIshanBO.php">Add as New Boarder</a></li>
+            <li><a href="myBoardingReqIshan_New.php">New Requests</a></li>
+            <li><a href="newBoarderAddIshan_new.php">New Boarder added</a></li>
+            <li><a href="addAsBoarderIshanBO_new.php">Add as New Boarder</a></li>
           </ul>
         </li>
         <li><a href="../controller/boarder_list_controlN.php?boarderlist=1"><i class="fas fa-users"></i>My Boarders</a></li>
@@ -99,10 +99,10 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="pendingReqIshan.php">Pending Requests</a></li>
-            <li><a href="acceptedReqIshan.php">Accepted Requests</a></li>
-            <li><a href="rentedPayIshan.php">Pay Advance and rent</a></li>
-            <li><a href="rentedPayNotIshan.php">Rented</a></li>
+            <li><a href="pendingReqIshan_New.php">Pending Requests</a></li>
+            <li><a href="acceptedReqIshan_New.php">Accepted Requests</a></li>
+            <li><a href="rentedPayIshan_New.php">Pay Advance and rent</a></li>
+            <li><a href="rentedPayNotIshan_New.php">Rented</a></li>
           </ul>
         </li>
         <li><a href="#"><i class="fas fa-plus-circle"></i>Boarding Request</a></li>
@@ -127,7 +127,7 @@
         </li>
         
         <li><a href="#"><i class="fas fa-utensils"></i>Order Food</a></li>
-        <li><a href="#"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
+        <li><a href="../views/paymentFood_pending.php"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
         <li><a href="#"><i class="fas fa-home"></i>My Request Manager</a></li>
         
         <?php

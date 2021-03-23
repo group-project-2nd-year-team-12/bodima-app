@@ -20,7 +20,7 @@
         $lastpay=mysqli_fetch_assoc($last);
         
         $y=$lastpay['year'];
-        $m=date("m", mktime(0,0,0,$lastpay['month'],0,0));
+        $m=date("m", mktime(0,0,0,$lastpay['month']+1,0,0));
         $date3=$y.'-'.$m.'-01';
         echo $date3."<br>";
 
@@ -54,6 +54,26 @@
 header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist.'&cppv='.$cppv);
   
     }
+
+
+if (isset($_GET['success'])){
+    echo 'payment done';
+    
+    if(isset($_GET['order_id'])){
+        $BOid=$_GET['order_id'];
+        echo $BOid;
+
+        $Bid=$_GET['B'];
+        $BOid=$_GET['BO'];
+        $year=$_GET['y'];
+        $month=date('n', strtotime($_GET['m']));
+        $amount=$_GET['a'];
+        $cashcard=$_GET['c'];
+        pay_rent_modelN::insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,$cashcard);
+
+        header("location:../controller/payment_history_controlN.php?id=1");
+    }
+}
 
 
 

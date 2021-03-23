@@ -19,6 +19,8 @@ class notificationModel{
     {
         $query="SELECT * FROM notifications WHERE to_id=$id and to_level='{$level}' ORDER BY is_seen=0 ,sendDateTime DESC";
         // SELECT * FROM notifications WHERE to_id=37 and to_level='boarder' ORDER BY is_seen=0 DESC 
+        // echo $query;
+        // die(); 
         $result=mysqli_query($connection,$query);
          return $result;
     }
@@ -80,10 +82,38 @@ class notificationModel{
        return $result;
     }
 
-    
+    public static function notificationSeen_N($connection,$noId)
+    {
+        $query="UPDATE notifications SET is_seen=1  WHERE notify_id=$noId";
+         $result=mysqli_query($connection,$query);
+       
+    }
+    public static function notificationResponce_N($connection,$noId)
+    {
+        $query="SELECT redirect_url FROM notification WHERE notify_id=$noI";
+         $result=mysqli_query($connection,$query);
+       return $result;
+    }
 
+    public static function delete_notification_by_Id($connection,$notify_id){
+        $query="DELETE FROM notifications WHERE notify_id=$notify_id";
+         mysqli_query($connection,$query);
+    }
+
+    public static function delete_notification_by_orderid($connection,$orderid){
+        $query="DELETE FROM notifications WHERE notify_id =(select notify_id FROM notifications WHERE massage LIKE'%$orderid%' and to_level='food_supplier')";
+        // echo $query;
+        // die(); 
+         mysqli_query($connection,$query);
+    }
 
     
+    public static function delete_pay_notification_by($connection,$orderid){
+        $query="DELETE FROM notifications WHERE notify_id =(select notify_id FROM notifications WHERE massage LIKE'%$orderid%' and to_level='food_supplier')";
+        // echo $query;
+        // die(); 
+         mysqli_query($connection,$query);
+    }
 
 }
 
