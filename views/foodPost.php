@@ -105,7 +105,7 @@ session_start();
 		
 			<div class="radio-1">
 			
-				<input type="radio" name="type" id="shortTerm" value="Short Term"><span >   Short Term</span>
+				<input type="radio" name="type" id="shortTerm" value="Short Term" checked><span >   Short Term</span>
 				<input type="radio" name="type" id="longTerm" value="Long Term"><span >   Long Term</span>
 				<input type="radio" name="type" id="both" value="Both"><span >   Both</span>
 				
@@ -153,7 +153,7 @@ session_start();
 	<hr>
 	
 	<div class="submitdiv">
-		<input type="submit" name="submit" id="submit" value="food advertisement" class="save" >
+		<input type="submit" name="submit" id="submit" value="Add Iteam" class="save" >
                 
                
     </div>

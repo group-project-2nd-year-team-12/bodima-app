@@ -60,11 +60,12 @@ body {
     border: 1.5px solid #1978a5;
 }
 
-.con-1 textarea {
-    width: 70%;
-    line-height: 35px;
-    padding: 1% 1% 1% 1%;
-    border: 1.5px solid #5d80b6;
+.con-1 h4 {
+    color: black;
+    margin-top: -15px;
+    margin-left: -20%;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .con-1 .images {
@@ -95,23 +96,16 @@ body {
     border: none;
 }
 
+label {
+    /* background-color: yellow; */
+    margin-bottom: -35px;
+}
+
 .con-1 .section span {
     font-size: 15px;
-    color: rgb(48, 47, 47);
-    font-weight: 100;
-}
-
-.con-1 .radio-1 {
-    position: relative;
-    left: 15%;
-    padding: 0% 1% 6% 0%;
-    /* bottom: 1000%; */
-}
-
-.con-1 .radio-2 {
-    position: relative;
-    left: 10%;
-    padding: 0% 1% 1% 1%;
+    color: #1978a5;
+    font-weight: bold;
+    padding-top: 10px;
 }
 
 .con-1 input[type=submit] {
@@ -123,11 +117,14 @@ body {
     font-weight: 700;
     letter-spacing: 2px;
     font-family: 'Poppins', sans-serif;
-    margin-right: 20px;
-    margin-left: auto;
+    /* margin-right: 20px; */
+    margin-left: 35%;
     text-transform: uppercase;
     box-shadow: 0 0 3px 0.1px rgba(81, 84, 88, 0.5);
     border-radius: 5px;
+    width: 30%;
+    height: 30%;
+    align-content: center;
 }
 
 .con-1 input:hover[type=submit] {
@@ -138,56 +135,6 @@ body {
     /* background-color: yellowgreen; */
     margin-top: 30px;
     display: flex;
-}
-
-.con-1 p#life {
-    position: relative;
-    padding: 5% 1% 0% 1%;
-}
-
-.con-1 p#Aamou {
-    position: relative;
-    padding: 0% 1% 1% 1%;
-}
-
-.con-1 input#lifespan {
-    position: relative;
-    left: 260px;
-    bottom: 42px;
-    line-height: 35px;
-    padding: -1px;
-    border: 1.5px solid #5d80b6;
-    margin-top: 4px;
-    text-align: center;
-    width: 6%;
-}
-
-.con-1 input#Aamount {
-    position: relative;
-    left: 200px;
-    bottom: 48px;
-    line-height: 35px;
-    border-radius: 0px;
-    border: none;
-    padding: 0 22px;
-    font-size: 15px;
-    background-color: transparent;
-    margin-top: 5px;
-    text-align-last: left;
-    width: 100px;
-    box-shadow: none;
-}
-
-#otDeadline {
-    position: relative;
-    left: 160px;
-    bottom: 42px;
-    line-height: 35px;
-    padding: -1px;
-    border: 1.5px solid #5d80b6;
-    margin-top: 4px;
-    text-align: center;
-    width: 30%;
 }
 
 .error_msg {
