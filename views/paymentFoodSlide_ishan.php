@@ -7,8 +7,8 @@
                   <li  onclick="window.location='../index.php'"><i style="width: 30px;" class="fas fa-external-link-alt"></i> Home page</li>
                   <li id="pending" onclick="window.location='../views/pendingReqIshan_New.php'"><i style="width: 30px;"  class="fas fa-hourglass-half"></i> Pending Requests <div class="noti-order" id="noti-pending"><h5>1</h5></div></li>
                   <li id="accept" onclick="window.location='../views/acceptedReqIshan_New.php'"><i style="width: 30px;" class="fas fa-clipboard-check"></i> Accepted Requests <div id="noti-order"><h5>1</h5></div></li>
-                  <li id="advance" onclick="window.location='../views/paymentFood_receving.php'"><i style="width: 30px;" class="fas fa-coins"></i> Pay advance and rent <div id="noti-delivery"><h5>1</h5></div></li>
-                  <li id="rented" onclick="window.location='../views/paymentFood_longTerm.php'"><i style="width: 30px;" class="fas fa-table"></i> rented- advance not paid <div class="noti-order" id="noti-long"><h5>1</h5></div></li>
+                  <li id="advance" onclick="window.location='../views/rentedPayIshan_New.php'"><i style="width: 30px;" class="fas fa-coins"></i> Pay advance and rent <div id="noti-delivery"><h5>1</h5></div></li>
+                  <li id="rented" onclick="window.location='../views/rentedPayNotIshan_New.php'"><i style="width: 30px;" class="fas fa-table"></i> rented- advance not paid <div class="noti-order" id="noti-long"><h5>1</h5></div></li>
                   
                   
               </ul>
