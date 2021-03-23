@@ -53,7 +53,7 @@
         </div>
     <div class="container">
         <div class="content">
-        <?php include  'paymentFoodSlide_ishan.php';?> 
+        <?php include  'boardingRentSlide_ishan.php';?> 
  
         <div id="shortTerm-box" class="pending">
             <div class="title">

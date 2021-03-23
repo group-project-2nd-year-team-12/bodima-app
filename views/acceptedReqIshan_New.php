@@ -58,7 +58,7 @@
     </div>
     <div class="container">
         <div class="content">
-        <?php include  'paymentFoodSlide_ishan.php';?> 
+        <?php include  'boardingRentSlide_ishan.php';?> 
       
            
         <!-- short term order set       -->
