@@ -26,7 +26,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="views/profilepage.php"> <i class="fa fa-user-circle fa-lg"></a></i></div>
+                    <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i class="fa fa-user-circle fa-lg"></a></i></div>
                 <?php
                     echo '<div class="user"><h4>Welcome '.$_SESSION['first_name'].'</h4></div>'; 
                     if($_SESSION['level']=='administrator'){?> <button onclick="window.location='controller/adminPanelCon.php?admin'"><i class="fas fa-cogs"></i> Dash Board </button>&nbsp<?php }

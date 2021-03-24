@@ -54,7 +54,7 @@
   <div class="pro_inner">
         <div class="title">
               <div class="back_button">
-                <a href="profilepage.php">
+                <a href="../controller/profile_controlN.php?profile=1">
                 <i class="far fa-arrow-alt-circle-left" style="font-size:48px; color:white;"></i></a>
               </div>
               <div class="title_name">

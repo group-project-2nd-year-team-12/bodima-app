@@ -345,7 +345,7 @@ session_start();
 								dataType:"json",
 								success:function(data){
 									console.log(data);
-									//window.location = "../views/profilepage.php";
+									//window.location = "../controller/profile_controlN.php?profile=1";
 								}
 						});	
                         
