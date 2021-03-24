@@ -6,10 +6,10 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['User Type', 'Number of Users'],
-          ['Student',    <?php echo $_GET['student']; ?>],
-          ['Boarding Owners',    <?php echo $_GET['boarding_owner']; ?>],
-          ['Boarder',  <?php echo $_GET['boarder']; ?>],
-          ['Food supplier ', <?php echo $_GET['food_supplier']; ?>]
+          ['Student',    ],
+          ['Boarding Owners',    ],
+          ['Boarder',  ],
+          ['Food supplier ', ]
         ]);
 
         var options = {
@@ -191,19 +191,26 @@ function drawChart() {
     </script>
 
 
+
+<!-- Pie chart on report page  -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-
+      <?php
+      $student=adminModel::userDetails('student',$connection);
+      $boarder=adminModel::userDetails('boarder',$connection);
+      $food_supplier=adminModel::userDetails('food_supplier',$connection);
+      $boardings_owner=adminModel::userDetails('boardings_owner',$connection);
+      ?>
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
           ['User Type', 'Hours per Day'],
-          ['Student',     11],
-          ['Boarder',      2],
-          ['Boarding Owner',  2],
-          ['Food Supplier', 2],
+          ['Student',     <?php echo $student->num_rows ?>],
+          ['Boarder',       <?php echo  $boarder->num_rows?>],
+          ['Boarding Owner',   <?php echo $food_supplier->num_rows?>],
+          ['Food Supplier',  <?php echo $boardings_owner->num_rows?>],
         ]);
 
         var options = {
@@ -234,28 +241,38 @@ function drawChart() {
       }
 </script>
 
-<!-- Line chart -->
+<!-- Line chart  page report -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-
+      <?php 
+      $allUser=adminModel::userDetailsAll($connection);
+      $nowYear=date("Y");
+      $nowMonth=date("F");
+      $nowCount=0;
+      $i=0;
+      while($row=mysqli_fetch_assoc($allUser))
+      {
+          $date=strtotime($row['reg_date']);
+          $year[$i]=date("Y",$date);
+          if($year[$i]==$nowYear)
+          {
+            $month[$i]=date("F",$date);
+          }
+          $i++;
+      }
+      $counts = array_count_values($month);
+      // print_r($month);
+      // echo "dsfsfsdf";
+      $mont=89;
+      ?>
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Month', 'new user',],
-          ['jan',  100, ],
-          ['feb',  150, ],
-          ['mar',  90,  ],
-          ['apr',  80, ],
-          ['may',  60, ],
-          ['jun',  30,  ],
-          ['jul',  25, ],
-          ['aug',  73, ],
-          ['sep',  120,  ],
-          ['oct',  135, ],
-          ['nov',  96, ],
-          ['dec',  56,  ],
-          
+          ['Jan',  <?php echo $counts['January']?>, ],
+          ['Feb',  <?php echo $counts['February']?>,],
+          ['Mar',  <?php echo $counts['March']?>,  ],
         ]);
 
         var options = {

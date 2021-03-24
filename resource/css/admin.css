@@ -455,14 +455,15 @@ a{
     margin-right: 10px;
 }
 #report-type{
-   border: 2px solid #2a7dfa;
+   border: 2px solid #b0cfff;
    border-radius: 3px;
    color: #5d80b6;
    font-size: 16px;
 }
 .report-box a{
-    background-color: rgb(4, 111, 34);
+    background-color: #101e5a;
     padding: 7px 50px;
+    /* color: black; */
 }
 .report-box > div h2{
     margin-right: 20px;
@@ -471,6 +472,20 @@ a{
     display: flex;
     padding: 7px;
     background-color: white;
+    margin-bottom: 3px;
+}
+.time > div{
+    width: 200px;
+    display: flex;
+    /* justify-content: space-around; */
+    padding: 0 15px;
+}
+time > div h4{
+    margin-right: 5px;
+    padding: 0 15px;
+}
+time > div select{
+    padding: 0 10px;
 }
 .accept{
     text-align: center;
@@ -505,7 +520,8 @@ a{
 .report-table tr{
     height:100px;
     font-weight: bolder;
-    color: #5d5d5d;
+    color: #252525;
+
 }
 .report-table th{
     text-align: left;
@@ -513,6 +529,7 @@ a{
     border: #5d80b6;
     padding:10px;
     color: white;
+    font-size: 14px;
 }
 .report-chart{
     width: 40%;
@@ -520,9 +537,44 @@ a{
 
 .positive{
     margin-left: 10px;
-    color: green;
+    color: rgb(1, 189, 1);
 }
 .negative{
     margin-left: 10px;
-    color: red;
+    color: rgb(209, 209, 209);
+}
+.summery
+{
+    position: absolute;
+    right: 260px;
+    top: 5px;
+    display: flex;
+    align-items: center;
+    width: 220px;
+    justify-content: space-between;
+}
+.circle {
+    /* background-color: red; */
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    /* border: 4px solid #406caf; */
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 10px;
+    color: #0093FF;
+}
+
+.numUser{
+    position: absolute;
+    right: 540px;
+    top: 5px;
+    display: flex;
+    align-items: center;
+    width: 140px;
+    text-align: center;
+    justify-content: space-between;
+    color: #0093FF ;
 }

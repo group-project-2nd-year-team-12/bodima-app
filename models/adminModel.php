@@ -1,13 +1,22 @@
 <?php
 
 class adminModel{
-    // get all user details
+    // get all user details separetely
     public static function userDetails($level,$connection){
         $query="SELECT * FROM $level";
         $result=mysqli_query($connection,$query);
         return $result;
     }
-  
+    // get all user details count
+    public static function userDetailsAll($connection){
+        $query="SELECT email,reg_date FROM student
+        UNION SELECT email,reg_date FROM boarder
+        UNION SELECT email,reg_date FROM boardings_owner
+        UNION SELECT email,reg_date FROM food_supplier
+        ";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
 
     public static function searchStudent($id,$word,$connection){
     $query="SELECT * FROM student WHERE email LIKE '{$word}' 
