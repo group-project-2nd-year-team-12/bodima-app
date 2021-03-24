@@ -58,11 +58,11 @@
           </ul>
         </li>
         <li><a href="../controller/boarder_list_controlN.php?boarderlist=1"><i class="fas fa-users"></i>My Boarders</a></li>
-        <li><a href="#"><i class="fas fa-print"></i>Print Reports</a></li>
+        <li><a href="../controller/BOwner_reports_Control.php?q=1"><i class="fas fa-print"></i>Print Reports</a></li>
         <li><a href="../views/postBoarding.php"><i class="fas fa-puzzle-piece"></i>Post New Ad</a></li>
         <li><a href="#"><i class="fas fa-ad"></i>My Advertisements</a></li>
-        <li><a href="#"><i class="fas fa-utensils"></i>Order Food</a></li>
-        <li><a href="#"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
+        <li><a href="../controller/foodpostviewN_control.php"><i class="fas fa-utensils"></i>Order Food</a></li>
+        <li><a href="../views/paymentFood_pending.php"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
         <?php
         }?>
         <!-- ********************************************************************************************** -->
@@ -105,7 +105,7 @@
             <li><a href="rentedPayNotIshan_New.php">Rented</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fas fa-plus-circle"></i>Boarding Request</a></li>
+        <li><a href="boardings_live.php"><i class="fas fa-plus-circle"></i>Boarding Request</a></li>
        
         <?php
         }?>
@@ -126,9 +126,8 @@
           </ul>
         </li>
         
-        <li><a href="#"><i class="fas fa-utensils"></i>Order Food</a></li>
+        <li><a href="../controller/foodpostviewN_control.php"><i class="fas fa-utensils"></i>Order Food</a></li>
         <li><a href="../views/paymentFood_pending.php"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
-        <li><a href="#"><i class="fas fa-home"></i>My Request Manager</a></li>
         
         <?php
         }?>
