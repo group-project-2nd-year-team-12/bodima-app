@@ -35,6 +35,9 @@ $BOid=$boardingpost_d['BOid'];
 $boardingpost_owner=advertisement_model::get_B_post_owner_byId($BOid,$connection);
 $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 // print_r($boardingpost_owner_d);
+
+
+
 ?>
 
     <div class="box_outer">
@@ -169,12 +172,12 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                         
                         <div class="mapouter">
                             <div class="gmap_canvas">
-                            <iframe width="500" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=dharmapala%20widyalaya%2Ckottawa&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <iframe width="530" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<?php echo $boardingpost_d['latitude']?>,<?php echo $boardingpost_d['longitude']?>&amp;key=AIzaSyBbFP4LgCtbVnl1JQAlLjHOv_HoQdvOTi8"></iframe>
                                 <a href="https://www.whatismyip-address.com/divi-discount/"></a>
                             </div>
                             <style>
-                                .mapouter{position:relative;text-align:right;height:300px;width:500px;}
-                                .gmap_canvas {overflow:hidden;background:none!important;height:300px;width:500px;}
+                                .mapouter{position:relative;text-align:right;height:300px;width:530px;}
+                                .gmap_canvas {overflow:hidden;background:none!important;height:300px;width:530px;}
                             </style>
                         </div>
                         
