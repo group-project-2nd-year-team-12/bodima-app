@@ -72,8 +72,7 @@ class adminModel{
     }
     public static function searchBoardingPost($word,$connection)
     {
-        $query="SELECT * FROM boarding_post WHERE location LIKE '{$word}' ";
-                        
+        $query="SELECT * FROM boarding_post WHERE location LIKE '{$word}' ";  
         $result=mysqli_query($connection,$query);
         return $result;
     }
