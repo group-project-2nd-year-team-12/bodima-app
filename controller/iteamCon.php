@@ -185,7 +185,7 @@ if(isset($_GET['deletePost'])){
 
     $result=foodSupplierPost::delete_food_post($connection);
     echo $result;
-    header('Location:../views/profilepage.php?');
+    header('Location:..controller/profile_controlN.php?profile=1'); //link changed
     // $state="";
     // if($result->num_rows!=0){
     //     $state="sucess";

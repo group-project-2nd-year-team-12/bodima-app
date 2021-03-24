@@ -234,7 +234,7 @@ if(isset($_GET['deletePost'])){
 
     $result=boarding::delete_post($connection);
     echo $result;
-    header('Location:../views/profilepage.php?');
+    header('Location:../controller/profile_controlN.php?profile=1');
     // $state="";
     // if($result->num_rows!=0){
     //     $state="sucess";
