@@ -80,47 +80,6 @@ function CreateOptionValues(array $valueArray) {
         return $result;
     }
     
-    
-/*function CreateBoardingTables($types)
-    {
-        $BoardingPostModel = new BoardingPostModel();
-        $BoardingPostArray = $BoardingPostModel->GetBoardingbyCategory($types);
-        $result = "";
-        
-        //Generate a Boarding_post for each BoardingPostEntity in array
-        foreach ($BoardingPostArray as $key => $boarding_post) 
-        {
-            $result = $result .
-                    "<table class = 'boardingPostTable'>
-                        <tr>
-                            <th rowspan='6' width = '150px' ><img runat = 'server' src = '$boarding_post->image' /></th>
-                            <th width = '75px' >location: </th>
-                            <td>$boarding_post->city</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>category: </th>
-                            <td>$boarding_post->category</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>Price: </th>
-                            <td>$boarding_post->cost_per_person</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>gender: </th>
-                            <td>$boarding_post->girlsBoys</td>
-                        </tr>
-                       
-                        
-                        <tr>
-                            <td colspan='2' >$boarding_post->description</td>
-                        </tr>                      
-                     </table>";
-        }        
-        return $result;
-      */ 
 
 public function CreateBoardingPages($id) {
     require_once ('../config/database.php');
@@ -130,9 +89,7 @@ public function CreateBoardingPages($id) {
 
           $result=reg_userIshan::getReq($connection,$student_email,$id);//$id means B_post_id
         $record=mysqli_fetch_assoc($result);
-        // echo "<pre>";
-        // print_r($record);
-        // echo "</pre>";
+
         if($record)
         {
             if($record['isAccept']==0)
@@ -166,14 +123,7 @@ public function CreateBoardingPages($id) {
             });
             </script>";
             }
-            /////////////practise
 
-           // echo($record['date']);
-        //    echo '<br>'.time();
-          //  echo '<br>'.date($record['date']);
-           //  echo '<br>'.date('d');
-
-            /////////////
         }
 
 
