@@ -1,6 +1,7 @@
 <?php
 
 class adminModel{
+    // get all user details
     public static function userDetails($level,$connection){
         $query="SELECT * FROM $level";
         $result=mysqli_query($connection,$query);

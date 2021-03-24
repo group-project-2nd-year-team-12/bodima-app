@@ -13,15 +13,9 @@ session_start(); ?>
     <link rel="stylesheet" href="../../resource/css/all.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="checked('user')">
 
     <div class="container">
-    <div class="header">
-            <div class="logo"><img src="../../resource/img/logo.svg" alt=""></div>
-            <div class="sign">
-            <a href="../../index.php"><i style=" padding-right:10px" class="fa fa-angle-double-right"></i></a>
-            <a href="../../controller/logoutController.php"><i style=" padding-right:30px" class="fa fa-sign-out-alt"></i></a>    </div>
-        </div>
         <div class="wrapper">
         <?php include 'slide-bar.php' ?>
       
@@ -92,7 +86,8 @@ session_start(); ?>
                          <td><?php echo $row['first_name']; ?></td>
                          <td><?php echo $row['last_name']; ?></td>
                          <td><?php echo $row['email']; ?></td>
-                         <td><?php echo $row['nic']; ?></td>
+                         <!-- <td><?php echo $row['nic']; ?></td> -->
+                         <td>bnbfbsh</td>
                          <td><?php echo $row['address']; ?></td>
                     <td><?php      if($row['user_accepted']==0){?> <div class="accept accept-not"><h4>Not confirm</h4></div> <?php }?>
                         <?php      if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
