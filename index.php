@@ -36,7 +36,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="views/profilepage.php"> <i class="fa fa-user-circle fa-lg"></i></a></div>
+                    <div class="profile"><a href="views/profilepage1.php"> <i class="fa fa-user-circle fa-lg"></i></a></div>
                 <?php
                     
                     if($_SESSION['level']=='administrator'){?> <button onclick="window.location='controller/adminPanelCon.php?admin'"><i class="fas fa-cogs"></i> Dash Board </button>&nbsp<?php }
@@ -74,11 +74,11 @@
                     <?php if($_SESSION['level']=='boardings_owner'){?>
                       
                       
-                      <li onclick='window.location="views/myBoardingReqIshan.php"'>My Requests</li>
+                      <li onclick='window.location="views/myBoardingReqIshan_New.php"'>My Requests</li>
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='student'){?>
-                      <li onclick='window.location="views/pendingReqIshan.php"'>Boarding Request </li>
+                      <li onclick='window.location="views/pendingReqIshan_New.php"'>Boarding Request </li>
                       
                       
                    <?php } ?>
