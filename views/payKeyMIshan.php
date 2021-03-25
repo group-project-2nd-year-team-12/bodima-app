@@ -69,7 +69,7 @@ require_once ('../config/database.php');
 
             <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
 
-            <input type="hidden" name="return_url" value='http://localhost/bodima-app/controller/payhereOnlineSuccessIshan_New.php?success'>
+            <input type="hidden" name="return_url" value='http://localhost/bodima-app/controller/payhereOnlineSuccessIshan.php?success'>
             <input type="hidden" name="cancel_url" value="http://localhost/bodima-app/controller/payhereOnlineCancelIshanphp?request_id=<?php echo $request_id;?>">
             <input type="hidden" name="notify_url" value="http://localhost/bodima-app/config/paycon.php"> 
 

@@ -91,7 +91,7 @@ if (isset($_GET['ConreqAccBOwner_id'])) {
   $request_id=$_GET['ConreqAccBOwner_id'];
 $result=BOwnerReqIshan::updateStTOBorderByBO($connection,$request_id);
 if ($result) {
-  header('Location:../views/addAsBoarderIshanBO_new.php');
+  header('Location:boarder_list_controlN.php?boarderlist=1');
 }
 }
 
