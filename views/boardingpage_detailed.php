@@ -41,7 +41,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 ?>
 
     <div class="box_outer">
-        <!-- <div class="col-7"> -->
+        <div class="col-7">
             <div class="inner_slider">
                 <h1><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h1>
                 <h3>Title: <?php echo $boardingpost_d['title']?> </h3>
@@ -56,7 +56,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                 
                
                 $boardingpost= advertisement_model::get_post_details($B_post_id,$connection);
-
+                
 
                 if(mysqli_num_rows($boardingpost)>0){
                     while($fetch= mysqli_fetch_all($boardingpost)){
@@ -159,7 +159,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                 </div>
             
             </div>
-        <!-- </div> -->
+        </div>
         <div class="resquest col-5" style="margin-bottom: 100px;">
             <div class="inner_right">
                 <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
