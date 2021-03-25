@@ -171,13 +171,14 @@ $errors=array(); //create empty array
 
             // print_r($_FILES);
         
-    
-            move_uploaded_file($temp_name, $upload_to . $image_name);
+            
 
 
             if(null!=trim($image_name)){
                 echo "null";
-                boarding::image_save($id,$postid,$image_name,$upload_to,$connection);
+                $image_name_edit='post'.$postid.'img'.$image_name;
+                move_uploaded_file($temp_name, $upload_to . $image_name_edit);
+                boarding::image_save($id,$postid, $image_name_edit,$upload_to,$connection);
             }
             
 
