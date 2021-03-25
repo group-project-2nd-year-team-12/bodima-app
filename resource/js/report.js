@@ -1,7 +1,10 @@
+// when load get all details  [report.php]
 $(document).ready(function () {
-    window.onload=function(){
-        var year=$('#report-year').val();
-        var month=$('#report-month').val();
+        const date=new Date();
+        var year=date.getFullYear();
+        var month=date.toLocaleString('default', { month: 'long' });
+        $('#report-year').val(year);
+        $('#report-month').val(month);
         $.ajax({
             type: "POST",
             url:"../../controller/adminPanelCon.php",
@@ -29,13 +32,11 @@ $(document).ready(function () {
                 $('#userNumCount').html(data.student+data.boarder+data.food_supplier+data.boardings_owner);
             }
         });
-    }
 });
 
-// when  select the select then submit
+// when  select the date then submit [report.php]
 $(document).ready(function () {
     $('#report-year , #report-month').change(function(){
-        // this.form.submit();
         var year=$('#report-year').val();
         var month=$('#report-month').val();
         $.ajax({
@@ -65,21 +66,4 @@ $(document).ready(function () {
         });
     })
 
-})
-
-
-// PDF function
-$(document).ready(function () {
-    $('#userPDF').click(function(){
-        var htmlDetails=$('#report-table').html();
-        console.log(htmlDetails);
-        htmlDetail=htmlDetails.trim();
-        htmlDetail=''+htmlDetails+'';
-        console.log(htmlDetail.trim());
-        htmlDetails=encodeURIComponent(htmlDetails);
-
-        
-        // alert(htmlDetails);
-        window.location="../../controller/adminPanelCon.php?userPDF="+htmlDetails+"";
-    })
 })

@@ -23,27 +23,29 @@ require_once ('chart.php');
         <div style="overflow-x: hidden;" class="content">
         <!-- circle -->
         <div class="summery">
-            <h4>New Registration </h4>
+            <h4>Value Of Total Transaction</h4>
             <div class="circle">
                 <h1 id="addPec"></h1>
             </div>
         </div>
+
         <!-- all users -->
         <div class="numUser">
             <img src="https://img.icons8.com/cotton/64/4a90e2/stairs.png"/>
             <div>
                 <h2 id="userNumCount"></h2>
-                <h3>USERS </h3>
+                <h3>POSTS</h3>
             </div>
         </div>
+
         <div class="report-box">
             <div>
-                <h2>Users details</h2>
-                <select name="" id="report-type">
-                    <option value="">User Details</option>
-                    <option value="">Food Advertisment</option>
-                    <option value="">Borarding Advertisment</option>
-                </select>
+                <h2 id="reportName">Food Details</h2>
+                <select name="type"  id="report-type">
+                    <option id="User" value="User">User Details</option>
+                    <option id="Food" value="Food" selected>Order Details</option>
+                    <option id="Boarding" value="Boarding">Borarding Post</option>
+                </select>  
             </div>
             <div><a id="userPDF"><i class="fa fa-file-download fa-lg"></i> Get file here</a></div>
         </div>
@@ -76,42 +78,67 @@ require_once ('chart.php');
         <div class="report-details">
             <div id="report-table" class="report-table">
                 <table>  
-                    <tr>  
-                        <th >User type </th>  
-                        <th >Number of user</th> 
-                        <th >New Registration</th> 
-                        <th >Registration rate</th>
+                    <tr style="height: 70px;">  
+                        <th>Term</th>
+                        <th >Order type </th>  
+                        <th >Number of Order</th> 
+                        <th >Number of Deliverd Order</th> 
+                        <th >Value Of Order</th>
+                        <!-- <th >Value for Bodima(10%)</th> -->
                     </tr>
-                    <tr>  
-                        <td style="background-color: #101a5e; color:white">Student </td>
-                        <td id="stu" style="background-color: rgb(209, 209, 209);"></td>
-                        <td id="stuC"></td>
-                        <td id="sRate" class="positive"></td>
+                    <!-- <tr>
+                        <td rowspan="3">Short Term</td>
+                        <td rowspan="3">Long Term</td>
+                    </tr> -->
+                    <tr style="height: 70px;">  
+                    <td rowspan="3">Short Term</td> 
+                        <td style="background-color: #101a5e; color:white">Breakfast </td>
+                        <td id="countSB" style="background-color: rgb(209, 209, 209);"></td>
+                        <td id="countSBD"></td>
+                        <td id="valueSBD" class="positive"></td>
+                        <!-- <td id="gainSB"></td> -->
                     </tr>
-                    <tr>  
-                        <td style="background-color: #101a5e; color:white">Border  </td>
-                        <td id="boa" style="background-color: rgb(209, 209, 209);"></td>
-                        <td id="boaC"></td>
-                        <td id="bRate" class="positive"></td>
+                    <tr style="height: 70px;">  
+                        <td style="background-color: #101a5e; color:white">Lunch   </td>
+                        <td id="countSL" style="background-color: rgb(209, 209, 209);"></td>
+                        <td id="countSLD"></td>
+                        <td id="valueSLD" class="positive"></td>
+                        <!-- <td id="gainSL"></td> -->
                     </tr>
-                    <tr>  
-                        <td style="background-color: #101a5e; color:white">Boarding Owner </td>
-                        <td id="boardings" style="background-color: rgb(209, 209, 209);"></td>
-                        <td id="boardingC"></td>
-                        <td id="boRate" class="positive" >34%</td>
+                    <tr style="height: 70px;"> 
+                        <td style="background-color: #101a5e; color:white">Dinner  </td>
+                        <td id="countSD" style="background-color: rgb(209, 209, 209);"></td>
+                        <td id="countSDD"></td>
+                        <td id="valueSDD" class="positive" ></td>
+                        <!-- <td id="gainSD"></td> -->
                     </tr>
-                    <tr>  
-                        <td style="background-color: #101a5e; color:white">Food Supplier </td>
-                        <td id="foodSupplier" style="background-color: rgb(209, 209, 209);"></td>
-                        <td id="foodC" ></td>            
-                        <td id="fRate" class="positive">34%</td>
+                    <tr style="height: 70px;"> 
+                    <td rowspan="3">Long Term</td>  
+                        <td style="background-color: #101a5e; color:white">Breakfast </td>
+                        <td id="countLB" style="background-color: rgb(209, 209, 209);"></td>
+                        <td id="countLBD" ></td>            
+                        <td id="valueLBD" class="positive"></td>
+                        <!-- <td id="gainLB"></td> -->
                     </tr>
-                         </tr>
+                    <tr style="height: 70px;">  
+                        <td style="background-color: #101a5e; color:white">Lunch </td>
+                        <td id="countLL" style="background-color: rgb(209, 209, 209);"></td>
+                        <td id="countLLD"></td>
+                        <td id="valueLLD" class="positive" ></td>
+                        <!-- <td id="gainLL"></td> -->
+                    </tr>
+                    <tr style="height: 70px;">  
+                        <td style="background-color: #101a5e; color:white">Dinner </td>
+                        <td id="countLD" style="background-color: rgb(209, 209, 209);"></td>
+                        <td id="countLDD" ></td>            
+                        <td id="valueLDD" class="positive"></td>
+                        <!-- <td id="gainLD"></td> -->
+                    </tr>
                 </table>
             </div>
             <div class="report-chart">
-                <div style="width: 500px;height:250px" id="chart3"></div>
-                <div style="width: 500px;height:250px" id="curve_chart"></div>
+                <div style="width: 500px;height:250px" id="termChart"></div>
+                <div style="width: 500px;height:250px" id="orderChart"></div>
             </div>
         </div>
         </div>
@@ -120,6 +147,6 @@ require_once ('chart.php');
 </body>
     <script src="../../resource/js/admin.js"></script>
     <script src="../../resource/js/jquery.js"></script>
-    <script src="../../resource/js/report.js"></script>
+    <script src="../../resource/js/foodReport.js"></script>
 </html>
 

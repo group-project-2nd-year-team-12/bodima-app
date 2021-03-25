@@ -173,10 +173,148 @@ if(isset($_POST['userDetails']))
 }
 
 
-// PDF generation function
+// PDF generation function report 
 if(isset($_GET['userPDF']))
 { 
-    userDetails($_GET['userPDF']);
+    userDetails($_GET['userPDF'],$_GET['name']);
 }
+
+
+// food report page load statistic
+if(isset($_POST['foodDetails']))
+{ 
+    $yearPOST=$_POST['year'];
+    $monthPOST=$_POST['month'];
+    date_default_timezone_set("Asia/Colombo");
+    $post=adminModel::foodpost($connection);
+    $request=adminModel::foodRequest($connection);
+    $i=0;
+    $countSB=0;
+    $countSL=0;
+    $countSD=0;
+    $countLB=0;
+    $countLL=0;
+    $countLD=0;
+
+    $countSBD=0;
+    $countSLD=0;
+    $countSDD=0;
+    $countLBD=0;
+    $countLLD=0;
+    $countLDD=0;
+
+    $valueSBD=0;
+    $valueSLD=0;
+    $valueSDD=0;
+    $valueLBD=0;
+    $valueLLD=0;
+    $valueLDD=0;
+    $totalval=0;
+    while($row=mysqli_fetch_assoc($request))
+    {
+        $date=strtotime($row['time']);
+        $month[$i]=date("F",$date);  // month in name 
+        $monthN[$i]=date("M",$date); // month in number
+        $year[$i]=date("Y",$date);
+
+        if($month[$i]==$monthPOST && $year[$i]==$yearPOST)
+        {
+           if($row['term']=='shortTerm')
+           {
+               if($row['order_type']=='breakfast')
+               {
+                   $countSB++;
+                   if($row['is_accepted']==4)
+                   {
+                    $countSBD++;
+                    $valueSBD=$valueSBD+$row['total'];
+                   }
+               }
+               if($row['order_type']=='lunch')
+               {
+                   $countSL++;
+                   if($row['is_accepted']==4)
+                   {
+                    $countSLD++;
+                    $valueSLD=$valueSLD+$row['total'];
+                   }
+               }
+               if($row['order_type']=='dinner')
+               {
+                   $countSD++;
+                   if($row['is_accepted']==4)
+                   {
+                    $countSDD++;
+                    $valueSDD=$valueSDD+$row['total'];
+                   }
+               }
+           }
+           if($row['term']=='longTerm')
+           {
+               if($row['order_type']=='breakfast')
+               {
+                   $countLB++;
+                   if($row['is_accepted']==4)
+                   {
+                    $countLBD++;
+                    $valueLBD=$valueLBD+$row['total'];
+                   }
+               }
+               if($row['order_type']=='lunch')
+               {
+                   $countLL++;
+                   if($row['is_accepted']==4)
+                   {
+                    $countLLD++;
+                    $valueLLD=$valueLLD+$row['total'];
+                   }
+               }
+               if($row['order_type']=='dinner')
+               {
+                   $countLD++;
+                   if($row['is_accepted']==4)
+                   {
+                    $countLDD++;
+                    $valueLDD=$valueLDD+$row['total'];
+                   }
+               }
+           }
+
+        }
+        if($row['is_accepted']==4){
+            $totalval=$totalval+$row['total'];
+        }
+
+        $i++;
+    }
+
+    $data=array(
+        "posts"=>$post->num_rows,
+        "total"=>$totalval,
+        'countSB' =>$countSB,
+        'countSL' =>$countSL,
+        'countSD' =>$countSD,
+        'countLB' =>$countLB,
+        'countLL' =>$countLL,
+        'countLD' =>$countLD,
+        'countSBD' =>$countSBD,
+        'countSLD' =>$countSLD,
+        'countSDD' =>$countSDD,
+        'countLBD' =>$countLBD,
+        'countLLD' =>$countLLD,
+        'countLDD' =>$countLDD,
+
+        'valueSBD' =>$valueSBD,
+        'valueSLD' =>$valueSLD,
+        'valueSDD' =>$valueSDD,
+        'valueLBD' =>$valueLBD,
+        'valueLLD' =>$valueLLD,
+        'valueLDD' =>$valueLDD,
+    );
+    echo json_encode($data);
+}
+
+
+
 
 ?>

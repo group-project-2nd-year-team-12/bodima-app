@@ -15,7 +15,6 @@ require_once ('chart.php');
 </head>
 <body onload="checked('report')">
 
-
     <div class="container">
 
         <div class="wrapper">
@@ -39,27 +38,25 @@ require_once ('chart.php');
         </div>
         <div class="report-box">
             <div>
-                <h2 id="reportName">Users Details</h2>
+                <h2 id="reportName">Boardings Details</h2>
                 <select name="type"  id="report-type">
-                    <option id="User" value="User" selected>User Details</option>
+                    <option id="User" value="User">User Details</option>
                     <option id="Food" value="Food" >Order Details</option>
-                    <option id="Boarding" value="Boarding">Borarding Post</option>
-                </select>  
+                    <option id="Boarding" value="Boarding" selected>Borarding Post</option>
+                </select>         
             </div>
             <div><a id="userPDF"><i class="fa fa-file-download fa-lg"></i> Get file here</a></div>
         </div>
           <form id="flterReport" class="time" method="post">
           <div>
-              <!-- select year -->
                 <h4 style="padding:0 5px;">Year</h4>
                 <select name="year" id="report-year">
-                    <option value="2020">2020</option>
+                    <!-- <option value="2020">2020</option> -->
                     <option value="2021">2021</option>
                 </select>
             </div>
             <div>
-                <!-- select month -->
-                <h4  style="padding:0 5px; ">Month</h4>  
+                <h4  style="padding:0 5px; ">Month</h4>
                 <select style="border: 2px solid #b0cfff;" name="year" id="report-month">
                     <option value="January">January</option>
                     <option value="February">February</option>
@@ -123,6 +120,6 @@ require_once ('chart.php');
 </body>
     <script src="../../resource/js/admin.js"></script>
     <script src="../../resource/js/jquery.js"></script>
-    <script src="../../resource/js/report.js"></script>
+    <script src="../../resource/js/boardingReport.js"></script>
 </html>
 

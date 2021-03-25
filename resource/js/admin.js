@@ -45,3 +45,28 @@ document.querySelector('.element5').addEventListener('click',(e)=>{
         }
 })
 
+// table details send to PDF function [report]
+$('#userPDF').click(function(){
+    var htmlDetails=$('#report-table').html();
+    var reportName=$('#reportName').text();
+    htmlDetail=htmlDetails.trim();
+    htmlDetail=''+htmlDetails+'';
+    console.log(htmlDetail.trim());
+    htmlDetails=encodeURIComponent(htmlDetails);
+    window.location="../../controller/adminPanelCon.php?userPDF="+htmlDetails+"&name="+reportName;
+})
+
+
+// report change function [userdetails ,food post, boarding post ]
+$('#report-type').change(function(){
+    var type=$('#report-type').val();
+    if(type=="User"){
+        window.location="reports.php";
+    }
+    else if(type=="Food"){
+        window.location="foodReport.php";
+    }
+   else if(type=="Boarding"){
+        window.location="boardingReport.php"; 
+    }
+})

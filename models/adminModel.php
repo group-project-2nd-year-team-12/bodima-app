@@ -59,9 +59,17 @@ class adminModel{
                     return $result;
                 }
 
+     // get all food post details
     public static function foodPost($connection)
     {
         $query="SELECT * FROM food_post ";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+    // get all food request details
+    public static function foodRequest($connection)
+    {
+        $query="SELECT * FROM food_request ";
         $result=mysqli_query($connection,$query);
         return $result;
     }
