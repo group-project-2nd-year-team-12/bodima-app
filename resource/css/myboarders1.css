@@ -161,9 +161,12 @@ padding-left: 70%;
      border-radius: 5px; 
      font-style: oblique; 
      border: none;
+    
+     
 }
 
 .h1btn .p_edit .fas{padding:5px;}
 .h1btn.p_edit:hover{background-color:#5d80b6;}
 
 .h1btn .p_edit{margin-top:-30px ;}
+

@@ -136,5 +136,32 @@
 <script src="../resource/js/disableBack.js"></script>
 
 
+  <script>
+    function func() {
+        var dateValue = document.getElementById("date").value;
+ 
+        var date = Math.abs((new Date().getTime() / 1000).toFixed(0));
+        var date2 = Math.abs((new Date(dateValue).getTime() / 1000).toFixed(0));
+ 
+        var diff = Math.abs(date2 - date);
+
+        var days=Math.floor(diff/86400);
+        var hours=Math.floor(diff/3600)%24;
+         var minutes=Math.floor(diff/60)%60;
+          var seconds=diff%60;
+          
+       
+        document.getElementById("data").innerHTML = days+" days, "+hours+"  hours, "+minutes+"  minutes, "+seconds+" seconds";
+
+        if (days==0 && seconds==0) {
+          window.location="../controller/requestIshan.php?BOrequesttimeout_id=<?php echo $request_id; ?>"
+          }
+    }
+ 
+    func();
+    var interval = setInterval(func, 1000);
+</script>
+
+
 
 </html>

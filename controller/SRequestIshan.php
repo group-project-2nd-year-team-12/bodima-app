@@ -20,7 +20,7 @@ if (isset($_POST['send_request'])) {
 
     $result=reg_userIshan::insertReq($connection,$student_email,$BOid,$B_post_id,$message);
  
- header('Location:../views/pendingReqIshan.php?id='.$B_post_id.'');
+ header('Location:../views/pendingReqIshan_New.php?id='.$B_post_id.'');
 
 	
 }

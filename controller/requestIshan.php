@@ -12,16 +12,28 @@ if(isset($_GET['requestDelete_id'])){
    $request_id=$_GET['requestDelete_id'];
    $result=StudentRequestIshan::PendingrequestDelete($connection,$request_id);
    if($result){
-      header('Location:../views/cancelReqIshan.php');
+      header('Location:../views/pendingReqIshan_New.php');
    }
    
 }
 
+if(isset($_GET['ArequestDelete_id'])){
+   $request_id=$_GET['ArequestDelete_id'];
+   $result=StudentRequestIshan::PendingrequestDelete($connection,$request_id);
+   if($result){
+      header('Location:../views/acceptedReqIshan_New.php');
+   }
+   
+}
+
+
+
+
 if(isset($_GET['requestDeleteBO_id'])){
    $request_id=$_GET['requestDeleteBO_id'];
-   $result=reg_userIshan::PendingrequestDelete($connection,$request_id);
+   $result=StudentRequestIshan::PendingrequestDelete($connection,$request_id);
    if($result){
-      header('Location:../views/myBoardingReqIshan.php');
+      header('Location:../views/myBoardingReqIshan_New.php');
    }
    {
      // echo "Mysqli query failed";
@@ -43,7 +55,7 @@ if(isset($_GET['reqAccBOwner_id'])){
    $request_id=$_GET['reqAccBOwner_id'];
    $result=reg_userIshan::confirmReqAccBO($request_id,$connection);
    if($result){
-     header('Location:../views/myBoardingReqIshan.php');
+     header('Location:../views/myBoardingReqIshan_New.php');
    }
    
 }
@@ -51,7 +63,17 @@ if (isset($_GET['requesttimeout_id'])) {
  echo   $request_id=$_GET['requesttimeout_id'];
  $result=StudentRequestIshan::setTimeoutIshanSt($request_id,$connection);
   if($result){
-     header('Location:../views/pendingReqIshan.php');
+     header('Location:../views/pendingReqIshan_New.php');
+   }
+  
+}
+
+
+if (isset($_GET['Arequesttimeout_id'])) {
+ echo   $request_id=$_GET['Arequesttimeout_id'];
+ $result=StudentRequestIshan::setTimeoutIshanSt($request_id,$connection);
+  if($result){
+     header('Location:../views/acceptedReqIshan_New.php');
    }
   
 }
@@ -60,7 +82,7 @@ if (isset($_GET['BOrequesttimeout_id'])) {
     $request_id=$_GET['BOrequesttimeout_id'];
  $result=StudentRequestIshan::setTimeoutIshanSt($request_id,$connection);
   if($result){
-     header('Location:../views/myBoardingReqIshan.php');
+     header('Location:../views/myBoardingReqIshan_New.php');
    }
   
 }
@@ -69,7 +91,7 @@ if (isset($_GET['ConreqAccBOwner_id'])) {
   $request_id=$_GET['ConreqAccBOwner_id'];
 $result=BOwnerReqIshan::updateStTOBorderByBO($connection,$request_id);
 if ($result) {
-  header('Location:../views/addAsBoarderIshanBO.php');
+  header('Location:../views/addAsBoarderIshanBO_new.php');
 }
 }
 
@@ -78,7 +100,7 @@ if (isset($_GET['onPayNSReq'])) {
   $request_id=$_GET['onPayNSReq'];
 $result=StudentRequestIshan::setHandover($connection,$request_id);
 if ($result) {
- header('Location:../views/rentedPayNotIshan.php');
+ header('Location:../views/rentedPayNotIshan_New.php');
 }
 }
 
@@ -94,7 +116,7 @@ $student_email=$_SESSION['email'];
     StudentRequestIshan::deleteboaParent($connection,$Bid);
     StudentRequestIshan::deleteboarder($connection,$Bid);
      StudentRequestIshan::UpdateCtoAReq($connection,$request_id);
-    header('Location: ../views/acceptedReqIshan.php');
+    header('Location: ../views/acceptedReqIshan_New.php');
 
 }
 
