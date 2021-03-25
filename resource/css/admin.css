@@ -7,6 +7,7 @@
 }
 body{
     background-color: rgb(240, 240, 240);
+    /* background-color: rgba(255, 235, 80, 0.586); */
     width: 100%;
     height: 100vh;
     overflow-y: hidden;
@@ -190,9 +191,9 @@ a{
 .numbers > div{
     width: 250px;
     margin-left: 10px;
-    height: 120px;
+    height: 110px;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.276);
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.116);
 }
 .num-format{
     display: flex;
@@ -259,6 +260,48 @@ a{
     background-color: rgb(230, 230, 237);
     /* box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.276); */
 }
+
+.stat{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 10px;
+    height: 70px;
+}
+.orderDetails{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    background-color:  rgba(145, 145, 255, 0.300);
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.orderDetails >div{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    color: #3c55b1;
+    border-right: 1px solid #5167b6;
+}
+.orderDetails >div:last-child{
+    border-right: none;
+}
+
+.requestDetails{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    background-color:  rgba(145, 145, 255, 0.300);
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.requestDetails >div{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    color: #3c55b1;
+    border-right: 1px solid #5167b6;
+}
+.requestDetails >div:last-child{
+    border-right: none;
+}
 .charts{
     display: grid;
     grid-template-columns: 40% 60%;
@@ -269,20 +312,38 @@ a{
     font-size: 16px;
 }
 
-.charts-2{
+.content-3{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 25% 25% 25% 25%;
     margin-top: 10px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    height: 140px;
+    position: relative;
+    font-weight: bolder;
+    margin-right: 10px;
 }
 
-.charts-2 >div {
+.content-3 >div {
     margin-left: 10px;
     border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+
 }
-.charts-2 h3{
-    font-weight: lighter;
+.content-3 h3{
+    font-weight: bolder;
     font-size: 16px;
+    color: #3c55b1;
+}
+.content-3 img{
+    bottom:10px;
+    position: absolute;
+}
+.box-details{
+    color: #3c55b1;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
 }
 
 
@@ -290,6 +351,7 @@ a{
     border-radius: 5px;
     /* margin-left: 10px; */
     background-color: rgb(230, 230, 237);
+    position: relative;
 }
 
       /* student page css */
@@ -311,7 +373,7 @@ a{
 }
 .table table tr th{
    
-    color: blue;
+    color: rgb(0, 0, 255);
 }
 
 .search {

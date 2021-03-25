@@ -1,6 +1,6 @@
 <?php require_once ('../../config/database.php');
       require_once ('../../models/adminModel.php');
-      require_once 'chart.php';
+      include ('chart.php');
 ?>
 <?php 
 $userCount=$_GET['student']+$_GET['boarding_owner']+$_GET['boarder']+$_GET['food_supplier'];
@@ -17,7 +17,7 @@ $fConut=$_GET['food_count'];
     <title>Document</title>
   
 </head>
-<body onload="checked('order')">
+<body>
     <div class="container">
         <div class="wrapper">
         <?php include 'slide-bar.php' ?>
@@ -25,6 +25,9 @@ $fConut=$_GET['food_count'];
                                 <!-- dashboard card -->
             <div class="background">
             <h3>Dash Board</h3>
+            <div>
+                
+            </div>
                     <div class="numbers">
                         <div class="num1">
                             <h2>Users</h2>
@@ -56,33 +59,101 @@ $fConut=$_GET['food_count'];
                         </div>
                     </div>
                 </div>
+                <div class="stat">
+                    <div class="orderDetails">
+                        <div>
+                           <div>
+                                <img src="https://img.icons8.com/wired/40/3c55b1/kawaii-egg.png"/>
+                                <h4>All Orders</h4>
+                           </div>
+                           <h2>34</h2>
+                        </div>
+                        <div>
+                           <div>
+                           <img src="https://img.icons8.com/wired/40/3c55b1/kawaii-cupcake.png"/>
+                                <h4>Pending Orders</h4>
+                           </div>
+                           <h2>34</h2>
+                        </div>
+                        <div>
+                           <div>
+                           <img src="https://img.icons8.com/wired/40/3c55b1/kawaii-bread-1.png"/>
+                                <h4>Complete Orders</h4>
+                           </div>
+                           <h2>34</h2>
+                        </div>
+                    </div>
+                    <div class="requestDetails">
+                    <div>
+                           <div>
+                                <img src="https://img.icons8.com/wired/40/3c55b1/kawaii-egg.png"/>
+                                <h4>All Orders</h4>
+                           </div>
+                           <h2>34</h2>
+                        </div>
+                        <div>
+                           <div>
+                           <img src="https://img.icons8.com/wired/40/3c55b1/kawaii-cupcake.png"/>
+                                <h4>Pending Orders</h4>
+                           </div>
+                           <h2>34</h2>
+                        </div>
+                        <div>
+                           <div>
+                           <img src="https://img.icons8.com/wired/40/3c55b1/kawaii-bread-1.png"/>
+                                <h4>Complete Orders</h4>
+                           </div>
+                           <h2>34</h2>
+                        </div>
+                    </div>
+                </div>
+                    <!-- profit chart -->
+                    <div class="content-3">
+                    <div class="chart3" style="background-color:  rgba(145, 145, 255, 0.300);">
+                        <h3>Revinue All State</h3>
+                        <div><img src="https://img.icons8.com/pastel-glyph/80/4a90e2/graph--v1.png"/></div>
+                        <div class="box-details">
+                            <h2><i class="fas fa-long-arrow-alt-up"></i> Rs 345.90</h2>
+                            <h5>2021</h5>
+                        </div>
+                    </div>
+
+                    <div class="chart3" style="background-color:  rgba(145, 145, 255, 0.300);">
+                        <h3>Order Transaction</h3>
+                        <div><img src="https://img.icons8.com/pastel-glyph/80/4a90e2/line-chart--v1.png"/></div>
+                        <div class="box-details">
+                            <h2><i class="fas fa-long-arrow-alt-up"></i> Rs 345.90</h2>
+                            <h5>2021</h5>
+                        </div>
+                    </div>
+                    <div class="chart3" style="background-color:  rgba(145, 145, 255, 0.300);">
+                        <h3>Revinue Boarding Posts</h3>
+                        <div><img src="https://img.icons8.com/windows/80/4a90e2/rgb-histogram.png"/></div>
+                        <div class="box-details">
+                            <h2><i class="fas fa-long-arrow-alt-up"></i> Rs 345.90</h2>
+                            <h5>2021</h5>
+                        </div>
+                    </div>
+                    <div class="chart3" style="background-color:  rgba(145, 145, 255, 0.300);">
+                        <h3>Revinue Food Posts</h3>
+                        <div><img src="https://img.icons8.com/ios/80/4a90e2/scatter-plot.png"/></div>
+                        <div class="box-details">
+                            <h2><i class="fas fa-long-arrow-alt-up"></i> Rs 345.90</h2>
+                            <h5>2021</h5>
+                        </div>
+                    </div>
+                </div>
                 <div class="charts">
                     <div class="chart1">
                         <h3><i class="fa fa-chart-pie"></i> Users</h3>
-                        <div id="chart1" style="width: 400px; height: 200px;background-color:white;"></div>
+                        <div id="userDetails" style="width: 400px; height: 200px;background-color:white;"></div>
                     </div>
                     <div class="chart2">
                         <h3><i class="fa fa-chart-bar"></i> New  Users Registration</h3>
                         <div id="chart2" style="width: 100%; height: 200px;"></div>
                     </div>
                 </div>
-                                <!-- Bar chart -->
-                <div class="charts-2">
-                    <div class="chart3">
-                        <h3><i class="fa fa-chart-bar"></i> Boarding Requests</h3>
-                        <div id="chart3" style="width: 100%; height: 100px;"></div>
-                    </div>
-                    <div class="chart3">
-                        <h3><i class="fa fa-chart-bar"></i> Food orders</h3>
-                        <div id="chart4" style="width: 100%; height: 100px;"></div>
-                    </div>
-                    <div class="chart3">
-                        <h3><i class="fa fa-chart-bar"></i> Payments</h3>
-                        <div id="chart5" style="width: 100%; height: 100px;"></div>
-                    </div>
-                </div>
-            
-            
+
             </div>
         </div>
     </div>

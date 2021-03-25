@@ -1,5 +1,6 @@
-<!-- google  chart  -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- google  chart 
+
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
@@ -64,7 +65,7 @@
             },
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart7'));
         chart.draw(data, options);
         var chart = new google.visualization.BarChart(document.getElementById('chart3'));
         chart.draw(data_breq, options_breq);
@@ -73,24 +74,18 @@
         var chart = new google.visualization.BarChart(document.getElementById('chart5'));
         chart.draw(data_breq, options_breq);
       }
-    </script>
+    </script> -->
   
 
 
 
 <script type="text/javascript">
 google.charts.load('49', {'packages': ['vegachart']}).then(drawChart);
-
 function drawChart() {
   const dataTable = new google.visualization.DataTable();
   dataTable.addColumn({type: 'string', 'id': 'category'});
   dataTable.addColumn({type: 'number', 'id': 'amount'});
   dataTable.addRows([
-    ['January', 28],
-    ['February', 55],
-    ['March', 43],
-    ['April', 91],
-    ['May', 81],
     ['Juny', 53],
     ['July', 19],
     ['Augest', 87],
@@ -188,13 +183,12 @@ function drawChart() {
   chart.draw(dataTable, options);
 }
       
-    </script>
+</script>
 
 
 
 <!-- Pie chart on report page  -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       <?php
@@ -235,14 +229,58 @@ function drawChart() {
           // chartArea:{left:5,top:10,width:"100%",height:"90%"},
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('chart3'));
-
+        var chart = new google.visualization.PieChart(document.getElementById('userDetails'));
         chart.draw(data, options);
       }
 </script>
 
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      <?php
+      $student=adminModel::userDetails('student',$connection);
+      $boarder=adminModel::userDetails('boarder',$connection);
+      $food_supplier=adminModel::userDetails('food_supplier',$connection);
+      $boardings_owner=adminModel::userDetails('boardings_owner',$connection);
+      ?>
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['User Type', 'Number of users'],
+          ['Student',     <?php echo $student->num_rows ?>],
+          ['Boarder',       <?php echo  $boarder->num_rows?>],
+          ['Boarding Owner',   <?php echo $food_supplier->num_rows?>],
+          ['Food Supplier',  <?php echo $boardings_owner->num_rows?>],
+        ]);
+
+        var options = {
+          title: 'User type',
+          backgroundColor: 'transparent',
+          legend:{
+            textStyle:{
+                fontSize:12,
+                bold:'true',
+            }
+          },
+          slices: {
+            0: { color: '#101e5a' },
+            1: { color: '#283a8b' },
+            2: { color: '#576abe' },
+            3: { color: '#8899e4' },
+          },
+          titleTextStyle: {
+            //  color: 'red',
+             fontSize: 18
+            }
+          // chartArea:{left:5,top:10,width:"100%",height:"90%"},
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('chart3'));
+        chart.draw(data, options);
+   
+      }
+</script>
+
 <!-- Line chart  page report -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -294,7 +332,6 @@ function drawChart() {
 
   
 <!-- Pie chart on food report page  -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -353,7 +390,8 @@ function drawChart() {
 
 
 <!-- Line chart  food report -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<html>
+<head>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -367,7 +405,7 @@ function drawChart() {
       {
           $date=strtotime($row['time']);
           $year[$i]=date("Y",$date);
-          if($year[$i]==$nowYear)
+          if($year[$i]==$nowYear)  
           {
             $month[$i]=date("F",$date);
           }
@@ -400,3 +438,4 @@ function drawChart() {
       }
     </script>
   </head>
+  
