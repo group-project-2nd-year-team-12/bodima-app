@@ -28,4 +28,18 @@ $pending_req=StudentRequestIshan::selectPendingRequest($student_email,$connectio
     
 }
 
+function AcceptRequest($connection){
+
+        $student_email=$_SESSION['email'];
+        $accept_req=StudentRequestIshan::AcceptRequest($student_email,$connection);
+
+        while ($row=mysqli_fetch_assoc($accept_req)) {
+           $data[]=$row;
+        }
+
+        return $data;
+
+
+}
+
  ?>
