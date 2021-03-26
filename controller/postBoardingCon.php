@@ -105,7 +105,6 @@ $errors=array(); //create empty array
         $lane=$_POST['lane'];
         $city=$_POST['city'];
         $district=$_POST['district'];
-        $location=$_POST['location'];
         $description=$_POST['description'];
 
         $individual=$_POST['individual'];
@@ -114,9 +113,12 @@ $errors=array(); //create empty array
         $CPperson=$_POST['CPperson'];
         $Keymoney=$_POST['Keymoney'];
         $Lifespan=$_POST['Lifespan'];
-        //$Aamount=$_SESSION['result'];
         $Aamount=$_POST['Aamount'];
+        //$Aamount=$_SESSION['result'];
 
+        $latitude=$_POST['latitude'];
+        $longitude=$_POST['longitude'];
+        $location=$_POST['map_address'];
 
 
 
@@ -146,7 +148,7 @@ $errors=array(); //create empty array
         //$result=boarding::delete_post($connection);
        // echo $result;
 
-        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
+        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$latitude,$longitude,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
 
         $result_set=boarding::getPostId($connection);
         $result_post=mysqli_fetch_assoc($result_set);

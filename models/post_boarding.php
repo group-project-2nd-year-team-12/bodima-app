@@ -2,17 +2,17 @@
 
 class boarding{
 
-    public static function postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection){
+    public static function postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$latitude,$longitude,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection){
 
         //$hh=$Hnumber;
         //echo $hh;
         //echo $individual;
         //echo "dssssss";
         
-      echo $query="INSERT INTO boarding_post (B_post_id,BOid,category,girlsBoys,person_count,cost_per_person,rating,image,house_num,lane,city,district,description,location,lifespan,post_amount,review,keymoney,title,create_time)
-        VALUES(null,'{$id}','{$individual}','{$gender}','{$Pcount}','{$CPperson}','8 ','{$upload_to}{$image_name1}','{$Hnumber}','{$lane}','{$city}','{$district}','{$description}','{$location}','{$Lifespan}','{$Aamount}','ishan','{$Keymoney}','{$title}','{$creattime}')";
-      
-      //die();
+      echo $query="INSERT INTO boarding_post (B_post_id,BOid,category,girlsBoys,person_count,cost_per_person,rating,image,house_num,lane,city,district,description,location,latitude,longitude,lifespan,post_amount,review,keymoney,title,create_time)
+        VALUES(null,'{$id}','{$individual}','{$gender}','{$Pcount}','{$CPperson}','8 ','{$upload_to}{$image_name1}','{$Hnumber}','{$lane}','{$city}','{$district}','{$description}','{$location}',$latitude , $longitude ,'{$Lifespan}','{$Aamount}','ishan','{$Keymoney}','{$title}','{$creattime}')";
+    //   echo $query;
+    //   die();
       $result=mysqli_query($connection,$query);
 
         if($result){
