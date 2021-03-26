@@ -90,7 +90,15 @@
                 elseif($record['user_accepted']==0)
                 {
                         header('Location:../views/notConfirm.php');
-                }
+                 }//elseif($record['user_accepted']==6 AND $record['user_accepted']==6 )
+                // {
+                //    if($record['level']=="student")
+                //         {
+                //         $_SESSION['Reg_id']=$user_id['Reg_id'];
+                //         header('Location:../index.php');
+                //         }
+                        
+                // }
                
             }
             else{

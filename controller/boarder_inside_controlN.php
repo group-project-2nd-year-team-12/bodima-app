@@ -6,6 +6,7 @@
 
 
 // supply details to view 
+        
 if(isset($_GET['Bid']))
 {
     $Bid=$_GET['Bid'];
