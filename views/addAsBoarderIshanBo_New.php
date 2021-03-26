@@ -106,7 +106,7 @@
                     <h4>telephone no: <span style="color: rgb(6, 165, 131);"><?php echo $telephone; ?></span><br/></h4>
                     <h4>University/working at: <span style="color: rgb(6, 165, 131);"><?php echo $institute; ?></span><br/></h4>
                     <br/><hr>
-                    <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;"><a href="myboarders.php">click here</a></span> to view My boarders</h4><br/>
+                    <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;"><a href="../controller/boarder_list_controlN.php?boarderlist=1">click here</a></span> to view My boarders</h4><br/>
                 </div>
                 <div class="details"  style="width:40%; border-right:none;border-left :1px solid; padding-top:20px; padding:15px;">
                     <h2>amount : <span style="color: rgb(6, 165, 131);">Rs. 6000</span></h2><br/>
