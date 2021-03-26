@@ -42,4 +42,21 @@ function AcceptRequest($connection){
 
 }
 
+
+function rentedPay($connection){
+
+        $student_email=$_SESSION['email'];
+        $result=StudentRequestIshan::selectRPayD($connection,$student_email);
+
+        while ($row=mysqli_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        return $data;
+
+}
+
+
+
+
  ?>
