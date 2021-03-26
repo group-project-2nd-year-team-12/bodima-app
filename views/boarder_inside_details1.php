@@ -44,12 +44,23 @@
         <div class="middle_b"> 
         <!-- ../controller/boarder_list_controlN.php?boarderlist=1 -->
 
-        <?php 
-        $details=unserialize($_GET['details']);
-        $parent=unserialize($_GET['parent']);
-        $payments=unserialize($_GET['pay']);
-        $months=unserialize($_GET['months']);
-        $amount=unserialize($_GET['amount']);
+        <?php
+        if(isset($_GET['details']))
+        {$details=unserialize($_GET['details']);}else{$details="NULL";} 
+        
+        if(isset($_GET['parent']))
+        {$parent=unserialize($_GET['parent']);}else{$parent="NULL";}
+        
+        if(isset($_GET['pay']))
+        {$payments=unserialize($_GET['pay']);}else{$payments="NULL";}
+
+        if(isset($_GET['months']))
+        {$months=unserialize($_GET['months']);}else{$month="NULL";}
+
+        if(isset($_GET['amount']))
+        {$amount=unserialize($_GET['amount']);}else{$amount="NULL";}
+        
+        
         // print_r($details);
         ?>
 
@@ -81,7 +92,10 @@
                     </li>
                     </div>
 
-                    <?php foreach($payments as $payment){?>
+                    <?php if($payments=="NULL"){
+                              echo "No payments recorded!";}
+                          else{
+                            foreach($payments as $payment){?>
                     <li>
                     <span><?php echo $payment['year']?> <?php echo date('M', mktime(0, 0, 0,$payment['month'], 10)); ?></span>
                         <span><?php echo $payment['amount']?>.00</span>
@@ -89,7 +103,7 @@
                         <span><?php echo date("H:i:s",strtotime($payment['paidDateTime']))?></span>
                         <span><h5>&nbsp;&nbsp;&nbsp;<?php echo $payment['cash_card']?></h5></span>
                     </li>
-                    <?php }?>
+                    <?php }}?>
                     
                 </div>
 
