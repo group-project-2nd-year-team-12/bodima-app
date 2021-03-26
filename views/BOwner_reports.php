@@ -187,7 +187,7 @@ function displaypdf($result){
                         <span>Method</span>
                         <select name="method" style="width:80px;">
                             <option value="all">All</option>
-                            <option value="online">Online</option>
+                            <option value="card">Card</option>
                             <option value="cash">Cash</option>
                         </select>
                     </div>
