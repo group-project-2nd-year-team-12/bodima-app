@@ -23,6 +23,7 @@ if(isset($_GET['Bid']))
     $paydetail=boarder_list_modelN::select_payfee($connection,$Bid,$BOid);
     if(mysqli_num_rows($paydetail)>0)
     {
+
         while($row=mysqli_fetch_assoc($paydetail))
         {
             $data[]=$row;
@@ -30,11 +31,18 @@ if(isset($_GET['Bid']))
             print_r($row);
         }
         $payments=serialize($data);
+        $flag['fee']=1;
+    }else{
+        $flag['fee']=0;
     }
 
 
+    //month genarate- by last pay month
     $last=boarder_list_modelN::get_last_paymonth($connection,$Bid,$BOid);
-    $lastpay=mysqli_fetch_assoc($last);
+    
+    if(mysqli_num_rows($last)>0)
+    {
+        $lastpay=mysqli_fetch_assoc($last);
         print_r($lastpay);
             $y=$lastpay['year'];
             $m=$lastpay['month'];
@@ -45,22 +53,120 @@ if(isset($_GET['Bid']))
             $time   = strtotime($date3);
             $last   = date('Y F', strtotime($date2));
             $time = strtotime('+1 month', $time);
+            $month = date('Y F', $time);
 
-            while ($month < $last){
+            $count=0;
+            $xflag=0;
+            while ($month < $last)
+            {
                 $month = date('Y F', $time);
+                $count=$count+1;
+                if($month==date('Y F') && $xflag==0){
+                    $xflag=1;
+                    $output[] = [
+                        'time' => $time,
+                        'month' => $month  
+                    ];
+                  }else  if($month!=date('Y F') & $xflag==0 & $count>0){
+                    $output[] = [
+                        'time' => $time,
+                        'month' => $month  
+                    ];
+                  }else{
+                    $output[] = [
+                        'time' => "over",
+                        'month' => "over"  
+                    ];
+                  }
+               
                 
-                $output[] = [
-                    'time' => $time,
-                    'month' => $month
-                    
-                ];
                 $x=$month;
-                echo '  <br/>'.$time;
 
                 $time = strtotime('+1 month', $time);
             }
 
+            if($month == $last && $count==0){
+                $output[] = [
+                    'time' => "over",
+                    'month' => date('Y F')
+                ];
+            }
+            // ******************print********
+            print_r($output);
+
+
+            // *******************************
             $monthlist=serialize($output);
+            $flag['months']=1;
+    }else{
+        $flag['months']=0;
+
+    }
+
+
+
+    $rent_dealed=boarder_list_modelN::get_dealed_date($connection,$Bid,$BOid);
+    if($flag['months']==0)
+    {
+        if(mysqli_num_rows($rent_dealed)>0)
+        {
+                $deal_date=mysqli_fetch_assoc($rent_dealed);
+                $dealdate=date("Y F",strtotime(substr($deal_date['payment_date'],0,10)));
+                $y=date("Y",strtotime(substr($deal_date['payment_date'],0,10)));
+                $m=date("m",strtotime(substr($deal_date['payment_date'],0,10)));
+                $date3 =$y.'-'.$m.'-01';
+                echo $date3;
+                $date2  = date('Y-m-d');
+                $output = [];
+                $time   = strtotime($date3);
+                $last   = date('Y F', strtotime($date2));
+                // $time = strtotime('+1 month', $time);
+                $month = date('Y F', $time);
+
+                $count=0;
+                $xflag=0;
+                while ($month < $last)
+                {
+                    $month = date('Y F', $time);
+                    $count=$count+1;
+                    if($month==date('Y F') && $xflag==0){
+                        $xflag=1;
+                        $output[] = [
+                            'time' => $time,
+                            'month' => $month  
+                        ];
+                    }else  if($month!=date('Y F') & $xflag==0 & $count>0){
+                        $output[] = [
+                            'time' => $time,
+                            'month' => $month  
+                        ];
+                    }else{
+                        $output[] = [
+                            'time' => "over",
+                            'month' => "over"  
+                        ];
+                    }
+                
+                    
+                    $x=$month;
+
+                    $time = strtotime('+1 month', $time);
+                }
+
+                if($month == $last && $count==0){
+                    $output[] = [
+                        'time' => "over",
+                        'month' => date('Y F')
+                    ];
+                }
+                
+                print_r($output);
+                $deal_list=serialize($output);
+        }
+    }
+
+
+    
 
 
     $rentamount=boarder_list_modelN::get_rent_amount($connection,$Bid,$BOid);
@@ -76,7 +182,23 @@ if(isset($_GET['Bid']))
         boarder_list_modelN::set_notification($connection,$from_BOid,$to_Bid,$date,$occurance,$massage);
     }
 
-    header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&months='.$monthlist.'&amount='.$amount);
+    echo "flag-fee=".$flag['fee'];
+    echo "flag-months=".$flag['months'];
+    $flagsdata=serialize($flag);
+
+    // header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&months='.$monthlist.'&amount='.$amount);
+
+    if($flag['fee']==0 & $flag['months']==0){
+        header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&amount='.$amount.'&f='.$flag['months'].'&deal_list='.$deal_list);
+    }else if($flag['fee']==1 & $flag['months']==0){
+        header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&amount='.$amount.'&f='.$flag['months']);
+    }else if($flag['fee']==0 & $flag['months']==1){
+        header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&months='.$monthlist.'&amount='.$amount.'&f='.$flag['months']);
+    }else if($flag['fee']==1 & $flag['months']==1){
+        header('Location:../views/boarder_inside_details1.php?details='.$details.'&parent='.$parent_detail.'&pay='.$payments.'&months='.$monthlist.'&amount='.$amount.'&f='.$flag['months']);
+
+    }
+    
 }
 
 

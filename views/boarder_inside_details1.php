@@ -55,13 +55,17 @@
         {$payments=unserialize($_GET['pay']);}else{$payments="NULL";}
 
         if(isset($_GET['months']))
-        {$months=unserialize($_GET['months']);}else{$month="NULL";}
+        {$months=unserialize($_GET['months']);}else{$months="NULL";}
 
         if(isset($_GET['amount']))
         {$amount=unserialize($_GET['amount']);}else{$amount="NULL";}
         
+        if(isset($_GET['deal_list']))
+        {$deal_list=unserialize($_GET['deal_list']); print_r($deal_list);}else{$deal_list="NULL";}
+
+        // echo date('Y F');
+      
         
-        // print_r($details);
         ?>
 
           <h1>boarders<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>Back</botton></a></h1>
@@ -93,7 +97,7 @@
                     </div>
 
                     <?php if($payments=="NULL"){
-                              echo "No payments recorded!";}
+                              echo "<li style='padding-left:150px;'><br>No payments recorded!</li>";}
                           else{
                             foreach($payments as $payment){?>
                     <li>
@@ -148,11 +152,11 @@
                         <br/>                      
                         <li>
                             <div class="info_th" style="width: 40%; padding-right:0px;">parent name</div>
-                            <div class="info_td">: <?php echo $parent['parent_name']?></div>
+                            <div class="info_td">: <?php if(isset($parent['parent_name'])){echo $parent['parent_name'];} else{echo "no value entered";}?></div>
                         </li>  
                         <li>
                             <div class="info_th">phone </div>
-                            <div class="info_td" >: <?php echo $parent['parent_telephone']?></div>
+                            <div class="info_td" >: <?php if(isset($parent['parent_telephone'])){echo $parent['parent_telephone'];} else{echo "no value entered";}?></div>
                         </li>
                         <br/>  
                         <hr/>                   
@@ -211,10 +215,44 @@
                         <div class="p_des">
                         
                         : <select name='setdate'>
-                        <?php foreach($months as $month){?>
-                            
-                            <option><?php echo $month['month'];?></option>
-                            <?php } ?>
+
+                            <?php 
+                                   
+                                
+                                  $xflag=0;
+                                  $c=0;
+                                  foreach($months as $month)
+                                  {
+
+                                    if($month['month']=="over")
+                                    {
+                                        $xflag=1;
+                                    }else if($xflag==0){
+                                        if(strtotime(date('Y F'))>=$month['time'])
+                                        {
+                                            echo "<option>".$month['month']."</option>";
+                                            $c=$c+1;
+                                        }else{
+                                            $xflag=1;
+                                        
+                                        }
+                                      
+                                    }
+                                  }
+
+                                  if($c==0 && $_GET['f']==1){
+                                    echo "<option> all payments complete</option>";
+                                  }else{
+                                    foreach($deal_list as $val){
+                                      echo "<option>".$val['month']."</option>";
+                                    }
+                                    
+                                  }
+
+                                  
+
+                              
+                              ?>
                             </select>
                         </div>
                         </div>
@@ -226,8 +264,13 @@
                         </div>
                         </div>
                         <div class="a">
-                        <button type="submit" class="paid" name="paidurl" id="paid"><i class="fas fa-check"></i> PAID</botton>
-                        </div>
+                          <?php if($xflag==0){?>
+                        <button type="submit" class="paid" name="paidurl" id="paid" ><i class="fas fa-check" ></i> PAID</botton>
+                        <?php }else{?>
+                          <button type="submit" class="paid" name="paidurl" id="paid" disabled>
+                        <?php
+                        }?>
+                      </div>
                         </form>
                         </div>
                         </div>
