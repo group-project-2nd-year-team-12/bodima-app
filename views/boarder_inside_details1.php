@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	 <title>profile</title>
+	 <title>boarder details</title>
 	 <link rel="stylesheet" href="../resource/css/new_home.css">
 	 <link rel="stylesheet" href="../resource/css/all.css">
 	 <link rel="stylesheet" href="../resource/css/sidebar2.css">
@@ -50,7 +50,7 @@
         $payments=unserialize($_GET['pay']);
         $months=unserialize($_GET['months']);
         $amount=unserialize($_GET['amount']);
-        // print_r($amount);
+        // print_r($details);
         ?>
 
           <h1>boarders<a href="../controller/boarder_list_controlN.php?boarderlist=1"><button class="paid"><i class="fas fa-chevron-left"></i>Back</botton></a></h1>
@@ -67,7 +67,7 @@
                 <h3>Rent &nbsp;Payments</h3>
                 <hr/>
                 <div class="filter_block">
-                <span>filters</span>
+                <span><a href="../controller/boarder_inside_controlN.php?Bid=<?php echo $details['Bid'];?>"><i class="fas fa-sync-alt"></i></a></span>
                 <hr/>
                 </div>
                 <div class="pay_list">
@@ -197,7 +197,6 @@
                         <div class="p_des">
                         
                         : <select name='setdate'>
-                        <!-- onchange='this.form.submit()'> -->
                         <?php foreach($months as $month){?>
                             
                             <option><?php echo $month['month'];?></option>

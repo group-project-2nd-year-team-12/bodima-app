@@ -269,3 +269,11 @@
     justify-content: center;
 }
 
+.mid_E .filter_block .fas{
+   margin-bottom: 15px;
+   padding: 5px;
+   width: 27px;
+   height: 27px;
+    background-color: #101e5a;
+    color:white;
+}
