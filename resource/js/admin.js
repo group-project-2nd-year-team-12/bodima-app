@@ -53,7 +53,7 @@ $('#userPDF').click(function(){
     htmlDetail=''+htmlDetails+'';
     console.log(htmlDetail.trim());
     htmlDetails=encodeURIComponent(htmlDetails);
-    window.location="../../controller/adminPanelCon.php?userPDF="+htmlDetails+"&name="+reportName;
+    window.location="../controller/adminPanelCon.php?userPDF="+htmlDetails+"&name="+reportName;
 })
 
 
@@ -61,12 +61,44 @@ $('#userPDF').click(function(){
 $('#report-type').change(function(){
     var type=$('#report-type').val();
     if(type=="User"){
-        window.location="reports.php";
+        window.location="adminReports.php";
     }
     else if(type=="Food"){
-        window.location="foodReport.php";
+        window.location="adminFoodReport.php";
     }
    else if(type=="Boarding"){
-        window.location="boardingReport.php"; 
+        window.location="adminBoardingReport.php"; 
     }
 })
+
+
+
+// onclick function display block 
+function popBlock(id,email,level)
+{
+  document.querySelector('.block-box').style.display='block';
+  // document.querySelector('div:not(.block)').style.filter='blur(6px)';
+  document.getElementById('idBlock').innerHTML='User Id :'+id;
+  document.getElementById('emailBlock').innerHTML='User email :'+email;
+  document.getElementById('email-save').value=email;
+  document.getElementById('level-save').value=level;
+
+}
+
+function unBlock(id,email,level)
+{
+  document.querySelector('.accept-box').style.display='block';
+  // document.querySelector('div:not(.block)').style.filter='blur(6px)';
+  document.getElementById('idBlock').innerHTML='User Id :'+id;
+  document.getElementById('emailBlock').innerHTML='User email :'+email;
+  document.getElementById('email-save').value=email;
+  document.getElementById('level-save').value=level;
+
+}
+
+
+// onclick display none function
+function popBack()
+{
+  document.querySelector('.block-box').style.display='none';
+}

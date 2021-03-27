@@ -73,6 +73,15 @@ class adminModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
+
+    // get boarding request details
+    public static function boardingRequest($connection)
+    {
+        $query="SELECT * FROM request ";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
     public static function searchFoodPost($word,$connection)
     {
         $query="SELECT * FROM food_post WHERE ad_title LIKE '{$word}' ";
@@ -116,4 +125,6 @@ class adminModel{
         return $result;
     }
 }
+
+
 ?>

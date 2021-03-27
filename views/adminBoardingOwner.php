@@ -1,9 +1,7 @@
 <?php
-
-use function PHPSTORM_META\type;
-
-require_once ('../../config/database.php');
-      require_once ('../../models/adminModel.php');
+require_once ('../controller/adminPanelCon.php');
+require_once ('../config/database.php');
+require_once ('../models/adminModel.php');
 session_start(); ?>
 
 <!DOCTYPE html>
@@ -11,22 +9,22 @@ session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../resource/css/admin.css">
-    <link rel="stylesheet" href="../../resource/css/all.css">
+    <link rel="stylesheet" href="../resource/css/all.css">
+    <link rel="stylesheet" href="../resource/css/admin.css">
     <title>Document</title>
 </head>
 <body onload="checked('user')">
     <div class="container">
-
+ 
         <div class="wrapper">
-        <?php include 'slide-bar.php' ?>
+       <?php include 'adminSidebar.php' ?>
       
         <div class="content">
             <div class="search">
-               <div class="title"><h3>Food Supplier</h3></div> 
-               <button onclick="window.location='foodSupplier.php';" type="button">Show All</button>
+               <div class="title"><h3>Boarding Owner</h3></div> 
+               <button onclick="window.location='adminBoardingOwner.php';" type="button">Show All</button>
                <div class="search-bar">
-                   <form action="../../views/admin/foodSupplier.php" method="post">
+                   <form action="adminBoardingOwner.php" method="post">
                        <input name="word" type="text" placeholder="Search">
                        <button name="search" type="submit"><i class="fa fa-search fa-lg"></i></button>
                    </form>
@@ -35,7 +33,7 @@ session_start(); ?>
             <div class="table">
                 <table>
                     <tr>
-                        <th>FS Id</td>
+                        <th>BO Id</td>
                         <th>First Name</td>
                         <th>Last Name</td>
                         <th>Email</td>
@@ -50,12 +48,12 @@ session_start(); ?>
                         $id=intval($_POST['word']);
                         $word.='%';
                         
-                        $result=adminModel::searchFood($id,$word,$connection);
-                        while($row=mysqli_fetch_assoc($result)){
+                        $result=bordingownerSearchDetails($id,$word,$connection);
+                        foreach($result as $row){
                             ?> 
-                        <?php include 'pop.php' ?>
+                        
                           <tr>
-                              <td><?php echo $row['FSid']; ?></td>
+                              <td><?php echo $row['BOid']; ?></td>
                               <td><?php echo $row['first_name']; ?></td>
                               <td><?php echo $row['last_name']; ?></td>
                               <td><?php echo $row['email']; ?></td>
@@ -66,20 +64,20 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
                               <td>
-                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
-                                  <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
-                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["BOid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                                  <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["BOid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
+                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["BOid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
                           </tr>
                           <?php
                          }
                     }
-                    else{ $result=adminModel::userDetails('food_supplier',$connection);
-                    while($row=mysqli_fetch_assoc($result)){
+                    else{ $result=boardingOwnerDetails($connection);
+                        foreach($result as $row){
                        ?> 
-                  <?php include 'pop.php' ?>
+                   
                      <tr>
-                         <td><?php echo $row['FSid']; ?></td>
+                         <td><?php echo $row['BOid']; ?></td>
                          <td><?php echo $row['first_name']; ?></td>
                          <td><?php echo $row['last_name']; ?></td>
                          <td><?php echo $row['email']; ?></td>
@@ -90,9 +88,9 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
                               <td>
-                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
-                                  <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
-                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Reg_id"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["BOid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                                  <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["BOid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
+                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["BOid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
                      </tr>
                      <?php
@@ -104,11 +102,11 @@ session_start(); ?>
         </div>
         </div>
     </div>
-  
-    <script src="../../resource/js/admin.js"></script>
-    <script src="../../resource/js/jquery.js"></script>
+    <?php include 'adminBlockpop.php' ?>
+    <script src="../resource/js/admin.js"></script>
+    <script src="../resource/js/jquery.js"></script>
     <script>
-         $('#1').click(title);
+           $('#1').click(title);
           $('#2').click(title);
           $('#3').click(title);
           $('#4').click(title);
@@ -128,20 +126,7 @@ session_start(); ?>
         }
         }
         }
-          function popBlock(id,email)
-        {
-       
-            document.querySelector('.block').style.display='block';
-            // document.querySelector('div:not(.block)').style.filter='blur(6px)';
-            document.getElementById('id').innerHTML='User Id :'+id;
-            document.getElementById('email').innerHTML='User email :'+email;
-            document.getElementById('level').innerHTML='User type :'+id;
-        }
-        function popBack()
-        {
-            document.querySelector('.block').style.display='none';
-            // document.querySelector('div:not(.block)').style.filter='blur(0px)';
-        }
     </script>
 </body>
 </html>
+

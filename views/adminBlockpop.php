@@ -1,14 +1,16 @@
+<div class="block-box">
 <div class="block">
        <div class="title1">
-           <h3><i class="fa fa-user-lock"></i> Block user </h3>
-           <i   class="fa fa-window-close fa-lg" onclick="popBack()"></i>
+           <div class="iconClose">  <i id="blockIcon" class="fas fa-times fa-2x" onclick="popBack()"></i></div>
        </div>
+        <div><img src="https://img.icons8.com/pastel-glyph/80/4a90e2/user-lock.png"/></div>
+        <h1>Block User</h1>
        <div class="block-contain">
        <div class="para">
            <p>
-               Select the following reason for user block
+               Select the following reason for the user block Id number  [<span id="idBlock"></span> ]  and Email [ <span id="emailBlock"></span> ]
            </p>
-           <form action="../../controller/adminPanelCon.php?<?php echo $row['email']?>" method="post">
+           <form action="../controller/adminPanelCon.php" method="post">
                
                <div class="con">
                     <input type="checkbox" name="condition1" value="Breaks user aggreement" id="1">
@@ -30,19 +32,21 @@
                     <input type="checkbox" value="Vialate user condition" name="condition5" id="5">
                     <label for="5">Vialate user condition</label>
                 </div>
-                    <h4>Other write the following feild</h4>
-                <div class="con">
-                    <input placeholder="Other condition" type="text" name="condition6" id="6">
+                <div class="con"> 
+                    <input type="checkbox" value="Vialate user condition" name="condition5" id="5">
+                    <label for="5">Other</label>
                 </div>
-                <input id="email-save" type="hidden" name="email" value="">
-                <input id="level-save" type="hidden" name="level" value="">
-                <div class="btn"><button type="submit" name="block" disabled><i class="fa fa-ban" ></i> Block</button></div>
+           
+                <input id="email-save" type="hidden" name="email">
+                <input id="level-save" type="hidden" name="level">
+                
+                <div class="btn-class">
+                    <button name="block" style="margin: 10px 0 10px 0;" class="accept-btn" id="accept-btn" type="submit">Confirm</button>
+                    <button type="button" class="cancel-btn" onclick="popBack()">cancel</button>
+                </div>
            </form>
-       </div>
-       <div class="details">
-           <h3 id="id">User Id    : </h3>
-           <h3 id="email">User Email :</h3>
        </div>
        </div>
 
    </div>
+</div>

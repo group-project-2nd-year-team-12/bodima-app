@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('#report-month').val(month);
         $.ajax({
             type: "POST",
-            url:"../../controller/adminPanelCon.php",
+            url:"../controller/adminPanelCon.php",
             data:{userDetails:"userDetails",year:year,month:month},
             dataType:"json",
             success:function (data) {
@@ -41,7 +41,7 @@ $(document).ready(function () {
         var month=$('#report-month').val();
         $.ajax({
             type: "POST",
-            url:"../../controller/adminPanelCon.php",
+            url:"../controller/adminPanelCon.php",
             data:{userDetails:"userDetails",year:year,month:month},
             dataType:"json",
             success:function (data) {

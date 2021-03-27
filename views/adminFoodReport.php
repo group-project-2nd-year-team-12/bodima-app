@@ -1,7 +1,7 @@
 <?php
-require_once ('../../config/database.php');
-require_once ('../../models/adminModel.php');
-require_once ('chart.php');
+require_once ('../config/database.php');
+require_once ('../models/adminModel.php');
+require_once ('adminChart.php');
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +9,8 @@ require_once ('chart.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../resource/css/admin.css">
-    <link rel="stylesheet" href="../../resource/css/all.css">
+    <link rel="stylesheet" href="../resource/css/admin.css">
+    <link rel="stylesheet" href="../resource/css/all.css">
     <title>Document</title>
 </head>
 <body onload="checked('report')">
@@ -18,7 +18,7 @@ require_once ('chart.php');
     <div class="container">
 
         <div class="wrapper">
-        <?php include 'slide-bar.php' ?>
+        <?php include 'adminSidebar.php' ?>
       
         <div style="overflow-x: hidden;" class="content">
         <!-- circle -->
@@ -44,7 +44,7 @@ require_once ('chart.php');
                 <select name="type"  id="report-type">
                     <option id="User" value="User">User Details</option>
                     <option id="Food" value="Food" selected>Order Details</option>
-                    <option id="Boarding" value="Boarding">Borarding Post</option>
+                    <!-- <option id="Boarding" value="Boarding">Borarding Post</option> -->
                 </select>  
             </div>
             <div><a id="userPDF"><i class="fa fa-file-download fa-lg"></i> Get file here</a></div>
@@ -145,8 +145,8 @@ require_once ('chart.php');
         </div>
     </div>
 </body>
-    <script src="../../resource/js/admin.js"></script>
-    <script src="../../resource/js/jquery.js"></script>
-    <script src="../../resource/js/foodReport.js"></script>
+    <script src="../resource/js/admin.js"></script>
+    <script src="../resource/js/jquery.js"></script>
+    <script src="../resource/js/foodReport.js"></script>
 </html>
 

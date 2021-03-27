@@ -6,6 +6,8 @@ require '../config/pdfFunction.php';
 require_once('../config/pdf/tcpdf.php');
 ?>
 <?php
+
+// home page to admin panel 
 if(isset($_GET['admin']))
 {
     $student=adminModel::userDetails('student',$connection);
@@ -15,15 +17,22 @@ if(isset($_GET['admin']))
     $boardingCount=adminModel::BpostCount($connection);
     $foodCount=adminModel::FpostCount($connection);
 
-    header('Location:../views/admin/adminPanel.php?student='.$student->num_rows.'&boarder='.$student->num_rows.'&boarding_owner='.$boarding_owner->num_rows.'&food_supplier='.$food_supplier->num_rows.'&boarding_count='.$boardingCount->num_rows.'&food_count='.$foodCount->num_rows);
+    header('Location:../views/adminPanel.php?student='.$student->num_rows.'&boarder='.$student->num_rows.'&boarding_owner='.$boarding_owner->num_rows.'&food_supplier='.$food_supplier->num_rows.'&boarding_count='.$boardingCount->num_rows.'&food_count='.$foodCount->num_rows);
 }
 
+// user block
 if(isset($_POST['block']))
 {
-    print_r($_POST);
+
     $email=$_POST['email'];
     $level=$_POST['level'];
     $complaint=array();
+    $complaint['con1']="";
+    $complaint['con2']="";
+    $complaint['con3']="";
+    $complaint['con4']="";
+    $complaint['con5']="";
+    $complaint['con6']="";
     if(isset($_POST['condition1'])){
         $complaint['con1']=$_POST['condition1']; 
     }
@@ -36,19 +45,20 @@ if(isset($_POST['block']))
     if(isset($_POST['condition4'])){
         $complaint['con4']=$_POST['condition4'];
     }
-    
     if(isset($_POST['condition5'])){
         $complaint['con5']=$_POST['condition5'];
     }
-    
     if(isset($_POST['condition6'])){
         $complaint['con6']=$_POST['condition6'];
     }
-   print_r($complaint);
+    print_r($level);
 
     $block=adminModel::blockUser($level,$email,$connection);
-    blockMail($complaint,$email);
-    header('Location:../views/admin/student.php');
+    // blockMail($complaint,$email);
+    if($level=='student'){header('Location:../views/adminStudent.php');}
+    if($level=='boarder'){header('Location:../views/adminBorder.php');}
+    if($level=='boardings_owner'){header('Location:../views/adminBoardingOwner.php');}
+    if($level=='food_supplier'){header('Location:../views/adminFoodSupplier.php');} 
 }
 
 
@@ -315,6 +325,152 @@ if(isset($_POST['foodDetails']))
 }
 
 
+// dash board details
+if(isset($_POST['getAdmin'])){
+    $pendingOrder=0;
+    $completeOrder=0;
+    $foodReniue=0;
+    $boardingRenie=0;
+    $totalval=0;
+    $comReq=0;
+    $penReq=0;
+    $request=adminModel::foodRequest($connection);
+    while($row=mysqli_fetch_assoc($request))
+    {
+        if($row['is_accepted']==0 || $row['is_accepted']==1 || $row['is_accepted']==3){
+            $pendingOrder++;
+        }
+        if($row['is_accepted']==4){
+            $completeOrder++;
+            $totalval=$totalval+$row['total'];
+        }
+    }
+    $boardingRequest=adminModel::boardingRequest($connection);
+    while($row=mysqli_fetch_assoc($boardingRequest))
+    {
+        if($row['isAccept']==3){
+            $comReq++;
+        }
+        if($row['isAccept']==0 || $row['isAccept']==1){
+            $penReq++;
+        }
+    }
 
 
+    $boardingCount=adminModel::BpostCount($connection);
+    while($row=mysqli_fetch_assoc($boardingCount))
+    {
+        $boardingRenie=$boardingRenie+$row['post_amount'];
+    }
+
+    $foodCount=adminModel::FpostCount($connection);
+    while($row=mysqli_fetch_assoc($foodCount))
+    {
+        $foodReniue=$foodReniue+$row['post_amount'];
+    }
+
+   
+
+    $data=array(
+        'all'=>$request->num_rows,
+        'pendingOrder'=>$pendingOrder,
+        'completeOrder'=>$completeOrder,
+        'bRenue'=>$boardingRenie,
+        'fRenue'=>$foodReniue,
+        'totalOrder'=>$totalval,
+        'allReq'=>$boardingRequest->num_rows,
+        'penReq'=>$penReq,
+        'comReq'=>$comReq
+    );
+    echo json_encode($data);
+}
+
+// admin student page details
+function studentDetails($connection){
+    $data=array();
+    $result=adminModel::userDetails('student',$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+// admin student page search result
+function studentSearchDetails($id,$word,$connection){
+    $data=array();
+    $result=adminModel::searchStudent($id,$word,$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+// admin border page details
+function borderDetails($connection){
+    $data=array();
+    $result=adminModel::userDetails('boarder',$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+// admin border page search result
+function borderSearchDetails($id,$word,$connection){
+    $data=array();
+    $result=adminModel::searchBoarder($id,$word,$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+
+// admin boarding owner page details
+function boardingOwnerDetails($connection){
+    $data=array();
+    $result=adminModel::userDetails('boardings_owner',$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+// admin boarding owner page search result
+function bordingownerSearchDetails($id,$word,$connection){
+    $data=array();
+    $result=adminModel::searchBoarding($id,$word,$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+// admin boarding owner page details
+function foodsupplierDetails($connection){
+    $data=array();
+    $result=adminModel::userDetails('food_supplier',$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+// admin boarding owner page search result
+function foodsupplierSearchDetails($id,$word,$connection){
+    $data=array();
+    $result=adminModel::searchFood($id,$word,$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
 ?>

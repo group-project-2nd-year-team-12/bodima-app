@@ -1,6 +1,6 @@
 <?php
-require_once ('../../config/database.php');
-      require_once ('../../models/adminModel.php');
+require_once ('../config/database.php');
+      require_once ('../models/adminModel.php');
 session_start(); ?>
 
 <!DOCTYPE html>
@@ -9,8 +9,8 @@ session_start(); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../resource/css/admin.css">
-    <link rel="stylesheet" href="../../resource/css/all.css">
+    <link rel="stylesheet" href="../resource/css/admin.css">
+    <link rel="stylesheet" href="../resource/css/all.css">
     <title>Document</title>
 </head>
 <body onload="checked('food')">
@@ -18,14 +18,14 @@ session_start(); ?>
     <div class="container">
      
         <div class="wrapper">
-        <?php include 'slide-bar.php' ?>
+        <?php include 'adminSidebar.php' ?>
       
         <div class="content">
             <div class="search">
                <div class="title"><h3>Student</h3></div> 
                <button onclick="window.location='foodPost.php';" type="button">Show All</button>
                <div class="search-bar">
-                   <form action="../../views/admin/foodPost.php" method="post">
+                   <form action="../views/admin/foodPost.php" method="post">
                        <input name="word" type="text" placeholder="Search">
                        <button name="search" type="submit"><i class="fa fa-search fa-lg"></i></button>
                    </form>
@@ -49,7 +49,7 @@ session_start(); ?>
                         $result=adminModel::searchFoodPost($word,$connection);
                         while($row=mysqli_fetch_assoc($result)){
                             ?> 
-                       <?php include 'pop.php' ?>
+                       <?php include 'adminBlockpop.php' ?>
                           <tr>
                               <td><?php echo $row['F_post_id']; ?></td>
                               <td><?php echo $row['FSid']; ?></td>
@@ -63,7 +63,7 @@ session_start(); ?>
                      
                     while($row=mysqli_fetch_assoc($result)){        
                        ?> 
-                  <?php include 'pop.php' ?>
+                  <?php include 'adminBlockpop.php' ?>
                      <tr>
                          <td><?php echo $row['F_post_id']; ?></td>
                          <td><?php echo $row['FSid']; ?></td>
@@ -127,8 +127,8 @@ session_start(); ?>
 
    </div> -->
 </body>
-    <script src="../../resource/js/admin.js"></script>
-    <script src="../../resource/js/jquery.js"></script>
+    <script src="../resource/js/admin.js"></script>
+    <script src="../resource/js/jquery.js"></script>
     <script>
         function popBlock()
         {
