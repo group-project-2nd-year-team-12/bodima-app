@@ -80,17 +80,18 @@ function popBlock(id,email,level)
   // document.querySelector('div:not(.block)').style.filter='blur(6px)';
   document.getElementById('idBlock').innerHTML='User Id :'+id;
   document.getElementById('emailBlock').innerHTML='User email :'+email;
-  document.getElementById('email-save').value=email;
-  document.getElementById('level-save').value=level;
+  document.getElementById('email-block').value=email;
+  document.getElementById('level-block').value=level;
 
 }
 
+
 function unBlock(id,email,level)
 {
-  document.querySelector('.accept-box').style.display='block';
+  document.querySelector('.unblock-box').style.display='block';
   // document.querySelector('div:not(.block)').style.filter='blur(6px)';
-  document.getElementById('idBlock').innerHTML='User Id :'+id;
-  document.getElementById('emailBlock').innerHTML='User email :'+email;
+  document.getElementById('idUnBlock').innerHTML='User Id :'+id;
+  document.getElementById('emailUnBlock').innerHTML='User email :'+email;
   document.getElementById('email-save').value=email;
   document.getElementById('level-save').value=level;
 
@@ -98,7 +99,8 @@ function unBlock(id,email,level)
 
 
 // onclick display none function
-function popBack()
+function popBack(x)
 {
-  document.querySelector('.block-box').style.display='none';
+  document.querySelector(x).style.display='none';
 }
+

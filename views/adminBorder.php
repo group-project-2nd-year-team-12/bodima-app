@@ -60,9 +60,9 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
-                              <td><?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                              <td><?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;" >Confirm </a> <?php }?>
                                   <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
-                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='unBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
                           </tr>
                           <?php
@@ -84,9 +84,9 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==1){?> <div class="accept accept-apt"><h4>Accepted</h4></div> <?php }?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
-                              <td><?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                              <td><?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;" >Confirm </a> <?php }?>
                                   <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
-                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='unBlock(<?php echo $row["Bid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
                      </tr>
                      <?php
@@ -98,32 +98,12 @@ session_start(); ?>
         </div>
         </div>
         <?php include 'adminBlockpop.php' ?>
+        <?php include 'adminAcceptpop.php' ?>
     </div>
     <script src="../resource/js/jquery.js"></script>
     <script src="../resource/js/admin.js"></script>
    
-    <!-- <script>
-          $('#1').click(title);
-          $('#2').click(title);
-          $('#3').click(title);
-          $('#4').click(title);
-          $('#5').click(title);
-          $('#6').click(title);
-        function title()
-        { 
-           
-                if(this.checked)
-            {
-                $('.btn button').removeAttr('disabled',false);
-                $('.btn button').css('background-color','red');
-            }
-            else{if(!$('#1').is(":checked") && !$('#2').is(":checked") && !$('#3').is(":checked") && !$('#4').is(":checked") && !$('#5').is(":checked") ){
-                $('.btn button').attr('disabled',true);
-                $('.btn button').css('background-color','gray');
-            }
-            }
-        }
-    </script> -->
+ 
 </body>
 </html>
 

@@ -16,7 +16,7 @@ session_start(); ?>
 
     <div class="container">
         <div class="wrapper">
-        <!-- <?php include 'adminSidebar.php' ?> -->
+        <?php include 'adminSidebar.php' ?>
       
         <div class="content">
             <div class="search">
@@ -103,11 +103,12 @@ session_start(); ?>
         </div>
         </div>
     </div>
-    <!-- <?php include "adminAcceptpop.php" ?>  -->
-    <!-- <?php include 'adminBlockpop.php' ?> -->
+    <?php include "adminAcceptpop.php" ?> 
+    <?php include 'adminBlockpop.php' ?>
 </body>
     <script src="../resource/js/admin.js"></script>
     <script src="../resource/js/jquery.js"></script>
     <script src="../resource/js/student.js"></script>
+
 </html>
 

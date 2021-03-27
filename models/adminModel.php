@@ -104,9 +104,18 @@ class adminModel{
         return $result;
     }
     
+    // block user profile
     public static function blockUser($level,$email,$connection)
     {
     $query="UPDATE $level SET user_accepted=2 WHERE email='{$email}'";
+        $result=mysqli_query($connection,$query);
+        return $result;
+    }
+
+    // unblock user
+    public static function unblockUser($level,$email,$connection)
+    {
+    $query="UPDATE $level SET user_accepted=1 WHERE email='{$email}'";
         $result=mysqli_query($connection,$query);
         return $result;
     }

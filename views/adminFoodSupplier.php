@@ -51,7 +51,7 @@ session_start(); ?>
                         $result=foodsupplierSearchDetails($id,$word,$connection);
                         foreach($result as $row){
                             ?> 
-                        <?php include 'adminBlockpop.php' ?>
+                       
                           <tr>
                               <td><?php echo $row['FSid']; ?></td>
                               <td><?php echo $row['first_name']; ?></td>
@@ -64,9 +64,9 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
                               <td>
-                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='adminBlockpopBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
-                                  <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='adminBlockpopBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
-                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='adminBlockpopBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;">Confirm </a> <?php }?>
+                                  <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
+                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='unBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
                           </tr>
                           <?php
@@ -87,9 +87,9 @@ session_start(); ?>
                                   <?php if($row['user_accepted']==2){?> <div class="accept accept-bld"><h4>Blocked</h4></div> <?php }?> 
                               </td>
                               <td>
-                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  onclick='popBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Confirm </a> <?php }?>
+                                  <?php if($row['user_accepted']==0){?>  <a style="color: blue; cursor: pointer;"  >Confirm </a> <?php }?>
                                   <?php if($row['user_accepted']==1){?>  <a style="color: red; cursor: pointer;"  onclick='popBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Block</a> <?php }?>
-                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='popBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
+                                  <?php if($row['user_accepted']==2){?>  <a style="color: green; cursor: pointer;"  onclick='unBlock(<?php echo $row["FSid"]; ?>,"<?php echo $row["email"]; ?>","<?php echo $row["level"];?>");'>Unblock</a> <?php }?> 
                               </td>
                      </tr>
                      <?php
@@ -101,7 +101,8 @@ session_start(); ?>
         </div>
         </div>
     </div>
-  
+    <?php include 'adminAcceptpop.php' ?>
+    <?php include 'adminBlockpop.php' ?>
     <script src="../resource/js/admin.js"></script>
     <script src="../resource/js/jquery.js"></script>
     <script>

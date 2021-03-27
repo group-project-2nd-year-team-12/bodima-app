@@ -23,7 +23,6 @@ if(isset($_GET['admin']))
 // user block
 if(isset($_POST['block']))
 {
-
     $email=$_POST['email'];
     $level=$_POST['level'];
     $complaint=array();
@@ -61,6 +60,18 @@ if(isset($_POST['block']))
     if($level=='food_supplier'){header('Location:../views/adminFoodSupplier.php');} 
 }
 
+//  unblock user
+if(isset($_POST['unblock']))
+{
+    $email=$_POST['email'];
+    $level=$_POST['level'];
+    $block=adminModel::unblockUser($level,$email,$connection);
+    // blockMail($complaint,$email);
+    if($level=='student'){header('Location:../views/adminStudent.php');}
+    if($level=='boarder'){header('Location:../views/adminBorder.php');}
+    if($level=='boardings_owner'){header('Location:../views/adminBoardingOwner.php');}
+    if($level=='food_supplier'){header('Location:../views/adminFoodSupplier.php');} 
+}
 
 
 
