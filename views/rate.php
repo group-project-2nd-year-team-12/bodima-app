@@ -84,7 +84,36 @@
                         </tr>
                     </tbody> 
                 </table>
+                <div class="review-modal" style="display:none"  >
                 
+                <!-- style="display:none" -->
+                    <div class="review-bg"></div>
+                    <div class="rmp">
+                        <div class="rpc">
+                            <span><i class="fa fa-times"></i></span>
+                        </div>
+                        <div class="rps" align="center">
+                            <i class="fa fa-star" data-index="0" style="display: none"></i>
+                            <i class="fa fa-star" data-index="1"></i>
+                            <i class="fa fa-star" data-index="2"></i>
+                            <i class="fa fa-star" data-index="3"></i>
+                            <i class="fa fa-star" data-index="4"></i>
+                            <i class="fa fa-star" data-index="5"></i>
+                        </div>
+                        <input type="hidden" value="" class="starRateV">
+                        <input type="hidden" value="<?php echo $creattime; ?>" class="rateDate">
+                        <div class="rptf" align="center">
+                            <input type="text" class="rateName" placeholder="Enter Your name....">
+                        </div>
+                        <div class="rptf" align="center">
+                            <textarea class="rateMsg" id="rate-field" placeholder="Describe Your experience"></textarea>
+                        </div>
+                        <div class="rate-error" align="center"></div> 
+                        <div class="rpsb" align="center">
+                            <button class="rpbtn">Post Review</button>
+                        </div>
+                    </div>
+                </div>
             </div>
            
             <div class="bri">
@@ -99,7 +128,7 @@
                     
                     while($fetch= mysqli_fetch_all($result_all) ){
                         //echo "mmmmmm";
-                        // print_r($fetch);
+                        print_r($fetch);
                         
                         //print_r(count($fetch));
                         //print_r($fetch[0][3]);
@@ -115,7 +144,7 @@
                     ?>
                     <div class="rating_box" style="display:flex;border:20px;">
                         <div class="us-img">
-                            <p><?php echo substr($fetch[$a][1],0,1);?></p>
+                            <p><?php echo substr($fetch[$a][2],0,1);?></p>
                             
                         </div>
                         <div class="uscms">
@@ -125,16 +154,18 @@
                                         <div class="clearfix rating mart8">
                                             <div class="rating-stars">
                                                 <div class="grey-stars"></div>
-                                                <div class="filled-stars" style="width:<?php echo $fetch[$a][2]*20;?>%;"></div>
+                                                <div class="filled-stars" style="width:<?php echo $fetch[$a][3]*20;?>%;"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="us-cmt">
-                                <p><?php echo $fetch[$a][3];?></p>
+                                <p><?php echo $fetch[$a][4];?></p>
                             </div>
-                            
+                            <div class="us-nm">
+                                <p><i>By <span class="cmnm"><?php echo $fetch[$a][2];?></span> on <span class="cmdt"> <?php echo $fetch[$a][5];?></span></i></p>
+                            </div>
                             
                         </div>
 
