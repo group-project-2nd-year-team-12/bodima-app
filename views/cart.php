@@ -1,7 +1,6 @@
 <!-- preload assesment -->
 <?php   require_once ('../config/database.php');
-        require_once ('../models/reg_user.php');
-        session_start(); 
+        require_once ('../controller/cartCon.php');
 ?>
 
 <!-- page -->
@@ -34,10 +33,10 @@ if(isset($_GET['Pid']))
 <input type="hidden" id="fpid" value="<?php echo $fpid; ?>">
  <div class="view-product">
 <div class="order-type">
+
+  <!-- order type select box -->
     <div class="order-typeBox">
       <h1>Your Cart Details </h1>
-
-      <!-- order type select box -->
       <h3>Order Type</h3>
         <div class="type">
           <input name="type" id="1" onclick="typeOrder(this.id);" type="radio" checked>
@@ -65,6 +64,7 @@ if(isset($_GET['Pid']))
   
         <h4>Please tick the button place long term food order</h4>
     </div>
+
       <form name="shedule" action="">
       <div class="shedule">
         <h4>Shedule the long term order </h4>
@@ -86,7 +86,10 @@ if(isset($_GET['Pid']))
           </div>
           <h4><a href="../controller/cartClearCon.php?Pid=<?php echo $_GET['Pid']?>&name=<?php echo $_GET['name'] ?>&address=<?php echo $_GET['address']?>">Clear Cart</a></h4>
     </form>
+
       <script>
+
+      // check the short term chart is empty or long term chart is empty 
           function validateLongTerm()
           {
             var count=document.getElementById('cart-count').innerHTML;
@@ -106,7 +109,7 @@ if(isset($_GET['Pid']))
                 {
                   console.log(data);
                 
-                  if(formSheduleValidate() && count >0 )
+                  if(formSheduleValidate() && count >0 )  // cart  js function 
                     {
                        window.location='cartItem.php?Pid=<?php echo $fpid?>';
                      }
@@ -122,6 +125,7 @@ if(isset($_GET['Pid']))
     </div>
    
 </div>
+<!-- product side -->
 <div class="product">
 <div class="catogory" id="breakfast">
     <div class="cato-header">
@@ -141,9 +145,9 @@ if(isset($_GET['Pid']))
     <div class="cart-wrapper">
     <?php
     $i=0;
-      $result =reg_user::getProductsByPostid($fpid,$connection); 
-      if(mysqli_num_rows($result)>0){
-        while($row=mysqli_fetch_assoc($result))
+      $result =getProduct($fpid,$connection); 
+      if(!empty($result)){
+        foreach($result as $row)
         {
           if($row['breakfast']==1)
           {?>
@@ -153,7 +157,6 @@ if(isset($_GET['Pid']))
                      <div style="width: 100%; height: 150px;overflow:hidden"><img src="<?php echo $row['image'];?>" alt=""></div>
                      <h3><span  class="food-item"><?php echo $row['product_name'];?></span><span class="price"> Rs. <?php echo $row['price'];?></span></h3>
                      
-                     <p>Some text about the item </p>
                      <input id="quantity<?php echo $i ?>" type="hidden" name="quantity" value="1">
                      <input id="id<?php echo $i ?>" type="hidden" name="id" value="<?php echo $row['id'] ?>">
                      <input id="item_name<?php echo $i ?>" type="hidden" name="item_name" value="<?php echo $row['product_name'];?> ">
@@ -261,9 +264,9 @@ if(isset($_GET['Pid']))
     </div>
     <div class="cart-wrapper">
     <?php
-      $result =reg_user::getProductsByPostid($fpid,$connection); 
-      if(mysqli_num_rows($result)>0){
-        while($row=mysqli_fetch_assoc($result))
+      $result =getProduct($fpid,$connection); 
+      if(!empty($result)){
+        foreach($result as $row)
         {
           if($row['lunch']==1)
           {?>
@@ -273,7 +276,6 @@ if(isset($_GET['Pid']))
                      <div style="width: 100%; height: 150px;overflow:hidden"><img src="<?php echo $row['image'];?>" alt=""></div>
                      <h3><?php echo $row['product_name'];?><span class="price"> Rs. <?php echo $row['price'];?></span></h3>
                      
-                     <p>Some text about the item </p>
                      <input id="quantity<?php echo $i ?>" type="hidden" name="quantity" value="1">
                      <input id="id<?php echo $i ?>" type="hidden" name="id" value="<?php echo $row['id'] ?>">
                      <input id="item_name<?php echo $i ?>" type="hidden" name="item_name" value="<?php echo $row['product_name'];?> ">
@@ -379,9 +381,9 @@ if(isset($_GET['Pid']))
     </div>
     <div class="cart-wrapper">
     <?php
-      $result =reg_user::getProductsByPostid($fpid,$connection); 
-      if(mysqli_num_rows($result)>0){
-        while($row=mysqli_fetch_assoc($result))
+      $result =getProduct($fpid,$connection); 
+      if(!empty($result)){
+        foreach($result as $row)
         {
           if($row['dinner']==1)
           {?>
@@ -391,7 +393,6 @@ if(isset($_GET['Pid']))
                      <div style="width: 100%; height: 150px;overflow:hidden"><img src="<?php echo $row['image'];?>" alt=""></div>
                      <h3><?php echo $row['product_name'];?><span class="price"> Rs. <?php echo $row['price'];?></span></h3>
                      
-                     <p>Some text about the item </p>
                      <input id="quantity<?php echo $i ?>" type="hidden" name="quantity" value="1">
                      <input id="id<?php echo $i ?>" type="hidden" name="id" value="<?php echo $row['id'] ?>">
                      <input id="item_name<?php echo $i ?>" type="hidden" name="item_name" value="<?php echo $row['product_name'];?> ">

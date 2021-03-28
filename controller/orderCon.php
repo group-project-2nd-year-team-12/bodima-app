@@ -28,6 +28,7 @@ $errors=array();
     if(isset($_SESSION['cart']))
     {
        $shedule=$_POST['shedule'];
+       echo $shedule;
        $email=$_SESSION['email'];
        $F_post_id=$_POST['Pid'];
        $first_name=$_SESSION['first_name'];
@@ -86,6 +87,8 @@ $errors=array();
             orderModel::addLongTerm($connection,$startDate->format('Y-m-d H:i:s'),$order_id);
           }
        }
+       unset($_SESSION['cart']);
+       unset($_SESSION['term']);
       header('Location:../views/paymentFood_pending.php');
    }
 }else{
