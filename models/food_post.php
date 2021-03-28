@@ -92,9 +92,9 @@ class foodSupplierPost{
        $result= mysqli_query($connection,$query);
 
         if($result){
-            echo "Sucessfull  seccond <br>";
+            //echo "Sucessfull  seccond <br>";
         }else{
-            echo "Unsucessfull second <br>";
+            //echo "Unsucessfull second <br>";
         }
 
         return $result;
