@@ -2,7 +2,7 @@
         require_once ('../models/reg_user.php');
         require_once ('../models/StudentRequestIshan.php');
         require_once ('../models/reg_userIshan.php');
-        require_once ('../controller/orderCon.php');
+          require_once ('../controller/boarding_req_con_B_Ishan.php');
         
 
         // session_start(); 
@@ -70,20 +70,26 @@
             </div>
 <!------------------------------------------------------------------------  -->
 <?php 
-        $student_email=$_SESSION['email'];
-        $result=StudentRequestIshan::selectRPayD($connection,$student_email);
-        while($user=mysqli_fetch_assoc($result)) 
-        {
-                $request_id=$user['request_id'];
-                $image=$user['image'];
-                $payment_date=$user['payment_date'];
-                $B_post_id=$user['B_post_id'];
-                $city=$user['city'];
-                $house_num=$user['house_num'];
-                $lane=$user['lane'];
-                $first_name=$user['first_name'];
-                $last_name=$user['last_name'];
-                $result1=reg_userIshan::selectBorderid($connection,$student_email);        
+        $rented_pay=rentedPay($connection);
+
+       
+       $student_email=$_SESSION['email'];
+        
+        // while($user=mysqli_fetch_assoc($result)) 
+        // {
+        //         $request_id=$user['request_id'];
+        //         $image=$user['image'];
+        //         $payment_date=$user['payment_date'];
+        //         $B_post_id=$user['B_post_id'];
+        //         $city=$user['city'];
+        //         $house_num=$user['house_num'];
+        //         $lane=$user['lane'];
+        //         $first_name=$user['first_name'];
+        //         $last_name=$user['last_name'];
+        foreach ($rented_pay as $rentedP) {
+            # code...
+       
+                $result1=reg_userIshan::selectBorderid($connection,$student_email);     
  ?>        
     
     <div class="boxx">
@@ -92,22 +98,22 @@
                 <i class="fas fa-play-circle" ></i>
             </div>
             <div class="letter">
-                <h3>Congratulations! You are a Boarder now! <small> Payment Done  :  &nbsp;&nbsp;&nbsp;<b><?php echo $payment_date; ?>  </b> </small>
+                <h3>Congratulations! You are a Boarder now! <small> Payment Done  :  &nbsp;&nbsp;&nbsp;<b><?php echo $rentedP['payment_date'] ; ?>  </b> </small>
                 </h3>
             </div>
         </div>
         <div class="details-boxx">
             <div class="details">
-                <h2>Request Id :<span style="color:green;"><?php echo $request_id; ?></h2>
-                <img src="<?php echo $image; ?>" class="post_image" alt="" >
-                <h4>post Id :<?php echo $B_post_id; ?></h4>
-                <h4><?php echo $city; ?></h4>
+                <h2>Request Id :<span style="color:green;"><?php echo $rentedP['request_id'] ; ?></h2>
+                <img src="<?php echo $rentedP['image'] ; ?>" class="post_image" alt="" >
+                <h4>post Id :<?php echo $rentedP['B_post_id'] ; ?></h4>
+                <h4><?php echo $rentedP['city'] ; ?></h4>
             </div>
             <div class="button-pay">
                 <h2>Payment Done. Resevation is Successful! </h2>
                 <h4>You successfully rented this boarding place.<br/><br/></h4>
-                <h4>Address : <span style="color:green;"><?php echo $house_num.", ".$lane.", ".$city; ?></span></h4>
-                <h4>Owner : <span style="color:green;"><?php echo $first_name."  ".$last_name; ?></span></h4>
+                <h4>Address : <span style="color:green;"><?php echo $rentedP['house_num'].", ".$rentedP['lane'].", ".$rentedP['city']; ?></span></h4>
+                <h4>Owner : <span style="color:green;"><?php echo $rentedP['first_name']."  ".$rentedP['last_name']; ?></span></h4>
                 <h4><span style="color:green;">Now,You can goto new Boarder Home Page:  <a  href="../controller/newBoarderIshanPayOn.php?click&Bid=<?php echo $result1; ?>" style="color:red">Click here</a></span></h4>
             </div>
         </div>

@@ -8,7 +8,7 @@ class reg_user{
         mysqli_query($connection,$query);
     }
 
-
+// boarding owner registration 
     public static function boardingReg($email,$first_name,$last_name,$nic,$password,$token,$address,$link,$connection)
     {
         $query="INSERT INTO boardings_owner (email,first_name,last_name,NIC,password,token,address,location_link) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$link}')";

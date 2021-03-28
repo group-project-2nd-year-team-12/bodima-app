@@ -1,7 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
         require_once ('../models/StudentRequestIshan.php');
-        require_once ('../controller/orderCon.php');
+        require_once ('../controller/boarding_req_con_B_Ishan.php');
         
 
         // session_start(); 
@@ -70,21 +70,30 @@
 <!-----------------------------------------------------------------------------------  -->
  <?php 
 
-        $student_email=$_SESSION['email'];
-        $result=StudentRequestIshan::AcceptRequest($student_email,$connection);
-        while ($user=mysqli_fetch_assoc($result))
-        {
+        // $student_email=$_SESSION['email'];
+        // $result=StudentRequestIshan::AcceptRequest($student_email,$connection);
+        // while ($user=mysqli_fetch_assoc($result))
+        // {
             
-            $request_id=$user['request_id'];
-            $student_email=$user['student_email'];
-            $B_post_id=$user['B_post_id'];
-            $city=$user['city'];
-            $image=$user['image'];
-            $reqDate=$user['date'];
-            $cenvertedTime = date('Y-m-d H:i:s',strtotime('+23 days',strtotime($reqDate)));
-            $first_name=$user['first_name'];
-            $last_name=$user['last_name'];
+        //     $request_id=$user['request_id'];
+        //     $student_email=$user['student_email'];
+        //     $B_post_id=$user['B_post_id'];
+        //     $city=$user['city'];
+        //     $image=$user['image'];
+        //     $reqDate=$user['date'];
+        //     $cenvertedTime = date('Y-m-d H:i:s',strtotime('+23 days',strtotime($reqDate)));
+        //     $first_name=$user['first_name'];
+        //     $last_name=$user['last_name'];
+
+        $accept_request=AcceptRequest($connection);
  ?>   
+
+ <?php foreach($accept_request as $accept){
+
+     $reqDate=$accept['date'];
+    $cenvertedTime = date('Y-m-d H:i:s',strtotime('+3 days',strtotime($reqDate)));
+
+    ?>
 
          <div class="boxx">
             <input type="hidden" id="date" value="<?php echo $cenvertedTime; ?>">
@@ -94,19 +103,19 @@
             </div>
             <div class="details-boxx">
                 <div class="details">
-                    <h2>Request Id :<span style="color:#0900b0;"><?php echo $request_id; ?></h2>
-                    <img src="<?php echo $image; ?>" class="post_image" alt="" >
-                    <h4>post Id :<?php echo $B_post_id; ?></h4>
-                    <h4><?php echo $city; ?></h4>
+                    <h2>Request Id :<span style="color:#0900b0;"><?php echo $accept['request_id']; ?></h2>
+                    <img src="<?php echo $accept['image'] ; ?>" class="post_image" alt="" >
+                    <h4>post Id :<?php echo $accept['B_post_id'] ; ?></h4>
+                    <h4><?php echo $accept['city'] ; ?></h4>
                  </div>
                 <div class="button-pay">
                     <h2>Congratulations! You Can continue renting</h2>
                     <h4>Your request has been Accepted by post owner.<br/></h4>
-                    <h4>Post owner : <span style="color:#0900b0;"><?php echo $first_name."  ".$last_name; ?></span></h2>
+                    <h4>Post owner : <span style="color:#0900b0;"><?php echo $accept['first_name'] ."  ".$accept['last_name'] ; ?></span></h2>
                     <br/><br/><hr>
                     <h4>If you want to rent this boarding, click 'Pay and Reserve'</h4><br/>
-                    <button type="button" id="btnpay" class="" onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?requestCAccept_id=<?php echo $request_id; ?>"'> Pay and Reserve</button>
-                    <button type="button" class="btncancel2" style="background-color:rgb(150, 12, 12);"  onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?ArequestDelete_id=<?php echo $request_id; ?>"'> Cancel</button>
+                    <button type="button" id="btnpay" class="" onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?requestCAccept_id=<?php echo $accept['request_id'] ; ?>"'> Pay and Reserve</button>
+                    <button type="button" class="btncancel2" style="background-color:rgb(150, 12, 12);"  onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?ArequestDelete_id=<?php echo $accept['request_id']; ?>"'> Cancel</button>
                 </div>
             </div>
         </div>      

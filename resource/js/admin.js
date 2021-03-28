@@ -45,3 +45,62 @@ document.querySelector('.element5').addEventListener('click',(e)=>{
         }
 })
 
+// table details send to PDF function [report]
+$('#userPDF').click(function(){
+    var htmlDetails=$('#report-table').html();
+    var reportName=$('#reportName').text();
+    htmlDetail=htmlDetails.trim();
+    htmlDetail=''+htmlDetails+'';
+    console.log(htmlDetail.trim());
+    htmlDetails=encodeURIComponent(htmlDetails);
+    window.location="../controller/adminPanelCon.php?userPDF="+htmlDetails+"&name="+reportName;
+})
+
+
+// report change function [userdetails ,food post, boarding post ]
+$('#report-type').change(function(){
+    var type=$('#report-type').val();
+    if(type=="User"){
+        window.location="adminReports.php";
+    }
+    else if(type=="Food"){
+        window.location="adminFoodReport.php";
+    }
+   else if(type=="Boarding"){
+        window.location="adminBoardingReport.php"; 
+    }
+})
+
+
+
+// onclick function display block 
+function popBlock(id,email,level)
+{
+  document.querySelector('.block-box').style.display='block';
+  // document.querySelector('div:not(.block)').style.filter='blur(6px)';
+  document.getElementById('idBlock').innerHTML='User Id :'+id;
+  document.getElementById('emailBlock').innerHTML='User email :'+email;
+  document.getElementById('email-block').value=email;
+  document.getElementById('level-block').value=level;
+
+}
+
+
+function unBlock(id,email,level)
+{
+  document.querySelector('.unblock-box').style.display='block';
+  // document.querySelector('div:not(.block)').style.filter='blur(6px)';
+  document.getElementById('idUnBlock').innerHTML='User Id :'+id;
+  document.getElementById('emailUnBlock').innerHTML='User email :'+email;
+  document.getElementById('email-save').value=email;
+  document.getElementById('level-save').value=level;
+
+}
+
+
+// onclick display none function
+function popBack(x)
+{
+  document.querySelector(x).style.display='none';
+}
+

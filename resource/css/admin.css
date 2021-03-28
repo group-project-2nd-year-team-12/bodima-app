@@ -7,6 +7,7 @@
 }
 body{
     background-color: rgb(240, 240, 240);
+    /* background-color: rgba(255, 235, 80, 0.586); */
     width: 100%;
     height: 100vh;
     overflow-y: hidden;
@@ -190,9 +191,9 @@ a{
 .numbers > div{
     width: 250px;
     margin-left: 10px;
-    height: 120px;
+    height: 110px;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.276);
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.116);
 }
 .num-format{
     display: flex;
@@ -259,6 +260,48 @@ a{
     background-color: rgb(230, 230, 237);
     /* box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.276); */
 }
+
+.stat{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 10px;
+    height: 70px;
+}
+.orderDetails{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    background-color:  rgba(145, 145, 255, 0.300);
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.orderDetails >div{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    color: #3c55b1;
+    border-right: 1px solid #839bf1;
+}
+.orderDetails >div:last-child{
+    border-right: none;
+}
+
+.requestDetails{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    background-color:  rgba(145, 145, 255, 0.300);
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.requestDetails >div{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    color: #3c55b1;
+    border-right: 1px solid #8599e1;
+}
+.requestDetails >div:last-child{
+    border-right: none;
+}
 .charts{
     display: grid;
     grid-template-columns: 40% 60%;
@@ -269,20 +312,38 @@ a{
     font-size: 16px;
 }
 
-.charts-2{
+.content-3{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 25% 25% 25% 25%;
     margin-top: 10px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    height: 140px;
+    position: relative;
+    font-weight: bolder;
+    margin-right: 10px;
 }
 
-.charts-2 >div {
+.content-3 >div {
     margin-left: 10px;
     border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+
 }
-.charts-2 h3{
-    font-weight: lighter;
+.content-3 h3{
+    font-weight: bolder;
     font-size: 16px;
+    color: #3c55b1;
+}
+.content-3 img{
+    bottom:10px;
+    position: absolute;
+}
+.box-details{
+    color: #3c55b1;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
 }
 
 
@@ -290,6 +351,7 @@ a{
     border-radius: 5px;
     /* margin-left: 10px; */
     background-color: rgb(230, 230, 237);
+    position: relative;
 }
 
       /* student page css */
@@ -311,7 +373,7 @@ a{
 }
 .table table tr th{
    
-    color: blue;
+    color: rgb(0, 0, 255);
 }
 
 .search {
@@ -356,34 +418,89 @@ a{
     cursor: pointer;
 }
 
-.block{
-    position: absolute;
-   display: none;
-    top: 100px;
-    left: 300px;
-    width: 800px;
-    height:400px;
-    background-color: rgb(208, 218, 225);
+/* pop up  */
+.unblock-box{
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+}
+.unblock{
+    position:fixed;
+    top:80px;
+    width: 600px;
+    height: 300px;
+    left: 50%;
+    transform: translate(-50%,0%);
+    background-color: white !important;
+    padding: 5px;
     border-radius: 5px;
-    box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.578);
-    pointer-events: auto;
+    box-shadow: 8px 8px #5d80b6;
+    transition: 5s ease all ;
+    text-align: center;
+}
+.block-box{
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+}
+.block{
+    position:fixed;
+    top:80px;
+    width: 800px;
+    height: 450px;
+    left: 50%;
+    transform: translate(-50%,0%);
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 8px 8px #5d80b6;
+    transition: 5s ease all ;
+    text-align: center;
 }
 .block:not(){
     pointer-events: none;
 }
 
-.title1{
-    display: flex;
-    padding: 7px ;
-    justify-content: space-between;
-    /* font-size: 16px; */
-    background-color: rgb(163, 163, 189);
-    align-items: center;
+.iconClose{
+    float: right;
+    cursor: pointer;
+}
+.accept-btn{
+    padding: 10px 10px;
+    width: 150px;
+    color: white;
+    background-color: #0093FF;
+    border: none;
+    margin:80px 0 0 80px ;
+    cursor: pointer;
     border-radius: 5px;
+    /* background-color: rgb(139, 139, 139); */
+}
+.cancel-btn{
+    padding: 10px 10px;
+    width: 150px;
+    color: black;
+    background-color: white;
+    border: 2px solid #0093FF;
+    margin:10px 0 80px 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.title1{
+    text-align: center;
+    color :#101e5a;
 }
 
 .para{
+    width: 100%;
     padding: 10px 30px;
+    text-align: left;
 }
 .para p{
     font-size: 18px;
@@ -415,6 +532,9 @@ a{
     font-size:18px ;
     
 }
+.btn-class{
+    text-align: center;
+}
 
 .block-contain{
     display: flex;
@@ -438,9 +558,7 @@ a{
 .title1 i{
     cursor: pointer;
 }
-.title1 i:hover{
-    color: red;
-}
+
 
 .report-box{
     display: flex;
@@ -455,22 +573,38 @@ a{
     margin-right: 10px;
 }
 #report-type{
-   border: 2px solid #2a7dfa;
+   border: 2px solid #b0cfff;
    border-radius: 3px;
    color: #5d80b6;
    font-size: 16px;
 }
 .report-box a{
-    background-color: rgb(4, 111, 34);
-    padding: 7px 50px;
+    background-color: #101e5a;
+    padding: 7px 30px;
+    /* color: black; */
 }
 .report-box > div h2{
-    margin-right: 20px;
+    margin-right: 10px;
+    width: 220px;
 }
 .time{
     display: flex;
     padding: 7px;
     background-color: white;
+    margin-bottom: 3px;
+}
+.time > div{
+    width: 200px;
+    display: flex;
+    /* justify-content: space-around; */
+    padding: 0 15px;
+}
+time > div h4{
+    margin-right: 5px;
+    padding: 0 15px;
+}
+time > div select{
+    padding: 0 10px;
 }
 .accept{
     text-align: center;
@@ -480,13 +614,13 @@ a{
     border-radius: 3px;
 }
 .accept-not{
-    background-color: rgb(255, 255, 37);
+    background-color: rgb(255, 255, 69);
 }
 .accept-apt{
-    background-color: rgb(34, 188, 13);
+    background-color: rgb(136, 238, 123);
 }
 .accept-bld{
-    background-color: rgb(249, 54, 40);
+    background-color: rgb(255, 110, 99);
 }
 
 /* report page css */
@@ -505,7 +639,8 @@ a{
 .report-table tr{
     height:100px;
     font-weight: bolder;
-    color: #5d5d5d;
+    color: #252525;
+
 }
 .report-table th{
     text-align: left;
@@ -513,6 +648,7 @@ a{
     border: #5d80b6;
     padding:10px;
     color: white;
+    font-size: 14px;
 }
 .report-chart{
     width: 40%;
@@ -520,9 +656,46 @@ a{
 
 .positive{
     margin-left: 10px;
-    color: green;
+    color: rgb(1, 189, 1);
 }
 .negative{
     margin-left: 10px;
-    color: red;
+    color: rgb(209, 209, 209);
+}
+.summery
+{
+    position: absolute;
+    right: 250px;
+    top: 5px;
+    display: flex;
+    align-items: center;
+    width: 220px;
+    justify-content: space-around;
+    background-color: #e3ebf0;
+    padding:0 5px;
+}
+.circle {
+    /* background-color: red; */
+    width: 100px;
+    height: 80px;
+    border-radius: 50px;
+    /* border: 4px solid #406caf; */
+    align-items: center;
+    display: flex;
+    /* justify-content: space-around; */
+    text-align: center;
+    font-size: 10px;
+    color: #0093FF;
+}
+
+.numUser{
+    position: absolute;
+    right: 500px;
+    top: 5px;
+    display: flex;
+    align-items: center;
+    width: 140px;
+    text-align: center;
+    justify-content: space-between;
+    color: #0093FF ;
 }

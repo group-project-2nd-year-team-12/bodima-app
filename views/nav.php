@@ -71,7 +71,7 @@
                    <?php } ?>
 
                    <?php if($_SESSION['level']=='student'){?>
-                      <li onclick='window.location="../views/pendingReqIshan_new.php"'>Boarding Request </li>
+                      <li onclick='window.location="pendingReqIshan_New.php"'>Boarding Request </li>
                       
                       
                    <?php } ?>
