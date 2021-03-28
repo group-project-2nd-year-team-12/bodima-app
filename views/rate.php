@@ -2,7 +2,8 @@
     $creattime=date('Y-m-d h:i:s');
 
     require_once ('../config/database.php');
-    require_once ('ratemodel.php');
+
+    require_once ('../models/ratemodel.php');
 
     $result_set=rating::getids($connection);
     $count=mysqli_num_rows($result_set);
@@ -44,7 +45,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rating System </title>
-    <link rel="stylesheet" href="ratemain.css">
+    <link rel="stylesheet" href="../resource/css/ratemain.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 </head>
@@ -192,6 +193,6 @@
         </div>
     </div>
     
-    <script src="ratemain.js"></script>    
+    <script src="../resource/js/ratemain.js"></script>    
 </body>
 </html>
