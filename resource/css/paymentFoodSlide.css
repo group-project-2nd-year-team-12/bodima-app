@@ -22,7 +22,7 @@
     cursor: pointer;
     font-weight: lighter;
     padding-left: 30px;
-    border-left: 3px solid #17181a;;
+    border-left: 3px solid #101e5a;
 }
 .payment-slide ul li:hover{
   color:  #5d80b6;

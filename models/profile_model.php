@@ -1,4 +1,4 @@
-<?php
+<?php  //An
 
 class profile_model{
 
@@ -31,8 +31,6 @@ class profile_model{
             $query="SELECT * FROM boarding_post 
                  WHERE BOid=$BOid
                  ORDER BY B_post_id desc;";
-
-
         return mysqli_query($connection,$query);
      }
 
@@ -44,7 +42,6 @@ class profile_model{
         $query="SELECT * FROM food_post 
                 WHERE FSid=$FSid
                 ORDER BY F_post_id desc;";
-
        return mysqli_query($connection,$query);
     }
 

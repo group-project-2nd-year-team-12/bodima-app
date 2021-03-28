@@ -29,7 +29,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="profilepage.php"> <i class="fa fa-user-circle fa-lg"></a></i></div>
+                    <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i class="fa fa-user-circle fa-lg"></a></i></div>
                 <?php
                    
                     if($_SESSION['level']=='administrator'){?> <button onclick="window.location='../controller/adminPanelCon.php?admin'"><i class="fas fa-cogs"></i> Dash Board </button>&nbsp<?php }
@@ -57,7 +57,7 @@
         </div>
             <div class="slide-nav">
             <ul><?php if(isset($_SESSION['email'])){?> 
-                    <li onclick="window.location='profilepage.php'">Profile</li>
+                    <li onclick="window.location='../controller/profile_controlN.php?profile=1'">Profile</li>
 
                     <li>Chat</li>
                     <?php if($_SESSION['level']=='food_supplier'){?>
@@ -66,12 +66,12 @@
                        
                    <?php } ?>
                     <?php if($_SESSION['level']=='boardings_owner'){?>
-                        <li onclick='window.location="../views/myBoardingReqIshan.php"'>My Requests</li>
+                        <li onclick='window.location="../views/myBoardingReqIshan_new.php"'>My Requests</li>
                        
                    <?php } ?>
 
                    <?php if($_SESSION['level']=='student'){?>
-                      <li onclick='window.location="../views/pendingReqIshan.php"'>Boarding Request </li>
+                      <li onclick='window.location="pendingReqIshan_New.php"'>Boarding Request </li>
                       
                       
                    <?php } ?>

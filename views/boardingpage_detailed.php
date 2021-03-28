@@ -35,10 +35,13 @@ $BOid=$boardingpost_d['BOid'];
 $boardingpost_owner=advertisement_model::get_B_post_owner_byId($BOid,$connection);
 $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 // print_r($boardingpost_owner_d);
+
+
+
 ?>
 
     <div class="box_outer">
-        <!-- <div class="col-7"> -->
+        <div class="col-7">
             <div class="inner_slider">
                 <h1><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h1>
                 <h3>Title: <?php echo $boardingpost_d['title']?> </h3>
@@ -53,7 +56,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                 
                
                 $boardingpost= advertisement_model::get_post_details($B_post_id,$connection);
-
+                
 
                 if(mysqli_num_rows($boardingpost)>0){
                     while($fetch= mysqli_fetch_all($boardingpost)){
@@ -156,7 +159,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                 </div>
             
             </div>
-        <!-- </div> -->
+        </div>
         <div class="resquest col-5" style="margin-bottom: 100px;">
             <div class="inner_right">
                 <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
@@ -169,12 +172,12 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                         
                         <div class="mapouter">
                             <div class="gmap_canvas">
-                            <iframe width="500" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=dharmapala%20widyalaya%2Ckottawa&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <iframe width="530" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<?php echo $boardingpost_d['latitude']?>,<?php echo $boardingpost_d['longitude']?>&amp;key=AIzaSyBbFP4LgCtbVnl1JQAlLjHOv_HoQdvOTi8"></iframe>
                                 <a href="https://www.whatismyip-address.com/divi-discount/"></a>
                             </div>
                             <style>
-                                .mapouter{position:relative;text-align:right;height:300px;width:500px;}
-                                .gmap_canvas {overflow:hidden;background:none!important;height:300px;width:500px;}
+                                .mapouter{position:relative;text-align:right;height:300px;width:530px;}
+                                .gmap_canvas {overflow:hidden;background:none!important;height:300px;width:530px;}
                             </style>
                         </div>
                         

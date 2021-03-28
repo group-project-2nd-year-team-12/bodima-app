@@ -22,7 +22,7 @@ if (isset($_GET['success'])) {
 	$Bid=$user['Bid'];
 
     reg_userIshan::insertboarderIspaid($connection,$Bid,$B_post_id);
-    header('Location: ../views/rentedPayIshan.php');
+    header('Location: ../views/rentedPayIshan_New.php');
 
 }
 

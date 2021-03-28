@@ -14,6 +14,8 @@
 
 <body >
 <div class="container" id="container">
+
+    <!-- upper header -->
         <div class="header">
             <div class="logo">
                 <img src="resource/img/logo.svg" alt="">
@@ -43,10 +45,10 @@
                     ?>
                     <button onclick="window.location='controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?> 
-                  <!-- live support  -->
-                    <?php include ("views/liveSupport.php"); ?>
+           
             </div>
         </div>
+        <!-- Navi bar  -->
         <div class="nav">
                 <div class="burger">
                         <div>
@@ -63,6 +65,8 @@
                 <li class="nav_item " onclick="window.location='views/contact_us.php'"><i class="fa fa-address-book"></i> Contact Us</li>
             </ul>
         </div>
+
+        <!-- Slide bar -->
         <div class="slide-nav">
             <ul><?php if(isset($_SESSION['email'])){?> 
                     <li onclick="window.location='controller/profile_controlN.php?profile=1'">Profile</li>
@@ -74,11 +78,11 @@
                     <?php if($_SESSION['level']=='boardings_owner'){?>
                       
                       
-                      <li onclick='window.location="views/myBoardingReqIshan.php"'>My Requests</li>
+                      <li onclick='window.location="views/myBoardingReqIshan_New.php"'>My Requests</li>
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='student'){?>
-                      <li onclick='window.location="views/pendingReqIshan.php"'>Boarding Request </li>
+                      <li onclick='window.location="views/pendingReqIshan_New.php"'>Boarding Request </li>
                       
                       
                    <?php } ?>
@@ -93,21 +97,16 @@
                 <?php } ?>
                 </ul>
         </div>
+
+        <!-- Home page sider -->
         <section>
             <div class="slider">
                <div class="myslider fade" style="display: block;">
                     <div class="txt">
-                        <div class="section1-header title1 ">
+                        <div class="section1-header title1">
                             <div>
-                                <h2 >Welcome to Bodima</h2>
-                                <!-- <h4>Accomadation Management System</h4> -->
-                                <!-- <h3>Learn Together  </h3>
-                                <h3>With</h3>
-                                <h3>Friends</h3> -->
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Get Start</button><?php } 
-                                else{?> <button onclick="window.location=''">Get Start</button> <?php } ?>
-                                
-                            
+                                <h2 >Welcome to</h2>
+                                <h2 class="welcome-msg">Bodima</h2>
                             </div>
                        </div>
                     </div>
@@ -120,8 +119,7 @@
                                 <h2>Find Boarding</h2>
                                 <h3>Find a Safe </h3>
                                 <h3>Place</h3>
-                                <h3>For Study</h3>
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                                <!-- <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?> -->
                             
                             </div>
                        </div>
@@ -132,11 +130,10 @@
                     <div class="txt">
                         <div class="section1-header title3">
                             <div>
-                                <h2>"Order Food"</h2>
-                                <h3>Learn Together  </h3>
-                                <h3>With</h3>
-                                <h3>Friends</h3>
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
+                                <h2>Order Food</h2>
+                                <h3>Order from   </h3>
+                                <h3>your favorite Restaurent</h3>
+                                <!-- <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?> -->
                             
                             </div>
                        </div>
@@ -147,31 +144,15 @@
                         <div class="txt">
                         <div class="section1-header title4">
                             <div>
-                                <h2>Connect With Close</h2>
+                                <!-- <h2>Connect With Close</h2> -->
                                 <h3>Download Our </h3>
                                 <h3>Android Application</h3>
-                                <h3>For Manage</h3>
                                <button onclick="window.location='views/register.php'">Download</button>
                             
                             </div>
                        </div>
                     </div>
                     <img style="width: 860px;" src="resource/img/slide/1 (4).png" alt="">
-               </div>
-               <div class="myslider fade">
-                    <div class="txt">
-                        <div class="section1-header title5">
-                            <div>
-                                <h2>Find Boarding</h2>
-                                <h3>Learn Together  </h3>
-                                <h3>With</h3>
-                                <h3>Friends</h3>
-                                <?php if(!isset($_SESSION['email'])){ ?> <button onclick="window.location='views/register.php'">Register</button><?php } ?>
-                            
-                            </div>
-                       </div>
-                    </div>
-                    <img style="width: 860px;" src="resource/img/slide/1 (5).png" alt="">
                </div>
                 <a class="prev" onclick="plusSlides(-1)">&#10094</a>
                 <a class="next" onclick="plusSlides(1)" >&#10095</a>
@@ -184,8 +165,9 @@
                 </div>
             </div>
         </section>
+
+
         <div class="section2">
-            <!-- <img src="resource/img/hostel-img1.jpg" alt=""> -->
             <div class="section2-header">
                <div>
                  <h2>Bodima</h2>
@@ -194,20 +176,18 @@
                         <h1>To <b style="color: blue;">F</b>ind</h1>
                         <img src="resource/img/find.svg" alt="">
                         <p>Finding a boarding place hard for you. We are giving easy way to you find a boarding place </p>
-                        <p style="color: blue;cursor:pointer">read more</p>
                      </div>
                      <div class="boarding">
                         <h1>To <b style="color: blue;">P</b>ost</h1>
                         <img src="resource/img/post.svg" alt="">
                         <p>Have you boarding with 0 income ? You want to turn it to incoming source. That is the place you need . Place your ads here. </p>
-                        <p style="color: blue;cursor:pointer"> read more</p>
+
                      </div>
                      <div class="delivery">
                         
                         <h1>To <b style="color: blue;">D</b>elivery</h1>
                         <img src="resource/img/delivery.svg" alt="">
                         <p> Have you resturent , Can you delivery orders for customer. Can you win customer trust. You can post our system</p>
-                        <p style="color: blue;cursor:pointer">read more</p>
                      </div>
                  </div>
                </div>
@@ -303,6 +283,8 @@
         </div>
         <?php include '../bodima-app/views/footer.php' ?>
 </div>
+       <!-- live support  -->
+       <?php include ("views/liveSupport.php"); ?>
 </body>
 <script src="resource/js/jquery.js"></script>
 <script src="resource/js/home1.js"></script>

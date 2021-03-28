@@ -1,3 +1,4 @@
+<!-- an -->
 <?php
 	require_once ('../config/database.php');
     require_once ('../models/live_search.php');
@@ -9,11 +10,11 @@ if(isset($_POST["qry"]))
 {
 	if(str_word_count($_POST["qry"])>1)
 	{
-
+		// user entered query- multiple word
 		$result=live_search::multiple_word_match_b_post($connection,$_POST["qry"]);
 
 	}else{
-
+		// user entered query- single word
 		$result=live_search::single_word_find_b_post($connection,$_POST["qry"]);
 
 	}
@@ -21,6 +22,7 @@ if(isset($_POST["qry"]))
 }
 else
 {
+	// default
 	$result=live_search::all_b_posts($connection);
 }
 

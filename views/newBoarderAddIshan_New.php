@@ -1,7 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
-        require_once ('../models/BOwnerReqIshan.php');
-        require_once ('../controller/orderCon.php');
+       // require_once ('../models/BOwnerReqIshan.php');
+         require_once ('../controller/boarding_req_BOwner_Ishan.php');
         
 
         // session_start(); 
@@ -49,7 +49,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
+                    <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
             
                     <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
@@ -71,44 +71,49 @@
 
         $email=$_SESSION['email'];
         $BOid=$_SESSION['BOid'];
-        $result=BOwnerReqIshan::selectMyBordersBO($connection,$BOid);
-        while ($user=mysqli_fetch_assoc($result))
-        {
-            $request_id=$user['request_id'];
-            $B_post_id=$user['B_post_id'];
-            $first_name=$user['first_name'];
-            $payment_date=$user['payment_date'];
-            $keymoneyAmount=$user['keymoneyAmount'];
-            $rend_id=$user['rent_id'];
-            $gender=$user['gender'];
-            $rend_id=$user['rent_id'];
-            $nic=$user['NIC'];
-            $institute=$user['institute'];
-            $telephone=$user['telephone'];
-?>    
+       $select_boarder=selectMyBordersBO($connection);
+        // while ($user=mysqli_fetch_assoc($result))
+        // {
+        //     $request_id=$user['request_id'];
+        //     $B_post_id=$user['B_post_id'];
+        //     $first_name=$user['first_name'];
+        //     $payment_date=$user['payment_date'];
+        //     $keymoneyAmount=$user['keymoneyAmount'];
+        //     $rend_id=$user['rent_id'];
+        //     $gender=$user['gender'];
+        //     $rend_id=$user['rent_id'];
+        //     $nic=$user['NIC'];
+        //     $institute=$user['institute'];
+        //     $telephone=$user['telephone'];
+?>   
+<?php 
+    foreach ($select_boarder as $boarder) {
+       
+   
+ ?> 
 
         <div class="boxx">
                     <div class="resend wait" style="background-color: rgb(29, 236, 191);">
                         <div class="right" ><i class="fas fa-user-check fa-2x"></i></div>
-                        <div class="letter"><h3 style="margin-top:35px;">Congratulations! You have a new boarder.<small> post number: <?php echo $B_post_id; ?><br/>request no: <?php echo $request_id; ?></small></h3></div>
+                        <div class="letter"><h3 style="margin-top:35px;">Congratulations! You have a new boarder.<small> post number: <?php echo $boarder['B_post_id'] ; ?><br/>request no: <?php echo $boarder['request_id'] ; ?></small></h3></div>
                     </div>
                   <div class="details-boxx">
                         <div class="details">
                             <h2>Payment :<span style="color: rgb(6, 165, 131);">successful</h2><br/><br/>
                             <!-- <img src="../resource/Images/uploaded_boarding/2.jpg" class="post_image" alt="" > -->
-                            <h2>amount : <span style="color: rgb(6, 165, 131);"><?php echo $keymoneyAmount; ?></span></h2><br/>
-                            <h4>recieved at: <span style="color: rgb(6, 165, 131);"><?php echo $payment_date; ?></span></h4>
-                            <h4>payment id:<?php echo $rend_id; ?></h4>
+                            <h2>amount : <span style="color: rgb(6, 165, 131);"><?php echo $boarder['keymoneyAmount']; ?></span></h2><br/>
+                            <h4>recieved at: <span style="color: rgb(6, 165, 131);"><?php echo $boarder['payment_date']; ?></span></h4>
+                            <h4>payment id:<?php echo $boarder['rent_id']; ?></h4>
                         </div>
                         <div class="button-pay">
                         <h2>New person has done Advance payment! </h2>
-                            <h4>Name: <span style="color: rgb(6, 165, 131);"><?php echo $first_name; ?></span><br/></h4>
-                            <h4>Gender: <span style="color: rgb(6, 165, 131);"><?php echo $gender; ?></span><br/></h4>
-                            <h4>NIC: <span style="color: rgb(6, 165, 131);"><?php echo $nic; ?></span><br/></h4>
-                            <h4>telephone no: <span style="color: rgb(6, 165, 131);"><?php echo $telephone; ?></span><br/></h4>
-                            <h4>University/working at: <span style="color: rgb(6, 165, 131);"><?php echo $institute; ?></span><br/></h4>
+                            <h4>Name: <span style="color: rgb(6, 165, 131);"><?php echo $boarder['first_name']; ?></span><br/></h4>
+                            <h4>Gender: <span style="color: rgb(6, 165, 131);"><?php echo $boarder['gender']; ?></span><br/></h4>
+                            <h4>NIC: <span style="color: rgb(6, 165, 131);"><?php echo $boarder['NIC']; ?></span><br/></h4>
+                            <h4>telephone no: <span style="color: rgb(6, 165, 131);"><?php echo $boarder['telephone']; ?></span><br/></h4>
+                            <h4>University/working at: <span style="color: rgb(6, 165, 131);"><?php echo $boarder['institute']; ?></span><br/></h4>
                             <br/><hr>
-                            <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;"><a href="myboarders.php">click here</a></span> to view My boarders</h4><br/>
+                            <h4><span style="color: rgb(6, 165, 131); text-decoration:underline;"><a href="../controller/boarder_list_controlN.php?boarderlist=1">click here</a></span> to view My boarders</h4><br/>
                         </div>
                   </div>
         </div>
@@ -130,6 +135,11 @@
 </body>
 <script src="../resource/js/timing.js"></script>
 <script src="../resource/js/settingOrder.js"></script>
+
+
+
+  
+
 <script src="../resource/js/newOrder.js"></script>
 <script> src="../resource/order.js"</script>
 <script src="../resource/js/disableBack.js"></script>

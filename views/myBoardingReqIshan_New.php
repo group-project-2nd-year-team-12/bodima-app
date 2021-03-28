@@ -1,7 +1,7 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
-        require_once ('../models/BOwnerReqIshan.php');
-        require_once ('../controller/orderCon.php');
+       // require_once ('../models/BOwnerReqIshan.php');
+        require_once ('../controller/boarding_req_BOwner_Ishan.php');
         
 
         // session_start(); 
@@ -46,7 +46,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
+                    <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
             
                     <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
@@ -70,21 +70,28 @@
 
         $email=$_SESSION['email'];
         $BOid=$_SESSION['BOid'];
-        $result=BOwnerReqIshan::selectnewRequest($BOid,$connection);
-        while ($user=mysqli_fetch_assoc($result))
-        {
-            $request_id=$user['request_id'];
-            $student_email=$user['student_email'];
-            $B_post_id=$user['B_post_id'];
-            $city=$user['city'];
-            $image=$user['image'];
-            $first_name=$user['first_name'];
-            $last_name=$user['last_name'];
-            $date=$user['date'];
-            $message=$user['message'];
-            $cenvertedTime = date('Y-m-d H:i:s',strtotime('+22 days',strtotime($date)));
-?>        
+        // $result=BOwnerReqIshan::selectnewRequest($BOid,$connection);
+        // while ($user=mysqli_fetch_assoc($result))
+        // {
+        //     $request_id=$user['request_id'];
+        //     $student_email=$user['student_email'];
+        //     $B_post_id=$user['B_post_id'];
+        //     $city=$user['city'];
+        //     $image=$user['image'];
+        //     $first_name=$user['first_name'];
+        //     $last_name=$user['last_name'];
+        //     $date=$user['date'];
+        //     $message=$user['message'];
+        //     $cenvertedTime = date('Y-m-d H:i:s',strtotime('+22 days',strtotime($date)));
 
+
+        $select_pending=selectnewRequest($connection);
+?>        
+<?php  foreach ($select_pending as $pending) {
+    $date=$pending['date'];
+     $cenvertedTime = date('Y-m-d H:i:s',strtotime('+22 days',strtotime($date)));
+
+    # code...?>
        <div class="boxx">
             <input type="hidden" id="date" value="<?php echo $cenvertedTime; ?>">
             <div class="resend wait" style="background-color:  rgb(141, 243, 141);">
@@ -96,20 +103,20 @@
             </div>          
             <div class="details-boxx">
                 <div class="details">
-                    <h2>post Id :<span style="color:green;"><?php echo $B_post_id; ?></h2>
-                    <img src="<?php echo $image; ?>" class="post_image" alt="" >
-                    <h4>Request Id:<?php echo $request_id; ?></h4>
-                    <h4><?php echo $city; ?></h4>
+                    <h2>post Id :<span style="color:green;"><?php echo $pending['B_post_id'] ; ?></h2>
+                    <img src="<?php echo $pending['image']; ?>" class="post_image" alt="" >
+                    <h4>Request Id:<?php echo $pending['request_id']; ?></h4>
+                    <h4><?php echo $pending['city']; ?></h4>
                 </div>
                 <div class="button-pay">
                     <h2>New Request Recieved</h2>
                     <h4>arrived at:&nbsp;&nbsp; <?php echo $date; ?><br/><br/></h4>
-                    <h4>from : <span style="color:green;"><?php echo $student_email; ?></span></h4>
-                    <h4>massage : <span style="color:green;"><?php echo $message; ?></span></h2>
+                    <h4>from : <span style="color:green;"><?php echo $pending['student_email']; ?></span></h4>
+                    <h4>massage : <span style="color:green;"><?php echo $pending['message']; ?></span></h2>
                     <br/><hr>
-                    <h4>to allow <span style="color:green; text-decoration:underline;"><?php echo $first_name; ?></span> to get your boarding place, click 'Accept Request'</h4><br/>
-                    <button type="button" class="btn4 Accept_Request" style="background-color: rgb(3, 204, 3);"  onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?reqAccBOwner_id=<?php echo $request_id; ?>"' > Accept Request</button>
-                    <button type="button" class="btncancel2" style="background-color:rgb(131, 8, 8);"   onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?requestDeleteBO_id=<?php echo $request_id; ?>"'> Cancel</button>
+                    <h4>to allow <span style="color:green; text-decoration:underline;"><?php echo $pending['first_name']; ?></span> to get your boarding place, click 'Accept Request'</h4><br/>
+                    <button type="button" class="btn4 Accept_Request" style="background-color: rgb(3, 204, 3);"  onclick='if(confirm("Are you want to accept this Request ?")) window.location="../controller/requestIshan.php?reqAccBOwner_id=<?php echo $pending['request_id']; ?>"' > Accept Request</button>
+                    <button type="button" class="btncancel2" style="background-color:rgb(131, 8, 8);"   onclick='if(confirm("Are you want to cancel this Request ?")) window.location="../controller/requestIshan.php?requestDeleteBO_id=<?php echo $pending['request_id']; ?>"'> Cancel</button>
                 </div>
             </div>
         </div>         
@@ -134,6 +141,33 @@
 <script src="../resource/js/newOrder.js"></script>
 <script> src="../resource/order.js"</script>
 <script src="../resource/js/disableBack.js"></script>
+
+
+  <script>
+    function func() {
+        var dateValue = document.getElementById("date").value;
+ 
+        var date = Math.abs((new Date().getTime() / 1000).toFixed(0));
+        var date2 = Math.abs((new Date(dateValue).getTime() / 1000).toFixed(0));
+ 
+        var diff = Math.abs(date2 - date);
+
+        var days=Math.floor(diff/86400);
+        var hours=Math.floor(diff/3600)%24;
+         var minutes=Math.floor(diff/60)%60;
+          var seconds=diff%60;
+          
+       
+        document.getElementById("data").innerHTML = days+" days, "+hours+"  hours, "+minutes+"  minutes, "+seconds+" seconds";
+
+        if (days==0 && seconds==0) {
+          window.location="../controller/requestIshan.php?BOrequesttimeout_id=<?php echo $request_id; ?>"
+          }
+    }
+ 
+    func();
+    var interval = setInterval(func, 1000);
+</script>
 
 
 

@@ -170,7 +170,7 @@ if (isset($_GET['request_id'])) {
 
                 if($_POST['pay']=="hand")
                 {
-                        header('Location:../views/rentedPayNotIshan.php');
+                        header('Location:../views/rentedPayNotIshan_New.php');
                 }
                 elseif($_POST['pay']=="online")
                 {

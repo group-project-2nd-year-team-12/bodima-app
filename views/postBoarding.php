@@ -16,11 +16,17 @@ session_start();
     <link rel="stylesheet" href="../resource/css/extra.css">
     <link rel="stylesheet" href="../resource/css/popboarding.css">
 	<link href="../resource/css/boarding.css" rel="stylesheet">
-	<!-- <script src="jquery-3.5.1.min.js"></script> -->
+	<style>
+	#myMap 
+	{
+	height: 350px;
+	width: 50vw;
+	}
+	</style>
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	 
+
 
 	 <script >
             
@@ -44,9 +50,10 @@ session_start();
             });
         </script>
 	
-
+	<?php require ("maps.php")?>
 </head>
 <body>
+
 
 <?php require "header1.php"?>
 
@@ -115,18 +122,43 @@ session_start();
 
 			<!-- </div>id name	 -->
 
-				<p>Location</p >
-				<!-- <label for="">Location  </label><br> -->
-                <input type="text" name="location" id="location" ><br>
+				
                 
 
     </div>
+
+	<hr/>
+	<div class="section">
+					<div class="clickable" >
+					<p style="padding-left:20px;">Location</p>
+						<i class="fas fa-map-marker-alt" style="padding-left:20px;"></i>
+						<span> drag the red marker to add your boarding location</span>
+					</div>
+	</div>
+    <div class="section" style="margin:20px;">
+				
+                <div class="outerboxmap" style="margin:10px;" >
+					
+					<div class="innerboxmap" style="display:flex; justify-content:space-around;">
+						<!-- map -->
+						
+						<div id="myMap"></div>
+						<input type="hidden" id="address" name="map_address" style="width:600px;"/><br/>
+						<input type="hidden" id="latitude" name="latitude"  placeholder="Latitude" value=""/>
+						<input type="hidden" id="longitude" name="longitude" placeholder="Longitude" value=""/>
+						<!-- <input type="submit" name="submitmap" value="submit"> -->
+						
+
+					</div>
+				</div>
+
+	</div>
 
 
     <hr/>
     <div class="section">
 
-			<h4>Boarding Photos</h4><p class="opt">(Optional)</p>
+			<h4>Boarding Photos</h4><p class="opt"> (Optional)</p>
 			<p class="cover">Boarding Cover Image</p >
 
 
@@ -345,7 +377,7 @@ session_start();
 								dataType:"json",
 								success:function(data){
 									console.log(data);
-									//window.location = "../views/profilepage.php";
+									//window.location = "../controller/profile_controlN.php?profile=1";
 								}
 						});	
                         

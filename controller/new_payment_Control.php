@@ -1,11 +1,12 @@
+<!-- an -->
 <?php
     session_start();
     require_once ('../config/database.php');
     require_once ('../models/pay_rent_modelN.php');
     
 
-
-    if(isset($_GET['id'])){
+if(isset($_GET['id']))
+{
 
         $Bid=$_SESSION['Bid'];
         $BOidx=pay_rent_modelN::get_BO_details($connection,$Bid);
@@ -15,7 +16,7 @@
         print_r($BOidarr);
         echo "<br><br><br>";
         
-// ******************month list genarate***************************************************************
+    // ******************month list genarate***************************************************************
         $last=pay_rent_modelN::get_last_paymonth($connection,$Bid,$BOid);
         $lastpay=mysqli_fetch_assoc($last);
         
@@ -32,7 +33,8 @@
         $monthgap=intval($totalMonthsDiff);//truncate decimal points of monthdiff
         echo ' | '.$monthgap.'  <br>';
 
-        while($monthgap>0){
+        while($monthgap>0)
+        {
             $d1=strtotime('+1 month', $d1);
             $month = date('Y F', $d1);
             echo $month.'<br>';
@@ -50,19 +52,20 @@
         $cppval=mysqli_fetch_assoc($cpparr);
         $cppv=serialize($cppval);
  
-// ***********************************************************************************************
-header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist.'&cppv='.$cppv);
+    // ***********************************************************************************************
+    header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist.'&cppv='.$cppv);
   
-    }
+}
 
 
-if (isset($_GET['success'])){
+// online payment -payhere
+if (isset($_GET['success']))
+{
     echo 'payment done';
-    
-    if(isset($_GET['order_id'])){
+    if(isset($_GET['order_id']))
+    {
         $BOid=$_GET['order_id'];
         echo $BOid;
-
         $Bid=$_GET['B'];
         $BOid=$_GET['BO'];
         $year=$_GET['y'];

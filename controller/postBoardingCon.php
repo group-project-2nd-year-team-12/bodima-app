@@ -105,7 +105,6 @@ $errors=array(); //create empty array
         $lane=$_POST['lane'];
         $city=$_POST['city'];
         $district=$_POST['district'];
-        $location=$_POST['location'];
         $description=$_POST['description'];
 
         $individual=$_POST['individual'];
@@ -114,9 +113,12 @@ $errors=array(); //create empty array
         $CPperson=$_POST['CPperson'];
         $Keymoney=$_POST['Keymoney'];
         $Lifespan=$_POST['Lifespan'];
-        //$Aamount=$_SESSION['result'];
         $Aamount=$_POST['Aamount'];
+        //$Aamount=$_SESSION['result'];
 
+        $latitude=$_POST['latitude'];
+        $longitude=$_POST['longitude'];
+        $location=$_POST['map_address'];
 
 
 
@@ -146,7 +148,7 @@ $errors=array(); //create empty array
         //$result=boarding::delete_post($connection);
        // echo $result;
 
-        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
+        boarding::postBoarding($id,$Hnumber,$lane,$city,$district,$description,$creattime,$title,$image_name1,$upload_to,$individual,$location,$latitude,$longitude,$gender,$Pcount,$CPperson,$Keymoney,$Lifespan,$Aamount,$connection);
 
         $result_set=boarding::getPostId($connection);
         $result_post=mysqli_fetch_assoc($result_set);
@@ -171,13 +173,14 @@ $errors=array(); //create empty array
 
             // print_r($_FILES);
         
-    
-            move_uploaded_file($temp_name, $upload_to . $image_name);
+            
 
 
             if(null!=trim($image_name)){
                 echo "null";
-                boarding::image_save($id,$postid,$image_name,$upload_to,$connection);
+                $image_name_edit='post'.$postid.'img'.$image_name;
+                move_uploaded_file($temp_name, $upload_to . $image_name_edit);
+                boarding::image_save($id,$postid, $image_name_edit,$upload_to,$connection);
             }
             
 
@@ -234,7 +237,7 @@ if(isset($_GET['deletePost'])){
 
     $result=boarding::delete_post($connection);
     echo $result;
-    header('Location:../views/profilepage.php?');
+    header('Location:../controller/profile_controlN.php?profile=1');
     // $state="";
     // if($result->num_rows!=0){
     //     $state="sucess";

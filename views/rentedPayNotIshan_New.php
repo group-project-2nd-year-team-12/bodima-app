@@ -1,7 +1,8 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
         require_once ('../models/StudentRequestIshan.php');
-        require_once ('../controller/orderCon.php');
+      require_once ('../controller/boarding_req_con_B_Ishan.php');
+        
         
 
         // session_start(); 
@@ -44,7 +45,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
+                    <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
             
                     <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
@@ -62,20 +63,21 @@
             </div>
 <!---------------------------------------------------------------------  -->
 <?php 
-            $student_email=$_SESSION['email'];
-            $result=StudentRequestIshan::selectRPayNotD($connection,$student_email);
-            while ($user=mysqli_fetch_assoc($result))
-            {
-                $request_id=$user['request_id'];
-                $image=$user['image'];
-                $B_post_id=$user['B_post_id'];
-                $city=$user['city'];
-                $house_num=$user['house_num'];
-                $lane=$user['lane'];
-                $first_name=$user['first_name'];
-                $last_name=$user['last_name'];
+          $rentedPNot=rentedPayNot($connection);
+            // while ($user=mysqli_fetch_assoc($result))
+            // {
+            //     $request_id=$user['request_id'];
+            //     $image=$user['image'];
+            //     $B_post_id=$user['B_post_id'];
+            //     $city=$user['city'];
+            //     $house_num=$user['house_num'];
+            //     $lane=$user['lane'];
+            //     $first_name=$user['first_name'];
+            //     $last_name=$user['last_name'];
  ?> 
-
+<?php foreach ($rentedPNot as $rentedPN) {
+    # code...
+ ?>
         <div class="boxx">
                 <div class="resend wait" style="background-color:  rgb(47, 96, 201);">
                         <div class="right" ><i class="fas fa-play-circle" ></i></div>
@@ -83,16 +85,16 @@
                 </div>
                 <div class="details-boxx">
                         <div class="details">
-                            <h2>Request Id :<span style="color: rgb(11, 50, 134);"><?php echo $request_id; ?></h2>
-                            <img src="<?php echo $image; ?>" class="post_image" alt="" >
-                            <h4>post Id :<?php echo $B_post_id; ?></h4>
-                            <h4><?php echo $B_post_id; ?></h4>
+                            <h2>Request Id :<span style="color: rgb(11, 50, 134);"><?php echo $rentedPN['request_id'] ; ?></h2>
+                            <img src="<?php echo $rentedPN['image'] ; ?>" class="post_image" alt="" >
+                            <h4>post Id :<?php echo $rentedPN['B_post_id'] ; ?></h4>
+                            <h4><?php echo $rentedPN['B_post_id'] ; ?></h4>
                         </div>
                         <div class="button-pay">
                             <h2>Hand over your payment to complete reservation </h2>
                             <h4>Your informtion have been submitted. continue payment<br/><br/></h4>
-                            <h4>Address : <span style="color: rgb(11, 50, 134);"><?php echo $house_num.", ".$lane.", ".$city; ?></span></h4>
-                            <h4>Owner : <span style="color: rgb(11, 50, 134);"><?php echo $first_name."  ".$last_name; ?></span></h4>
+                            <h4>Address : <span style="color: rgb(11, 50, 134);"><?php echo $rentedPN['house_num'].", ".$rentedPN['lane'].", ".$rentedPN['city']; ?></span></h4>
+                            <h4>Owner : <span style="color: rgb(11, 50, 134);"><?php echo $rentedPN['first_name']."  ".$rentedPN['last_name']; ?></span></h4>
                         </div>
                 </div>
         </div>

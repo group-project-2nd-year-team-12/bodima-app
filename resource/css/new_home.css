@@ -4,9 +4,6 @@
 * {
     margin: 0;
     padding: 0;
-    /* overflow-x: hidden; */
-    /* overflow-y: scroll; */
-
     box-sizing: border-box;
 }
 body{
@@ -14,11 +11,9 @@ body{
     height: 100vh;
     font-family: 'Poppins', sans-serif;
     background-color:rgb((145, 183, 221), 14%, 97%);
-    
 }
 li {
     list-style: none;
-    
 }
 a{
     text-decoration: none;
@@ -28,15 +23,11 @@ p{
     color: rgb(55, 55, 56); 
 }
 .header {
-    /* border-top: 2px solid black; */
     padding-left: 40px;
-    /* padding-right: 20px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     background:linear-gradient(to right, #101e5a,rgb(39, 39, 107),rgb(48, 48, 121));
-    /* position: sticky; */
-
 }
 .nav{
     position: sticky;
@@ -198,14 +189,11 @@ p{
     width: 100%;
     text-align: center;
     padding: 20px 0;
-    /* text-transform: uppercase; */
     transition: 0.3s all ease-in;
     color:#bdc3ff;
-    /* border-bottom: 2px solid rgb(255, 255, 255); */
     font-weight: 500;
 }
 .nav_item:hover{
- /* border-bottom: 2px solid black; */
  background-color: #07113d;
 }
 
@@ -313,7 +301,7 @@ p{
       width: 150px;
   }
   .slide-nav-animate ul li:hover{
-      color: blueviolet;
+      color: rgb(0, 0, 0);
       background-color: white;
       /* font-size: x-large; */
       border-radius: 5px 25%;
@@ -394,7 +382,7 @@ p{
 
 .grid-items ul li{
     padding: 5px 0;
-    color: rgb(126, 126, 126);
+    color: rgb(255, 255, 255);
     font-size: 14px;
 }
 
@@ -405,7 +393,7 @@ p{
 }
 
 .follow h2{
-    color: rgb(91, 111, 98);
+    color: #bdc3ff;
 }
 
 .social{
@@ -440,6 +428,7 @@ p{
     height: 500px;
     /* display: none; */
     overflow: hidden;
+    position: relative;
 }
 .prev, .next{
     position: absolute;
@@ -499,19 +488,20 @@ p{
     letter-spacing: 2px;
     line-height: 35px;
     top: 15%;
-    left: 5%;
+    left: 3%;
     -webkit-animation-name:posi;
     -webkit-animation-duration:2s;
     animation-name: posi;
     animation-duration:2s;
     z-index: 1;
+    height: 400px;
 }
 @keyframes posi{
     from{
          left:20%;
     }
     to{
-        left: 5%;
+        left: 3%;
     }
 }
 .txt h1{
@@ -520,6 +510,13 @@ p{
     margin:20px;
     font-size:50px;
     
+}
+.welcome-msg{
+    padding: 20px;
+    color: white !important;
+    background-color: #101e5a;
+    text-align: center;
+    margin-top: 20px;
 }
 .txt p{
     font-weight: bold;
@@ -530,10 +527,7 @@ p{
 .section1{
     height: 80vh;
     width: 100%;
-    /* background-image: url(../img/hostel-img3.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed; */
+
 }
 .myslider img{
     width: 600px;
@@ -541,17 +535,8 @@ p{
     right: 60px;
     bottom: 45px;
     transform: scale(1.2,1.2);
-    /* animation-name: zoomin; */
-    /* animation-duration: 2s; */
 }
-@keyframes zoomin{
-    from{
-        transform: scale(1,1);
-    }
-    to{
-        transform: scale(1.2,1.2);
-    }
-}
+
 
 .section1 >img{
      position: fixed;
@@ -568,7 +553,7 @@ p{
     justify-content: space-around;
     padding-top: 20px;
     text-align: left;
-    width: 200px;
+    width: 400px;
     line-height: 50px;
     text-align: left;
 }
@@ -656,33 +641,34 @@ span.fade1{
     color: rgb(27, 27, 35);
     font-weight: normal;
     font-size: 18px;
-    font-family: 'Patrick Hand', cursive;
+    /* font-family: 'Patrick Hand', cursive; */
     transform: translateY(50px);
     transition: 2s ease;
 }
 .section2-header h2{
     opacity:1;
     /* color:  rgb(27, 27, 35); */
-    color: blue;
+    color: #101e5a;
     font-family: 'Patrick Hand', cursive;
     font-size: 70px;
     transition: 2.5s ease;
 }
 .section2-header>div{
     width: 100%;
-    /* background-color: rgb(0, 128, 255); */
+    color: #07113d;
 }
 .component{
     display: flex;
     margin-top: 30px;
-    font-family: 'Patrick Hand', cursive;
+    /* font-family: 'Patrick Hand', cursive; */
     justify-content: space-around;
     width: 100%;
+    font-weight: bold;
 }
 .component >div{
     width: 100%;
     padding: 20px 30px;
-    /* background-color: rgba(181, 185, 194, 0.776); */
+ 
 }
 .component img{
     width: 30%;
@@ -742,7 +728,7 @@ span.fade1{
     padding-top: 25px;
     text-align: center;
     background-color: white;
-    font-family: 'Patrick Hand', cursive;
+    /* font-family: 'Patrick Hand', cursive; */
 }
 .section4-header h4{
     opacity:1;
@@ -754,7 +740,7 @@ span.fade1{
 }
 .section4-header h2{
     opacity:1;
-    color:  rgb(0, 0, 255);
+    color:  #101e5a;
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
@@ -817,7 +803,7 @@ span.fade1{
     padding-top: 25px;
     text-align: center;
     background-color: white;
-    font-family: 'Patrick Hand', cursive;
+    /* font-family: 'Patrick Hand', cursive; */
 }
 .section6-header h4{
     opacity:1;
@@ -829,7 +815,7 @@ span.fade1{
 }
 .section6-header h2{
     opacity:1;
-    color:  rgb(0, 4, 255);
+    color:  #101e5a;
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
@@ -869,7 +855,6 @@ span.fade1{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* background-color: rgb(55, 0, 255); */
 }
 .section8{
     height: 100vh;
@@ -883,7 +868,7 @@ span.fade1{
     padding-top: 25px;
     text-align: center;
     background-color: white;
-    font-family: 'Patrick Hand', cursive;
+    /* font-family: 'Patrick Hand', cursive; */
 }
 .section8-header h4{
     opacity:1;
@@ -895,7 +880,7 @@ span.fade1{
 }
 .section8-header h2{
     opacity:1;
-    color:  rgb(0, 0, 255);
+    color:  #101e5a;
     font-family: 'Patrick Hand', cursive;
     font-size: 42px;
     transition: 2.5s ease;
@@ -935,17 +920,5 @@ span.fade1{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* background-color: rgb(55, 0, 255); */
 }
 
-/* live support */
-/* .liveSupport{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    color: rgb(30, 176, 255);
-    z-index: 1;
-    cursor: pointer;
-} */
-
-/* live support */

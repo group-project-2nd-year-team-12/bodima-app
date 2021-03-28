@@ -1,7 +1,8 @@
+<!-- an -->
 <?php   require_once ('../config/database.php');
         require_once ('../models/adertisement_model.php');
         session_start(); 
-?>
+?>  
 
 
 <?php

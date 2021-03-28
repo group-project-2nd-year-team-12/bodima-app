@@ -24,7 +24,7 @@ $result=reg_userIshan::updateStTOBorder($connection,$student_email);
 if ($result) {
 	header('Location:../index.php');
 }else{
-	header('Location:../views/rentedPayIshan.php');
+	header('Location:../views/rentedPayIshan_New.php');
 }
  	
  	

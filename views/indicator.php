@@ -1,5 +1,5 @@
 <div class="profile">
-    <a href="../views/profilepage.php"> 
+    <a href="../controller/profile_controlN.php?profile=1"> 
         <i  class="fa fa-user-circle"></i>
     </a>
 </div>
