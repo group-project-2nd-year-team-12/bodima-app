@@ -50,3 +50,12 @@
     font-weight: 700;
     font-size: 1rem;
 }
+
+ p {
+    margin-top: 10px;
+    margin-left: 100px;
+    position: relative;;
+    color: #f7bf17;
+    font-size: 1.4rem;
+    font-family: "roboto"sans-serif;
+}
