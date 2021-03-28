@@ -69,7 +69,7 @@
         <!-- Slide bar -->
         <div class="slide-nav">
             <ul><?php if(isset($_SESSION['email'])){?> 
-                    <li onclick="window.location='views/profilepage.php'">Profile</li>
+                    <li onclick="window.location='controller/profile_controlN.php?profile=1'">Profile</li>
 
                     <li>Chat</li>
                     <?php  if($_SESSION['level']=='food_supplier'){?>
@@ -78,11 +78,11 @@
                     <?php if($_SESSION['level']=='boardings_owner'){?>
                       
                       
-                      <li onclick='window.location="views/myBoardingReqIshan.php"'>My Requests</li>
+                      <li onclick='window.location="views/myBoardingReqIshan_New.php"'>My Requests</li>
                       
                    <?php } ?>
                    <?php if($_SESSION['level']=='student'){?>
-                      <li onclick='window.location="views/pendingReqIshan.php"'>Boarding Request </li>
+                      <li onclick='window.location="views/pendingReqIshan_New.php"'>Boarding Request </li>
                       
                       
                    <?php } ?>
