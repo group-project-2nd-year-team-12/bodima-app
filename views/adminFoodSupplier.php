@@ -40,6 +40,7 @@ session_start(); ?>
                         <th>NIC</th>
                         <th>Address</th>
                         <th>Is_accepted</th>
+                        
                         <th>Block user</th>
                     </tr>
                     <?php if(isset($_POST['search']))
@@ -101,34 +102,9 @@ session_start(); ?>
         </div>
         </div>
     </div>
-    <?php include 'adminAcceptpop.php' ?>
-    <?php include 'adminBlockpop.php' ?>
-    <script src="../resource/js/admin.js"></script>
-    <script src="../resource/js/jquery.js"></script>
-    <script>
-         $('#1').click(title);
-          $('#2').click(title);
-          $('#3').click(title);
-          $('#4').click(title);
-          $('#5').click(title);
-          $('#6').click(title);
-        function title()
-        { 
-           
-            if(this.checked)
-        {
-            $('.btn button').removeAttr('disabled',false);
-            $('.btn button').css('background-color','red');
-        }
-        else{if(!$('#1').is(":checked") && !$('#2').is(":checked") && !$('#3').is(":checked") && !$('#4').is(":checked") && !$('#5').is(":checked") ){
-            $('.btn button').attr('disabled',true);
-            $('.btn button').css('background-color','gray');
-        }
-        }
-        }
-     
-    </script>
-                      <?php include 'adminBlockpop.php' ?>
-
+<?php include 'adminAcceptpop.php' ?>
+<?php include 'adminBlockpop.php' ?>
+<script src="../resource/js/admin.js"></script>
+<script src="../resource/js/jquery.js"></script>
 </body>
 </html>

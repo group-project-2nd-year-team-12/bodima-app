@@ -82,12 +82,15 @@ class adminModel{
         return $result;
     }
 
-    public static function searchFoodPost($word,$connection)
+    public static function searchFoodPost($id,$word,$connection)
     {
-        $query="SELECT * FROM food_post WHERE ad_title LIKE '{$word}' ";
-                        
-                    $result=mysqli_query($connection,$query);
-                    return $result;
+        $query="SELECT * FROM food_post WHERE ad_title LIKE '{$word}' 
+        OR type LIKE '{$word}'
+        OR lifespan LIKE $id
+        OR post_amount LIKE $id
+        ";                
+        $result=mysqli_query($connection,$query);
+        return $result;
     }
 
     public static function boardingPost($connection)
@@ -96,9 +99,19 @@ class adminModel{
         $result=mysqli_query($connection,$query);
         return $result;
     }
-    public static function searchBoardingPost($word,$connection)
+
+    // search boarding post
+    public static function searchBoardingPost($id,$word,$connection)
     {
-        $query="SELECT * FROM boarding_post WHERE location LIKE '{$word}' ";
+        $query="SELECT * FROM boarding_post WHERE location LIKE '{$word}'
+        OR girlsBoys LIKE '{$word}'
+        OR category LIKE '{$word}'
+        OR city LIKE '{$word}'
+        OR district LIKE '{$word}'
+        OR keymoney LIKE $id
+        OR post_amount LIKE $id
+        OR cost_per_person LIKE $id
+         ";
                         
         $result=mysqli_query($connection,$query);
         return $result;

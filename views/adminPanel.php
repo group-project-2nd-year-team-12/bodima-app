@@ -17,7 +17,7 @@ $fConut=$_GET['food_count'];
     <title>Document</title>
   
 </head>
-<body>
+<body onload="checked('dash')">
     <div class="container">
         <div class="wrapper">
         <?php include 'adminSidebar.php' ?>

@@ -1,6 +1,6 @@
 <?php
 require_once ('../config/database.php');
-      require_once ('../models/adminModel.php');
+      require_once ('../controller/adminPanelCon.php');
 session_start(); ?>
 
 <!DOCTYPE html>
@@ -23,9 +23,9 @@ session_start(); ?>
         <div class="content">
             <div class="search">
                <div class="title"><h3>Student</h3></div> 
-               <button onclick="window.location='foodPost.php';" type="button">Show All</button>
+               <button onclick="window.location='adminFoodPost.php';" type="button">Show All</button>
                <div class="search-bar">
-                   <form action="../views/admin/foodPost.php" method="post">
+                   <form action="adminFoodPost.php" method="post">
                        <input name="word" type="text" placeholder="Search">
                        <button name="search" type="submit"><i class="fa fa-search fa-lg"></i></button>
                    </form>
@@ -37,7 +37,11 @@ session_start(); ?>
                         <th>Food Post Id</td>
                         <th>FSid</td>
                         <th>Post Name</td>
-                        <th>Block Post</th>
+                        <th>Type</th>
+                        <th>Post Amount</th>
+                        <th>Lifespan</th>
+                        <th>Rating</th>
+                        <th>Post Date</th>                     
                         <!-- <th>Number of item</th> -->
                     </tr>
                     <?php if(isset($_POST['search']))
@@ -46,29 +50,35 @@ session_start(); ?>
                         $id=intval($_POST['word']);
                         $word.='%';
                         
-                        $result=adminModel::searchFoodPost($word,$connection);
-                        while($row=mysqli_fetch_assoc($result)){
+                        $result=fpostSearchDetails($id,$word,$connection);
+                      foreach($result as $row){  
                             ?> 
-                       <?php include 'adminBlockpop.php' ?>
                           <tr>
                               <td><?php echo $row['F_post_id']; ?></td>
                               <td><?php echo $row['FSid']; ?></td>
                               <td><?php echo $row['ad_title']; ?></td>
-                              <td><a style="color: red; cursor: pointer;" onclick="popBlock();" >Block</a></td>
+                              <td><?php echo $row['type']; ?></td>
+                              <td><?php echo $row['post_amount']; ?></td>
+                              <td><?php echo $row['lifespan']; ?></td>
+                              <td><?php echo $row['rating']; ?></td>
+                              <td><?php echo $row['posted_date']; ?></td>
                           </tr>
                           <?php
                          }
                     }
-                    else{ $result=adminModel::foodPost($connection);
-                     
-                    while($row=mysqli_fetch_assoc($result)){        
+                    else{ 
+                    $result=fpostDetails($connection);
+                  foreach($result as $row){          
                        ?> 
-                  <?php include 'adminBlockpop.php' ?>
                      <tr>
                          <td><?php echo $row['F_post_id']; ?></td>
                          <td><?php echo $row['FSid']; ?></td>
                          <td><?php echo $row['ad_title']; ?></td>
-                         <td><a style="color: red; cursor: pointer;" onclick="popBlock();" >Block</a></td>
+                         <td><?php echo $row['type']; ?></td>
+                         <td><?php echo $row['post_amount']; ?></td>
+                         <td><?php echo $row['lifespan']; ?></td>
+                         <td><?php echo $row['rating']; ?></td>
+                         <td><?php echo $row['posted_date']; ?></td>
                      </tr>
                      <?php
                     }
@@ -79,67 +89,8 @@ session_start(); ?>
         </div>
         </div>
     </div>
-   <!-- <div class="block">
-       <div class="title1">
-           <h3><i class="fa fa-user-lock"></i> Block user </h3>
-           <i   class="fa fa-window-close fa-lg" onclick="popBack()"></i>
-       </div>
-       <div class="block-contain">
-       <div class="para">
-           <p>
-               Select the following reason for user block
-           </p>
-           <form action="#" method="post">
-               
-               <div class="con">
-                    <input type="checkbox" name="condition1" id="1">
-                    <label for="1">Breaks user aggreement</label>
-                </div>
-                <div class="con">
-                    <input type="checkbox"  name="condition2" id="2">
-                    <label for="2">Complain about post</label>
-                </div>
-                <div class="con">
-                    <input type="checkbox"  name="condition3" id="3">
-                    <label for="3">Complaine about profile</label>
-                </div>
-                <div class="con">
-                    <input type="checkbox"  name="condition4" id="4">
-                    <label for="4">Unauthorised sales</label>
-                </div>
-                <div class="con">
-                    <input type="checkbox" name="condition5" id="5">
-                    <label for="5">Vialate user condition</label>
-                </div>
-                    <h4>Other write the following feild</h4>
-                <div class="con">
-                    <input placeholder="Other condition" type="text" name="condition6" id="6">
-                </div>
-                <div class="btn"><button type="submit" name="block"><i class="fa fa-ban"></i> Block</button></div>
-           </form>
-       </div>
-       <div class="details">
-           <h3>User Id    : 5</h3>
-           <h3>User Email : lakshanamal100@gmail.com</h3>
-           <h3>User Type  : Student</h3>
-       </div>
-       </div>
-
-   </div> -->
 </body>
     <script src="../resource/js/admin.js"></script>
     <script src="../resource/js/jquery.js"></script>
-    <script>
-        function popBlock()
-        {
-            document.querySelector('.block').style.display='block';
-            // document.querySelector('div:not(.block)').style.filter='blur(6px)';
-        }
-        function popBack()
-        {
-            document.querySelector('.block').style.display='none';
-            // document.querySelector('div:not(.block)').style.filter='blur(0px)';
-        }
-    </script>
 </html>
 

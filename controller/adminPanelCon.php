@@ -484,4 +484,48 @@ function foodsupplierSearchDetails($id,$word,$connection){
 
     return $data;
 }
+
+//  boarding post page  details
+function bpostDetails($connection){
+    $data=array();
+    $result=adminModel::boardingPost($connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+//  boarding post page search result
+function bpostSearchDetails($id,$word,$connection){
+    $data=array();
+    $result=adminModel::searchBoardingPost($id,$word,$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+//  food post page  details
+function fpostDetails($connection){
+    $data=array();
+    $result=adminModel::foodPost($connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
+
+//  food post page search result
+function fpostSearchDetails($id,$word,$connection){
+    $data=array();
+    $result=adminModel::searchFoodPost($id,$word,$connection);
+    while($row=mysqli_fetch_assoc($result)){   
+        $data[]=$row;
+    }
+
+    return $data;
+}
 ?>

@@ -614,13 +614,13 @@ time > div select{
     border-radius: 3px;
 }
 .accept-not{
-    background-color: rgb(255, 255, 37);
+    background-color: rgb(255, 255, 69);
 }
 .accept-apt{
-    background-color: rgb(34, 188, 13);
+    background-color: rgb(136, 238, 123);
 }
 .accept-bld{
-    background-color: rgb(249, 54, 40);
+    background-color: rgb(255, 110, 99);
 }
 
 /* report page css */
