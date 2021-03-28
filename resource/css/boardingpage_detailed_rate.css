@@ -1,0 +1,52 @@
+.pdt-rate {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 500px;
+    /* background-color: #d63031; */
+}
+
+.rating-stars {
+    position: relative;
+    vertical-align: baseline;
+    color: #b9b9b9;
+    line-height: 10px;
+    float: left;
+}
+
+.grey-stars {
+    height: 100%;
+}
+
+.filled-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    color: #f7bf17;
+}
+
+.filled-stars::before,
+.grey-stars::before {
+    content: "\2605 \2605 \2605 \2605 \2605";
+    font-size: 19px;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+
+.tri .filled-stars::before,
+.tri .grey-stars::before {
+    font-size: 20px;
+    line-height: 23px;
+    /* background-color: #d63031; */
+}
+
+.rnrn {
+    width: 100%;
+    font-family: "lato";
+    font-weight: 700;
+    font-size: 1rem;
+}

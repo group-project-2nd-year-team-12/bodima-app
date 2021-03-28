@@ -61,7 +61,7 @@ $(document).ready(function() {
             console.log(starRate);
             console.log(rateMsg);
             $.ajax({
-                url: "../controller/rateCon.php",
+                url: "rateCon.php",
                 type: "POST",
                 //dataType: "json",
                 data: {
@@ -72,8 +72,8 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     //window.location = "index.php";
-                    window.location.reload();
-                    //console.log(data);
+                    //window.location.reload();
+                    console.log(data);
                     //window.location = "rate.php"
                 }
 

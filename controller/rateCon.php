@@ -7,28 +7,53 @@
 ?>
 <?php 
  //echo "dddddd"; 
- $email=$_SESSION['email'];
- $starRate = $_POST['starRate'];
- $rateMsg = $_POST['rateMsg'];
- $date = $_POST['date'];
- $name = $_POST['name'];
- //$nima ="nima";
- $data = [$email,$starRate, $rateMsg, $date, $name];
+ 
+ if(isset($_POST['starRate'])){
 
-print_r($data);
+    $email=$_SESSION['email'];
+    $rating_B_post_id=$_SESSION['rating_B_post_id'];
+   
+    $starRate = $_POST['starRate'];
+    $rateMsg = $_POST['rateMsg'];
+    $date = $_POST['date'];
+    $name = $_POST['name'];
+    //$nima ="nima";
+    $data = [$rating_B_post_id,$email,$starRate, $rateMsg, $date, $name];
+   
+   print_r($data);
+   
+   $result_set=rating::getUseremail($rating_B_post_id,$email,$connection);
+   $result_post=mysqli_fetch_assoc($result_set);
+   //$val=$result_post['uName'];
+   
+   //print_r($result_post['uName']);
+   
+   if(!$result_post){
+       rating::postRating($rating_B_post_id,$email,$starRate,$rateMsg,$date,$name,$connection);
+       echo "insertrd successful";
+   }else{
+       $result_set=rating::getUpdate($rating_B_post_id,$email,$starRate,$rateMsg,$date,$name,$connection); 
+       echo "Update successful";
+   }
 
-$result_set=rating::getUseremail($email,$connection);
-$result_post=mysqli_fetch_assoc($result_set);
-//$val=$result_post['uName'];
+ }
 
-//print_r($result_post['uName']);
 
-if(!$result_post){
-    rating::postRating($email,$starRate,$rateMsg,$date,$name,$connection);
-    echo "insertrd successful";
-}else{
-    $result_set=rating::getUpdate($email,$starRate,$rateMsg,$date,$name,$connection); 
-    echo "Update successful";
+function rategetcount($rating_B_post_id,$connection){
+    $result_set=rating::getids($rating_B_post_id,$connection);
+    $count=mysqli_num_rows($result_set);
+    //echo $count;
+
+    $result_set=rating::getSum($rating_B_post_id,$connection);
+    $data=mysqli_fetch_assoc($result_set);
+    $total=$data['total'];
+
+    $rate_array=array(
+        'count'=>$count,
+        'total'=>$total
+    );
+
+    return $rate_array;
 }
     
 
