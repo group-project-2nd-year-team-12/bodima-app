@@ -58,7 +58,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
+                    <div class="profile"><a href="profilepage.php"> <i  class="fa fa-user-circle fa-lg"></a></i></div>
                     <button onclick="window.location='../controller/logoutController.php'">Sign out <i class="fa fa-sign-out-alt"></i></button>
                 <?php } ?>
                 
@@ -232,29 +232,31 @@
         </div>
         </div>
     </div>
-<?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?>
+    <?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?> 
   <div class="rating-box">
     <div class="rating">
-        <form class="form-rate" action="" method="post">
+        <form class="form-rate" action="../controller/orderCon.php" method="post">
         <h2 style="text-align: center;">Rate for order !</h2>
         <div class="rate">
-            <input type="radio" name="rate" id="star1"><label for="star1"></label>
-            <input type="radio" name="rate" id="star2"><label for="star2"></label>
-            <input type="radio" name="rate" id="star3"><label for="star3"></label>
-            <input type="radio" name="rate" id="star4"><label for="star4"></label>
-            <input type="radio" name="rate" id="star5"><label for="star5"></label>
+            <input type="radio" name="rate" value=5 id="star1"><label for="star1"></label>
+            <input type="radio" name="rate" value=4 id="star2"><label for="star2"></label>
+            <input type="radio" name="rate" value=3 id="star3"><label for="star3"></label>
+            <input type="radio" name="rate" value=2 id="star4"><label for="star4"></label>
+            <input type="radio" name="rate" value=1 id="star5"><label for="star5"></label>
         </div>
         <h3>Unrate</h3>
-            <input type="text" placeholder="Title">
-            <textarea name="" id="" cols="5" rows="5" placeholder="Add commet"></textarea>
+          <input type="hidden" name="order_id" value="<?php echo $_GET['order_id']?>"  placeholder="Name">
+            <input type="text" name="name" placeholder="Name">
+            <textarea  id="" cols="5" rows="5" placeholder="Discription" name="discription"></textarea>
             <div>
-                <button class="btn-rate" type="submit" >Submit</button>
+                <button class="btn-rate" type="submit" name="rateing" >Submit</button>
                 <button onclick="window.location='paymentFood_history.php'" class="btn-rate cancel-rate" type="button" >Cancel</button>
             </div>
         </form>
     </div>
   </div>
-    <?php } ?>
+    
+<?php } ?>
 
     <!-- <?php include 'footer.php'?> -->
 </body>

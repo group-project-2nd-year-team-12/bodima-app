@@ -2,16 +2,21 @@
     $creattime=date('Y-m-d h:i:s');
 
     require_once ('../config/database.php');
-
     require_once ('../models/ratemodel.php');
+    require_once ('../controller/rateCon.php');
 
-    $result_set=rating::getids($connection);
-    $count=mysqli_num_rows($result_set);
-    //echo $count;
+    // $result_set=rating::getids($connection);
+    // $count=mysqli_num_rows($result_set);
+    // //echo $count;
 
-    $result_set=rating::getSum($connection);
-    $data=mysqli_fetch_assoc($result_set);
-    $total=$data['total'];
+    // $result_set=rating::getSum($connection);
+    // $data=mysqli_fetch_assoc($result_set);
+    // $total=$data['total'];
+    $rating_B_post_id=$_SESSION['rating_B_post_id'];
+    $dataset=rategetcount($rating_B_post_id,$connection);
+    //print_r($dataset);
+    $count=$dataset['count'];
+    $total=$dataset['total'];
     //echo $total;
     //echo "gggg";
     $avg = '';
@@ -122,14 +127,14 @@
                 <div class="uscm">
                 <?php 
                 
-                $result_all=rating::getratingDetails($connection);
+                $result_all=rating::getratingDetails($rating_B_post_id,$connection);
                 //echo "bbbbb";
                 //$result_rating=mysqli_fetch_assoc($result_all);
                 if(mysqli_num_rows($result_all) > 0){
                     
                     while($fetch= mysqli_fetch_all($result_all) ){
                         //echo "mmmmmm";
-                        print_r($fetch);
+                        //print_r($fetch);
                         
                         //print_r(count($fetch));
                         //print_r($fetch[0][3]);
@@ -145,7 +150,7 @@
                     ?>
                     <div class="rating_box" style="display:flex;border:20px;">
                         <div class="us-img">
-                            <p><?php echo substr($fetch[$a][2],0,1);?></p>
+                            <p><?php echo substr($fetch[$a][3],0,1);?></p>
                             
                         </div>
                         <div class="uscms">
@@ -155,17 +160,17 @@
                                         <div class="clearfix rating mart8">
                                             <div class="rating-stars">
                                                 <div class="grey-stars"></div>
-                                                <div class="filled-stars" style="width:<?php echo $fetch[$a][3]*20;?>%;"></div>
+                                                <div class="filled-stars" style="width:<?php echo $fetch[$a][4]*20;?>%;"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="us-cmt">
-                                <p><?php echo $fetch[$a][4];?></p>
+                                <p><?php echo $fetch[$a][5];?></p>
                             </div>
                             <div class="us-nm">
-                                <p><i>By <span class="cmnm"><?php echo $fetch[$a][2];?></span> on <span class="cmdt"> <?php echo $fetch[$a][5];?></span></i></p>
+                                <p><i>By <span class="cmnm"><?php echo $fetch[$a][3];?></span> on <span class="cmdt"> <?php echo $fetch[$a][6];?></span></i></p>
                             </div>
                             
                         </div>

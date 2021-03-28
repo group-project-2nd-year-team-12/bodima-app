@@ -148,7 +148,11 @@ session_start();
 	</form>
 
 	<?php  if (isset($_GET['popf'])){?>
-        <div id="popup">
+        <div  class="pop-modal" >
+
+        <div class="pop-bg"></div>
+        
+        <div id="pop">	
         
 		<?php
 		$result_set=foodSupplierPost::getPostpopf($connection);
@@ -162,16 +166,22 @@ session_start();
 		$orderingtimedeadline_p=$result_post['orderingtimedeadline'];
 		?>
 		
-		<img runat = 'server' src = '<?php echo $result_post['image']?>' height="80" width="80" />
+		<div class="pop-post">
+		<img runat = 'server' src = '<?php echo $result_post['image']?>' height="100" width="100" />
+		<div id="pop-post" >
+
+		<h5><?php echo $ad_title_p ?></h5>
+		<p style="font-size: small;"><?php echo $type_p ?></p>
+		<p style="font-size: small;"><?php echo $orderingtimedeadline_p ?></p>
 		
-		<?php echo $type_p ?>
-		<?php echo $ad_title_p ?>
-		<?php echo $orderingtimedeadline_p ?>
 		
-       <br>
-        <p> Amount: <?php echo $post_amount_p ?></p>
-        <p> valid time period of the post: <?php echo $lifespan_p ?></p>
-		
+	
+		</div>
+		</div>
+        <div class="post-amount">
+        <p><b style="color: #101e5a;">Amount:</b> <?php echo $post_amount_p ?></p>
+        <p> <b style="color: #101e5a;"> valid time period of the post:</b> <?php echo $lifespan_p ?></p>
+		</div>
         <form action="https://sandbox.payhere.lk/pay/checkout" method="post">
 
             <!-- <p>Address</p>
@@ -221,13 +231,15 @@ session_start();
             <input type="hidden" name="address" value="No.1, Galle Road">
             <input type="hidden" name="city" value="Colombo">
             <input type="hidden" name="country" value="Sri Lanka"><br><br>
+            <div class="pop-btn">
             <!-- <input type = "button" id="submit"  value = "Close" onclick = "Redirect();" /> -->
 			<input type = "button" id="submit"  value = "Close" onclick = "window.location = '../controller/iteamCon.php?deletePost'"/>
             
-            <input type="submit" value="Pay advertisement" name="value"> 
+            <input type="submit" id="foodpay" value="Pay" name="value"> 
    
-
+            </div>
         </form>
+        </div>
     </div>
 		
     
