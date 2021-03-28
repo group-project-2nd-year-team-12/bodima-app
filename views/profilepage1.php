@@ -1,4 +1,5 @@
 <?php 
+
 require_once ('../config/database.php');
 require_once ('../controller/profile_controlN.php');
 if(isset($_SESSION['email'])){
@@ -32,6 +33,7 @@ if(isset($_SESSION['email'])){
   $last_name=$_SESSION['last_name'];
   $email=$_SESSION['email'];
   $address=$_SESSION['address'];
+ 
 ?>
 
 <?php  if($_SESSION['level']=="food_supplier"){
@@ -48,6 +50,12 @@ if(isset($_SESSION['email'])){
                           else{
                           $level_name = 'User';}
   ?>
+
+  <?php if(isset($_GET['error'])){
+    $error=unserialize($_GET['error']);
+    echo $error;
+    imgerror($error);
+  }?>
 
  <?php require "header1.php"?>
 	 <div class="container1">
@@ -93,8 +101,11 @@ if(isset($_SESSION['email'])){
             </div>
               <div class="mid_B">
                 <div class="profile_photo">
-                <?php $profileimage=unserialize($_GET['profileimage']);?>
-                  <img src="<?php echo $profileimage ?>" class="profile_img" alt="">
+                <?php  require_once ('../models/profile_modelN.php');
+                      require_once ('../config/database.php');
+                      $x=profile_modelN::getprofile_image($connection,$_SESSION['level'],$_SESSION['email']);
+                      $img=mysqli_fetch_assoc($x);?>
+                  <img src="<?php echo $img['profileimage'] ;?>" class="profile_img" alt="">
                   
                 </div>
                 <div class="prof_info">
@@ -172,7 +183,12 @@ if(isset($_SESSION['email'])){
         
     </div>
 
-	 </div>	
+   </div>	
+   <script>
+    function imgerror($error) {
+    alert($error);
+    }
+    </script>
 	 
 	 <script>
     // $('.btn').click(function(){

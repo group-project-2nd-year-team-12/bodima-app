@@ -49,7 +49,7 @@ if(isset($_POST['submit']))
     }
 
     if(empty($errors)){
-        if($submit=='save'){
+        if($submit=='post advertisement'){
     
             $pName=$_POST['pName'];
                     
@@ -81,10 +81,11 @@ if(isset($_POST['submit']))
             echo $foodPostId;
     
     
-    
+            // $result1=foodSupplierPost::delete_food_post($connection);
+            // echo $result1;
             foodSupplierPost::addIteam($fid,$foodPostId,$pName,$image_name,$upload_to,$breakfirst,$lunch,$dinner,$price,$connection);
     
-            header('Location:../views/profilepage.php');
+            header('Location:../views/iteam.php?success&popf=1');
             // print_r($_POST);
     
             // print_r($_FILES);
@@ -126,7 +127,7 @@ if(isset($_POST['submit']))
     
     
     
-    
+            
             foodSupplierPost::addIteam($fid,$foodPostId,$pName,$image_name,$upload_to,$breakfirst,$lunch,$dinner,$price,$connection);
     
     
@@ -148,4 +149,54 @@ if(isset($_POST['submit']))
                 
            
 }
+
+
+
+
+
+if (isset($_GET['success'])) {
+    echo "gggggg";
+	//print_r($_SESSION);
+	//$student_email=$_SESSION['email'];
+    //$result_P=foodSupplierPost::delete_food_post($connection);
+    //echo $result;
+	  $F_post_id=$_GET['order_id'];
+      $id=$F_post_id;
+      echo $F_post_id;
+
+  
+
+      foodSupplierPost::updatePostpayf($id,$connection);
+
+      //boarding::delete_post($connection);
+
+      header('Location:../views/myads_foodsupplier.php');
+      
+      print_r($_POST);
+      echo "sfsdfhdfsjhs";
+
+
+
+}
+
+
+
+if(isset($_GET['deletePost'])){
+
+    $result=foodSupplierPost::delete_food_post($connection);
+    echo $result;
+    header('Location:..controller/profile_controlN.php?profile=1'); //link changed
+    // $state="";
+    // if($result->num_rows!=0){
+    //     $state="sucess";
+    // }else{
+    //     $state="unsucess";
+    // }
+
+    // $data=array(
+    //     'setPost'=>'nima'
+    // );
+    // echo json_encode($data);
+}
+
 ?>

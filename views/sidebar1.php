@@ -32,7 +32,7 @@
       </div>
      
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="../index.php">Home</a></li>
         <li class="active" >
             <a href="#" class="profile-btn">Profile
               <span class="fas fa-caret-down first"></span>
@@ -52,17 +52,17 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="#">New Requests</a></li>
-            <li><a href="#">New Boarder added</a></li>
-            <li><a href="#">Add as New Boarder</a></li>
+            <li><a href="myBoardingReqIshan_New.php">New Requests</a></li>
+            <li><a href="newBoarderAddIshan_new.php">New Boarder added</a></li>
+            <li><a href="addAsBoarderIshanBO_new.php">Add as New Boarder</a></li>
           </ul>
         </li>
         <li><a href="../controller/boarder_list_controlN.php?boarderlist=1"><i class="fas fa-users"></i>My Boarders</a></li>
-        <li><a href="#"><i class="fas fa-print"></i>Print Reports</a></li>
-        <li><a href="#"><i class="fas fa-puzzle-piece"></i>Post New Ad</a></li>
+        <li><a href="../controller/BOwner_reports_Control.php?q=1"><i class="fas fa-print"></i>Print Reports</a></li>
+        <li><a href="../views/postBoarding.php"><i class="fas fa-puzzle-piece"></i>Post New Ad</a></li>
         <li><a href="#"><i class="fas fa-ad"></i>My Advertisements</a></li>
-        <li><a href="#"><i class="fas fa-utensils"></i>Order Food</a></li>
-        <li><a href="#"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
+        <li><a href="../controller/foodpostviewN_control.php"><i class="fas fa-utensils"></i>Order Food</a></li>
+        <li><a href="../views/paymentFood_pending.php"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
         <?php
         }?>
         <!-- ********************************************************************************************** -->
@@ -81,7 +81,7 @@
             <li><a href="#">Order History</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fas fa-puzzle-piece"></i>Post New Ad</a></li>
+        <li><a href="../views/foodPost.php"><i class="fas fa-puzzle-piece"></i>Post New Ad</a></li>
         <li><a href="#"><i class="fas fa-ad"></i>My Advertisements</a></li>
         
         <?php
@@ -99,13 +99,13 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="#">Pending Requests</a></li>
-            <li><a href="#">Accepted Requests</a></li>
-            <li><a href="#">Pay Advance and rent</a></li>
-            <li><a href="#">Rented</a></li>
+            <li><a href="pendingReqIshan_New.php">Pending Requests</a></li>
+            <li><a href="acceptedReqIshan_New.php">Accepted Requests</a></li>
+            <li><a href="rentedPayIshan_New.php">Pay Advance and rent</a></li>
+            <li><a href="rentedPayNotIshan_New.php">Rented</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fas fa-plus-circle"></i>Boarding Request</a></li>
+        <li><a href="boardings_live.php"><i class="fas fa-plus-circle"></i>Boarding Request</a></li>
        
         <?php
         }?>
@@ -126,9 +126,8 @@
           </ul>
         </li>
         
-        <li><a href="#"><i class="fas fa-utensils"></i>Order Food</a></li>
-        <li><a href="#"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
-        <li><a href="#"><i class="fas fa-home"></i>My Request Manager</a></li>
+        <li><a href="../controller/foodpostviewN_control.php"><i class="fas fa-utensils"></i>Order Food</a></li>
+        <li><a href="../views/paymentFood_pending.php"><i class="fas fa-hamburger"></i>My Order Manager</a></li>
         
         <?php
         }?>

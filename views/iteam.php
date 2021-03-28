@@ -1,110 +1,237 @@
+<?php
+require_once ('../config/database.php');
+require_once ('../models/food_post.php');
+
+session_start(); 
+?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>&#127829;Add Iteam </title>
-	<link href="../resource/css/style3.css" rel="stylesheet">
+	
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>add iteam</title>
+    <link rel="stylesheet" href="../resource/css/new_home.css"> 
+	<link rel="stylesheet" href="../resource/css/all.css">
+    <link rel="stylesheet" href="../resource/css/extra.css">
+	<link rel="stylesheet" href="../resource/css/popboarding.css">
+    
+	<link href="../resource/css/iteam.css" rel="stylesheet">
+	<!-- <script src="jquery-3.5.1.min.js"></script> -->
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	 
 
 	<style>
 
 	</style>
 </head>
-<body class="food">
- <?php
-//print_r($_POST);
-//print_r($_FILES);
-?>
+<body >
+<?php require "header1.php"?>
 
-<div class=error-post>
+<div class="con-1" id="blur">
+	<div class="con-2">
 	<?php
-	if(isset($_GET['param']))
-	{
-		$errors=$_GET['param'];
+        if(isset($_GET['param']))
+        {
+            $errors=$_GET['param'];
+            /*
+            foreach($errors as $error)
+            {
+                echo '<p class="error"><b>'.$error.'</b></p>';
+            }*/
+            //print_r($errors);
+        }
+        
+    ?>
+
+	<form action="../controller/iteamCon.php" method="post" enctype="multipart/form-data"  class="form">
+
+	<h1>Add Iteam Form</p><!-- postBoarding --> 
+    <hr/>
+
+	<div class="section">
+		<h4>Iteam Information</h4>
+
+		<p>Product Name </p >
+				
+		<input type="text" name="pName" id="pName" class="PName" >
+		<?php if(isset($errors['err1'])) echo "<div class='error'>".$errors['err1']."</div>"; ?>
+
+
 		
-		// foreach($errors as $error)
-		// {
-		// 	echo '<p class="error"><b>'.$error.'</b></p>';
-		// }
-		//print_r($errors);
-	}
-	
-	?>
-	</div>	
+		<p>Product Image</p >
+
+			<div id="photo1" class="images" style="position: relative;">
+                <label for="inputFile"><img src="https://img.icons8.com/carbon-copy/100/000000/compact-camera.png" class="cam" id="blah1" alt="Img" width="100px" height="100px"><br><br></label>
+                <button type="button" class="btn1" data-img-Name=""><i class="far fa-window-close fa-2x"></i></button>
+                <input type="file" id="inputFile" name="pimage" hidden accept=".jpg, .png, .jpeg" > <br>
+            </div>
 		
 
 
-<div class="sub-container" id="img-sub">
-				<div><img src="../resource/icons/other/food icon/chicken.png"logo" class="verticle-center" width=50 height=auto  /></div>
-		
-
-		<div class="postBoarding"><h1>Add Iteam Form</h1></div><!-- postBoarding -->
-
+			<p>Price</p >
+			<input type="text" name="price" id="price" >
+			<?php   if(isset($errors['err2'])){
+						echo "<div class='error2'>".$errors['err2']."</div>"; 
+					}elseif(isset($errors['err3'])){
+						echo "<div class='error2'>".$errors['err3']."</div>"; 
+					}
+			?>
 	</div>
 
+	<hr/>
 
-	
-		<div class="main">
-			<form action="../controller/iteamCon.php" method="post" enctype="multipart/form-data"  id="postBoarding">
-			
-
-				<!--<label for="">Address  </label><br>-->
-				<h3 class="name">Product Name </h3 >
-				
-				<input class="PName" type="text" name="pName" id="pName" >
-				<?php if(isset($errors['err1'])) echo "<div class='error'>".$errors['err1']."</div>"; ?>
-
-				
-				
-				<h3 class="nameImage">Product Image</h3 >
-				<input type="file" name="pimage"  accept=".jpg, .png, .jpeg"  id="pimage"><br>
-
-
-				<h3 class="namePrice">Price</h3 >
-				<input type="text" name="price" id="price" >
-				<?php   if(isset($errors['err2'])){
-							echo "<div class='error2'>".$errors['err2']."</div>"; 
-						}elseif(isset($errors['err3'])){
-							echo "<div class='error2'>".$errors['err3']."</div>"; 
-						}
-				?>
-
-			<br>
-			
-				
-				<label class="radio">
-					<input type="checkbox" name="breakfirst" id="breakfirst" value="1"><span id="breakfirst" >&nbsp;Breakfirst</span>&nbsp;&nbsp;
+	<div class="section">
+				<!-- <label class="radio"> -->
+					<input type="checkbox" name="breakfirst" id="breakfirst" value="1"><span>   Breakfirst</span>
 					
-				</label>
+				<!-- </label> -->
 				
 		<br>
 				
-				<label class="radio">
-					<input type="checkbox" name="lunch" id="lunch" value="1"><span id="lunch" >&nbsp; Lunch</span>&nbsp;&nbsp;<br>
+				<!-- <label class="radio"> -->
+					<input type="checkbox" name="lunch" id="lunch" value="1" checked><span>   Lunch</span>
 					
-				</label>
+				<!-- </label> -->
 				
         <br>
         
 				
-				<label class="radio">
-					<input type="checkbox" name="dinner" id="dinner" value="1"><span id="dinner" >&nbsp;Dinner</span>&nbsp;&nbsp;<br>
+				<!-- <label class="radio"> -->
+					<input type="checkbox" name="dinner" id="dinner" value="1"><span >   Dinner</span>
 					
-				</label>
+				<!-- </label> -->
 						
-				
+	</div>
+	<hr>
 
-				<div class="submit1">
-				<input type="submit" name="submit" id="submit" value="save"  >
-				</div>
-				
-<br>
+	<div class="submitdiv">
+	
+                <input type="submit" class="save" name="submit"  id="submit" value="post advertisement" >
+                
+                <!-- <button id="submit" type="button" class="save" onclick="toggle()" >post advertisement</button> -->
+    </div>
 
-				<div class="submit2">
-				<input type="submit" name="submit" id="submit" value="Add Iteam"  >
-				</div>
+	<div class="submitdiv">
+	
+                <input type="submit" class="save" name="submit"  id="submit" value="Add Iteam" >
+                
+                <!-- <button id="submit" type="button" class="save" onclick="toggle()" >post advertisement</button> -->
+    </div>
+
+    
+	</div>
 			
+			<script type="text/javascript">
+
+				function toggle(){
+					//var blur = document.getElementById('blur');
+					//blur.classList.toggle('active')
+					var popup = document.getElementById('popup');
+					popup.classList.toggle('nima')
+					}
+
+			</script>
+
+		
+			<script src="../resource/js/jquery-3.5.1.min.js"></script>
+			<script src="../resource/js/custom.js"></script>
+			<script src="../resource/js/notBack.js"></script>
 				
-			</form>
+	</form>
+
+	<?php  if (isset($_GET['popf'])){?>
+        <div id="popup">
+        
+		<?php
+		$result_set=foodSupplierPost::getPostpopf($connection);
+        $result_post=mysqli_fetch_assoc($result_set);
+        $postid=$result_post['F_post_id'];
+		$image_p=$result_post['image'];
+		$type_p=$result_post['type'];
+		$lifespan_p=$result_post['lifespan'];
+		$post_amount_p=$result_post['post_amount'];
+		$ad_title_p=$result_post['ad_title'];
+		$orderingtimedeadline_p=$result_post['orderingtimedeadline'];
+		?>
+		
+		<img runat = 'server' src = '<?php echo $result_post['image']?>' height="80" width="80" />
+		
+		<?php echo $type_p ?>
+		<?php echo $ad_title_p ?>
+		<?php echo $orderingtimedeadline_p ?>
+		
+       <br>
+        <p> Amount: <?php echo $post_amount_p ?></p>
+        <p> valid time period of the post: <?php echo $lifespan_p ?></p>
+		
+        <form action="https://sandbox.payhere.lk/pay/checkout" method="post">
+
+            <!-- <p>Address</p>
+            <input type="text" name="address" placeholder="Enter Address Name">
+
+            <p>Location link</p>
+            <input type="text" name="link" placeholder="Enter Location Name">
+               
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password"> -->
+
+            <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
+
+            <input type="hidden" name="return_url" value='http://localhost/bodima-app/controller/iteamCon.php?success'>
+            <input type="hidden" name="cancel_url" value="http://localhost/bodima-app/controller/payhereOnlineCancelIshan.php?request_id=<?php echo $request_id;?>">
+            <input type="hidden" name="notify_url" value="http://localhost/bodima-app/config/paycon.php"> 
+
+
+
+            <!-- <br><p>Boarding Details</p> -->
+            <?php
+            $F_post_id=$postid;
+            $house_num=1;
+            $lane='aaa';
+            $city='aa';
+            $first_name='hgg';
+            $last_name='vbvv';
+            $st_email='fgf@gmail.com';
+            ?>
+            <input type="hidden" name="order_id" value="<?php echo $F_post_id;?>">
+            <!-- <p>Boarding address:</p> -->
+            <input type="hidden" name="baddress" value="<?php echo $house_num.", ". $lane.", ".$city;?>">
+            <!-- <p>Boarding Owner Name :</p> -->
+            <input type="hidden" name="items" value="<?php echo $city." Boarding KeyMoney";?>"><br>
+            <input type="hidden" name="currency" value="LKR">
+            <!-- <p>KeyMoney Price(LKR):</p> -->
+            <input type="hidden" name="amount" value="<?php echo $post_amount_p;?>">  
+                <br><br>
+            <!-- <p>My Details</p>
+            <p>First Name:</p> -->
+            <input type="hidden" name="first_name" value="<?php echo $first_name;?>">
+            <!-- <p>Last Name:</p> -->
+            <input type="hidden" name="last_name" value="<?php echo $last_name;?>"><br>
+            <!-- <p>Email:</p> -->
+            <input type="hidden" name="email" value="<?php echo $st_email;?>">
+         
+            <input type="hidden" name="address" value="No.1, Galle Road">
+            <input type="hidden" name="city" value="Colombo">
+            <input type="hidden" name="country" value="Sri Lanka"><br><br>
+            <!-- <input type = "button" id="submit"  value = "Close" onclick = "Redirect();" /> -->
+			<input type = "button" id="submit"  value = "Close" onclick = "window.location = '../controller/iteamCon.php?deletePost'"/>
+            
+            <input type="submit" value="Pay advertisement" name="value"> 
+   
+
+        </form>
+    </div>
+		
+    
+    <?php }?>
 </div>
 		
 </body>

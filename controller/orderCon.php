@@ -2,6 +2,7 @@
  require_once ('../config/database.php');
  require_once ('../models/orderModel.php');
  require_once ('../models/reg_user.php');
+ require_once ('../models/notificationModel.php');
     session_start ();
 ?>
 
@@ -56,6 +57,21 @@ $errors=array();
          orderModel::food_item($product['item_name'],$product['item_quantity'],$order_id,$connection);
        }
      
+ //notification - F1
+         $detailsender=mysqli_fetch_assoc(notificationModel::find_levelAndId($connection,$email));
+         $FSid=mysqli_fetch_assoc(notificationModel::find_FSid_from_fpost($connection,$F_post_id));
+         $type_number=2;//new order arrived   
+         $from_level=$_SESSION['level'];
+         $from_id=$detailsender['id'];
+         $to_level='food_supplier';
+         $to_id=$FSid['FSid'];
+         $massageHeader='New order Arrived';
+         $massage='customer name : '.$first_name.' '.$last_name.'<br>order id : '.$order_id.'<p style="font-size:12px; color:black;">Accept the order before timeout!</p>';
+         $redirect_url='../views/orders.php';
+         notificationModel::insertnotification($connection,$type_number,$from_level,$from_id,$to_level,$to_id,$massageHeader,$massage,$redirect_url);
+ //*************** 
+
+
        if($_SESSION['term']=='longTerm')
        {
           $start=$_SESSION['startDate'];

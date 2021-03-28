@@ -112,7 +112,6 @@ class adminModel{
         OR post_amount LIKE $id
         OR cost_per_person LIKE $id
          ";
-                        
         $result=mysqli_query($connection,$query);
         return $result;
     }

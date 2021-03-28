@@ -30,7 +30,7 @@
                 <?php if(isset($_SESSION['email'])){ 
                     ?>
                     <div class="notification"><i class="fa fa-bell"></i></div>
-                    <!-- <div class="profile"><a href="../views/profilepage.php"> <i  class="fa fa-user-circle"></a></i></div>
+                    <!-- <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i  class="fa fa-user-circle"></a></i></div>
                     <div class="hide">Boarder</div> -->
                     <?php require "indicator.php"?>
                 <?php

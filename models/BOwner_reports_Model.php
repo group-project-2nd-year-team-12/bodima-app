@@ -1,22 +1,6 @@
-<?php
+<?php //An
 
 class BOwner_reports_Model{
-
-    // public static function all_payments_default($connection,$BOid){
-    //     $query="SELECT p.payid, p.Bid,b.first_name, p.BOid,p.year,p.month, p.amount,p.paidDateTime,'cash/card',c.B_post_id 
-    //             FROM boarder as b
-    //             LEFT JOIN  `payfee` as p
-    //             ON p.Bid=b.Bid 
-    //             INNER JOIN confirm_rent as c
-    //             ON c.Bid=p.Bid";
-
-    //      $query.= " WHERE p.BOid=$BOid
-    //             ORDER BY p.paidDateTime DESC;";
-
-    //     echo $query;
-    //     die();
-    //    return mysqli_query($connection,$query);
-    // }
 
 
     public static function payments_filter($connection,$BOid,$sortcontext,$DESC_ASC,$Bid,$fromdate,$todate,$postno,$method){
@@ -43,14 +27,6 @@ class BOwner_reports_Model{
 
      
         return mysqli_query($connection,$query);
-        // if(mysqli_num_rows($res)){
-        //    return $res;
-        // }else{
-        //     return 0;
-        // }
-
-        // echo $query; 
-        // die();
         
     }
 
@@ -62,24 +38,20 @@ class BOwner_reports_Model{
         INNER JOIN confirm_rent ON bT.Bid = confirm_rent.Bid
         INNER JOIN boarding_post AS BpT ON BpT.B_post_id = confirm_rent.B_post_id
         WHERE confirm_rent.BOid=$BOid";
-        // echo $query;
-        // die();
         $result = mysqli_query($connection, $query);
 			return $result;
     }
 
     public static function postlist_BOwner($connection,$BOid){
-
         $query="SELECT DISTINCTROW confirm_rent.B_post_id 
         FROM boarder As bT
         INNER JOIN confirm_rent ON bT.Bid = confirm_rent.Bid
         INNER JOIN boarding_post AS BpT ON BpT.B_post_id = confirm_rent.B_post_id
         WHERE confirm_rent.BOid=$BOid";
-        // echo $query;
-        // die();
         $result = mysqli_query($connection, $query);
 			return $result;
       }
+
 }
 ?>
  
