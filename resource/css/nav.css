@@ -192,11 +192,11 @@ header a{
       width: 150px;
   }
   .slide-nav-animate ul li:hover{
-    color: blueviolet;
+    color: rgb(0, 0, 0);
     background-color: white;
     /* font-size: x-large; */
     border-radius: 5px 25%;
-      font-weight: 400;
+      font-weight: bold;
   }
   
   .slide-nav-after{

@@ -27,7 +27,7 @@
             <input type="text" name="email" id="email"  placeholder='e.g.lakshanamal100@gmail.com' >
 			<input type="submit" name="submit" value="Sent code to mail ">
 		</form>
-	<div class="sign">Back to <a href="../views/">Sign In</a></div>
+	<div class="sign">Back to <a href="../views/user_loging.php">Sign In</a></div>
 </div>
 </div>
 </body>
