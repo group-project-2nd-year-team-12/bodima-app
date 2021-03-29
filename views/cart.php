@@ -1,6 +1,9 @@
 <!-- preload assesment -->
 <?php   require_once ('../config/database.php');
         require_once ('../controller/cartCon.php');
+        require_once ('../models/reg_user.php');
+        require_once ('../controller/rateConFood.php');
+       // session_start(); 
 ?>
 
 <!-- page -->
@@ -12,17 +15,75 @@
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/card1.css">
     <script src="../resource/js/jquery.js"></script>
+    <link rel="stylesheet" href="../resource/css/boardingpage_detailed_rate.css">
 </head>
 <body>
   <?php include 'nav.php' ?>   <!--nav bar-->
+
+
+      <?php 
+
+
+if(isset($_GET['Pid']))
+{
+  $fpid=$_GET['Pid'];
+  //$_SESSION['rating_F_post_id']=$fpid;
+  //echo $fpid;
+ 
+ //print_r($_SESSION);
+  //echo $_SESSION['rating_F_post_id'];
+}
+   
+
+  $dataset=rategetcount($fpid,$connection);
+  //print_r($dataset);
+  $count=$dataset['count'];
+  $total=$dataset['total'];
+  //echo $total;
+  //echo "gggg";
+  $avg = '';
+  
+  if($count != 0){
+      if(is_nan(round(($total/$count),1))){
+          $avg=0;
+      }else{
+          $avg=round(($total/$count),1);
+      }
+  }else{
+      $avg=0;
+  }
+?>
+
 
   <!-- intro warpper -->
   <div class="cart-wrap">
     <h1><?php echo $_GET['name']; ?></h1>
     <h3><?php echo $_GET['address']; ?></h3>
     <h3>For breakfast,lunch and dinner delivery to your home.</h3>
-    <div class="rate"><h4><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half"></i></h4></div>
+    
     <img src="../resource/img/resturent.jpg" alt="">
+
+
+
+
+
+    <div class="foodratediv">
+       <div class="rnb rv1">
+                                    <p> <b> <?php echo $avg; ?>/5.0</b></p>
+                                </div>
+<div class="pdt-rate">
+                                    <div class="pro-rating">
+                                        <div class="clearfix rating mart8">
+                                            <div class="rating-stars">
+                                                <div class="grey-stars"></div>
+                                                <div class="filled-stars" style="width:<?php echo $avg * 20; ?>%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                </div>
+                
+
+</div>
 </div>
 
 <?php 

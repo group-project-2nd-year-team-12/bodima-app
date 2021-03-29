@@ -1,0 +1,132 @@
+.pdt-rate {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 520px;
+    /* background-color: #d63031; */
+}
+
+.rating-stars {
+    position: relative;
+    vertical-align: baseline;
+    color: #b9b9b9;
+    line-height: 10px;
+    float: left;
+}
+
+.grey-stars {
+    height: 100%;
+}
+
+.filled-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    color: #f7bf17;
+}
+
+.filled-stars::before,
+.grey-stars::before {
+    content: "\2605 \2605 \2605 \2605 \2605";
+    font-size: 19px;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+
+.tri .filled-stars::before,
+.tri .grey-stars::before {
+    font-size: 20px;
+    line-height: 23px;
+    /* background-color: #d63031; */
+}
+
+.rnrn {
+    position: relative;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    left: 100px;
+    bottom: 39px;
+    /*color: red;*/
+}
+
+.pdt-rate p {
+    margin-top: 40px;
+    /*margin-right: 50px;*/
+    right: 100px;
+    /* position: relative; */
+    color: black;
+    font-size: 1.0rem;
+    font-family: "roboto"sans-serif;
+}
+
+
+/*.tri {
+    border-bottom: 1px solid #e2e2e2;
+    padding: 12px;
+}
+*/
+
+.rnb h3 {
+    width: 70px;
+    position: relative;
+    top: 7px;
+    color: #f7bf17;
+    font-size: 1.5rem;
+    font-family: "roboto"sans-serif;
+}
+
+.tri .pdt-rate {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: #d63031; */
+}
+
+
+/*.addrate p {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "raleway";
+    margin-bottom: 10px;
+}
+*/
+
+.addrate input[type=button] {
+    width: 200px;
+    height: 40px;
+    background-color: #101e5a;
+    outline: none;
+    border: none;
+    color: white;
+    position: relative;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 3px 0.1px rgba(81, 84, 88, 0.5);
+    border-radius: 5px;
+    left: 250px;
+    bottom: 100px
+}
+
+.addrate input:hover[type=button] {
+    background-color: #476aa0;
+}
+
+.rate-table {
+    position: relative;
+    ;
+    /*background-color: red;*/
+    width: 150px;
+    left: 50px;
+    /*margin-left: 50px;*/
+}

@@ -329,6 +329,27 @@ public static function UpdateCtoAReq($connection,$request_id){
 
 
 
+public static function selectReqTime($connection){
+
+$query="SELECT date FROM request WHERE isAccept IN (0,1,3);";
+ $result=mysqli_query($connection,$query);
+ return $result;
+
+}
+
+// public static function updateReqTimeOut($connection){
+
+
+//   $query="UPDATE 
+//                 request
+//                 SET 
+//                 isAccept=6
+//                 WHERE isAccept IN (0,1,8)";
+//                 $result=mysqli_query($connection,$query);
+// }
+
+
+
 
 
 

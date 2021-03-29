@@ -3,6 +3,7 @@
  require_once ('../models/orderModel.php');
  require_once ('../models/reg_user.php');
  require_once ('../models/notificationModel.php');
+ require_once ('../models/ratemodelFood.php');
     session_start ();
 ?>
 
@@ -409,6 +410,39 @@ if(isset($_POST['dateUp']) && isset($_POST['orderIdUp']) )
    );
  
     echo json_encode($data);
+}
+
+
+if(isset($_POST['rate'])){
+   print_r($_POST);
+   print_r($_SESSION);
+   $creattime=date('Y-m-d h:i:s');
+   $starRate=$_POST['rate'];
+   $rateMsg=$_POST['discription'];
+   $date=$creattime;
+   $name=$_POST['name'];
+   $order_id_r=$_POST['order_id'];
+
+   $result_fpostid=rating::getfoodpostid( $order_id_r,$connection);
+   $result_postid=mysqli_fetch_assoc($result_fpostid);
+
+   $F_post_id=$result_postid['F_post_id'];
+   $email=$_SESSION['email'];
+   // $result_set=rating::getUseremail( $F_post_id,$email,$connection);
+   // $result_post=mysqli_fetch_assoc($result_set);
+   //$val=$result_post['uName'];
+   
+   //print_r($result_post['uName']);
+   
+   
+       rating::postRating($F_post_id,$email,$starRate,$rateMsg,$date,$name,$connection);
+       echo "insertrd successful";
+       header('Location:../views/paymentFood_history.php?');
+   // }else{
+   //     $result_set=rating::getUpdate($rating_F_post_id,$email,$starRate,$rateMsg,$date,$name,$connection); 
+   //     echo "Update successful";
+   // }
+
 }
 
 ?>

@@ -73,7 +73,7 @@
 
   .prof_info p{
      color: #101e5a;
-     padding: 10px:
+     padding: 10px;
   }
 
   .stat_bar1{
@@ -136,16 +136,15 @@
   .middle_b .mid_A .detail_table .pr_th{
     /* background-color: red; */
     width:25%;
-    font-weight: 400;
-    color:#5d80b6 ;
-
+    font-weight: 600;
+    color:#496a9c ;
   }
 
   .middle_b .mid_A .detail_table .pr_td{
     /* background-color: blue; */
     display: flex;
     font-weight: 400;
-     color: rgb(119, 119, 119);
+     color: rgb(54, 54, 54);
   }
 
   .mid_A .edit_lable{
@@ -160,4 +159,34 @@
 
   .submit_button input{
     margin: 5px;
+  }
+
+  .status{
+    width:100%;
+    background-color: #dadada;
+    margin-top: 20px;
+    padding:15px;
+  }
+
+  .status .statbox{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .statbox .vertical_bar{
+      border-left: 3px solid #d4af37;
+      height: 135px;
+  }
+
+  .statbox .info{
+    padding-top: 10px;
+    justify-content: space-around;
+    
+  }
+
+  .statbox .num{
+    display: flex;
+    justify-content: space-around;
+    font-size: 40px;
+    color: #5d80b6;
   }

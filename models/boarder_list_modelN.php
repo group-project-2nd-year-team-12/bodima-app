@@ -71,6 +71,16 @@ class boarder_list_modelN{
       }
 
 
+      public static function get_dealed_date($connection,$Bid,$BOid)
+      {
+        $query="SELECT payment_date FROM `confirm_rent` WHERE Bid={$Bid} and BOid={$BOid} and is_paid=1 order by rent_id DESC ,payment_date DESC limit 1";
+        // echo $query;
+        // die();
+        $result = mysqli_query($connection, $query);
+        return $result;
+      }
+
+
       public static function get_rent_amount($connection,$Bid,$BOid)
       {
         $query="SELECT cost_per_person FROM `boarding_post` 

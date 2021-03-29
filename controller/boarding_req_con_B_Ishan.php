@@ -10,7 +10,7 @@ function pendingRequest($connection) {
  // $result=StudentRequestIshan::selectPendingRequest($student_email,$connection);
  $student_email=$_SESSION['email'];
  //echo $student_email;
-
+$data=array();
 
 $pending_req=StudentRequestIshan::selectPendingRequest($student_email,$connection);
 
@@ -30,6 +30,8 @@ $pending_req=StudentRequestIshan::selectPendingRequest($student_email,$connectio
 
 function AcceptRequest($connection){
 
+       $data=array();
+
         $student_email=$_SESSION['email'];
         $accept_req=StudentRequestIshan::AcceptRequest($student_email,$connection);
 
@@ -45,8 +47,22 @@ function AcceptRequest($connection){
 
 function rentedPay($connection){
 
+        $data=array();
         $student_email=$_SESSION['email'];
         $result=StudentRequestIshan::selectRPayD($connection,$student_email);
+
+        while ($row=mysqli_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        return $data;
+
+}
+function rentedPayNot($connection){
+
+        $data=array();
+          $student_email=$_SESSION['email'];
+            $result=StudentRequestIshan::selectRPayNotD($connection,$student_email);
 
         while ($row=mysqli_fetch_assoc($result)) {
             $data[]=$row;

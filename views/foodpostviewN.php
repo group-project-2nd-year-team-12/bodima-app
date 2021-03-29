@@ -23,22 +23,23 @@
 //  print_r($posts);
 
 require_once ('../config/database.php');
-require_once ('../models/foodpostviewN_model.php');
+require_once ('../controller/food_view_anuki.php');
 
- $result=foodpostviewN_model::foodpost_details($connection);
+//  $result=foodpostviewN_model::foodpost_details($connection);
 
-if(mysqli_num_rows($result)>0){
+// if(mysqli_num_rows($result)>0){
 
-    while($row=mysqli_fetch_assoc($result)){
-        $data[]=$row;
+//     while($row=mysqli_fetch_assoc($result)){
+//         $data[]=$row;
        
         
 
-    }
-    $posts2=serialize($data);
-}
+//     }
+//     $posts2=serialize($data);
+// }
 // $data = preg_replace('!s:(\d+):"(.*?)";!e', "'s:'.strlen('$2').':\"$2\";'", $posts);
-$posts=unserialize($posts2);
+//$posts=unserialize($posts2);
+$posts=foodpost_details($connection);
 
 ?>
 	<div class="whole">
@@ -74,6 +75,7 @@ $posts=unserialize($posts2);
                 </div>
             </div>
             <div class="mid_L">
+                
                 <div class="fp_search">
                 <div class="search_box">
                 <input type="text" name="res_search" id="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>

@@ -1,7 +1,8 @@
 <?php   require_once ('../config/database.php');
         require_once ('../models/adertisement_model.php');
         require_once ('../models/reg_userIshan.php');
-        session_start(); 
+        require_once ('../controller/rateCon.php');
+        //session_start(); 
 ?>
 
 <!DOCTYPE html>
@@ -15,16 +16,24 @@
     <link rel="stylesheet" href="../resource/css/all.css">
     <link rel="stylesheet" href="../resource/css/slider.css">
     <link rel="stylesheet" href="../resource/css/boardingpage_detailed.css">
+    <link rel="stylesheet" href="../resource/css/boardingpage_detailed_rate.css">
+
+
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
   
     <title>Boarding details</title>
 </head>
 <body>
-<div class="page_boarding">
+<!-- <div class="page_boarding"> -->
    
 <?php include 'nav.php' ?>
 <?php
 $B_post_id=$_GET['id'];
 $student_email=$_SESSION['email'];
+$_SESSION['rating_B_post_id']=$B_post_id;
+$rating_B_post_id=$_SESSION['rating_B_post_id'];
 $boardingpost= advertisement_model::get_B_post_details_byId($B_post_id,$connection);
 $boardingpost_d=mysqli_fetch_assoc($boardingpost);
 // print_r($boardingpost_d);
@@ -34,29 +43,71 @@ $BOid=$boardingpost_d['BOid'];
 
 $boardingpost_owner=advertisement_model::get_B_post_owner_byId($BOid,$connection);
 $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
+
 // print_r($boardingpost_owner_d);
+
+$dataset=rategetcount($rating_B_post_id,$connection);
+//print_r($dataset);
+$count=$dataset['count'];
+$total=$dataset['total'];
+//echo $total;
+//echo "gggg";
+$avg = '';
+
+if($count != 0){
+    if(is_nan(round(($total/$count),1))){
+        $avg=0;
+    }else{
+        $avg=round(($total/$count),1);
+    }
+}else{
+    $avg=0;
+}
 
 
 
 ?>
 
     <div class="box_outer">
-        <div class="col-7">
-            <div class="inner_slider">
-                <h1><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h1>
-                <h3>Title: <?php echo $boardingpost_d['title']?> </h3>
+        <!-- <div class="col-7"> -->
+            <div class="inner_slider" >
+
+            <h1><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h1>
+                <h3><?php echo $boardingpost_d['title']?> </h3>
                 <span>posted by: <?php echo $boardingpost_owner_d['first_name']?> <?php echo $boardingpost_owner_d['last_name']?> - <?php echo $boardingpost_d['create_time']?></span>
+
+                <div class="pdt-rate">
+                                    <div class="pro-rating">
+                                        <div class="clearfix rating mart8">
+                                            <div class="rating-stars">
+                                                <div class="grey-stars"></div>
+                                                <div class="filled-stars" style="width:<?php echo $avg * 20; ?>%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                </div>
+                <div class="rnrn">
+                    <a class="rars" href="rate.php"><?php if($count == 0){ echo "No";}else{echo $count;}   ?> Reviews</a>
+                                    
+                </div>
+
+
+
+
+
+
+
                 
 
 
-            <div id="content-wrapper">
+                <div id="content-wrapper">
 
 
             <?php 
                 
                
                 $boardingpost= advertisement_model::get_post_details($B_post_id,$connection);
-                
+
 
                 if(mysqli_num_rows($boardingpost)>0){
                     while($fetch= mysqli_fetch_all($boardingpost)){
@@ -158,11 +209,16 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;water and current bill will be included for rent</p>
                 </div>
             
+              
             </div>
-        </div>
-        <div class="resquest col-5" style="margin-bottom: 100px;">
+        <!-- </div> -->
+        <!-- <div class="resquest" > -->
+        <!-- style="margin-bottom: 100px;" -->
+        
             <div class="inner_right">
-                <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
+            
+            <div class="resquest" >
+            <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
                 <hr>
                     <div class="expandable">
                         <button class="collapsible">
@@ -172,12 +228,12 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                         
                         <div class="mapouter">
                             <div class="gmap_canvas">
-                            <iframe width="530" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<?php echo $boardingpost_d['latitude']?>,<?php echo $boardingpost_d['longitude']?>&amp;key=AIzaSyBbFP4LgCtbVnl1JQAlLjHOv_HoQdvOTi8"></iframe>
+                            <iframe width="500" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=dharmapala%20widyalaya%2Ckottawa&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                 <a href="https://www.whatismyip-address.com/divi-discount/"></a>
                             </div>
                             <style>
-                                .mapouter{position:relative;text-align:right;height:300px;width:530px;}
-                                .gmap_canvas {overflow:hidden;background:none!important;height:300px;width:530px;}
+                                .mapouter{position:relative;text-align:right;height:300px;width:500px;}
+                                .gmap_canvas {overflow:hidden;background:none!important;height:300px;width:500px;}
                             </style>
                         </div>
                         
@@ -243,14 +299,58 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
                              </form>
                        
                         </div>
-                        <button class="collapsible">Open Section 3</button>
+                        <button class="collapsible">Reviews</button>
                         <div class="content">
-                        <p>Any Details.</p>
+                        <!-- <p>Reviews</p> -->
+                        <div class="rate-table">
+
+                                        <table>
+                    <tbody>
+                        <tr>
+                            <td >
+                                <div class="rnb rv1">
+                                    <h3><?php echo $avg; ?>/5.0</h3>
+                                </div>
+                                <div class="pdt-rate">
+                                    <div class="pro-rating">
+                                        <div class="clearfix rating mart8">
+                                            <div class="rating-stars">
+                                                <div class="grey-stars"></div>
+                                                <div class="filled-stars" style="width:<?php echo $avg * 20; ?>%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rnrn">
+                                    <p class="rars"><?php if($count == 0){ echo "No";}else{echo $count;}   ?> Reviews</p>
+                                </div>
+                            </td>
+                            
+                           
+                        </tr>
+                    </tbody> 
+                </table>
+
+</div>
+                        <div  class="addrate">
+
+                        <!-- <?php  //echo $B_post_id ?> -->
+                        <input type = "button" id="addrate"  value = "Add Reviews" onclick = "window.location = 'rate.php?'"/>
+                        </div>
+                        <!-- header('Location:../views/postBoarding.php?success&pop=1&amount='.$Aamount.'&lifespan='.$Lifespan); -->
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
+        <!-- </div> -->
 </div>
+
+
+
+
+<!-- </div> -->
+<?php include 'footer.php' ?>
+</body>
 <script type="text/javascript">
     function save_changes() {
   alert("Request is now pending for approval. Please wait for confirmation. Thank you.");
@@ -258,10 +358,6 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 </script>
 
 
-
-</div>
-<?php include 'footer.php' ?>
-</body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
