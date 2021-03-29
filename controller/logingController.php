@@ -32,18 +32,11 @@
               $useremail=mysqli_real_escape_string($connection,$_POST['username']);
               $password=mysqli_real_escape_string($connection,$_POST['password']);
               $hash=sha1($password);
-            
                //$user=new reg_user();
-
                $result=reg_user::loging($useremail,$hash,$connection);
-               
-               
           //prepare database query
-        
-          
           if($result)
           {
-                  
             //query successful
             //check if the user is valid
             if(mysqli_num_rows($result)==1)

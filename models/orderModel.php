@@ -35,6 +35,22 @@ class orderModel{
        $result_set=mysqli_query($connection,$query);
        return $result_set;
     }
+    // get food post id
+    public static function getFPID($fpid,$connection)
+    {
+        $query="SELECT FSid FROM food_post WHERE F_post_id=$fpid";
+        $result_set=mysqli_query($connection,$query);
+        return $result_set;
+    }
+
+ // get merchent id 
+    public static function getMerchaint($fsid,$connection)
+    {
+        $query="SELECT merchent_id FROM food_supplier WHERE FSid=$fsid";
+        $result_set=mysqli_query($connection,$query);
+        return $result_set;
+    }
+
 
     // cancel order 
     public static function remove($order_id,$connection)

@@ -1,6 +1,6 @@
 <?php   require_once ('../config/database.php');
-        require_once ('../models/reg_user.php');
-        session_start(); 
+        require_once ('../controller/orderCon.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,12 +117,13 @@
                                           $restaurant=$data_row['restaurant'];
                                           $method=$data_row['method'];
                                           $address=$data_row['address'];
+                                          $fpid=$data_row['F_post_id'];
+                                          $phone=$data_row['phone'];
                                           ?> 
                                           <?php
                                           echo '<div class="product_item"><h5 class="item">'.$i++.'.'.$data_row['item_name'].'</h5>';
                                           echo '<h5 class="quantity">Quantity :'.$data_row['quantity'].'</h5></div>';
                                       }
-                                          
                                   }
                                   $i=1;
                             ?>
@@ -135,20 +136,22 @@
                             <h4 style="text-align:left;color: #101e5a;" > Please pay your order !</h4>
                             <form class="form1" method="post" action="https://sandbox.payhere.lk/pay/checkout">
                                 <button> Pay Card</button>
-                                <input type="hidden" name="merchant_id" value="1215562">    <!-- Replace your Merchant ID -->
+                                
+                                <?php $merchaint=getMerchent($fpid,$connection); ?>
+                                <input type="hidden" name="merchant_id" value="<?php echo $merchaint ?>">    <!-- Replace your Merchant ID -->
                                 <input type="hidden" name="return_url" value="http://localhost/bodima-app/controller/orderCon.php"> 
                                 <input type="hidden" name="cancel_url" value="http://localhost/mvc/application/views/sucsses.php">
                                 <input type="hidden" name="notify_url" value="http://localhost/mvc/application/config/payCon.php">  
                                 <input type="hidden" name="order_id" value="<?php echo $id['order_id'] ?>">
-                                <input type="hidden" name="items" value="siri niwasa"><br>
+                                <input type="hidden" name="items" value="Order Item"><br>
                                 <input type="hidden" name="currency" value="LKR">
                                 <input type="hidden" name="amount" value="<?php echo $total; ?>">  
                                 <input type="hidden" name="first_name" value="<?php echo $_SESSION['first_name'];?>">
                                 <input type="hidden" name="last_name" value="<?php echo $_SESSION['last_name'];?>"><br>
                                 <input type="hidden" name="email" value="<?php echo $_SESSION['email'];?>">
-                                <input type="hidden" name="phone" value="0771234567"><br>
-                                <input type="hidden" name="address" value="No.1, Galle Road"> 
-                                <input type="hidden" name="city" value="Colombo">
+                                <input type="hidden" name="phone" value="<?php echo $_SESSION['phone'];?>"><br>
+                                <input type="hidden" name="address" value="<?php echo $_SESSION['address'];?>"> 
+                                <input type="hidden" name="city" value="">
                                 <input type="hidden" name="country" value="Sri Lanka"><br><br> 
                             </form>
                         </div>

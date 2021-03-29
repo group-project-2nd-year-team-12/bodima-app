@@ -8,11 +8,11 @@ $('#boardingReg').on('submit',function(){
     var password=$('#password').val();
     var confirmpassword=$('#confirmpassword').val();
     var address=$('#address').val();
-    var link=$('#link').val();
+    var merchant=$('#merchant').val();
     $.ajax({
         url:"../controller/registerCon.php",
         method:"POST",
-        data:{submitBoarding:"submitBoarding",first_name:first,last_name:last,nic:nic,email:email,level:level,password:password,confirmpassword:confirmpassword,address:address,link:link},
+        data:{submitBoarding:"submitBoarding",first_name:first,last_name:last,nic:nic,email:email,level:level,password:password,confirmpassword:confirmpassword,address:address,merchant:merchant},
         dataType:"json",
         success:function(data)
         {
@@ -34,12 +34,12 @@ $('#boardingReg').on('submit',function(){
                     $('#addError').html("");
                     $('#address').css("background-color", "#b8bcc4");            
                  }
-                 if(data.link!=""){
-                    $('#linkError').html(data.link);
-                    $('#link').css("background-color", "rgb(255, 224, 224)");
+                 if(data.merchent!=""){
+                    $('#merError').html(data.merchent);
+                    $('#merchant').css("background-color", "rgb(255, 224, 224)");
                  }else{
-                    $('#linkError').html('');
-                    $('#link').css("background-color", "#b8bcc4");             
+                    $('#merError').html('');
+                    $('#merchant').css("background-color", "#b8bcc4");             
                 }
             }else if(data.state=='sucess'){
                 window.location='emailVerify.php?email='+data.email+'&token='+data.token+'&level='+data.level+'';
