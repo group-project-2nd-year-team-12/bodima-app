@@ -1,7 +1,10 @@
-<?php   require_once ('../config/database.php');
+<?php     session_start(); 
+if(isset($_SESSION['cart'])) {
+        require_once ('../config/database.php');
         require_once ('../models/reg_user.php');
-        session_start(); 
+    
         date_default_timezone_set("Asia/Colombo");
+        header('Location=paymentFood_pending.php');
 ?>
 
 <!DOCTYPE html>
@@ -19,20 +22,8 @@
 </head>
 <body>
 <?php include 'nav.php' ?>
-                       <!-- header-bar -->
- <!-- <div class="cart-icon">
-    <?php 
    
-      if(isset($_SESSION['cart']))
-      {
-        $count=count($_SESSION['cart']);
-        echo '<a href="cartItem.php"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="count">'.$count.'</span></a>
-        ';
-      }
-    ?>
-   </div> -->
-
-                                <!-- product-cart and product order deatils -->
+    <!-- product-cart and product order deatils -->
  <div class="grid-item">
  <div class="mycart">
      <div class="mycart-header">
@@ -82,9 +73,9 @@ $total=0;
                             $(document).on('click',"#plus<?php echo $i ; ?>",function()
                              {
                                 var countTag=document.getElementById(<?php echo $i; ?>);
-                                var count = parseInt(countTag.innerHTML)+1;
+                                var count = parseInt(countTag.innerHTML)+1;  // convert to integer
                                 var totalTag=document.querySelectorAll('.left-item');
-                                var total=parseInt(totalTag[0].innerHTML);
+                                var total=parseInt(totalTag[0].innerHTML);    // first class data [total]
                                 var itemPrice=<?php echo $result['product_price'] ?>;
                                 if(count>10)
                                 {
@@ -97,7 +88,7 @@ $total=0;
                                 countTag.innerHTML=count;
                                 var productId=<?php echo $result['product_id'] ?>;
                                 
-                                console.log(total);
+                                console.log(total);  // set the session chart variable count
                                 $.ajax({
                                 url:"../controller/cartCon.php",
                                 method:"POST",
@@ -149,8 +140,8 @@ $total=0;
             <h3>Price details</h3>
         </div>
         <div class="details">
-            <h5>price (<?php echo $count ?>) item<span class="left-item"><?php echo $_SESSION['total']; ?></span></h5>
-            <h5 style="padding-bottom: 10px ;">delivery Charges <span style="color: green;" class="left-item">Free</span></h5>
+            <h5>Food item price <span class="left-item"><?php echo $_SESSION['total']; ?></span></h5>
+            <h5 style="padding-bottom: 10px ;">Delivery Charges <span style="color: green;" class="left-item">Free</span></h5>
             <h4 style="padding-bottom: 10px;border-top:1px solid rgb(191, 184, 184); border-bottom:1px solid rgb(191, 184, 184);">Amount payable<span class="left-item"><?php echo $_SESSION['total']; ?></span> </h4>
             <form  action="../controller/orderCon.php" method="post">
                 <h4>Enter delivery address :</h4>
@@ -171,7 +162,7 @@ $total=0;
                     <label for="cash">Cash</label>
                 </div>
                <div class="shedule-order">
-                <h4>Shedule your order </h4>
+                <h4>Shedule order </h4>
                 <select name="shedule" class="shedule-time">
                
                 </select>
@@ -180,7 +171,7 @@ $total=0;
               
             </form>
 
-             <!-- disabled if term is long term -->
+             <!-- disabled card if term is long term -->
                 <?php 
                     if($_SESSION['term']=='longTerm')
                     { ?>
@@ -210,3 +201,9 @@ $total=0;
 <script src="../resource/js/home1.js"></script>
 <script src="../resource/js/cartItem.js"></script>
 </html> 
+
+<?php }else{
+     header('Location:../views/paymentFood_pending.php');
+}
+
+?>

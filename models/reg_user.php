@@ -9,12 +9,13 @@ class reg_user{
     }
 
 // boarding owner registration 
-    public static function boardingReg($email,$first_name,$last_name,$nic,$password,$token,$address,$link,$connection)
+    public static function boardingReg($email,$first_name,$last_name,$nic,$password,$token,$address,$merchent,$connection)
     {
-        $query="INSERT INTO boardings_owner (email,first_name,last_name,NIC,password,token,address,location_link) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$link}')";
+        $query="INSERT INTO boardings_owner (email,first_name,last_name,NIC,password,token,address,merchent_id) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$merchent}')";
         $result_set=mysqli_query($connection,$query);
         return$result_set;
     }
+    // food supplier registration
     public static function foodReg($email,$first_name,$last_name,$nic,$password,$token,$merchent,$address,$connection)
     {
         $query="INSERT INTO food_supplier (email,first_name,last_name,NIC,password,token,address,merchent_id) VALUES('{$email}','{$first_name}','{$last_name}','{$nic}','{$password}','{$token}','{$address}','{$merchent}')";
@@ -31,6 +32,7 @@ class reg_user{
          $result_set=mysqli_query($connection,$query);
          return  $result_set;
     }
+    // nic validation
     public static function checkNic($nic,$connection)
     {
         $query="SELECT NIC FROM boardings_owner  WHERE NIC='{$nic}'
@@ -48,7 +50,7 @@ class reg_user{
         //return $result_set;
     }
 
-
+    // user login
     public static function loging($email,$password,$connection)
     {
         $query="SELECT level,email,first_name,last_name,address,user_accepted FROM  boarder WHERE email='$email' AND password='$password' 
@@ -61,7 +63,7 @@ class reg_user{
         $result_set=mysqli_query($connection,$query);
         return  $result_set;
     }
-
+//  get the id 
      public static function getId($level, $email,$connection)
      {
        $query="SELECT * FROM $level WHERE email='{$email}'";
@@ -69,7 +71,7 @@ class reg_user{
        return  $result_set;
      }
 
-
+    //   forgot password get user
      public static function getUser($level,$token, $email,$connection)
      {
      $query="SELECT * FROM $level WHERE email='{$email}' AND token='{$token}'";

@@ -30,16 +30,9 @@ document.querySelector('.call i').addEventListener('click',(e)=>{
     document.querySelector('.call').style.display='none';
 })
 
-contact2.addEventListener('click',(e)=>{
-    document.querySelector('.email').style.display="block";
-
-})
-document.querySelector('.email i').addEventListener('click',(e)=>{
-    document.querySelector('.email').style.display='none';
-})
 
 contact3.addEventListener('click',(e)=>{
-    document.querySelector('.message').style.display="block";
+    document.querySelector('.live-box').style.display="block";
 
 })
 document.querySelector('.message i').addEventListener('click',(e)=>{

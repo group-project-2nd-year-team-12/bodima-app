@@ -12,6 +12,19 @@
 
 <?php
 
+function getProduct($fpid,$connection)
+{
+  $data=array();
+  $result =reg_user::getProductsByPostid($fpid,$connection); 
+  while($row=mysqli_fetch_assoc($result))
+  {
+    $data[]=$row;
+  }
+  return $data;
+
+}
+
+
 // check and create cart 
 if(isset($_POST['add']))
 {
@@ -23,7 +36,7 @@ if(isset($_POST['add']))
   if(isset($_SESSION['email'])&& isset($_SESSION['first_name']) && isset($_SESSION['last_name']))
   {
  
-  if(isset($_SESSION['cart']))
+  if(isset($_SESSION['cart']))  // alredy cart is there
   {
     if($_SESSION['term']==$_POST['term']){
     $item_array_id=array_column($_SESSION['cart'],'product_id');
@@ -47,7 +60,7 @@ if(isset($_POST['add']))
       }else{
         $clash='clashed';
       }
-  }else{
+  }else{                    // there no cart new cart creat
     $item_array=array(
       'product_id'=>$_POST['id'],
       'item_name' =>$_POST['item_name'],
@@ -78,7 +91,6 @@ $count=count($_SESSION['cart']);
 }
 
 // load cart count
-
 if(isset($_POST['count']))
 {
   $count=0;
@@ -92,7 +104,7 @@ if(isset($_POST['count']))
   echo json_encode($arr);
 }
 
-// cart manage 
+// cart manage check chart is empty or not 
 if(isset($_POST['manage']))
 {
   $term='';
@@ -124,7 +136,7 @@ if(isset($_POST['remove']))
 }
 
 
-//long term
+//long term get start data and end date 
 if(isset($_POST['startDate']))
 {
   $_SESSION['startDate']=$_POST['startDate'];
@@ -163,7 +175,7 @@ if(isset($_POST['quantity']) && isset($_POST['productId']) && isset($_POST['tota
 //shedule
 if(isset($_POST['shedule']))
 {
-  $type=array_column($_SESSION['cart'],"order_type");
+  $type=array_column($_SESSION['cart'],"order_type");  // get order type from cart two dimention array
   $arr=array(
     'type'=>$type[0],
   );

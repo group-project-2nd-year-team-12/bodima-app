@@ -1,5 +1,5 @@
 <?php if(isset($_SESSION['email'])){?>
-                <div class="liveSupport ">
+                <div class="liveSupport">
                      <div class="live-box">
                          <div class="live-header">
                                 <!-- <div id="back" class="avater"  style="cursor:pointer"><i onclick=back(); class="fas fa-chevron-left fa-lg"></i></div> -->

@@ -48,7 +48,7 @@
             <h4>Active time period (8.00 AM to 5.00 PM)</h4>
             <h1>+94011XXXXXXXX</h1>
         </div>
-        <div class="contact email">
+        <!-- <div class="contact email">
             <i class="fas fa-times fa-lg"></i>
             <h2>Contact us with Email</h2>
             <form action="#" id="form">
@@ -59,21 +59,8 @@
                <div class="infor"> <textarea coloum="10" from="form"  placeholder="Message" ></textarea></div>
                <div class="submit"> <input type="submit" name="submit" value="Submit"></div>
             </form>
-        </div>
-        <div class="contact message">
-            <i class="fas fa-times fa-lg"></i>
-            <h2>Live support</h2>
-            <div class="chat">
-                <h5>Hi, How can i help you ?</h5>
-                
-            </div>
-            <div class="form">
-                <form action="#">
-                    <input type="text" placeholder="Type a message">
-                    <button type="submit"  ><i class="fas fa-paper-plane"></i></button>
-                </form>
-                </div>
-        </div>
+        </div> -->
+
     </div>
  
 </body>
