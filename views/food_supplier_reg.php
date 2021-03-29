@@ -17,7 +17,7 @@
 	<div class="register">
 		   <form id="foodReg" method="post">
 				<p>Address <span class="error" id="addError"></p>
-				<input type="text" id="address" name="address" placeholder="Enter Address ">
+				<input type="text" id="address" name="address" placeholder="eg : 310/delgasduwa/dodanduwa">
 
 				<p>Merchant ID <span class="error" id="merError"></p>
 				<input type="text" id="merchant"  name="merchant" placeholder="Enter Payhere Merchant ID">

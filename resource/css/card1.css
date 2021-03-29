@@ -380,7 +380,7 @@ body{
 
 .btn6{
   padding:7px;
-  background-color: rgb(11, 60, 207);
+  background-color: #101e5a;
   color: white;
   font-size: 18px;
   border: none;
@@ -390,7 +390,7 @@ body{
   cursor: pointer;
 }
 .details form{
-  padding-top: 20px;
+  padding-top: 15px;
 }
 .details form input{
   padding: 5px;
@@ -592,7 +592,7 @@ body{
   height: 40px;
 }
 .shedule-time{
-  padding: 0px 25px 0px 25px;
+  padding: 0px 5px;
   font-size: 16px;
   background-color: black;
   color: white;

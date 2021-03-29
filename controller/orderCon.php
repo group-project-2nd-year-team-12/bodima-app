@@ -8,7 +8,6 @@
 ?>
 
 <?php
-
 // validate and save cart item to database
 if(isset($_POST['submit']))
 {
@@ -29,6 +28,7 @@ $errors=array();
     if(isset($_SESSION['cart']))
     {
        $shedule=$_POST['shedule'];
+       echo $shedule;
        $email=$_SESSION['email'];
        $F_post_id=$_POST['Pid'];
        $first_name=$_SESSION['first_name'];
@@ -87,6 +87,8 @@ $errors=array();
             orderModel::addLongTerm($connection,$startDate->format('Y-m-d H:i:s'),$order_id);
           }
        }
+       unset($_SESSION['cart']);
+       unset($_SESSION['term']);
       header('Location:../views/paymentFood_pending.php');
    }
 }else{
@@ -155,10 +157,18 @@ if(isset($_GET['id']) && $_GET['id']==2)
       $data1=serialize($ids);
       $data2=serialize($data_rows);
       header('Location:../views/paymentFood_accept.php?ids='.$data1.'&data_rows='.$data2.'');
-   
 }
-// Receiving order details
 
+// get merchent id
+function getMerchent($fpid,$connection){
+   $FSid=orderModel::getFPID($fpid,$connection);
+   $FSid=mysqli_fetch_assoc($FSid);
+   $result=orderModel::getMerchaint($FSid['FSid'],$connection);
+   $merchant=mysqli_fetch_assoc($result);
+   return $merchant['merchent_id'];
+}
+
+// Receiving order details
 function orderReceive($connection){
    $email=$_SESSION['email'];
    $ids_set=orderModel::getOrderById($connection,$email,3);
@@ -269,16 +279,16 @@ if(isset($_GET['orderConfirm_id'])){
 }
 
 
-// if(isset($_GET['order_id'])){
-//    $order_id=$_GET['order_id'];
-//    $result=orderModel::paymentOrder($connection,$order_id);
-//    if($result){
-//       header('Location:../views/paymentFood_receving.php');
-//    }
-//    {
-//       echo "Mysqli query failed";
-//    }
-// }
+if(isset($_GET['order_id'])){
+   $order_id=$_GET['order_id'];
+   $result=orderModel::paymentOrder($connection,$order_id);
+   if($result){
+      header('Location:../views/paymentFood_receving.php');
+   }
+   {
+      echo "Mysqli query failed";
+   }
+}
 
 
 // ajex countdown

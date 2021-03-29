@@ -17,10 +17,10 @@
 	<div class="register">
 		<form id="boardingReg" method="post">
 			<p>Address <span class="error" id="addError"></p>
-			<input type="text" id="address" name="address" placeholder="Enter Address Name">
+			<input type="text" id="address" name="address" placeholder="eg : 310/delgasduwa/dodanduwa">
 
-			<p>Location link <span class="error" id="linkError"></p>
-			<input type="text" id="link" name="link" placeholder="Enter Location Name">
+			<p>Merchant ID <span class="error" id="merError"></p>
+			<input type="text" id="merchant"  name="merchant" placeholder="Enter Payhere Merchant ID">
 				
 			<p>Password <span class="error" id="passError"></p>
 			<input type="password" id="password" name="password" placeholder="Enter Password">
