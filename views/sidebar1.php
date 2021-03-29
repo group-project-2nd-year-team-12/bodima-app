@@ -75,10 +75,10 @@
             <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-            <li><a href="#">New Order</a></li>
-            <li><a href="#">Card Payment</a></li>
-            <li><a href="#">Delivering Orders</a></li>
-            <li><a href="#">Order History</a></li>
+            <li><a href="orders.php">New Order</a></li>
+            <li><a href="../controller/orderConFood.php?id=2">Card Payment</a></li>
+            <li><a href="orderDelivery.php">Delivering Orders</a></li>
+            <li><a href="orderHistory.php">Order History</a></li>
           </ul>
         </li>
         <li><a href="../views/foodPost.php"><i class="fas fa-puzzle-piece"></i>Post New Ad</a></li>
