@@ -1,5 +1,6 @@
 <?php   require_once ('../config/database.php');
-        require_once ('../models/reg_user.php'); 
+        require_once ('../models/reg_user.php'); //
+        require_once ('../models/StudentRequestIshan.php');
         session_start();
 ?>
 
@@ -43,6 +44,29 @@
           
           if($result)
           {
+            ///set the timeout
+            $selectDate=StudentRequestIshan::selectReqTime($connection);
+          while($row=mysqli_fetch_assoc($selectDate))
+          {
+              $reqDate=$row['date'];
+              $expireDateS= date('Y-m-d H:i:s',strtotime('+1 day',strtotime($reqDate)));
+              $currentTimeS=date('Y-m-d H:i:s');
+              $expireDateValue=strtotime($expireDateS);
+              $currentTimeValue=strtotime($currentTimeS);
+
+              if ($currentTimeValue>=$expireDateValue) {
+               $query="UPDATE 
+                request
+                SET 
+                isAccept=8
+                WHERE isAccept IN (0,1,3)";
+                $result=mysqli_query($connection,$query);
+              }
+
+          }
+
+
+
                   
             //query successful
             //check if the user is valid
