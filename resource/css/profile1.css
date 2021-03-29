@@ -160,3 +160,33 @@
   .submit_button input{
     margin: 5px;
   }
+
+  .status{
+    width:100%;
+    background-color: #dadada;
+    margin-top: 20px;
+    padding:15px;
+  }
+
+  .status .statbox{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .statbox .vertical_bar{
+      border-left: 3px solid #d4af37;
+      height: 135px;
+  }
+
+  .statbox .info{
+    padding-top: 10px;
+    justify-content: space-around;
+    
+  }
+
+  .statbox .num{
+    display: flex;
+    justify-content: space-around;
+    font-size: 40px;
+    color: #5d80b6;
+  }
