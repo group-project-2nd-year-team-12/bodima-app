@@ -20,7 +20,7 @@
     //$nima ="nima";
     $data = [$rating_B_post_id,$email,$starRate, $rateMsg, $date, $name];
    
-   print_r($data);
+   //print_r($data);
    
    $result_set=rating::getUseremail($rating_B_post_id,$email,$connection);
    $result_post=mysqli_fetch_assoc($result_set);

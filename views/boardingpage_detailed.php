@@ -19,16 +19,14 @@
     <link rel="stylesheet" href="../resource/css/boardingpage_detailed_rate.css">
 
 
-
-    <title>Rating System </title>
-    <link rel="stylesheet" href="nima.css">
+ 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
   
     <title>Boarding details</title>
 </head>
 <body>
-<div class="page_boarding">
+<!-- <div class="page_boarding"> -->
    
 <?php include 'nav.php' ?>
 <?php
@@ -49,7 +47,7 @@ $boardingpost_owner_d=mysqli_fetch_assoc($boardingpost_owner);
 // print_r($boardingpost_owner_d);
 
 $dataset=rategetcount($rating_B_post_id,$connection);
-print_r($dataset);
+//print_r($dataset);
 $count=$dataset['count'];
 $total=$dataset['total'];
 //echo $total;
@@ -72,9 +70,10 @@ if($count != 0){
 
     <div class="box_outer">
         <!-- <div class="col-7"> -->
-            <div class="inner_slider">
-                <h1><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h1>
-                <h3>Title: <?php echo $boardingpost_d['title']?> </h3>
+            <div class="inner_slider" >
+
+            <h1><?php echo $boardingpost_d['girlsBoys']?>' BOARDING IN <?php echo $boardingpost_d['city']?></h1>
+                <h3><?php echo $boardingpost_d['title']?> </h3>
                 <span>posted by: <?php echo $boardingpost_owner_d['first_name']?> <?php echo $boardingpost_owner_d['last_name']?> - <?php echo $boardingpost_d['create_time']?></span>
 
                 <div class="pdt-rate">
@@ -101,7 +100,7 @@ if($count != 0){
                 
 
 
-            <div id="content-wrapper">
+                <div id="content-wrapper">
 
 
             <?php 
@@ -210,11 +209,16 @@ if($count != 0){
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;water and current bill will be included for rent</p>
                 </div>
             
+              
             </div>
         <!-- </div> -->
-        <div class="resquest col-5" style="margin-bottom: 100px;">
+        <!-- <div class="resquest" > -->
+        <!-- style="margin-bottom: 100px;" -->
+        
             <div class="inner_right">
-                <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
+            
+            <div class="resquest" >
+            <h2 class="price">Rs. <?php echo $boardingpost_d['cost_per_person']?></h2>
                 <hr>
                     <div class="expandable">
                         <button class="collapsible">
@@ -295,17 +299,58 @@ if($count != 0){
                              </form>
                        
                         </div>
-                        <button class="collapsible">Open Section 3</button>
+                        <button class="collapsible">Reviews</button>
                         <div class="content">
-                        <p>Any Details.</p>
-                        <?php  echo $B_post_id ?>
-                        <input type = "button" id="submit"  value = "Close" onclick = "window.location = 'rate.php?'"/>
+                        <!-- <p>Reviews</p> -->
+                        <div class="rate-table">
+
+                                        <table>
+                    <tbody>
+                        <tr>
+                            <td >
+                                <div class="rnb rv1">
+                                    <h3><?php echo $avg; ?>/5.0</h3>
+                                </div>
+                                <div class="pdt-rate">
+                                    <div class="pro-rating">
+                                        <div class="clearfix rating mart8">
+                                            <div class="rating-stars">
+                                                <div class="grey-stars"></div>
+                                                <div class="filled-stars" style="width:<?php echo $avg * 20; ?>%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rnrn">
+                                    <p class="rars"><?php if($count == 0){ echo "No";}else{echo $count;}   ?> Reviews</p>
+                                </div>
+                            </td>
+                            
+                           
+                        </tr>
+                    </tbody> 
+                </table>
+
+</div>
+                        <div  class="addrate">
+
+                        <!-- <?php  //echo $B_post_id ?> -->
+                        <input type = "button" id="addrate"  value = "Add Reviews" onclick = "window.location = 'rate.php?'"/>
+                        </div>
                         <!-- header('Location:../views/postBoarding.php?success&pop=1&amount='.$Aamount.'&lifespan='.$Lifespan); -->
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
+        <!-- </div> -->
 </div>
+
+
+
+
+<!-- </div> -->
+<?php include 'footer.php' ?>
+</body>
 <script type="text/javascript">
     function save_changes() {
   alert("Request is now pending for approval. Please wait for confirmation. Thank you.");
@@ -313,10 +358,6 @@ if($count != 0){
 </script>
 
 
-
-</div>
-<?php include 'footer.php' ?>
-</body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

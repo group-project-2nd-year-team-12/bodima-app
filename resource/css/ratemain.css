@@ -18,7 +18,7 @@ body {
 
 .rating-review {
     height: 100%;
-    width: 85%;
+    width: 65%;
     margin: 80px auto;
     background-color: #fefefe;
 }
@@ -42,7 +42,7 @@ body {
 
 .rating-review tb {
     padding: 1rem;
-    width: 33.3%;
+    width: 60%;
 }
 
 .tri {
@@ -157,8 +157,8 @@ body {
 .rrb button {
     width: 220px;
     height: 40px;
-    background-color: #686de0;
-    color: var(--white);
+    background-color: #101e5a;
+    color: white;
     border: 0;
     outline: none;
     font-size: 1.2rem;
@@ -303,7 +303,7 @@ body {
 }
 
 .us-img p {
-    background-color: var(--light-b);
+    background-color: #101e5a;
     width: 45px;
     height: 45px;
     border-radius: 50%;

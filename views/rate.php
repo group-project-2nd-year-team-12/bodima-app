@@ -56,7 +56,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" >
         <div class="rating-review">
             <div class="tri table-flex">
                 <table>
@@ -83,7 +83,7 @@
                             
                             <td>
                                 <div class="rrb">
-                                    <p>Please Review Our Product!</p>
+                                   <!--  <p>Please Review Our Product!</p> -->
                                     <button class="rbtn opmd">Add Review</button>
                                 </div> 
                             </td>
