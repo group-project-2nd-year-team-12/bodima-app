@@ -22,6 +22,18 @@ if (isset($_GET['success'])) {
 	$Bid=$user['Bid'];
 
     reg_userIshan::insertboarderIspaid($connection,$Bid,$B_post_id);
+
+//$Bid=$_GET['Bid'];
+ 	unset($_SESSION['Reg_id']);
+ 	unset($_SESSION['level']);
+ 	$student_email=$_SESSION['email'];
+
+ 	$_SESSION['Bid']=$Bid;
+ 	$_SESSION['level']="boarder";
+
+$result=reg_userIshan::updateStTOBorder($connection,$student_email);
+
+
     header('Location: ../views/rentedPayIshan_New.php');
 
 }

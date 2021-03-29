@@ -5,7 +5,7 @@ class live_search{
 
   	public static function multiple_word_match_b_post($connection,$qry)
 	{
-		  	$query = "SELECT * FROM `boarding_post` WHERE MATCH(`category`, `girlsBoys`,`image`, `house_num`, `lane`, `city`, `district`, `description`) against('{$qry}');";
+		  	$query = "SELECT * FROM `boarding_post` WHERE   CURRENT_TIMESTAMP BETWEEN create_time and create_time +INTERVAL boarding_post.lifespan DAY AND MATCH(`category`, `girlsBoys`,`image`, `house_num`, `lane`, `city`, `district`, `description`) against('{$qry}');";
 			$result = mysqli_query($connection, $query);
 				return $result;
   	}
@@ -15,14 +15,16 @@ class live_search{
 	{
 			$search = mysqli_real_escape_string($connection,$qry);
 			$query = "SELECT * FROM boarding_post 
-					WHERE category LIKE '%".$search."%'
+					WHERE
+                    (CURRENT_TIMESTAMP BETWEEN create_time and create_time +INTERVAL boarding_post.lifespan DAY)
+                    AND (category LIKE '%".$search."%'
 					OR girlsBoys LIKE '%".$search."%' 
 					OR person_count LIKE '%".$search."%' 
 					OR cost_per_person LIKE '%".$search."%' 
 					OR lane LIKE '%".$search."%'
 					OR city LIKE '%".$search."%'
 					OR district LIKE '%".$search."%'
-					OR description LIKE '%".$search."%'";
+					OR description LIKE '%".$search."%')";
 			$result = mysqli_query($connection, $query);
 				return $result;
 	}
@@ -30,7 +32,7 @@ class live_search{
 
 	public static function all_b_posts($connection)
 	{
-			$query = "SELECT * FROM boarding_post ORDER BY B_post_id";
+			$query = "SELECT * FROM boarding_post WHERE  CURRENT_TIMESTAMP BETWEEN create_time AND create_time +INTERVAL boarding_post.lifespan DAY ORDER BY B_post_id";
 			$result = mysqli_query($connection, $query);
 				return $result;
 	}
