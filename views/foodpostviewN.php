@@ -75,6 +75,7 @@ $posts=foodpost_details($connection);
                 </div>
             </div>
             <div class="mid_L">
+                
                 <div class="fp_search">
                 <div class="search_box">
                 <input type="text" name="res_search" id="res_search" placeholder="Search . . ."><i class="fas fa-search"></i>
