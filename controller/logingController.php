@@ -44,26 +44,35 @@
           
           if($result)
           {
+
+
             ///set the timeout
-            $selectDate=StudentRequestIshan::selectReqTime($connection);
-          while($row=mysqli_fetch_assoc($selectDate))
-          {
-              $reqDate=$row['date'];
-              $expireDateS= date('Y-m-d H:i:s',strtotime('+1 day',strtotime($reqDate)));
-              $currentTimeS=date('Y-m-d H:i:s');
-              $expireDateValue=strtotime($expireDateS);
-              $currentTimeValue=strtotime($currentTimeS);
 
-              if ($currentTimeValue>=$expireDateValue) {
-               $query="UPDATE 
-                request
-                SET 
-                isAccept=8
-                WHERE isAccept IN (0,1,3)";
-                $result=mysqli_query($connection,$query);
-              }
+              //   $selectDate=StudentRequestIshan::selectReqTime($connection);
+              //   if ($selectDate) {
+              //     while($row=mysqli_fetch_assoc($selectDate))
+              // {
+              //     $reqDate=$row['date'];
+              //     $expireDateS= date('Y-m-d H:i:s',strtotime('+1 day',strtotime($reqDate)));
+              //     $currentTimeS=date('Y-m-d H:i:s');
+              //     $expireDateValue=strtotime($expireDateS);
+              //     $currentTimeValue=strtotime($currentTimeS);
 
-          }
+              //     if ($currentTimeValue>=$expireDateValue) {
+
+              //      // StudentRequestIshan::updateReqTimeOut($connection);
+              //        $query="UPDATE 
+              //       request
+              //       SET 
+              //       isAccept=6
+              //       WHERE isAccept IN (0,1)";
+              //       $result=mysqli_query($connection,$query);
+                   
+              //     }
+
+              // }
+              //   }
+              
 
 
 

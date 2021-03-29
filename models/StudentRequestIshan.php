@@ -337,6 +337,17 @@ $query="SELECT date FROM request WHERE isAccept IN (0,1,3);";
 
 }
 
+// public static function updateReqTimeOut($connection){
+
+
+//   $query="UPDATE 
+//                 request
+//                 SET 
+//                 isAccept=6
+//                 WHERE isAccept IN (0,1,8)";
+//                 $result=mysqli_query($connection,$query);
+// }
+
 
 
 
