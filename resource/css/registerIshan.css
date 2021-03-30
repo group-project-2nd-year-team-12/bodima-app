@@ -25,7 +25,7 @@
 .container{
     width: 100%;
     display: flex;
-    background-image: url(../img/kindpng_1561276.png);
+    background-image: url(../img/kindpng1.png);
 
     background-size: 700px 620px;
     background-repeat: no-repeat;
@@ -39,7 +39,7 @@
     margin:60px auto;
     box-sizing: border-box;
     padding: 20px 20px;
-    box-shadow: -1px 1px 20px 3px blueviolet;
+    box-shadow: -1px 1px 20px 3px #101a5e;
     border-radius: 10px;
    margin-right: 180px;
    background-color: rgb(255, 255, 255,0.5);
@@ -84,7 +84,7 @@ input[type="email"],input[type="password"],input[type="number"] {
     outline: none;
     margin-top: 15px;
     height: 40px;
-    background: #ac26d8;
+    background: #101a5e;
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
@@ -194,7 +194,7 @@ input[type="radio"]:checked+label::before {
     font-size: 48px;
     font-weight: lighter;
     border-bottom: 2px solid black;
-    color: blueviolet;
+    color: #101a5e;
 }
 .para p{
     padding: 20px 60px;

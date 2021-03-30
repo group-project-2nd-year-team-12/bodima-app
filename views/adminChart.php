@@ -225,7 +225,7 @@
         ]);
 
         var options = {
-          title: 'User type',
+          title: 'Order type',
           backgroundColor: 'transparent',
           legend:{
             textStyle:{
