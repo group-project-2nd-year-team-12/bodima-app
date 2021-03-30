@@ -231,6 +231,15 @@
                                                                     stateBtn.disabled=true;
                                                                     stateBtn.style.backgroundColor='black';
                                                                 }
+                                                                  // check all date delivery
+                                                                  if(data.complete=='incomplete'){
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').style.backgroundColor='gray';
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').disabled=true;
+                                                                }
+                                                                if(data.complete=='complete'){
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').style.backgroundColor='#0093FF';
+                                                                    document.getElementById('confirm-btn<?php echo $i ?>').disabled=false;
+                                                                }
                                                             }
                                                             });
                                                             }

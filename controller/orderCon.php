@@ -351,7 +351,7 @@ if(isset($_POST['date']) && isset($_POST['orderId']))
 {
    $state="";
    date_default_timezone_set("Asia/Colombo");
-   $today=date('Y-m-d H:i:s');
+   $today=date('Y-m-d');
    $date=$_POST['date'];
    $order_id=$_POST['orderId'];
    $result=orderModel::checkLongTermState($connection,$order_id,$date);
@@ -362,7 +362,7 @@ if(isset($_POST['date']) && isset($_POST['orderId']))
    // if(date_diff($todayObj,$startDate)->invert){
    //    $state='qual';
    // }
-   if(strtotime($today)!=strtotime($date)){
+   if(strtotime($today)==strtotime($date)){
       $state='qual';
    }
    if(strtotime($today) < strtotime($date)){
@@ -371,8 +371,8 @@ if(isset($_POST['date']) && isset($_POST['orderId']))
    if(strtotime($today) > strtotime($date)){
       $state='minus';
    }
-   if(strtotime($today) > strtotime($lastDate)){
-      $state='minus';
+   if(strtotime($today) >= strtotime($lastDate)){
+      $complete='complete';
    }
    else{
       $complete='incomplete';
