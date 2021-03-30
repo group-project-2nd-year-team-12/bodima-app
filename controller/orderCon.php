@@ -274,10 +274,8 @@ if(isset($_GET['orderConfirm_id'])){
    date_default_timezone_set("Asia/Colombo");
     $deliveredTime=date("h:i:sa");
    $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
-   header('Location:../views/paymentFood_history.php?success&order_id='.$order_id.'');
+   header('Location:../views/paymentFood_history.php?success&id='.$order_id.'');
    // header('Location:../views/paymentFood_history.php?success&order_id='.$order_id.'');
-
-
 }
 
 

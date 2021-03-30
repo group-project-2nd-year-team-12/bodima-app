@@ -232,7 +232,7 @@
         </div>
         </div>
     </div>
-    <?php if(isset($_GET['success']) && isset($_GET['order_id'])){ ?> 
+    <?php if(isset($_GET['success']) && isset($_GET['id'])){ ?> 
   <div class="rating-box">
     <div class="rating">
         <form class="form-rate" action="../controller/orderCon.php" method="post">
