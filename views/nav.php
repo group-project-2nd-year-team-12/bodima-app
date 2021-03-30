@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="../resource/css/liveSupport.css" >
 <script src="../resource/js/jquery.js"></script>
 <script src="../resource/js/liveSupport.js"></script>
+<script src="../resource/js/notification_other.js"></script>
         <div class="header">
             <div class="logo">
                  <img src="../resource/img/logo.svg" alt="">
@@ -18,14 +19,8 @@
                     
                     <div class="notification">
                         <i class="fa fa-bell fa-lg"></i>
-                        <div class="notification-box" >
-                            <ul>
-                                <li><i class="fas fa-times fa-2x"></i></li>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
-                                <a href="#"><li>You have notification</li></a>
+                        <div class="notification-box">
+                            <ul class="notifi-record">
                             </ul>
                         </div>
                     </div>

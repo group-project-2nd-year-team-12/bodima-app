@@ -276,31 +276,75 @@ header a{
     font-weight: lighter;
 }
 
+.notification{
+    color: #bdc3ff;
+    margin-right:5px;
+    position: relative;
+}
+.noti-circle::before{
+    position: absolute;
+    content: attr(data-count);
+    width: 18px;
+    height: 18px;
+    background-color: rgb(255, 4, 58);
+    text-align: center;
+    color: whitesmoke;
+    right: -6px;
+    top: -10px;
+    border-radius:50px;
+    line-height: 100%;
+}
+.notification:hover{
+    color: rgb(255, 255, 255);
+    border-radius: 50px;
+    cursor: pointer;
+
+}
 .notification-box {
     display: none;
     position: absolute;
     /* display: none; */
     border-radius: 5px;
-    width: 300px;
-    height: 400px;
+    width: 320px;
+    height: 500px;
     z-index: 1000000;
-    top: 55px;
-    right: 100px;
+    top: 40px;
+    right: -100px; 
     background-color: rgb(255, 255, 255);
-    padding: 20px;
+    /* padding: 20px; */
     box-shadow: 1px 3px 50px 1px rgba(0, 0, 0, 0.578);
+    overflow-y: auto;
 }
-.notification-box > ul > li{
-        text-align: right;
-}
-.notification-box ul a li{
+
+.show-not{
+    display: flex;
+    align-items: center;
     color: black;
-    height: 50px;
+    /* height: 80px; */
     padding: 5px;
-    background-color: rgb(218, 220, 218);
-    border: 1px solid rgb(255, 255, 255);
-    font-size: 10px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(223, 218, 218);
+    font-size: 20px;
+    overflow-y: none;
     /* border-radius: 20px; */
+   
+}
+.show-not:hover{
+    background-color: rgba(197, 188, 188, 0.981);
+}
+.noti-log{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 50px;
+    height: 50px;
+   color: white;
+    border-radius: 25px;
+    background-color: green;
+}
+.noti-log h3{
+    font-size: 30px;
 }
 .notification-box::after {
     content: "";
@@ -312,3 +356,9 @@ header a{
     border-style: solid;
     border-color:  transparent  transparent rgb(255, 255, 255) transparent;
   }
+
+  .noti-text{
+      display: flex;
+      justify-content: space-between;
+  }
+  
