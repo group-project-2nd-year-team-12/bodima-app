@@ -251,7 +251,7 @@ session_start();
 				
 			
 				<p>Total Person Count :  </p >
-				<input type="number"  name="Pcount" id="pcount" value=1  >
+				<input type="number"  name="Pcount" id="pcount" value=1 min="1" max="30" >
 				<?php   if(isset($errors['err7'])){
 							echo "<div class='error2'>".$errors['err7']."</div>"; 
 						}elseif(isset($errors['err8'])){
@@ -308,7 +308,7 @@ session_start();
 				
 				<p id="Aamou">Avertisement Amount :     Rs  </p >
 				<!-- <output  name="result" id="result"></output>   -->
-				<input type="text"  disabled  name="Aamount" id="Aamount" value=3000 >
+				<input type="text"  disabled  name="Aamount" id="Aamount" value=3000 min="30" >
 				</div>
 						
 				
