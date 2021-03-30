@@ -51,7 +51,7 @@ require_once ('adminChart.php');
           <div>
                 <h4 style="padding:0 5px;">Year</h4>
                 <select name="year" id="report-year">
-                    <!-- <option value="2020">2020</option> -->
+                    <option value="2020">2020</option>
                     <option value="2021">2021</option>
                 </select>
             </div>

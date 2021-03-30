@@ -29,7 +29,7 @@
 		   }
 	   }
 	   if(isset($_GET['request_id'])){
-	   echo 	$request_id=$_GET['request_id'];
+	  	$request_id=$_GET['request_id'];
 	   }
 	 
 	 ?>

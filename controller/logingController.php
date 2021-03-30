@@ -1,5 +1,6 @@
 <?php   require_once ('../config/database.php');
-        require_once ('../models/reg_user.php'); 
+        require_once ('../models/reg_user.php'); //
+        require_once ('../models/StudentRequestIshan.php');
         session_start();
 ?>
 
@@ -32,18 +33,45 @@
               $useremail=mysqli_real_escape_string($connection,$_POST['username']);
               $password=mysqli_real_escape_string($connection,$_POST['password']);
               $hash=sha1($password);
-            
                //$user=new reg_user();
-
                $result=reg_user::loging($useremail,$hash,$connection);
-               
-               
           //prepare database query
-        
-          
           if($result)
           {
+
+
+            ///set the timeout
+
+              //   $selectDate=StudentRequestIshan::selectReqTime($connection);
+              //   if ($selectDate) {
+              //     while($row=mysqli_fetch_assoc($selectDate))
+              // {
+              //     $reqDate=$row['date'];
+              //     $expireDateS= date('Y-m-d H:i:s',strtotime('+1 day',strtotime($reqDate)));
+              //     $currentTimeS=date('Y-m-d H:i:s');
+              //     $expireDateValue=strtotime($expireDateS);
+              //     $currentTimeValue=strtotime($currentTimeS);
+
+              //     if ($currentTimeValue>=$expireDateValue) {
+
+              //      // StudentRequestIshan::updateReqTimeOut($connection);
+              //        $query="UPDATE 
+              //       request
+              //       SET 
+              //       isAccept=6
+              //       WHERE isAccept IN (0,1)";
+              //       $result=mysqli_query($connection,$query);
+                   
+              //     }
+
+              // }
+              //   }
+              
+
+
+
                   
+
             //query successful
             //check if the user is valid
             if(mysqli_num_rows($result)==1)

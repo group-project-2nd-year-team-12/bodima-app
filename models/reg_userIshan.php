@@ -350,18 +350,37 @@ class reg_userIshan{
      /////////insert IsPaid=1 And PaymentDate
      public static function insertboarderIspaid($connection,$Bid,$B_post_id){
 
-        $query="UPDATE 
-        confirm_rent 
-        SET 
-        is_paid=1,
-        payment_date=now() 
-        WHERE 
-        Bid='{$Bid}' 
-        AND B_post_id='{$B_post_id}' 
-        AND is_paid=0 
-        AND payment_method='online'";
+        // $query="UPDATE 
+        // confirm_rent 
+        // SET 
+        // is_paid=1,
+        // payment_date=now() 
+        // WHERE 
+        // Bid='{$Bid}' 
+        // AND B_post_id='{$B_post_id}' 
+        // AND is_paid=0 
+        // AND payment_method='online'";
 
-        mysqli_query($connection,$query);
+        $query="UPDATE 
+        confirm_rent c
+        JOIN 
+        boarding_post b 
+        ON (c.B_post_id=b.B_post_id) 
+        SET 
+        c.is_paid=1,
+        c.payment_date=now(),
+        b.person_count=b.person_count-1 
+        WHERE 
+        c.Bid='{$Bid}' 
+        AND c.B_post_id='{$B_post_id}'
+         AND c.is_paid=0 
+         AND payment_method='online'"; 
+        
+
+         $result=mysqli_query($connection,$query);
+         return $result;
+
+      
 
      }
 

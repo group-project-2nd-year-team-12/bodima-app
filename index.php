@@ -38,7 +38,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="profile"><a href="views/profilepage.php"> <i class="fa fa-user-circle fa-lg"></i></a></div>
+                    <div class="profile"><a href="../controller/profile_controlN.php?profile=1"> <i class="fa fa-user-circle fa-lg"></i></a></div>
                 <?php
                     
                     if($_SESSION['level']=='administrator'){?> <button onclick="window.location='controller/adminPanelCon.php?admin'"><i class="fas fa-cogs"></i> Dash Board </button>&nbsp<?php }
@@ -147,7 +147,7 @@
                                 <!-- <h2>Connect With Close</h2> -->
                                 <h3>Download Our </h3>
                                 <h3>Android Application</h3>
-                               <button onclick="window.location='views/register.php'">Download</button>
+                               <!-- <button onclick="window.location='views/register.php'">Download</button> -->
                             
                             </div>
                        </div>

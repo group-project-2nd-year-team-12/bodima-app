@@ -32,12 +32,10 @@ if(isset($_POST['submit']))
         elseif(!preg_match(("/^([a-zA-Z']+)$/"), $last_name)){ // preg_match -> check regular expression
                 $errors['eLast']='*Invalid Last name ';
         }
-
         if(!isset($nic) || strlen(trim($nic))<1)   
                  {
                  $errors['eNic']='*NIC  required';
                  }
-
         else    {
                         if(strlen(trim($nic))==12 || (strlen(trim($nic))==10 && ($nic[9]=='v' || $nic[9]=='V')))
                         {
@@ -146,7 +144,7 @@ if(isset($_POST['submitBoarding']) )
 {
         $errors=array();
         $errors['address']='';
-        $errors['link']='';
+        $errors['merchent']='';
         $errors['pass']='';
         $errors['state']='unsucess';
         $email=mysqli_real_escape_string($connection,$_POST['email']);
@@ -157,14 +155,17 @@ if(isset($_POST['submitBoarding']) )
         $password=mysqli_real_escape_string($connection,$_POST['password']);
         $confirmPassword=mysqli_real_escape_string($connection,$_POST['confirmpassword']);
         $address=mysqli_real_escape_string($connection,$_POST['address']);
-        $link=mysqli_real_escape_string($connection,$_POST['link']);
+        $merchant=mysqli_real_escape_string($connection,$_POST['merchant']);
         if(!isset($address) || strlen(trim($address))<1)
         {
          $errors['address']='*Address required';
         }
-        if(!isset($link) || strlen(trim($link))<1)
+        if(!isset($merchant) || strlen(trim($merchant))<1)
         {
-         $errors['link']='*Location Link required';
+         $errors['merchent']='*Merchent Id required';
+        }
+        elseif(!preg_match('/[0-9]/', $merchant)){
+                $errors['merchent']='*Invalid merchent Id';
         }
         if(empty($password || $confirmPassword))                // validation of new password
         {
@@ -189,17 +190,16 @@ if(isset($_POST['submitBoarding']) )
                 $errors['pass']="*Need least one number*"; 
         }
 
-        if($errors['address']=="" && $errors['link']=="" && $errors['pass']=="" ){
+        if($errors['address']=="" && $errors['merchent']=="" && $errors['pass']=="" ){
                 $token= bin2hex(random_bytes(50));
                 $hash=sha1($password);
-                $result=reg_user::boardingReg($email,$first_name,$last_name,$nic,$hash,$token,$address,$link,$connection);
+                $result=reg_user::boardingReg($email,$first_name,$last_name,$nic,$hash,$token,$address,$merchant,$connection);
                 sendRegUser($email,$token,$level);
                 $errors['email']=$email;
                 $errors['token']=$token;
                 $errors['level']=$level;
                 $errors['state']='sucess';
         }
-
         echo json_encode($errors);
 }
 
@@ -227,6 +227,9 @@ if(isset($_POST['submitFood']) )
         if(!isset($merchant) || strlen(trim($merchant))<1)
         {
          $errors['merchant']='*merchant required';
+        }
+        elseif(!preg_match('/[0-9]/', $merchant)){
+         $errors['merchant']='*Invalid merchent Id';
         }
         if(empty($password || $confirmPassword))                // validation of new password
         {

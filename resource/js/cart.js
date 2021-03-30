@@ -1,20 +1,4 @@
 
-// $(window).on('popstate', function(event) {
-//   alert("pop");
-//   console.log('hbdhbhdcbhjbsd');
-//  });
-//  window.onhashchange = function() {
-//   alert("pop");
-//  }
-
-//  console.log('hbdhbhdcbhjbsd');
-function disBtn()
-{
-  // document.getElementById('request').disabled=true;
-  document.getElementById('request').style.backgroundColor="gray";
-  document.getElementById('request').innerHTML="Pending";
-  // window.location="../views/cartItem.php";
-}
 
 function cancelLongTerm(){
   // document.getElementById('longTerm-check').checked=false;
