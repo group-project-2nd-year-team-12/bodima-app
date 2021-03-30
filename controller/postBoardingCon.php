@@ -142,8 +142,8 @@ $errors=array(); //create empty array
         $id=$_SESSION['BOid'];
         //$id=1;
        
-
-     $creattime=date('Y-m-d h:i:s');
+        date_default_timezone_set("Asia/Colombo");
+        $creattime=date('Y-m-d h:i:s');
       // $creattime=dat;
         //$result=boarding::delete_post($connection);
        // echo $result;

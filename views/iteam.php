@@ -59,7 +59,7 @@ session_start();
 	<div class="section">
 		<h4>Iteam Information</h4>
 
-		<p>Product Name </p >
+		<p>*Product Name </p >
 				
 		<input type="text" name="pName" id="pName" class="PName" >
 		<?php if(isset($errors['err1'])) echo "<div class='error'>".$errors['err1']."</div>"; ?>
@@ -76,7 +76,7 @@ session_start();
 		
 
 
-			<p>Price</p >
+			<p>*Price</p >
 			<input type="text" name="price" id="price" >
 			<?php   if(isset($errors['err2'])){
 						echo "<div class='error2'>".$errors['err2']."</div>"; 
@@ -235,7 +235,7 @@ session_start();
             <!-- <input type = "button" id="submit"  value = "Close" onclick = "Redirect();" /> -->
 			<input type = "button" id="submit"  value = "Close" onclick = "window.location = '../controller/iteamCon.php?deletePost'"/>
             
-            <input type="submit" id="foodpay" value="Pay" name="value"> 
+            <input type="submit" id="foodpay" value="Pay" name="value" style="margin: 0%;"> 
    
             </div>
         </form>

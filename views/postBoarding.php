@@ -84,7 +84,7 @@ session_start();
     <hr/>
 
     <div class="section">
-                    <p>Title</p>
+                    <p>*Title</p>
 					<input type="text" name="title" id="title" ><br>
 					<?php if(isset($errors['err17'])) echo "<div class='error_msg'>".$errors['err17']."</div>"; ?>
                     
@@ -96,7 +96,7 @@ session_start();
     <hr/>
     <div class="section">
                     <!--<label for="">Address  </label><br>-->
-				<p>Address </p>
+				<p>*Address </p>
 				
 				<input class="hnumber" type="text" name="Hnumber" id="Hnumber"  placeholder="House Number / Name">
 				<!-- <label class="hLable"> House Number / Name  </label><br> -->
@@ -223,7 +223,7 @@ session_start();
     <div class="section">
             <h4>Boarding Information</h4>
 
-			<p>Renting For (Girls / Boys / Any One) : </p >
+			<p>*Renting For (Girls / Boys / Any One) : </p >
 			
 					<div class="radio-1">
 				
@@ -236,7 +236,7 @@ session_start();
 
 				
 			
-			<p>Renting Options : </p >
+			<p>*Renting Options : </p >
 
 					<div class="radio-2">
 				
@@ -250,7 +250,7 @@ session_start();
 
 				
 			
-				<p>Total Person Count :  </p >
+				<p>*Total Person Count :  </p >
 				<input type="number"  name="Pcount" id="pcount" value=1 min="1" max="30" >
 				<?php   if(isset($errors['err7'])){
 							echo "<div class='error2'>".$errors['err7']."</div>"; 
@@ -268,8 +268,8 @@ session_start();
     <div class="section">
     <h4>Boarding Renting fee details</h4>
 
-			<p id="indivi">Cost Per Person For Month</p >
-			<p id="ROrH">Cost Renting For Month</p >
+			<p id="indivi">*Cost Per Person For Month</p >
+			<p id="ROrH">*Cost Renting For Month</p >
 				<input type="text" name="CPperson" id="cpperson"  >
 				<?php   if(isset($errors['err10'])){
 							echo "<div class='error2'>".$errors['err10']."</div>"; 
@@ -281,7 +281,7 @@ session_start();
 				?>
 
 				
-				<p>KeyMoney</p >
+				<p>*KeyMoney</p >
 				<input type="text" name="Keymoney" id="Keymoney" >
 				<?php   if(isset($errors['err12'])){
 							echo "<div class='error2'>".$errors['err12']."</div>"; 

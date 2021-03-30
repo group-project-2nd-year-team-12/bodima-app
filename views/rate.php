@@ -1,4 +1,5 @@
-<?php   
+<?php 
+    date_default_timezone_set("Asia/Colombo");  
     $creattime=date('Y-m-d h:i:s');
 
     require_once ('../config/database.php');
