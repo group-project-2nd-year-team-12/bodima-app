@@ -39,11 +39,11 @@ if(isset($_GET['Bid']))
 
 
     //month genarate- by last pay month
-    $last=boarder_list_modelN::get_last_paymonth($connection,$Bid,$BOid);
+    $last_pay=boarder_list_modelN::get_last_paymonth($connection,$Bid,$BOid);
     
-    if(mysqli_num_rows($last)>0)
+    if(mysqli_num_rows($last_pay)>0)
     {
-        $lastpay=mysqli_fetch_assoc($last);
+        $lastpay=mysqli_fetch_assoc($last_pay);
         print_r($lastpay);
             $y=$lastpay['year'];
             $m=$lastpay['month'];
@@ -53,7 +53,15 @@ if(isset($_GET['Bid']))
             $output = [];
             $time   = strtotime($date3);
             $last   = date('Y F', strtotime($date2));
-            $time = strtotime('+1 month', $time);
+
+if (date('F',strtotime($date2))=="February") {
+     $time = strtotime('+26 days', $time);#
+
+}else{
+     $time = strtotime('+1 month', $time);
+}
+
+           
             $month = date('Y F', $time);
 
             $count=0;
@@ -209,9 +217,62 @@ if(isset($_GET['Bid']))
 if(isset($_POST['paidurl']))
 {
         $Bid=$_POST['Bid'];
-        $year=intval(substr($_POST['setdate'],0,4));
-        $month=date('m',strtotime(substr($_POST['setdate'],5)));
-        $amount=$_POST['amount'];
+    echo   $year=intval(substr($_POST['setdate'],0,4));
+    $month_dis=substr($_POST['setdate'],5);
+    switch ($month_dis) {
+        case 'January':
+          $month='01';
+          break;
+         case 'February':
+          $month='02';
+          break;
+          case 'March':
+          $month='03';
+          break;
+        case 'April':
+          $month='04';
+          break;
+
+        case 'May':
+          $month='05';
+          break;
+
+        case 'June':
+          $month='06';
+          break;
+
+        case 'July':
+          $month='07';
+          break;
+
+         case 'August':
+          $month='08';
+          break; 
+
+        case 'September':
+          $month='09';
+          break; 
+
+        case 'October':
+          $month='10';
+          break; 
+
+
+        case 'November':
+          $month='11';
+          break; 
+
+
+        case 'December':
+          $month='12';
+          break; 
+
+
+        // return $month;
+    }
+    echo   $month;//$month=date('m',strtotime(substr($_POST['setdate'],5)));
+
+     echo   $amount=$_POST['amount'];
         $BOid=$_SESSION['BOid'];
         boarder_list_modelN::insert_payfee($connection,$Bid,$BOid,$year,$month,$amount,'cash');
 

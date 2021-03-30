@@ -100,9 +100,9 @@
             <form action="https://sandbox.payhere.lk/pay/checkout" method="post">
            
             <input type="hidden" name="merchant_id" value="1215562">    
-            <input type="hidden" name="return_url" value='http://localhost:1234/bodima-app/controller/new_payment_Control.php?success<?php echo $s?>'>
-            <input type="hidden" name="cancel_url" value="http://localhost:1234/bodima-app/controller/payhereOnlineCancelIshanphp?request_id=<?php echo $request_id;?>">
-            <input type="hidden" name="notify_url" value="http://localhost:1234/bodima-app/config/paycon.php"> 
+            <input type="hidden" name="return_url" value='http://localhost/bodima-app/controller/new_payment_Control.php?success<?php echo $s?>'>
+            <input type="hidden" name="cancel_url" value="http://localhost/bodima-app/controller/payhereOnlineCancelIshanphp?request_id=<?php echo $request_id;?>">
+            <input type="hidden" name="notify_url" value="http://localhost/bodima-app/config/paycon.php"> 
             
             <!--reciever details  -->
             <input type="hidden" name="order_id" value="<?php echo  $BOdetails['BOid'];?>">
