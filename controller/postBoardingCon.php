@@ -222,7 +222,7 @@ if (isset($_GET['success'])) {
       $result_P=boarding::delete_post($connection);
       echo $result;
 
-      header('Location:../views/myads_boardingowner.php');
+      header('Location:../controller/profile_controlN.php?profile=1');
       
       print_r($_POST);
       echo "sfsdfhdfsjhs";
