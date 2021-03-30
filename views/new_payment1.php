@@ -61,6 +61,7 @@
                     <select id="cars">
                     <?php 
                     $c_flag=0;
+                    $paymonth="";
                     foreach($months as $month){
                         if ($c_flag==0){
                             $paymonth=$month['month'];

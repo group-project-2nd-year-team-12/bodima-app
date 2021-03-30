@@ -7,7 +7,8 @@
 
 if(isset($_GET['id']))
 {
-
+        $month="";
+        $output=array();
         $Bid=$_SESSION['Bid'];
         $BOidx=pay_rent_modelN::get_BO_details($connection,$Bid);
         $BOidarr=mysqli_fetch_assoc($BOidx);
@@ -32,7 +33,7 @@ if(isset($_GET['id']))
         echo $totalMonthsDiff;
         $monthgap=intval($totalMonthsDiff);//truncate decimal points of monthdiff
         echo ' | '.$monthgap.'  <br>';
-
+        
         while($monthgap>0)
         {
             $d1=strtotime('+1 month', $d1);
@@ -51,9 +52,17 @@ if(isset($_GET['id']))
         $cpparr=pay_rent_modelN::get_costPerPerson($connection,$Bid);
         $cppval=mysqli_fetch_assoc($cpparr);
         $cppv=serialize($cppval);
+        print_r($monthlist);
+
+        // if(empty($monthlist)){
+        //        header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&cppv='.$cppv);
  
+        // }else{
+                header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist.'&cppv='.$cppv);
+
+        // }
     // ***********************************************************************************************
-    header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist.'&cppv='.$cppv);
+    // header('Location:../views/New_payment1.php?BOd='.$BOidarray.'&months='.$monthlist.'&cppv='.$cppv);
   
 }
 
