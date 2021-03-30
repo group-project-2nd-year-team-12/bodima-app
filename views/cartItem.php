@@ -47,8 +47,8 @@ $total=0;
                          <div class="cart-item">
                              <img src="<?php echo $result['product_img']?>" alt="">
                                  <div class="product-details">
-                                     <h3><?php echo $result['item_name'];?></h3>
-                                     <h3>RS : <?php echo $result['product_price'];?></h3>
+                                     <h4>Produnct Name : <?php echo $result['item_name'];?></h4>
+                                     <h4>Item price :RS : <?php echo $result['product_price'];?></h4>
                 
                                      <div class="item-count">
                                          

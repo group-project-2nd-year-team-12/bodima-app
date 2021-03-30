@@ -46,13 +46,6 @@
                         <a href="adminReports.php">Data reports <i class="fa fa-caret-right"></i></a>
                     </div>
                 </div>
-                <!-- <div class="element5" id="bill">
-                    <li><div><i class="fas fa-file-pdf"></i>settings</div> <i class="fa fa-chevron-down"></i></li>
-                    <div class="item">
-                        <a href="#">Posting income <i class="fa fa-caret-right"></i></a>
-                        <a href="#">Transaction <i class="fa fa-caret-right"></i></a>
-                    </div>
-                </div> -->
                 <a href="../index.php"><li>Web Site <i class="fa fa-chevron-right"></i></li></a>
                 <a href="../controller/logoutController.php" id="complaint"><li><div>Log Out</div> <i class="fa fa-angle-double-right"></i></li></a>
                

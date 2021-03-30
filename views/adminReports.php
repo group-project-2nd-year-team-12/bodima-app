@@ -40,12 +40,12 @@ require_once ('adminChart.php');
         <div class="report-box">
             <div>
                 <h2 id="reportName">Users Details</h2>
-                <select name="type"  id="report-type">
+                <select name="type"  id="report-Type">
                     <option id="User" value="User" selected>User Details</option>
                     <option id="Food" value="Food" >Order Details</option>
-                    <!-- <option id="Boarding" value="Boarding">Borarding Post</option> -->
                 </select>  
             </div>
+            <script></script>
             <div><a id="userPDF"><i class="fa fa-file-download fa-lg"></i> Get file here</a></div>
         </div>
           <form id="flterReport" class="time" method="post">
@@ -120,9 +120,9 @@ require_once ('adminChart.php');
         </div>
         </div>
     </div>
-</body>
-    <script src="../resource/js/admin.js"></script>
+</body> 
     <script src="../resource/js/jquery.js"></script>
+    <script src="../resource/js/admin.js"></script>
     <script src="../resource/js/report.js"></script>
 </html>
 
