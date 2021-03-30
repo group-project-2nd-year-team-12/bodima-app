@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
 
         $resName=$_POST['resName'];
         $address=$_POST['address'];
-        $location=$_POST['location'];
+       
     
         $description=$_POST['description'];
 
@@ -84,7 +84,7 @@ if(isset($_POST['submit'])){
         //$creattime=date('Y-m-d h:i:s');
         $result1=foodSupplierPost::delete_food_post($connection);
         echo $result1;
-        foodSupplierPost::foodPost($fid,$resName,$address,$location,$description,$image_name,$type,$otDeadline,$Lifespan,$Aamount,$upload_to,$connection);
+        foodSupplierPost::foodPost($fid,$resName,$address,$description,$image_name,$type,$otDeadline,$Lifespan,$Aamount,$upload_to,$connection);
 //database post id 
         
         header('Location:../views/iteam.php');

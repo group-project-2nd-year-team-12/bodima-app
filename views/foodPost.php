@@ -60,7 +60,7 @@ session_start();
     <hr/>
 
 	<div class="section">
-		<p>Resturent Name </p>
+		<p>*Resturent Name </p>
 		<input  type="text" name="resName" id="resName"  >
 		<?php if(isset($errors['err1'])) echo "<div class='error_msg'>".$errors['err1']."</div>"; ?>
                     
@@ -73,15 +73,15 @@ session_start();
 	<hr/>
 
 	<div class="section">
-		<p>Address </p>
+		<p>*Address </p>
 	
 		<!--<label for="">Address  </label><br>-->
 		<input  type="text" name="address" id="address"  >
 		<?php if(isset($errors['err2'])) echo "<div class='error_msg'>".$errors['err2']."</div>"; ?>
 
-		<p>Location</p >
-		<!-- <label for="">Location  </label><br> -->
-		<input  type="text" name="location" id="location" ><br>
+		<!-- <p>Location</p >
+		<label for="">Location  </label><br>
+		<input  type="text" name="location" id="location" ><br> -->
 
 	</div>
 	<hr/>
@@ -101,7 +101,7 @@ session_start();
 	<hr>
 
 	<div class="section">
-	<p>Type</p >
+	<p>*Type</p >
 		
 			<div class="radio-1">
 			
