@@ -60,18 +60,18 @@ var flag=0;
 // });
 // var flag=0;
 window.onclick=function(event){
-   if(event.target.matches(".fa-bell") && flag==0){
+   if(event.target.closest(".fa-bell") && flag==0){
        noti_box.style.display="block";
        flag=1;
    }
    else
    {
-       if((!event.target.matches(".notification-box")) &&  (!event.target.matches(".fa-bell")))
+       if((!event.target.closest(".notification-box")) &&  (!event.target.closest(".fa-bell")))
        {
            noti_box.style.display="none";
            flag=0;
        }
-       if(event.target.matches(".fa-bell") && flag==1)
+       if(event.target.closest(".fa-bell") && flag==1)
        {
            noti_box.style.display="none";
            flag=0;

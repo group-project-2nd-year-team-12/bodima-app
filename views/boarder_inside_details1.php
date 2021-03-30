@@ -264,10 +264,11 @@
                         </div>
                         </div>
                         <div class="a">
+                           <button type="submit" class="paid" name="paidurl" id="paid" ><i class="fas fa-check" >
                           <?php if($xflag==0){?>
-                        <button type="submit" class="paid" name="paidurl" id="paid" ><i class="fas fa-check" ></i> PAID</botton>
+                       <!--  <button type="submit" class="paid" name="paidurl" id="paid" ><i class="fas fa-check" ></i> PAID</botton> -->
                         <?php }else{?>
-                          <button type="submit" class="paid" name="paidurl" id="paid" disabled>
+                          <!-- <button type="submit" class="paid" name="paidurl" id="paid" disabled> -->
                         <?php
                         }?>
                       </div>

@@ -170,7 +170,7 @@ if (isset($_GET['success'])) {
 
       //boarding::delete_post($connection);
 
-      header('Location:../views/myads_foodsupplier.php');
+      header('Location:../controller/profile_controlN.php?profile=1');
       
       print_r($_POST);
       echo "sfsdfhdfsjhs";

@@ -3,10 +3,11 @@ $(document).ready(function () {
         var count="count";
         $.ajax({
             type: "post",
-            url: "controller/notification_control.php",
+            url: "../controller/notification_control.php",
             data:{count:count},// send to controller
             dataType: "json",
             success: function (data) {
+                console.log(data);
                     var content="";
                     var email="";
                     var noID="";
@@ -65,8 +66,7 @@ $(document).ready(function () {
                         '<div class="notify" style="margin:5px; font-size:small; border-radius:10px;background-color:#c0c1c25b">'+
                         '<div class="msg_head" style="background-color:#70a6f769;border-radius:10px;">'+
                         '<div style="display:flex; justify-content:space-between; align-items:center; padding-left:5px;"><img src="../bodima-app/resource/img/time-is-money.png" style="width:20px; height:20px;">'+
-                        '<p style="font-size:14px;">'+data.data[i]['massageHeader']+'</p>'+
-                        
+                        '<p style="font-size:14px;">'+data.data[i]['massageHeader']+'</p>'+                      
                         '<div style="text-align:right; padding:5px; line-height:80%;"><span style="font-size:10px; color:black; "> 35 min<br> ago</span></div>'+
                         '</div>'+
                         '</div>'+
@@ -97,11 +97,10 @@ $(document).ready(function () {
 
                 
                
-            },  
-            // error: function (xhr, ajaxOptions, thrownError) {
-            //    alert(xhr.status);
-            //     alert(thrownError);
-            // }
+            },  error: function (xhr, ajaxOptions, thrownError) {
+               alert(xhr.status);
+                alert(thrownError);
+            }
           
         });
       }
