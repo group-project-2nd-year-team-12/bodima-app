@@ -275,7 +275,7 @@ if(isset($_GET['orderConfirm_id'])){
     $deliveredTime=date("h:i:sa");
    $result=orderModel::requestOrderConfirm($connection,$deliveredTime,$order_id);
    // header('Location:../views/paymentFood_history.php');
-   header('Location:../views/paymentFood_history.php?success');
+   header('Location:../views/paymentFood_history.php?success&order_id='.$order_id.'');
 
 }
 

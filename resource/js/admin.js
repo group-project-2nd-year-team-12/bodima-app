@@ -37,13 +37,7 @@ document.querySelector('.element4').addEventListener('click',(e)=>{
         }
 })
 
-document.querySelector('.element5').addEventListener('click',(e)=>{
-    if(!$('.element5 > div').hasClass('item-active')){
-        $('.element5 > div').addClass('item-active');
-        }else{
-            $('.element5 > div').removeClass('item-active'); 
-        }
-})
+
 
 // table details send to PDF function [report]
 $('#userPDF').click(function(){
@@ -58,16 +52,13 @@ $('#userPDF').click(function(){
 
 
 // report change function [userdetails ,food post, boarding post ]
-$('#report-type').change(function(){
-    var type=$('#report-type').val();
+$('#report-Type').change(function(){
+    var type=$('#report-Type').val();
     if(type=="User"){
         window.location="adminReports.php";
     }
     else if(type=="Food"){
         window.location="adminFoodReport.php";
-    }
-   else if(type=="Boarding"){
-        window.location="adminBoardingReport.php"; 
     }
 })
 

@@ -147,7 +147,7 @@
                                 <!-- <h2>Connect With Close</h2> -->
                                 <h3>Download Our </h3>
                                 <h3>Android Application</h3>
-                               <button onclick="window.location='views/register.php'">Download</button>
+                               <!-- <button onclick="window.location='views/register.php'">Download</button> -->
                             
                             </div>
                        </div>

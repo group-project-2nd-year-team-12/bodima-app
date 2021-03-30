@@ -1,7 +1,7 @@
 <?php
     require_once ('../config/database.php');
     require_once ('../models/ratemodelFood.php');
-    session_start(); 
+    //session_start(); 
     
 
 ?>
