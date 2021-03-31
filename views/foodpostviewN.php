@@ -135,40 +135,7 @@ $posts=foodpost_details($connection);
                     <?php }?>
             <!-- ************************************************************** -->
 
-            <?php for ($x = 0; $x <= 4; $x++) {?>
- 
-
-               <div class="f_post" onclick="window.location='cart.php'">
-                   <div class="f_image">
-                       <img src="../resource/img/backdrop_2.jpg">
-                    </div>
-                    <div class="f_content">
-                    
-                        <li><h2><a>Rasika Food Delivery</a><span class="not_available">Unavailable</span></h2>
-                        
-                        </li>
-                        <li>3.5 
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i> (15) 
-                        </li>
-                        <li><i class="fas fa-map-marker-alt" id="map"></i>171,High Level Rd., Maharagama</li>
-                        <li class="description"><p>"The placeholder text is set with the placeholder attribute, which specifies a hint that describes the expected value of an input field.The placeholder text is set with the placeholder"</p></li>
-                        <li class="term">
-                            <div class="short">
-                                <span>shortTerm</span>
-                            </div>
-                            <div class="long">
-                            <span>longTerm</span>
-                            </div>
-                            
-                        </li>
-                    </div>
-                </div>
-
-                <?php }?>
+            
             </div>
             </div>
         </div>
