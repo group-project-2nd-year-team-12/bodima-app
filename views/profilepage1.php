@@ -61,6 +61,7 @@ if(isset($_SESSION['email'])){
     $summary1=$summary[0];
     $summary2=$summary[1];
     $summary3=$summary[2];
+    // print_r($summary);
    
   ?>
 

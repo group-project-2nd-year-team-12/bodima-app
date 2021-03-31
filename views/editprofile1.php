@@ -59,6 +59,14 @@
                     $telephone=$Userdata['telephone'];
 
                 }
+
+
+                    $summary=unserialize($_GET['summary']);
+                    $summary1=$summary[0];
+                    $summary2=$summary[1];
+                    $summary3=$summary[2];  
+                    // print_r($summary); 
+
         ?>
 <?php  if($_SESSION['level']=="food_supplier"){
                           $level_name = 'Food supplier';}
@@ -191,14 +199,110 @@
                   <p> <?php echo $level_name?></p>
                 </div>
 
-                <div class="stat_bar1">
-                  <div class="stat_item1" style="border-left: 1px solid #d4af37;"><li style="padding-left:25px;">Requests</li><span> 2</span></div>
-                  <div class="stat_item1"><li>Due Payments</li><span> 0</span></div>
-                  <div class="stat_item1"><li>Notifications</li><span> 4</span></div>
+
+<!-- ******************summary dash board of the profile********************* -->
+                
+<?php 
+                if($_SESSION['level']=='student'){
+
+                  echo '<div class="status">
+                  <div class="statbox">
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">Requests</div>
+                                <div class="num"><div>'.$summary1['requests'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">Accepted</div>
+                                <div class="num"><div>'.$summary2['accepted'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">Notifications</div>
+                                <div class="num"><div>'.$summary3['notification'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                  </div>
+                </div>';
+
+                }else if($_SESSION['level']=='boarder'){
+                  
+                    echo '<div class="status">
+                    <div class="statbox">
+                      <div class="vertical_bar"></div>
+                                <div class="info">
+                                  <div class="name">Due Payments</div>
+                                  <div class="num"><div>0</div></div>
+                                </div>
+                      <div class="vertical_bar"></div>
+                                <div class="info">
+                                  <div class="name">Notifications</div>
+                                  <div class="num"><div>'.$summary3['notification'].'</div></div>
+                                </div>
+                      <div class="vertical_bar"></div>
+                                <div class="info">
+                                  <div class="name">Current orders</div>
+                                  <div class="num"><div>'.$summary2['delivaring'].'</div></div>
+                                </div>
+                      <div class="vertical_bar"></div>
+                    </div>
+                  </div>';
+
+                }else if($_SESSION['level']=='boardings_owner'){
+
+                  echo '<div class="status">
+                  <div class="statbox">
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">New Requests</div>
+                                <div class="num"><div>'.$summary1['newRequest'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">Boarders</div>
+                                <div class="num"><div>'.$summary2['boarders'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">Notifications</div>
+                                <div class="num"><div>'.$summary3['notification'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                  </div>
+                </div>';
+
+                }else if($_SESSION['level']=='food_supplier'){
+
+                  echo '<div class="status">
+                  <div class="statbox">
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">New Orders<br><br></div>
+                                <div class="num"><div>'.$summary1['new_order'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name"><center>Currently<br>Active Orders</center></div>
+                                <div class="num"><div>'.$summary2['to_deliver'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                              <div class="info">
+                                <div class="name">Notification<br><br></div>
+                                <div class="num"><div>'.$summary3['notification'].'</div></div>
+                              </div>
+                    <div class="vertical_bar"></div>
+                  </div>
+                </div>';
+
+                }else{
+                  echo '';
+                } 
+                
+                ?>
 
 
-</br></br></br></br>
-                </div>
+                
               </div>
         </div>
         
