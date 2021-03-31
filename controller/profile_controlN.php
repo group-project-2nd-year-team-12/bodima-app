@@ -72,7 +72,7 @@ if(isset($_GET['profile']))
 
 
 
-                if($level=="boardings_owner")
+                if($level=="boardings_owner") 
                 {
                         $newReq_count=summary_count_model::newRequest_count($connection,$_SESSION['BOid']);
                         $newReq_count1=mysqli_fetch_assoc($newReq_count);
