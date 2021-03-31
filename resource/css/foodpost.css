@@ -191,12 +191,12 @@ body {
 }
 
 .error_msg {
-    color: #cc0000;
+   color: #cc0000;
     margin-right: 100px;
     position: relative;
     width: 100%;
-    left: 150px;
-    bottom: 30px;
+    /* left: 150px;
+    bottom: 30px; */
     border-radius: 0px;
     padding: 5px 5px 0px 0px;
     font-size: 15px;

@@ -256,12 +256,12 @@ body {
 }
 
 .error_msg {
-    color: #cc0000;
+   color: #cc0000;
     margin-right: 100px;
     position: relative;
     width: 100%;
-    left: 150px;
-    bottom: 30px;
+    /* left: 150px; */
+    /* bottom: 30px; */
     border-radius: 0px;
     padding: 5px 5px 0px 0px;
     font-size: 15px;
@@ -271,10 +271,13 @@ body {
     color: #cc0000;
     width: 100%;
     padding: 5px 0px;
+    font-size: 15px;
+    border-radius: 0px;
+    font-weight: bold;
 }
 
 .error1 {
-    color: #cc0000;
+   color: #cc0000;
     position: relative;
     width: 100%;
     left: 30px;
@@ -282,11 +285,12 @@ body {
 }
 
 .error2 {
-    color: #cc0000;
-    position: relative;
+     color: #cc0000;
     width: 100%;
-    left: 250px;
-    bottom: 20px;
+    padding: 5px 0px;
+    font-size: 15px;
+    border-radius: 0px;
+    font-weight: bold;
 }
 
 

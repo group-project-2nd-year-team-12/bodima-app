@@ -42,14 +42,22 @@ class summary_count_model{
         $query="SELECT DATEDIFF(SUBSTRING(CURRENT_TIMESTAMP, 1,10), SUBSTRING((SELECT concat(year,'/',month,'/1') as date FROM `payfee` WHERE Bid={$Bid} and BOid={$BOid} order by year DESC ,month DESC limit 1), 1,10)) / 30.436875 as diff";
         // $query="SELECT year,month FROM `payfee` WHERE Bid={$Bid} and BOid={$BOid} order by year DESC ,month DESC limit 1";
         $result=mysqli_query($connection,$query);
-
+        // echo $query;
+        // die();
         if(mysqli_num_rows($result)>0){
             return $result;
         }else{
-            $query2=" SELECT DATEDIFF(SUBSTRING(CURRENT_TIMESTAMP, 1,10), SUBSTRING((SELECT payment_date FROM `confirm_rent` WHERE Bid={$Bid} and BOid={$BOid} and is_paid=1 order by rent_id DESC ,payment_date DESC limit 1), 1,10)) / 30.436875 as diff";
-            // $query2="SELECT payment_date FROM `confirm_rent` WHERE Bid={$Bid} and BOid={$BOid} and is_paid=1 order by rent_id DESC ,payment_date DESC limit 1";
-            $result=mysqli_query($connection,$query);
-            return $result;
+            // $query2=" SELECT DATEDIFF(SUBSTRING(CURRENT_TIMESTAMP, 1,10), SUBSTRING((SELECT payment_date FROM `confirm_rent` WHERE Bid={$Bid} and BOid={$BOid} and is_paid=1 order by rent_id DESC ,payment_date DESC limit 1), 1,10)) / 30.436875 as diff";
+            $query2="SELECT payment_date FROM `confirm_rent` WHERE Bid={$Bid} and BOid={$BOid} and is_paid=1 order by rent_id DESC ,payment_date DESC limit 1";
+            // echo $query2;
+            // die();
+            $result=mysqli_query($connection,$query2);
+            
+            if(mysqli_num_rows($result)>0){
+                return $result;}
+                else{
+                    return 0;
+                }
         }
     }
 
