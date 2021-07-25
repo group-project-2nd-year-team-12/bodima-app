@@ -98,8 +98,8 @@ $(document).ready(function () {
                 
                
             },  error: function (xhr, ajaxOptions, thrownError) {
-               alert(xhr.status);
-                alert(thrownError);
+            //    alert(xhr.status);
+            //     alert(thrownError);
             }
           
         });
